@@ -1,0 +1,837 @@
+RESEARCH ARTICLE
+10.1029/2019RS006868
+Key Points: • For over‐the‐horizon radar (OTHR)
+to be effective in Canada, the auroral clutter needs to be suppressed. This can only be accomplished by careful design of the antenna and array processing techniques • A comprehensive analysis of clutter rejection performance considering various error mechanisms in the context of an OTHR operating at northern latitudes is carried out for the ﬁrst time • The combination of MIMO radar and conventional null steering is proposed and allows the use of a single OTHR array of simple construction to cover the entire 3‐ to 18‐MHz band
+
+Investigation of a 256‐Monopole Transmit Antenna Array for Over‐the‐Horizon Radar in Canada
+Simon Henault1 and Ryan J. Riddolls1
+1Defence Research and Development Canada, Ottawa, Ontario, Canada
+Abstract A 256‐monopole planar array is investigated as a potential transmit antenna covering the
+entire 3‐ to 18‐MHz band in an over‐the‐horizon radar (OTHR) operating at high latitudes in Canada. This array is relatively inexpensive, simple to build, and offers the azimuth and elevation resolutions necessary to defeat the auroral clutter which has traditionally limited the operation of OTHR at high latitudes. It is demonstrated that excellent clutter rejection ratios are possible with this antenna array and accurate calibration, but signiﬁcant performance degradation occurs with calibration errors in particular in the lower portion of the operating frequency band. Various calibration approaches and error mechanisms are studied. A new approach combining multiple‐input‐multiple‐output (MIMO) radar techniques at lower frequencies and conventional transmit null steering at higher frequencies is proposed and evaluated. This approach enhances the robustness of the array to calibration errors while preserving the radar unambiguous range‐Doppler space across the operating frequency band.
+
+Correspondence to: S. Henault, simon.henault@drdc‐rddc.gc.ca
+Citation: Henault S., & Riddolls, R. (2019). Investigation of a 256‐monopole transmit antenna array for over‐the‐horizon radar in Canada. Radio Sci.Radio Science, 54, 888–903. https://doi.org/10.1029/2019RS006868 Received 29 APR 2019 Accepted 8 SEP 2019 Accepted article online 9 OCT 2019 Published online 31 OCT 2019
+©2019 Her Majesty the Queen in Right of Canada Radio Science ©2019 American Geophysical Union. Reproduced with the permission of the Department of National Defence.
+
+1. Introduction
+Over‐the‐horizon radar (OTHR) technologies offer the potential to perform extremely wide area surveillance and detect targets thousands of kilometers away by exploiting skywave propagation at high frequencies (HF). OTHR systems currently in operation include the AN/TPS‐71 relocatable OTHR (ROTHR) in the United States, the Jindalee Operational Radar Network (JORN) in Australia and the NOSTRADAMUS radar in France (Fabrizio, 2013). These systems operate at middle latitudes where ionospheric irregularities drift slowly compared to those at high latitudes (Riddolls, 2009). The clutter due to middle‐latitude irregularities therefore has a narrower Doppler spread than the clutter that is due to high‐latitude irregularities and thus is less of an issue for hard target detection as it is in the Canadian Arctic where the auroral clutter can mask potential targets (Riddolls, 2009). This has historically limited the operation of OTHR in Canada (Riddolls, 2017).
+Research on OTHR has recently revived in Canada and Defence Research and Development Canada (DRDC) is investigating the use of digital beamforming antenna arrays to defeat the auroral clutter. These arrays have the ability to adapt to a changing propagation environment and suppress the auroral clutter by steering deep nulls in its direction while optimizing transmission and reception in the direction of a target spatially separated from the clutter.
+While adaptive techniques in reception are available, it is generally not the case in transmission for several reasons. The transmit and receive sites are often not collocated so that continuous frequency modulated signals can be used, and reciprocal propagation channels are not necessarily available at HF frequencies (Jull, 1967). A posteriori multiple‐input‐multiple‐output (MIMO) processing (Fuhrmann et al., 2010; Hassanien & Vorobyov, 2010; Li & Himed, 2010) is an option, but this incurs an important penalty in the unambiguous range‐Doppler space (Abramovich & Frazer, 2008). In particular, the unambiguous range‐Doppler space is typically reduced by a factor equal to the number of MIMO waveforms. For these reasons, deterministic beamforming in which conventional null steering is performed remains relevant in a transmit OTHR array.
+Null steering is inherently very sensitive to antenna calibration accuracy (Henault & Morin, 2018b, 2018a), and various calibration error mechanisms must be carefully considered. Calibration refers to the correction of amplitudes and phases of each individual array element in the array. Due to various factors that are studied in this paper, these amplitudes and phases can deviate from ideal ones and need to be quantiﬁed accurately; otherwise, calibration errors will occur and degrade performance.
+
+HENAULT AND RIDDOLLS
+
+888
+
+Radio Science
+
+10.1029/2019RS006868
+
+The design of an OTHR presents several choices that are guided by a multitude of factors including the available power at the transmitter, the real estate available for the transmit and receive arrays, the physical radar coverage, the range, Doppler and angular resolutions, the target size, the target location accuracy and precision, and the propagation environment (Riddolls, 2006). These factors have led to the choice of a 256‐planar monopole array at the transmit site, due to the simplicity, low‐cost and ease of installation of vertical monopoles, and the two‐dimensional azimuth and elevation resolution capability provided by a planar array. This array is the subject of the investigation presented in this paper.
+
+This investigation attempts to determine the best way to use the
+
+256‐planar monopole array for operation over the entire 3‐ to 18‐MHz
+
+Figure 1. Morphology of target and clutter signals. (Riddolls, 2017).
+
+band. Signiﬁcant challenges exist at lower frequencies in a single antenna array covering this whole band due to the limited electrical size with
+
+decreasing frequency and increased sensitivity to array calibration errors
+
+(Henault & Morin, 2018b, 2018a). This paper looks at different calibration error mechanisms and proposes
+
+an approach to optimize beamforming performance over the whole band. A combination of MIMO and
+
+conventional null steering is proposed.
+
+This paper is organized as follows. The unique challenges of operating an OTHR in the Canadian North, and the theory of conventional transmit null steering and MIMO radar are discussed in section 2. The 256‐monopole array is described in section 3, conventional transmit null‐steering performance with various calibration approaches and error mechanisms is evaluated in section 4, and the proposed combination of MIMO and conventional null steering is discussed in section 5. Finally, conclusions are presented in section 6.
+
+2. Theory
+2.1. Unique Auroral Clutter Challenges in the Canadian Arctic
+Several features of the high‐latitude ionosphere lead to difﬁculties for OTHR operation. First, the subauroral ionospheric trough features horizontal plasma density gradients that lead to instability mechanisms producing ionospheric plasma irregularities (Ossakow & Chaturvedi, 1979). Second, these plasma irregularities can be spread throughout the high‐latitude ionosphere by high‐speed horizontal plasma drifts driven by the interaction of the Earth's magnetic ﬁeld and the solar wind (Kelley, 1989). These rapidly moving plasma irregularities produce radar backscatter clutter during OTHR operations. The clutter results from a Bragg scattering mechanism, whereby strong constructive interference can be produced by scattering structures with scale lengths equal to one half the radar wavelength (Greenwald et al., 1995). While the volumetric radar cross section of these Bragg scattering ionospheric irregularities is small (on the order of −80 dBm2/m3 by empirical determination based on experimental data and also by calculations based on empirical irregularity spectrum; Riddolls, 2009), the irregularities can occupy many trillions of cubic meters of space, leading to radar clutter several orders of magnitude stronger than aircraft echoes (Riddolls, 2017).
+There exist geometric features that can be exploited by the radar to mitigate the impact of the clutter. Consider, for example, Figure 1. Here, several rays representing signals emitted from an OTHR with a broad elevation beam pattern are drawn. The blue rays show a one‐hop path between the OTHR and Target 1, and a half‐hop path between the OTHR and Clutter 1. Here, Target 1 represents an aircraft and Clutter 1 represents backscatter from irregularities in the ionosphere. Target 1 and Clutter 1 are at the same slant range but appear to the OTHR to be at different elevation angles. If we increase the target and clutter slant ranges by equal amounts, we arrive at the case of the green rays. Here, the ray elevation angles for Target 2 and Clutter 2 are less than those for the corresponding blue rays, but the rays remain resolvable in elevation angle.
+Note that Figure 1 only shows the worst case where the target and clutter are only separated in elevation. In practice, range‐coincident clutter can separate from the target in both azimuth and elevation. Elevation resolution is only strictly required for mitigating clutter that falls within the same range‐Doppler‐azimuth cell as a target. The separation of the target and clutter rays is a consistently exploitable feature, and nulling the half‐hop clutter mode can reduce the clutter levels. Nulling can be implemented in the receive subsystem
+
+HENAULT AND RIDDOLLS
+
+889
+
+Radio Science
+
+10.1029/2019RS006868
+
+of the radar by typically using digital receivers at each of the receive array elements and adaptive array techniques, although combining a transmit beamformer with a similar beamformer on receive can greatly enhance the clutter rejection capability of the combined transmit‐receive system. Here, we focus on the transmit subsystem of the radar system due to its particular design challenges.
+
+2.2. Conventional Transmit Null Steering
+In a transmit beamformer where null steering is implemented and radiation is maximized toward a target at (θt,ϕt), weights or excitations can be determined using
+
+w ¼ Rxx−1Eθðθt; ϕtÞ
+
+(1)
+
+L
+
+
+
+Rxx ¼ ∑ Eθðθl; ϕlÞEθðθl; ϕlÞH þ Eϕðθl; ϕlÞEϕðθl; ϕlÞH
+
+þ
+
+σ
+
+2 o
+
+I
+
+(2)
+
+l¼1
+
+where θl and ϕl are the elevation and azimuth angles of the lth null. As discussed in Henault and Morin (2018a), cross‐polarization needs to be considered, otherwise null depths can degrade due to the ﬁnite ground plane of the antenna system. The formulation given in (2) can deal not only with point clutter but also with volumetric or angularly distributed clutter if a suitable number L of nulls cover the entire clutter distribution at sufﬁcient angular intervals. The total gain pattern for an arbitrary angle is given by
+
+qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+jEðθ; ϕÞj ¼ jwHEθðθ; ϕÞj2 þ jwH Eϕðθ; ϕÞj2
+
+(3)
+
+A useful measure of clutter rejection success is the signal‐to‐clutter ratio (SCR):
+
+SCR
+
+¼
+
+1 L
+
+wH Eθðθt; ϕtÞEθðθt; ϕtÞH w
+
+L
+∑ jwH
+
+Eθðθl;
+
+ϕlÞj2
+
+þ
+
+wH Eϕðθl;
+
+ϕlÞ2
+
+(4)
+
+l¼1
+
+To verify whether a sufﬁcient number of nulls are formed, (3) is typically computed at intervening angles between null points to see if the gain pattern magnitude remains below a reasonable level. Higher frequencies require more null points due to the larger electrical size of the antenna and consequently require more array elements to cover large clutter distributions. Note that in MIMO implementations, discussed in the next sections, the SCR is adaptively optimized and hence such veriﬁcations are irrelevant.
+
+HENAULT AND RIDDOLLS
+
+2.3. MIMO Radar
+A MIMO radar transmits separable waveforms on each of the transmit array elements, allowing a posteriori transmit beamforming to be performed at the radar receiver. For a MIMO radar having M transmit elements and N receive elements, the received signals can be expressed using an N element column vector:
+
+M
+
+M
+
+x ¼ xR ∑xTix þ ∑ni þ nR
+
+(5)
+
+i¼1
+
+i¼1
+
+After separation of the different waveforms, the following column vector is obtained:
+
+2
+
+3 2 32 3
+
+xRxT1
+
+n1
+
+nR1
+
+y ¼ 64 ⋮ 75x þ 64 ⋮ 75 þ 64 ⋮ 75
+
+(6)
+
+xRxTM
+
+nM
+
+nRM
+
+¼ ðxT ⊗xRÞx þ n
+
+(7)
+
+Adaptive beamforming techniques can be used to optimize radar performance by ﬁrst estimating an MN×MN correlation matrix Ryy using the received signals and calculating MIMO weights:
+
+890
+
+Radio Science
+
+10.1029/2019RS006868
+
+wMIMO ¼ wT ⊗wR
+
+(8)
+
+¼ Ryy−1ðxT ðθt; ϕtÞ⊗xRðθr; ϕrÞÞ
+
+(9)
+
+where wT and wR are the transmit and receive weight vectors, and xT(θt,ϕt) and xR(θr,ϕr) are the transmit and receive steering vectors in the target direction. The beamformer output in an arbitrary direction is given by
+
+y ¼ wMIMOH ðxT ⊗xRÞ
+
+(10)
+
+¼
+
+À wT
+
+H
+
+⊗wRH
+
+Á ðxT
+
+⊗xRÞ
+
+(11)
+
+¼ wT H xT ⊗wRH xR
+
+(12)
+
+¼ yT ·yR
+
+(13)
+
+This implies that the transmit MIMO beamformer can be analyzed independently of the receive beamformer, which is a useful feature in the context of this paper.
+2.4. MIMO Radar With Subarrays at the Transmitter
+The use of subarrays at the MIMO transmitter was reported in Fuhrmann et al. (2010), Hassanien and Vorobyov (2010), and Li and Himed (2010) and called transmit subaperturing MIMO (TS‐MIMO; Li & Himed, 2010), hybrid MIMO phased‐array radar (HMPAR) (Fuhrmann et al., 2010), or phased‐MIMO radar (Hassanien & Vorobyov, 2010). In this implementation, instead of transmitting M waveforms, only K waveforms are transmitted by partitioning the transmit array into K subarrays. The elements of each subarray can coherently transmit their waveform toward the target resulting into higher target returns at the receive array. In other words, the transmit array uses directional antennas instead of omnidirectional antennas by properly applying the correct element excitations at the radar transmitter. In this modiﬁed implementation, an M×K transmit beamforming matrix W is introduced and the MIMO weight vector becomes
+
+wKN ¼ wK ⊗wR
+
+(14)
+
+¼
+
+RKN −1
+
+À W
+
+H xT
+
+ðθt ;
+
+ϕt Þ⊗xR ðθr ;
+
+Á ϕr Þ
+
+(15)
+
+The elements of W have to match the excitations used at the transmitter. Each column of W is associated with one waveform and each row is associated with one transmit array element. When an element is not transmitting a particular waveform, the corresponding W element is simply 0. Similar to (10)–(13), the output of the phased‐MIMO beamformer is
+
+y
+
+¼
+
+wKNH
+
+À W
+
+H
+
+xT
+
+Á ⊗xR
+
+(16)
+
+¼
+
+À wK
+
+H
+
+⊗wR
+
+H
+
+ÁÀ W
+
+H
+
+xT
+
+Á ⊗xR
+
+(17)
+
+¼ wK H W H xT ⊗wRH xR
+
+(18)
+
+¼ yK ·yR
+
+(19)
+
+Again, the transmit beamformer can be analyzed independently of the receive beamformer. To consider both vertical and horizontal polarizations such as in section 2.2, the transmit weights are given by
+
+wK ¼ RK −1W H Eθðθt; ϕtÞ
+
+(20)
+
+where RK is the correlation matrix of the transmit subarrays. The transmit MIMO gain pattern can be expressed as
+
+qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+jEK ðθ; ϕÞj ¼ jwK H W H Eθðθ; ϕÞj2 þ jwK H W H Eϕðθ; ϕÞj2
+
+(21)
+
+The SCR is given by
+
+HENAULT AND RIDDOLLS
+
+891
+
+Radio Science
+
+10.1029/2019RS006868
+
+SCRK
+
+¼
+
+1 L
+
+wK H W H Eθðθt; ϕtÞEθðθt; ϕtÞH W wK
+
+L
+∑
+
+wK
+
+HW
+
+H
+
+Eθðθl;
+
+ϕlÞ2
+
+þ
+
+wK
+
+H
+
+W
+
+H
+
+Eϕðθl;
+
+ϕlÞ2
+
+(22)
+
+l¼1
+
+Figure 2. 3‐D model of the 256 OTHR monopole antenna array (Voors, 2019). All monopoles have a ground system made of 32 horizontal radials which are thicker than in reality in this picture.
+
+The strength of the MIMO approach is that the transmit correlation matrix RK need not be known since it is included in the MIMO correlation matrix RKN, estimated at the receiver when adaptive null steering is performed. Only the steering vector in the target direction Eθ(θt,ϕt) needs to be known to calibrate the array because deterministic nulls are no longer needed at the transmitter and only the main beam is to be directed toward the target. Since the main beam is signiﬁcantly less sensitive than nulls to calibration errors, a substantial clutter rejection improvement is expected when calibration errors are an issue.
+
+2.5. Unambiguous Range‐Doppler Space
+
+OTHR systems generally operate in both range and Doppler dimensions. The pulse repetition frequency (PRF) has to be carefully selected to obtain the desired unambiguous detection range and maximum target velocity (Skolnik, 1990). The unambiguous range is given by
+
+Ru
+
+¼
+
+c 2f R
+
+(23)
+
+The maximum target velocity is given by
+
+V Tmax
+
+¼
+
+λf R 4
+
+(24)
+
+For a constant unambiguous range, the maximum target velocity of a MIMO radar employing K waveforms reduces to (Abramovich & Frazer, 2008)
+
+V
+
+MIMO Tmax
+
+¼
+
+λf R 4K
+
+(25)
+
+This dramatically limits the use of MIMO in OTHR, but lower frequencies are less affected due to the larger λ term in the numerator of (25). The array considered in this paper operates from 3 to 18 MHz. Since the wavelength at the lowest frequency is 6 times longer that the wavelength at the highest frequency, it technically allows the use of up to K=6 waveforms while preserving the same unambiguous range‐Doppler space as at 18 MHz. However, using a small number of waveforms severely limits the degrees of freedom of the transmit array, and so a careful selection of the number of waveforms is necessary. The approach described in section 2.4 gives the ﬂexibility to modify the number of waveforms at will while beneﬁting from improved robustness to calibration errors. The theory of section 2.4 has existed for some time (Fuhrmann et al., 2010; Hassanien & Vorobyov, 2010; Li & Himed, 2010) but is applied here in a new manner based on the operating frequency to combat auroral clutter.
+
+3. The 256‐Monopole Array Description
+The 256‐monopole array is illustrated in Figure 2. It is a square 16×16 regular array. Each monopole is 9 m tall and 7.6 cm in diameter. The separation between monopoles is 8 m. The ground system of each monopole is made of 32 radials that are 9.75 m long AWG 18 wires. The variations in gain at different frequencies are shown in Figure 3 for a single isolated monopole.
+
+4. Conventional Null Steering
+Conventional null steering remains the preferred approach to preserve all transmit degrees of freedom and maximum unambiguous range‐Doppler space. This section evaluates different calibration approaches and error mechanisms when the theory of section 2.2 is employed.
+
+HENAULT AND RIDDOLLS
+
+892
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 3. Realized gain of a single monopole in decibels as a function of the elevation angle at different frequencies.
+
+4.1. Numerical Modeling for Beamformer Calibration
+The array described in section 3 was modeled using FEKO (FEKO–EM simulation software, 2019) with the exact Sommerfeld integral formulation (Lindell & Alanen, 1984). Average ground properties with a conductivity σ=0.005 S/m and relative permittivity ϵr=13 were ﬁrst considered. A beamforming scenario with a target at azimuth angle ϕ=40° and elevation angle θ=55° and the auroral clutter spread over −30° ≤ϕ ≤ 30° at θ=70° was considered. This test case is challenging but representative of real auroral clutter scenarios. Smaller angular separations between the target and clutter typically yield lower SCR performance. The clutter could also spread in elevation and not only in azimuth in some cases, requiring more degrees of freedom to perform clutter mitigation, and this could degrade the SCR even for the same angular separation. 4.1.1. Perfect Calibration The achievable performance with accurate calibration data was calculated at 3, 8, 13, and 18 MHz, and the results are presented in Figure 4. Other frequencies were analyzed within the 3‐ to 18‐MHz band, but only these four frequencies are presented for brevity. All power levels are normalized to those of an ideal isotropic antenna transmitting the same total power as that of the array, and are thus the realized array gains. It is observed that excellent SCR performance can be obtained with accurate calibration, with clutter rejection exceeding 92 dB at all frequencies. As expected, increasing frequency results into better clutter rejection due to the larger electrical aperture. 4.1.2. Ground Model Mismatch The previous results assumed a uniform inﬁnite average ground. In practice, the ground properties may deviate from the assumed ones and be inconsistent across the site. To evaluate the impact of a ground model mismatch, the array was also modeled on poor (σ=0.0005 S/m, ϵr=3) and good (σ=0.03 S/m, ϵr=20) conductor grounds. The weights calculated in section 4.1.1 for an average ground were kept but the steering vectors in (3)–(4) were changed to those of poor and good conductor grounds. The results for the poor conductor ground are shown in Figure 5. Clutter rejection is seen to deteriorate signiﬁcantly, but SCR values exceeding 30 dB are obtained at 8, 13, and 18 MHz. Lower frequencies become problematic with an SCR only reaching 11 dB at 3 MHz. The amplitude and phase calibration errors in the target direction for each of the 256 monopoles are plotted in Figure 6. It can be observed that the errors are larger at 3 MHz with amplitude and phase deviations reaching 3 dB and 23°, respectively. Other results are summarized in Table 1 for both poor and good conductor grounds. Three other calibration models were evaluated:
+• Perfect Ground: monopoles are modeled on an inﬁnite perfect electrical conductor (PEC) ground; • Ideal: monopoles are modeled as ideal isotropic antennas and steering vectors are simply governed by the
+array geometry; • Impedance Matrix: the 256×256 mutual impedance matrix is used to calibrate the array.
+The impedance matrix model can work in special cases but is generally incorrect (Henault & Antar, 2015), since this analysis is limited to the circuit level. Full radiation pattern measurements or calculations are
+
+HENAULT AND RIDDOLLS
+
+893
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 4. Beamformer gain patterns of the 256‐monopole array on average ground with perfect calibration at (a) 3, (b) 8, (c) 13 and (d) 18 MHz. The radial dimension of these polar plots corresponds to the elevation angle from θ=0° (zenith) at the center to θ=90° (horizon). SCR = signal‐to‐clutter ratio.
+
+required in general. This is veriﬁed in the last column of Table 1 where relatively low SCR values are observed. Only at 3 MHz in the case of a good conductor ground does the impedance matrix approach give better results than other models, with a 28.5‐dB SCR, but with a signiﬁcant degradation compared to the perfect calibration results. The average ground model gives best results in general compared to the other three models.
+4.2. Manifold Measurements for Beamformer Calibration
+Section 4.1 has established that ground modeling errors can cause signiﬁcant performance degradations. Antenna measurements on the other hand can alleviate this problem since they inherently include ground effects. However, far‐ﬁeld measurements are required and far‐ﬁeld distances at HF frequencies can be very long. Based on generally accepted far‐ﬁeld criteria (Stutzman & Thiele, 1981), these distances can be a few kilometers away. Measurements have to be performed in elevation as well which can involve an aerial platform such as a drone and have to be repeated to account for seasonal variations such as frozen soil and snow cover. Accurate phase measurements on an aerial platform also present signiﬁcant challenges. In practice, we may be limited to performing these measurements in the near ﬁeld. Near‐ﬁeld steering vector calculations were performed at practical distances of 250 and 500 m from the array center. Using these steering vectors in (1)‐(2) gives the total beamformer gain patterns of Figure 7 for the 500‐m steering vectors. Performance is signiﬁcantly reduced due to the limited measurement distance, and the SCR at 18 MHz only reaches 29.7 dB. Table 2 summarizes these ﬁndings at both 250 and 500 m, along with some of the ﬁndings of section 4.1. These results suggest that actual measurements of the beam patterns at 250 and 500 m will not return accurate data due to being in the near ﬁeld, and it is therefore recommended to use numerical models except perhaps at lower frequencies although the performance gain is expected to be modest.
+
+HENAULT AND RIDDOLLS
+
+894
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 5. Beamformer gain patterns of the 256‐monopole array on poor conductor ground using average ground calibration data at (a) 3, (b) 8, (c) 13 and (d) 18 MHz. The radial dimension of these polar plots corresponds to the elevation angle from θ=0° (zenith) at the center to θ=90° (horizon). SCR = signal‐to‐clutter ratio.
+
+4.3. Impact of Snow Cover on Beamformer Performance
+Snow in Canada is a signiﬁcant concern and it is important to quantify its impact on clutter rejection. Two different snow types were considered, dry snow (σ=10−5 S/m, ϵr=1.2) and wet snow (σ=0.0003 S/m, ϵr=1.9; Jenkins, 1973). Three snow thicknesses were evaluated: 10 cm, 50 cm and 100 cm. The snow cover was modeled using the planar multilayer substrate formulation on average and poor conductor grounds. The beamformer weights were determined without the snow cover in (1) and (2), but the manifold including snow was used in (3) and (4). Clutter rejection results are summarized in Table 3. Again, low frequencies suffer the most from the calibration error caused by snow. Robust beamforming (Henault, 2018) can alleviate this issue to some extent. This is done by increasing the value of σ2o in (2). Unfortunately, it is difﬁcult to determine the optimal value of this parameter. Here, we sweep a range of possible values and observe the resulting performance. This is done in Figure 8 for 50 cm of wet snow on average ground. Note that σ2o is relative to the nominal power of each monopole. It is seen that performance can improve at lower frequencies using robust beamforming techniques. The SCR at 3 MHz can reach 20 dB with σ2o ¼ 0 dB. However, robust beamforming must be used with care since using this level of diagonal loading reduces the achievable performance in the event that the manifold is more accurate then expected.
+4.4. Impact of Element Failures on Beamformer Performance
+Array element failures are also an important concern. It can take time for this fault type to be detected so that the beamformer weights can take it into account. Here, we evaluate performance with undetected faults.
+
+HENAULT AND RIDDOLLS
+
+895
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 6. Amplitude and phase error in the target direction for each of the 256 monopoles when calibrating the array with average ground calibration data but the array is in reality on poor conductor ground at (a) 3, (b) 8, (c) 13 and (d) 18 MHz. SCR = signal‐to‐clutter ratio.
+
+Figure 9 shows the robust beamforming performance with undetected failure of a full row of 16 elements. These elements are completely disconnected and fail to radiate any power. With the standard σ2o ¼ −60 dB, the SCR at 3 MHz is only 10 dB. By increasing σ2o , the SCR can only increase to ∼20 dB. Other frequencies do not beneﬁt signiﬁcantly from diagonal loading, but are signiﬁcantly more robust to
+element failures with SCR values remaining better than 27 dB. The achievable beamformer performance
+is seen to be very similar with and without element failures, primarily due to the unused degrees of freedom provided by the 256‐monopole array. A more challenging clutter scenario or more failed
+elements can yield more important differences.
+
+Table 1 Beamforming Performance in Decibels (dB) for Different Grounds and Calibration Models
+
+Calibration model
+
+Ground
+
+Frequency
+
+Average ground
+
+Perfect ground
+
+Ideal
+
+Poor
+
+3 MHz
+
+11.0
+
+15.2
+
+14.6
+
+8 MHz
+
+30.8
+
+24.6
+
+25.5
+
+σ
+
+¼
+
+0:0005
+
+S m
+
+13 MHz
+
+44.2
+
+29.6
+
+38.0
+
+ϵr=3
+
+18 MHz
+
+47.4
+
+27.6
+
+41.8
+
+Good
+
+3 MHz
+
+10.0
+
+10.4
+
+6.8
+
+8 MHz
+
+32.7
+
+21.2
+
+22.6
+
+σ
+
+¼
+
+0:03
+
+S m
+
+13 MHz
+
+46.7
+
+26.3
+
+36.6
+
+ϵr=20
+
+18 MHz
+
+51.6
+
+26.5
+
+38.2
+
+Note. The best SCR value is indicated in bold for each ground type and frequency.
+
+Impedance matrix
+13.8 19.9 32.2 33.0 28.5 24.7 36.3 31.7
+
+HENAULT AND RIDDOLLS
+
+896
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 7. Expected beamformer gain patterns of the 256‐monopole array on average ground for measured calibration data at 500 m at (a) 3, (b) 8, (c) 13 and (d) 18 MHz. The radial dimension of these polar plots corresponds to the elevation angle from θ=0° (zenith) at the center to θ=90° (horizon). SCR = signal‐to‐clutter ratio.
+5. Combination of MIMO and Conventional Null Steering
+If we focus on the SCR value rather than the SCR reduction, section 4 has demonstrated that higher frequencies are more robust to calibration errors than lower frequencies. Fortunately, as discussed in section 2.5, using more waveforms at lower frequencies is not as detrimental to the unambiguous range‐Doppler space than at higher frequencies. Here, the theory of section 2.4 is used with K=6 waveforms and the same target‐clutter scenario as in section 4. This number of waveforms ensures no reduction of the unambiguous range‐Doppler space at 3
+
+Table 2 Comparison of SCR in Decibels (dB) Using Numerically Calculated Manifolds Involving A Ground Model Mismatch and Accurate Near‐Field Measurements at Different Distances
+
+Calibration Error Type
+
+3 MHz
+
+8 MHz
+
+Frequency 13 MHz
+
+18 MHz
+
+Ground mismatch
+
+11.0
+
+30.8
+
+44.2
+
+47.4
+
+(Section 4.1, Figure 5)
+
+250‐m measurements
+
+14.3
+
+20.0
+
+22.3
+
+20.9
+
+500‐m measurements
+
+18.9
+
+26.0
+
+28.7
+
+29.7
+
+Note. The best SCR value is indicated in bold for each frequency.
+
+HENAULT AND RIDDOLLS
+
+897
+
+Radio Science
+
+10.1029/2019RS006868
+
+Table 3 Clutter Rejection Results With SCR Performance in Decibels (dB) for the 256‐Monopole Array on Average and Poor Conductor Grounds With Various Thicknesses of Dry and Wet Snow When Ignoring Snow in the Calibration
+
+No Snow
+
+Dry snow
+
+Wet snow
+
+Frequency (MHz)
+
+Average ground
+
+Poor ground
+
+Average ground 10 cm 50 cm 100 cm
+
+Poor ground 10 cm 50 cm 100 cm
+
+Average ground 10 cm 50 cm 100 cm
+
+Poor ground 10 cm 50 cm 100 cm
+
+3
+
+92.3
+
+86.2
+
+23.2 22.9 22.7
+
+24.5 23.7 23.3
+
+12.1 12.0 12.1
+
+10.8 10.4 10.4
+
+8
+
+124.1
+
+127.9 47.0 46.6 38.1
+
+45.9 54.2 42.2
+
+48.5 41.3 35.2
+
+44.1 45.1 41.3
+
+13
+
+138.7
+
+138.2 57.8 48.2 41.3
+
+60.1 51.1 45.0
+
+54.8 44.2 38.0
+
+53.5 47.2 41.9
+
+18
+
+170.9
+
+170.4 60.8 47.5 40.0
+
+54.1 47.1 40.3
+
+56.1 44.4 37.0
+
+54.3 44.0 36.3
+
+MHz compared to that at 18 MHz, but some reduction at higher frequencies. The calibration error considered in this example simultaneously involves 50 cm of snow and a full row of 16 elements failing, the two cases discussed separately in sections 4.3 and 4.4. The correlation matrix RK in (20) includes these calibration errors, while the manifold vector Eθ(θt,ϕt) does not. The transmit array is partitioned into six nonoverlapping smaller arrays, that is, each element only transmits one of the six waveforms. The weights in matrix W in (20)–(22) are adjusted based on this partitioning scheme to maximize radiation toward the target by using equal amplitudes and only varying their relative phases. Orthogonality of the MIMO waveforms is critical to their successful separation at the receiver, and various schemes are available for their generation with varying degrees of orthogonality. The Doppler division multiple access (DDMA) MIMO waveform scheme can be successfully implemented in OTHR systems and gives very good orthogonality (Sun et al., 2014). In this scheme, the different subarrays transmit a waveform that is simply shifted by a fraction of the PRF, and waveforms are separated at the receiver after Doppler processing (Riddolls et al., 2010). To restrict the
+
+Figure 8. Robust beamforming performance as a function of diagonal loading for the 256‐monopole array with 50 cm of wet snow on average ground at 3 MHz (top left), 8 MHz (top right), 13 MHz (bottom left) and 18 MHz (bottom right). Both the accurate manifold performance (–) and the performance ignoring snow (‐ ‐) are shown. SCR = signal‐to‐clutter ratio.
+
+HENAULT AND RIDDOLLS
+
+898
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 9. Robust beamforming performance as a function of diagonal loading for the 256‐monopole array with one row of elements failing at 3 MHz (top left), 8 MHz (top right), 13 MHz (bottom left) and 18 MHz (bottom right). Both the corrected manifold performance (–) and the uncorrected manifold performance (‐ ‐) are shown. SCR = signal‐to‐clutter ratio.
+
+analysis to antenna effects, we assume ideal waveforms that are perfectly separated at the radar receiver. The results at four frequencies from 3 to 6 MHz are presented in Figure 10. In a non‐MIMO implementation, the SCR would be 3.2, 9.2, 17.7, and 21.7 dB at these frequencies. The best improvement is observed at 3 MHz where the MIMO implementation achieves a SCR of 45.8 dB. At this frequency, this is a 42.6‐dB improvement while preserving the same unambiguous range‐Doppler space as at 18 MHz. The improvement is seen to decrease with frequency and the SCR at 6 MHz only reaches 30.5 dB. This is still an 8.8 dB improvement than without MIMO processing, but it also comes at the expense of a 50% reduction in unambiguous range‐ Doppler space. The reduced degrees of freedom of the MIMO beamformer is seen to broaden the main beam in Figure 10a. This is not necessarily an impediment as long as targets can still be resolved with range‐ Doppler processing.
+It becomes clear that the reduced degrees of freedom become a problem with increasing frequencies, and performance could be improved by increasing the number of waveforms. To verify this, another example with a single null at θ=70° and ϕ=30° is evaluated in Figure 11 at six frequencies from 3 to 8 MHz. The non‐MIMO implementation would give SCR values of 23.4, 20.3, 20.4, 22.4, 27.0, and 31.4 dB at these six frequencies. Different numbers of waveforms are used at the different frequencies to avoid any reduction of the unambiguous range‐Doppler space. Excellent clutter rejection exceeding 100 dB is observed up to 6 MHz. At 7 and 8 MHz, only two waveforms are available leading to slightly less clutter rejection, but still better than 67 dB. Note that a small modiﬁcation to the MIMO approach described so far was done at these two frequencies. Instead of maximizing radiation of the two subarrays toward the target, imperfect conventional null steering was used at the transmitter in an attempt to lower radiation toward the clutter. Without this enhancement, the SCR would be 45.2 and 47.4 dB at 7 and 8 MHz, respectively. An additional advantage of this enhancement is that performance can improve with the accuracy of the transmit manifold. However, it generally does not work as well at lower frequencies where the power on target can reduce substantially, especially at 3 MHz.
+
+HENAULT AND RIDDOLLS
+
+899
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 10. Multiple‐input‐multiple‐output transmit gain patterns of the 256‐monopole array with 50 cm of wet snow and one row of elements failing using average ground calibration data without snow and element failures at (a) 3, (b) 4, (c) 5 and (d) 6 MHz. The number of waveforms is K=6. The radial dimension of these polar plots corresponds to the elevation angle from θ=0° (zenith) at the center to θ=90° (horizon). SCR = signal‐to‐clutter ratio.
+The results of this section and section 4 suggest that a hybrid approach combining MIMO techniques at lower frequencies and conventional null steering would give best performance without overly sacriﬁcing the unambiguous range‐Doppler space and degrees of freedom.
+
+6. Conclusions
+The 256‐monopole planar array appears to be a viable and economical option as a transmit antenna in an OTHR operating at northern latitudes. It is important that the array be calibrated, and it was found that the numerical modeling approach is more likely to give accurate calibration data. These calibration data need to consider all individual element radiation patterns and not only mutual impedances, otherwise signiﬁcant errors are expected. Ground model errors, snow cover, and element failures can have a highly detrimental effect in particular at lower frequencies, and existing robust beamforming techniques were found to give limited improvement. At low frequencies, MIMO processing is recommended but with special care since it can severely degrade the unambiguous range‐Doppler space of the radar and the degrees of freedom of the beamformer. Fortunately, lower frequencies enjoy smaller Doppler shifts allowing the use of more waveforms while preserving the unambiguous range‐Doppler space as compared to higher frequencies. Using this combination of MIMO beamforming at lower frequencies and conventional null steering at higher
+
+HENAULT AND RIDDOLLS
+
+900
+
+Radio Science
+
+10.1029/2019RS006868
+
+Figure 11. Multiple‐input‐multiple‐output transmit gain patterns of the 256‐monopole array for a single null with 50 cm of wet snow and one row of elements failing using average ground calibration data without snow and element failures at (a) 3, (b) 4, (c) 5, (d) 6, (e) 7 and (f) 8 MHz. The number of waveforms is K=6 at 3 MHz, K=4 at 4 MHz, K=3 at 5 and 6 MHz, and K=2 at 7 and 8 MHz. The radial dimension of these polar plots corresponds to the elevation angle from θ=0° (zenith) at the center to θ=90° (horizon). SCR = signal‐to‐clutter ratio.
+
+HENAULT AND RIDDOLLS
+
+901
+
+Radio Science
+
+10.1029/2019RS006868
+
+frequencies signiﬁcantly improves the robustness of the radar transmitter to calibration errors, which will help defeat the auroral clutter in an OTHR operating in Canada.
+
+Notation
+
+M, N
+
+K
+
+w, wMIMO, wT,
+wR, wKN, wK Rxx, Ryy, RKN,
+RK θ, ϕ
+
+Eθ(θ,ϕ), Eϕ(θ, ϕ)
+
+|E(θ,ϕ)|, |EK(θ, ϕ)|
+
+L
+
+I σ2o (·)H
+
+SCR, SCRK x
+
+xT, xR xTi x
+
+ni nR
+y
+
+n
+
+⊗
+
+y
+
+W
+
+Ru c
+
+fR
+
+VTmax,
+
+V
+
+MIMO Tmax
+
+λ
+
+Number of transmit and receive elements. Number of MIMO waveforms. M×1, MN×1, M×1, N×1, KN×1 and K×1 weight vectors.
+M× M, MN×MN, KN×KN and K×K array correlation matrices.
+Elevation and azimuth angles used with different subscripts. Vertically and horizontally polarized M×1 transmit manifold vectors in arbitrary direction (θ,ϕ) or speciﬁc directions when used with different subscripts. Conventional and phased‐MIMO transmit gain pattern in arbitrary direction (θ,ϕ).
+Number of nulling constraints. Identity matrix. Diagonal loading level. Complex conjugate transpose. Conventional and phased‐MIMO transmit signal‐to‐clutter ratio. N×1 vector of received signals. M×1 and N×1 transmit and receive array manifold vectors. ith element of the transmit array manifold vector. complex amplitude of the target signal. N×1 vector of clutter and noise due the ith transmit element. N×1 vector of external and receiver noise. MN×1 vector of received signals after waveform separation. MN×1 of received clutter and noise after waveform separation. Kronecker product. Beamformer output used with different subscripts. M×K phased‐MIMO transmit beamforming matrix. Unambiguous range. Speed of light in free space. Pulse repetition frequency (PRF). Conventional and MIMO maximum target velocity. Radar carrier wavelength.
+
+Acknowledgments All data presented in this paper were obtained using the commercial software package FEKO available at (FEKO–EM simulation software, 2019).
+
+References
+Abramovich, Y. I., & Frazer, G. J. (2008). Bounds on the volume and height distributions for the MIMO radar ambiguity function. IEEE Signal Processing Letters, 15, 505–508.
+FEKO–EM simulation software (2019). Retrieved from https://www.feko.info Fabrizio, G. A. (2013). High frequency over‐the‐horizon radar: Fundamental principles, signal processing, and practical applications. New
+York: McGraw‐Hill Education. Fuhrmann, D. R., Browning, J. P., & Rangaswamy, M. (2010). Signaling strategies for the hybrid MIMO phased‐array radar. IEEE Journal of
+Selected Topics in Signal Processing, 4(1), 66–78. Greenwald, R., Baker, K., Dudeney, J., Pinnock, M., Jones, T., Thomas, E., et al. (1995). DARN/SuperDARN: A global view of the dynamics
+of high‐latitude convection. Space Science Reviews, 71, 761–796. Hassanien, A., & Vorobyov, S. A. (2010). Phased‐MIMO radar: A tradeoff between phased‐array and MIMO radars. IEEE Transactions on
+Signal Processing, 58(6), 3137–3151. Henault, S. (2018). Improving auroral clutter rejection robustness in over‐the‐horizon radar. In 18th international symposium on antenna
+technology and applied electromagnetics (ANTEM) (pp. 1–2). Henault, S., & Antar, Y. M. M. (2015). Unifying the theory of mutual coupling compensation in antenna arrays. IEEE Antennas and
+Propagation Magazine, 57(2), 104–122.
+
+HENAULT AND RIDDOLLS
+
+902
+
+Radio Science
+
+10.1029/2019RS006868
+
+Henault, S., & Morin, G. A. (2018a). Cross‐polarized null‐steering in over‐the‐horizon radar with planar monopole array on ﬁnite radial ground plane. In International symposium on antennas and propagation and USNC/URSI national radio science meeting 2018 (pp. 2151–2152).
+Henault, S., & Morin, G. A. (2018b). Null‐steering sensitivity to ground properties in over‐the‐horizon radar with planar monopole array on ﬁnite radial ground plane. In International symposium on antennas and propagation and USNC/URSI national radio science meeting 2018 (pp. 2149–2150).
+Jenkins, R. (1973). The effect of snow on antenna radiation patterns: A presentation of results. IEEE Transactions on Antennas and Propagation, 21(5), 722–725.
+Jull, G. (1967). Short‐term and averaged characteristics of nonreciprocal HF ionospheric paths. IEEE Transactions on Antennas and Propagation, 15(2), 268–277.
+Kelley, M. (1989). The Earth's ionosphere, vol. 43 of International Geophysics Series. San Diego, California: Academic Press. Li, H., & Himed, B. (2010). Transmit subaperturing for MIMO radars with co‐located antennas. IEEE Journal of Selected Topics in Signal
+Processing, 4(1), 55–65. Lindell, I. V., & Alanen, E. (1984). Exact image theory for the Sommerfeld half‐space problem, part III: General formulation. IEEE
+Transactions on Antennas and Propagation, 32(10), 1027–1032. Ossakow, S., & Chaturvedi, P. (1979). Current convective instability in the diffuse aurora. Geophysical Research Letters, 6(4), 332–334. Riddolls, R. (2006). A Canadian perspective on high frequency over‐the‐horizon radar. Defence R&D Canada, Technical Memorandum,
+DRDC Otawa TM, 2006–285. Riddolls, R. (2009). Detection of aircraft by high frequency sky wave radar under auroral clutter‐limited conditions. Defence R&D Canada,
+Technical Memorandum, DRDC Otawa TM, 2008–336. Riddolls, R. J. (2017). High‐latitude application of three‐dimensional over‐the‐horizon radar. IEEE Aerospace and Electronic Systems
+Magazine, 32(12), 36–43. Riddolls, R. J., Ravan, M., & Adve, R. S. (2010). Canadian HF over‐the‐horizon radar experiments using MIMO techniques to control
+auroral clutter. In 2010 IEEE radar conference (pp. 718–723). Skolnik, M. I. (1990). Radar handbook. Boston, Massachusetts: McGraw‐Hill. Stutzman, W., & Thiele, G. (1981). Antenna theory and design. Hoboken, New Jersey: John Wiley and Sons.
+Sun, H., Brigui, F., & Lesturgie, M. (2014). Analysis and comparison of MIMO radar waveforms. In 2014 international radar conference (pp. 1–6).
+Voors, A. (2019). 4NEC2–NEC based antenna modeler and optimizer. Retrieved from http://www.qsl.net/4nec2
+
+HENAULT AND RIDDOLLS
+
+903
+

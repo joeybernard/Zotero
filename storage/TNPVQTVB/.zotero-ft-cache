@@ -1,0 +1,1342 @@
+Physica Scripta
+The Stability of Three-Dimensional Planar Langmuir Solitons
+To cite this article: M J Wardrop and D ter Haar 1979 Phys. Scr. 20 493 View the article online for updates and enhancements.
+
+Related content
+- Topics in Strong Langmuir Turbulence D R Nicholson
+- Topics in Strong Langmuir Turbulence D R Nicholson
+- Stability of solitary structures in the nonlinear Schrödinger equation K Rypdal and J Juul Rasmussen
+Recent citations
+- Modified nonlinear evolution of Langmuir waves Kushal Shah
+- On transverse instability of large-amplitude Langmuir solitons Lj. R. Hadzievski and M. M. Skoric
+- Instability of a quasi-neutral plasma soliton-like perturbation in the presence of an oscillating electric field R. Fedele et al
+
+This content was downloaded from IP address 131.202.65.42 on 19/02/2020 at 18:18
+
+Physica Scripta. Vol. 20.493-50 1, 1979
+The Stability of Three-Dimensional Planar LangmuirSolitons
+M. J. Wardrop* and D. ter Haar
+Department of Theoretical Physics. 1 Keble Road, Oxford OX1 3NP, England Received Januarji 27, 1979
+
+Abstract
+The stahility of three-dimensional planar Langmuir solitons. M. J . Wardrop and D. ter Haar (Department of Theoretical Physics, 1 Keble Road. Oxford OX1 3NP. England). Physica Scripta (Sweden) 20, 493-501,1979.
+We discuss the stability of three-dimensional planar Langmuir solitons which are solutions of both the correct Zakharov equations and the simplified, curl-free equations which many authors have considered. We resolve the differences between various results obtained by different authors, show that the simplified equations used by them are unlikely to be a good approximation, and estimate the growth rates for the case of the exact equations.
+
+where E is the slowly varying Langmuir electric field amplitude. II the density variation. cy is given by the equation ( m e :electron mass; k,: Boltzmam constant; T,: electron temperature)
+
+(Y = m,c2/3kBTe,
+
+(3)
+
+and E, n, x, and t are all suitably normalized (we use the same normalization as in Gibbons et al.? [ l ] or Thornhill and ter Haar. [ 3 ] .As T , for typical plasmas ranges from l o 4 to 10’ K , (Y is always a large parameter, a fact which is of the utmost importance for the discussion in the present paper.
+We shall now consider the following planar soliton solution of eq. (1) and (2):
+
+1. Introduction
+
+Eo = E,+ = .?ail sech A[ exp (ikox - h o t ) .
+
+(4)
+
+The stability of Langmuir solitons is a problem which has a certain amount of interest in connection with a possible soliton theory of strong Langmuir turbulence. In one dimension a Langmuir soliton is stable. but scaling of the energy shows that solitons in two or three dimensions are unstable (see, e.g., Gibbons et al., [ I ] ) . Consider now a plasma which is pumped by a plane, electrostatic wave. If the turbulent energy level is sufficiently high, the modulational growth rate for longitudinal perturbations is much greater than for transverse perturbations [ 2 . 31. We may therefore expect that planar Langmuir solitons will form. The question now arises as t o their stability. As one-dimensional solitons are stable, it seems likely that planar solitons in three dimensions are unstable to transverse perturbations. At that point, however, the literature becomes confused and it is the aim of the present paper t o sort it the situation.
+I n the next section we write down the basic equations and discuss their perturbations. In Section 3 we discuss a special case of the basic equations which has been studied by most other authors with different and conflicting results. We resolve these differences, In the last section we consider the general equations and estimate the growth rates for that case. We show that the special case studied by other authors is unlikely t o be a p o d approximation.
+
+2. Basic equations and perturbed solitons Our basic equations are the Zakharov (1972) equations
+
+aE
+
+i - + C(C. E ) - & [ C A [ C AE ] ] = nE
+
+(1)
+
+at
+
+n o = - 34’ sech:’A[,
+
+(5)
+
+where 2 is the unit vector in the x-direction. and
+
+g = x - Vf. V = 2 k o . U 2 = 2(1 - V’).
+
+A’ = k i - W O
+
+(6)
+
+There is, of course, no y - or z-dependence in expression (4). We now consider perturbations to the planar soliton of the form
+
+E = Eo.?+6E. n = no + 6 n
+
+(7)
+
+We shall discuss tw3 special cases: (I) planar geometry. in which case we have
+
+6Ex = F x ( t .t ) exp (ikox - i o o t ) cos (k,v)
+
+& E , = F Y ( t .t ) exp (ikox - i w o t ) sin ( k - y )
+
+(8)
+
+6n = n ( ( ,r ) ccs (kl,l,)
+
+where Icl is the wavenumber of the transverse perturbation: and (11) cylindrical geometry (axial symmetry). when
+
+6Ex = Fx(g.t )exp (ikox - i w o t ) J o ( k ~ r j
+
+6E, = F J $ . t )exp (ikox- iwot)J , (klr)
+
+(9)
+
+6 n = n(t.t)JO(kl?)
+
+where J o and J 1 are Bessel functions of zeroth and first order. respectively. For ,:ylindrical geometry we have assumed axial symmetry of fields and density. Substituting the expressions (7) and (9) into (1) and linearising the equations (assuming small perturbations,) we obtain
+
+= rzo6Ex + 6nEo
+
+(10)
+
+* Present address: Research Laboratory of Electromagnetic Field
+Theory, Chalmers University of Technology, S-412 96 Goteborg, Sweden
+
+where
+
+Physica Scripta 20
+
+494 M.J. Wardrop and D.ter Haar
+
+ia
+
+V,
+
+=
+
+- - (rE,) r ar
+
+We have here considered the cylindrical geometry; the planar case (I) can be similarly handled.
+If the variables are changed from x, t to t;, t and the explicit form of 6 E given in (9) is substituted, we obtain
+
++ k r - V:j2tz ( K -~ $ ) n = - 2a ( K ~- $)(f, sech z)
+(23)
+Note that this equation determines n in terms off, only and does not involve f, or g,. In principle, this makes it possible to
+have different growth rates r in the longitudinal and transverse
+directions, with the time development of n being determined by
+the longitudinal field growth rate.
+
+1 - ( a - 1 ) --+iko kLF, = n(t;,t)Eo +noF,, rt;
+
+(13)
+
++ + i - aFr (ao- a k i ) F, cy aZF,+ 2iko(a - 1) - a F r
+
+at
+
+at;
+
++ (cy - l)kl K-t + ik F, -k?F, = noF,
+
+(14)
+
+Various properties of the Bessel functions J o and J1 have been used to obtain these equations. Suppose now that the perturbations have a time dependence of the form eyt with y real and that
+
+Fx = f x +kx, F r = f r + k r
+
+(1 5 )
+
+where the f’s and g’s are real. A final change of variable from t;
+
+( 2 to z =At; gives the equations
+Lfx -an + sech z = rg, (YK2fx + PK
+
+- E0gj-1
+
+3. The curl-free equations
+
+Several authors have considered eqs. (1) and (2) with a = 1; they reach different and conflicting conclusions about soliton instability. Both Zakharov and Rubenchik [4] and Degtyarev,
+Zakharov and Rudakov [SI have found a real value for r which
+grows linearly with K for small K . Schmidt [9] has also found a
+- 4;. r two-dimensional soliton to be unstable but obtains 0:
+Pereira, Sudan and Denavit [6] also obtain r K and present
+some interesting computer calculations. Infeld and Rowlands
+[7] however, find soliton stability and claim to have found inconsistencies in previous authors’ work. In this section we resolve the differences.
+Consider eqs. (16) t o (19) with a set equal t o 1:
+Lf,-ansechz-K2f, = rg,, Lg,--K2gx = - r f x (24)
+
+L g r - K z g r = -rf,, Lf,-K2f, = rg,
+
+(25)
+
+Equations (25) combine to give
+
++ + d2F,
+- (2 sech’z - 1 - K’ iF)F, = 0 dz
+
+(26)
+
+It should be noted at this point that in deriving (26) we started
+from the assumption that r in eqs. (16)-(19) was real. However,
+by considering eqs. (13) and (14) and setting a = 1 directly, it
+may be seen that (26) holds for complex as well as real values
+of r.
+Substituting 0 = tanh z transforms this equation to
+
+where the operators L and K are defined by
+
+L = ?d +Z 2sech’z- 1 dz
+
+K
+
+d2 = a-
+
++ 2 sech2z - 1 +
+
+dz
+
+( d2F,
+
+(1 - e 2 ) - - - 2 e - +
+
+de
+
+dB
+
++1 K’ - i r
+2- 1-e2 F, = 0
+
+(27)
+
+which is Legendre’s associated equation with solutions p’;’(B)
+and @ ( e ) where
+
++ + Y(V 1) = 2 and p2 = 1 K~ - i r
+
+(28)
+
+and the parameters have been changed t o
+
+Since we require that IF,/-+ 0 as z + rf. 03, it is necessary that [8]
+
+P = a- 1, EO = ko/A, K = kJA, r = y/AZ
+
+p = integer
+
+(29)
+
+The same equations (16) t o (19) result, if we consider soliton stability for the planar geometry, with F y replacing F,.
+
+Thus r is purely imaginary and the transverse field component oscillates in time but does not grow. (Note that r may take
+
+An important property of eqs. (16) to (19) is immediately imaginary values, despite the assumption of eq. (15 ) , because
+
+apparent: the case when the parameter (Y = 1 (and hence p = (26) is an equation for the complex function F,). Since eq. (24)
+
+0) is unusual. When 0 = 0, eqs. (16), (17) and (18), (19) are no is not coupled with (25), we see that the growth rate in (24) is
+
+longer coupled and the radial and longitudinal field components different and may be real. To consider these equations further,
+
+become independent. From a physical point of view this is of a tractable form for n must be obtained from (23). In the static
+
+considerable importance, as stabilizing or destabilizing effects regime, eqs. (1) and (2) reduce t o the non-linear Schrodinger
+
+of the transverse component of field cannot affect the longi- equation (NLS) since in that case n = - lEIZand stability of
+
+tudinal component. However, setting QI = 1 gives just the NLS solitons to transverse perturbations has been considered
+
+. equations which have been considered by previous authors; by Zakharov and Rubenchik [4] ; further detail was given by
+
+we have then V(V E ) -CUVx V x E = V 2 Ein eq. (1).
+
+Degtyarev, Zakharov and Rudakov [ 5 ] . The static regime is
+
+To close the system of eqs. (16) t o (19) we use the sound valid for A r < 1 (see eq. (23)). The opposite condition,
+
+eq. (2) which in the new variables may be written (see Schmidt A r % 1 , has been considered by Schmidt [ 9 ] . We shall now
+
+(1975))
+
+consider these two limiting cases separately.
+
+Physica Scripta 20
+
+n e Stability of Three-Dimensional Planar Langmuir Solitons 495
+
+3.1. A r a
+For A r < 1. V 2 < 1 and K < 1 , eq. ( 2 3 )gives
+
+Equation (24) gives
+
+n = -4/afx sech z
+
+(42)
+
+and the perturbation eq. (24)become
+
+The properties of the operator on the left-hand side are not
+
+Llfx = --k>
+
+easily obtained; matters are further complicated by the presence ( 3 1 ) of the factor ( A 2 r 2 ) - *H. owever, an approximate growth rate
+
+Log, = U,,
+
+(32) may be found by taking the product of eq. (42)and the second
+
+where
+
++ + d2
+
+L 1 = -7 (1 - 6 sech’z) i- K’ dz
+
+and Lo = - L
+
+K’
+
+of equation (24) with sech z and integrating over all z . After
+requiring that A r S 1 , A S 1. but K < 1 and < 1 , it is possible
+to obtain
+
+r2 + (33)
+
+f = [ - K 4 +.\/(Kg
+
+16K2q/A2)]
+
+(43)
+
+Both L o and L1 are self-adjoint and their properties have been investigated by Zakharov and Rubenchik [ 4 ] .L may
+
+where q =d[fi(l
+
+- V 2 ) ] .For ti small this gives r -4;.
+
+be written in the form
+
+Expression (43)holds for A r 9 1. which leads to the following
+
+restrictions on K :
+
+(44)
+
+which, since sech z f 0. shows that - L is a non-negative The analysis given in Section 2.1 above was subject to the
+operator. Hence L o is positive definite and the inverse Lil restriction A r < 1, ti < 1 and also V 2 < 1. It is not possible to
+
+exists. From ( 31) and ( 3 2 ) we obtain
+
+give as careful an analysis of ( 2 4 ) and ( 2 5 ) when the restriction
+
+LJ = -r2~i1f
+
+on V 2 is relaxed. For V 2 no longer small, the equations (24) ( 3 5 ) and ( 2 5 ) remain strongly coupled and some other approach to
+
+Let ho be the minimum eigenvalue of L o so that
+
+soliton stability must be tried (see below from eq. ( 4 9 ) on-
+
+hi1 = max (f~i’f)/1lf11~
+all f
+
+wards). The opposite case, Section 3.2. is physically rather
+(36) obscure as it applies t o the situation where A r S 1 but r < 1 . This suggests that the analysis given by Schmidt will only apply
+
++ where ( ) denotes integration over z from --CO t o -CO (see
+Stakgold [ l o ] ) . The maximum in this equation is actually
+
+to extremely large amplitude solitons which the Zakharov equations. for physical reasons, cannot describe; it is likely that
+
+r attained by setting f = sech z
+L o . Since we have assumed
+
+which is an eigenfunction of real, there is an instability of
+
+there is no region of validity for the result ( 4 3 ) . However, for the smaller values of ti allowed by ( 4 4 ) ,it is possible that ( 4 3 )
+
+the soliton only if L 1 has at least one negative eigenvalue. might describe the growth.
+
+Call h l the smallest eigenvalue of L 1 . Then we find from In Figure 1 we compare the results of Schmidt (eq. ( 4 3 ) )
+
+(35) that
+
+with those found in Section 3.1 for the case V = 0. The two dispersion relations are seen not to be in disagreement: their
+
+- r 2 >Xohl or r2<XoIhlI
+
+(37) regions of validity do not overlap. The interpolated curve
+
+r. which gives an upper bound on
+
+By considering L o and
+
+matches the two curves I and I1 across the interval about
+ti * 1 / d z where each curve is only approximate.
+
+L 1 expressed in a form similar t o eq. ( 2 7 ) , it is possible t o show that the operators L o and L 1 have the eignevalues A(’)
+
+In a recent paper, Infeld and Rowlands [7] have studied eqns. (23) and (24) by using a multiple-scaling technique (an
+
+, and h(’). respectively. which are given by the relations
+
+= K ’ . ~ ( l )= - 3 + + 2 + 4 n - n ’ .
+
+n = 0,l.z
+
+excellent review of scaling techniaues and perturbation methods I
+is given in Nayfeh [12]). In contrast to the results just given,
+
+(38) they find that the Langmuir soliton described by the Zakharov,
+
+(see Morse and Feshbach [ l l ] . Thus X1 is negative and we eqs. (1) and ( 2 ) with cy = 1 is stable t o transverse perturbations:
+
+obtain the growth rate
+
+r
+
+r2 K2(3 - K 2 )
+
+(39)
+
+Note that this growth rate is independent of soliton speed V . ‘1
+
+Using a different approach, Degtyarev, Zakharov and Rudakov
+
+~
+
+[SI study the instability in a little more detail and obtain
+
+‘\
+i
+
+/
+
+- where p is a constant. In both cases we have r K for small K .
+
+I
+
+I/
+
+3.2. A T 3 1
+
+I
+
+The analysis for this case has been given by Schmidt [ 9 ]. From
+the sound equation we obtain
+
+2a d 2 n = -A 2 r 2-d(zf x2
+
+sechz)
+
+(41)
+
+‘
+
+--_-- >-
+
+-
+
+6
+
+8
+
+-7c - 7 t - - l r A N
+
+- Fig. 1. Soliton instability growth rate (a = 1). Curve I . r
+
+a). Curve 11: r given by eq. (43) (Case b).
+
+(Case
+
+Physica Scripta 20
+
+496 M. J. Wardropand D.ter Haar
+
+e . they also attempt to point out errors in previously published factor in E and the corresponding change in The argument
+work. What in fact they showed was that the particular pertur- of the exponential has been written in this way so that we
+bation considered in their work is stable. This particular have the relation perturbation is of the type
+
+6E = eF,(A() exp (ikox - b o t ) cos k l y
+
+where E is a small parameter (for purposes of calculation it is
+
+convenient to retain E explicitly). The perturbation function
+
+FXmay be expanded as a series in k l , if we take k l to be the small parameter e. In terms of K we have
+
+Fx = Fo + K F+~K'F' + . . .
+
+(46)
+
+In a recent paper, Hojo [15] has considered a perturbed h n g m u i r soliton written in a very similar way to eqs. (49)-(5 1) but without the important correction (52). To show this difference, consider the unperturbed soliton given in eqs. (4)-(6) and look at the complex phase factor
+
+To lowest order in K we find from (24) that
+
+exp (ikox - i o o t ) = exp (iV/& -ti(A' - V 2 / 4 ) t )
+
++ Fo
+
+=
+
+const. x
+
+-d sech z dz
+
+i const. x sech z
+
+(47)
+
+This perturbation is equivalent in effect to an infinitesimal
+
+The important change made in (51) results from writing this phase factor in the form
++ exp (ikox - h o t ) = exp (i(A' V2/4)t + iV/2(x - Vt))
+
+translation of the soliton Eo(z),as we have
+
+We see that the phase is then written in terms of time t and
+
+Eo(z
+
++
+
+K)
+
+=
+
+Eo(.z) +
+
+a a zK - - ~ ( Z )
+
++ O(K~)
+
+position relative to the centre of the soliton (x - Vt). When a perturbed soliton is considered, the phase must in the same way be written in terms of time t and position relative to the
+
+sech z + i z o sech z
+
+centre of the perturbed soliton. If the position is measured relative to the motion of an unperturbed soliton, as is implicit
+
+x A exp (ikox - h o t ) + O(K')
+
+in Hojo's calculation (see the eqs. (7&(9) in his paper), then (48) secularities appear in the differential equations for the per-
+
+Note that the coefficient A is constant in this calculation. turbation functions a b , t ) and vb,t). The equations which
+
+In a similar way we find that the density perturbation n is he obtains are then in error and the conclusion that Langmuir
+
+also a simple translation. Both n and F, are a very particular solitons are stable to transverse perturbations is also incorrect.
+
+type of perturbation and it is not surprising that the Langmuir We shall give some details of the calculation based on (49)-(51)
+
+soliton is stable against small translations. To confirm this both to show the correct equations and also to demonstrate
+
+argument we note that it is possible to apply multiple scaling clearly that Langmuir solitons are unstable.
+
+techniques (following Infeld and Rowlands) to the non- We make the further substitution in eqs. (49)-(51)
+
+linear Schrodinger equation; the NLS soliton is predicted by f = f o + R + g , g = go +g,
+
+such an analysis to be stable against transverse perturbations.
+
+However the analyses given by Zakharov [13], Zakharov and where fo and go correspond to the unperturbed soliton. R , I
+
+Rubenchik [4] and Yajima [14] of the NLS clearly show and g , are real functions of $. Substituting into equation (1)
+
+the NLS soliton to be unstable to transverse perturbation. and linearizing the equations assuming R , I and g , are small,
+
+In particular, Yajima shows the soliton to be stable to pertur- we obtain the following system of coupled equations:
+
+bations for which the coefficient A is held constant, but that
+
+a2a a
+
+if A is taken to be a slowly varying function of time and trans- A:(R"-R +2Rgo +2fogl) = - a - -a(yt2f 0at)
+
+verse position then the soliton is unstable. Motivated by this
+
+result we return t o the problem of Langmuir soliton stability.
+
+Consider a rather general form of perturbed soliton written
+
+in the following way
+E = pAf({) exp (io + i/2V(x -xo))
+
+(49)
+
+A?(I" - I
+
++ 2Igo)
+
+=
+
+aa a
+
+-
+
+-
+at
+
+- a t
+
+(tfo)
+
++ 1- V-,Av,i-aa-vt-fo
+
+and
+
+-a+2 e-----t a2v V, a2xo]
+- d o f o a(y' u o a y 2 2 ay2
+
+(54)
+
+n = -2,@g($)
+
+(50)
+
+where A and V are now slowly varying functions of time and transverse position and are specified by
+
+A = A. +a(y,t)
+
+V = v,+ v ( y , t )
+
+p = d(1- V ' )
+
+(55)
+
+t = A(x-xo)
+
+The notation indicates derivatives with respect to E. Following
+
++ ae g 0
+at = I/,
+
+- at = A'
+
+1/74
+
+the method used by Yajima [14], or Hojo [15], these three
+(51) coupled equations may be reduced to just two equations for a b , t ) and v b , t). For example, if we multiply both sides of
+
+A . and Vo are the values of width and speed for the unper- eq. (54) by fo(t)and integrate over { from - m to + m we
+
+turbed soliton. Note particularly the form of the exponential obtain
+
+Physica Scripta 20
+
+The Stability o f Three-DimensionalPlanar Langmuir Solitons 497
+
+C 1 A,,V,
+
+-0
+
+r
+
+a:10
+
+Differentiating with respect to t and using (51) gives the equation
+
+(56)
+By a similar procedure involving eqs. (53) and (55) we obtain a second equation
+
++ azv
+-4Ai(~u(l - V i ) 2 V i ) - 7 = 0 ay
+
+0 L~
+
+(57)
+
+02
+
+0'
+
+06
+
+08
+
+1 0 "0
+
+Fig 3. The coefficient C a s a function of V(cu = IO).
+
+The coupled system (56), (57) is very similar t o that given by
+
+Hojo [ l 5i if we set CY = 1 . However, he has an additional term curl-term in (1) here plays a small role only because we have
+
+in ( 5 6 ) Of the form t ( a 3 v / a ya2t>which arises from an error in assumed that the perturbed field has just one component. More the assumed form of the perturbed soliton; it is this additional generally, the soliton might be perturbed with components of
+
+term that leads him to predict soliton stability. Consider now field transverse to the one-dimensional soliton field; in such a
+
+the system (57), (58) and assume that
+
+problem the curl term will be much more significant. Further,
+
+a = 2 exp (ut)cos ( k i y )
+v = V exp ( u t )cos (kly)
+
+the curl-free assumption used by many authors will break
+- down when the length scale of the perturbation becomes
+comparable to the soliton width (ki 1). These problems
+
+The condition for non-zero values of 2, Vis then given b y
+
+will be considered further in the next section. We now com-
+
+pare the growth rate w = 2AokC(Ao,V,) (for CY = 1) with
+
+(Y2 - h l Y l ) - h l Y 2
+
+= 0
+
+(58) previous author's work. Zakharov and Rubenchik [4] consider transverse stability of nonlinear Schrodinger solitons and
+
+where h, 4 d i ,
+
+2 VoA0
+vi h2 = _ 1 -_
+
+3 -3Vi + 8 4
+' . = 24VoAo
+
+A0 112 = -(CY(]
+6 VO
+
+- V i )+ 2Vi)
+
+Equatioli (58) always has a
+
+solution for
+
+and hence a
+
+Langmuir soliton is always unstable t o transverse perturbations.
+
+However. the growth rate is dependent on the soliton speed as
+
+well as the amplitude. We may write
+
+obtained a growth rate 2 A o k , in agreement with the value of a stationary Langmuir soliton. Degtyarev. Zakharov and Rudakov [5] considered a stationary Langmuir soliton of the curl-free Zakharov equations and obtained the result (40), which is in reasonable agreement with (58).
+Most of the published calculations have considered Langmuir collapse and are not relevant to our discussion. However, the stability of two-dimensional planar solitons has been considered by Denavit. Pereira and Sudan [16] and Pereira, Sudan and Denavit [6] any analytic results on soliton stability in two dimensions should be compared with their work. In the study
+
+w = 2AoJa-k x C(&, V,)
+
+of Pereira, Sudan and Denavit [6] the curl-free equations were
+
+considered with initial condition where C ( A o ,V,) is independent of k . C ( A o ,V o )is plotted in
+
+Fig. 2 as a function of V, for various values of A . and with CY E ( x j 0) =
+
+sech Ax exP (ikox), n(x30)
+
+set equal to 1. Figure 3 shows C ( A o ,V,) for the case CY = 10. n(x, 0) = - 2A2 sech2Ax(l + 0.2 cos k l y ) ,
+When cu is greater than 1 we see that the instability growth rate
+
+is larger but not qualitatively different from the case = 1 that is, the initial condition is a soliton with a transversely
+
+studied by previous authors. It is important t o notice that the perturbed density. The curl-free Zakharov equations were
+
+solved using a Fourier representation and imposing periodic
+
+C
+
+boundary conditions with periodicity lengths L, and L , =
+
+Oil
+
+2n/kl. For typical values of the parameters ( A = 2 ) the growth
+
+rate of a perturbed stationary soliton was found t o have the
+
+- following key features: (a) up to kl 1. the growth rate y was approximately
+
+constant at y = 0.7-0.8:
+
+(b) for kL 2 1. y decreased sharply to zero at kl =Z 1.3.
+
+(c) by varying A it was found that y 0: A'.
+
+- These results are in disagreement with the theory presented
+a moment ago which suggests that y ?Ak,. The reason for
+
+this appears t o be in the method of computer solution of the
+
+0
+
+~
+
+~
+
+~ ~ ~i~~
+
+_
+
+i
+
+3
+
+U?
+
+04
+
+06
+
+01
+
+~~
+
+v
+
+curl-free Zakharov equations: the periodic boundary conditions play an important role. Abdulloev et al. [17] have already
+
+Fig. -7. The coefficient C a s a function of V(0i = 1).
+
+considered the problem of boundary conditions in the context
+
+Physica Scripta 20
+
+498 M. J. Wardrop and D.ter Haar
+
+of one-dimensional soliton interactions. They point out that if to the longitudinal. Now return t o eqs. (16) and (17) and we consider, say, a perturbed soliton emitting sound waves, substitute the approximate form (65) for the radial field. To the periodicity condition requires that the ion-sound waves make calculations simple we restrict attention first t o the re-enter the system and interact with the soliton. This comment static regime in which
+
+applies t o the later stages of the transverse instability given by
+
+4
+
+Pereira, Sudan and Denavit [6] ;(see, for example, their Fig. 10)
+
+n
+
+=
+
+--f, a
+
+sechz
+
+(67)
+
+but not to the initial stage where y is found t o be constant. The
+
+explanation of constant growth rate that they give is spurious; Then eqs. (16) and (17) may be written as
+
+see Appendix A.
+
+Llfx = -rgx -PKWR
+
+(68)
+
+The most likely cause of the rather unusual results quoted
+
+above can be seen from the initial condition considered numer- Log,
+
+rf, =
+
+-PKW1
+
+(69)
+
+ically by Pereira, Sudan and Denavit: the perturbation of the (compare with (31) and (32)), where we have used the notation ion-density is 20% of the unperturbed soliton state. Non-
+
++ + linearities are likely to be of dominant importance immediately wR
+and will completely mask any linear growth rate. The numerical
+
+i q = dz
+
+iEoF,
+
+experiment should be repeated with a perturbation several orders of magnitude smaller if a comparison with linear growth rates is desired; we expect that such a calculation would give the linear growth rate given above.
+
+while u R ,wI are real. In eq. (70) we substitute the approximate
+radial field calculated above. The growth rate r is the growth
+rate in the longitudinal direction and will be shown to be real. Substituting for F , we obtain approximately
+
+4. Growth rate of soliton instability for the full equations
+We now return to eqs. (16) to (19) and consider the case where Q # 1, but K is small. These equations are too complicated to
+
+s + - dz iEoF, -ddegzxp (iEoz)
+since a < 1. Now operate on (69) with L 1 and
+
+solve exactly but it is possible to obtain estimates of the growth (68) to Obtain
+rate and also to demonstrate the importance of the terms L1LOgx = -rzg, - p K r W R - P ~ L ~ ~ ~
+
+multiplied by the (large) parameter a. First consider (18) and
+
+(19) supposing that K < 1. Then we have the equations
+
+Following the procedure for (36) and (37) we obtain
+
+(71) from (72)
+
+Kg, = -rrf,-2koP- dfr dz
+
+This equation gives approximately
+
++ + r 2 + (61)
+
+PKrGjR OK& hob, 0
+
+(74)
+
+where ho and hl are the eigenvalues given by eq. (38) and
+
+In this case of cylindrical geometry, for K Q 1 the radial field has become decoupled from the longitudinal field and the
+
+ijR,5, are defined by
+
+rr growth rate for the radial field is different from that in GR = ( g x W R ) / l l g x / l *
+
+(75)
+
+the longitudinal direction. Equations (60) and (61) are most
+
++ conveniently expressed in terms of F, =f, ig,:
+
+GI = ~ ~ , ~ 1 ~ 1 ~ / l l g , l l 2
+
+(76)
+
+KF, + 2E0p1.- = -ir,.F,
+dz
+
+To consider the approximate relation (74) further we must (62) evaluate (75) and (76). They need t o be evaluated only to
+lowest order in K so we take g, to be the solution of (see (69))
+
+which for large CY may be written approximately as
+
+Logx = 0, that is,gx = sech z. Also we set
+
+hohl X -3Kz
+
+(77)
+
+(63)
+
+From eq. (74) we have
+
+Put F, = g(z) exp I- ~&(P/cY)zs]o that eq. (63) becomes
+
+4 + r e {- PKGR ~ ( f i Z K 2-kG1~2K2 - 4pKGj1)].
+
+(78)
+
+d Z g + -1[ i ~ , - ( 1 - - k ~ ) + 2 s e c h 2 z ] g = 0 dg2 a
+
+The exact values of the quantities GR and GI are not impor(64) tant; however their signs are. We evaluate GR and GI approxi-
+
+which is the same form as eq. (26). Thus the solution for mately in Appendix B, and their values are found to be
+
+g(z) is just g(z) = constant x Pf,(tanhz)
+
+( 5 1 + GjR= Re n(p iEo) sec 77 (p + i z o ) / r ( - II)
+(65)
+
+(79)
+
+where
+
++ 2
+v(v 1) = -CY and
+
+CY = 1 +
+
+-iFr
+
+(66)
+
+6, = -Im n ( p + i E o ) [ 1 - ( p + i E o ) 2 ]
+[ i x (v + iEo)/6r(-
+
+77
+sec2
+
+(80)
+
+Since we require that g(z) + 0, as z + k 03, the growth rate Note that GI is negative, so that r is real and there is a real, rr must be purely imaginary (since p + v = zero). This calcu- physical instability. The dependence of r on K is slightly more
+
+lation is accurate to order K O ; once terms of order K and higher complicated to see. Consider first the values of K for which
+are included the radial field eqs. (18) and (19) become linked PK < 1. Since P is large we have
+
+Physica Scripta 20
+
+The Stability of Three-DimensionalPlanar Langmuir Solitons 499
+
+Fig, 4 . Growth rate as a function of K for two different values of k , (a = IO).
+
+- J(PK14-4 4
+
+(81)
+
+Fig. 5. Collapse of initial disturbance in axisymmetric case; collapse described by eqs. (1) and (2) with a = 10. Lines are constant values of El2.After V. E. Zakharov, A . F. Mastryukov and V. S. Synakh 1975 Fiz. Plasmy 1 , 614 [ 181.
+
+For larger values of K the growth rate is very close t o a linear function of K . See Fig. 4.
+The exact value of given in (81) is probably not t o be relied on exactly, as the calculation has been very approximate. However, the importance of the term (YOx C x E in (1) is clear; inclusion of the term produces a very different growth rate
+
+Acltnowledgement s
+We express our thanks to Dr. J . Gibbons and Dr. S. G . Thornhill for many helpful discussions and to the Rhodes Trust for the award of a Rhodes Scholarship to one of us (M.J.W.du)ring the tenure of which this research was carried out.
+
+- & from that calculated for the curl-free equations in Section 3.
+
+Note that the eq. (78) reduces to r
+
+(in agreement with Appendix A
+
+(39)) when we set a: = 1 that is, /3 = 0. It is of interest t o ob- In this appendix we consider the analysis of a particular per-
+
+serve that the soliton in both cylindrical and planar geometry, turbation initial value problem given by Pereira, Sudan and when described by the full equations (1) and ( 2 ) , is unstable Denavit ( [ 6 ] ,Appendix). Since they claim t o obtain a soliton
+
+t o the very simple perturbations given in (8) and (9): a more instability growth rate independent of the perturbation wave-
+
+complicated perturbation of the type (49) is not needed to number k , and hence in agreement with their computer results.
+
+demonstrate instability.
+
+it is important to see if their analysis is correct. If it is not.
+
+The growth rate given in (81) was obtained using the static then their numerical results contradict all theoretical analyses.
+
+approximation and hence can only apply to very slowly moving This would lend support to the view expressed in the main text
+
+solitons. It would be desirable to analyze the system (16)-(19)
+without the restriction V 2 < 1. It was shown in Section 3 that
+
+of the present paper that the numerical results are determined by the application of unsuitable initial conditions. We now
+
+when cy = 1 and ,just one component of field is considered. that show that their analysis is indeed incorrect.
+
+the growth rate decreases as the solitons move faster. It seems Consider the initial problem where the electric field E ( x , 0)
+
+likely that this will also be true if the full system (16)-(19) is is that of soliton but the density is perturbed away from the
+
+analyzed inore carefully. but more work is needed on this corresponding soliton values:
+
+point.
+The instability with growth rate given in (78) arises in the n ( x , 0) = - IE(x, 0)1* {l + 2€ cos k1yl
+
+(A.])
+
+folldwing way. To lowest order in K we find that the transverse component of field just oscillates in time. Because the transverse and longitudinal fields are coupled through the form cu[Yx [‘Cx E ] ] ,the longitudinal component is driven by the oscillating transverse component and grows with a real growth
+
+The initial tendency of the system is for ions to rush in and fill the excess density dip: this movement will be described bp the sound equation with negligible driving term:
+
+n,, - C2n 2 O
+
+(A.?)
+
+rate. A more complete analysis of eqs. (16) to (19) should Hence we have the ion-density perturbation X I(x, J’, t ) given by
+
+give a real transverse growth rate as well as a real longitudinal
+r. There has been one computer calculation which is relevant
+
+N , (x,J’, r ) = t [NI (x - t , y , 0) + N,(x + t, J’, 011
+
+(A.3)
+
+to this discussion: Zakharov. Mastryukov and Synakh [ 181 A simple expansion around x = 0 then gives solved eqs. (1) and (2) numerically with (Y = 10 and using
+
+cylindrical geometry. The result of their calculation is given
+
+in Fig. 5 , The collapse is very anisotropic and the ratio of
+
+characteristic lengths I, and ll. in the longitudinal and radial
+
+directions respectively is
+
+This expression shows that for small times we have N,0: t’ and
+
+this result is confirmed by the computer results of Pereira.
+
+Sudan and Denavit. However. it is important to recognize that
+
+This difference in collapse rates suggests that the transverse (A.4) holds only for times when the ions are moving almost
+
+growth rate of soliton perturbations is considerably less than freely to fill in the excess density dip in (A.1). Such a result
+
+the longitudinal growth rate.
+
+would be obtained for a small departure from any density dip
+
+Physica Scripta 20
+
+500 M. J. Wardrop and D.ter Haar
+
+in which the gas pressure is balanced by the electric field pressure. During the early times for which (A.4) is valid, there will also be an increase in / E l 2 until n and - IEl’ are in balance. Both of these processes have nothing to do with the stability of a soliton to transverse perturbations. Pereira, Sudan and Denavit consider the development of the electric field from an
+initial, stationary (v = 0) soliton by writing E in the form
+
+pagation of the perturbation. It does not describe a soliton instability. Perhaps the clearest way to check this is to substitute a form of N1 which contains no y-dependence at all. The arguments of Pereira, Sudan and Denavit would then give a soliton unstable in one dimension; this is known to be incorrect.
+
+~ ( xy ,, t ) = E,(x) exp (iS(x,y , t ) + i k t )
+
+(A.5) Appendix B
+
+where E,(x) is a one-dimensional soliton profile. Equation (A.5) is substituted into the curl-free basic equations ( a = 1) and then linearized to obtain
+-a-s = i 7a-2Ns1
+at ax
+
+In this Appendix we evaluate the expressions given in eqs.
+(74) and (75). For K Q 1 we have g, z s e c h z so lg,l12 = 2.
+The expressions for GR and GI are then
+
+4 m
+
+d
+
+G, = Re /-_sech z -Pf(tanh z) exp (iEoz) dz
+
+dz
+
+To obtain this equation, Pereira, Sudan and Denavit have neglected y derivatives and considered the neighbourhood about x = 0. The initial conditions are (A.l) and the requirement that &/at = 0 at t = 0.
+Consider now the development of the ion-density pertur-
+bation N1. The linearized sound equations gives
+
+J-,00
+GI = Imf sechzL,
+Since L 1 is a self-adjoint operator and L we have from (B.2)
+
+dz (B.2)
+sech z = - 4 sechZz
+
+In m
+
+a
+
+For small times t we have S % 0 and N I is given by (A.4).
+
+GI
+
+= - Im 2 sech3
+
+I -m
+
+dz
+
+(tanh z) exp (iEoz) dz
+
+From (A.6) we obtain
+t
+S1 = - Jo N l k Y , 7) d7
+
+1+l
+
+d
+
+e 1 + iR,/z
+
+= - -1 (1 - 0z)3/2zPl(B)(1-)e
+
+dB
+
+(B.3)
+
+(‘4.8)
+
+To evaluate (B.l) and (B.3) we use the following property of
+
+where S1 is an approximation to S. Since S1 is real it makes the associated Legendre functions:
+
+no contribution in (A.7). Thus the perturbation N1 may be
+
+d
+
+used in calculating the second approximation Sz to S. After d ( 1 -o’)%Pf(e)
+
+a little calculation we obtain for S near x = 0
+1 S(x,y , t )=S I (x,y , t ) + (2N1(0, Y9 0)
+- [NI( x - t, y , 0) + N1 ( x + t, y , 011 1.
+From (A.5) we obtain the field energy near x = 0 as
+
+4 + + + = (U P ) ( V - p i ) P f + l ( e ) p f + l ( e )
+
+03.4)
+
++ ( ~ . 9 ) For the problem under consideration we have u(u 1) = 2/a where Q is large. Thus
+
+IEl’ = IE,(X)l’ exp (-- (”(0, y , 0)
+- [Nl( x - t,y , 0) + N1 ( x + t, y , 0111)
+
+u=2/(u or -(1 + 2 / ~ )
+
+(B.5)
+
+The associated Legendre function PE(0) may be defined by (*.lo) the expression (see Erdelyi [8], Vol. I, p. 122)
+
+The argument of the exponential is approximately 2t’ a Z N l / a t Zb, ut for N ] we have a Z N l / a t 2- a * ~ ~ / a Txh~us. Pf(e) =
+
+1-8 ( ‘ + e j y i z F ( - u , ~ + l , l - P ; f ( l - e ) )
+
+- [ is)) equation (A.10)becomes
+
+lEIZ IE,(X)l’ 1 + 2 t 2
+
+.
+
+An expansion o f N I about x = 0 from (A.l) gives
+
+where F is the hypergeometric function. For U < 1 we have
+
+r + e r z (A.11) the approximate form Pf(e) = ___ r(1-p) 1-0
+
+(B.6)
+
+(El2‘v IE,(X)lZ (1 + 8 d 4 t Zcos k l y )
+
+(A.12) By substituting (B.4) into (B.l) and (B.3), we see that it is
+
+is)”” where an explicit form for E,(x) has been used.
+
+necessary to evaluate integrals of the type
+
+Pereira, Sudan and Denavit conclude from (A.12) that the
+
+instability growth rate y is then given by
+
+J->g(O)
+
+dB
+
+(-1 yz = 8 4 ’
+Note that this is not a linear growth rate but comes from an exponential growth. To arrive at (A.11) it has been necessary to use
+
+and
+
+1 + e
+
+~ + l (-i e z ) P f ( e )
+
+” -1
+
+1-8
+
+go
+
+- P N ,-z
+
+a
+--
+
+2
+
+N
+
+l
+
+From (B.6) these integrals may be written (approximately) in the general form
+
+atz ax2
+
+/-,+1
+
+at several points and so the equation refers to the free pro-
+
+(1 + e)P(i - e p do
+
+03.7)
+
+Physica Scripta 20
+
+The Stability o f Three-DimensionalPlanar Langnluir Solitons 501
+
+where p , 4 are in general complex. Making the change of
+
++ variable from 0 t o t = $ (1 0) we see that (B.7) becomes
+
+K ( v ,p>1’
+
+1 (-1 * +I
+- + -1
+
+(l
+
+-O’)Pi$(11B- 00)
+
+A‘2
+
+tP(] - r ) 4 d t = 2P+q+lB(1 + P*1 + 4 )
+where B is the beta function and takes the value
+
+The quantity K may be evaluated approximately by using (B.6) (B’8) and subsequent relations t o obtain
+
+With this information we consider now the evaluation of an integral of the form
+
+1 + .-1 P i ( 0 ) ( -11)- 0e
+
+(+’(- -) d0 2-r(i - p i
+
+1 + 0 A/2+C112
+
+-1 1 - 0
+
+d0
+
+(B.18) Substituting (B.18) into (B.16) and carrying out some algebraic manipulation gives
+- + + wI 2: -1m ~ ( piFo) [ 1 - (p + i k 0 ) * ] sec (ni2)( p iEo)
+6r(-
+
+n
+
+xc
+
++ + (Eo - 3p2Eo E : ) COS (7~p/2c)osh ( T E O /2)
+
+(B.19)
+
+The gamma function has the property that
+r(z)r(i- Z ) = 71 cosec TZ
+
+Substituting (B.11) into (B.lO) we obtain
+
+1 + +I
+
+1 e
+
+Z(v,p, A) E P g ( O ) / -1)- e
+
+d0
+
+-1
+
+ij, 1
+/ ( p + 3pFi - p 3 )sin (7742)sinh ( k on/2)
+\
+(B.12)
+
+\
+/ (B.20)
+
+We can now evaluate G R . Substituting (B.4) into (B.l) and writing the result in terms of I ( v , p , h) defined in (B.12) we obtain
+ijR = R e { i ( v + p ) ( v - p + l ) I ( ~ , p - - l , i E ~ )
+
++ i ~ ( v , p +l , i E o ) )
+
+(B.13)
+
+For v < 1 we may evaluate the terms inside the bracket by using
+(B.12) to obtain
+
+(B.14)
+
+Expanding the secant function and using the property that p is real, we obtain finally
+
+p cos p(71/2) cosh E0(71/2)- Eo sin p(71/2)sinh 71
++ cos2p(n/2)coshZk,(n/2) sin2p(r/2) sinh2koO((n/2I2))1
+
+(B.15)
+
+We now turn t o the evaluation of GI given in (B.3). Substituting (B.4) into (B.3) gives
+
+ij, = - I m {t(v + p ) ( v - - p + l ) ~ ( v , p - l , i E o )
+
++ & ~ ( v , pl+, i k o ) )
+
+(B.16)
+
+where the function K is defined by
+
+References
+1. Gibbons, J., Thornhill. S. G., W’ardrop, M. J . and ter Haar, D.. J . Plasma Phys. 17, 153 (1977).
+2. Wardrop. M. J., Unpublished Oxford D. Phil. Thesis (1977). 3. Thornhill, S. G. and ter Haar. D.. Phys. Repts. 43, in course of
+publication. 4. Zakharov, V. E. and Rubenchik,A. M . , Sov. Phys. JETP 38. 494
+(1974). 5 . Degtyarev. L. M., Zakharov. V. E. and Rudakov. L. I.. Sov. Phys.
+JETP41, 57 (1975).
+6. Pereira. N.R., Sudan, R. N. and Denavit. J.. Phys. Fluids 20. 936
+(1977). 7. Infeld, I. and Rowlands. G., Plasma Phys. 19, 343 (1977). 8. Erdelyi, A. et al., Higher Transcendental Functions, McCraw-Hill.
+New York (1952). 9. Schmidt, G.. Phys. Rev. Lett. 34, 724 (1975). 10. Stakgold, I., Boundary Value Problems of Mathematical Physics,
+Vol. I, p. 225, MacMillan, New York (1967). 11. Morse. P. M. and Feshbach. H.. Methods of Theoretical Physics,
+Vol. I. p. 769. RlcGraw-Hill, New York (1953). 12. Nayfeh. A., Perturbation Methods. J . IViIey. New York (1973). 13. Zakharov. V. E., Sov. Phys. JETP 26. 994 (1968); Sov. Phys.
+JETP 35, 908 (1972). 14. Yajima. X., Progr. Theor. Phys. 52, 1066 (1974). 15. Hojo, H.. J . Phys. Soc. Japan 44, 643 (1978).
+16. Denavit, J . , Pereira. N.R. and Sudan, R . N., Phys. Rev. Lett. 33.
+1435 (1974). 17. Abdulloev, Kh. 0.. Bogolyubskij. I. L. and Makhankov. V. G.. Nucl.
+Fusion 15, 21 (1975). 18. Zakharov. V. E., Mastryukov. A. F. and Synakh. V. S., Sov. J.
+Plasma Phys. 1, 339 (1976).
+
+Physica Scripta 20
+

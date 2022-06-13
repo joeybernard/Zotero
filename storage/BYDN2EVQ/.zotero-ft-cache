@@ -1,0 +1,555 @@
+GEOPHYSICALRESEARCHLETTERSV, OL.26,NO.22,PAGES3345-3348N, OVEMBER15,1999
+
+Gradient drift instability in high latitude plasma patches' ion inertial effects
+N. A. Gondarenko and P. N. G uzdar Institute for Plasma Research, University of Maryland, College }>ark
+
+Abstract. Nonlinear simulations of the gradient drift turing processdue to the stabilizinginfluenceof paralinstability with inertial effects for the high latitude lel electricfields[Chaturvedai ndHuba,1987].Herewe plasma patches demonstrate that the initial cross-field demonstratethat in the presenceof the nonlinear ion inelongated structures, driven by the gradient drift insta- ertial effects,thesestructuresare unstableto secondary bility, are unstable to the Kelvin-Helmholtz instability instabilities. The highly elongated vortices associated and to the generation of sheared flows. The shear flow with fingers are unstable to the Kelvin-Helmholtz indevelopson the scale-lengthof the irregularities. Both stability, which breaks up the elongated vortices into these processesarise from the nonlinear inertial term. smaller vortices. These small scale vortices can further The computed density and velocity fluctuation levels undergoa secondinstability which generatesshearflow are of the order of the observed values. The combined transverse to the magnetic field and to the direction of effect of parallel dynamics as well as secondary insta- the ambient density gradient. Thus the final nonlinear bilities prevent the patch from disintegrating for hours. state consistsof density and potential fluctuation em-
+bedded in multiple shear layerson the scale-sizeof the irregularities.
+
+Introduction
+
+Basic Equations
+The high latitude ionosphericplasma has irregular-
+
+ities which range from meters to hundreds of kilome- The starting equationsare 3-D generalizationof the
+
+ters of spatial scale and from minutes to hours of tem- two-dimensiona(l2-D) equationsusedby Mitchell et al.
+
+poral scale[Tsunoda,1988; Crowley,1996; Basu and [1985].For a plasmapatchin a uniformmagneticfield
+
+Valladares1, 999].The largeor macro-scale(shundreds alongthe z direction,they are the electroncontinuity
+
+of kilometers)havebeencharacterizedas "patches"(in equation and the 'vorticity' equation,
+
+the polar cap), or "blobs"(at aurorallatitudes) [We-
+
+ber et al., 1984, 1986; Basu et al., 1990; Basu et al., 1994].The mesoscaleisn the rangeof 0.1 km to tensof
+
+= 0 (1)
+
+kilometers, may be due to a plasma instabilities. Ob-
+
+servations[Weberet al., 1986;Basu et al., 1994]and
+
+[ (0 modelingstudies[Sojkaet al., 1993]indicatethat the
+patchesconvecto longdistances-,• 3000km [Weberet
+
+B01X27ißdn_ Ot B0
+
+]
+
+al., 1986]and for longperiodsof time (hours)whileretaining their distinct identity. The irregularities are ob-
+
+az ,az -o (2)
+
+servedin associationwith these patches throughout the
+
+polar cap region[Weberet al., 1984,and 1986; Tsun- wherethe s•bols havetheir standardmeaning:n, c, e,
+
+oda, 1988;Basu et al., 1990;Basu et al., 1994],occa- •, T, Vn, refer to pl•ma density,velocityof light, elec-
+
+sionally being more intense on the trailing edge than on tronic charge, electrostatic potential, temperature in
+
+the leadingedge[Weberet al., 1984].
+
+energyunits, andthe neutral-windvelocityrespectively.
+
+In anearlierpaper,three-dimensiona(3l -D) nonlinear W = m•v•/ne2a, nda• = e•Bo/m•c(e• = •e) isthe
+
+simulations were presented for the collisional gradient- cyclotronfrequencyof speciesa(e, i). v• = v•i + v•, is
+
+drift instability(GDI) [Guzdaret al., 1998]to modelthe the sum of the electron-ion and electron-neutral colli-
+
+mesoscalestructures. The basic structuring occurred sion frequencies,and vin is the ion-neutral collision fre-
+
+transverseto the direction of the magnetic field and to quency. In equations(2), the new terms comparedto
+
+the direction of the ambient density gradient in long ourearlierwork[Guzdaret al., 1998],aretheioninertia
+
+elongated "fingers". The inclusion of dynamics along effects,which are the first two ter•. In previouswork
+
+the field line wasresponsiblefor slowingdown the struc- on high latitude interchangeinstabilities by Keskinen
+
+and Huba [1990],the effectsof paralleld•amics w•
+
+Copyrigh1t999bytheAmericaGneophysicUanlion.
+
+modeledin 2-D by introducinga wavelength-dependent frequencyin the vorticity equationwhichpreferentially
+
+Papernumber1999GL003647. 0094-8276/99/1999GL003647505.00
+
+stabilized the long wavelengths.Here we solvethe complete 3-D system of equations.
+
+3345
+
+3346
+
+GONDARENKO, GUZDAR: GRADIENT DRIFT INSTABILITY, ION INERTIAL EFFECTS...
+
+The basic geometry for the high latitude plasma patchis the following.The Earth's field linesare ver-
+ticalandalignedwiththe z axis.The -x axispoints
+anti-sunward, which is also the direction of convection of the patch and the y axis is orthogonal to the x and z directions. Thus the right side of the patch with the negativedensity gradient is the trailing edge. A set of typical parameters for the high-latitude ionosphere is Te • T• • 0.1 eV; L,• • 50 kin' Vo -• 500 m/s;
+•o "• Vo/Ln-• 10-2 s-•' •e • 107rad/s' •i •0 102 tad/s; Yei• 103 s-1; l/in• 0.1 s-1 HereVois thenet
+drift velocityof the patchwhichis a combinationof the
+electric-field and the neutral-wind drift.
+Numerical Results
+
+12.0
+
+a)
+
+b)
+
+6.0
+
+0.0
+
+o
+
+lOO
+
+-0.0002
+
+-0.0001
+
+0.0001
+
+-0.0036
+
+0.0001
+
+0.0038
+
+•2.o.....-.•.:.•'•"•'•' .:<c')
+
+- .
+
+0
+
+50
+
+100
+
+•-,.... v'
+
+o.o•L'5:i<
+
+0
+
+50
+
+ß•'.,•
+100
+
+The normalizations for the dependent and indepen-
+
+dent variablesare: t • t(Vo/L•), 0 --• O(c/LoVoBo),n
+
+-0.0056
+
+-0.0003
+
+0.0050
+
+-0.0050
+
+0.0000
+
+0.0050
+
+• n/No, z • z/Lz, x -• x/Lo, and,whereL0 isa char-
+
+acteristicscale-lengthtransverseto the direction of the Figure 2. Potentialcontoursin the xy planeat z -
+
+magneticfield, to be definedlater, Lz is a characteris- L•/4 for(a) t---4,(b) t=8, (c) t:14, and(d) t-36.5.
+tic scale-lengthalongthe directionof the magneticfield. The parametersusedare/3--2000 and v-10.
+
+and No is the undisturbed ambient density of the back-
+
+groundionosphereaway from patch/blob (independent
+
+of x). Thesenormalizationsgiveriseto two dimension- half the patch. For a patch sizeof about 200 km, for half
+
+less parameter,
+
+the patch, 4wL0 - 100 km. This means that L0 = 8
+
+/• =
+
+(3) km. Using the values for the collision and cyclotron
+
+frequenciesgiven above, we choosefi: 2000. For this
+
+v= v•,•œ,•/Vo
+
+(4) choice of the parameter fi, the scale-length L• - 560 km. The typical value of v = 10. The density profile
+
+The size of the box in the x and z directions is 4w and in x is a tanh function to model a localized patch and
+
+in the y is w/2. The reducedsize in the y directionis for the z dependence we use the Chapman function.
+
+motivated by the need for resolutionof the small scale The peak density is twice the backgrounddensity. The
+
+fingersand for the secondaryKH instabilities.Also,to profiles are the same as those used in our earlier work
+
+allow for more resolution in the x direction we consider asare the boundaryconditions[Guzdaret al., 1998}.
+
+We initialize the perturbed density as a superposition
+
+12.0
+•.•
+6.0
+
+12.0
+
+•
+
+a)
+
+'•,:•:•
+
+6.0
+
+of m -- l, 70 sine modes in the y direction with random
+b) phases. The amplitude of each of the harmonics is assumed to be inversely proportional to the transverse
+wavenumber of the mode. The variation in the x direc-
+
+tion is sin(wx/L•) for each of the modes. We do not
+
+0.0 0
+1.0
+
+50
+
+100
+
+x, kill
+
+1.5
+
+1.9
+
+0.0' 0
+1.0
+
+introduce any variations for the initial perturbations in
+lOO
+the z direction. The number of grid points usedin these
+simluationsare N• = 258, Nv: 129and N• = 49. The
+initialamplitudeforeachof themodeswasassumetdo
+1.9
+be 0.001. With the currently available computational
+
+12.0-
+
+12.0-,
+
+c)
+
+=
+
+6.0-
+
+•f.•4
+
+6.0
+
+resourcesthe physical size of the simulation box in the x direction is 100 km and in the y direction it is 12.5
+km.
+In Figures 1a-ld we showthe evolutionof the density
+
+0.00
+
+ß:.,.?/'',
+
+50
+
+100
+
+0.0 0
+
+in the xy plane near the peak of the Chapman function density profile in z, at four different instants of time,
+
+x, kin
+
+t=4, 8, 14, and 36.5. In Figures 2a-2d we display the
+
+potential contoursfor the same cut in the xy plane for
+
+1.o
+
+1.5
+
+1.9
+
+1.00
+
+1.45
+
+1.90
+
+the same instants of time as the density in Figure 1. At
+
+Figure 1. Densitycontoursin thexy planeat z - Lz/4 t=4, the instability whichgrowsfrom the initial pertur-
+
+for (a) t:4, (b) t=8, (c) t- 14, and (d) t=36.5. The bations has not grownsignificantlyso as to drastically
+
+parametersusedare/•--2000 and v-10.
+
+modify the initial density profile. As a consequencethe
+
+GONDARENKGOU, ZDARG: RADIENTDRIFTINSTABILITYIO, NINERTIALEFFECTS... 3347
+
+density contours, as seenin Figure 1a, are ahnost identi-
+
+,.
+
+.
+
+.,
+
+cal to the initial profile except for someminor perturba-
+
+tions on the steepest part of the density gradient. The
+
+potential contours at the same instant of time in Fig-
+
+ure 2a show a strong localization in the x direction on
+
+the steepest part of the density gradient as is to be ex-
+
+pected. The high mode numbers in the y direction grow
+
+preferentially since the low mode numbers are strongly 1.4 5 '
+
+• •.,.'•:.:':.h• •;' :
+
+10
+
+stabilized by the parallel dynamics.
+
+As time progresses,at t=8 the modes have grown to i. 00 •
+
+Y' •
+
+large amplitude asseenin Figure 1b and the small scale
+
+0
+
+fingers have grown on the trailing edge protruding into the lower density region. We also observe secondary
+
+50
+x, •
+
+0
+100
+
+bifurcations of the fingersin which an original finger bi- Pig•e 4. Densityin the •y planea[ z - L•/4 for furcates into two fingers. The potential structures are t=36.5. The parametersusedare •:2000 and v=10.
+long elongated vortices with an extent in the x direc-
+
+tion exceedingthe size in the y direction (Figure 2b).
+
+At this stage in the development of the instability the
+
+basic characteristics are very similar to that observed Thesehighlyelongatedvorticesare like shearflows in our earlierwork[Guzdaret al., 1998]withoutthe in- andasa consequencaenbecomeunstabletotheKelvinertia effects. But we must also remind the reader that Hehnholtzinstability.This is clearlyseenin Figuresl c
+the parameters used in these simulations are realistic and 2c. The originalfingersin the density,whichwere
+compared to our earlier work where our main focuswas extended in the x direction have now developeda wavy
+
+demonstrating the stabilizing influence of the parallel structure. In fact, there is distincttilt of thesefingers
+
+dynamics.
+
+in the y direction. This is seenboth in the density
+
+contoursFigurel c and potentialcontoursFigure2c.
+
+0.0028
+
+Such feature have been observedin the structuring of
+
+a) patche[sPealerse1n9,98}F. inallyi,n Figuresld and2d
+
+0.0014
+
+the densityand potentialcontoursat t=36.5 are dis-
+
+ffOOO0
+
+played.The instabilityhasprogresseadll the wayinto the bulkofthe patch.Againweremindthe readerthat
+
+-0.0014
+
+for better resolution we have considered only one half
+
+of the patch.The secondarsytructuringandtiltingof
+
+0.0028 0.0014
+o.oooo
+
+the fingersis clearlyseen.Anotherinterestingfeature
+
+b)
+
+of thestructuringis that at late times.the scale-length
+
+in y is largerthan that at t=8. This is a consequence
+
+of the inverse cascadenature of the nonlinear inertial
+
+-0.0014
+
+terms included in the present work. Oneof the mostinterestingaspectsof the simulations
+
+0.0028
+
+isthegenerationofshearflowtransversteo thedirection
+
+c)
+
+of propagation.Averagingthe vorticityequationovery
+
+0.0014
+
+and z andperformingan integraloverx wecanderive
+
+ffOOO0
+
+the followingequationfor the averagemomentumin y
+
+-0.0014
+-o (5)
+
+o.oo 14
+
+d)
+
+wherepy= nvvis themomentumin they direction
+
+and the angularbracket() denotesthe averagingover
+
+0.00[0_0
+
+y and z. Equation(5) showsthat the fluctuatingpotential• andthemomentum/c7a• ndriveaveragfelows
+
+-o4.Iool
+
+(Pu/. Thedrivingtermis referredto asthe Reynolds
+stress. This driving term arisesfrom the nonlinear in-
+
+0.0
+
+2.5
+
+5.0
+
+7.5
+
+10.0
+
+12.5
+
+ertial term. The ion-neutral collision damps the flow.
+
+Since at t = 0 we had no net momentum in the y direc-
+
+x
+
+Figure3. averagveyvelocityasa functionofx at(a) tion, thisequationshowsthat nonet momentumshould
+
+t=4, (b)t=8, (c)t=14, and(d) t=36.5. Theparameters be generatedat later time. This howeverdoesnot pre-
+
+usedare fi=2000 and •=10.
+
+cludegenerationof regionsof shearflowswhichwhen
+
+3348
+
+GONDARENKO, GUZDAR: GRADIENT DRIFT INSTABILITY, ION INERTIAL EFFECTS...
+
+averagedover x produce no net momentum in the y observations. Future work will focus on more detailed
+
+direction. Thus based on the constraint of no net mo- comparisonsbetweenobservationsand simulations.
+
+mentum we can at best expect to see multiple shear
+
+layers or zonal flows. In Figures 3a-3d are shown the Acknowledgments. We acknowledgeusetiffdiscussions
+
+time developmentof the shearvelocityin the y direction with Drs. Sunanda Basu, Shantimay Basu, Rod Heelis,
+
+at t=
+
+4, 8, 14, and 36.5, respectively. What is observed
+
+Todd Pedersen and Jan Sojka. This research was supported by the NSF under grant ATM-9813861.
+
+is that as the instability spreadsin the x direction mul-
+
+tiple shear layers are produced. The production of the shearlayersalsoinhibits the rapid spreadingof the ir- References
+
+regularities in the direction of the gradient sinceit con- Basu, Su., et al., Plasma structuring by the gradient drift
+
+vects the density transverse to the x direction. Thus
+the combined effect of three-dimensional GDI and the
+inertia dominated nonlinear development contribute to the robustnessof the patch, and the characteristicsof
+
+instability at high latitudes and comparisonwith velocity shear driven processes,J. Geophys.Res., 95, 7799, 1990. Basu,S., et al., Irregularitystructuresin the cusp/cleftand polar cap regions,Radio $ci., 29, 195, 1994. Basu, S., et al., Macroscalemodeling and mesoscaleobser-
+
+the structuring are in better agreement with observa- vationsof plasmadensitystructuresin the polar cap, Geo-
+
+tions[Kivan9andHeelis,1998;19991comparedto our
+earlier work. Detailed comparisonsbetween the obser-
+vations and simulations need to be undertaken and are
+
+phys. Res. Lett., 22, 881, 1995. Basu, Su., and Cesar Valladares, Global aspectsof plasma
+structures, J. Atmos. Sol-Terr. Phys., 61, 127, 1999. Chaturvedi, P. K., and J. D. Huba, The interchange insta-
+
+currently being done. The fluctuation level of the den- bility in high latitude plasmablobs,J. Geophys.Res.,92,
+
+sity is of the order of 5- 10% and the potential fluctua- 3357, 1987.
+
+tions are in the range of 0.1 - 1.0 V. The self-consistent shear flows and velocity fluctuations are of the order of
+0.1- 1 m/s. If we wereto assumethat our equilibrium flowof 500 m/s wasmostlydue to equilibriumelectric
+
+Crowley, G., Critical Review on IonosphericPatches and Blobs, The Review of Radio Sci., Oxford University Press, 1, 1996.
+Guzdar, P. N., et al., Three-dimensional nonlinear simulations of the gradient drift instability in the high latitude
+
+fieldsthis would imply that the fluctuating electricfield ionosphere, Radio Sci., 33, !901, 1998.
+
+is 0.4-4 % of the equilibrium field. This is about 25 % - Keskinen, M. J., and J. D. Huba, Nonlinear evolution of high
+
+40 % of the densityfluctuationsin reasonableagreement latitude ionospheric interchange instabilities with scale-
+
+with observations[Kivan9and Heelis,1999]. We have
+
+size-dependentmagnetosphericcoupling, J. Geophys.Res., 95, 15157, 1990.
+
+varied the parameter v from l0 to 1000 and find that the Kivanc•:, andR. A. HeelisS, patiadl istributioonfionospheric
+
+system evolvesfrom the inertia dominated regime pre- plasma and field structures in the high latitude F region,
+
+sented in this paper to the collisiondominated regime
+of our earlier work where the fluctuation in the electric
+field is much less compared to the density fluctuations. Also the generationof shearflow is weakerfor the more
+collisional case.
+Finally, in Figure 4 we show the density surface at
+
+J. Geophys. Res., 102, 6955, 1998.
+Kivanc;•,), andR. A. Heelis,Structureisn ionosphernicum-
+ber density and and velocity associated with polar cap ionization patches, J. Geophys. Res., 103, 307, 1999. Mitchell, H., et al., A simulation of high-latitude F-layer instabilities in the presenceof magnetospheric-ionospheric coupling, Geophys. Res. Lett., 12, 283, 1985.
+
+t=36.5. What is clear from this plot is that the patch retains a certain robustnessvisually evenwith the instability permeating through the body of the patch. This is becausethe short scale-lengthinstabilities dominate the structuring process. The parallel dynamics suppressesthe longer wavelengthinstabilities for the gradient drift modes. Then the secondaryinstability due KH instability tries to isotropizethe irregularitiesin the plane perpendicularto the magnetic field, and finally the shearflow generatedby the Reynoldsstressfurther
+
+Pedersen, T., Incoherent radar observationsof polar cap FLayer ionization patches, Ph.D. thesis, Utah State University, 1998.
+Sojka, J. J., et al., Modeling polar cap F-region patches using time varying convection, Geophys. Res. Lett., 20, 1783, 1993.
+Tsunoda, R. T., High-latitude F region irregularities: A review and synthesis, Rev. Geophys.,26, 719, 1988.
+Weber, E. J., et al., F layer ionization patches in the polar cap, J. Geophys. Res., 89, 1683, 1984.
+Weber, E. J., et al., Polar cap F patches: Structure and dynamics, J. Geophys. Res., 91, 12121, 1986.
+
+inhibitsthe rapid spreadingof irregularities.ThUswith
+
+thecombineedffecot fthree-dimensiodnyanl amicasnd N. A. Gondarenko and P. N. Guzdar, Institute for Plasma
+
+inertial effects,the GDI is lessdestructive than that ob- Research, University of Maryland, College Park, MD 20742. servedin earlier2-D simulations[Mitchellet al., 1985]. (e-mail:natalia@ipru. md.edu;guzdar@ipr.umd.edu)
+
+Also the computedlevelsof densityand velocity or elec- (Received July 23, 1999; revisedSeptember24, 1999; tric field fluctuationsare in reasonableagreementwith acceptedSeptember30, 1999.)
+

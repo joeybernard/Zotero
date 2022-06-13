@@ -1,0 +1,1145 @@
+Physica Scripta
+Topics on Solitons in Plasmas
+To cite this article: Y H Ichikawa 1979 Phys. Scr. 20 296 View the article online for updates and enhancements.
+
+Related content
+- A Perturbation Expansion for the Nonlinear Schrödinger Equation with Application to the Influence of Nonlinear Landau Damping J Weiland, Y H Ichikawa and H Wilhelmsson
+- Soliton experiments in plasmas K E Lonngren
+- Ion Acoustic Solitons in a Plasma: A Review of their Experimental Properties and Related Theories M Q Tran
+Recent citations
+- Periodic and localized structures in a degenerate Thomas-Fermi plasma Ata ur Rahman et al
+- Ion-scale Cnoidal Waves in a Magnetized Anisotropic Superthermal Plasma Muhammad Khalid et al
+- Magnetoacoustic cnoidal waves and solitons in multi-ions plasmas with application to ionospheric plasmas Hafeez Ur-Rehman et al
+
+This content was downloaded from IP address 131.202.65.42 on 19/02/2020 at 18:17
+
+Physica Scripta. Vol. 20,296-305,1979
+Topics on Solitons in Piasmas
+Y. H. Ichikawa
+Institute of Plasma Physics, Nagoya University, Nagoya, Japan Received July 21, 1978
+
+Abstract
+Topics on solitons in plasmas. Y . H. Ichikawa (Institute of Plasma Physics, Nagoya University, Nagoya, Japan). Physica Scripta (Sweden) 20, 296-305,1979.
+Solitons can be regarded as “nonlinear normal modes”, in terms of which dynamical properties of a given physical system could be analyzed. The author, however, points out firstly that the cnoidal wave is also the genuine nonlinear wave playing important roles in nonlinear phenomena in plasmas and other dispersive media. Explicit analysis for the ion acoustic cnoidal wave is carried out up to the second order on the basis of Kodama-Taniuti’s renormalized reductive perturbation theory. The nonlinear ion flux associated with the cnoidal wave is shown to have different dependence on the wave amplitude as compared with the quasilinear ion flux. At the same time, it should be noticed that the nonlinear ion flux also exhibits profound frequency dependence, which is not predicted by the quasi-linear treatment. Secondly Bogoliubov-Mitropolsky perturbation analysis of the perturbed envelope soliton is briefly discussed referring t o Karpman-Maslov’s perturbation approach based on the inverse scattering method. Thirdly, brief summaries on plasma waves in magnetized plasmas are followed by a report on the new inverse scattering scheme for the derivative nonlinear Schrodinger equation. In concluding remark, the potential importance of researches on solitons in strong plasma turbulence has been emphasized.
+1 . Introduction
+Facing the dawn of nonlinear physics [ l ] , we are gathering here at Aspenisgirden to open a door to establish nonlinear science with proper use of the key concept “soliton”, which has been earning ever growing popularity in various branches of sciences during the last decade. Extensive researches on various types of exactly solvable nonlinear evolution equations have been polishing up the notion of solitons with such firm mathematical tools as the inverse scattering methods [2, 31 and the Backlund transformation [4]. Regarding the solitons as “nonlinear normal modes”, we may hope to understand dynamical properties of a given physical system on a perturbation approach, of which the lowest order approximation describes the given system as the soliton system.
+Carrying out higher order analysis of pertubation effects upon the solitons, we recognize that it is certainly important to investigate the interaction effects between solitons and other degrees of freedom of motion in the system. Oikawa and Yajima have developed a perturbation approach to nonlinear systems in which there exist many waves [ 5 ] , while we have undertaken a systematic reduction of the set of fundamental equations to a coupled set of reduced equations, of which the lowest order part gives rise to the Korteweg-de Vries equation [6, 71 or to the nonlinear Schrodinger equation [8]. The secularities encountered in these analysis have been eliminated in an elegant manner by
+
+and Keener and McLaughlin [151 have been investigating solutions of perturbed nonlinear evolution equations.
+In view of these recent research trends in soliton physics, we begin our discussion with the most simple example of ion acoustic mode in plasmas, in the second section. So far in the studies of nonlinear evolution equations, we have been inclined to emphasize the localized nature of solitons. We notice, however, that the nonlinear wave train such as the cnoidal wave plays a vital role in the nonlinear transport process taking place in plasmas. Hence, in the third section, we present an explicit analysis of the ion flux accompanied with a propagating nonlinear ion acoustic wave by carrying out the renormalized reductive perturbation expansion up to the second order. In the fourth section, we will turn to a brief discussion of our works on the perturbed nonlinear Schrodinger equation, referring to the works of Karpman et al. [ 141 and McLaughlin et al. [ 161.
+Since plasmas are very unique media which are able to sustain a full variety of waves, we encounter various types of nonlinear evolution equations other than the Korteweg-de Vries equation and the nonlinear Schrodinger equation with the cubic interaction. Presenting a brief summary of nonlinear evolution equations for magnetized plasmas, in the fifth section, we discuss a new type of nonlinear evolution equation, which has been solved by the inverse scattering method formulated for a new eigen-value problem [ 17, 181.
+In this survey, we have tried to avoid possible overlapping with other contributions dealing with solitons in plasmas in the present symposium.
+
+2. Nonlinear ion acoustic waves
+
+Rediscovery of the Korteweg-de Vries equation for the magneto-hydrodynamic wave [191 and for the ion acoustic
+
+wave [20] in plasmas have been indeed the first step toward
+
+disentanglement of the complicated nonlinear wave phenomena.
+
+Demonstrating that this equation is by no
+
+a specific
+
+equation for the shallow water problem, their analysis has
+
+given a canonical position to the Korteweg-de Vries equation
+
+for studies of nonlinear wave in the weakly dispersive system.
+
+For a collisionless plasma composed of cold ions and warm
+
+electrons, the basic set of equation for one dimensional motion
+
+is expressed as (in a dimensionless form)
+
+a
+-n
+at
+
++ -aax (nu) = 0,
+
+-a + -a = --a- $,
+
+at
+
+ax
+
+ax
+
+Kodama and Taniuti, and thus they have succeeded to complete the renormalized reductive perturbation theory [9]. There have been also a number of efforts to study physical properties of
+perturbed solitons. Kaup [ l o ] , Karpman and Maslov [ll-141
+
+232 $’ = ne -n, ne = exp $,
+
+Physica Scripta 20
+
+Topics on Solitons in Plasmas 297
+
+where n = zi/no, ne = z e / n O , U = ;(I( Te/m)-l” and $ = with
+
+T ( KTe/e)-’ are the dimensionless ion number density, electron
+
+number density, ion velocity and electro-static potential, 77 = E - V O T , VO = I A , D = (A/6)1’2,
+
+(9b)
+
+respectively. Dimensionless space-time variables (x, t ) are measured by the Debye distance ( ~ T , / 4 n e ~ n ~a)nd” ~the ion plasma frequency ( 4 n e 2 n o / ~ 1 ’ 2 .
+Introducing the stretched variables
+
+have been firstly carried out by Ikezi et al. [21. 221. It is apparent that there exists systematic discrepancy between the experimental observation and the theoretical description based on a simplified Korteweg-de Vries soliton picture. As
+
+r ) , $ = €1’2(X -
+
+7- = f 3 I 2 t ,
+
+we can transform the basic equations (la)-(Id) into the following set of equations,
+
+E
+
+a - a7 n
+
+a - - a$ n
+
++
+
+a - a t (nu)
+
+=
+
+0,
+
+an improvement of the simple soliton model, effects of finite ion temperature [23-251 and effects of large amplitude [26.
+271 have been treated by several authors. With regards the recurrence phenomena associated with the ion wave propagation, Watanabe et al. [28, 291 have been carrying out a series of experimental studies in comparing with the empirical formula of Tappert and Judice [30]. Their analysis suggests that the recurrence phenomena are explained by the wave-wave inter-
+
+aa a
+
+E-U---U+U-u
+
+a7 at
+
+at
+
+a2
+E aT t$ = e x p $ - n .
+
+a
+=---$I,
+at
+
+action process equally well as the soliton-soliton collision process.
+In connection with the experiment of continuous excitation of the large amplitude wave, we examine structure of the (3c) cnoidal wave solution of eq. (6). It is expressed as
+
+Substituting power series expansion of n, U,and $
+
+,+ ( I ) = ~ + ( a : - P ) c n ~ ( D ~ q ; k ) .
+
+(loa)
+
++ + . n = 1 E n ( ’ ) 4-E Z n ( 2 ) , , + + I1 = € U ( ’ ) E W ) . . .
+
++ + . $ = E $ ( ’ )
+
+€2$(2)
+
+, ,
+
+(4a) (4b) (4c)
+
+into eqs. (3a)-(3c). we obtain relationships among the first
+
+order quantities as
+
+,p $ ( I ) =
+
+= U (1) = n(e’).
+
+(5)
+
+from the lowest order terms of eqs. (4a)-(4c). Their explicit ($.7 ) dependence is determined through the Korteweg-de Vries equation
+
+where the cn-function is the Jacobian elliptic function with the modulus k. D , is defined as
+
+D, = v F 7 / 6 %
+
+( 1 Ob)
+
+and the modulus kis related with the three integration constants
+CY, p and y as?(assuming that CY >0 > r)
+
+db k =
+
+-?>/(CY -PI.
+
+(10c)
+
+The velocity v0 is expressed by these integration constants as
+
+00 = f(CY+P+y).
+
+(104
+
+In the cnoidal wave theory, the three integration constants
+
+CY,/3 and y are specified in terms of (i) the modulus k . (ii) the wave amplitude
+
+which is derived from the compatibility condition for the a =- n,, - n m m ,
+
+(loel
+
+second order components of eqs. (3a)-(3c). At this stage of and (iii) the conservation condition of ion number density
+
+: 1 perturbation expansion. the second order quantities n(’) and
+U(’) are expressed in terms of I)‘’)as
+
+(n - 1) dq = 0.
+
+a2
+
+v a p ” . p 1 ( 2 ) = $ ( 2 ) + ~ $ ( 1 ) l ( l L -
+
+r(1)
+
+( 7 4 where the wave length h is defined as
+
+D,h = 2K(k).
+
+(1 Og)
+
+while the space-time evolution of the second order potential $(’) is determined by the following equation
+
+K ( k ) is the complete elliptic integral of the first kind. For the experimental situation with continuous excitation of the wave at a given frequency a , the modulus k should be determined from the condition
+
+D,VP(2n/w) = 2K(k).
+
+(1 1)
+
+(8b)
+which is derived from the compatibility condition for the third order components of eqs. (3a)-(3c). Similarly: we can proceed to get an equation for the third order potential $(3).
+Experimental investigation of properties of the solitary wave solution of eq. (6). given as
+
+1+5:’) = A sech’ (Dq),
+
+(94
+
+where V , is a phase velocity of the wave in the rest frame. Since D, depends on the amplitude. we notice that the modulus k does depend also on the wave amplitude. Therefore. a meansquared average quantity may exhibit different amplitude dependence compared with the one predicted for the infinitesimal small amplitude wave.
+3. The second order cnoidal ion acoustic wave
+Since quantities such as the averaged flux are the second order quantities, we have t o carry out the perturbation calculation
+
+Pliysica Scripta 20
+
+298 Y.H. Ichikawa
+
+consistently up to the second order terms. Here, we present a brief summary of our recent work [31]. In order to proceed
+to the second order calculation on a basis of the set of eqs. (6) and (8a) with (8b), it is crucial to eliminate secular terms arising from a resonance term of S($(’)). Therefore, following Kodama and Taniuti [ 9 ] ,we transform these equations into
+
+Dz - a I 13a2 (kz - 2)
+
+6k2 72k4
+
+9
+
+and a
+<a, k) = -3(k2’
+
++ - 3e(k) - k 2 )
+
+- a’
+36k4
+
+a
+
+a 3 + _1?$(2)
+
+a + 3 $ ( 1 ) $ ( 2 ) ) + g v - $ ( 2 )
+
+a7
+
+2 at
+
+at
+
++ a
+= S($(l)) 6 v -$(I)
+at
+
+(12b)
+
+where 6v a$(’)/@ of the right hand side of (12b) is a renormal-
+ization term to eliminate a resonance term of s(+(’)). We seek to steady state solution, depending on an argument
+of
+
+q = g-m (13)
+
+where P is expanded as
+
++ v Po 6 v = Po +(€VI + E2V2 + . * .).
+
+(14)
+
+Solving eqs. (12a) and (12b), we determine the perturbed potential $ ( I ) and $(2) with the renormalized velocity shift
+v1 ,given as
+
+4 vu1 = {2P(2P - QI - 7)+ (QI - YI2 - 6(QI- P)(P - 7)). (15)
+
+Then, steady state solutions for the perturbed density are given as
+
+= P + (QI - L%nZ(Dv, k )
+
+,(’) = z5i(a -P)’cn4(Dq, k) + 6(QI - P)(2P - a - Y)cn2@?, k )
+
+- #(QI -P)(P - Y) + 1PZ.
+
+(16)
+
+Expanding the three integration constants into power series,
+
+we determine successively these constants in terms of the
+
+e(k) E(k)/K(k) is the ratio of a complete elliptic integrals of the second kind and of the first kind. For the continuous
+
+excitation of the wave at a given frequency w, the modulus k
+
+is determined from the condition
+
++ D(a, k)(l v(a, k))(27r/w) = 2K(k).
+
+(19)
+
+Here, we notice that the cnoidal wave perturbation expansion
+valids only under the condition of a/k2 < 1. Although the
+cn2-function is reduced to the trigonometric function in the limit of k+O, the cnoidal wave solution given as eqs. (17a) and (17b) with eqs. (18a)-(18c) in the limit of k+O does not represent a small amplitude wave in the linearlized approximation of eqs. (la)-(ld).
+Now, in order to study anomalous transport of collisionless plasmas, one calculates an averaged flux (6n & U ) , in w h c h the fluctuating quantities fin and 6u are evaluated from the linearized equations of a system. This quasi-linear calculation is a common approach used widely in the studies of plasma behaviour. In order to illustrate the basic limitation of such an approach, we examine the mean averaged ion flux
+
+I‘ = (nu),
+
+(20)
+
+both in the quasi-linear approach and in the second order cnoidal wave approach. Based on the linearized theory for the set of eqs. (la)-(ld), we obtain from eq. (20),
+
+ro = la’,
+
+(21)
+
+a is the amplitude of density fluctuation. On the other hand,
+
+I I ~2 = 1 + a cn2(DX,k ) + g1[ l -k’ -e&)]
+
+\
+
+J
+
+cn4(OX, k ) - cn2(DX,k )
+4
+
+I, +
+
+1 - 3k4 [(2
+
+- k2)e(k)
+
++
+
+2(k2
+
+-
+
+l)]
+
+,
+
+I I u
+
+= a
+
+cn2(DX, k
+
+)
+
+1 +~
+
+[ -lk’
+
+-e(k)]
+
+9 i + + -a2
+
+c n 4 ( D X , k)
+
+1 -(12e(k)’
+
+4
+
+27k2
+
+- 19k2- 16)
+
+X
+
+cn’
+
+(OX
+
+,
+
+k)
+
++
+
+1 -[-
+
+I 2k4
+
+1 +40k2 -321 ,
+
+6e(k)’ + (38 - 25k2)e(k) - 8k4
+
+where
+x = x - ( 1 +v)t,
+
+(18a)
+
+with the definition of
+
+G ( k ) - k 4 [ { ( 4 k 2 -2)e(k)+2-5k2 +3k4-(1-k2 -e(k))’)
+
++ + t{3e(k)’ (4k2 -2)e(k) + 1 - k’)].
+
+(23)
+
+The averaged ion flux in the linear theory is simply proportional
+
+to a’, and independent of the frequency, while the ion flux
+
+associated with the cnoidal wave exhibits complicated depen-
+
+dence on the amplitude a and on the frequency w through the
+
+dependence of the k on these quantities.
+
+In Fig. 1, we show amplitude dependence of the velocity
+
+of the cnoidal wave for the specified values of the modulus k 2 .
+
+- Contribution of the second order terms prevail that of the
+first order terms at the value of a 0.1 if k2 2 0.98. In Fig. 2,
+
+we plot a quantity
+
++ F(k, a) = K(k)D(a, k)-’(l v(a, k))-’,
+
+(24)
+
+as a function of a for the parameters of k’. Therefore, for a given value of frequency w, setting w/?requal to F(k, a), we can determine k(a, U). Then, we can construct the amplitude dependence of the ion flux associated with the cnoidal wave
+
+Physica Scripta 20
+
+Topics on Solitons in Plasmas 299
+
+01
+
+02
+
+03
+
+a
+
+a
+
+Fig. I. Amplitude dependence of the phase velocity of the cnoidal wave for the values of modulus k 2 = 1,0.999 9 9 , 0.999, 0.99, 0.95,
+0.90 and 0.80. The thin line represents the velocity of the Kortewegde Vries soliton.
+
+Fig. 4 . The ion flux associated with continuously excited cnoidal wave. The frequencies are choosen to be win = 0.02, 0.03, 0.04 and 0.05. The broken dotted line is the quasi-linear ion flux given in eq. (21).
+4. Remarks on the perturbed solitons
+
+0 05 W = F k.a
+0 01
+
+Differing from the perturbation approach discussed in the
+
+previous section, Kaup [ l o ] , Karpman and Maslov [ 11-14]
+
+k.
+
+and Keener and McLaughlin [ 151 have investigated effects of
+
+7 3cz
+
+perturbation on solitons in simple models of perturbed non-
+
+linear evolution equations. Applying their perturbation method,
+
+McLaughlin and Scott [ 161 have studied fluxon (soliton)
+
+interactions on a Josephson transmission line, and compared
+
+with their theoretical analysis with numerical analysis carried
+
+by Nakajima, Onodera and Ogawa [32].
+
+In the recent paper [33], we have carried out a similar
+
+analysis for a perturbed nonlinear Schrodinger equation
+
+01
+
+02
+
+03
+
+a
+
+Fig. 2. Amplitude dependence of the quantity F(k, a ) defined by eq. (24) for the values of modulus k 2 = 0.9999, 0.998, 0.990, 0.970, 0.950 and 0.900.
+
+on the basis of the Bogoliubov-Mitropolsky perturbation theory
+[341. A s s u d n g p * 4 > aregoingto consider a perturbation
+
+around the unperturbed one soliton solution
+
+[ $(O) = 2v sech ($)'"2v(x
+
+- 2pt)] exp (i [E(x - 2pf)]
+
++ +2qvj r)
+
+( 1;;:; We write the perturbed solution as
+$ = 2v(t) sech (cuz(t))exp i -+ 6 W ] ) ,
+
+(274
+
+with
+
+f t
+z(r) = 2v(t) (x - 2 p(t') dr')?
+#O
+
+(27b)
+
++ t
+6 ( t ) = J0 [p-'p2(tf) 2qvZ(t')] dt':
+
+L -
+
+090
+
+095 099
+
+Q%
+
+31
+
+k2
+
+Fin.3. The norrnalized ion flux associated with the cnoidal wave G ( k )= r,/u2defined by eq. (23). Notice the change of scale at k 2 = 0.998.
+
+and
+(Y = (q/2p)"2. Using the Bogoliubov-Mitropolsky method, we expand the
+amplitude p and the phase U of eq. (27a) as
+
+of a given frequency from the graph of G ( k ) shown in Fig. 3. We compare the ion flux associated with the cnoidal wave with the quasilinear flux in Fig. 4. We observe that the ion flux exhibits different amplitude dependence in comparison with the quasilinear ion flux. It should be noticed that the ion flux depends profoundly also on the wave frequency w .
+
+p = =
+
+TOs
+
+Epl(Zs
+
++ . . .
+
+To,
+
++ + . . E u . l ( Z , 7 , )
+
+,
+
+~
+
+where
+
+p o = 2usech(az), uo = -zc1 $ 6 . 2PV
+
+(28b)
+
+Physica Scripta 20
+
+300 Y. H. Ichikawa
+
+The time derivative is expanded as
+
+_a
+at
+
+- -
+
+a-ra+o - -a+aro
+
+a aZ
+
+a aa
+E-+€--+
+ar, arlaz
+
+...>
+
+where ro = t, r1 = e t , . . . Observing that
+
+az
+
+az
+
+- = 2v and - = -4vp,
+
+ax
+
+a70
+
+we obtain to the zeroth order,
+
+a2
+0 -2vp--saezc2hcrz+-
+
+qv -6gvsechm
+sech CYZ
+
+1 a sechcuz a f-sechcuz
+
+0
+
+az az
+
+(35 )
+
+We now want to find a solution \k = then obtain
+
+satisfying (34). We
+
+The first order equations take the form of where
+
+r = K sechaz,
+a
+0 = -y sech az -sech crz, az
+(3 1) where K and y are arbitrary constants. The conditions for nonsecularity now are
+
+L=
+
+By introducing
+
+az
+- a r l
+
+-
+
+z av ---4v v aT1
+
+.io.TO ap --To, ar,
+
+with the abbreviations of
+(2a :l ?I) MI = - -+ - - f Im(R(po, oo)exp (-ioo)},
+
+we may write (38a) as
+
+iI ---I hi., (32c)
+
+[ZE,sech2m+
+x a sech az dz =
+
+.a R ( p o ,oo)e-”o sech a z dz.
+
+(R(po,oo)exp(-iiao)>,
+
+(324
+
+Since M contains term that depend only the slow time scale
+g i 7 1 , we will obtain secular contributions to on the time
+
+scale ro unless M does not contain a part that is orthogonal
+
+/-_ :-I 6:) to Lgi. This may be written as
+
++a
+\k(z)Mdz = 0 if
+
+\k(z)L
+
+dz = 0.
+
+The last condition may be rewritten as
+
+Z
+
+Integrating the left hand side we now obtain
+
+_a v - a
+
+R ( p o , oo)e-iuO sech crz dz
+
+In order to evaluate (38b) we rewrite M R as
+
+- Re (R(po,oo)e-”O)
+2 sech CYZ
+
+From (38b) we then obtain
+
+3 -_ _ a71
+
+- - a p R e j.-
+
+_ sin_h a_z cosh’az
+
+R ( p o , oo)e-iuO
+
+dz.
+
+(394 (39b)
+
+(1:) where L+is the operator adjoint to L . In order to satisfy (33) for arbitrary
+
+we must impose
+
+the condition
+
+L+(\k) = 0.
+
+(34)
+
+The operator L+ is obtained from L by transposition and partial integration yielding
+
+We have thus obtained the variation in time on the time scale
+r1 of the independent parameters v and p. In order to write our solution as a function of a single time we make the replacements ro = t and r1 = E t . Our results give the same variation in time of v and p as those of Karpman and Maslov [141. They, however, introduce two more independent variables, S ( t ) and
+.fA t(t)= 2p(t) dt. Their results for these quantities differ from
+the present ones by the appearance of terms that are one order
+
+Physica Scripta 20
+
+higher in E . A similar discrepancy is present between the results
+
+of Karpman and Maslov for the Korteweg-de Vries equation 10
+
+[14] and the results by Ott and Sudan [35] and seem to be
+
+due to the larger freedom in the choice of number of indepen- 05 dent parameters in the Karpman-Maslov approach.
+
+We examined explicitly behaviour of a perturbed envelope
+
+soliton under action of nonlinear Landau damping. The
+
+additional term in the nonlinear Schrodinger equation due to
+
+nonlinear Landau damping was derived by Ichikawa and Taniuti
+
+[ 3 6 ] . It is expressed as
+
+05
+
+Topics on Solitons in Plasmas 301
+
+Introducing this nonlinear. nonlocal term into (39a) and (39b) we obtain
+
+av
+
+- = 0,
+
+at
+
+!----!-- ar-aP- =
+
+P
+~ E C Y P V- ~
+
+-m
+
+71
+
+sinh (YZ
+
+dz dz'
+
+cosh2cyz'?osh3 cyz z - 2 "
+
+(41b)
+
+An analytical calculation of the double integral yields
+
+I =
+
+l v t 3 sinh z dz dz' 8
+
+l_mL-=
+
+cosh2z' cosh3z z_-_- 2'
+
+-
+
+-~~
+n2Jo
+
+c sech2 t: dg
+
+where
+
+1 .- t 2
+
+{(3) =
+
+~- d t
+
+r(3) .--et - 1
+
+with the numerical result
+
+I =I 1.461 5 2 5 9 3 9 , . . .
+
+-8
+
+0
+
+8
+
+X
+
+Fig. 5. Temporal evolution of perturbed envelope soliton under action of the nonlinear Landau damping (a) E = 0.271and (b) E = 0 . 5 ~ .
+
+In Fig. 6. we compare the theoretical result of (46) with the observed results of Yajima ef al. for the two values of E = 0 . 2 ~ and E = 0.571.Although the present analysis is restricted only for the variation of the 0-th order soliton core. we notice agreements between the perturbation calculations and the numerical experimental observation are remarkable. Yet the asymetric distortion of the envelope soliton calls for further investigation of the first order components p1 and u l . Analysis of contribution of similar term for the K-dV soliton has been carried out by Karpman and Maslov. recently [151.
+As another important application of the present perturbational analysis, we have examined the influence of ion inertia upon the nonlinear Langmuir waves on a basis of the Zakharov equations [39],
+
+a
+i -E at
+
++E,aax2
+
+= nE.
+
+Thus. we reduce (40b) to
+
+!?! * 3 . 7 2 1 7 ~ ~ ~ ~
+at
+
+(44) writing
+
+The results (41a) and (41b) may also be obtained by introducing the solution with time dependent v and p into the expressions for time derivative of number of quanta, momentum and energy given by Ichikawa and Taniuti [36]. The conservation o f number of quanta is a well known feature of nonlinear Landau damping, which just causes a wave quanta of a higher frequency to turn into one with a lower frequency.
+From (44) we observe that a soliton initially at rest will start to move due to the nonlinear Landau damping. This is in qualitative agreement with the numerical results of Yajima et al. [37]. Effects of nonlinear Landau damping on solitons has recently also been observed experimentally by Watanabe [37]. In Fig. 5, we show the temporal evolution of numerical solution of (25), with (40) for the initial condition
+
+where H(t) < I , we obtain the perturbed nonlinear Schrodinger
+equation
+
+a a2
+
+i
+
+--E at
+
++
+
+-
+
+Ea+.?
+
+1 1
+
+2V
+
+.Y
+
+1- - v 2 IE12E
+
+=
+
+H---,E (1-V
+
+1
+
+IE12 dx.(49)
+--v
+
+$(x, t = 0) = sech (ax),
+
+(45)
+
+obtained by Yajima et al. We see that the envelope soliton at rest starts to run and is subject t o asymmetric deformation.
+Integrating (44) twice with respect time? we get for the trace of the maximum point of envelope soliton t:(f),
+(,:\ t(r) = g(0) t 1.46 - p ( 2 ~ ) ~ t ~
+
+Fig. 6. Traces of the maximum points of the envelope soliton for two values of the size of the nonlinear Landau damping, E = 0.2n and E = 0 . 5 ~ .The broken lines are read from (a) and (b). while the real lines represent the results of eq. (46) for p = 1 / 2 and 2u = 1.
+
+Physica Scripta 20
+
+302 Y.H. Ichikawa
+
+For this type of the perturbed nonlinear Schrodinger equation, observing that the velocity of the ion perturbation z, must be equal to the soliton velocity 2p, we obtain
+a
+--v = 0 , at
+However, in order to describe self-consistent time development of the perturbation, we have t o refine our analysis so as we can determine time variation of the quantity H . Since many works being pursued are based on the Zakharov equations, (47a) and (47b), further investigation towards such a direction appears to be useful. In this connection, Gibbons [40] has reduced the Zakharov equations, (47a) and (47b), to a perturbed nonlinear Schrodinger equation in the regime of low amplitude and wavenumber.
+Concerning the perturbation theory of solitons, Watanabe et a1 have developed a method of conservation laws [41]. We conclude the present section by emphasizing that investigations of perturbed solitons will provide us with useful tools t o understand properties of the physical system composed with strongly interacting many degrees of freedom.
+
+Vries soliton. He had examined change of structures of the solitary waves according t o the relative size of the cubic derivative term and of the fifth derivative term.
+As for the AlfvCn wave in the long wave length region, Kakutani and Ono [47] have derived the modified Kortewegde Vries equation
+
+a
+
+a
+
+-$+a$2-$tp-3$
+
+a3 = 0,
+
+a7-
+
+at a i
+
+(53)
+
+in which the nonlinear term is also affected by the dispersive nature of the mode. The modified Korteweg-de Vries equation (53) bears two types of solitary waves, one being compressive
+and the other rarefactive. Wadati [49] succeeded in solving the modified Korteweg-de Vries equation by means of the inverse scattering method.
+The above illustrations, however, do not exhaust other novel types of nonlinear evolution equations for the plasma waves in magnetized plasmas. For the lower hybrid mode propagating at an angle relative to the external magnetic field, Bers et al. [ S O ] have derived the complex modified Kortewegde Vries equation
+
+aa
+
+a3
+
+-a77- + - a t ( 1 $ 1 2 $ ) +$ ,a$ = 0:
+
+(54)
+
+5 . Plasma waves in magnetized plasmas
+
+In the preceding sections, we have discussed some detailed aspects of the nonlinear propagation of the electrostatic modes in collisionless plasmas. Full variety of the modes, however, are sustained in magnetized plasmas. From the practical point of view, studies of nonlinear propagation of the plasma waves in high temperature gaseous plasma pose acute problems not only to find effective methods t o heat plasmas confined in the toroidal devices [42,43], but also to establish a new method of radio-frequency plugging of plasma flow from the open ends of the magnetic mirror or the cusp configuration devices [441.
+Historically, it was the magneto-acoustic wave propagating at the perpendicular direction to the external magnetic field for which Gardner and Morikawa [19] rediscovered the Korteweg-de Vries equation. Extension of their analysis to a general propagation direction with respect to the external
+magnetic field had been carried out by many authors [451. Here, it is crucial to take into account the electron inertia when cot (6) 6 % / m , even If m,/m, 1. For the magnetoacoustic wave propagating in arbitrary angle other than the
+critical angle 6, defined by
+
+6 c = tan-' [d(mi/me) -d(me/mi)I,
+
+(51)
+
+Kakutani et al. [46] confirmed that the magneto-acoustic mode is also governed by the Korteweg-de Vries equation. At the critical angle B c . however, the dispersion coefficient of k2-term of the phase velocity vanishes identically, so that reduction of the basic set of equations must be modified. For this case, Kakutani and Ono [47] have deduced the following type of nonlinear evolution equation.
+
+where $I($. 7) expresses a complex amplitude of the mode. In connection with the lower hybrid heating of plasmas, Sanuki and Ogino [ 5 11 have examined numerically propagation of the lower hybrid mode in an inhomogeneous plasma.
+It is very important t o notice that in the long wave length limit for the parallel propagation the dispersion relations for the AlfvCn wave and the magneto-acoustic wave are degenerate so that the above derivation of eqs. (52) and (54) ceases to be valid. This limiting case had been examined firstly by Rogister [52] in 1971, and independently by Kawahara [53], Mio et al.
+[54], Mjdlhus [ 5 5 ] and ourselves [56]. They have obtained
+the derivative nonlinear Schrodinger equation,
+
+a , ia
+g y t - 4 a-5
+
+* a 2 $ * \I +- l' p -a $c 2+ - = 0 ,
+
+(55)
+
++
+
+where
+
+$ * = B y "B z 3
+
+(56)
+
+represent amplitude of the left (+) and right (-) polarized
+
+Alfven waves propagating along the external magnetic field in the x-direction. Treating the problem of nonlinear distortion
+
+of lower-hybrid propagation cone, Spatschek et al. [57] have
+
+reduced the basic equations to the derivative nonlinear
+Schrodinger equation with ( z , x) variables. MjQlhus [55] and Mio et al. [58] have studied the modulation instability of the
+
+circularly polarized Alfven wave.
+
+Since the derivative nonlinear Schrodinger equation ( 5 5 )
+
+describes the rapid modulation through the derivative nonlinear
+
+term, we have undertaken to seek an exact steady state solution
+
+which is compatible with boundary condition of an incoming
+
+finite amplitude plane wave at - m. Decomposing the complex
+amplitude $ - into real amplitude @ and real phase x defined as
+
+Kawahara [48] found that eq. ( 5 2 ) has an oscillating solitary with
+$b), wave solution in contrast with the monotomic Korteweg-de @ ( ( , 7 - ) =
+Physica Scripta 20
+
+Topics on Solitons in Plasmas 303
+
+where
+K =
+
+(604 (60b)
+
+Fig. 7. The right polarized AlfvCn wave for parameters @OR = 0.5,
++ K = 0.01, I.( = 0.5, 6 = - 1 and h = 2(K 2@,,). The upper trace is + for the bright (K = 1) and the lower trace for the dark (K = - 1)
+envelope solitary wave, respectively. The dotted lines represent the
+real part or $R = J8rli(~7),exp (ix(t, 7)).
+
+01 = 2(2@0 - A ) ,
+P = 4((@0+ K ) (A - K - 2@0))1'2,
+
+(60c) Kaup and Newel1 [17] have discovered that an eigenvalue (60d) Problem
+
+y = 4{(h-h1)(h2- A ) y .
++ 6 = sign of (3Q0 - X 2K).
+
+The propagation velocity h is allowed to take a value in the region of
+
+A1 < x < x z .
+
+(6Ia)
+
+where
++ hl + = 2(K 2 @ 0 ) - 2 4 D 0 ( @ 0 K ) ,
+A 2 = 2(K + 2 @ 0 ) + 2 d m + T ) ,
+
+(61b) (61c)
+
+A similar analysis is possible for the left polarized waves. In the case, solitary waves are obtained just by replacing
+
+R + - R and K + - K
+
+in the above expressions, eqs. (60a)-(60f) and eqs. (61b) and (61c). Then, we have an extra restriction on the wave number,
+
+> @po
+
+K.
+
+(62)
+
+If the condition (62) is violated, the left polarized Alfven wave is unstable, confirming the results obtained by MjQlhus I551 and Mio et al. [59].
+Comparing with the envelope soliton for the nonlinear Schrodinger equation expressed as (26), we see that the above solution represent a spiky soliton in which the amplitude modulation is closely coupled to the phase modulation. Furthermore, unlike the envelope soliton given by (26), the propagation velocity h of the solitary wave (59a) and (59b) is not an arbitrary constant, but it is restricted to a region defined by (61a)-(61c). In Fig. 7 , we illustrate the bright AlfvBn solitary wave and the dark Alfven solitary wave for the right polarization moving
+with a velocity of h = 2(K + 2Q0).*
+Concerning the analytic scheme to obtain time dependent solutions of the derivative nonlinear Schrodinger equation,
+
+d
+-avx 2
+
+-i{2
+
+p2 = fml,
+
+and the temporal evolution equation
+a
+i-vl = Avl +Bv2
+at
+
+i9v2 = CVI-Avz,
+at
+
+with the choice of A , B and C as
++ A = 2c4 C2rq -+ B = 2 i t 3 q - fqx i {rq2 + + C = 2 i f 3 r (rx i {r2q
+
+give rise to the derivative nonlinear Schrodinger equation
+
+* a
+i -a4r
+
++
+
+a2
+1ax
+
+4
+
+=
+
+a
+i - (Iq12q), ax
+
+as the integrability condition of eqs. (63) and (64), since they required that the potential q ( x , t ) should vanish as x k + W. their scheme could not reproduce the steady state solution obtained as eqs. (59a) and (59b). Kawata and Inoue [18] have accomplished a generalization of the eigen value problem of eq. (63) to the nonvanishing boundary conditions, and have given explicitly the one soliton solutions which agree exactly with the steady state solution (59a) and the algebraic soliton solution obtained by us. Recently, Kawata [59] has obtained explicitly two soliton solution of eq. (66), confirming that the sum of phases is conserved during the collision process.
+
+6. Concluding discussion
+
+* It has been notified to the author from K. Konno that Fig. 8, 9 and 10
+of our paper on "Solitons, Envelope Solitons in Collisionless Plasmas",
+J. de Physique, Colloque supplement au N ~ 1.2, 38 (1977), c 6-15,
+were subject to errors in numerical computation. The correction has
+been made for Fig. 7 displayed here.
+
+In the present paper, we have discussed certain aspect of the recent development on studies of soliton problems in
+Firstly, referring to active interests on the pertured nonlinear evolution equations, we have studied an example of the ion acoustic cnoidal wave in the second and third sections. In
+
+Physica Scripta 20
+
+304 Y.H. Ichikawa
+
+literature, we often find a statement that the small argument limit k -+ 0 of the cnoidal wave turns itself into the solution of the linearized equations. We remark, however, that the cnoidal wave solution ceases to be valid in the small argument limit k + 0, which has been recognized for a long time in the studies of shallow water wave theory, [60]. Since the solitary wave solution is nothing but an extreme limit of k +. 1 of the cnoidal wave solution, wenotice that it is extremely important to pursue studies of the inverse scattering method for the periodic boundary condition. Here, we quote a few works by Novikov [61], Dubrovin and Novikov, [62], and Date and Tanaka, [63], investigating periodic multi-soliton solutions of the Kortewegde Vries equation.
+Secondly, we have demonstrated that the nonlinear ion flux associated with the cnoidal wave exhibits remarkable difference in comparison with a result of the quasi-linear treatment. In the recent experiment on the radio-frequency plugging of plasma [44], an effective quasi-potential is deduced from the experimental data as
+
+$ * = 1.46(Ek8*/B'.69)(wPi/wci)-'.'*,
+
+(67)
+
+where wpi is the ion plasma frequency and wCiis the local ion cyclotron frequency. Erf is the r.f. electric field strength. It has been noted that eq. (67) indicates a clear difference in the dependence on (uPi/ucii)n comparing with a theoretical prediction of [64]. Although the relevant mode is different here, the analysis of the third section suggests that a similar nonlinear effect of the strong r.f. field might be effective in such processes.
+Thirdly, we have given a brief survey on the derivative nonlinear Schrodinger equation, which is newly registered to a list of the exactly solvable nonlinear evolution equations. Steady endeavor to enrich our experience with the nonlinear wave phenomena in plasmas and other media will provide us bright hope to disentangle complicated behaviour of the systems with strongly-interactingmany degree of freedoms.
+
+Acknowledgement
+The author is grateful to Professor T. Taniuti for his critical discussions. He is much benefitted from enlightening discussions with Professor ter Haar and Professor Wilhelmsson during the symposium to complete the present paper.
+
+References
+1. Ichikawa, Y. H. and Wadati, M., Solitons in Plasma and Other Dispersive Media - Dawn o n Nonlinear Physics, in Festschrift of Professor T. Y. Wu, Gordon and Breach, New York.
+2. Gardner, C. S., Greene, J. M., Kruskal, M. D. and Miura, R. M., Phys. Rev. Lett. 19, 1095 (1967); Comm. Pure Appl. Math. 3, 97 (1974).
+3. Ablowitz, M . J., Kaup, D. J., Newell, A. C. and Segur, H., Phys. Rev. Lett. 31, 125 (1973); Stud. Appl. Math. 53, 249 (1974).
+4. Wahlquist, H. D. and Estabrook, F. B., Phys. Rev. Lett. 31, 1386 (1973).
+5. Oikawa, M. and Yajima, N., J. Phys. Soc. Japan 34, 1093 (1973); 37,486 (1974).
+6. Ichikawa, Y. H., Mitsuhashi, T. and Konno, K., J. Phys. Soc. Japan 41, 1382 (1976).
+7. Konno, K., Mitsuhashi, T. and Ichikawa, Y. H., J. Phys. Soc. Japan 43, 669 (1977).
+8. Ichikawa, Y. H., Mitsuhashi, T. and Konno, K., J. Phys. Soc. Japan 43, 675 (1977).
+9. Kodama, K. and Taniuti, T., J. Phys. Soc. Japan 45, No. 1,(1978). 10. Kaup, D. J., SIAM J. Appl. Math. 31, 121 (1976).
+
+11. Karpman, V. I. and Maslov, E. M., Phys. Lett. 60A, 307 (1977). 12. Karpman,V. I. and Maslov, E. M., Phys. Lett. 61A, 355 (1977). 13. Karpman, V. I . and Maslov, E. M., Zh. Eksp. Teor. Fiz. 73, 537
+(1977). 14. Karpman, V. I. and Maslov, E. M., Zh. Eksp. Teor. Fiz. 75, No. 2
+(1978). 15. Keener, J . P. and McLaughlin, D. W., Phys. Rev. A16, 777 (1977). 16. McLaughlin, D. W. and Scott, A. C., App. Phys. Letters 30, 545
+(1977). 17. Kaup, D. J. and Newell, A. C., Preprint. 18. Kawata, T. and Inoue, H., J . Phys. Soc. Japan 44, 1968 (1978). 19. Gardner, C. S. and Morikawa, G. M., Courant Inst. of Math. Sci.
+Rep. NYO-9082, (1969). 20. Washimi, H. and Taniuti, T., Phys. Rev. Lett. 17, 996 (1966). 21. Ikezi, H., Taylor, R. J. and Baker, R. D., Phys. Rev. Lett. 25, 11
+(1970). 22. Ikezi, H., Phys. Fluids 16, 1668 (1973). 23. Kato, Y., Tajiri,M. and Taniuti,T., Phys. Fluids 15, 865 (1972). 24. Tappert, F. D., Phys. Fluids 15, 2446 (1972). 25. Tagare, S. G., Plasma Phys. 15, 1247 (1973). 26. Schamel, H., J . Plasma Phys. 9, 377 (1973). 27. Konno,K. and Ichikawa,Y. H., J. Phys. Soc. Japan 37, 1631
+(1974). 28. Watanabe, S., J. Phys. Soc. Japan44,611 (1978). 29. Watanabe, S., Ohishi, M. and Tanaca, H., J. Phys. Soc. Japan 44,
+1371 (1978). 30. Tappert, F. D. and Judice, C. N., Phys. Rev. Lett. 29, 1308 (1972). 31. Konno, K., Mitsuhashi, T. and Ichikawa, Y. H., preprint. 32. Nakajima, K., Onodera, Y . and Ogawa, Y., J . Appl. Phys. 47, 1620
+( 1976). 33. Weiland, J., Ichikawa, Y. H. and Wilhelmsson, H., J. Physica Scripta
+(Sweden) 17, 517 (1978). 34. Bogoliubov, N . N. and Mitropolsky, Ju. A., Asymptotic Methods in
+the Theory of Nonlinear Oscillations, Hindustan Publishing Co.
+(1961). 35. Otto, E. and Sudan, R. N., Phys. Fluids 12, 2388 (1969); 13, 1432
+(1970). 36. Ichikawa, Y. H. and Taniuti, T., J . Phys. Soc. Japan 34, 513 (1973). 37. Yajima, N., Oikawa, M., Satsuma, J. and Namba, C., Rep. Res.
+Inst. Appl. Mech. XXII, 89 (1975), and IPPJ-319 (1978). 38. Watanabe, S., J . Plasma Phys. 17, 487 (1977). 39. Zakharov, V. E., Sov. Phys. JETP 35, 908 (1972). 40. Gibbons, J., Dep. Theoret. Phys. University of Oxford, Preprint
+14/78, (1978). 41. Watanabe, S., Miyakawa, M. and Yajima, N., preprint. 42. Tonon, G., Blanc, P., Gormezano, C., Hess, W., Ichtchenko, G.,
+Nguyen, T. K., Durvaux, M., Mange, R., Ohlendorf, W., Pacher, G., Pacher, H. and Wegrowe, J . G., J . de Physique, Colloque C-6, supplement au No. 12, 38, C 6-161 (1977). 43. Takahashi, H., J. de Physique, Coloque C-6, supplement au No. 12, 38, C 6-171 (1977). 44. Hiroe, S., Sato, T., Watari, T., Hidekuma, S., Kumazawa, R., Adati, K., Shoji, T., Kawasaki, S., Miyahara, A., Akaishi, K., Kubota, Y., Watanabe, N. and Miyake, S., Phys. Fluids 21, 676 (1978).
+45. See for a review paper by Kakutani, T., Suppl. Progr. Theroet. Phys. No. 55, 97 (1974).
+46. Kakutani,T., Ono, H., Taniuti,T. and Wei, C. C., 3 . Phys. Soc. Japan 24,1159 (1968).
+47. Kakutani, T. and Ono, H., J. Phys. Soc. Japan 26, 1305 (1969). 48. Kawahara, T., J . Phys. Soc. Japan 33, 260 (1972). 49. Wadati, hl., J . Phys. Soc. Japan 32, 1681 (1972); 34, 1289 (1973). 50. Bers, A., Chu, F. Y. F., Jonston, G. L. and Karney, C. F. F., Bull.
+Am. Phys. Soc. 21, 1156 (1976).
+51. Sanuki, H. and Ogino, T., Phys. Fluids. 20, 1510 (1977). 52. Rogister, A., Phys. Fluids. 14, 2733 (1971). 53. Kawahara, T., Seminar Notes from R.I.M.S. of Kyoto University,
+1973, No. 187. 54. Mio, K., Ogino, T., Minami, K. and Takeda, S., J . Phys. Soc. Japan
+41. 265 (1976).
+55. Mjdlhus, E., J.'Plasma Phys. 16, 321 (1976). 56. Wadati, M., Sanuki, H., Konno, K. and Ichikawa, Y. H., the Proc.
+of Conference on Solitons, Rocky Mountain Math. Journal, 1977 (to be published).
+
+Physica Scripta 20
+
+Topics on Solitons in Plasmas 305
+
+57. Spatschek, I(.H., Sukla, P. K. and Yu, M. Y., 77-L1-028, “Plasma-
+physik Bochum/Julich” Ruhr Universitat. 58. Mio.K., Ogino, T., Minami.K. and Takeda, S.. J . Phys. Soc. Japan
+41. 667 (1976). 59. Kawata, T. Phys. Soc. Japan 44, 1968 (1978). 60. Le MehautC. B., Jour. Geophys. Res. 73, 5973 (1968). 61. Novikov. S. P., Funct. Anal. Appl. 8, 236 (1974). 62. Dubrovin, B. A . and Novikov. S. P., Zh. Eksp. Teor. I’iz. 67, 2131
+11974), [Soviet Phys. JETP 40, 1058 (1975)l. 63. Date, E. and Tanaka, S., Supp. Prog. Theoret. Phys. 59, 107 (1976). 64. Watari. T., Hiroe. S., Sato, T. and Ichimaru, S.. Phys. Fluids. 17,
+2107 (1974).
+
+Note added in proof
+
+There has been a careless error in calculations of eqs. (28a)
+
+and (28b) in the paper by Weiland, Ichikawa and Wilhelmsson
+
+[33] . These equations should be read as.
+
+a
+-a-vt = 2VE[YO - Y 2 P 2
+pa = -
+
+-5(Y2
+
++ 4Yn)-v21
+
+(68a)
+
+Hence, for p = 0 eqs. (68a) and (68b) are reduced to the result obtained by Pereira and Stenflo, (Phys. Fluids, 20,1733 (1977)).
+
+Pilysica Scripta 20
+

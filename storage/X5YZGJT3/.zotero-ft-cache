@@ -1,0 +1,4163 @@
+Dissertations and Theses 8-2013
+Numerical Analysis and Theory of Oblique Alfvenic Solitons Observed in the Interplanetary Magnetic Field
+Harry Raphael Wheeler IV Embry-Riddle Aeronautical University - Daytona Beach
+Follow this and additional works at: https://commons.erau.edu/edt Part of the Engineering Physics Commons
+Scholarly Commons Citation Wheeler, Harry Raphael IV, "Numerical Analysis and Theory of Oblique Alfvenic Solitons Observed in the Interplanetary Magnetic Field" (2013). Dissertations and Theses. 147. https://commons.erau.edu/edt/147
+This Thesis - Open Access is brought to you for free and open access by Scholarly Commons. It has been accepted for inclusion in Dissertations and Theses by an authorized administrator of Scholarly Commons. For more information, please contact commons@erau.edu.
+
+NUMERICAL ANALYSIS AND THEORY OF OBLIQUE ALFVE´NIC SOLITONS OBSERVED IN THE INTERPLANETARY
+MAGNETIC FIELD
+BY HARRY RAPHAEL WHEELER IV
+A Thesis Submitted to the Department of Physical Sciences
+and the Committee on Graduate Studies In partial fulﬁllment of the requirements
+for the degree of Master in Science in Engineering Physics
+08/2013 Embry-Riddle Aeronautical University
+Daytona Beach, Florida
+
+c Copyright by Harry Raphael Wheeler IV 2013 All Rights Reserved
+ii
+
+Abstract
+Recently, there have been reports of small magnetic pulses or bumps in the interplanetary magnetic ﬁeld observed by various spacecraft. Most of these reports claim that these localized pulses or bumps are solitons. Solitons are weakly nonlinear localized waves that tend to retain their form as they propagate and can be observed in various media which exhibit nonlinear steepening and dispersive eﬀects. This thesis expands the claim that these pulses or bumps are nonlinear oblique Alfv´en waves with soliton components, through the application of analytical techniques used in the inverse scattering transform in a numerical context and numerical integration of nonlinear partial diﬀerential equations. One event, which was observed by the Ulysses spacecraft on February 21st, 2001, is extensively scrutinized through comparison with soliton solutions that emerge from the Derivative Nonlinear Schro¨dinger (DNLS) equation. The direct scattering transform of a wave proﬁle that has corresponding morphology to the selected magnetic bump leads to the implication of a soliton component. Numerical integration of the scaled proﬁle matching the event in the context of the DNLS leads to generation of dispersive waves and a one parameter dark soliton.
+iv
+
+Acknowledgments
+I am greatly thankful for my advisor and his guidance throughout the endeavor of completing my thesis. Without his direction and keen intuition and intellect, I would have had an intense struggle throughout the process. I would also like to thank my committee members, Dr. Berhane, Dr. Zettegren and Dr. Ludu, in all what they have taught me over the years I have experienced at Embry-Riddle Aeronautical University. Also, I would like to thank Dr. Maronde, Dr. Barjatya and the Physical Sciences department for employment as a graduate teaching assistant, which supported me ﬁnancially throughout my career as a prospective masters student. I would also like to thank my family for their strong support and encouragement.
+v
+
+Contents
+
+Abstract
+
+iv
+
+Acknowledgments
+
+v
+
+1 INTRODUCTION
+
+1
+
+1.1 Nonlinear Waves . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+1.1.1 Solitons . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+1.2 Solitons in Space Plasmas . . . . . . . . . . . . . . . . . . . . . . . . 7
+
+1.2.1 Nonlinear Oblique Alfv`en Waves . . . . . . . . . . . . . . . . . 7
+
+1.3 Synopsis of Thesis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+
+2 Waves in plasmas
+
+11
+
+2.1 Magnetohydrodynamics . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+2.1.1 Linear waves permitted by the ideal MHD equations . . . . . 14
+
+2.2 Nonlinear waves in plasmas . . . . . . . . . . . . . . . . . . . . . . . 19
+
+2.2.1 Weakly Nonlinear waves in Plasmas . . . . . . . . . . . . . . . 19
+
+2.2.2 Derivative Nonlinear Schro¨dinger (DNLS) Equation . . . . . . 21
+
+2.3 Analytical Solutions of the DNLS . . . . . . . . . . . . . . . . . . . . 22
+
+2.3.1 One Parameter Soliton . . . . . . . . . . . . . . . . . . . . . . 23
+
+2.3.2 Two Parameter Soliton . . . . . . . . . . . . . . . . . . . . . . 23
+
+3 Soliton Theory
+
+29
+
+3.1 Fourier-Laplace transform for linear wave theory . . . . . . . . . . . . 29
+
+3.2 Sturm-Liouville Theory . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+
+vi
+
+3.2.1 The Sturm-Liouville problem . . . . . . . . . . . . . . . . . . 33 3.3 Sturm-Liouville operator in Soliton theory . . . . . . . . . . . . . . . 36
+3.3.1 Importance of the Eigenvalues . . . . . . . . . . . . . . . . . . 37 3.3.2 Non-reﬂectionless Potentials . . . . . . . . . . . . . . . . . . . 41 3.4 2x2 eigenvalue problem for the DNLS . . . . . . . . . . . . . . . . . . 42
+
+4 Numerical Solutions of Nonlinear Partial Diﬀerential Equations 48 4.1 Convection Equation . . . . . . . . . . . . . . . . . . . . . . . . . . . 48 4.1.1 Von Neumann Stability Analysis . . . . . . . . . . . . . . . . 51 4.2 Diﬀusion Equation . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54 4.3 Korteweg-de Vries Equation . . . . . . . . . . . . . . . . . . . . . . . 58 4.4 Periodic Boundary Conditions . . . . . . . . . . . . . . . . . . . . . . 62 4.5 Derivative Nonlinear Schr¨odinger Equation . . . . . . . . . . . . . . . 64 4.5.1 Stability Analysis of the Lax-Wendroﬀ Two-Step/BTCS scheme 68
+
+5 Preliminary Analysis of Ulysses data
+
+73
+
+5.1 Magnetic bump observed on February 21st, 2001 . . . . . . . . . . . . 77
+
+5.1.1 Plasma Characteristics . . . . . . . . . . . . . . . . . . . . . . 78
+
+5.2 Minimum Variance Analysis of Observed Solitary Structure . . . . . . 81
+
+5.3 Comparison of observed event with solitons solutions of the DNLS . . 83
+
+5.3.1 Previous comparison to one parameter bright soliton . . . . . 83
+
+5.3.2 Two parameter soliton comparison . . . . . . . . . . . . . . . 86
+
+5.4 Application of the Direct scattering transform . . . . . . . . . . . . . 86
+
+5.4.1 Calculation of Eigenvalues through the Numerical DST . . . . 87
+
+5.5 Numerical Integration of the DNLS equation . . . . . . . . . . . . . . 89
+
+5.5.1 Analytical two parameter soliton as initial proﬁle . . . . . . . 93
+
+5.5.2 Ulysses magnetometer data as initial proﬁle . . . . . . . . . . 93
+
+6 Conclusions and Further study
+
+98
+
+A APPENDIX
+
+100
+
+A.1 Scaling for KdV equation for Shallow water waves . . . . . . . . . . . 100
+
+vii
+
+A.2 Scaling for the Derivative Nonlinear Schro¨dinger Equation . . . . . . 102
+
+Bibliography
+
+105
+
+viii
+
+List of Tables
+5.1 Ulysses Orbital Elements . . . . . . . . . . . . . . . . . . . . . . . . . 75
+ix
+
+List of Figures
+1.1 Single soliton wave form. . . . . . . . . . . . . . . . . . . . . . . . . . 4 1.2 Two soliton solution. . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 1.3 Contour plot of soliton-soliton interaction. . . . . . . . . . . . . . . . 6
+2.1 Low beta phase velocity wave modes . . . . . . . . . . . . . . . . . . 18 2.2 High beta wave modes . . . . . . . . . . . . . . . . . . . . . . . . . . 18 2.3 One-parameter solution to DNLS: Dark Soliton . . . . . . . . . . . . 24 2.4 One-parameter solution to DNLS: Bright Soliton . . . . . . . . . . . . 25 2.5 Two-Parameter Soliton . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+3.1 Flow of using Fourier-Laplace transform on linear PDE’s . . . . . . . 31 3.2 Flow of the inverse scattering transform on nonlinear PDE’s . . . . . 37 3.3 Initial wave form with radiation due to reﬂection . . . . . . . . . . . 43 3.4 Scattering of One-Paramter solitons . . . . . . . . . . . . . . . . . . . 47
+4.1 Domain of dependence . . . . . . . . . . . . . . . . . . . . . . . . . . 51 4.2 Locus plot of G . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55 4.3 Grid spacing with periodic boundary conditions . . . . . . . . . . . . 63 4.4 Dependence of dt on Error for DNLS ﬁnite diﬀerence equation . . . . 69 4.5 Root Mean Square Error with increasing time steps . . . . . . . . . . 70 4.6 Testing the Lax Wendroﬀ/BTCS method . . . . . . . . . . . . . . . . 72
+5.1 Ulysses Spacecraft Trajectory . . . . . . . . . . . . . . . . . . . . . . 74 5.2 List of solitary magnetic pulses . . . . . . . . . . . . . . . . . . . . . 76 5.3 Radial-Tangential-Normal Coordinates . . . . . . . . . . . . . . . . . 78
+x
+
+5.4 Event on day 52 of 2001 . . . . . . . . . . . . . . . . . . . . . . . . . 79 5.5 Number of data points eﬀects on the Minimum Variance . . . . . . . 82 5.6 Minimum Variance Transformation of Event on day 52 of 2001 . . . . 83 5.7 Comparison of Data with One parameter Bright . . . . . . . . . . . . 84 5.8 Comparison of data to a scaled Two Parameter Soliton . . . . . . . . 85 5.9 Root Finding method for Two parameter analytical solution . . . . . 89 5.10 Shooting method applied to scaled 2p soliton . . . . . . . . . . . . . . 90 5.11 Numerical integration of DNLS with a Two parameter soliton . . . . 91 5.12 Numerical integration of DNLS with a Two parameter soliton with
+background oscillations . . . . . . . . . . . . . . . . . . . . . . . . . . 92 5.13 Numerical integration of DNLS with data . . . . . . . . . . . . . . . 94 5.14 Numerical integration of DNLS with scaled two parameter soliton . . 95 5.15 Dark soliton comparison . . . . . . . . . . . . . . . . . . . . . . . . . 96
+xi
+
+Chapter 1
+INTRODUCTION
+A vast majority of linear phenomena observed in mathematics and physics has been thoroughly studied to a large extent. In contrast, nonlinear phenomena still pose interesting, complex, and addling problems. Soliton theory is one branch of nonlinear applied mathematics that has had a great expansion in the knowledge and understanding of the weakly nonlinear phenomena known as solitons. Solitons are nonlinear waves that preserve their shape as they propagate forward in space and time. They are solutions to nonlinear partial diﬀerential equations that exhibit both dispersive and nonlinear eﬀects that allow these structures to move with unaltered form. The dynamics of these waves will be introduced in the following sections.
+1.1 Nonlinear Waves
+1.1.1 Solitons
+These curious waveforms, known as solitons, present puzzling and interesting behavior have been observed in various media over the past century. The ﬁrst observation of a soliton was made in 1834 by Scott Russell, in the Union Canal in Scotland [26]. Scott Russell was observing a boat moving down the canal that had come to a complete stop. When the boat suddenly stopped, the wake in front of the boat continued to travel forward along the channel and he followed it for a few miles until he lost
+1
+
+CHAPTER 1. INTRODUCTION
+
+2
+
+the wave in the turns of the channel. He reported his observation to the British Association in his ‘Report on Waves’ in 1844, which read
+I believe I shall best introduce the phenomenon by describing the circumstances of my own ﬁrst acquaintance with it. I was observing the motion of a boat which was rapidly drawn along a narrow channel by a pair of horses, when the boat suddenly stopped - not so the mass of water in the channel which it had put in motion; it accumulated round the prow of the vessel in a state of violent agitation, then suddenly leaving it behind, rolled forward with great velocity, assuming the form of a large solitary elevation, a rounded, smooth and well-deﬁned heap of water, which continued its course along the channel apparently without change of form or diminution of speed. I followed it on horseback, and overtook it still rolling on at a rate of some eight or nine miles an hour, preserving its original ﬁgure some thirty feet long and a foot to a foot and a half in height. Its height gradually diminished, and after a chase of one or two miles I lost it in the windings of the channel. [26]
+He also continued to study these phenomenon in the laboratory setting by dropping a stone at one end of a water channel [8]. Through empirical evidence, Russell was able to deduce that the speed of the wave, c, was determined by
+
+c2 = g(h + a)
+
+(1.1)
+
+where g is the acceleration of gravity, h is the depth of the undisturbed water, and a is the amplitude of the wave. We can notice immediately by inspection of Eq. (1.1) that the higher amplitudes result in higher wave speeds. Later on, Joseph Bussinesq and Lord Rayleigh both arrived at Russell’s relation of the speed of the solitary wave with the assumption that the wave length was much larger than the depth of the water. They had derived the relation from a set of idealized ﬂuid equations of motion, which will be discussed later.
+
+CHAPTER 1. INTRODUCTION
+
+3
+
+They also managed to produce an analytical representation of one of these solitary
+
+waves with the form
+
+u(x, t) = a sech2{β(x − ct)}
+
+(1.2)
+
+where u is the height of the ﬂuid surface relative to it’s equilibrium position, β−2 = 4h2(h + a)/3a where a > 0 with the restriction that a/h 1 (see pages 7-9 from in Ref. [8]). The next section reveals an equation that will produce such a solution.
+
+Korteweg-de Vries equation
+A typical nonlinear equation the solutions of which are solitons is the Korteweg-de Vries (KdV) equation, which was ﬁrst introduced by Boussinesq in 1877 but then later rediscovered by Diederik Korteweg and Gustav de Vries in 1895 [6]. The KdV equation exhibits both dispersive and nonlinear steepening eﬀects. It has the form
+
+Ut + 6U Ux + Uxxx = 0 ,
+
+(1.3)
+
+where U , x and t have all been scaled and denote dimensionless quantities. The second term in Eq. (1.3) produces the steepening eﬀect, because of its nonlinearity, and the third term induces a dispersive eﬀect. Solutions to the KdV equation along with methods to produce the many forms of this equation are in vast quantity. The simplest solution, which was previewed in the previous section, has the form
+
+U (x, t) = 2 sech2(x − 4t),
+
+(1.4)
+
+which is also known as the single soliton solution, where a = 2 and c = 4. Figure 1.1 displays the wave form and time evolution of the single soliton.
+As it turns out, the KdV has a peculiar characteristic where it can generate an inﬁnite number of soliton solutions, also known as a train of solitons. Therefore, for example, a two soliton solution exists, and has the form
+
+3 + 4cosh(2x − 8t) + cosh(4x − 64t)
+
+U (x, t) = 12
+
+.
+
+[3cosh(x − 28t) + cosh(3x − 36t)]2
+
+(1.5)
+
+CHAPTER 1. INTRODUCTION
+
+4
+
+2.5
+
+2
+
+1.5
+
+U (x, t)
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−10 −8 −6 −4 −2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+x
+
+Figure 1.1: Single soliton solution of the KdV equation Eq. (1.4), at t = 0. The solution U at anytime other than t = 0 can be obtained by a simple linear translation.
+
+Figure 1.2 shows the time evolution of this function. The nature of the two soliton solution is where the odd behavior of these solitons arises. First of all, at t = 0 in Figure 1.2 shows the wave as a single displacement, but then splits into two individual solitons as time progresses. They retain the same relationship between speed and amplitude that was deduced from Russell’s early experiments.
+Another odd trait that this two soliton solution displays is when the two solitons interact with each other. When the soliton with a larger amplitude “catches up” with the soliton with a smaller amplitude, the two will “collide,” creating a larger amplitude structure, then split again, unaltered in shape with a shift in phase, which can be seen in Figure 1.3. Essentially, the solitons are dispersionless when it comes to soliton-soliton interactions. Mathematically, in the limit |t| → ∞, the solution in Eq. (1.5) can be approximated as a sum of two terms, each with the form of (1.4) but with diﬀerent amplitudes.
+In the end, there are three main characteristics that can aide in the process of determining if a nonlinear wave is indeed a soliton. The most striking is that it
+
+CHAPTER 1. INTRODUCTION
+
+5
+
+U (x, t)
+
+10
+
+5
+
+0 0.4
+
+0.3
+
+0.2
+
+0.1 0
+
+10 5
+
+−0.1 0
+
+−0.2
+t
+
+−5
+
+−0.3 −10
+
+x
+
+Figure 1.2: Two soliton solution of the KdV equation, Eq (1.5). At t = 0 the wave form is similar to the one soliton solution in that it is a single localized displacement. Since it has a diﬀerent amplitude and width relation, as time progresses, the single localized structure spits into two solitons with diﬀerent speeds and diﬀerent amplitudes. As deduced from Eq. (1.1), the larger amplitude soliton has a larger speed.
+
+CHAPTER 1. INTRODUCTION
+
+6
+
+t U(x, t)
+
+0.3
+
+7
+
+6 0.2
+5 0.1
+4 0
+3 −0.1
+2
+−0.2 1
+
+−10
+
+−5
+
+0
+
+5
+
+x
+
+Figure 1.3: This ﬁgure shows the same two-soliton solution as in Fig 1.2. However, it is a contour plot where the axes are time and space and the color represents the value of U . The larger soliton starts behind the smaller and eventually passes it. The two waves retain their shape, but the smaller soliton has a larger phase shift than the larger amplitude soliton.
+
+CHAPTER 1. INTRODUCTION
+
+7
+
+has permanent form, not changing its geometry as it progresses in time. Another important factor is that it is a localized entity. Lastly, solitons are dispersionless, i.e., they can interact and emerge from any “collision” without any change in shape, only suﬀering a shift in their phase. However, it is important to know that not all of these properties are necessarily true for solitons that are solutions to the DNLS equation or other various nonlinear equations with soliton solutions, this issue will be addressed in Chapter 2 for the DNLS equation.
+1.2 Solitons in Space Plasmas
+Recently, there has been an increased attraction for soliton based theory and observations [27] for as explanations to localized magnetic bumps occurring in plasmas. There is also an interest in developing methods to control similar phenomena in thermonuclear fusion installation environments [17]. Nonlinear partial diﬀerential equations with soliton solutions have been derived for the structure of the magnetic ﬁeld from Hall [23] and two ﬂuid [14] magnetohydrodynamic equations for various assumptions.
+1.2.1 Nonlinear Oblique Alfv`en Waves
+In the 1970’s and 1980’s, numerical and computational studies of nonlinear plasma waves were diﬃcult because of the lack of computers that were capable of handling such problems. As a result, many nonlinear processes occurring in plasmas had to be treated analytically. This led to a technique called reductive perturbation, which allowed researchers to produce a single nonlinear equation that would describe speciﬁc processes under diﬀerent cases and assumptions. Reductive perturbation is an extension of linear perturbation theory in which the weak nonlinear ﬁrst order terms were kept selectively.
+A vast number of nonlinear equations that described nonlinear plasma wave propagation were derived. Usually they were extensions to the linear wave theory of magnetohydrodynamic waves, where the nonlinear equations described diﬀerent wave modes (i.e., slow, intermediate and fast waves - which will be discussed later). Many
+
+CHAPTER 1. INTRODUCTION
+
+8
+
+of these nonlinear equations permitted soliton solutions(which were also deﬁned as integrable or evolution equations).
+One of the most studied of these integrable equations that is used to describe weakly nonlinear dispersive waves is the Derivative Nonlinear Schr¨odinger (DNLS) equation where the name was coined by Kaup and Newell in 1978 [12]. Because of the integrability of the DNLS equation, an analytical soliton solution can be produced through the inverse scattering transformation or IST. The IST for vanishing boundary conditions, or parallel wave propagation, was developed by Kaup and Newell (1978) [12], and for non-vanishing boundary conditions by Kawata and Inoue [13] for oblique and perpendicular wave travel.
+The physical importance of the DNLS equation is that it can be used to describe oblique and parallel Alfv`en wave travel for both low and high β plasmas [14]. Here, β is a key plasma parameter used as a convenient way to characterize the general behavior of the plasma, because it relates the gas pressure of the plasma and the magnetic pressure exerted by the restoring force of the ﬁeld lines (see §2.1.1 for details on β). For low β, the magnetosonic and Alfv`enic wave speeds coincide at parallel wave travel and for small angles relative to the background magnetic ﬁeld. For high β, the slow and intermediate wave speeds are approximately the same for any propagation angle with respect to the background magnetic ﬁeld. The DNLS is also applicable to these types of waves in the case that they have large amplitudes [23]. Large reductions in the magnetic ﬁeld strength observed in the solar wind, known as magnetic holes, in conditions of high β have been theorized to behave according to the DNLS equation [11]. Magnetic holes have also been observed in low β environments as well [27]. In the presence of dissipation, it was shown that the Derivative Nonlinear Schro¨dinger Burgers equation (DNLSB) for various initial wave conﬁgurations can generate dark solitons, which are the class of solitons as a possible explanation of magnetic holes [11].
+
+CHAPTER 1. INTRODUCTION
+
+9
+
+1.3 Synopsis of Thesis
+This thesis provides an in depth evaluation of the DNLS equation and its signiﬁcance in the behavior of weakly nonlinear dispersive magnetohydrodynamic (MHD) waves. The second chapter will introduce the regime of MHD waves with a linearization of the ideal MHD equations, illustrating the eﬀect of the plasma β on the relative phase velocities with respect to angle of propagation from the background magnetic ﬁeld. Each of these phase velocities relate to a diﬀerent nonlinear partial diﬀerential equation, but the focus will be on oblique Alfv´en waves which could be described by the DNLS equation. Following the demonstration of the weak nonlinear equations as analogue to the three characteristic speeds for the linear MHD regime, analytical solutions of the DNLS equation will be shown. There are two main classes of soliton solutions for the DNLS, the one-parameter and two-parameter solutions. One parameter solitons come in two varieties, “dark” (rarefractive) and “bright” (compressive). It will be seen later that two parameter solitons have a variety of forms.
+Chapter 3 will cover the mathematical theory of the direct scattering transformation in regard to the inverse scattering transformation. An analogy between the linear wave theory of using Fourier analysis to study linear PDE’s and the use of the IST to study nonlinear PDE’s will be discussed. The primary focus will be on Sturm-Liouville theory, or the direct scattering transformation, and the implication and meaning of the scattering data. A derivation using Lax pairs will prove how the eigenvalues, λ, are constant in time for the the KdV equation (and can be extended to other nonlinear PDE’s). Details on the eﬀect of the scattering data will be presented, focusing on the meaning of “reﬂection” in regard to soliton theory and how a nonzero reﬂection coeﬃcient will lead to dispersive waves. This will lead up to the 2x2 eigenvalue problem onto which the DNLS equation is mapped, and which has been shown to be integrable through solutions produced by the IST [13].
+Chapter 4 will begin with a brief demonstration of producing the ﬁnite diﬀerence equations for the linear convection and diﬀusion equations. Stability for these linear equations will be determined with von Neumann stability analysis. Building on the methods for the linear convection and diﬀusion equations will lead up to a numerical
+
+CHAPTER 1. INTRODUCTION
+
+10
+
+scheme for nonlinear equations that exhibit nonlinear steepening and dispersive properties, such as the KdV and DNLS equations. Implementation of periodic boundary conditions are detailed for both explicit and implicit numerical schemes. Since stability criteria are diﬃcult to obtain with nonlinear equations, comparison with known analytical solutions that have been produced from IST for the DNLS equation will be used to assess the numerical schemes’ stability. Inspection of the root mean square error between the analytical solution and the numerical solution (with the initial condition being the analytical solution at t = 0) for diﬀerent time steps will lead to stable solutions for suﬃciently small values of the time step.
+In the closing chapter, Chapter 5, a speciﬁc solitary structure that was observed by the Ulysses spacecraft on February 21st, 2001 is closely analyzed using theory that was developed in Chapters 2-4. Presentation of the spacecraft’s orbital parameters and the characteristics of the plasma during the observed event are detailed to establish that the singular wave does ﬁt in the regime of the DNLS equation. A minimum variance transformation is then used to change reference frames to one where one of the components is normal to a boundary, and where the minimal variance direction is the direction of propagation with respect to the background magnetic ﬁeld.
+The morphology of the transformed magnetometer data is then compared to that of a two parameter soliton, which shares the similar “banana-polarization” as the data. Three methods were used to demonstrate if the observed magnetic bump contains a soliton component. First, to obtain a close comparison of the two parameter soliton with the magnetic pulse, the amplitude of the two parameter soliton was scaled. Second, a Runge-Kutta fourth order shooting method coupled with Muller’s method for root ﬁnding was performed to determine if any solitons were present in the proﬁle, and one was identiﬁed. Finally, a DNLS numerical integration scheme was used to conﬁrm that a soliton was present in the scaled proﬁle that resembled the magnetic pulse by using the proﬁle as the initial condition. A dark one parameter soliton formed, along with dispersive waves, which implies that the event does contain a soliton component.
+
+Chapter 2
+Waves in plasmas
+Since the basis of this thesis is nonlinear waves occurring in plasmas, it is appropriate to discuss the basics of the dynamics of plasmas. A plasma has been popularly deﬁned as a quasi-neutral ionized gas. Technically it is a gas, but the temperatures (or the average kinetic energy of the particles present) range higher than normal. Temperatures are so high that the amount of energy present in the gas is enough to sever the bond between the electron and its atomic nucleus. Essentially, the electrons tend to freely move within the plasma without the restriction of being attached to a single atom. The term “quasi-neutral” arises from the assumption that the number of positive charges in the collection of particles is approximately the same as the freely moving electrons. If this were not the case, strong electric ﬁelds would develop in an attempt to neutralize the plasma.
+The consequence of freely moving electrons within the plasma means that the dynamics and overall behavior of the gas changes. Since plasma is technically a gas, it still retains its ﬂuid nature, and the general kinetic nature of gases still apply, but now it can be subject to electromagnetic forces; therefore, plasmas exhibit collective behavior that is not seen in neutral gases. The next section will build a foundation of the ﬂuid-like behavior and properties of these magnetized ﬂuids.
+11
+
+CHAPTER 2. WAVES IN PLASMAS
+
+12
+
+2.1 Magnetohydrodynamics
+
+Magnetohydrodynamics, or simply MHD, is the study of ﬂuids that have electromagnetic properties due to currents that ﬂow in the quasi-neutral medium. The equations that describe MHD are essentially the hydrodynamic equations with the Lorentz force included. In the neutral case, these equations are also known as Euler’s equations for describing a ﬂuid with no viscosity,
+
+∂ρ + ∇ · (ρu) = 0
+∂t ∂(ρu)
++ ∇ · (ρuu) + ∇p = 0 ∂t
+∂E + ∇ · (u(E + p)) = 0
+∂t
+
+(2.1a) (2.1b) (2.1c)
+
+which are a set of conservation equations for mass, momentum, and energy, respectively. The quantity ρ is the mass density, v is the ﬂuid velocity vector, p is the pressure, and E is the total energy density which includes both the thermal and bulk ﬂow energy.
+As mentioned earlier, the Lorentz force is necessary to include because it describes the behavior of charged particles under the inﬂuence of electromagnetic ﬁelds. The ﬂuid eﬀect of the Lorentz force appears on the right hand side of the momentum equation, Eq. (2.1b).
+
+∂(ρu) + ∇ · (u(ρu)) + ∇p = J × B,
+∂t
+
+(2.2)
+
+where J is the current density and B is the magnetic ﬁeld. A term describing the electric ﬁeld is not present because the plasma is assumed to be inﬁnitely conducting (i.e., no free charge distribution). Typically it is important to distinguish between the species of particles contained in the plasma because the level of ionization for the ions could determine diﬀerent overall behavior of the plasma, but we have treated the magnetized ﬂuid as a single ﬂuid as opposed to two ﬂuids (electrons and ions) because in the ideal case these two species eﬀects are neglected.
+In addition to Eqs. (2.1a) and (2.2), an equation is needed to describe the energy
+
+CHAPTER 2. WAVES IN PLASMAS
+
+13
+
+transfer. Equation (2.1c) is correct, but under the ideal description, it is typically
+
+assumed that the plasma is adiabatic, and it can be shown that the energy equation
+
+(2.1c) reduces to
+
+dp =0
+dt ργ
+
+(2.3)
+
+where γ = 5/3 is the ratio of speciﬁc heats for an adiabatic equation of state for an ideal monoatomic gas.
+There is another set of equations that is needed to complete the picture of MHD, which are Maxwell’s equations that describe the nature of J and B. Maxwell’s equations are
+
+∇ · E = ρc = 0
+0
+∇·B=0
+∂B ∇×E=−
+∂t 1 ∂E
+∇ × B = µ0J + c2 ∂t ,
+
+(2.4a) (2.4b) (2.4c) (2.4d)
+
+which are presented in diﬀerential form, where c is the speed of light, µ0 is the permeability of free space, and 0 is the permittivity of free space. For the purposes of ideal MHD, the displacement current term is neglected because it is assumed that the electromagnetic waves generated in the plasma are of low frequency which is consistent with ρc = 0. This is the last term in Ampere’s law, Eq. (2.4d). With application of the charge neutrality argument, it cab be shown that the ﬁrst two equations, Eq. (2.4a) and Eq. (2.4b), are redundant (That is, they simply act as initial conditions for Faraday’s (2.4c) and Ampere’s (2.4d) law, which are time evolution equations for E and B).
+Another equation is needed to close the system and describe the plasma’s ability to conduct electrical currents. In Ideal MHD, the plasma is considered to have a conductivity that is inﬁnitely large, which leads to the ideal Ohms law
+
+E + u × B = ηJ,
+
+(2.5)
+
+CHAPTER 2. WAVES IN PLASMAS
+
+14
+
+where η = 1/σ is the resistivity of the plasma, and σ is the conductivity, which σ → ∞.
+
+2.1.1 Linear waves permitted by the ideal MHD equations
+
+Since there are a vast amount of driving forces in the MHD equations, there is a possibility for diﬀerent types of waves that would propagate through the plasma. We can inspect what kind of can waves that can exist through linearizion of the MHD equations in parallel with applying Fourier transforms. As a reminder, the ideal MHD equations are
+
+∂ρ + ∇ · (ρu) = 0
+∂t ∂(ρu)
++ ∇ · (u(ρu)) = J × B − ∇p ∂t
+dp = 0,
+dt ργ
+
+(2.6a) (2.6b) (2.6c)
+
+along with Maxwell’s equations
+
+∂B ∇×E=−
+∂t ∇ × B = µ0J ,
+
+(2.7a) (2.7b)
+
+and generalized Ohm’s Law, which describes electrical conduction in the plasma,
+
+E + u × B = ηJ = 0
+
+(2.8)
+
+where η = 1/σ → 0 because σ → ∞ because the plasma is considered inﬁnitely conducting in ideal MHD.
+Linearization, or in this case linear perturbation theory, is a method for eliminating nonlinear terms through expansion about an assumed equilibrium state. For a plasma, most of the ideal MHD approximations apply here, such as charge neutrality (where the number of ions is the same as electrons) which results in no equilibrium electric ﬁeld. Also, we assume that there is no initial bulk ﬂow, the particles are distributed
+
+CHAPTER 2. WAVES IN PLASMAS
+
+15
+
+evenly in space, and the plasma is in steady state. This leads to the conditions
+
+∂ρ0 = ∂u0 = ∂E0 = 0 ∂t ∂t ∂t ∇ρ0 = uo = E0 = 0,
+
+(2.9) (2.10)
+
+where the 0 subscript denotes the equilibrium state. The next order in the expansion is the small perturbations, which are taken to be plane waves with small amplitudes (which have the form ei(k·r−ωt), where r is a position vector and k is the wave number) where the permitted variables that are allowed to vary are B, E, u, ρ and p. These perturbed quantities have the same eﬀect as a Fourier transformation in space and time (i.e., ∇ → ik and ∂/∂t → −iω). After some work, the continuity and momentum equations reduce to
+
+−ωρ1 + ρ0k · u = 0 −ρ0ωu + c2sρ1k = −iJ × B0
+
+(2.11) (2.12)
+
+where the 1 subscripts denote the amplitude of the perturbed quantity and
+
+c2s
+
+=
+
+γp0 , ρ0
+
+(2.13)
+
+which is the sound speed. Applying the same technique to Faraday’s and Ampere’s law yields
+
+k × E = ωB1 k × B1 = −iµ0J.
+
+(2.14) (2.15)
+
+We can further simplify by restricting of the wave propagation to two cases, propagation of the waves parallel to the background magnetic ﬁeld (i.e., k × B0 = 0) and perpendicular to the background magnetic ﬁeld (i.e., k · B0 = 0). First, we can look at the transverse component of the momentum equation, Eq. (2.12), for parallel
+
+CHAPTER 2. WAVES IN PLASMAS
+
+16
+
+propagating waves which gives
+
+ut
+
+1
+
+−
+
+k2 ω2
+
+B02 ρ0µ0
+
+=0
+
+(2.16)
+
+where ut is the ﬁrst order velocity oscillation transverse to B0 (i.e., ut · B0 = 0). Since we are looking at the parallel propagating case we know ut = 0, so then the term inside the brackets has to be zero, which gives us the dispersion relation
+
+ω2 k2
+
+=
+
+B02 ρ0µ0
+
+=
+
+vA2
+
+(2.17)
+
+which is the Alfv´en velocity. Alfv´en waves are low-frequency traveling waves that are caused by the oscillations between the ions and the magnetic ﬁeld. Essentially, the magnetic tension acts as a restoring force where the ion mass density provides the inertia.
+After a further generalization, one can show after manipulation of Eqs. (2.11)(2.15) that a more general dispersion relation for waves in a magnetized plasma is
+
+B1
+
+1 − c2Acos2θ V2
+
+= c2Aˆb · B1(ˆb − kˆcosθ) V 2 − c2s
+
+(2.18)
+
+where V = ω/k which is the phase velocity of the wave, ˆb = B0/B0, kˆ = k/k, cosθ = kˆ · ˆb, and θ is the direction of propagation with respect to the background
+magnetic ﬁeld. Furthermore, we can inspect two limiting cases where the perturbed
+magnetic ﬁeld, B1, is (a) perpendicular to the background magnetic ﬁeld, B0, i.e., B1 · ˆb = 0 and (b) where it is not perpendicular, i.e, B1 · ˆb = 0. For the ﬁrst case, the assumption of B1 · ˆb = 0 means Eq. (2.18) reduces to
+
+B1
+
+1
+
+−
+
+c2Acos2θ V2
+
+=0
+
+(2.19)
+
+and since B1 = 0, we arrive at
+
+V 2 = c2Acos2θ
+
+(2.20)
+
+which is also known as the “shear Alfv`en wave”. In general, if B1 · ˆb = 0 one can
+
+CHAPTER 2. WAVES IN PLASMAS
+
+17
+
+show, through Eq. (2.18), that
+
+ˆb · B1 (V 2 − c2Acos2θ)(V 2 − c2s) − V 2c2Asin2θ = 0 ,
+
+(2.21)
+
+which gives
+
+V2 = 1 2
+
+(c2s + c2A) ±
+
+(c2s + c2A)2 − 4c2sc2Acos2θ
+
+(2.22)
+
+where the + sign, will produce the “fast Alfv`en” wave phase velocity, and the − sign
+
+will produce the “slow Alfv`en” velocity. Now if we introduce a plasma parameter,
+
+known as the “plasma beta”, with the form
+
+β
+
+≡
+
+c2s c2A
+
+,
+
+(2.23)
+
+which allows the simpliﬁcation of Eq. (2.22) to be written in terms of only β and θ. More importantly, the plasma β expresses which of the two processes are more dominant, the random thermal movement or the magnetic ﬁeld strength. We can further inspect the eﬀect of the two diﬀerent cases for Eq. (2.22), low beta (β < 1) and high beta (β > 1).
+Figures 2.1 and 2.2 display the relative phase velocities for low β and high β, respectively. When the thermal gas pressure is low compared to the pressure exerted by the restoring force of the magnetic ﬁeld lines, the Alfv`en speed is much higher than the sound speed meaning the response of the ﬁeld lines occurs much quicker than the inertial forces of the ions in the plasma.
+For high beta, the acoustic wave speed and the Alfv`en speed coincide at parallel propagation and separate at high angles of propagation, but the separation is not as vast as what happens in the low beta limit. At small propagation angle with respect to the background magnetic ﬁeld, the ion inertial forces and the magnetic restoration forces compete, and this will become important in the case of nonlinear waves.
+
+CHAPTER 2. WAVES IN PLASMAS
+
+18
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+−1.5
+
+−1
+
+−0.5
+
+θ
+
+0
+
+0.5
+
+Vslow Vshear Vfast
+
+1
+
+1.5
+
+Figure 2.1: Phase velocity wave modes of the ideal MHD equations with low beta (β = 0.5). This plot represents the phase velocities as functions of the angle, θ, of propagation with respect to the normal, ˆb, of the background magnetic ﬁeld. The three wave modes are the slow, or acoustic wave, the shear or Alfv`enic wave, and the fast magnetosonic wave. At angles parallel to the background magnetic ﬁeld, θ = 0, the magnetosonic (fast) and the Alfv`enic (intermediate) wave speeds coincide.
+
+1.5 Vslow Vshear Vfast
+θ
+1
+
+0.5
+
+0
+
+−2
+
+−1.5
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+Figure 2.2: Phase velocity wave modes of the ideal MHD equations with high beta (β = 1.5). At angles parallel to the background magnetic ﬁeld, the acoustic (slow) and the Alfv`enic (intermediate) wave speeds coincide and separate with larger angles.
+
+CHAPTER 2. WAVES IN PLASMAS
+
+19
+
+2.2 Nonlinear waves in plasmas
+The inherent nature of plasmas and magnetohydrodynamics is nonlinear, therefore it is reasonable to conclude that nonlinear wave structures can and do exist in the MHD realm. Recent developments in nonlinear waves in plasmas have led to the conclusion that one class of these nonlinear MHD waves are indeed solitons. These solitary waves behave in a peculiar manner where they tend to preserve their waveform as they evolve in time, which was discussed in Chapter 1. The rigorous details of the dynamics and mathematical theory will be provided later in Chapter 3.
+There are many partial diﬀerential equations that produce soliton solutions, but each evolution equation behaves diﬀerently and is applied to a speciﬁc governing media or multiple types of media (according to the approximations required to produce the PDE). The purpose of this section is to introduce two evolution equations that can be used to describe nonlinear waves in plasmas, in the perspective of the MHD.
+2.2.1 Weakly Nonlinear waves in Plasmas
+As mentioned earlier, in the case of a low plasma β, the intermediate and fast wave speeds coincide at parallel propagation. This was a direct result of linearization and assumption of simple plane wave propagation, which meant that the dispersive terms of the MHD equations were not included. In addition, in the case of large amplitude waves, the lowest order nonlinear eﬀects become important. Inclusion of the dispersive terms in the MHD equations and use of the reductive perturbation method with various assumptions can lead to three diﬀerent nonlinear evolution equations that have soliton solutions.
+For a wave that is oblique to the background magnetic ﬁeld, it was shown by Mjølhus and Hada [18] that the MHD equations, using a two ﬂuid adiabatic model, can lead to the KdV equation for the fast mode waves for low β, i.e., nonlinear magnetosonic waves. Focusing on a nonlinear equation that can be applied to the intermediate wave mode, it was demonstrated that the Modiﬁed Korteweg-de Vries (MKdV) equation could be obtained (by Kakutani and Ono in 1969 see Ref. [18]).
+
+CHAPTER 2. WAVES IN PLASMAS
+
+20
+
+The MKdV equation has the general form
+
+ut + uxxx ± 6u2ux = 0
+
+(2.24)
+
+although it may, of course, be scaled diﬀerently. Reference [18] also outlines how Taniuti and Yajima in 1968 and Hasegawa in 1971 showed that for monochromatic and strongly dispersive waves along with a reduction, the dispersive MHD equations can lead to the nonlinear Schr¨odinger equation (NLS),
+
+iψt
+
+=
+
+1 − 2 ψxx
+
++
+
+κ|ψ|2ψ.
+
+(2.25)
+
+This thesis focuses on another nonlinear evolution equation, the DNLS equation, that actually reduces to the previously mentioned equations as limiting cases (e.g. KdV, MKdV, NLS equations). For quasi-parallel propagating waves, there is a degeneracy between the magnetosonic and Alfv`enic modes for a low β and between the acoustic and Alfv`enic modes for high β (which can be seen in Figures 2.1 and 2.2). For the low β case, where the two wave modes coincide, the two equations describing weak nonlinear waves, the KdV and the MKdV, become coupled. Writing them in complex form leads to on single equation,
+
+∂b ∂t
+
++
+
+α
+
+∂ ∂x
+
+(|b|2b)
+
++
+
+iµ
+
+∂2b ∂x2
+
+=
+
+0
+
+(2.26)
+
+which is the DNLS equation. But like the other nonlinear evolution equations derived from MHD equations, it is possible to use the same reductive perturbation technique to derive the DNLS equation. The DNLS equation was ﬁrst derived by Rogister using kinetic theory starting from the Vlasov description [22]. It was also derived by Mjolhus [19] with a two ﬂuid model using a hybrid ﬂuid and kinetic guiding center model [20].
+Another derivation of the DNLS equation using the reductive perturbation technique was made by Ruderman [23] by starting with the Hall MHD equations. It was assumed that the pressure was isotropic, and the plasma was adiabatic and inﬁnitely
+
+CHAPTER 2. WAVES IN PLASMAS
+
+21
+
+conducting. The main assumptions that permitted the reductive perturbation technique’s eﬀectiveness was that the amplitudes were large and β was high, but the propagation direction was arbitrary.
+Finally, Kennel et al. [14] were able to produce the DNLS equation using the two ﬂuid model, with an adiabatic assumption and inclusion of ion dispersion, which comes from inclusion of ion dispersion term in the generalized Ohm’s law. It was shown that for a low β plasma, the quasi-parallel propagating waves with intermediate and fast speeds where described by the DNLS equation and for larger angles of propagation the KdV equations describes fast and slow wave solitons and the MKdV describes intermediate speed solitons. They were also able to show that the coeﬃcients of the DNLS equation, Eq. (2.26), for quasi-parallel wave travel are
+
+α
+
+=
+
+1 cA 4 B02
+
+1 1−β
+
+for the nonlinear coeﬃcient and for the dispersive term.
+
+1c µ=
+2 ωpi
+
+(2.27) (2.28)
+
+2.2.2 Derivative Nonlinear Schr¨odinger (DNLS) Equation
+The DNLS has been used recently as a nonlinear equation that produces solitary waves in the form of magnetic ﬁeld perturbations. This is due to the fact that it has been derived for multiple diﬀerent approximations utilizing the reductive perturbation method. Reductive perturbation combines the governing equations, in this case the MHD equations, by choosing speciﬁc assumptions and keeping low order terms to produce a single evolution equation.
+Of course, not all assumptions can yield an evolution equation or a simpliﬁed equation at all, but there have been many works that have been able to produce the DNLS equation from MHD equations. The assumptions typically include long
+
+CHAPTER 2. WAVES IN PLASMAS
+
+22
+
+wavelength, small amplitude and slowly evolving waves. The DNLS equation is
+
+∂b ∂ +α
+∂t ∂t
+
+|b|2b
+
+∂2b + iµ ∂x2 = 0,
+
+(2.29)
+
+where
+
+b(x, t) = by + ibz .
+
+(2.30)
+
+This equation describes waves propagating in the x-direction, where by and bz are the real of the magnetic ﬁeld that are transverse to the propagation direction.
+
+Although the DNLS describes one dimensional propagation, there are two diﬀer-
+
+ent ﬂavors of the DNLS that have two diﬀerent boundary conditions. The form of
+
+Eq. (2.29) represents the nonlinear wave that is propagating parallel to the back-
+
+ground magnetic ﬁeld, b0. Its boundary conditions are when b → 0 as x → ±∞, or
+
+it is said to have “vanishing” boundary conditions.
+
+The other case is when the wave is propagating at an oblique angle to the back-
+
+ground magnetic ﬁeld. There is a diﬀerence in the scalings, so the DNLS takes on
+
+the form
+
+∂b ∂ +α
+∂t ∂t
+
+(|b|2 − b20)b
+
+∂2b + iµ = 0,
+∂x2
+
+(2.31)
+
+where the boundary conditions are “non-vanishing”, b → b0 = 0 as x = ±∞. An-
+
+alytical solutions to Eq. (2.29) are hard to produce because they require the math-
+
+ematically intensive inverse scattering transform, which will be explained in depth
+
+later.
+
+2.3 Analytical Solutions of the DNLS
+The DNLS equation has been investigated thoroughly from a mathematical perspective, and many analytical solutions have been found. Two classes of solutions will be presented here, these so-called one and two parameter solitons. Techniques to arrive at these types of soliton solutions will be discussed in the following chapter, Chapter 3, which revolves around soliton theory.
+
+CHAPTER 2. WAVES IN PLASMAS
+
+23
+
+2.3.1 One Parameter Soliton
+
+When referring to one parameter solitons, a single parameter determines the shape of the wave. It turns out, that this parameter is the real component of the eigenvalue (see Chapter 3 for a discussion of the importance of the eigenvalues). These solutions arise in the case when the wave is moving oblique or nearly parallel to the background magnetic ﬁeld, under nonvanishing boundary conditions.
+The analytical form of the one parameter solitons is [13, 18]
+
+by
+
+=
+
+b0
+
++
+
+2λη2s b20
+
+(cosh(2θ/L) − b0s/λ) cosh(2θ/L) − λs/b0)2
+
+(2.32)
+
+and
+
+2η3s sinh(2θ/L)
+
+bz = −
+
+b20
+
+, cosh(2θ/L) − λs/b0)2
+
+(2.33)
+
+where θ = x − ct, η = b20 − λ2, L = 1/(λη), c = 2λ2, and s = ±1. It becomes clear why this solution is coined as a one parameter soliton because the value of λ
+
+determines the amplitude and speed of the wave. The sign of s determines the “ﬂavor”
+
+of soliton, dark (s = −1) or bright (s = 1). Bright and dark refer to the fact that
+
+the magnitude of b (i.e., b2y + b2z) increases or decreases over its equilibrium value. Note that the space and time dependence is encapsulated into one single quantity,
+
+θ = x − ct, which means that the shape of these one parameter solitons just translates
+
+without any alterations in the form, as with the KdV soliton solution.
+
+Figures 2.3 and 2.4 show the functions by(θ) and bz(θ) for the dark and bright soliton analytical solutions, respectively. These solutions to the DNLS equation ex-
+
+hibit the same behavior as the KdV solitons, where they hold their shape as they
+
+propagate forward in time.
+
+2.3.2 Two Parameter Soliton
+Solutions of the DNLS equation belonging to the two parameter class of solitons arise in both classes of wave propagation, oblique or parallel propagation. They can be
+
+CHAPTER 2. WAVES IN PLASMAS
+
+24
+
+by
+
+1.5
+
+1
+
+1
+
+0.8
+
+0.5
+
+0
+
+−0.5
+
+−40 −30 −20 −10
+
+0
+
+10
+
+20
+
+30
+
+40
+
+0.5
+
+bz
+
+0.6 0.4 0.2
+0 −0.2
+
+−0.4
+
+0
+
+−0.6
+
+−0.8
+
+−0.5
+
+−40 −30 −20 −10
+
+0
+
+10
+
+20
+
+30
+
+40
+
+x
+
+−1
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+by
+
+(a)
+
+(b)
+
+bz
+
+Figure 2.3: Dark soliton with an eigenvalue of λ = 0.5. The magnitude and the two components of b are plotted. It is clear that the magnitude of b gives the classiﬁcation of a “dark” soliton because of the localized depression in b.
+
+expressed in analytical form for oblique wave travel [18].
+
+γ θ¯
+
+θ¯ 2
+
+b = b0 − 2 θ
+
+θ
+
+− b0
+
+1− θ
+
+,
+
+where the functional forms of θ and γ are given by
+
+(2.34)
+
+θ = 1 + θ1φ + θ˜1φ¯ + θ2|φ|2 ; γ = γ1φ + γ˜1φ¯ + γ2|φ|2 .
+
+(2.35)
+
+where φ¯ and γ¯ denote complex conjugate of φ and γ. The function φ has the only dependence on x and t and takes the form
+
+φ = exp [2i(Λx − Ωt)] .
+
+In addition, the variables θ1 and θ˜1 are
+
+θ1
+
+=
+
+b0 2Λ
+
+λ −1
+ζ
+
+;
+
+θ˜1
+
+=
+
+b0 2Λ¯
+
+λ¯ ζ¯ − 1
+
+,
+
+(2.36) (2.37)
+
+CHAPTER 2. WAVES IN PLASMAS
+
+25
+
+by
+
+1
+
+0
+
+−1
+
+−2
+
+−20 −15 −10
+
+−5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+2
+
+1
+
+0
+
+−1
+
+−2
+
+−20 −15 −10
+
+−5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+x
+
+(a)
+
+bz
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5
+
+−2
+
+−2 −1.5 −1 −0.5
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+by
+
+(b)
+
+bz
+
+Figure 2.4: Bright soliton with an eigenvalue of λ = 0.5. The localized enhancement of |b| accounts for the “bright” soliton description.
+
+and the variables γ1 and γ˜1 are
+
+ζ
+
+ζ¯
+
+γ1 = λ − 1 ; γ˜1 = − λ¯ − 1.
+
+Finally the functional forms of θ2 and γ2 are
+
+θ2 = b20
+
+1
+
+1
+
+|Λ − Λ¯ |2 − 4|Λ|2
+
+1 − |Λ − Λ¯|2
+
+(Λ¯ − Λ)
+
+|λ|2
+
+1
+
+1−
+
+−
+
+|ζ|2 4|Λ|2
+
+|λ|2 +1
+
++ (Λ¯ + Λ)
+
+|ζ |2
+
+λ¯ λ ζ¯ − ζ λ¯ λ ζ¯ − ζ
+
+and
+
+1 + Λ − Λ¯
+
+γ2 = b0 (λ¯ + ζ¯)(ζ − λ)
+
+11 11 2Λ¯ ζ¯λ + 2Λ ζλ¯
+
+(ζ − λ)
+
+λ1 Λ¯ + λ
+
++ (λ¯ + ζ¯)
+
+λ¯ 1 Λ − λ¯
+
+.
+
+(2.38)
+
+CHAPTER 2. WAVES IN PLASMAS
+
+26
+
+From inspecting the forms of all the equations presented above, all of them essentially depend on three complex quantities Λ, ζ and Ω. Their deﬁnitions are
+
+ζ = λ2 − b20, for (Im ζ > 0) Λ = ζλ Ω = Λ(2λ2 + b20)
+
+(2.41a) (2.41b) (2.41c)
+
+are the main parameters that dictate the behavior of the wave. Again, λ is the eigenvalue, but in this case it is complex. This means that the two values needed to construct the solution of the two parameter soliton solution are Re(λ) and Im(λ). Another important fact with the two parameter soliton, is that its eigenvalues appear in complex conjugate pairs [11].
+Figure 2.5 displays an example of the behavior of a two parameter soliton. It can be seen that the soliton does not retain its shape, but has a periodic behavior where it eventually returns to the initial wave form. This is due to the fact that one way of looking at the two parameter solution is as a combination of a bright soliton and a dark soliton. The bright and dark solitons are superposed and interchange their locations periodically. When the eigenvalue approaches the real axis, while inspecting a speciﬁc time (e.g. t =), the dark and bright solitons that had been exchanging their position periodically, separate and no longer interact with each other.
+Since the solution b(x, t) has a periodic behavior to it, we can attempt to determine when and where the waveform returns to is original state. This can be done by the assumption that at some length, L, and some later time, T , we will have b(x + L, t + T ) = b(x, t). Obtaining relations of L and T will give us insight into the periodic behavior of this soliton. Also, since b(x, t) is a rational expression of φ(x, t) we can rewrite φ(x, t) to look like
+
+φ(x, t) = exp [−κ(x − cgt)] exp [−κ(x − cpht)]
+
+(2.42)
+
+CHAPTER 2. WAVES IN PLASMAS
+
+27
+
+where
+
+κ = 2Λi, cg = Ωi/Λi k = 2Λr, cph = Ωr/Λr
+
+(2.43a) (2.43b)
+
+where Ω = Ωr + iΩi and Λ = Λr + iΛi (Λr,i and Ωr,i are real valued) and is analogous to its “phase velocity” and “group velocity” [18]. Now with the use of b(x + L, t + T ) , this leads to
+
+L = cgT
+
+2π
+
+T=
+
+.
+
+|k(cph − cg)|
+
+(2.44a) (2.44b)
+
+Therefore, with Eqs. (2.44a) and (2.44b) it fcan be seen that if the eigenvalue, λ, has bias towards the real or imaginary axis, it will determine the periodicity of the waveform.
+
+CHAPTER 2. WAVES IN PLASMAS
+
+28
+
+by
+
+3
+
+2
+
+1 0
+
+−1
+
+−2 10
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+t
+
+1
+
+10 8 6
+
+4
+
+2
+
+0
+
+0 −2
+
+−4
+
+−6
+
+x
+
+bz
+
+3 2 1 0 −1 −2 −3 10
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+t
+
+1
+
+10 8 6 4
+
+2
+
+0
+
+0 −2
+
+−4
+
+−6
+
+x
+
+Figure 2.5: The behavior of a two parameter soliton with λ = 0.5 + 0.5i. Figure (a) shows the time evolution of by, and (b) is the time evolution of bz
+
+Chapter 3
+Soliton Theory
+The inverse scattering transform (IST) has been one of the most important developments in nonlinear diﬀerential equations since its introduction into mathematics in the 1960’s. The method of the transform allows for the production of an analytical solution, as well as other relevant quantities, of several diﬀerent nonlinear partial diﬀerential equations. It can be thought of as a nonlinear analogue of the Fourier transform, or a generalization of the Fourier transform, which will be presented in the following sections.
+3.1 Fourier-Laplace transform for linear wave theory
+Linear waves are thought to be well understood, with a vast amount of techniques used to produce traveling wave solutions. This section will provide a detailed description of constructing a solution with appropriate use of the Fourier and Laplace transformations. Since we will be treating this problem as an initial value problem, the Laplace transform is used to perform the transformation in time instead of a Fourier transform in time. This is a result from the fact that U (x, t = 0) is known, while U (x, t → ∞) is unknown and is essentially what is being sought out. During each transition of the process, similarities between the IST and this method will be
+29
+
+CHAPTER 3. SOLITON THEORY
+
+30
+
+discussed slightly, even though details have yet to be provided on the IST. Figure 3.1 attempts to illustrate the process of this section pictorially.
+First, we can consider the Korteweg de Vries equation,
+
+Ut + 6U Ux + Uxxx = 0 .
+
+(3.1)
+
+Since the Fourier transform is typically used to manipulate linear PDE’s, a linearized form of the KdV equation is required if we are to use the Fourier-Laplace transform on Eq. (3.1). The linearized approximation to (3.1) is
+
+Ut + Uxxx = 0 ,
+
+(3.2)
+
+where the nonlinear term is eliminated. Following the procedure in Figure 3.1, if the initial condition of Eq. (3.2) is known, U (x, 0) can be treated as a one dimensional function and therefore the Fourier transform, A(k), can be represented as
+
+1 U (x, 0) =
+
+∞
+A(k, 0)eikxdx,
+
+2π −∞
+
+(3.3)
+
+and the inverse transform is
+
+∞
+A(k, 0) = U (x, 0)e−ikxdk.
+−∞
+
+(3.4)
+
+Since the goal is to produce a time varying solution U (x, t) for a linear wave, we can apply a Fourier-Laplace transform to the unknown solution U (x, t)
+
+∞
+
+∞
+
+U (k, ω) =
+
+dx
+
+dte−i(kx−ωt)U (x, t)
+
+−∞
+
+0
+
+(3.5)
+
+where we assume that |U (x, t)| → 0 as |x| → ∞, but not necessarily for t → ∞. It is also important that Im(ω)> 0 and large enough so the integral converges. Inversion of the Fourier and Laplace transforms produce
+
+1 U (x, t) = (2π)2
+
+∞
+dk
+−∞
+
+dωei(kx−ωt)U (k, ω)
+C
+
+(3.6)
+
+CHAPTER 3. SOLITON THEORY
+
+31
+
+Figure 3.1: Logic map of using a Fourier transform to solve a linear PDE analytically. Typically, it is desired to obtain the full solution to a diﬀerential equation, U (x, t), through knowledge of the initial condition U (x, 0). Instead of solving the diﬀerential equation in space and time, it is much simpler to Fourier-Laplace transform into wavenumber and frequency space, (k, ω), solve the algebraic equation, and then invert the transform.
+
+where the contour C is in the complex ω plane and lies above any singularities of U (k, ω), i.e., C is in the upper half of the complex plane. Since the intended goal is to apply the transformation to the linearized equation, Eq. (3.2), we need to note that under the Laplace transformation the treatment of the partial derivative with respect to time is
+
+∞ dte+iωt ∂U =
+
+∞
+dt
+
+∂ eiωtU − iωeiωtU
+
+0
+
+∂t
+
+0
+
+∂t
+
+= eiωtU (x, t)|∞ 0 − iωU (x, ω)
+
+= −U (x, t = 0) − iωU (x, ω).
+
+and the Fourier transform replaces the ∂/∂x operator with ik. Note that the term
+involving lim eiωtU (x, t) = 0 because Im(ω) > 0. Applying this transformation to t→∞
+Eq. (3.2) gives us
+
+− iωU (k, ω) − U (k, t = 0) + (ik)2U (k, ω) = 0
+
+(3.8)
+
+or
+
+−iω + (ik)3 U (k, ω) = U (k, t = 0),
+
+(3.9)
+
+CHAPTER 3. SOLITON THEORY
+
+32
+
+so we can easily solve for U (k, ω),
+
+iU (k, t = 0)
+
+U (k, ω) =
+
+,
+
+ω + k3
+
+(3.10)
+
+and setting the denominator equal to zero results in the dispersion relation for (3.2). Now applying the inverse Laplace transform yields the desired solution
+
+U (x, t) = dω U (k, ω)e−iωt C 2π
+
+(3.11)
+
+where C lies above the singularities of U (k, w). Only one singularity occurs at ω = −k3, and it lies on the real axis. We can apply Cauchy’s residue theorem and deform it analytically to C , which is a contour that lies below any singularities,
+
+U (k, t) = dω U (k, ω)e−iωt − 2πi 1 iU (k, t = 0)eik3t.
+
+C 2π
+
+2π
+
+(3.12)
+
+As C moves further down the imaginary axis the ﬁrst term in Eq. (3.12) vanishes, so
+
+U (k, t) = −i2U (k, t = 0)eik3t
+
+(3.13)
+
+or
+
+1 U (x, t) =
+
+∞
+dkU (k, t = 0)eik3t,
+
+(3.14)
+
+2π −∞
+
+by application of the inverse Fourier transform.
+
+This procedure is well known for producing solutions to linear partial diﬀerential
+
+equations. We now turn to a procedure for solving nonlinear PDEs. In the nonlinear
+
+case, the IST provides analogous information to U (k, ω) and k, which correspond to
+
+the scattering data and the eigenvalues, respectively. The next section will provide
+
+details on the process of obtaining such information, along with the importance in
+
+regard to the IST.
+
+CHAPTER 3. SOLITON THEORY
+
+33
+
+3.2 Sturm-Liouville Theory
+There is a deep connection between eigenvalue equations of Sturm-Liouville theory and partial diﬀerential equations. It turns out that when the eigenvalues of a particular Sturm-Liouville problem are independent of time, then the corresponding potential is also a solution to a speciﬁc PDE. Therefore, the nonlinear PDE can be reduced to solving the linear eigenvalue equation.
+Here we address a typical Sturm-Liouville problem, in the context of quantum mechanics and the 1D time independent Schr¨odinger equation. The following section will develop the relationship between the KdV equation and the Sturm-Liouville problem. Later on, the procedure for the DNLS equation will be quoted without proof.
+
+3.2.1 The Sturm-Liouville problem
+Diﬀerential equations of the type similar to the Sturm Liouville equation,
+
+ψxx + (λ − U (x))ψ = 0
+
+(3.15)
+
+subject to boundary conditions at (a, b), where a ≤ x ≤ b, appear in a multitude of applications in mathematics and physics. They have been thoroughly studied in quantum mechanics under the alias of the Schro¨dinger equation. Another application of Eq. (3.15) is wave propagation in inhomogeneous media (in the classical regime).
+When the eigenfunction, ψ(x), is subject to a potential, U (x), and boundary conditions are imposed, there can only be a non trivial solution for speciﬁc values of λ (or a ﬁnite number of eigenvalues λn if the domain of x is not inﬁnite). Determining the impact of the eigenvalues λn on the solution of the eigenfunction ψ(x) and the eﬀect of the boundary conditions on the eigenvalues is known as the Sturm-Liouville Problem [15].
+For an example of a Sturm-Liouville problem and its physical meaning, we can
+
+CHAPTER 3. SOLITON THEORY
+
+34
+
+look at the quantum mechanical energy eigenvalue equation
+
+Hψ = Eψ
+
+(3.16)
+
+where H is the Hamiltonian and represents the total energy of the system. Looking at only one spatial dimension, we have
+
+h¯2 d2
+
+Hψ = −
+
++ V (x) ψ = Eψ
+
+2m dx2
+
+(3.17)
+
+Further, if we deﬁne and leaving us with
+
+U˜ (x)
+
+≡
+
+2mV (x) h¯ 2
+
+λ˜
+
+≡
+
+2mE h¯ 2
+
+ψxx + (λ˜ − U˜ (x))ψ = 0 .
+
+(3.18) (3.19) (3.20)
+
+It is useful to scale the independent variable x to x¯ = x/x0 so that the diﬀerential equation is dimensionless; this results in
+
+d2ψ 1 d2ψ dx2 = x20 dx¯2 . We now have the Sturm-Liouville equation in dimensionless coordinates
+
+(3.21)
+
+ψx¯x¯ + (λ − U )ψ = 0,
+
+(3.22)
+
+where
+
+λ
+
+=
+
+x20λ˜
+
+=
+
+2mx20 h¯ 2
+
+E
+
+U
+
+=
+
+x20U˜ (x)
+
+=
+
+2mx20 h¯ 2
+
+V
+
+(x¯).
+
+(3.23) (3.24)
+
+CHAPTER 3. SOLITON THEORY
+
+35
+
+Now let’s suppose we are interest in a potential of the form
+
+V (x)
+
+=
+
+h¯ 2 − mx20
+
+sech2
+
+x x0
+
+i.e.,
+
+U
+
+=
+
+2mx20 h¯ 2
+
+V
+
+(x¯)
+
+=
+
+−2
+
+sech2
+
+(x¯)
+
+then it can be shown that a solution to (3.22) with the potential (3.26) is
+
+(3.25) (3.26)
+
+ψ1 = Asech (x¯)
+
+(3.27)
+
+with an eigenvalue of λ1 = −1. Reverting to physical units, the energy of this “bound
+
+state” is
+
+−h¯2 E1 = 2mx20 .
+
+(3.28)
+
+The signiﬁcance of these bound states in regards to soliton theory will emerge in a
+
+later section. Note, however, that the function U in (3.26) is nothing but the one-
+
+soliton solution to the KdV equation that we saw in Chapter 1. There are also an
+
+inﬁnite number of scattering solutions when the energy E is positive,
+
+√
+
+√
+
+ψ± = Ae±i
+
+2mE h¯
+
+x
+
+i
+
+2mE h¯ x0 ∓ tanh(x¯) .
+
+(3.29)
+
+With the scaling we can rewrite Eq. (3.29) as
+
+√
+
+√
+
+2mE λ
+
+=
+
+h¯
+
+x0
+
+√√ ψ± = Ae±i λx i λ ∓ tanh(x) .
+
+(3.30) (3.31)
+
+All of the states that satisfy Eq. (3.31) are considered “reﬂectionless” since the coefﬁcient of reﬂection is zero. It is easy to see that this is true, by looking at the right going wave (+x) or the left going wave (−x) individually. The next section will go into more detail of the implication of a potential that has reﬂection in the solution of
+
+CHAPTER 3. SOLITON THEORY
+
+36
+
+the eigenfunction with respect to soliton theory.
+
+3.3 Sturm-Liouville operator in Soliton theory
+In the realm of soliton theory, the Sturm-Liouville operator is applied with a much diﬀerent method than in quantum mechanics, but shares an eerie resemblance. Quantum mechanics has shown that the 1D time independent Schro¨dinger equation can describe the wave-like behavior of a particle that is free or bound to a potential, V (x). The eigenvalues correspond to the bound states of the particle.
+When looking at how the Sturm-Liouville operator is used in nonlinear wave theory, the potential is considered to be the wave form of the nonlinear wave (later on, it can be see that this potential can be the initial wave proﬁle, or a wave proﬁle that is changing with time). In most cases, the potential U (x) in the equation
+
+ψxx + (λ − U (x))ψ = 0
+
+(3.32)
+
+is considered as the initial wave proﬁle of the nonlinear wave. The response of the eigenfunction, ψ, reveals signiﬁcant information about the nonlinear wave, such as the possible eigenvalues and the scattering coeﬃcients, i.e., the scattering data. The presence of eigenvalues (which lead to bound solutions of ψ) for the nonlinear wave U (x) indicate that the solution is a soliton or is composed of solitons. If there is a nonzero “reﬂection” coeﬃcient, then the solution also contains dispersive waves (and it will be shown later that potentials with no reﬂection have solutions that only contain solitons). Therefore, the initial conﬁguration of the wave U (x, t = 0) determines the amount and type of soliton constituents.
+Figure 3.2 traces the steps in acquiring soliton solutions from nonlinear partial diﬀerential equations. The ﬁrst step was just discussed, where a wave proﬁle U (x) is mapped onto the Sturm-Liouville problem in the form of the potential, which is also known as the direct scattering transformation. Application of this transform leads to spatial information about the nonlinear wave, such as if the function U (x) is comprised of solitons or dispersive waves. This is analogous to the Fourier transform,
+
+CHAPTER 3. SOLITON THEORY
+
+37
+
+since the Fourier transform uses spatial information to provide all of the diﬀerent frequencies of waves that are superimposed on top of each other.
+
+Figure 3.2: Logic map of using the direct and inverse scattering transform to solve a nonlinear evolution equation. The direct scattering transformation leads to the eigenfunction’s response to the initial wave proﬁle, which is known as the scattering data, S(0). This information contains the transmission and reﬂection coeﬃcients, which are dependent on the eigenvalues. Analytically, this leads to all the possible eigenvalues, or solitons, that arise from the initial condition. The time evolution of the scattering data is dependent on the nonlinear PDE, and acquiring this relation usually implies that the nonlinear PDE is integrable. Inversion of the scattering transform is accomplished by the use of the time dependence of the scattering data.
+Inversion of the scattering transform uses the time evolution of the scattering data to produce a complete solution of U (x, t). Producing the time evolution of the scattering information is the most diﬃcult part of the process, because it varies for each nonlinear equation. With respect to this thesis, the mathematical theory behind the inverse transform is not important, but what is important is that a reﬂectionless potential yields a “simple” analytical solution for U (x, t) containing only solitons. Potentials with reﬂection lead to dispersive waves, and are generally much more complicated to treat analytically.
+3.3.1 Importance of the Eigenvalues
+In soliton theory, the Sturm-Liouville equation is used in the direct scattering transformation, which leads to ﬁnding the scattering data and the eigenvalues for the speciﬁed
+
+CHAPTER 3. SOLITON THEORY
+
+38
+
+potential U (x), i.e., the initial wave conﬁguration. What is needed to complete this
+
+picture of the direct scattering transform is to understand how the eigenvalues behave
+
+with respect to time. It is necessary for the inverse transform that if the potential
+
+has some time dependence U (x, t), then the eigenvalues must be invariant with time.
+
+To demonstrate the concept of the eigenvalues being invariant, or constant, with
+
+respect to time, we can use a method developed by Peter Lax in 1968 (the proof that
+
+follows can be found in Lamb [15]). It will allow us to see that the solution to the
+
+KdV equation
+
+Ut + 6U Ux + Uxxx = 0
+
+(3.33)
+
+is a potential in the Sturm-Liouville equation such that the eigenvalues do not vary
+
+in time. To start the process it is convenient to write the Sturm-Liouville equation
+
+in operator form
+
+Lψ = λψ
+
+(3.34)
+
+where
+
+L = D2 − u(x, t)
+
+(3.35)
+
+and D = d/dx. Calculating the derivative with respect to time gives us
+
+(Lψ)t = Lψt + Ltψ = λψt + λtψ.
+
+(3.36)
+
+The time derivative operating on (Lψ) using (3.35) is just
+
+(Lψ)t = ψxxt − uψt − utψ = Lψt − utψ.
+
+(3.37)
+
+Therefore, along with Eq. (3.36), it can be deduced that Lt = −ut. The primary goal is to allow the function u(x, t) to vary in time, but requiring that the eigenvalues are
+
+constant in time λt = 0. Therefore, we can introduce some linear diﬀerential operator K, where the temporal derivative of ψ can be expressed as ψt = Kψ, which can be considered a “guess” for all intents and purposes. This would allow us to rewrite
+
+Eq. (3.36) as
+
+([L, K] − ut) ψ = λtψ
+
+(3.38)
+
+CHAPTER 3. SOLITON THEORY
+
+39
+
+where
+
+[L, K] ≡ LK − KL.
+
+(3.39)
+
+Since we are requiring λ be constant, the linear diﬀerential operator K must satisfy the relation, [L, K] − ut = 0, which is an operator equation.
+We can start with a simple diﬀerential operator K1 = aD, and also restrict a to be dependent only on the function u and its spatial derivatives. In this case, expansion of the Sturm-Liouville operator and K1 gives us
+
+[L, K1] ψ =(LK1 − K1L)ψ =(D2 − u)(aψx) − aD(ψxx − uψ) =2axD2ψ + axxDψ + auxψ
+
+(3.40)
+
+With one last assumption, i.e., that the coeﬃcient a is actually constant (that is ax = 0), the ﬁrst two terms vanish, and (3.38) becomes
+
+(ut − aux)ψ = −λtψ.
+
+(3.41)
+
+The term in the parenthesis is not a diﬀerential operator, so that if λt = 0 then u(x, t) must satisfy
+
+ut − aux = 0.
+
+(3.42)
+
+That is, the solution to this PDE, u(x, t), when used as the potential in (3.34) results in constant eigenvalues. Since the solutions to this linear PDE require that u not be a function of x and t separately, but that u(x + at), it is easy to see that the potential translates such that u(x + at), leaving the eigenvalues unaltered as time progresses. Of course, this is just the well known linear advection equation. To obtain a nonlinear PDE with this method, a more complicated diﬀerential operator K is needed.
+The next logical step would be to use a second derivative, K2 = aD2 + f D + g, but it can be shown that it also leads to the advection equation. Let us consider the
+
+CHAPTER 3. SOLITON THEORY
+
+40
+
+linear operator K3 = aD3 + f D + g, which gives
+
+[L, K3] ψ = (2fx + 3aux)D2ψ + (fxx + 2gx + 3auxx)Dψ +(gxx + auxxx + f ux)ψ.
+
+(3.43)
+
+As was done in the case involving K1, we require that the coeﬃcients of the D2ψ and Dψ terms vanish, so that we can obtain a diﬀerential equation for u only. Integrating the coeﬃcients with respect to x, we get the diﬀerential relations
+
+3
+
+f
+
+=
+
+− au 2
+
++
+
+c1
+
+(3.44)
+
+and
+
+3
+
+g = − 4 aux + c2
+
+(3.45)
+
+where c1 and c2 are constants of integration (that could possibly be functions of time). We are left with
+
+[L, K3] ψ = (gxx + auxxx + f ux)ψ
+
+(3.46)
+
+and using our knowledge of f and g, Eqs. (3.44) and (3.45), we arrive at the relation
+
+1 [L, K3] ψ = 4 a(uxxx − 6uux) + c1ux ψ.
+
+(3.47)
+
+We can set a = −4 to simplify the coeﬃcients, and we can also set the function c1(t) to zero, because it can easily be scaled away by transforming the independent variables dx = dx + c1(t)dt and dt = dt. This results in a new equation for u(x, t), which is the standard KdV equation
+
+ut − 6uux + uxxx = 0.
+
+(3.48)
+
+Note that (3.33) can be obtained with u → −U . If u(x, t) behaves according to
+
+Eq. (3.48), then
+
+[L, K3] − ut = 0
+
+(3.49)
+
+is satisﬁed, resulting in λt = 0. This is very signiﬁcant result, because this tells
+
+CHAPTER 3. SOLITON THEORY
+
+41
+
+us that if a potential that varies temporally in the Sturm-Liouville equation, is also a solution to the KdV equation then its eigenvalues λ remain unchanged in time. Basically, if U (x, t) retains its shape but translates in time, then the bound states for that potential function have the same energy.
+Using this method one could obtain an inﬁnite number of higher order nonlinear equations characterized by odd linear operators K3, K5, K7... [9]. However, none except the KdV equation have been shown to be physically signiﬁcant.
+
+3.3.2 Non-reﬂectionless Potentials
+
+To demonstrate the signiﬁcance of the reﬂection coeﬃcient, a simple example using
+
+the KdV equation, Eq. (3.48), will be used. A well known solution to the KdV
+
+equation is
+
+u(x, t) = −U0sech2(x − ct) ,
+
+(3.50)
+
+where U0 and c must satisfy a speciﬁc relationship (see Eq. (1.1)). For the purposes
+
+of the scattering problem, the solution is inspected at t = 0. It turns out, that the
+
+KdV equation can produce many solitons depending on the amplitude of the initial
+
+wave proﬁle. This is can be seen when Eq. (3.50) is mapped onto the Sturm-Liouville
+
+problem,
+
+ψxx + (λ + U0sech2x)ψ = 0 ,
+
+(3.51)
+
+where Eq. (3.50) is used as the potential. Then a simple variable transformation T = tanh(x) can be used to change the independent variables, which results in
+
+d ≡ sech2x d = (1 − T 2) d .
+
+dx
+
+dT
+
+dT
+
+(3.52)
+
+Equation (3.51) is then transformed into
+
+d dT
+
+(1 − T 2) dψ dT
+
++
+
+λ U0 + (1 − T 2)
+
+ψ = 0,
+
+(3.53)
+
+which is the associated Legendre equation. If U0 = N (N + 1) then the an analytical solution can easily be obtained with the Legendre polynomials. From the perspective
+
+CHAPTER 3. SOLITON THEORY
+
+42
+
+of solitons and scattering theory, the value of N corresponds to the number of solitons; therefore when the relation U0 = N (N +1) is satisﬁed, the potential can be considered reﬂectionless.
+For a value of N = 1, U0 = 2, which makes (3.50) equivalent to (3.26) and the solution is that of a single soliton. Furthermore, when N = 2 we have U0 = 6, which leads to the conclusion that an initial wave proﬁle with any amplitude other than U0 = 2, 6, 12... is not a reﬂectionless potential for the Sturm-Liouville equation. The positive energy reﬂectionless solution for U0 = 2 was shown in Eq. (3.31).
+Figure 3.3 shows the evolution of an initial wave proﬁle where U0 = 4 which is not a “simple” soliton solution because it contains other wave forms. It is comprised of two solitons that are moving to the right (the smaller amplitude soliton moves slowly) and another wave form that is traveling to the left. It is also important to note that the amplitude of the wave traveling to the left is small. Therefore, it approximately satisﬁes the linear approximation of the KdV equation,
+
+ut + uxxx = 0 which deems it a dispersive wave.
+
+(3.54)
+
+3.4 2x2 eigenvalue problem for the DNLS
+This section will aid in development of the treatment of the DNLS equation with respect to the direct scattering (DST) and inverse scattering transform (IST). A generalization of the IST known as the “AKNS scheme” allows it to be applicable to other problems, namely the DNLS equation. This scheme uses a 2x2 eigenvalue problem as a generalization of the Sturm-Liouville equation in the form of coupled linear ﬁrst order diﬀerential equations [8]. As shown by Kawata and Inoue [13], IST maps the DNLS equation into the follwing eigenvalue problem,
+
+Φx = D · Φ
+
+(3.55)
+
+CHAPTER 3. SOLITON THEORY
+
+43
+
+U U
+U
+
+t = 0.00 8
+
+t = 0.50 8
+
+7
+
+7
+
+6
+
+6
+
+5
+
+5
+
+4
+
+4
+
+3
+
+3
+
+2
+
+2
+
+1
+
+1
+
+0
+
+0
+
+−1
+
+−20
+
+−10
+
+0
+
+10
+
+20
+
+x
+
+−1
+
+−20
+
+−10
+
+0
+
+10
+
+20
+
+x
+
+t = 1.00 8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+
+−1
+
+−20
+
+−10
+
+0
+
+10
+
+20
+
+x
+
+Figure 3.3: Time evolution of an initial wave proﬁle for the KdV equation with U0 = 4, which generates two solitons and a dispersive wave that is traveling in the opposite direction from the two solitons. This is a result of a numerical solution through integration of the KdV equation using a combination of a one step Lax-Wendroﬀ and a backward time centered space scheme. Details on how this solution was calculated numerically will follow in Chapter 4.
+
+CHAPTER 3. SOLITON THEORY
+
+44
+
+where
+
+Φ(x, t; λ) =
+
+φ11 φ12 φ21 φ22
+
+(3.56)
+
+and
+
+−iλ b(x, t)
+
+D = λ ¯b(x, t) iλ
+
+,
+
+(3.57)
+
+which is a system of four coupled ﬁrst-order diﬀerential equations, two of which are redundant, where b(x, t) is the wave proﬁle of the magnetic ﬁeld (¯b denotes complex conjugate of b). The magnetic ﬁeld, b(x, t), has the form
+
+b(x, t) = by(x, t) + ibz(x, t). The time dependence of Φ is given by the relation
+
+(3.58)
+
+Φt = F · Φ
+
+(3.59)
+
+where
+
+AB
+
+F=
+
+.
+
+C −A
+
+(3.60)
+
+The forms of A, B and C must be chosen so that Φxt = Φtx reduces to the DNLS equation [11]. This means that
+
+A =2iλ4 + i(|b|2 − b20)λ4 B = − 2bλ3 − b(|b|2 − b20) + ibx λ C = − 2¯bλ3 + −¯b(|b|2 − b20) + i¯bx λ.
+
+(3.61)
+
+The focus of this section is not on the time dependence of the scattering information that is associated with the inverse scattering transform, but looking into the scattering information for the direct transform.
+For the eigenvalue problem presented by the DNLS being mapped by the IST, the asymptotic boundary conditions are needed. For the perpendicularly and obliquely
+
+CHAPTER 3. SOLITON THEORY
+
+45
+
+propagating wave, the nonvanishing boundary conditions are
+
+Φ±(x, t; λ, ζ) → T (λ, ζ)J(Λx) when x → ±∞
+
+(3.62)
+
+while Φ(x, t; λ, ζ) has the same form as Eq. (3.56). The forms of the matrices T (λ, ζ) and J(Λ, ζ) are
+
+T (λ, ζ) = −ib0 λ − ζ , λ − ζ ib0
+
+(3.63)
+
+and
+
+e−iΛx 0
+
+J(Λ, ζ) =
+
+,
+
+0 eiΛx
+
+(3.64)
+
+where
+
+Λ = λζ and ζ = λ2 − b20
+
+(3.65)
+
+which was developed by Kawata and Inoue [13]. The relation between the two asymptotic forms of Φ(x, t; λ, ζ) involves the scattering matrix S(t; λ, ζ)
+
+Φ−(x, t; λ, ζ) = Φ+(x, t; λ, ζ) · S(t; λ, ζ)
+
+(3.66)
+
+where
+
+S(t; λ, ζ) = s11 s12 . s21 s22
+
+(3.67)
+
+For nearly parallel waves, the eigenvalues are complex which gives rise to two parameter solutions. For the oblique or perpendicular case, on the other hand, the eigenvalues are either complex or completely real [11]. The left column of of Eq. (3.66) is
+
+φ−11
+
+=
+
+φ+11 φ+12
+
+φ−21
+
+φ+21 φ+22
+
+s11
+
+.
+
+s21
+
+(3.68)
+
+Since the functional forms of Φ+ are known from Eq. (3.62), the scattering coeﬃcients s11 and s21 can be calculated if the eigenfunction Φ is known as x → ∞. This results
+
+CHAPTER 3. SOLITON THEORY
+
+46
+
+in the ability to numerically calculate the eigenvalues for an arbitrary potential b(x, t) where the zeros of S(λ, ζ; t) are the location of the eigenvalues, λ.
+Numerical calculation of the eigenvalues requires the ability to solve the 2x2 eigenvalue problem as an initial value problem (more details of this method will be discussed in Chapter 5) for any given eigenvalue. Using a fourth order Runge-Kutta method could be used to solve for Φ(x), which is demonstrated in Figure 3.4. It shows the solution to the 2x2 eigenvalue problem, for λ = 0.4, where the two diﬀerent one parameter soliton solutions (bright and dark) where used as the potential. Since the two diﬀerent functions are solitons, the solutions are bounded.
+
+CHAPTER 3. SOLITON THEORY
+
+47
+
+φ
+
+0.6
+
+Re(φ11)
+
+Im(φ11)
+
+0.4
+
+Re(φ21)
+
+Im(φ21)
+
+0.2
+
+0
+
+−0.2
+
+−0.4
+
+−0.6
+
+−20 −15 −10
+
+−5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+x
+
+φ
+
+1
+
+Re(φ11)
+
+0.8
+
+Im(φ11)
+
+0.6
+
+Re(φ21)
+
+0.4
+
+Im(φ21)
+
+0.2
+
+0
+
+−0.2
+
+−0.4
+
+−0.6
+
+−0.8
+
+−1
+
+−20 −15 −10
+
+−5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+x
+
+Figure 3.4: Left components of the eigenfunction Φ(x), φ11 and φ21 for two diﬀerent potential functions b(x, t), where the potential functions used were a one parameter dark soliton a) and bright b) soliton with both eigenvalues of λ = 0.4. Calculation of the eigenfunction utilized a fourth-order Runge-Kutta scheme by integrating from left to right. The problem was treated as an initial value problem by solving Eq. (3.55) with initial conditions set as the boundary conditions presented in Eq. (3.62).
+
+Chapter 4
+Numerical Solutions of Nonlinear Partial Diﬀerential Equations
+Since the recent development of reliable computing power and speeds has dramatically increased over the past decade, there has been a closely related increase in ﬁtting numerically produced results with theory. In the case of diﬀerential equations, this is done through estimating derivatives as ﬁnite diﬀerences. Ordinary diﬀerential equations are estimated by creating a one-dimensional mesh, which acts as the domain of the diﬀerential equation. The derivative terms in the diﬀerential equation can then be estimated utilizing Taylor series expansions and choosing the number of grid points used to estimate these derivative terms.
+4.1 Convection Equation
+When attempting to produce numerical methods to solve complicated equations, it’s convenient to study the basic well solved equations that have physical resemblance to their more complicated counterparts. For example, when trying to develop a method to solve a nonlinear convection equation it would be wise to understand the linear convection problem and which numerical methods are eﬀective. In later sections, nonlinear and convective type equations will be treated numerically, therefore it is useful to provide a detailed description of which numerical method will be employed.
+48
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+49
+
+A very popular and eﬀective method for handling the linear convection equation
+
+is the Lax-Wendroﬀ one-step method, which was proposed by Lax and Wendroﬀ in
+
+1960 [10]. The method is O(∆t2) + O(∆x2) accurate and is produced by a forward
+
+time series Taylor expansion, where the time derivatives can be expressed in terms of
+
+spatial derivatives. For example, if we expand the function y(x) about the point xi, we have
+
+yi+1 = y(xi+1) = y(xi + ∆x)
+
+(4.1)
+
+and then applying the Taylor expansion we get
+
+y(xn
+
++
+
+∆x)
+
+≈
+
+y(xn)
+
++
+
+dy ∆x dx |xn
+
++
+
+O(∆x2)
+
+= yn + ∆xyn + O(∆x2).
+
+(4.2) (4.3)
+
+The O(∆x2) term is denotes higher order and represents the error. The one dimensional convection equation is
+
+∂f
+
+∂f
+
+= −u
+
+∂t
+
+∂x
+
+(4.4)
+
+for some function f (x, t). It can be solved exactly by any function f (x − ut) which describes a waveform that is traveling to the right with speed u. As mentioned earlier, the ﬁrst process in the Lax-Wendroﬀ type method is a forward Taylor expansion in time, retaining terms to second order in ∆t
+
+fin+1
+
+=
+
+fin
+
++
+
+∆tft|ni
+
++
+
+∆t2 2
+
+ftt|ni
+
++
+
+O(∆t3)
+
+,
+
+(4.5)
+
+where and
+
+fin = f (xi, tn)
+
+(4.6)
+
+xi+1 = xi + ∆x tn+1 = tn + ∆t
+
+(4.7) (4.8)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+50
+
+Notice that the indices denote the spatial iterative steps, i, and the temporal iterative steps, n, respectively. The ﬁrst and second derivatives in time can be replaced by −ufx (from the PDE, Eq. (4.4)) and the second derivative can be replaced with
+
+ftt = (ft)t = (−ufx)t = (−uft)x = (u2fx)x = u2fxx ,
+
+(4.9)
+
+so Eq. (4.5) becomes
+
+fin+1
+
+=
+
+fin
+
+−
+
+∆tufx|ni
+
++
+
+∆t2 2
+
+u2fxx|ni
+
++
+
+O(∆t3)
+
+.
+
+(4.10)
+
+Now the spatial derivatives can be approximated by second order center diﬀerence equations. The ﬁrst derivative can be approximated as
+
+fx|ni
+
+=
+
+fin+1 − fin−1 2∆x
+
++
+
+O(∆x2),
+
+(4.11)
+
+and the second derivative can be approximated as
+
+fxx|ni
+
+=
+
+fin+1
+
+− 2fin + ∆x2
+
+fin−1
+
++
+
+O(∆x2)
+
+.
+
+(4.12)
+
+Finally, Eq. (4.10) can be rewritten as
+
+fin+1 = fin − ∆tu
+
+fin+1 − fin−1 2∆x
+
++ ∆t2 u2 2
+
+fin+1 − 2fin + fin−1 ∆x2
+
+.
+
+(4.13)
+
+The constant c = u∆t/∆x can be introduced as the convection constant, so the ﬁnal Lax-Wendroﬀ one step approximation of the linear convection equation is
+
+fin+1
+
+=
+
+fin
+
+−
+
+c 2
+
+fin+1 − fin−1
+
+c2 +
+2
+
+fin+1 − 2fin + fin−1
+
+.
+
+(4.14)
+
+Figure 4.1 depicts the estimation of the n+1th time step graphically. After the arrival of Eq. (4.14), which is also known as a ﬁnite diﬀerence equation, it is important to determine what values of c are required for the estimated solution to be stable. This is accomplished by performing a von Neumann stability analysis.
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+51
+
+Figure 4.1: Graphical representation of the dependence on the grid points.
+4.1.1 Von Neumann Stability Analysis
+When modeling PDE’s, it is important consider the general behavior of the solution as well as the stability of the numerical approximation developed. There are four general requirements needed for a proper numerical solution to be generated, and they are
+1. Consistency
+2. Stability
+3. Order
+4. Convergence
+A numerical method is considered consistent when the diﬀerence between the original PDE or ODE and the ﬁnite diﬀerence equation (i.e., the truncated higher order terms left over from Taylor expansions) vanishes as the grid spacings approach zero. Order is used to categorize the behavior of the global error, which should be decreasing as the grid spacing goes to zero. Stability is one of the most important requirements for a proper numerical scheme, and must be analyzed for every ﬁnite diﬀerence approximation. For a PDE or ODE that is stable, the FDE must produce a bounded solution if the method is to be considered stable. Similarly, if the PDE/ODE that is being approximated is unstable, then the numerical solution must also be unstable. Convergence of an FDE is ensured when the requirements of stability and consistency are both satisﬁed.
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+52
+
+Von Neumann’s method for stability analysis is useful for linear PDE’s because it is based on Fourier decomposition of the numerical error [10]. This method is powerful, because numerical schemes are generally hindered by numerical error. Finite diﬀerence schemes are stable when the error produced at one time step does not increase signiﬁcantly compared to the previous time step. If the errors grow with increasing temporal steps, then the numerical method is unstable. An expression for the exact solution in a single time step can be written as
+
+fin+1 = Gfin ,
+
+(4.15)
+
+where G is called the ampliﬁcation factor. For the solution of f (x, t) to be bounded, which is a constraint produced by using Fourier series decomposition, the solution of Eq. (4.14) at T = Tmax or T = N ∆t must be
+
+fiN = GN fi0
+
+(4.16)
+
+where N is the maximum temporal iteration. This condition needs to be met because
+
+the Fourier decomposition assumes that the solution is periodic. This leads to the
+
+requirement of |G| ≤ 1 for the numerical solution to be bounded, this will allow us
+
+to produce a convergence criteria.
+
+From the earlier analysis, it can be observed that each progressing time step is not
+
+only dependent on fin but it also depends on fin+1 and fin−1. To develop an expression for G, fin+1 and fin−1 need to be written in terms of fin, which is accomplished by expressing the spatial information for a single time step in a complex Fourier series.
+
+All the components of the Fourier series in one time step are propagated forward
+
+in time independent of each other. Therefore, the solution is just the sum of all
+
+the Fourier components at that time step. The complex Fourier series for f (x, tn) is
+
+represented as
+
+∞
+
+f (x, tn) = F (x) =
+
+AmeIkmx ,
+
+m=−∞
+
+(4.17)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+53
+
+√ where the I = −1 and km, the wavenumber, is deﬁned as
+
+2mπ km = 2L ,
+
+(4.18)
+
+where L is the length of the domain. With these deﬁnitions for Eqs. (4.17) and (4.18), fin can be rewritten, looking at only one Fourier component,
+
+fin = f (xi, tn) = AmeIkmxi = AmeIkm(i∆x) = AmeIi(km∆x) .
+
+(4.19)
+
+Now a relation between fin and fin±1 can be developed, where fin±1 can be expressed as
+
+fin±1 = f (xi±1, tn) = AmeIkm(xi±∆x) = AmeIkm(i±1)(∆x) = AmeIkm(∆x)e±Ikm(∆x) = fine±Ikm(∆x) .
+
+(4.20)
+
+This representation of fin±1 will allow for simple substitution into Eq. (4.14), the ﬁnite diﬀerence approximation to the linear convection equation. These relations are applicable only when the mth components of the complex Fourier series are kept. This means that all components of (4.17) and all values of ∆x must be considered to ensure stability.
+The exponential terms in Eq. (4.20) are periodic with a period of 2π; therefore, it is only required to analyze G over the domain 0 ≤ km∆x ≤ 2π. Since km∆x is eﬀectively an angle, we can let θ = km∆x, and Eq. (4.20) can be written as
+
+fin±1 = fine±Iθ
+
+(4.21)
+
+These relations can be substituted into (4.14) to produce
+
+fin+1
+
+=
+
+fin
+
+−
+
+c 2
+
+fineIθ − fine−Iθ
+
+c2 +
+2
+
+fineIθ − 2fin + fine−Iθ
+
+.
+
+(4.22)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+54
+
+Factoring out fin from the right hand side, and employing Euler’s relation e±Iθ = cosθ + Isinθ the ampliﬁcation factor can be written as
+
+G = 1 − Ic sin θ + c2 (cos θ − 1) = c2 cos θ + (1 − c2) − Ic sin θ .
+
+(4.23)
+
+Since there is a requirement on the value of the ampliﬁcation factor, |G| ≤ 1, we can
+
+develop constraints on the values of θ and c. Equation (4.23) describes and ellipse in
+
+the complex plane, where the center of the ellipse is located at 1 − c2, and the axes
+
+are dependent on c and c2.
+
+In Figure 4.2, it is shown that ellipses within the unit circle, representing |G| ≤ 1,
+
+are stable because they satisfy the ampliﬁcation factor constraint. This means that
+
+for a stable solution, the primary constraint is on the value of c, because it determines
+
+the size of the ellipse, therefore
+
+u∆t c= ≤1
+∆x
+
+(4.24)
+
+is the condition that needs to be satisﬁed for a stable numerical solution, which is
+
+also refereed to as convergence criteria.
+
+4.2 Diﬀusion Equation
+
+Since the purpose of this paper is to explore numerically the behavior of nonlinear dispersive waves, it would be beneﬁcial to explain how a dispersive equation is numerically solved. This is due to the fact that solitons exhibit diﬀusive properties that cancel out the nonlinear steepening eﬀect. The steepening eﬀect of these nonlinear PDE’s act similar to the convection equation that was discussed in §4.1.
+This section will develop a suitable method for solving the diﬀusion equation
+
+∂f ∂2f =α ,
+∂t ∂x2
+
+(4.25)
+
+which is a parabolic PDE (see appendix for details on PDE classiﬁcations). A suitable method for solving the diﬀusion equation is the backward-time centered-space (BTCS) method, which is a “fully implicit method.” It will become clear later why
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+55
+
+Figure 4.2: Locus plot of the ampliﬁcation factor G. Two ellipses are displayed with values c = 0.75 and c = 1.25, along with a unit circle, c = 1, centered at the origin.
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+56
+
+this method is considered implicit, but the most important property of this method is
+
+its unconditional stability. Von Neumann stability analysis allows for a simple proof
+
+of the scheme’s stability.
+
+The ﬁrst step in ﬁnding a numerical approximation for the diﬀusion equation is
+
+to acquire an approximation for the time derivative. This is done exactly the same
+
+way as in §4.1, which begins with a Taylor series expansion of fin around a single time
+
+step ∆t.
+
+fin
+
+=
+
+f |ni +1
+
++
+
+(−∆t)ft|ni +1
+
++
+
+(−∆t)2 2
+
+ftt|ni +1
+
++
+
+O(∆t3)
+
+(4.26)
+
+This is where the name “backward” emerges. Rather than Taylor expanding around
+
+the current time (nth time step), we are expanding around a future time (n + 1)th
+
+time step, see Eq. (4.5). An expression for the time derivative evaluated at the next
+
+time step (n + 1) is required because two points are needed to acquire an estimation of a derivative, so solving for ft|ni +1 and grouping the ftt term with the higher order terms produces
+
+ft|ni +1
+
+=
+
+fin+1 − ∆t
+
+fin
+
++
+
+(∆t) 2
+
+ftt|ni +1
+
++
+
+O(∆t2)
+
+.
+
+(4.27)
+
+The last term can be eliminated because it is not required for the backward-time centered-space numerical scheme. The ﬁnal approximation
+
+ft|ni +1
+
+=
+
+fin+1 − fin ∆t
+
++ O(∆t)
+
+,
+
+(4.28)
+
+is therefore only ﬁrst order accurate in time. Now Eq. (4.28) can be substituted into the diﬀusion equation along with a second order centered space approximation (evaluated at the future time step tn+1) for the second derivative. These substitutions allow for the complete ﬁnite diﬀerence approximation equation for the diﬀusion equation with an accuracy of O(∆t) and O(∆x2),
+
+fin+1 − fin = α fin++11 − 2fin+1 + fin−+11 .
+
+∆t
+
+∆x2
+
+(4.29)
+
+On the right hand side of Eq. (4.29), it can be observed that all of the functional
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+57
+
+evaluations are at tn+1 as a opposed to tn. That is, this scheme is backward in time, which approximates all spatial information in the (n + 1)th time step from the values obtained in the nth time step. A forward time ﬁnite diﬀerence method would use the spatial information in the nth time step to approximate the (n + 1)th step.
+The goal is to solve for f (tn+1), and those terms can be collected on the right hand side. Also the diﬀusion number, d = α∆t/∆x2, can be introduced into Eq. (4.29) and provide less clustered form. The ﬁnal product is
+
+− dfin−+11 + (1 + 2d)fin+1 − dfin++11 = fin,
+
+(4.30)
+
+which is an implicit method for solving for the (n + 1)th value in terms of the nth value because fin+1 can not be solved for explicitly. There are two unknown values that neighbor fin+1, which are fin++11 and fin−+11. With appropriate boundary conditions, Eq. (4.30) can be solved as a system of equations for fin+1 using a matrix method, 0 ≤ i ≤ N , where N is the number of spatial points. It is simple because the matrix is tri-diagonal.
+For every numerical scheme, it is necessary to investigate the stability to validate the usefulness of the numerical method. The Von Neumann stability analysis discussed in §4.1.1 is suitable for developing an analytical expression for the stability of the diﬀusion equation approximation, Eq. (4.30), because of the approximation’s linearity. Substitution of the Fourier series representations of fin++11 and fin−+11 yields
+
+− dfin+1e−Iθ + (1 + 2d)fin+1 − dfin+1eIθ = fin,
+
+(4.31)
+
+and then solving for fin+1 gives
+
+fin+1(1 + 2d − 2d cos θ) = fin .
+
+(4.32)
+
+After substitution of the ampliﬁcation factor G and solving for it, the stability con-
+
+dition is
+
+1
+
+G=
+
+≤1.
+
+1 + 2d(1 − cos θ)
+
+(4.33)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+58
+
+To achieve a stable numerical solution, |G| ≤ 1 is always satisﬁed by Eq. (4.33) for any value of θ and d; therefore, the BTCS method for solving the diﬀusion equation is “unconditionally stable”.
+
+4.3 Korteweg-de Vries Equation
+
+The Korteweg-de Vries equation is a nonlinear partial diﬀerential equation that describes the behavior of waves in shallow water. It was one of the ﬁrst nonlinear PDE’s that produced exactly solvable and soliton solutions. The KdV equation contains a nonlinear term and a dispersive term which allows the solitary wave phenomena to occur. The KdV equation has the form
+
+∂U
+
+∂U
+
+∂3U
+
++ αU
+
+∂t
+
+∂x
+
++
+
+β ∂x3
+
+=0.
+
+nonlinear term dispersive term
+
+(4.34)
+
+where α and β are free parameters, and one standard selection is α = 6 and β = 1 (see Appendix A.1 for details of scaling).
+When trying to numerically solve nonlinear PDE’s, it is helpful to split the equation’s spatial derivatives and solve them separately with diﬀerent numerical schemes that have been proven to accurately calculate the term under question, which is known as operator splitting [7]. For instance, the term with the most complications is the nonlinear term, and it will be solved ﬁrst. The numerically approximated solution of
+
+∂U
+
+∂U
+
+= −αU
+
+∂t
+
+∂x
+
+(4.35)
+
+will serve as an intial guess, and then will be corrected by using it as the initial
+
+condition for
+
+∂U
+
+∂3U
+
+= −β .
+
+∂t
+
+∂x3
+
+(4.36)
+
+A suitable scheme to employ for solving the nonlinear equation would be the Lax-
+
+Wendroﬀ one-step method, because it works very well with the linear convection
+
+equation, although some complications arise because of the nonlinearity.
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+59
+
+As previously explained in §4.1, the Lax-Wendroﬀ one-step method starts with expanding U (x, t) in a Taylor series in time, as done in Eq. (4.5),
+
+Uin+1
+
+=
+
+Uin
+
++
+
+∆tUt|ni
+
++
+
+∆t2 2
+
+Utt
+
+|ni
+
++
+
+O(∆t3)
+
+.
+
+(4.37)
+
+Since the KdV equation only contains a ﬁrst order time derivative, the second term in in Eq. (4.37) can be replaced with
+
+Ut = −αU Ux .
+
+(4.38)
+
+It is now appropriate to derive what should replace the Utt term in Eq. (4.37). To
+
+do this, we can start with Eq. (4.38) and diﬀerentiate it with respect to time, which
+
+produces
+
+Utt = (Ut)t = (−αU Ux)t = −α(UtUx + U (Ux)t) .
+
+(4.39)
+
+With simple substitution of Eq. (4.38) along with the commutative properties of ∂/∂t and ∂/∂x , Eq. (4.39) can be rewritten as
+
+Utt = −α(−αU Ux2 + U (Ut)x) = α2(U Ux2 + U (U Ux)x)
+
+(4.40)
+
+or,
+
+Utt = α2(U Ux2 + U Ux2 + U 2Uxx) = α2U (2Ux2 + U Uxx)
+
+(4.41)
+
+Now Eqs. (4.38) and (4.41) can be placed into Eq. (4.37) so the Taylor series expansion in time for the nonlinear term is only dependent on spatial derivatives
+
+Uin+1
+
+=
+
+Uin
+
+−
+
+α∆t(U Ux)|ni
+
++
+
+∆t2 2
+
+α2U
+
+(2Ux2
+
++
+
+U Uxx)|ni
+
++
+
+O(∆t3)
+
+.
+
+(4.42)
+
+This allows for the estimation of the entire nonlinear term by replacing the spatial derivative terms with ﬁnite diﬀerence approximation equations. Therefore, the Ux and Uxx terms can be approximated with
+
+Ux|ni
+
+=
+
+Uin+1 − Uin−1 2∆x
+
+(4.43)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+60
+
+and
+
+Uxx|ni
+
+=
+
+Uin+1 − 2Uin + Uin−1 ∆x2
+
+.
+
+(4.44)
+
+Equations (4.43) and (4.44) are centered-space ﬁnite diﬀerence approximations, so
+
+making the proper substitutions into Eq. (4.42), the ﬁnal ﬁnite diﬀerence approxima-
+
+tion equation using a Lax-Wendroﬀ one-step scheme is
+
+Uin+1 = Uin − α∆tUin
+
+Uin+1 − Uin−1 2∆x
+
++
+
+α2∆t2 2
+
+Uin
+
+2
+
+Uin+1 − Uin−1 2∆x
+
+2
++ Uin
+
+Uin+1 − 2Uin + Uin−1 ∆x2
+
+. (4.45)
+
+Since Eq. (4.45) is only approximating the nonlinear term, the result of this calculation is going to be an estimation which will be used in the calculation of the dispersive term, which is the third order derivative in the KdV equation. Since the equation
+
+Ut = −βUxxx
+
+(4.46)
+
+does not have a clear PDE classiﬁcation, but with insight of how physical phenomena governed by the KdV behave, it can be inferred that this term acts as similar to the diﬀusion equation. With this insight, we can attempt to develop a treatment to solve this PDE similar to ones proposed to solve the diﬀusion equation.
+Fully implicit methods are very powerful when it comes to solving parabolic, or diﬀusion-type, equations because they are generally unconditionally stable. Explicit methods are generally conditionally stable, which leads to adjusting the spatial and temporal steps. Sometimes the temporal step ∆t becomes extremely small in turn leading to large computation times. Reduction in computation time is a direct result of the implicit numerical scheme’s unconditional stability, but using this type of method is numerically intensive because all the spatial information is calculated each time step (i.e., solving a system of equations each time step). This is easily remedied by using an LU decomposition matrix method for inverting matrices, where the decomposition is only required once for the entire process. The backward-time centered-space method is desirable for solving Eq. (4.46) because of its unconditional
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+61
+
+stability and simplicity of deriving the ﬁnite diﬀerence approximation. To arrive at a BTCS method, we must derive the necessary ﬁnite diﬀerence ap-
+proximation that produces an equation to represent backward time stepping. First, Uin is expanded in time around the (i, n + 1) point using a Taylor series expansion,
+
+Uin
+
+=
+
+Uin+1
+
++
+
+Ut|ni +1(−∆t)
+
++
+
+1 2
+
+Utt|ni +1
+
+(−∆t)2
+
++
+
+O(∆t3)
+
+.
+
+(4.47)
+
+Since the desired quantity is the ﬁrst time derivative approximation for the next time step, it is ideal to solve Eq. (4.47) for Ut|ni +1, which gives
+
+Ut|ni +1
+
+=
+
+Uin+1 − ∆t
+
+Uin
+
++ O(∆t).
+
+(4.48)
+
+Using a second order centered-space ﬁnite diﬀerence approximation for the third spatial derivative in Eq. (4.46), the BTCS approximation can be written as
+
+Uin+1 − Uin = −β Uin++21 − 2Uin++11 + 2Uin−+11 − Uin−+21 ,
+
+∆t
+
+2∆x3
+
+(4.49)
+
+which is the same as (4.29) except that a third derivative appears on the right hand side as opposed to a second derivative. Equation (4.49) can be rearranged as
+
+− dUin++21 + 2dUin++11 + Uin+1 − 2dUin−+11 + dUin−+21 = Uin
+
+(4.50)
+
+where d = −β∆t/2∆x3. It is diﬃcult to solve for Uin+1 because there are ﬁve unknowns, i.e., the matrix has four oﬀ-diagonals that are nonzero, in contrast to the tri-diagonal matrix that is consistent with Eq. (4.31). This is also known as a “band matrix.” Therefore a system of equations must be written to solve for each spatial point at once for each time step. For example, if we start at the 6th spatial point
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+62
+
+(i.e., i = 6) and create two more equations for i = 7 and i = 8, we have
+
+−dU8n+1 + 2dU7n+1 + U6n+1 − 2dU5n+1 + dU4n+1 = U6n −dU9n+1 + 2dU8n+1 + U7n+1 − 2dU6n+1 + dU5n+1 = U7n −dU1n0+1 + 2dU9n+1 + U8n+1 − 2dU7n+1 + dU6n+1 = U8n
+which can be written as a band matrix for all spatial grid points i as
+AU n+1 = b .
+
+(4.51) (4.52) (4.53)
+(4.54)
+
+A simple matrix solver, using the LU decomposed matrices, can be employed to solve Eq. (4.54) for the next time step, where the current time step information is stored in b. The current time step information is the estimated U n+1 from solving the nonlinear term Eq. (4.45)
+
+4.4 Periodic Boundary Conditions
+
+For these numerical methods to work properly near the boundary of the spatial grid, it is necessary to impose boundary conditions on the end points of the grid which can be seen in Figure 4.3. Looking at the ﬁnite diﬀerence equation for the Lax-Wendroﬀ one step method, boundary conditions need to be imposed on the grid points i = 0 and N where N is the maximum spatial grid point.
+Since the solutions will be localized, a large domain and periodic boundary conditions will produce the eﬀect of an inﬁnite domain; therefore the boundary conditions U → 0 as x → ±∞ will essentially be satisﬁed. What is meant by periodic boundary conditions is at the N th grid spacing (i = N ), the (i + 1)th term will be replaced with the ﬁrst grid spacing, and the opposite happens at the ﬁrst grid spacing. Essentially for Eq. (4.45), we will have the following points equal to each other.
+
+U−n1 = UNn+1
+
+(4.55)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+63
+
+Figure 4.3: This ﬁgure displays a general outline of the grid spacing at time step n with boundaries at x = 0 and x = L.
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+64
+
+and
+
+UNn +1 = U0n+1
+
+(4.56)
+
+Applying these boundary conditions to the diﬀusive term, Eq. (4.50) is a bit more complicated, because terms in the banded matrix, A, need to be adjusted. If we look at the grid point i = 0, according to the ﬁnite diﬀerence equation, the i − 1 and i − 2 terms are outside the domain. These terms need to be replaced with two terms at the other end of the domain, so
+
+when i = 0 → Uin−+21 = UNn+−11 and Uin−+11 = UNn+1
+
+(4.57)
+
+and when i = 1 → Uin−+21 = UNn+1 .
+The same goes for the end spatial point. Therefore the matrix A becomes
+
+
+
+
+
+1 2d −d 0 · · · d −2d
+
+ 
+
+−2d
+
+1
+
+2d
+
+
+
+ 
+
+d
+
+−2d 1
+
+
+
+A= 
+
+0
+
+... ...
+
+  
+
+...
+
+0d
+
+  −d · · · 0
+
+
+
+2d −d · · ·
+
+−d 0 · · · 2d −d 0 ... ... ...
+−2d 1 2d d −2d 1 0 d −2d
+
+d
+
+ 
+
+...
+
+  
+
+
+
+0
+
+. 
+
+
+
+−d
+
+ 
+
+ 2d 
+
+
+
+1
+
+(4.58)
+
+This means that the matrix is no longer banded because it has nonzero “corners”, which complicates the inversion process somewhat. However, since most of the oﬀdiagonal elements are still zero, the matrix can still be factorized using the LU decomposition method.
+
+4.5 Derivative Nonlinear Schro¨dinger Equation
+After an in depth analysis of how to treat convection, diﬀusion, and the KdV equation, a numerical solution for the Derivative Nonlinear Schr¨odinger Equation (DNLS) will
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+65
+
+be developed in this section. Producing simulations of the nonlinear waves that are governed by the DNLS equation can provide information of the processes that enable these soliton solutions. As mention earlier, the DNLS equation can be derived from the magnetohydrodynamic equations that describe the behavior of plasmas. Using the reductive perturbation technique with the appropriate assumptions, the DNLS equation can be derived for the magnetic ﬁeld strength.
+For low plasma β, the DNLS can describe waves propagating perpendicular to the background magnetic ﬁeld, or waves that propagate parallel to the background magnetic ﬁeld. This section will focus on the parallel propagation case,
+
+∂b ∂ +α
+∂t ∂x
+
+|b|2b
+
+∂2b + iµ ∂x2 = 0 ,
+
+(4.59)
+
+where
+
+b(x, t) = By + iBz ,
+
+(4.60)
+
+and b(x, t) → b0 = 0 as x → ±∞. The coeﬃcients α and µ depend on the type of plasma under inspection. For example, for a cold plasma (β < 1) we have
+
+α
+
+=
+
+1 4
+
+vA B02
+
+,
+
+µ=
+
+1 vA2 2 Ωi
+
+(4.61)
+
+where vA is the Alfv´en velocity, B0 is the background magnetic ﬁeld, and Ωi is the ion gyrofrequency. For a warm plasma, the coeﬃcients are
+
+α=
+
+1 4
+
+vA B02
+
+1
+
+1 −
+
+β
+
+,
+
+β
+
+=
+
+c2s vA2
+
+.
+
+(4.62)
+
+The coeﬃcients are not in dimensionless form, therefore we can introduce dimensionless variables and transform the DNLS equation to dimensionless variables, which is done in Appendix A.2.
+As explained in §4.3, it is proﬁtable to split complicated nonlinear PDE’s into two diﬀerent PDE’s when trying to produce a numerical approximation of the equation, because it reduces the complexity of the ﬁnite diﬀerence equation. For the DNLS equation, the nonlinear term is the most complicated to solve and a suitable numerical
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+66
+
+method for the diﬀusive term was investigated in Section 4.2. The main goal is to
+
+develop a method using
+
+∂b∗
+
+∂
+
+= −α
+
+|b∗|2b∗
+
+∂t
+
+∂x
+
+(4.63)
+
+where b∗(x, t) is the ﬁrst estimate of b(x, t). This estimate, b∗, will be used to solve
+
+the diﬀusive term,
+
+∂b
+
+∂2b
+
+= −iµ ,
+
+∂t
+
+∂x2
+
+(4.64)
+
+which will produce the solution b(x, t) for the same time step used to solve Eq. (4.63).
+
+Lax-Wendroﬀ type numerical schemes to solve PDE’s are useful for convective type
+
+processes which in the case of the DNLS the nonlinear term acts similarly because
+
+it produces a nonlinear steepening eﬀect. The one step method was used earlier
+
+to produce suﬃcient numerical solvers for the linear convection equation and the
+
+nonlinear term in the KdV equation, which is the nonlinear convection equation.
+
+Since the nonlinear term in the KdV equation was weakly nonlinear, it was trivial
+
+to produce the necessary derivatives in time for the Taylor series expansion. With
+
+the DNLS equation, this freedom is not present and it can be diﬃcult producing a
+
+one step Law-Wendroﬀ scheme. A two step Lax-Wendroﬀ scheme is available and
+
+is powerful for solving nonlinear equations, because it uses calculations at half time
+
+steps to make an approximation which provide second order accuracy in time and
+
+space (O(∆t2) + O(∆x2)).
+
+Essentially the scheme has a prediction equation and then a correction equation,
+
+which is evaluated over one full time step. The ﬁrst step of the Lax-Wendroﬀ scheme
+
+calculates values for b(x, t) at a half time step, and half spatial grid points, for example
+
+at n+1/2 and i±1/2. This scheme is explicitly solved, so for simplicity the nonlinear
+
+product inside the derivative operator is calculated before the solution is estimated.
+
+This allows for a simpler expression of Eq. (4.63) to be written as
+
+∂b
+
+∂g(b(x, t))
+
+= −α
+
+,
+
+∂t
+
+∂x
+
+(4.65)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+67
+
+which is in ﬂux conservative form,where
+
+g(b(x, t)) = b(x, t)|b(x, t)|2
+
+(4.66)
+
+The Lax-Wendroﬀ ﬁrst step ﬁnite diﬀerence approximation for Eq. (4.65) for the (i + 1/2)th step is
+
+bni++11//22 − (bni + bni+1)/2 = −α gin+1 − gin .
+
+(∆t)/2
+
+∆x
+
+(4.67)
+
+Note that bn is known for all i. For the second Lax-Wendroﬀ step, the i − 1/2 spatial iteration is required. Using the same form as Eq. (4.67), the backward space ﬁnite diﬀerence approximation for the (n + 1/2)th time step is
+
+bni−+11//22 − (bni + bni−1)/2 = −α gin − gin−1 .
+
+(∆t)/2
+
+∆x
+
+(4.68)
+
+Solving for the bni±+11//22 terms yields
+
+bni++11//22
+
+=
+
+bni
+
++ bni+1 2
+
+−
+
+α∆t 2∆x
+
+(gin+1
+
+− gin)
+
+(4.69)
+
+and
+
+bni−+11//22
+
+=
+
+bni
+
++ bni−1 2
+
+−
+
+α∆t 2∆x
+
+(gin
+
+− gin−1)
+
+.
+
+Using Eqs. (4.69) and (4.70), the second step in is calculated with
+
+(4.70)
+
+bni +1 − bni = −α gin++11//22 − gin−+11//22 ,
+
+∆t
+
+∆x
+
+(4.71)
+
+which uses a ﬁrst center ordered diﬀerence in space for the half time step. Solving
+
+for bni +1 produces
+
+bni +1
+
+=
+
+bni
+
+−
+
+α∆t ∆x
+
+gin++11//22 − gin−+11//22
+
+.
+
+(4.72)
+
+where
+
+gin±+11//22 = g bni±+11//22
+
+(4.73)
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+68
+
+and bni±+11//22 was obtained from Eqs. (4.69) and (4.70). The solution to Eq. (4.72) is the solution to the nonlinear portion of the DNLS equation. As previously stated, this value for bni +1 is an estimate of the DNLS numerical solution which in turn will be “updated” by using these values for bni +1 as the initial conditions for the diﬀusive term.
+
+A numerical method was developed in §4.2 for the diﬀusion equation that was
+
+implicit as well as unconditionally stable. There will be a slight diﬀerence here because
+
+the nature of the diﬀusive term in the DNLS is complex. Starting with the diﬀusion
+
+term
+
+∂b
+
+∂2b
+
+∂t = −iµ ∂x2 ,
+
+(4.74)
+
+and substituting BTCS ﬁnite diﬀerence approximations yields
+
+bni +1 − bni = −iµ bni++11 − 2bni +1 + bni−+11 .
+
+∆t
+
+∆x2
+
+(4.75)
+
+Introducing the variable D = iµ∆t/∆x2 and moving the bn+1 terms on the right hand side to the left gives
+
+Dbni−+11 + (1 − 2D)bni +1 + Dbni++11 = bni ,
+
+(4.76)
+
+which implicitly contains the solution of bni +1 for all given i that the values of bni are provided from the solution of the nonlinear approximation, Eq. (4.72). Again, this results in a banded matrix, where the system of equations can be solved using LU factorization method.
+
+4.5.1 Stability Analysis of the Lax-Wendroﬀ Two-Step/BTCS scheme
+As mentioned earlier, the nonlinear term and the dispersive term were solved separately for numerical and analytical convenience. This allows for stability analysis of each term individually or the overall stability. As done in §4.2, we can apply the von Neumann stability analysis to the dispersive term. Recalling that the FDE for this
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+69
+
+0.35 0.3
+0.25
+
+dt = 10−2 dt = 10−3 dt = 10−4 dt = 10−5 dt = 10−6
+
+0.2
+
+|b|RM S
+
+0.15
+
+0.1
+
+0.05
+
+0
+
+0
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+time step (n)
+
+Figure 4.4: Stability analysis of several selections for ∆t (dt). The root mean square error drops signiﬁcantly with decreasing ∆t. The initial proﬁle used was a two parameter soliton with an eigenvalue λ = 0.5 + 0.5i. It can be seen that the largest time step was unstable due to the oscillations of the root mean square error.
+
+term was
+
+Dbni−+11 + (1 − 2D)bni +1 + Dbni++11 = bni ,
+
+we can replace the bni±+11 terms with bn+1e±Iθ, resulting in
+
+(4.77)
+
+Dbn+1e−Iθ + (1 − 2D)bni +1 + Dbn+1e+Iθ = bni .
+
+(4.78)
+
+Now Euler’s formula can be used to simplify Eq. (4.78), and then substitution of the ampliﬁcation factor G yields
+
+1 Dcosθ + (1 − 2D) = ,
+G
+
+(4.79)
+
+or
+
+1
+
+G=
+
+,
+
+(4.80)
+
+(1 − 2D) + Dcosθ
+
+which is the same as for the diﬀusion equation. By inspection, the condition |G| ≤ 1
+
+is always satisﬁed even though D is complex. It was relatively trivial producing
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+70
+
+0.12
+
+0.1
+
+0.08
+
+bRM SE
+
+0.06
+
+0.04
+
+0.02
+
+0
+
+0
+
+50
+
+100 150 200 250 300 350
+
+Time Steps
+
+Figure 4.5: Plot of the root mean square error between the numerical and analytical solutions of the DNLS equation. The value of the time step used was dt = 10−4,
+therefore smaller time steps should reduce the RMS.
+
+a relation for the dispersive term because of its linearity. However, analyzing the
+
+stability of the nonlinear term is non-trivial. Von Neumann stability analysis cannot
+
+be applied for this term because linearity is a strict requirement for producing stability
+
+relations similar to Eq. (4.80).
+
+Although the nonlinearity prevents the ability to use the von Neumann stability
+
+analysis, we can use the stability condition acquired from the linear convection FDE as
+
+a guide for the values of ∆x and ∆t. This is possible because of the ﬂux conservative
+
+nature of the Lax-Wendroﬀ method. A rough estimate for the stability condition for
+
+the nonlinear term is
+
+α∆t 1≥
+∆x
+
+(4.81)
+
+which restricts ∆t to be smaller than ∆x if α = 1. Another useful technique to
+
+investigate stability of the overall Lax-Wendroﬀ/BTCS method would be to vary the
+
+time step, ∆t, and determine its inﬂuence over a large number of time steps. This
+
+can be done by evaluating the root mean square error between a numerical solution
+
+and a known analytical solution.
+
+Figure 4.4 demonstrates the eﬀect of decreasing the temporal step value, ∆t, on the
+
+root mean squared error between the numerical solution and the analytical solution.
+
+Ideally the smaller the time step, the more accurate the solution becomes, but has the
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+71
+
+converse eﬀect on computational time. Another reinforcement of the scheme’s ability to numerically integrate the DNLS equation accurately is a comparison with a known analytical solution along with calculating the root mean square error between the numerical and analytical solutions. Figure 4.6 demonstrates a test of the numerical scheme derived earlier using a two parameter soliton solution with an eigenvalue of λ = 0.5 + 0.5i. The waveform does hold its shape and does not disperse, but more concrete evidence of its stability comes from Figure 4.5, which displays the root mean square (RMS) error between the analytical and numerical solutions, where the time step used was dt = 10−4. Decreasing the time step will lead to a decrease in the numerical error, which will decrease the RMS.
+
+CHAPTER 4. NUMERICAL SOLUTIONS FOR NONLINEAR PDE’S
+
+72
+
+Figure 4.6: Numerical solution of the DNLS with a two parameter soliton solution
+with an eigenvalue of λ = 0.5 + 0.5i. The time step used in this numerical integration was dt = 10−4.
+
+Chapter 5
+Preliminary Analysis of Ulysses
+data
+The main goal of this thesis is to provide preliminary evaluation of an event observed by the Ulysses spacecraft that has characteristics familiar with a soliton that is governed by the DNLS equation. It has been reported [21, 27] that the Ulysses spacecraft has made observations of small scale solitary structures in the interplanetary magnetic ﬁeld (IMF), which is the magnetic ﬁeld generated by the Sun’s internal processes and encompasses most of the solar system. The IMF is the ﬁeld that permeates the space between planetary magnetospheres and the Sun.
+The primary mission of the Ulysses spacecraft was to produce a characterization of the heliosphere as a function of solar latitude. Points of interest for the mission were when the spacecraft made passes at or over 70 degrees solar latitude at both of the Sun’s poles. Ulysses reached 70 degrees South on June 26th, 1994 and started a 4 month observation of the high latitudes taking measurements of the Sun’s corona. There were two magnetometers on board the spacecraft, a vector helium magnetometer and a ﬂux gate magnetometer. The magnetic ﬁeld data was collected with a time resolution of 2 vectors per second and a sensitivity of 10 pT [2]. In addition, the plasma measurements where made by SWOOPS (solar wind observations over the poles of the sun), which used electrostatic analyzers to measure the electron and ion energies that are present in the solar wind [3].
+73
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+74
+
+Figure 5.1: Pictorial representation of Ulysses trajectory, from [1].
+The following sections will provide an analysis of the plasma characteristics during the event, which was identiﬁed by Rees et al. [21] as a possible soliton candidate. Figure 5.2 displays the the list of magnetic pulses that were identiﬁed in the Ulysses magnetometer data, and the event that will be analyzed is highlighted. A rotation of the coordinate system of that speciﬁc magnetic bump will be performed with a minimum variance transformation. Minimum variance analysis uses spatial averages of the magnetic ﬁeld vectors to produce a magnetic variance matrix. Eigenvalues that are associated with this magnetic variance matrix determine the rotation made from the current coordinate system (RTN coordinates, which will be explained later), where the smallest eigenvalue is associated with the minimum variance direction. Eigenvectors that are connected with the eigenvalues provide the directions for the coordinate system rotation. The main purpose of this transformation is to rotated into a coordinate system where the minimum variance direction is going to be considered as the direction of propagation of this magnetic pulse.
+After the minimum variance transformation of the magnetic bump observed on
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+75
+
+Table 5.1: Ulysses Orbital Elements on Feb. 21st 2001
+
+Parameter
+Radial Distance from Sun Semi-Major Axis Eccentricity
+Radial distance at Aphelion Radial distance at Perihelion Speciﬁc Angular Momentum
+Speciﬁc Energy
+
+Variable
+r a e ra rp h
+
+Value
+1.685 AU 3.37 AU
+0.602 5.4 AU 1.34 AU 6.531 × 109km2/s −83.92km2/s2
+
+February 21st, 2001, analytical solutions provided by the DNLS equation will be used as an analogue of the data for analysis. This is done by selecting a suitable type of soliton (two parameter, in this case), and comparing the transverse components of b with the intermediate and maximum variance coordinates along with the hodogram, determined from the minimum variance rotation. It turns out, that the two parameter soliton’s form corresponded the best with the minimum variance transformed magnetometer data. Reasoning for this step in the analysis lies behind the fact that the types of mathematical techniques used to interpret the data has a strict requirement of the wave proﬁle being smooth and continuous. There is inherent noise in the data itself, therefore these small variations might lead to false results. An appropriate soliton is found, where the morphology does correspond well with the minimum variance transformed magnetic pulse, but the amplitudes are diﬀerent. Therefore the proﬁle that is used as the analogue will be a scaled version of the analytical soliton solution.
+With the selected soliton proﬁle that mimics the data, a 2x2 eigenvalue shooting method solve was performed on that two parameter soliton that was scaled. The 2x2 eigenvalue shooting method consisted of a fourth order Runge-Kutta initial value problem solver, which solved for the eigenfunction Φ from left to right. Then a root ﬁnding method, Muller’s method, was used to determine where the function φ11(λ) = 0. So the RK4 method solved for the from left to right, and Muller’s method produced a guess for the eigenvalue, this guess was inserted back into RK4 and solved again from left to right. This process was iterated until the shooting
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+76
+
+Figure 5.2: List of the events identiﬁed by Rees et al. [21], that were classiﬁed as small scale solitary magnetic pulses. The event that will be analyzed is highlighted.
+method converged on an eigenvalue where the solution of φ11 at the right end of the domain was zero. In a later section, a demonstration of this method converging on a known soliton solution is provided. Also, the shooting method is performed on the smooth scaled two parameter soliton that was considered as an analogue of the magnetic pulse. The method converged on an eigenvalue that turned out to be on the real axis in the complex eigenvalue λ plane.
+The last section will implement the DNLS numerical integration method, which was developed in Chapter 4, as a way of determining if the magnetic ﬁeld data contains a soliton component, dispersive waves, or both. This is done because due to the fact that the way the shooting method is set up, it only determines if an eigenvalue is present in a speciﬁc potential (i.e., initial wave proﬁle), which one was found for the scaled two parameter soliton. It does not determine if the potential is reﬂectionless or what parameter (one or two) soliton solution corresponds with the
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+77
+
+converged eigenvalue. As a ﬁrst case, the Ulysses magnetometer data, which was transformed under the minimum variance analysis, was used as the initial condition, and only dispersive waves form without any solitons. The next situation will use the two parameter wave proﬁle that best matched the data along with a small oscillation in the background of by, which results in the two parameter soliton’s dissipation. Finally, the last case uses a “scaled” soliton that was used as an analogue of the data, as the initial wave proﬁle for the integration scheme. As was revealed with the 2x2 eigenvalue shooting method, a one parameter dark soliton does form, and the eigenvalue is close to the eigenvalue that was found by the shooting method.
+
+5.1 Magnetic bump observed on February 21st, 2001
+
+Measurements that the magnetometer made are displayed in Radial-Tangential-Normal
+
+coordinates (RTN), where R is the spacecraft-Sun radial distance, T is the vector pro-
+
+duced by
+
+Tˆ = ωˆ × Rˆ
+
+(5.1)
+
+where ωˆ is the Sun’s spin axis, and the N is
+
+Nˆ = Rˆ × Tˆ.
+
+(5.2)
+
+Figure 5.3 displays the conﬁguration of the RTN coordinate system. Figure 5.4 displays the magnetometer data observed by the Ulysses spacecraft of the structure that will be investigated. It can be seen that the structure is localized. The plasma characteristics are important when providing an analysis of spacecraft data because they provide information on the state of the plasma during the observation. Since we will interpret the magnetic ﬁeld structure as a soliton that behaves according to the DNLS equation, it is important to calculate the plasma β along with the angle of propagation with respect to the background magnetic ﬁeld to determine what type of nonlinear wave this structure might be.
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+78
+
+Figure 5.3: Radial-Tangential-Normal Coordinates. The radial component,R is the vector from the center of the Sun to the spacecraft. The tangential component,T, is the cross product of the Sun’s spin axis,wˆ, with the radial direction, and the normal direction completes the right handed coordinate system by crossing R with T.
+
+5.1.1 Plasma Characteristics
+Using the ion temperature and density measurements made by SWOOPS, the ion temperature observed was Ti ≈ 4 × 104 K and the proton density was ni ≈ 0.4 cm−3. From these values, the pressure can be calculated
+
+po = nikTi = 2.76 × 10−13 J/m3,
+
+(5.3)
+
+where k is Boltzmann’s constant. The background magnetic ﬁeld strength was about B0 ≈ 1 nT, therefore the Alfv´en speed was
+
+vA
+
+=
+
+√ B0 µ0mini
+
+=
+
+34.5
+
+km/s,
+
+(5.4)
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+79
+
+BR
+
+BT
+
+BN
+
+1.4 1.2
+1 0.8
+3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61 0.5
+0 −0.5
+−1 3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61 1 0.5 0 −0.5 3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61 1.6 1.4 1.2 1 0.8 3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61
+Time (hours)
+Figure 5.4: Magnetic ﬁeld components (and magnitude) measured by the VGM/FGM magnetometers on the Ulysses spacecraft on February 21st, 2001. The components are in RTN coordinates (see text for explanation).
+
+Bmag
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+80
+
+where µ0 is the permeability of free space, and mi is the proton mass. Finally, the
+
+plasma β was
+
+β=
+
+p0
+B02
+
+= 0.69.
+
+2µ0
+
+(5.5)
+
+Lengths in the DNLS equation are scaled to the ion inertial length (c/ωpi), and the
+
+ion plasma frequency was calculated to be
+
+ωpi =
+
+nie2 ≈ 830 Hz, 0mi
+
+(5.6)
+
+so the ion inertial length was calculated to be
+
+c = 360 km.
+ωpi
+
+(5.7)
+
+The orbital elements of Ulysses are needed to understand the length scale of the
+
+measured structure, which are presented in Table 5.1. Using these elements and the
+
+energy equation,
+
+v2 µ −=
+2r
+
+=
+
+−
+
+µ2 2h2
+
+(1
+
+−
+
+e2),
+
+(5.8)
+
+the velocity of the spacecraft was calculated to be
+
+µ v = 2 + = 29.75 km/s.
+r
+
+(5.9)
+
+Since the spacecraft is moving at about 30 km/s, the dimensionless spacing in between each magnetic ﬁeld measurement is
+
+∆x ≈ 0.1
+c/ωpi
+
+(5.10)
+
+because the measurements are made with a 1 second resolution.
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+81
+
+5.2 Minimum Variance Analysis of Observed Soli-
+tary Structure
+Minimum variance analysis is a powerful technique used to produce an estimation of the direction of a one-dimensional current layer, wavefront or some other time of transitional layer in a plasma [24]. Applying a minimum variance transformation to the event that is displayed in Figure (5.4), would minimize one of the three magnetic ﬁeld components which would eﬀectively serve as the direction of propagation (or in context of the DNLS equation, the x direction). The other two components would be the intermediate and maximum variations, i.e., By and Bz, respectively.
+To perform the transformation, the magnetic variance matrix needs to be calculated from the raw data measurements, which is done using
+
+Mµν = BµBν − Bµ Bν
+
+(5.11)
+
+where the subscripts µ and ν denote the Cartesian components (i.e., 1,2,3 is X, Y, Z) and the brackets denote a spatial average (refer to Ref [24] for more details). The corresponding eigenvalues of the magnetic variance matrix Mµν determine the minimum, intermediate and maximum variances, where the minimum eigenvalue is the estimated variance along the normal of the boundary or current layer, and its eigenvector is the minimum variance direction. Therefore, the intermediate eigenvalue will lead to the intermediate variance direction, and the maximum eigenvalue will lead to the maximum variance direction.
+It can be seen from Eq. (5.11) that the size of the interval of the measured data will aﬀect the structure of the magnetic variance matrix, altering its eigenvalues and corresponding eigenvectors. Therefore, it is necessary to pick an optimal interval size for performing the minimum variance transformation. This optimum size is when the minimum variance coordinate is smallest. This was done by calculating the root mean square error for all of the data points in the minimum variation coordinate, bmin, for diﬀerent interval sizes. Figure 5.5 shows the dependence of the root mean square error of bmin on the number of data points used in the minimum variance transformation
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+82
+
+bx(RM S)
+
+1
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+0
+
+0
+
+50 100 150 200 250 300 350 400 450
+
+interval size
+
+Figure 5.5: Root mean squre error of bmin as a function of the interval size added to number of data points encapsulating just the event (expressed as the amount of data points used for the minimum variance analysis).
+
+around the observed solitary wave structure. The proper interval was determined to be anywhere from 50-100 data points in addition to the number of data points of the just the isolated event (which was 32 points, or 32 seconds of magnetometer data).
+Figure 5.6a displays the observed wave structure after the rotation from the RTN coordinate system to the minimum variation coordinate system, with an optimal amount of time series data which minimized the minimum variance. For comparison for with soliton solutions provided by the DNLS equation, the minimum variance direction is going to be considered as the direction of propagation or x. Transverse components of the wave, binter and bmax, will be compared to the transverse components of the DNLS solution, by and bz, respectively. The polarization of the waveform, which can be seen in Figure 5.6b, has a resemblance to that of a banana. The angle of propagation with respect to the background magnetic ﬁeld (or the angle between the minimum variance eigenvector and the background magnetic ﬁeld vector of the raw data) can be calculated using
+
+θ = cos−1 xˆ · B0 ≈ 88.6◦ |xˆ| · |B0|
+
+(5.12)
+
+where xˆ is the minimum variation direction eigenvector and B0 is the background magnetic ﬁeld vector. The angle of propagation relative to the background magnetic
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+83
+
+bmin
+
+binter
+
+2
+0
+−2 3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61 2
+1
+0 3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61 2
+0
+−2 3.565 3.57 3.575 3.58 3.585 3.59 3.595 3.6 3.605 3.61
+Time (hours)
+(a)
+
+bmax
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5
+
+−1.5
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+1.5
+
+binter
+
+(b)
+
+bmax
+
+Figure 5.6: (a) The three components of the magnetic ﬁeld after the minimum variance transformation. (b) The hodogram of the minimum variance transformed data is also displayed. The soliton can be considered as a “banana polarized” soliton because of the distinct form of its hodogram.
+
+ﬁeld is close to perpendicular, therefore it can be considered as an oblique Alfv´en wave.
+
+5.3 Comparison of observed event with solitons solutions of the DNLS
+The observed bump in the magnetic ﬁeld presented in the previous section was found and analyzed previously by Rees et al. [21], in which a comparison with a one parameter bright soliton was made. The next section will provide the comparison and conclusions made about the observed bump. Following Rees et al. ’s [21] analysis, a comparison between the event and a two parameter soliton will be made, showing more morphological agreement than the comparison of the one parameter soliton.
+5.3.1 Previous comparison to one parameter bright soliton
+This particular event was analyzed by Rees et al. [21], but they were not able to provide complete correspondence between a theoretical soliton solution provided by
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+84
+
+Figure 5.7: Comparison of observed solitary structure with a one parameter bright soliton made by Rees et al. [21]. The comparison was made using a solution to the DNLS provided by Baumga¨rtel [5]. There is a strong agreement between the minimum variance transformed data and the magnitude and Bminimum, with slight correlation for Bmaximum. However, the hodogram and Bintermediate component are very diﬀerent.
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+85
+
+b y
+
+2
+Ulysses Data
+2P Soliton 1.5
+
+1
+
+0.5
+
+0
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−6
+
+−4
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+bz
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+−0.2
+
+−0.4
+
+−0.6
+
+−0.8
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+by
+
+bz
+
+Figure 5.8: Comparison of observed solitary structure with a two parameter soliton with an eigenvalue of λ = 0.4 + 0.5i. The wave amplitudes did not match, so the analytical solution provided in Chapter 2 was scaled to attain the best agreement possible, where t = 3.7.
+
+the DNLS equation and the solitary wave structure that was measured by Ulysses. Some features seem to have a correlation with a bright, one-parameter soliton, but the exact morphology did not agree deﬁnitively, which can be seen in Figure 5.7. However, it was shown by Sauer et al. [25] that there is a sensitive dependence on the plasma conditions, such as β, temperature anisotropy, etc., between the diﬀerent classes of solitons that could exist. While we know the value of β, the temperature anisotropy was not measured, and without knowledge of these conditions, it is diﬃcult to make quantitative comparisons between observed solitary wave structures and solutions to the DNLS equation.
+The observed event does show strikingly familiar features to soliton solutions of the DNLS equation, but the features resemble those of a two parameter soliton as opposed to a one parameter soliton. However, the shape of the two parameter soliton is not static (see Figure 2.5). With only spatial information about the observed wave structure, and no temporal information, it is diﬃcult to make a strong comparison.
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+86
+
+5.3.2 Two parameter soliton comparison
+Strong resemblance between the two parameter soliton and the data can be seen in Figure 5.8 which displays a scaled two parameter soliton with λ = 0.4 + 0.5i superimposed the minimum variance transformed data, shows a higher level of agreement that the comparison made by Rees et al. [21]. The values of the real and imaginary parts of λ have diﬀerent eﬀects on the waveform and periodicity of the two parameter soliton, which was taken into account when selecting an eigenvalue. Since the solution b(x, t) is a rational function of φ (refer back to §2.3.2), we can rewrite φ to look like
+
+φ = exp [−κ(x − cgt)] exp [ik(x − cpht)]
+
+(5.13)
+
+where
+
+κ = 2Λi, cg = Ωi/Λi k = 2Λr, cph = Ωr/Λr
+
+(5.14a) (5.14b)
+
+where Ω = Ωr + iΩi and Λ = Λr + iΛi (Λr,i and Ωr,i are real valued) and is analogous to its “phase velocity” and “group velocity” [18]. It can be seen that if κ becomes large, the soliton’s overall width should shrink, and if k becomes large then the peak in the middle of the packet becomes thin as well. If Im(λ) becomes much larger than Re(λ) , the soliton takes on the form of a wave packet (as Re(λ) → 0) and as long as Im(λ) > Re(λ), the polarization has a banana or crescent shape. If Re(λ) becomes much larger than Im(λ), the width of the soliton grows, and the splitting between a dark and bright soliton occurs when Im(λ) → 0. The choice of λ = 0.4 + 0.5i permitted the closest polarization and forms of by and bz.
+
+5.4 Application of the Direct scattering transform
+A detailed explanation of the 2x2 eigenvalue problem for nonvanishing boundary conditions in the DST/IST perspective for the DNLS equation was provided in §3.4. The following analysis will apply the direct scattering transformation numerically to
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+87
+
+calculate the scattering data and eigenvalues, if any occur, associated with the two parameter soliton that was compared to the scaled minimum variance transformed magnetometer data.
+
+5.4.1 Calculation of Eigenvalues through the Numerical DST
+As mentioned earlier, the direct scattering transform uses the waveform as the potential function on the scattering problem
+
+Φx = D · Φ.
+
+(5.15)
+
+It can be seen that φ11 and φ21 are coupled and the equations for φ11 and φ21 are just the complex conjugates of φ11 and φ21. If we investigate the asymptotic forms of Φ for various potentials and they turn out to be bounded for x → ±∞ we can consider the potential to contain a soliton. The scattering matrix contains the information on how the asymptotic forms of Φ+ and Φ− relate to each other. Ideally, only two components of the scattering matrix is necessary (the left or the right) in numerically solving the ODE, Eq. (5.15). Looking at the components of the scattering matrix, Eq. (3.68) can be expanded to
+
+φ−11 φ−12
+
+=
+
+φ+11 φ+12
+
+φ−21 φ−22
+
+φ+21 φ+22
+
+s11 s12
+
+.
+
+s21 s22
+
+The boundary conditions for the ﬁrst column of Φ− are
+
+(5.16)
+
+φ−11 =
+
+−ib0e−iΛx
+
+0 →
+
+φ−21
+
+(λ − ζ)e−iΛx
+
+0
+
+(5.17)
+
+as x → −∞ if Im(Λ) > 0. If we insert the BC’s for Φ+ on the right hand side of Eq. (5.17) we have
+
+φ−11 = −ib0s11e−iΛx + (λ − ζ)s12e+iΛx .
+
+φ−21
+
+(λ − ζ)s11e−iΛx + ib0s21e+iΛx
+
+(5.18)
+
+CHAPTER 5. PRELIMINARY ANALYSIS OF ULYSSES DATA
+
+88
+
+It can be seen that the solution to Φ is bounded when s11(λ) = 0 for x → +∞ and Im(Λ) > 0. Therefore, an eigenvalue occurs when s11 = 0, but s21 does not have to be zero for an eigenvalue to be present. A value of zero for s21 results in a reﬂectionless potential, because the reﬂection coeﬃcient is given by ρ(λ) = s21/s11.
+With this insight, a shooting method numerical solver was created to determine eigenvalues for speciﬁc potentials. To determine the scattering data with the shooting method, the BC’s for φ−11 and φ−21 were used as initial conditions and a fourth order Runge-Kutta ODE solver was used to solve for φ+11 and φ+21 with a chosen potential and three guesses for the value of λ. Since Φ+ is dependent on λ, Muller’s root ﬁnding method was used to search for when φ+11(λ) = 0 by updating the Runge-Kutta solver with each new successive iteration. Muller’s method is based on the secant method, and it constructs a parabola using three guesses, allowing it to produce roots that are complex valued [10], even if the ﬁrst three guesses are real valued.
+The two parameter soliton solution that was compared to the transformed data in the previous section is a solution to the DNLS equation that was acquired from the IST; therefore, the shooting method should ﬁnd the correct eigenvalue. Figure 5.9 shows the ﬁnal iteration of the shooting method 2x2 eigenvalue problem solver, demonstrating the concept that the eigenvalue of a speciﬁc soliton solution can be found numerically. The next step was to use the numerical 2x2 eigenvalue solver with the minimum variance transformed magnetometer data. Unfortunately, an eigenvalue was not able to be found which could be a result of the amount of noise present in the data. However, an eigenvalue was found using the scaled two parameter soliton in Figure 5.8, which can be seen in Figure 5.10
+The eigenvalue that led to the bound state in Figure 5.10, was on the real axis with a value of λ = 0.807. Real valued eigenvalues are one parameter solitons, therefore if the scaled two parameter soliton is used as an initial condition for the DNLS equation, a one parameter bright or dark soliton should appear. Also, since the proﬁle that was selected does not resemble a one parameter soliton, it can be concluded that the numerical solution will not only contain a soliton, but there will be a dispersive wave component as well (from the concepts of solitons presented in Chapter 1).
+

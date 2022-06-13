@@ -1,0 +1,510 @@
+PUBLICATIONS
+
+Journal of Geophysical Research: Space Physics
+
+RESEARCH ARTICLE
+10.1002/2016JA022937
+Key Points: • Occurrence rate of polar cap TEC
+variations increased with dayside solar wind-magnetosphere coupling rate and IMF magnitude • Local time and latitude of peak occurrence rates varied with IMF BY and BZ • Average amplitude of polar cap TEC variations increased with solar wind-magnetosphere coupling rate
+Correspondence to: C. Watson, chris.watson@unb.ca
+Citation: Watson, C., P. T. Jayachandran, and J. W. MacDougall (2016), GPS TEC variations in the polar cap ionosphere: Solar wind and IMF dependence, J. Geophys. Res. Space Physics, 121, 9030–9050, doi:10.1002/2016JA022937. Received 11 MAY 2016 Accepted 25 AUG 2016 Accepted article online 28 AUG 2016 Published online 17 SEP 2016
+©2016. American Geophysical Union. All Rights Reserved.
+
+GPS TEC variations in the polar cap ionosphere: Solar wind and IMF dependence
+Chris Watson1, P. T. Jayachandran1, and John W. MacDougall2
+1Physics Department, University of New Brunswick, Fredericton, New Brunswick, Canada, 2Department of Physics and Astronomy, University of Western Ontario, London, Ontario, Canada
+Abstract This statistical study examines the solar wind dependence of total electron content (TEC)
+variations arising from mesoscale (tens to hundreds of kilometers) structuring of the polar cap ionosphere. Six years of TEC measurements were collected from ﬁve high-data rate Global Positioning System (GPS) receivers of the Canadian High Arctic Ionospheric Network (CHAIN), from which high-resolution magnetic local time-latitude maps of TEC variation occurrence rate and amplitude were created. Ionosonde radars were used to identify TEC variations arising from ionization of the E and F region ionospheres. Statistical TEC maps were examined as a function of solar wind and interplanetary magnetic ﬁeld (IMF) measurements. Statistical results showed that occurrence rate of TEC variations was highest in localized dayside regions, with exact local time and latitude of peak occurrence depending primarily on the dayside coupling rate of the solar wind and magnetosphere, as well as IMF orientation and magnitude in the Y-Z plane. Occurrence of TEC variations throughout the polar cap increased with solar wind-magnetosphere coupling rate and IMF magnitude. The solar wind dependence of occurrence rate largely reﬂected the location and rate of dayside magnetic reconnection and subsequent particle precipitation and polar cap convection. Amplitudes of TEC variations were largest around noon and increased throughout the polar cap with increased solar wind-magnetosphere coupling rate. These statistical results improve upon the existing observational picture of the polar ionosphere and will potentially facilitate development of models and techniques for mitigating impacts of the polar ionosphere on navigation signals and communication links.
+1. Introduction
+Coupling of the solar wind, magnetosphere, and ionosphere (SW-M-I) system is the primary driver of ionospheric dynamics in the polar cap region. SW-M-I coupling processes generate ionization structures on a wide range of spatial scales in the polar cap, from “microscale” (~1–10 km) up to “macroscale” (thousands of kilometers). Mesoscale (tens to hundreds of kilometers) structures, which include polar cap patches and polar cap aurora, are of interest in this study. This study follows a previous work that examined the solar cycle and seasonal dependence of total electron content (TEC) variations due to mesoscale structuring, as well as the dominant frequencies of TEC variations [Watson et al., 2016]. The observations presented here aim to build upon the current statistical picture of TEC variations arising from mesoscale structuring in the polar cap, by investigating how the characteristics (occurrence rate and amplitude) of TEC variations depend on solar wind conditions, including the coupling rate of the solar wind and magnetosphere and the magnitude and orientation of the interplanetary magnetic ﬁeld (IMF).
+Prikryl et al. [2015] conducted a similar statistical study of microscale ionization structures in the polar cap, where they examined the climatology and IMF dependence of phase scintillations observed in ground-based GPS receiver measurements. They found that phase scintillation activity is most often observed around noon at latitudes corresponding to the polar cusp, with a > 24% occurrence rate for southward IMF (BZ < À nT) compared to a < 20% occurrence rate for northward IMF (BZ > 3 nT). The authors also observed an IMF BY effect on the dayside occurrence pattern of phase scintillation, with a higher prenoon (postnoon) occurrence for BY > 3 nT (BY < À3 nT).
+Ionospheric plasma density irregularities and gradients resulting from polar cap ionization structures introduce signiﬁcant challenges for high latitude operation of navigation and communication systems such as Global Navigation Satellite Systems (GNSS) [Lanzerotti, 2001] and high frequency (HF) communication links [Sauer and Wilkinson, 2008]. Predicting and mitigating polar ionosphere effects on radio propagation are extremely difﬁcult since dominant ionization sources are often energetic particle precipitation and plasma
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9030
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+transport mechanisms (e.g., E × B convection), which are driven by SW-M-I coupling processes that are not fully understood. In addition, our current observational picture of polar ionosphere structure and dynamics is highly fragmentary. Models used to correct for ionospheric GNSS signal delay, such as the International Reference Ionosphere (IRI) and Klobuchar Ionospheric Model, often work well at lower latitude regions but are unsuitable for high latitudes [e.g., Themens et al., 2014].
+Substantial efforts have been made in recent years to improve ionospheric observational capabilities at polar cap latitudes. One example is the high-data rate Global Position System (GPS) receivers of the Canadian High Arctic Ionospheric Network (CHAIN) [Jayachandran et al., 2009b], which have provided total electron content (TEC) measurements of the polar cap ionosphere since 2008. Recent case studies have demonstrated that GPS TEC can be used to observe polar cap mesoscale structures arising from a number of physical processes. Jayachandran et al. [2009a] observed TEC enhancements of 0.3–2.0 total electron content unit, 1 TECU = 1016 el mÀ2 (TECU) and ~10 min duration resulting from a polar cap arc; Watson et al. [2011] observed broadband TEC variations of up to 6 TECU due to the poleward expansion of substorm particle precipitation into the polar cap; Jayachandran et al. [2011] presented a case where TEC enhancements of ~0.5 TECU and ~10 min duration resulted from a sudden magnetospheric compression event, and Jayachandran et al. [2012] observed broadband TEC variations of 1–4 TECU at frequencies of 1.6–22.8 mHz due to a series of poleward moving Sun-aligned arcs (PMSAAs). These case studies demonstrated that multireceiver, multisatellite TEC observations could be used to observe and track the motion of mesoscale structures at a high spatial and temporal resolution. Large amplitude TEC variations of 10–15 TECU associated with polar cap patches have also been observed in the southern polar cap [Krankowski et al., 2006].
+Polar cap structure and dynamics are largely controlled by prevailing solar wind and IMF conditions. E × B convection of F region plasma in the polar cap is driven by an electric ﬁeld directed dawn to dusk. Ionospheric convection speeds depend on the potential drop across the polar cap, which in turn depends on the IMF and solar wind pressure. Bulk convection (drift) speeds are typically in the range of a few hundred to a thousand meters per second. Previous observational studies have reported that the primary factor governing polar cap convection speed is the north-south IMF component [e.g., MacDougall and Jayachandran, 2001]. The corotation effect due to the rotation of the Earth distorts the convection in both the magnetosphere and in the high latitude ionosphere. For a southward IMF and typical two-cell convection pattern, this rotational effect is largest on the duskside where the sunward E × B drift opposes the antisunward rotational drift. Additional asymmetry and rotation of the overall two-cell pattern will result from IMF variations in the dusk-dawn direction. A duskward IMF acts to rotate the pattern toward dawn, while a dawnward IMF will produce a duskward rotation [Reiff and Burch, 1985; Jayachandran and MacDougall, 1999].
+Ionospheric convection patterns during northward IMF can vary signiﬁcantly from the two-cell pattern described for southward conditions. Since dayside geomagnetic ﬁeld lines and IMF ﬁeld lines are not antiparallel for northward IMF, dayside magnetic reconnection does not readily occur. Northward IMF occurs about half of the time and is usually associated with lower geomagnetic activity due to diminished dayside reconnection rates and thus less energy transfer from the solar wind to magnetosphere. Ground-based convection measurements in the polar cap have indicated that the prevailing F region plasma drift is often sunward for northward IMF conditions, due to a ﬂow reversal of polar cap convection cells [Jayachandran and MacDougall, 2001]. Development of a three- to four-cell convection patterns is often observed for northward IMF, in addition to a decrease in potential difference between convection cells. For purely northward IMF (zero IMF BY), the general pattern involves a pair of small negative-positive convection cells at high latitudes in the morning-evening and a pair of larger positive-negative cells at lower latitudes in the early morning-evening [e.g., Förster et al., 2008]. In the higher latitude cells, plasma circulation is reversed relative to the “normal” circulation pattern of the lower latitude cells. This ﬂow reversal, consistent with observations of sunward ﬂow in the central polar cap by Jayachandran and MacDougall [2001], is thought to result from magnetic reconnection poleward of the polar cusp region where the geomagnetic and northward IMF ﬁelds are antiparallel [e.g., Crooker, 1979]. Viscous interactions between the solar wind and magnetosphere also contribute to production of lower latitude convection cells [Axford and Hines, 1961].
+Polar patches are regions (islands) of enhanced ionization in the F layer of the polar cap ionosphere. Historically, they are deﬁned as structures with horizontal scale sizes of ~100–1000 km and with densities of at least twice the background F region density. Studies involving radio, optical, and satellite observations
+
+POLAR CAP TEC VARIATIONS
+
+9031
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+have indicated that patches typically form near the polar cusp, with their subsequent motion corresponding to the prevailing E × B convective ﬂow in the polar cap [e.g., Buchau et al., 1983; Weber et al., 1984]. Nearly three decades of research has uncovered several possible processes responsible for polar patch formation. The majority of these processes involve enhanced ionization moving into the polar cap around noon, with the patch formation either prior to or after the polar cap boundary is crossed [e.g., Tsunoda, 1988; Walker et al., 1999; MacDougall and Jayachandran, 2007]. Although generation and morphology of patches can vary, they have been observed during a broad range of geomagnetic activity levels and IMF orientations [Coley and Heelis, 1998].
+Figure 1. Map showing geomagnetic coordinates of colocated CHAIN
+GPS receivers and CADI ionosondes in the polar cap [Watson et al., 2016]. Poleward moving auroral forms (PMAFs) result from convection of auroral arcs
+from the auroral region into the polar cap or from ionization due to direct precipitation of solar wind plasma via mantle or low latitude boundary layers. PMAFs primarily occur when the IMF is directed southward and have been attributed to periodic intensiﬁcations of solar wind plasma entry into the magnetosphere due to pulsed dayside reconnection [e.g., Fasel, 1995]. Polar cap particle precipitation and aurora under northward conditions can occur throughout the polar cap but is often most intense adjacent to the auroral oval. In general, these arcs are spatially extended parallel to the Sun-Earth direction and are often called Sunaligned arcs [Valladares et al., 1994]. The formation and subsequent convection of polar cap aurora is known to depend heavily on the BY (dawn-dusk) component of the IMF, with a duskward (dawnward) IMF typically resulting in the formation of arcs in the afternoon (morning) sector, followed by convection toward the afternoon (morning) [e.g., Sandholt et al., 2003]. Localized dayside precipitation of energetic protons poleward of the auroral region has also been attributed to reconnection poleward of the cusp region during northward IMF [Frey et al., 2002].
+Cusp aurora occurs in a highly localized area around noon and is due to direct precipitation of solar wind ions via the polar cusp. A southward IMF is typically associated with an equatorward shift and narrowing of the latitudinal extent of the cusp region due to increased dayside reconnection, while a northward IMF is associated with a magnetic ﬂux buildup and widening of the latitudinal extent of the cusp region [Newell and Meng, 1992]. The dawn-dusk (BY) IMF component shifts the cusp in local time [Newell et al., 2004]. Increased solar wind dynamic pressure is associated with an expansion of the cusp region in both local time and latitude [Zhou et al., 2000]. Frey et al. [2002] observed that cusp precipitation increased in intensity with increasing solar wind dynamic pressure.
+
+2. Data and Method of Analysis
+A detailed description of the data and analysis method is available in Watson et al. [2016]. Figure 1 [Watson et al., 2016] is a map of the colocated GPS receivers and Canadian Advanced Digital Ionosondes (CADI) used in this study. This study involves 1 s GPS TEC measurements collected over a 6 year period (1 January 2009 to 31 December 2014), from receivers shown in Figure 1. TEC variations with peak-to-peak amplitudes of 1 TECU or larger and variations at frequencies in the range of 0.37–100.00 mHz are included in the analysis. Accounting for periods of data outages, poor data quality, cycle slips, etc., total data availability for all GPS receivers in Figure 1 was 92% for the 6 year period of study.
+
+POLAR CAP TEC VARIATIONS
+
+9032
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+The altitude of ionization resulting in TEC variations was estimated by using CADI ionosondes, which broadcast high frequency pulses in the vertical direction to obtain the bottomside ionospheric electron density. The altitude of ionization was estimated for two purposes. First, to separately examine the statistics of TEC variations due ionization of the F region and variations that involve E region ionization. Second, the slanted GPS satellite-to-receiver raypath (with respect to zenith) can cover a range of latitudes and local times as it traverses the ionosphere; thus, the estimated altitude of ionization allows for a more accurate estimate of the latitude and local time of a particular variation in TEC.
+Solar wind and IMF measurements were obtained from the OMNI database on CDAWeb (http://cdaweb.gsfc. nasa.gov/). The OMNI database provides processed solar wind measurements from multiple spacecraft, with the estimated spacecraft-to-magnetopause propagation time accounted for in the provided data product. OMNI solar wind measurements are available at a 1 min resolution.
+
+3. Results
+
+This section presents magnetic local time (MLT)-magnetic latitude (MLat) maps of TEC variation occurrence rate and amplitude for variable solar wind conditions. Occurrence rate and amplitude were calculated in bin sizes of 15 min MLT × 0.25° MLat. Occurrence rate is deﬁned as
+
+Occurrence ¼ Nð> 1 TECUÞ ;
+
+(1)
+
+Ntotal
+
+where N(>1 TECU) is the number of TEC measurements involving a variation of 1 TECU or greater and Ntotal is the total number of TEC measurements. The average amplitude is simply the total cumulative amplitude of all TEC variations divided by the number of TEC variations observed.
+
+3.1. Dependence on Solar Wind-Magnetosphere Coupling Rate
+
+This section summarizes statistics of TEC variations for variable solar wind-magnetosphere (SW-M) coupling
+
+rate (dΦ/dt). The empirical function of Newell et al. [2007] was used for coupling rate:
+
+rate
+
+¼
+
+dΦ dt
+
+¼
+
+v4sw=3
+
+qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ2 B2y þ B2z
+
+=3
+
+8
+sin
+
+= 3
+
+φ; 2
+
+ φ ¼ tanÀ1 By ;
+Bz
+
+(2)
+
+where vsw is the solar wind speed in units of km/s and Bx, By, and Bz are the geocentric solar magnetospheric (GSM) components of the IMF, in units of nT. The SW-M coupling rate in equation (2) is proportional to the magnetic reconnection rate at the dayside magnetopause, where larger coupling rates correspond to increased rates of energy transfer from the solar wind to the magnetosphere. The expression for SW-M coupling rate in equation (2) was chosen based on the survey of previously proposed SW-M coupling functions by Newell et al. [2007], where they correlated each function with 10 different indices that characterize magnetospheric activity (e.g., AE and Kp). From two solar cycles worth of data, the authors determined that equation (2) was consistently the most reliable indicator of magnetospheric state.
+
+In Newell et al. [2007], two of the quantities used for quantifying the overall level of geomagnetic activity were related to the polar cap: the “SuperDARN/OVATION Polar Cap Index (ΦPC),” which quantiﬁes the total magnetic ﬂux in the polar cap and thus the size of the polar cap, and the equatorward boundary of the polar cusp (Λc), which characterizes the location and extent of magnetic reconnection on the dayside. Figure 2 shows a histogram of coupling rates for 2009–2014, in bins of 1000 (km/s)4/3(nT)2/3. About 60% of observed coupling rates were less than 3000. Figure 3 plots hourly (a) disturbance storm time (Dst)
+and (b) auroral electrojet (AE) indices versus solar wind magnetosphere coupling rate for the 6 year study period. Grey crosses are average Dst and AE indices in bins of 250 (km/s)4/3(nT)2. /3 As shown in the ﬁgure, increased SW-M coupling rates generally result in more disturbed levels of geomagnetic activity at both low
+and high latitudes.
+As it stands, the units of dΦ/dt in equation (2) are (km/s)4/3(nT)2/3. As stated in Newell et al. [2007], dΦ/dt “represents the rate magnetic ﬂux is opened at the magnetopause.” If one wishes to express this as a real physical quantity in units of Wb/s, dΦ/dt in equation (2) must be multiplied by a normalizing factor α. By comparing dΦ/dt with open magnetic ﬂux in the polar cap, Cai and Clauer [2013] estimated this factor to be α = 104 km2/3s1/3nT1/3 during periods of disturbed magnetospheric conditions associated with so-called
+
+POLAR CAP TEC VARIATIONS
+
+9033
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+“magnetospheric sawtooth events.” Note that dΦ/dt × α would give magnetic ﬂux transfer rate in units of mWb/s, which is easily converted to Wb/s. The reliability of this estimated normalization factor is not clear, especially when considering the entire range of possible solar wind and magnetospheric conditions, and thus, it is not applied in this paper.
+
+Shown in Figure 4 are (a) the occurrence
+
+rate of F region TEC variations for
+
+different ranges of dΦ/dt and (b) the
+
+occurrence rates in Figure 4a integrated
+
+over 00:00–24:00 MLT and 74.0°–90.0°
+
+MLat. For lowest coupling rates <1000 (km/s)4/3(nT)2/3, which occurred ~28%
+
+Figure 2. Histogram of solar wind-magnetosphere coupling rates of the time, a peak occurrence rate of
+
+observed for 2009–2014 (from the OMNI database).
+
+0.30 was observed at 08:15 MLT and
+
+81.0° MLat, while occurrence in the
+
+postnoon sector peaked at 0.28 around 14:30 MLT and 79.0° MLat. An occurrence rate of 0.30 is equivalent
+
+to the observation of TEC variations equal or greater than 1 TECU 30% of the time for that particular
+
+MLT-MLat bin. Lowest occurrence rates (<0.05) were observed in the prenoon region below 76.0° MLat
+
+and close to the magnetic pole (~0.05). Occurrence rates across the dayside and throughout the polar cap
+
+increased with SW-M coupling rate, with peak dayside morning-afternoon occurrence rates shifting to lower
+
+latitudes and closer to noon. During periods of very high coupling rates >10,000, a peak occurrence rate of
+
+0.46 was observed at 12:45 MLT and 77.5° MLat, while occurrence rates greater than 0.12 were observed in all
+
+polar cap regions. The clear increase in integrated occurrence rate with SW-M coupling rate also reﬂects the
+
+increase in occurrence of TEC variations throughout the polar cap.
+
+Shown in Figure 5 are (a) the occurrence of TEC variations that involved ionization of the E region for different ranges of dΦ/dt and (b) the integrated occurrence rate of E region variations in Figure 5a. For coupling rates < 8000, the occurrence of E region variations peaked at 76.0°–78.0° MLat in both the morning sector (07:00–09:00 MLT) and the afternoon sector (14:00–15:00 MLT). High occurrence was also observed at 81.0°–82.0° in the prenoon regions (09:00–12:00 MLT). Peak dayside occurrence rates were lowest for coupling rates <1000 (0.12–0.17) and generally increased with increasing coupling rate. Highest occurrence rates were observed in the afternoon sector for coupling rates of 6000–7000 (0.35). At most other local times, E
+
+WATSON ET AL.
+
+Figure 3. Hourly (a) Dst index and (b) AE index versus solar wind-magnetosphere coupling rate (dΦ/dt) for the 6 year study period. Grey crosses show average Dst/AE index in bins of 250 (km/s)4/3(nT)2/3.
+
+POLAR CAP TEC VARIATIONS
+
+9034
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 4. (a) Occurrence of F region TEC variations >1 TECU with variable solar wind-magnetosphere coupling rate and (b) occurrence of F region TEC variations integrated over magnetic local time and latitude. Magnetic latitude range is 74°–90°.
+
+region TEC variations below 84.0° MLat systematically increased with coupling rate, which can also be seen in the integrated occurrence in Figure 5b. Occurrence near the magnetic pole (>86.5° MLat) also increased with coupling rate but was consistently less than 0.10 for all solar wind conditions. Occurrence for SW-M coupling rates >8000 lacked the discrete morning-afternoon occurrence peaks for lower coupling rates, which may reﬂect the increasingly turbulent polar cap at all local times during highly disturbed conditions.
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9035
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 5. (a) Occurrence of E region TEC variations >1 TECU with variable solar wind-magnetosphere coupling rate and (b) occurrence of E region TEC variations integrated over magnetic local time and latitude. Magnetic latitude range is 74°–90°.
+
+WATSON ET AL.
+
+Occurrence >0.25 was observed over a broad range of local times (03:00–09:00 MLT) below 78.0° MLat for coupling rates >10,000.
+Figure 6 shows the dependence of average peak-to-peak amplitude of F region TEC variations on SW-M coupling rate. Average amplitudes were clearly proportional to coupling rate throughout the polar cap. For
+
+POLAR CAP TEC VARIATIONS
+
+9036
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 6. Average amplitudes of F region TEC variations with variable solar wind-magnetosphere coupling rate.
+lowest rates <1000, peak average amplitudes of 3.3 TECU were observed around 13:00 MLT, 77.5° MLat, similar to the postnoon amplitude peaks observed in 2009, 2010, and summer months [Watson et al., 2016]. A nightside peak in average amplitude of 2.3 TECU was also observed around 23:45 MLT, 74.0° MLat for low coupling rates, while minimum amplitudes of 1.9 and 2.1 TECU were observed in the early morning (04:00 MLT, 74.0° MLat) and evening (19:00 MLT, 75.0° MLat) sectors, respectively. Average amplitudes throughout the polar cap steadily increased with coupling rate, with dayside maxima around noon and 77.0°–77.5° MLat increasing from 3.4 TECU at rates of 1000–2000 to 5.5 TECU at very high rates >10,000. For rates >6000, the dayside maximum shifted to the prenoon sector around 11:15–11:45 MLT. The early morning minimum around 03:00–05:00 MLT increased from 1.8 TECU at rates of 1000–2000 to 2.3 TECU at rates > 10,000, while the evening amplitude minimum increased from 2.0 to 3.1 TECU for these same rates. Average amplitudes at lower latitudes around midnight also increased from 2.4 TECU for rates of 1000–2000, up to 3.8 TECU for rates >10,000, with maximum nightside amplitudes centered at 22:00 MLT and 78.5° MLat for highest coupling rates. Average amplitudes close to the magnetic pole (>86.0° MLat) increased from 2.1 to 2.4 TECU for lowest coupling rates, up to 3.3–4.2 TECU for highest coupling rates.
+Figure 7 shows average amplitudes of E region TEC variations with variable coupling rate. Variations involving E ionization were, on average, smaller than variations for F region ionization and also increased with coupling rate throughout the polar cap. For coupling rates of 0–6000, the dayside maximum for average amplitude was observed postnoon around 12:30–13:00 MLT and 76.0° MLat and increased from 2.9 TECU to 3.8 TECU. For higher coupling rates, this maximum was observed prenoon around 11:00–12:00 MLT and 76.0° MLat and increased from 3.9 to 4.8 TECU with increasing coupling rate from 6000 to >10,000. Large amplitude E
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9037
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 7. Average amplitudes of E region TEC variations with variable solar wind-magnetosphere coupling rate.
+region TEC variations were also observed on the nightside, where peak amplitudes around 24:00 MLT and 76.0° MLat increased from 2.5 TECU to 3.3 TECU with increasing coupling rates from 0 to 10,000. For rates >10,000, amplitudes increased signiﬁcantly in the premidnight region, peaking at 3.7 TECU at 21:00 MLT, 76.0° MLat. Similar to F region variations, smallest amplitude E region variations were mainly observed in the morning sector around 03:00–06:00 MLT and in the evening around 18:00–21:00 MLT (for rates <10,000). The early morning minimum at 76.0–80.0° MLat increased from 2.0 TECU at rates <1000 to 2.5 TECU at rates >10,000, while the evening amplitude minimum increased from 2.0 to 3.4 TECU for these same rates. Average amplitudes close to the magnetic pole (>86.0° MLat) increased from 1.8–2.4 TECU for lowest coupling rates up to 2.4–3.3 TECU for highest coupling rates.
+3.2. Dependence on IMF BY
+Figure 8 plots the percentage of solar wind measurements that resulted in various IMF BY (dawn-dusk component) values for 2009–2014, in bins of 2 nT. About 75% of TEC measurements were made when IMF BY was between À4 nT and 4 nT. Note that a dawnward IMF was observed more often than a duskward IMF over the 6 year study. Figure 9 shows the occurrence rate of (a) F region and (b) E region TEC variations > 1 TECU for varying ranges of IMF BY, while (c) plots occurrence rates integrated over MLT and MLat. Several features in the occurrence of F region variations showed a strong dependence on IMF BY. In general, occurrence throughout the polar cap was highest during periods of large magnitude BY (< À6 nT and > 6 nT), with the highest dayside occurrence (0.40–0.42) observed during duskward orientation (BY > 6 nT). Lowest occurrence throughout the polar cap was observed during periods of low magnitude IMF BY (between À2 nT and 2 nT).
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9038
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+For IMF BY < À6 nT (dawnward), highest dayside occurrence was observed at 09:00 MLT and 78.0° MLat (0.33) in the morning and at 13:15 MLT and 76.5° MLat (0.32) in the afternoon. Occurrence of up to 0.15–0.25 was observed through much of the nightside and near the magnetic pole for largest amplitude IMF BY, while occurrence in the same region mostly ranged from 0.05 to 0.15 when BY ranged from À4 to 4 nT. The higher occurrence of TEC variations for larger magnitude IMF BY is also evident in the integrated F region occurrence in Figure 9c.
+
+Another pronounced effect of IMF BY is a rotation of the occurrence pattern of F
+
+Figure 8. Histogram of IMF BY observed for 2009–2014.
+
+region TEC variations in the polar cap. For IMF BY between À6 nT and 0 nT (dawnward), TEC variations occurred
+
+most often in the afternoon, with peak occurrence (0.29–0.35) around 13:00–14:00 MLT and 77.5°–78.0°
+
+MLat. For IMF BY > 0 nT (duskward), morning sector TEC variations were more commonly observed. Peak morning occurrence rates around 09:00–10:00 MLT and 78.0°–80.0° MLat, increased from 0.30 to 0.37 with
+
+increasingly positive IMF BY. An exception to this dayside pattern was the higher morning sector occurrence for BY < À6 nT. A similar rotation of the occurrence pattern is also evident on the nightside, with minimum occurrence rates of 0.04–0.10 around 00:00–03:00 MLT for IMF BY < 0 nT and minimum occurrence rates of 0.04–0.11 around 20:00–24:00 MLT for IMF BY > 0 nT.
+
+Similar to occurrence of F region variations, occurrence of E region variations (Figure 9b) was highest throughout the polar cap when IMF BY was highly dawnward (<6 nT) or duskward (>6 nT) and generally increased for larger magnitude IMF BY. Occurrence rates were largest across the dayside and on the nightside at latitudes < 78.5° MLat. The rotation of the occurrence pattern for E region variations was not as pro-
+nounced as for the F region case; however, a morning-afternoon asymmetry with a BY dependence was observed. For IMF BY between À6 nT and 0 nT, highest E region occurrence rates (0.22–0.31) were observed in the afternoon sector around 14:00–14:30 MLT and 77.5° MLat. For BY < À6 nT, occurrence was higher in the morning sector (0.30). For IMF BY > 0 nT, occurrence rates (0.23–0.33) were highest in the morning sector at 08:00–09:00 MLT and 77.5°–78.0° MLat. High prenoon occurrence rates (up to 0.32) were also observed at 80.5°–82.5° MLat for IMF BY > 6 nT.
+
+3.3. Dependence on IMF BZ
+Shown in Figure 10 is a histogram of IMF BZ (north-south component) measurements for 2009–2014, in bins of 2 nT. Approximately 59% of TEC measurements were made during periods where IMF BZ was between À2 nT and 2 nT, and 87% when BZ was between À4 nT and 4 nT. Figure 11 shows the occurrence of (a) F region and (b) E region TEC variations > 1 TECU for various ranges of IMF BZ and (c) occurrence rates integrated across all polar cap regions. On the dayside, the location of peak occurrence of both E and F region variations depended heavily on IMF BZ. For southward IMF (BZ < 0 nT), morning-afternoon peak F region occurrence was close to noon, around 10:00–11:00 MLT in the morning and 13:30–14:00 MLT in the afternoon. As IMF shifted southward from 0 nT to < À6 nT, peak morning-afternoon F region occurrence shifted to lower latitudes, from 78.0°–80.0° to 75.0°–76.0° MLat. Perhaps counterintuitively, peak dayside occurrence was 0.36–0.37 for IMF BZ between À4 nT and À2 nT (0.37) and decreased to 0.31–0.33 as the IMF shifted further southward. For northward IMF, highest F region occurrence rates shifted poleward and away from
+noon. For BZ between 0 and 2 nT, morning-afternoon occurrence peaks were observed at around 08:45 MLT, 79.0° MLat, and 14:00 MLT, 78.0° MLat and shifted to 08:00 MLT, 79.8° MLat and 15:00 MLT, 78.5°
+
+POLAR CAP TEC VARIATIONS
+
+9039
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 9. Occurrence of (a) F region and (b) E region TEC variations >1 TECU with variable IMF BY (GSM coordinates) and (c) occurrence of TEC variations integrated over magnetic local time and latitude. Negative BY is directed toward dawn, while positive BY is directed toward dusk.
+MLat for BZ > 6 nT. Peak occurrence rates of 0.28 were observed for 0 nT > BZ > 2 nT and increased to 0.41 for BZ > 6 nT. Counter to the southward case, occurrence rates were highest in the morning sector for northward IMF. In most other polar cap regions, F region occurrence rates increased with higher magnitude IMF BZ, as is evident in the integrated occurrence in Figure 11c. Note that on average, occurrence rates were larger when the IMF was highly northward (>4 nT) compared to occurrence during southward IMF (< À4 nT).
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9040
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Except for extremely southward IMF
+
+(< À6 nT), the occurrence of E region
+
+variations was highest away from
+
+noon, on the dawn-dusk ﬂanks. For
+
+highly southward IMF (< À6 nT), E
+
+region occurrence was highest at
+
+11:00 MLT, 77.5° MLat in the morning
+
+(0.26) and 13:30 MLT, 77.5° MLat in
+
+the afternoon (0.27). Highest occur-
+
+rence rates shifted away from noon
+
+and poleward as IMF BZ increased, peaking at 08:30 MLT, 78.0° MLat in
+
+the morning and 14:30 MLT, 77.5°
+
+MLat for IMF BZ between À2 nT and 0 nT. For northward IMF, E
+
+region occurrence rates were highest
+
+at 08:00–08:30 MLT, 78.0° MLat in
+
+the morning and 14:30 MLT, 78.0°
+
+Figure 10. Histogram of IMF BZ observed for 2009–2014.
+
+MLat in the afternoon. Similar to the F region case, occurrence rates
+
+increased as the IMF shifted further
+
+northward and were highest in the morning (up to 0.33). E region occurrence rates throughout the polar
+
+cap also increased for larger magnitude IMF BZ.
+
+3.4. Dependence on IMF BX
+
+Shown in Figure 12 is a histogram of IMF BX measurements for 2009 to 2014. The 82% of TEC measurements were made during periods where BX was between À4 and 4 nT. Figure 13 shows the occurrence rates of (a) F region and (b) E region TEC variations for various ranges of IMF BX and (c) integrated occurrence rates of Figures 12a and 12b. IMF BX had a somewhat lesser effect on occurrence rates compared to the BY and BZ cases. The most obvious effect was an increase in occurrence rate throughout the polar cap for larger magnitude BX. On average, occurrence rates were highest when the IMF was directed earthward (BX < À6 nT), where F region occurrence rates were as high as 0.33 in the morning and afternoon, and E region occurrence rates of up to 0.29 were observed in the morning sector. One notable dayside effect on the occurrence rate of F region TEC variations is the distinct morning-afternoon occurrence peaks during periods of earthward IMF, compared to the lack of distinct peaks in dayside occurrence when the IMF was sunward (BX > 4 nT). IMF BX also had a small rotational effect on the occurrence rates of F region TEC variations in all polar cap regions. For BX < 0 nT, F region TEC variations were more often observed in the morning/prenoon sector, with lowest occurrence in the evening/premidnight sector, while an afternoon/postnoon proclivity and early morning minimum was observed for BX > 0 nT.
+
+4. Discussion
+Analysis of 6 years of TEC measurements from ﬁve polar cap GPS receivers has revealed that the occurrence rate of polar ionosphere TEC variations depends mainly on the SW-M coupling rate and IMF, while average amplitude of TEC variations is mainly inﬂuenced by the SW-M coupling rate. The orientation of the IMF was found to be the dominant factor controlling the magnetic local time and latitude where TEC variations were most commonly observed. Results presented in Watson et al. [2016] showed that occurrence rate and amplitude also depend heavily on season and phase of the solar cycle. Occurrence rate and amplitude integrated across all polar cap regions had a signiﬁcantly higher correlation with SW-M coupling rate than other solar wind parameters (e.g., dynamic pressure and ﬂow speed), and thus, only the dependence on SW-M coupling rate was included in this manuscript.
+Occurrence rates for TEC variations arising from both F and E region structuring tended to be highest in the morning and afternoon sectors around 76.0°–80.0° MLat, which statistically are regions that map to the low latitude boundary layer (LLBL) and plasma mantle [Newell et al., 2004]. Morning-afternoon occurrence of
+
+POLAR CAP TEC VARIATIONS
+
+9041
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 11. Occurrence of (a) F region and (b) E region TEC variations >1 TECU with variable IMF BZ (GSM coordinates) and (c) occurrence of TEC variations integrated over magnetic local time and latitude. Negative BZ is directed southward, while positive BZ is directed northward.
+TEC variations at these latitudes showed a strong dependence on solar wind-magnetosphere coupling rate (Figures 4 and 5) and the magnitude and orientation of the IMF in the Y-Z plane (Figures 9 and 11). As SW-M coupling rate increased, occurrence rates of F and E regions TEC variations throughout the polar cap also increased, while peak morning-afternoon occurrence shifted toward noon and to lower latitudes. As shown in Figure 11, this shift in peak occurrence was primarily controlled by IMF BZ, with a
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9042
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+morning-afternoon asymmetry governed by IMF BY. According to equation (2), coupling rate increases with solar wind speed, IMF magnitude in the Y-Z plane, and increasingly southward IMF, with lowest coupling for an entirely earthward, sunward, or northward oriented IMF. Contrary to the trend of increased polar cap ionosphere variability with increased coupling rates, occurrence rates signiﬁcantly increased during periods when the IMF was highly northward IMF (Figure 11). To a lesser extent, occurrence rates also increased with magnitude of IMF BX (Figure 13).
+
+Results of Newell et al. [2009], who statis-
+
+tically examined high latitude precipita-
+
+Figure 12. Histogram of IMF BX observed for 2009–2014.
+
+tion characteristics using low Earth orbiting (LEO) DMSP satellites over a
+
+10 year period, revealed a high occur-
+
+rence and number ﬂux of high energy electron precipitation in the morning and afternoon sectors. These
+
+events involved electrons accelerated along ﬁeld lines (to mainly 80 eV to tens of keV) by either dispersive
+
+Alfven waves (DAWs) (broadband electron energy spectrum) or quasi-static electric ﬁelds (monoenergetic
+
+electron energy spectrum), which produce discrete aurora in the E or F region ionospheres. For low solar
+
+wind-magnetosphere coupling rates, Newell et al. [2009] found that dayside probability and number
+
+ﬂux for both monoenergetic and broadband aurora peaked around 79.0°–82.0° MLat in the morning
+
+(07:00–11:00 MLT) and afternoon (13:00–16:00 MLT). For higher coupling rates, peaks in probability and num-
+
+ber ﬂux increased and shifted to lower latitudes of 75.0°–80.0° MLat and expanded in local time away from
+
+noon. This shift in latitude was attributed to higher reconnection rates for southward IMF and thus an equa-
+
+torward shift of the auroral oval and widening of the polar cap. This shift in latitude and expansion in local
+
+time is similar to the equatorward shift and expansion in local time of high TEC variation occurrence rates
+
+observed for increased SW-M coupling rates. From Newell et al. [2009], higher coupling rates also resulted
+
+in increased number ﬂux of high energy precipitating electrons across noon, consistent with the high occur-
+
+rence of TEC variations across noon for highest merging rates (>7000). These consistencies indicate that the
+
+high morning and afternoon occurrence of TEC variations could be a result of precipitation of accelerated
+
+electrons of LLBL, mantle, or plasma sheet origin. A multievent study by Liou et al. [1999], using concurrent
+
+ultraviolet imager (UVI) data of the polar spacecraft and particle measurements of DMSP spacecraft, indicated
+
+that discrete aurora due to energetic electron precipitation in the 13:00–16:00 MLT sector originated mainly
+
+from the plasma sheet. Note that in Newell et al. [2009], the reported maximum probability of observing
+
+broadband and monoenergetic electron precipitation was around 0.10 and 0.20, respectively, whereas max-
+
+imum occurrence of E and F region TEC variations was around 0.35 and 0.45, respectively. Higher occurrence
+
+of TEC variations may be due to TEC variations arising from electron precipitation spectra not meeting the
+
+broadband or monoenergetic criteria of Newell et al. [2009], which they classiﬁed as “diffuse,” or TEC varia-
+
+tions due to precipitating ions. Statistics of Newell et al. [2009] also spanned 11 years (1988–1998), covering
+
+two solar minimums and one solar maximum, while the statistics presented here spanned only 6 years
+
+(2009–2014), covering one solar minimum and one solar maximum. Other sources such as polar cap patches
+
+may also contribute to variations in TEC in dayside regions mapping to magnetospheric boundary layers.
+
+Morning-afternoon asymmetries were also evident in high energy electron precipitation statistics of Newell et al. [2009], which may contribute to the morning-afternoon asymmetries in TEC variation occurrence at 76.0°–80.0° MLat. For low coupling rates, the authors reported signiﬁcantly higher occurrence and number ﬂux of broadband electron precipitation in the morning compared to the afternoon, which may contribute to the noticeably higher morning occurrence of E and F region TEC variations for IMF BZ > 4 nT. Similarly, for high coupling rates, the authors reported a higher occurrence of monoenergetic electron precipitation
+
+POLAR CAP TEC VARIATIONS
+
+9043
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Figure 13. Occurrence of (a) F region and (b) E region TEC variations >1 TECU with variable IMF BX (GSM coordinates) and (c) occurrence of TEC variations integrated over magnetic local time and latitude. Negative BX is directed earthward, while positive BX is directed sunward.
+in the afternoon compared to the morning, which may contribute to the higher afternoon occurrence of F region TEC variations for southward IMF. The high occurrence of TEC variations in the morning-afternoon sectors for northward IMF (Figure 11) is a signiﬁcant, but not necessarily unexpected observation. Discrete and diffuse auroral features are often
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9044
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+observed poleward of the auroral region in the morning and afternoon sectors under northward IMF conditions [e.g., Elphinstone et al., 1990]. These features have been attributed to energetic particle precipitation associated with ﬁeld-aligned currents within high latitude convection cells (i.e., “lobe cells”), resulting from dayside reconnection poleward of the cusp region [e.g., Jankowska et al., 1990; Juusola et al., 2014]. In particular, the diffuse and discrete auroral distributions calculated by Jankowska et al. [1990] for northward IMF correspond closely to regions of peak dayside occurrence of TEC variations in Figure 11. As shown in Figures 4 and 5, a high occurrence of F and E region TEC variations was also observed on the dayside around 80.0°–82.0° MLat, with a slight prenoon proclivity (10:00–11:00 MLT). Occurrence at these higher dayside latitudes increased with increasing SW-M coupling rate, with an F region occurrence of 0.28 for lowest coupling rates and 0.34 for highest coupling rates. According to Newell et al. [2004], dayside latitudes of 80.0°–82.0° map to the mantle boundary layer, which has a broader extent in latitude in the morning compared to the afternoon and signiﬁcantly expands in latitude for northward and duskward IMF. In addition, Newell et al. [2009] showed a statistically high number ﬂux for precipitating ions and electron precipitation resulting in diffuse aurora around 09:00–13:00 MLT and 80.0°–84.0° MLat for low coupling rates and 77.0°–81.0° for high SW-M coupling rates, which they attributed to mainly cusp precipitation. Other than a latitudinal shift, number ﬂux for these precipitation types was less dependent on coupling rate and was even slightly lower for higher coupling rates. It seems possible that the high occurrence of TEC variations at 80°–82° MLat on the dayside was due to a relatively steady precipitation of electrons and ions associated with the polar cusp. Polar cap patches also typically form around the cusp region and also likely contributed to the occurrence of F region variations at cusp latitudes. Numerous generation mechanisms are thought to result in polar patches, including precipitation of cusp particles [e.g., Walker et al., 1999].
+As seen in Figure 9, morning-afternoon E and F region TEC variations around 76.0°–80.0° MLat also tended to occur more often for dawnward (BY < À2 nT) or duskward (BY > 2 nT) IMF, compared to periods when IMF BY was close to zero. Increased occurrence of TEC variations with higher magnitude IMF BY contributes to dependence on solar wind-magnetosphere coupling rate, since coupling rate increases with IMF magnitude in the Y-Z plane (equation (2)). Polarity of IMF BY also resulted in a morning-afternoon occurrence asymmetry for both E and F region TEC variations. With the exception of highly dawnward IMF (BY < À6 nT), a dawnward IMF (BY < 0 nT) resulted in higher afternoon occurrence compared to morning, while a duskward IMF (BY > 0 nT) resulted in higher morning occurrence compared to afternoon. It is well known that the location of dayside merging of IMF and geomagnetic ﬁeld lines, as well as the orientation of the E × B convection pattern in the polar cap, both heavily depend on IMF BY polarity. A duskward (dawnward) IMF BY typically corresponds to a postnoon (prenoon) merging site, while magnetic tension pulls newly connected ﬁeld lines and convective ionospheric plasma ﬂow dawnward (duskward) [e.g., Cowley et al., 1991; Jayachandran and MacDougall, 1999; Siscoe et al., 2000]. The occurrence asymmetry for F region TEC variations is not surprising, since F region structures such as auroral forms and polar patches will convect duskward (dawnward) for a dawnward (duskward) IMF BY polarity after formation on the dayside, traveling with the prevailing polar cap convection ﬂow [Sandholt et al., 2003; Zhang et al., 2011]. This occurrence asymmetry for F region TEC variations is evident throughout the polar cap in Figure 9, indicating that a signiﬁcant portion of TEC variations observed in this study was due to F region structures whose motion followed the prevailing polar cap convection. In addition, Meng et al. [1977] reported an IMF BY dependent dawn-dusk asymmetry in polar rain intensity, where negative (positive) BY resulted in more intense polar rain in the dusk (dawn) sector.
+An explanation regarding the IMF BY control over morning-afternoon occurrence asymmetry for E region variations around 77.0°–81.0° MLat (Figure 9b) is less obvious, since the motion of E region plasma in the polar cap is not dominated by the E × B convection. Precipitation maps of Newell et al. [2004] indicate that the plasma mantle and LLBL have a broader coverage in local time and latitude in the afternoon (morning) for dawnward (duskward) IMF BY, in addition to the dawnward (duskward) shift of the polar cusp. This may contribute to the high occurrence of afternoon (morning) TEC variations involving E region ionization for dawnward (duskward) IMF BY, assuming that E region ionization structures originate from magnetospheric boundary layer precipitation. In addition, and as discussed in section 2, events classiﬁed as involving E region ionization can also involve F region ionization, and thus, convection of F region structures may also impact the occurrence distribution in Figure 9b. Unlike F region variations in Figure 9a, the asymmetry for E region TEC variations due to IMF BY was conﬁned to the dayside morning-afternoon occurrence maxima and was not observed throughout the polar cap.
+
+POLAR CAP TEC VARIATIONS
+
+9045
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Examination of the distribution of ﬁeld-aligned currents in the polar cap region may also shed some light on the patterns observed in Figure 9. Field-aligned currents are often associated with ﬁeld-aligned acceleration and subsequent precipitation of particles to energies capable of both F and E region ionization. Ionization structures such as auroral arcs, which produce TEC variations of interest in this study, can result from this precipitation. For a northward IMF, Juusola et al. [2014] observed that downward (upward) ﬁeldaligned currents associated with lobe cells during negative (positive) IMF BY were typically present in the afternoon (morning) sector around 78°–84° MLat, which increased in intensity for larger magnitude IMF. During southward IMF, the authors observed a poleward and noonward shift in the distribution of morning (afternoon) sector downward (upward) ﬁeld-aligned currents for negative (positive) IMF BY, primarily when the IMF magnitude was greater than 5 nT and when IMF BY was the dominant IMF component. Thus, in the opposite sense as the northward IMF case, peak currents were observed around 78°–84° MLat in the morning (afternoon) for negative (positive) IMF BY, with dissipating currents observed across noon and toward higher latitudes. Eriksson et al. [2003] observed a similar IMF BY dependence on both discrete and diffuse auroral features observed by the Polar UVI instrument, with morning (afternoon) features
+observed in polar regions for negative (positive) IMF BY. The authors attributed this to an IMF BY dependent reconnection and rotation of the magnetotail, which results in a poleward shift in the magnetic footprint of ﬁeld lines mapping to the plasma sheet. The dayside occurrence patterns of TEC variations in Figure 9 likely reﬂect a combination of these IMF BY effects and may explain the peak morning sector occurrence observed for BY < À6 nT. Plotting the IMF BY dependence separately for northward and southward IMF (not shown) did not result in occurrence patterns signiﬁcantly different than those shown in Figure 9. In each case, the dominant IMF BY effect is a higher occurrence of TEC variations in the morning (afternoon) for negative (positive) IMF BY. Note that, as shown in Juusola et al. [2014], intense ﬁeld-aligned currents at dayside latitudes extending into the polar cap are observed more often during northward IMF
+compared to southward IMF, since a large magnitude IMF and dominant BY component is required for the latter case.
+Of the three Cartesian IMF components, the occurrence pattern of TEC variations showed the least depen-
+dence on IMF BX. The primary effects of IMF BX were a slight clockwise (counterclockwise) rotation of the occurrence pattern in the polar cap (when viewed from above) with increasingly earthward (sunward) IMF and a slightly more disturbed polar ionosphere for earthward IMF compared to sunward. Using a combination of Viking satellite electric ﬁeld measurements, auroral images, and theoretical considerations, Jankowska et al. [1990] found that a primarily sunward IMF would result in a lack of antiparallel IMF and geomagnetic ﬁeld lines, resulting in low reconnection rates, a lack of intense ﬁeld-aligned currents, and a quiet polar cap ionosphere. For a predominantly earthward IMF, the authors found that upward ﬁeld-aligned currents and discrete auroral arcs were present in the morning sector around 75°–82° MLat, while the addition of a duskward IMF component (BY > 0 nT) resulted in intense downward ﬁeld align currents and discrete arcs in the afternoon sector at similar latitudes. Field-aligned current distributions of Juusola et al. [2014] showed
+that intensities were typically weakest when BX was the dominant IMF component; however, an upward current was observed around 09:00–11:00 MLT and 78°–82° MLat when the IMF was predominantly earthward with a magnitude greater than 5 nT. These ﬁeld-aligned current and auroral arc distributions for earthward IMF may contribute to the distinct morning-afternoon peaks in occurrence observed in Figure 13a for IMF BX < À6 nT, while the quiet conditions thought to result from a predominantly sunward IMF is consistent with the somewhat lower occurrence rates (compared to the earthward case) observed for IMF BX > 6 nT. Occurrence of F and E region TEC variations tended to increase throughout the polar cap with increasing solar
+wind-magnetosphere coupling rates and increasing magnitudes of BY, BZ, and BX components of the IMF. Lowest occurrence was consistently observed at latitudes close to the magnetic pole, with very few E region variations (<0.05 occurrence) observed at latitudes > 86.0° MLat during all solar wind conditions. E region occurrence of up to 0.15 near the magnetic pole was observed for highly northward IMF (BZ > 6 nT), duskward IMF (BY > 6 nT), and earthward IMF (BX < À6 nT). F region occurrence near the magnetic pole increased signiﬁcantly to 0.15–0.25 for high coupling rates (>10,000), extremely southward (<À6 nT) or northward (>6 nT) IMF BZ, highly dawnward (BY < À4 nT) or duskward (BY > 4 nT) IMF, and extremely earthward IMF (BX < À6 nT). Note that IMF BZ tends to reach extreme values more often during more active periods of the solar cycle [Hapgood et al., 1991]. At latitudes <78.0° MLat, nightside occurrences of up to 0.3 for both E and F regions at variations were observed during periods of high coupling rates. Increased occurrence
+
+POLAR CAP TEC VARIATIONS
+
+9046
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+of F region variations in all regions of the polar cap with increasing coupling rate and solar activity was likely also indicative of increased occurrence of polar patches, since patch activity is commonly observed throughout the polar cap.
+Increased amplitudes of TEC variations with increasing coupling rate likely reﬂect an increased intensity of energetic particle precipitation, increased density of polar patches relative to the ionospheric background density, and, in general, a more dynamic and turbulent polar cap with increased magnetospheric inﬂux of solar wind energy. Largest amplitude TEC variations were observed across noon at latitudes of 74.0–78.0° MLat. Large postnoon amplitudes were observed for lower coupling rates (<5000) and while prenoon and noon amplitudes were largest for higher coupling rates (>5000). These distributions indicate increased precipitation intensity in the postnoon sector with increased coupling rate and intense precipitation around noon and prenoon for high coupling rates >5000. Nilsson et al. [1998] observed E region ionization due to ion precipitation at regions mapping to the low latitude cusp, although it is unclear whether increased coupling rates would intensify this precipitation. Increased midnight amplitudes at low latitudes with increased coupling rate were likely an indicator of increased auroral activity and poleward expansion of the auroral oval. For highest coupling rates (>10,000), E region and F region amplitudes were signiﬁcantly larger around 20:00–23:00 MLT, which is possibly a result of intense broadband electron precipitation in the premidnight sector associated with periods of high solar wind driving [Newell et al., 2009].
+Comparing the occurrence and solar wind dependence of scintillation producing structures to the behavior of mesoscale structures presented in this manuscript is also a potentially useful exercise in gaining a more complete observational picture of the polar cap ionosphere. Plasma density gradients associated with larger scale structures can trigger instabilities that generate smaller scale, scintillation producing structures. Over a 6 year survey (2008–2013), Prikryl et al. [2015] found that phase scintillation activity most often occurred during periods of southward IMF (BZ < À3 nT), in dayside regions corresponding to the polar cusp (11:00–13:00 MLT and 76°–80° MLat). This pattern differs from the morning-afternoon peaks in occurrence that we observed for mesoscale structuring, however, corresponds to regions where largest amplitude TEC variations were typically observed (Figures 6 and 7). For northward IMF (BZ > 3 nT), Prikryl et al. [2015] observed an increase in phase scintillation activity at high latitudes and in the morningafternoon sectors, similar to the occurrence patterns observed for mesoscale structures in Figure 11. The occurrence rate of phase scintillations was somewhat lower in these regions however, at < 0.20 compared to the > 0.25 occurrence rates observed for mesoscale structuring. Also similar to the IMF BY dependence of TEC variations presented in Figure 9, Prikryl et al. [2015] observed a rotation of the dayside occurrence pattern of phase scintillations with IMF BY, where afternoon (morning) sector scintillations were more often observed for IMF BY < À3 nT (BY > 3 nT). The authors observed this BY dependence during periods of both northward and southward IMF, however, attributed scintillation activity to “polar patches” and “tongues of ionization” for southward IMF and to “Sun-aligned arcs” for northward IMF. According to Prikryl et al. [2015], polar cap scintillations away from the dayside cusp region were observed less than 10% of the time, signiﬁcantly less than the occurrence TEC variations due to mesoscale structuring presented in the current manuscript. Overall, it would appear that smaller scale structuring within mesoscale structures often occurs around the polar cusp during southward IMF (60%–70% of the time for BZ < À3 nT) and poleward of the cusp extending into the morning and afternoon sectors during northward IMF (50%–75% of the time for BZ > 3 nT). These numbers are rough estimates and assume that scintillation structures always coincide with larger scale structuring. Scintillation producing structures embedded within mesoscale structures are not often observed away from the dayside.
+Past studies have shown that the solar wind dependence of polar ionosphere structure and dynamics varies with season. For our purposes, most notable is the seasonal variability of the IMF BY inﬂuence on the IMF BY inﬂuence on the polar cap convection pattern [Papitashvili and Rich, 2002; Ruohoniemi and Greenwald, 2005], formation of transpolar arcs [Kullen et al., 2008], and ﬁeld-aligned currents [Green et al., 2009]. Figure 14 shows the occurrence of F region TEC variations observed in the three months surrounding (a) winter and (b) summer solstice, during periods of dawnward (BY < À2 nT) and duskward (BY > 2 nT) IMF. As was discussed in Watson et al. [2016], a higher dayside and lower nightside occurrence is evident in the winter months, while the general rotation of the polar cap convection pattern is similar to the effect shown in Figure 9a. However, a seasonal dependence is evident in the IMF BY control of the morning-afternoon occurrence asymmetry,
+
+POLAR CAP TEC VARIATIONS
+
+9047
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+WATSON ET AL.
+
+Figure 14. Occurrence rate of F region TEC variations observed in the (a) winter and (b) summer months, during periods of dawnward and duskward IMF.
+
+where a high morning (afternoon) occurrence for positive (negative) IMF BY is observed in the winter, with a less pronounced, but opposite effect observed in the summer months. The IMF BY control of occurrence rates around equinox was similar but less pronounced compared to winter months. The dependence of TEC variations on IMF BX, BY, or SW-M coupling rate did vary signiﬁcantly with season.
+From satellite observations of Green et al. [2009], both the intensity and IMF BY dependence of ﬁeld-aligned currents in the polar regions are larger in the summer months. On average, in the sunlit polar regions, the authors observed intense downward (upward) ﬁeld-aligned currents in the morning (afternoon) sector during negative (positive) IMF BY. Energetic particle precipitation associated with these dayside ﬁeld-aligned currents may play a larger role in polar ionosphere variability in the summer and contributes to the lower morning-afternoon occurrence asymmetry observed in the summer. For southward IMF conditions, the empirical model of Ruohoniemi and Greenwald [2005] found that the effect of positive (negative) IMF BY on the polar cap convection pattern is reinforced in the summer (winter) months, while the empirical model of Pettigrew et al. [2010] showed enhanced convection associated a BY dominated IMF during summer months. It is unclear how or if these seasonal convection patterns would impact the dayside occurrence patterns shown in Figure 14. Kullen et al. [2008] reported a greater IMF BY dependence on the formation of transpolar arcs in the summer months compared to winter but attributed this to lower arc luminosity in the winter months due to lower ionospheric conductivity.
+As shown in Watson et al. [2016], the dependence of TEC variations on SW-M coupling rate varied with phase of the solar cycle. Occurrence rate and amplitude of TEC variations at high latitudes (>85.0° MLat) and on the nightside show a greater increase for a given increase in SW-M coupling rate during years when solar activity is high. The dependence of TEC variations on IMF magnitude or orientation did not vary signiﬁcantly with phase of the solar cycle.
+
+POLAR CAP TEC VARIATIONS
+
+9048
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+
+Acknowledgments CHAIN infrastructure funding was provided by the Canadian Foundation for Innovation and the New Brunswick Innovation Foundation. CHAIN operation is conducted in collaboration with the Canadian Space Agency. Science funding is provided by the Natural Sciences and Engineering Research Council of Canada. Computing resources were provided by ACENET (https://www.ace-net.ca/wiki/ACENET). CHAIN data are available online through chain.physics.unb.ca. Solar wind data were obtained from the OMNI database on CDAWeb (http://cdaweb.gsfc.nasa. gov/).
+
+5. Summary and Conclusions
+The solar wind dependence of GPS TEC variations in the polar cap ionosphere was investigated. TEC variations were primarily due to mesoscale ionization structures, which includes polar patches and polar aurora. TEC variations due to F region and E region ionizations, observed by ﬁve polar cap GPS receivers over 6 years (2009–2014), were included in the study. Considering all solar wind parameters, an empirical function quantifying the dayside solar wind-magnetosphere coupling rate was found to be the best indicator of the overall occurrence rate and amplitude of TEC variations in the polar cap, where both occurrence rate and amplitude increased with SW-M coupling.
+The occurrence rate of TEC variations also depended heavily on the magnitude and orientation of the IMF. A
+variable IMF BY (dawn-dusk) component effectively rotated the occurrence pattern of F region TEC variations throughout the polar cap, where highest occurrence rates were observed in the morning sector for duskward
+IMF and in the afternoon for dawnward IMF. The IMF BY control of the morning-afternoon occurrence asymmetry was most pronounced in the winter months. The IMF BX component had a similar but smaller rotational effect, where an increased occurrence of F region TEC variations in the morning was observed when the IMF
+was earthward and in the afternoon/evening when the IMF was sunward. IMF BY also had a similar effect on the peak dayside occurrence rates of TEC variation due to E region ionization in the morning-afternoon but without the rotational effect in other polar cap regions. A southward IMF resulted in highest occurrence close to noon in the morning-afternoon sectors, where peak dayside occurrence rates shifted away from noon and poleward with increasingly northward IMF. Overall, occurrence rates were highest when the IMF had a large magnitude northward component, peaking on the dawn-dusk ﬂanks. The morning-afternoon occurrence asymmetry also varied with IMF BZ, where higher afternoon occurrence was observed during southward IMF and higher morning occurrence when the IMF was northward. Occurrence rates of TEC variations throughout the polar cap tended to be highest when the magnitude of the IMF was also large, regardless of IMF orientation. This study follows a previous study that examined the seasonal and solar cycle dependence of TEC variations. A future manuscript will present empirical functions describing the occurrence rate and amplitude of TEC variations in the polar cap.
+References
+Axford, W. I., and C. O. Hines (1961), A unifying theory of high-latitude geophysical phenomena and geomagnetic storms, Can. J. Phys., 39, 1433, doi:10.1139/p61-172.
+Buchau, J., B. W. Reinisch, E. J. Weber, and J. G. Moore (1983), Structure and dynamics of the winter polar cap F region, Radio Sci., 18, 995–1010, doi:10.1029/RS018i006p00995.
+Cai, X., and C. R. Clauer (2013), Magnetospheric sawtooth events during the solar cycle 23, J. Geophys. Res. Space Physics, 118, 6378–6388, doi:10.1002/2013JA018819.
+Coley, W. R., and R. A. Heelis (1998), Structure and occurrence of polar ionization patches, J. Geophys. Res., 103, 2201–2208, doi:10.1029/ 97JA03345.
+Cowley, S. W. H., J. P. Morelli, and M. Lockwood (1991), Dependence of convective ﬂows and particle precipitation in the high-latitude dayside ionosphere on the X and Y components of the interplanetary magnetic ﬁeld, J. Geophys. Res., 96, 5557–5564, doi:10.1029/90JA02063.
+Crooker, N. U. (1979), Dayside merging and cusp geometry, J. Geophys. Res., 84, 951–959, doi:10.1029/JA084iA03p00951. Elphinstone, R. D., K. Jankowska, J. S. Murphree, and L. L. Cogger (1990), The conﬁguration of the auroral distribution for interplanetary
+magnetic ﬁeld Bz northward: 1. IMF Bx and By dependencies as observed by the Viking satellite, J. Geophys. Res., 95, 5791–5804, doi:10.1029/JA095iA05p05791. Eriksson, S., W. J. Peria, J. W. Bonnell, Y.-J. Su, R. E. Ergun, Y.-K. Tung, G. K. Parks, and C. W. Carlson (2003), Lobe cell convection and polar cap precipitation, J. Geophys. Res., 108(A5), 1198, doi:10.1029/2002JA009725. Fasel, G. J. (1995), Dayside poleward moving auroral forms: A statistical study, J. Geophys. Res., 100, 11,891–11,905, doi:10.1029/95JA00854. Förster, M., S. E. Haaland, G. Paschmann, J. M. Quinn, R. B. Torbert, H. Vaith, and C. A. Kletzing (2008), High-latitude plasma convection during Northward IMF as derived from in-situ magnetospheric Cluster EDI measurements, Ann. Geophys., 26, 2685–2700, doi:10.5194/ angeo-26-2685-2008. Frey, H. U., S. B. Meade, T. J. Immel, S. A. Fuselier, E. S. Claﬂin, J.-C. Gérard, and B. Hubert (2002), Proton aurora in the cusp, J. Geophys. Res., 107(A7), 1091, doi:10.1029/2001JA900161. Green, D. L., C. L. Waters, B. J. Anderson, and H. Korth (2009), Seasonal and interplanetary magnetic ﬁeld dependence of the ﬁeld-aligned currents for both Northern and Southern Hemispheres, Ann. Geophys., 27, 1701–1715, doi:10.5194/angeo-27-1701-2009. Hapgood, M. A., M. Lockwood, G. A. Bowe, D. M. Willis, and Y. K. Tulunay (1991), Variability of the interplanetary medium at 1 AU over 24 years: 1963–1986, Planet. Space Sci., 39(3), 411–423, doi:10.1016/0032-0633(91)90003-S. Jankowska, K., R. D. Elphinstone, J. S. Murphree, L. L. Cogger, D. Hearn, and G. Marklund (1990), The conﬁguration of the auroral distribution for interplanetary magnetic ﬁeld Bz northward: 2. Ionospheric convection consistent with Viking observations, J. Geophys. Res., 95, 5805–5816, doi:10.1029/JA095iA05p05805. Jayachandran, P. T., and J. W. MacDougall (1999), Seasonal and IMF By effects on the polar cap convection orientation, J. Geophys. Res., 26, 975–978, doi:10.1029/1999GL900114. Jayachandran, P. T., and J. W. MacDougall (2001), Sunward polar cap convection, J. Geophys. Res., 106(A12), 29,009–29,025, doi:10.1029/ 2001JA000101.
+
+WATSON ET AL.
+
+POLAR CAP TEC VARIATIONS
+
+9049
+
+WATSON ET AL.
+
+Journal of Geophysical Research: Space Physics 10.1002/2016JA022937
+Jayachandran, P. T., K. Hosokawa, J. W. MacDougall, S. Mushini, R. B. Langley, and K. Shiokawa (2009a), GPS total electron content variations associated with a polar cap arc, J. Geophys. Res., 114, A12304, doi:10.1029/2009JA014916.
+Jayachandran, P. T., et al. (2009b), Canadian High Arctic Ionospheric Network (CHAIN), Radio Sci., 44, RS0A03, doi:10.1029/2008RS004046. Jayachandran, P. T., C. Watson, I. J. Rae, J. W. MacDougall, D. W. Danskin, R. Chadwick, T. D. Kelly, P. Prikryl, K. Meziane, and K. Shiokawa (2011),
+High-latitude GPS TEC changes associated with a sudden magnetospheric compression, Geophys. Res. Lett., 38, L23104, doi:10.1029/ 2011GL050041. Jayachandran, P. T., K. Hosokawa, K. Shiokawa, Y. Otsuka, C. Watson, S. C. Mushini, J. W. MacDougall, P. Prikryl, R. Chadwick, and T. D. Kelly (2012), GPS total electron content variations associated with poleward moving Sun-aligned arcs, J. Geophys. Res., 117, A05310, doi:10.1029/2011JA017423. Juusola, L., S. E. Milan, M. Lester, A. Grocott, and S. M. Imber (2014), Interplanetary magnetic ﬁeld control of the ionospheric ﬁeld-aligned current and convection distributions, J. Geophys. Res. Space Physics, 119, 3130–3149, doi:10.1002/2013JA019455. Krankowski, A., I. I. Shagimuratov, L. W. Baran, I. I. Ephishov, and N. J. Tepenitzyna (2006), The occurrence of polar cap patches in TEC ﬂuctuations detected using GPS measurements in southern hemisphere, Adv. Space Res., 38(11), 2601–2609, doi:10.1016/j.asr.2005.12.006. Kullen, A., J. A. Cumnock, and T. Karlsson (2008), Seasonal dependence and solar wind control of transpolar arc luminosity, J. Geophys. Res., 113, A08316, doi:10.1029/2008JA013086. Lanzerotti, L. J. (2001), Space weather effects on technologies, in Space Weather, AGU Monogr. Ser., vol. 125, pp. 11–22, AGU, Washington, D. C. Liou, K., P. T. Newell, C.-I. Meng, T. Sotirelis, M. Brittnacher, and G. Parks (1999), Source region of 1500 MLT auroral bright spots: Simultaneous Polar UV-images and DMSP particle data, J. Geophys. Res., 104, 24,587–24,602, doi:10.1029/1999JA900290. MacDougall, J., and P. T. Jayachandran (2007), Polar patches: Auroral zone precipitation effects, J. Geophys. Res., 112, A05312, doi:10.1029/ 2006JA011930. MacDougall, J. W., and P. T. Jayachandran (2001), Polar cap convection relationships with solar wind, Radio Sci., 36, 1869–1880, doi:10.1029/ 2001RS001007. Meng, C.-I., S.-I. Akasofu, and K. A. Anderson (1977), Dawn-dusk gradient of the precipitation of low-energy electrons over the polar cap and its relation to the interplanetary magnetic ﬁeld, J. Geophys. Res., 82, 5271–5275, doi:10.1029/JA082i032p05271. Newell, P. T., and C.-I. Meng (1992), Mapping the dayside ionosphere to the magnetosphere according to particle precipitation characteristics, Geophys. Res. Lett., 19, 609–612, doi:10.1029/92GL00404. Newell, P. T., J. M. Ruohoniemi, and C.-I. Meng (2004), Maps of precipitation by source region, binned by IMF, with inertial convection streamlines, J. Geophys. Res., 109, A10206, doi:10.1029/2004JA010499. Newell, P. T., T. Sotirelis, K. Liou, C.-I. Meng, and F. J. Rich (2007), A nearly universal solar wind-magnetosphere coupling function inferred from 10 magnetospheric state variables, J. Geophys. Res., 112, A01206, doi:10.1029/2006JA012015. Newell, P. T., K. Liou, and G. R. Wilson (2009), Polar cap particle precipitation and aurora: Review and commentary, J. Atmos. Sol. Terr. Phys., 71(2), 199–215, doi:10.1016/j.jastp.2008.11.004. Nilsson, H., S. Kirkwood, and T. Moretto (1998), Incoherent scatter radar observations of the cusp acceleration region and cusp ﬁeld-aligned currents, J. Geophys. Res., 103, 26,721–26,730, doi:10.1029/98JA02269. Papitashvili, V. O., and F. J. Rich (2002), High-latitude ionospheric convection models derived from Defense Meteorological Satellite Program ion drift observations and parameterized by the interplanetary magnetic ﬁeld strength and direction, J. Geophys. Res., 107(A8), 1198, doi:10.1029/2001JA000264. Pettigrew, E. D., S. G. Shepherd, and J. M. Ruohoniemi (2010), Climatological patterns of high-latitude convection in the Northern and Southern Hemispheres: Dipole tilt dependencies and interhemispheric comparisons, J. Geophys. Res., 115, A07305, doi:10.1029/ 2009JA014956. Prikryl, P., P. T. Jayachandran, R. Chadwick, and T. D. Kelly (2015), Climatology of GPS phase scintillation at northern high latitudes for the period from 2008 to 2013, Ann. Geophys., 33, 531–545, doi:10.5194/angeo-33-531-2015. Reiff, P. H., and J. L. Burch (1985), IMF By-dependent plasma ﬂow and Birkeland currents in the dayside magnetosphere 2. A global model for northward and southward IMF, J. Geophys. Res., 90, 1595–1609, doi:10.1029/JA090iA02p01595. Ruohoniemi, J. M., and R. A. Greenwald (2005), Dependencies of high-latitude plasma convection: Consideration of interplanetary magnetic ﬁeld, seasonal, and universal time factors in statistical patterns, J. Geophys. Res., 110, A09204, doi:10.1029/2004JA010815. Sandholt, P. E., J. Moen, C. J. Farrugia, S. W. H. Cowley, M. Lester, S. E. Milan, C. Valladares, W. F. Denig, and S. Eriksson (2003), Multi-site observations of the association between aurora and plasma convection in the cusp/polar cap during a southeastward (By ~ |Bz|) IMF orientation, Ann. Geophys., 21, 539–558, doi:10.5194/angeo-21-539-2003. Sauer, H. H., and D. C. Wilkinson (2008), Global mapping of ionospheric HF/VHF radio wave absorption due to solar energetic protons, Space Weather, 6, S12002, doi:10.1029/2008SW000399. Siscoe, G. L., G. M. Erickson, B. U. Ö. Sonnerup, N. C. Maynard, K. D. Siebert, D. R. Weimer, and W. W. White (2000), Deﬂected magnetosheath ﬂow at the high-latitude magnetopause, J. Geophys. Res., 105, 12,851–12,857, doi:10.1029/1999JA000268. Themens, D. R., P. T. Jayachandran, M. J. Nicolls, and J. W. MacDougall (2014), A top to bottom evaluation of IRI 2007 within the polar cap, J. Geophys. Res. Space Physics, 119, 6689–6703, doi:10.1002/2014JA020052. Tsunoda, R. T. (1988), High-latitude F region irregularities: A review and synthesis, Rev. Geophys., 26, 719–760, doi:10.1029/RG026i004p00719. Valladares, C. E., H. C. Carlson Jr., and K. Fukui (1994), Interplanetary magnetic ﬁeld dependency of stable Sun-aligned polar cap arcs, J. Geophys. Res., 99, 6247–6272, doi:10.1029/93JA03255. Walker, I. K., J. Moen, L. Kersley, and D. A. Lorentzen (1999), On the possible role of cusp/cleft precipitation in the formation of polar-cap patches, Ann. Geophys., 17, 1298–1305, doi:10.1007/s00585-999-1298-4. Watson, C., P. T. Jayachandran, E. Spanswick, E. F. Donovan, and D. W. Danskin (2011), GPS TEC technique for observation of the evolution of substorm particle precipitation, J. Geophys. Res., 116, A00I90, doi:10.1029/2010JA015732. Watson, C., P. T. Jayachandran, and J. W. MacDougall (2016), Characteristics of GPS TEC variations in the polar cap ionosphere, J. Geophys. Res. Space Physics, 121, 4748–4768, doi:10.1002/2015JA022275. Weber, E. J., J. Buchau, J. G. Moore, J. R. Sharber, R. C. Livingston, J. D. Winningham, and B. W. Reinisch (1984), F layer ionization patches in the polar cap, J. Geophys. Res., 89, 1683–1694, doi:10.1029/JA089iA03p01683. Zhang, Q.-H., et al. (2011), On the importance of interplanetary magnetic ﬁeld ∣By∣ on polar cap patch formation, J. Geophys. Res., 116, A05308, doi:10.1029/2010JA016287. Zhou, X. W., C. T. Russell, G. Le, S. A. Fuselier, and J. D. Scudder (2000), Solar wind control of the polar cusp at high altitude, J. Geophys. Res., 105, 245–251, doi:10.1029/1999JA900412.
+
+POLAR CAP TEC VARIATIONS
+
+9050
+

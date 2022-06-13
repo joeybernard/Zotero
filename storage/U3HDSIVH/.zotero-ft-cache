@@ -1,0 +1,1393 @@
+UNIVERSITY OF OSLO
+Department of Physics
+Observations of Polar Cap
+Patch Substructures by EISCAT Svalbard Radar
+Master Thesis
+Karina E. Bravo Ibáñez
+1
+May 2009
+
+2
+
+Preface
+The University in Oslo (UiO) gave me the opportunity to start a master in Space Physics. I am glad to have met many people related to space studies. I had the opportunity to take courses at the University centre in Svalbard (UNIS). Apart from the interesting theory background in space physics gained there, it was a great experience to live near the North Pole, and I will always have in mind the white mountains, the 24 hrs with darkness/sunlight, the exciting trips to the observatory stations, and of course the astonishing northern lights. I also had the chance to attend the International Space University Summer School Program (ISU SSP 2009) held in Barcelona thanks to the Norwegian Space Centre and, of course, to Ellen Osmundsen, Yvonne Rinne, Jøran Moen and Hans Pécseli for helping me with the application.
+I would like to thank my supervisors Jøran Moen and Kjellmar Oksavik for their help and guidance during this thesis, for their many interesting ideas on the subject and for always being available no matter the distance. I also thank Bjørn Lybekk and Espen Trondsen for technical assistance. I acknowledge the use of EISCAT data provided by the database in Kiruna, the use of ACE data provided by the ACE MAG and SWEPAM instruments teams, also the use of SuperDARN data provided by the John Hopkins University Applied Physics Laboratory. Thanks to Todd Pedersen who provided the scintillation data. EISCAT is an international association supported by research organisations in China (CRIRP), Finland (SA), France (CNRS, till end 2006), Germany (DFG), Japan (NIPR and STEL), Norway (NFR), Sweden (VR), and the United Kingdom (STFC).
+I appreciate the help from my friends and colleagues, Knut Stanley for helping me with Matlab and Vegard Rekaa for giving me some of his time to read though this thesis. Thanks to the library in the Physics department for supplying me with books and articles. I would also like to thank my family and friends who always encouraged me, and to everyone else who was there to help me.
+The writing of this thesis taught me interesting things about space weather, the role it plays in our technologically advanced world, the possibilities we have in predicting disturbances caused by the Sun-Earth interplay, and that there is still much to learn. I am glad for the choice I made of studying space physics, and I would like to continue if the chance is there.
+Oslo, 29 May 2009
+Karina E. Bravo Ibanez
+3
+
+4
+
+Abstract
+This thesis discusses substructures within convecting large-scale plasma density enhancements, known as “patches”, in the polar F-region ionosphere. Two days of high resolution EISCAT Svalbard Radar (ESR) data from both antennas have been analyzed; the 42m fixed antenna measures along the magnetic field, providing well defined altitude profiles, and the 32m steerable antenna which was directed towards north, is used to measure velocity. Patches have been identified by using the factor 2 from background increase in F2 region maximum electron density ( F2). This has been compared with variations in the total electron content (TEC), which is the integrated electron density from 100 to 800 km. Due to satellite clutter and noise above 600 km,
+F2 is the preferred parameter for polar cap patch identification by ESR. In preparation for the University of Oslo‟s CubeSTAR space weather satellite to be launched in 2010, the F2 search for patches has been compared with a search for patches measured by ESR at satellite altitudes (between 650 and 750 km). The number of patches at these heights increased considerably from those identified by F2, while the patch density decreased by a factor 5-7 from F2. The increased number of patches at satellite altitudes is possibly related to ion upflow events, which is a characteristic signature of the ionospheric cusp.
+Patches moving north along the 32m antenna beam had sizes ranging from 70 km to 400 km and velocities from 160 m/s to 1km/s. Within these patches, as well as within the tongue of ionization (TOI), there are significant substructures down to km scale size. The EISCAT patch observations have been compared with 250 MHz scintillation and CUTLASS data, which reveals smaller scale structures within the patches. The scintillation index peaked near the edges of polar cap patches, and did not necessarily give the greatest values where the highest densities were observed.
+5
+
+6
+
+Table of contents
+List of symbols, abbreviations and acronyms………………………………………………………...9 List of figures……………………………………………………………………………………………........12
+1 Introduction ................................................................................................................. 14 2 The Sun-Earth interaction ........................................................................................... 17
+2.1 The Solar Atmosphere .............................................................................................................................17 2.2 The Solar Wind..........................................................................................................................................20 2.3 The Fluid Model- Magneto Hydro Dynamics (MHD) .......................................................................21 2.4 Interplanetary Magnetic Field (IMF) .....................................................................................................23 3 The Earth’s Magnetosphere ........................................................................................ 24 3.1 The Inner Magnetosphere .......................................................................................................................24 3.2 The Outer Magnetosphere ......................................................................................................................25 3.3 Reconnection .............................................................................................................................................27 3.4 IMF ........................................................................................................................................................28 4 The Ionosphere ............................................................................................................ 30 4.1 Height profile at high latitudes ...............................................................................................................30 4.2 Ionization production and loss in the F-region ...................................................................................31 4.3 Electric Fields and Convection in the Polar Cap.................................................................................32 4.4 Ionospheric Currents................................................................................................................................33 4.5 The Aurora.................................................................................................................................................34 5 Polar Cap Patches ........................................................................................................ 36 5.1 Source of Plasma for Polar Cap Patches ...............................................................................................36 5.2 Patch production by Transient Magnetopause Reconnection...........................................................36 5.3 Plasma depletion due to fast plasma jets ...............................................................................................38 5.4 Reorientation of the convection pattern due to IMF ....................................................................38 5.5 Soft Particle Precipitation ........................................................................................................................39 6 Patch occurrence.......................................................................................................... 41 6.1 Solar cycle ...................................................................................................................................................41 6.2 Seasonal variations ....................................................................................................................................42 6.3 Daily variations ..........................................................................................................................................43 7 Observation methods ................................................................................................... 45 7.1 Incoherent scatter radars..........................................................................................................................45 7.2 Incoherent Scatter (IS) Radars vs. Ionosondes ...................................................................................46 7.3 The EISCAT Svalbard Radar (ESR) ......................................................................................................48
+7
+
+7.3.1 The power spectrum ............................................................................................................................48 7.4 Super Dual Auroral Radar Network (SuperDARN) ...........................................................................50 7.5 Co-operative UK Twin Auroral Sounding System (CUTLASS) .......................................................51 7.6 Advance Composition Explorer (ACE) ................................................................................................52 7.7 GPS Scintillation .......................................................................................................................................52 8 Data processing ........................................................................................................... 53 8.1 Experiments and programs .....................................................................................................................53 8.2 GUISDAP..................................................................................................................................................54
+8.2.1 Satellite check ........................................................................................................................................54 8.3 Data resolution ..........................................................................................................................................55 8.4 Additional program functions.................................................................................................................57
+8.4.1 Power spectra asymmetry check ........................................................................................................57 8.4.2 Electron density profile check ............................................................................................................58 8.4.3 Three dimensional color plots of , , , ..............................................................................59 8.5 Gaps in the measurements ......................................................................................................................59 8.6 IMF propagation delay .............................................................................................................................59 9 Observations ................................................................................................................ 62 9.1 ACE and SuperDARN.............................................................................................................................62 9.1.1 Case 1: 23 February 2001 ....................................................................................................................62 9.1.2 Case 2: 21 February 2002 ....................................................................................................................64 9.2 ESR..............................................................................................................................................................66 9.2.1 Identification of patches in the 32m radar beam ............................................................................67 9.2.2 Electron density measurements - TEC and F2 ........................................................................69 9.2.3 Patch velocity and dimension .............................................................................................................72 9.2.4 32m and 42m observations .................................................................................................................75 9.2.5 Gradients in electron density at satellite altitudes ...........................................................................77 9.2.6 Vertical temperatures and velocities ..................................................................................................79 9.3 Scintillation and coherent backscatter ...................................................................................................82 9.3.1 Case 1: 23 February 2001 ....................................................................................................................82 9.3.2 Case 2: 21 February 2002 ....................................................................................................................85 10 Discussion....................................................................................................................87 11 Conclusions.................................................................................................................. 91 12 Future Work ................................................................................................................. 92 13 Appendix ...................................................................................................................... 93 14 References .................................................................................................................. 108
+8
+
+List of symbols, abbreviations and acronyms
+
+Abbreviations and Acronyms
+
+ACE ACF CME CP CPS CUTLASS E EISCAT ESR FAC FTE f- o- v GPS GSM GUISDAP IMF IS LEO l- o- s MAG MHD MLAT MLT MP N NP NEIAL PS PSBL S SuperDARN SWEPAM TEC TOI UHF
+
+Advance Composition Explorer Autocorrelation Function Coronal Mass Ejection Common Program Central Plasma Sheet Cooperative United Kingdom Twin Auroral Sounding System East European Incoherent Scatter EISCAT Svalbard Radar Field Aligned Current Flux Transfer Event Field- of- view Global Positioning System Geocentric Solar Magnetospheric Grand Unified Incoherent Scatter Data Analysis Program Interplanetary Magnetic Field Incoherent Scatter Low Earth Orbit Line-of-sight Magnetometer Magneto Hydro Dynamics Magnetic latitude Magnetic Local Time Magnetopause North North Pole Naturally Enhanced Ion-Acoustic Line Plasma Sheet Plasma Sheet Boundary Layer South Super Dual Auroral Radar Network Solar Wind Electron, Proton and Alpha Monitor Total Electron Content Tongue Of Ionization Ultra High Frequency
+
+9
+
+UT VHF W
+Symbols
+, , ,
+Rx, Tx
+,
+F2
+
+List of Symbols, abbreviations and acronyms
+Universal Time Very High Frequency West
+IMF components in the x, y and z directions in GSM coordinate system. Electron density, average electron density Earth radii Receiver, transmitter Scintillation index Electron temperature, ion temperature Ion velocity Electron density peak
+
+10
+
+List of Symbols, abbreviations and acronyms 11
+
+List of Figures
+Figure 2.1. Overview over the different sun active regions .................................................................19 Figure 2.2. Solar wind source regions and solar wind structure in the ecliptic. ................................21
+Figure 3.1. Near Earth magnetospheric regions. ...................................................................................25 Figure 3.2. Configuration of the outer magnetosphere.. ......................................................................26 Figure 3.3. Geometry of dayside magnetopause reconnection at an x-line .......................................28 Figure 3.4. Closed-open magnetic field configuration..........................................................................29 Figure 3.5. Lobe reconnection due to northward ............................................................................29
+Figure 4.1. Ionospheric composition during daytime at high latitudes. .............................................30 Figure 4.2. Temperature profile for the ionospheric constituents ......................................................31 Figure 4.3. Plasma convection and electric fields in the upper polar atmosphere............................33 Figure 4.4. Region 1 currents and region 2 currents .............................................................................34 Figure 4.5. Magnetospheric-ionospheric current system model..........................................................34 Figure 4.6. Dayside and nightside aurora................................................................................................35
+Figure 5.1. Extending tongue of enhanced ionization though the dayside cusp region ..................36 Figure 5.2. Mapping of magnetopause reconnection X-line to the ionosphere merging gap.........37 Figure 5.3. Sequence of reconnection pulses at dayside. ......................................................................37 Figure 5.4. Open-closed field line boundary response due to dayside reconnection event ............38 Figure 5.5. Convection pattern configuration under southward IMF and for negative, zero and positive IMF By, respectively. ..................................................................................................................39 Figure 5.6. Electron temperature and density profiles during particle precipitation from different boudary layers .............................................................................................................................................40
+Figure 6.1. Monthly sunspot numbers for the years 1985 to 2008 .....................................................41 Figure 6.2. Occurrence of polar cap patches for various levels of sunspot activity .........................42 Figure 6.3. Distribution of IMF Bz at Qaanaaq, Greenland................................................................42 Figure 6.4. Patch occurrence frequency as a function of UT and month..........................................43 Figure 6.5. Convection of plasma entry to the polar cap .....................................................................43
+Figure 7.1. EISCAT incoherent radars....................................................................................................45 Figure 7.2. Thomson scattering illustration............................................................................................46 Figure 7.3. Example of reflection and transmission of radio waves...................................................47 Figure 7.4. Coverage for ionosonde and incoherent scatter radar at 350 km altitude.. ...................47 Figure 7.5. Elevation and azimuth configuration for the 32m and 42m antenna............................48 Figure 7.6. Data process path. ..................................................................................................................49 Figure 7.7. Autocorrelation function (ACF) and power spectrum .....................................................49 Figure 7.8. Field-of-view for the SuperDARN radars in the Northern and Southern hemispheres ....................................................................................................................................................................... 51 Figure 7.9. Field-of-view for CUTLASS and the ESR 32m beam......................................................51 Figure 7.10. Lagrange points.....................................................................................................................52
+12
+
+Figure 8.1. Experiments for the ESR. .....................................................................................................53 Figure 8.2. Description of the analysis process......................................................................................54 Figure 8.3. Satelite clutter around 650-750 km. .....................................................................................55 Figure 8.4. ESR 32m and 42m 64s integrated data ...............................................................................56 Figure 8.5. ESR 32m and 42m 12.8s integrated data ............................................................................57 Figure 8.6. Sequence of the power spectrum for two data dumps .....................................................58 Figure 8.7. Electron density profiles for three data dumps on different times .................................59
+Figure 9.1. Interplanetary magnetic field components on 23 February 2001....................................63 Figure 9.2. SuperDARN convection cells on 23 February 2001.........................................................64 Figure 9.3. Interplanetary magnetic field components on 21 February 2002....................................65 Figure 9.4. SuperDARN convection cells and velocity vectors on 21 February 2002.....................66 Figure 9.5. Six hours of ESR 32m observations on 23 February 2001 patch identification ...........68 Figure 9.6. Six hours of ESR 32m observations on 21 February 2002 patch identification ...........69 Figure 9.7. TEC, peak electron density and height distribution on 23 February 2001 ....................70 Figure 9.8. TEC, peak electron density and height distribution on 21 February 2002 ....................71 Figure 9.9. Illustration of a patch moving along the magnetic field through the 32m beam..........72 Figure 9.10. Example of velocity vector decomposition though the 32m field-of-view .................75 Figure 9.11. ESR 32m and 42m observations of electron density on 23 February 2001 ................76 Figure 9.12. ESR 32m and 42m observations of electron density on 21 February 2002 ................76 Figure 9.13. ESR 42m density plot at heights between 650-750 km on 23 February 2001 ............78 Figure 9.14. ESR 42m density plot at heights between 650-750 km on 21 February 2002. ..........78 Figure 9.15. Six hour plot of ESR 42m observations on 23 February 2001......................................80 Figure 9.16. Six hour plot of ESR 42m observations on 21 February 2002......................................81 Figure 9.17. Geometry of 250 MHz scintillation observations in MLT and magnetic latitude grid on 23 February 2001 ..................................................................................................................................83 Figure 9.18. Coherent backscatter power and line-of sight plasma drift measured by CUTLASS, averaged peak density from ESR 42m data and scintillation from 250 MHz transmitted signals on 23 Febraury 2001........................................................................................................................................84 Figure 9.19. Geometry of 250 MHz scintillation observations in MLT and magnetic latitude grid on 21 February 2002. .................................................................................................................................85 Figure 9.20. Coherent backscatter power and line-of sight plasma drift measured by CUTLASS, averaged peak density from ESR 42m data and scintillation from 250 MHz transmitted signals on 21 Febraury 2002........................................................................................................................................86
+Figure 13.1. Topology of the outer magnetosphere in GSM coordinate system..............................93 Figure 13.2. Six hours span in UT and the corresponding times in MLT system ............................93 Figure 13.3. × trajectory for ions and electrons ............................................................................94 Figure 13.4. Density height profile. .........................................................................................................95 Figure 13.5. Range of scale lengths for the study of electron density structures using different techniques.. .................................................................................................................................................. 95 Figure 13.6. Averaging between three points around density peak ....................................................98
+13
+
+1 Introduction
+The ionosphere is the ionized layer of the atmosphere where the amazing northern lights (aurora borealis) are born, covering the polar skies with visible colors in green and red. Behind such events, our Sun is interacting with the Earth through interplanetary space. The Norwegian physicist Kristian Birkeland was the first to make relying evidence on the ionized gas interaction between the Sun and the Earth. He showed through his famous experiment, the terella, that charged particles streaming from the Sun towards Earth follow the magnetic field lines producing the aurora borealis. Such interactions between the Sun and the Earth involve much more science than just a beautiful multicolor emission of light. The Earth‟s magnetic field is perturbed by the solar wind and interactions arise between electric and magnetic fields in the ionosphere, causing clouds of charged particle (plasma) to drift across the polar cap which are known as polar cap patches. Polar cap patches, which are islands of turbulent plasma, are a major challenge for upcoming technologies, producing disturbances in communication and navigation systems.
+Detections of unusual high plasma concentrations above 170 km altitude in the ionosphere had already been made by the end of the 40‟s. By measuring the frequency equivalent to the plasma frequency (the critical frequency), horizontally moving plasma clouds moving at several hundred kilometers per hour were identified in northern Polar Regions (Meek, 1949). In the late 50‟s Obayashi (1959) showed the relationship between high critical frequency values and ionospheric current systems. Hill and Penndorf (1959) distinguished the regular diurnal ionospheric variation from variations due to high critical frequency values. Ionosonde data from Hill (1963) revealed the formation of high plasma enhancements at the dayside region, which may have been the first evidence for what later would be called a polar cap “patch”. Research on this phenomena prevailed in the following years, especially when discovering that these events caused deviations in the transmision of satellite signals.
+Intensive work related to the structure and dynamics of the ionosphere in the polar cap started in the early 80‟s. Observations were made by combining ground-based instruments such as ionosondes and radars, and satellites. Buchau et al. (1983) and Weber et al. (1984) were the first to make detailed reports on patches of enhanced F region ionization. All-sky images showed these density enhancements having patch-like forms, hence their name, occurring during periods of enhanced magnetic activity. Buchau et al. (1985) investigated the relation of these features to satellite signals of 250-MHz, showing that they contributed considerable to scintillation. They investigated the source region for the polar patches and concluded that the high density plasma forming patches was generally produced equatorward of the cusp region and transported through the cusp and across the central polar cap by convection. Knudsen (1974) suggested that such flow would lead to a tongue of enhanced ionization (TOI) across the polar cap. Observations made over the following years showed that rather than a continuous TOI passing through the polar cap, the plasma is segmented forming discrete patches (Sojka et al. 1994). The mechanism behind this segmentation is of great interest nowadays. The steep gradients in density at the edges of a patch cause instabilities and irregularities at small scale sizes, and it is these irregularities which cause problems for satellite telecommunication and navigation systems.
+14
+
+1 Introduction
+The polar cap patch phenomenon has become an interesting “space weather” phenomenon. Today‟s observations and research are well advanced by the use of multiinstrumentation; projects have been planned (e.g. the ICI-series of sounding rockets and a new EISCAT radar generation, EISCAT 3D) and will hopefully answer many important questions. The University of Oslo is working on a new project, the STAR-project, which aims to send a satellite into orbit to measure the electron density in the ionosphere with a spatial resolution providing detailed information about polar cap patches.
+In the mean time, interesting topics can be covered. This thesis comprises the study of polar cap patches over the dayside polar cap based on data from the EISCAT Svalbard radar (ESR), focusing on finestructures within these. We give an insight into the advantages of using ESR data rather than ionosonde data, which is commonly used for the study of patches, and take a look at the resolution required to study substructures within patches. Two commonly used electron density parameters are applied to identify patches and will be compared. Additional instruments are applied in order to give a larger overview of the patch-phenomena. It is interesting to see what the expected ionospheric characteristics may be at satellite altitudes. What can a satellite such as the STAR-satellite measure? Is there any significant distinction in observing patches at satellite altitudes than observing them at lower altitudes? What are the characteristics of the features seen at satellite heights? This thesis aims to cover these questions. We will also take a look into the scintillation problematic. Patch formation mechanisms and structuring mechanisms are outside the scope of this thesis but will be mentioned.
+We can divide the chapters in this thesis in three parts: Section I (Chapter 2-6): Literature, Section II (Chapter 7-8): Instruments and data processing and Section III (Chapter 9-11): Observations, discussion and conclusions. The first part includes a literature background to give a better understanding of the patch phenomena and of definitions that will be used repeatedly. The second part includes a description of the instruments used, and a description on how data has been processed. The last part includes the observations, discussion and conclusions.
+15
+
+Section I: Literature
+16
+
+2 The Sun-Earth interaction
+
+The Earth is being influenced by the Sun at every instant, receiving energetic charged particles at the same time as it is influenced by the interplanetary magnetic field (IMF) from the Sun. To understand such interaction it is important to know the origin of the plasma flow, namely the Sun. Subsequently, the characteristics of particle flow or solar wind, and the equations describing such plasma flow. Finally, we outline the role of the interplanetary magnetic field, being closely related to the solar wind.
+
+2.1 The Solar Atmosphere
+The Solar atmosphere can be divided into three layers according to the different temperature regions we are looking at (e.g. Pröls, 2004). These layers are: the photosphere, the chromosphere, the transitions layer and the corona. The last two are bounded together and can be considered as one. Their properties are listed in Table 2.1.
+
+Table 2.1. The different solar layers and their composition (values adapted in part from Pröls (2004) and Kivelson and Russell (1995)).
+
+Layers
+
+Thickness
+
+Density
+
+Main
+
+Temperature (lower layer) Components
+
+Photosphere
+
+500 km
+
+6400-4200 K
+
+H, He
+
+Chromosphere ~ 2000 km 4200-10 000 K
+
+H,
+
+Transition Layer/Corona
+
+Several Solar Radii ( )
+
+1-2 × K
+
+The photosphere is the lowest layer in the Sun‟s atmosphere and it is the layer from which most of the Sun‟s light is emitted. In the photosphere the temperature decreases with height (proven by observing the darkening effect of the Sun‟s edge or limb). The temperature is low compared to the other layers, hence the existence of non-ionized particles. Groups of sunspots often appear in this layer, being regions with low temperature compared to the background (about 2000 K colder, Noyes, 1982). The surrounding area of a sunspot is much brighter than normal, and is known as an active region. The sunspot number peaks every 11 years, a cycle-period first discovered by Schwabe in 1843 and later systematized by Wolf in 1848 (Noyes,1982; Wilson, 1998). Their origins have been associated with the presence of strong magnetic fields that possibly cause a delay in the transport of heat (Noyes, 1982). Hale (1924) found out that there is a 22-year cycle in magnetic polarity reversal within these sunspots.
+The chromosphere starts at the limit of minimum temperature of the photosphere, where temperature begins to increase moderately. The increase in temperature may possibly be due to heat dissipation from atmospheric waves (e.g. Swarzschild, 1948). Conditions at the
+17
+
+2 The Sun-Earth interaction chromosphere are governed by plasma structures, the most common seen are spikelike jets called spicules which were first studied by Secchi (1875-1877). Other common features that he observed are threads of “flames” called prominences. Following the chromosphere, we find the transition region, where the temperature increases abruptly (Gabriel, 1976) forming the unexplainable hot layer, the corona, which extends up to several solar radii and plays an important role in the SunEarth interaction.
+The corona consists of very hot ionized gas; it is the Sun‟s outermost layer and is closely associated to the solar wind (Noyes, 1982). At every active sun period, i.e. at every sunspot maxima, the corona undergoes drastic changes in its structure; some of these can be seen as huge streamers stretching far into space. Regions of much lower density than the background corona, or so-called coronal holes are also common during Sun active periods. They arise from open magnetic fields in which field lines emerging from the photosphere can extend far out into interplanetary space (Levine et al., 1977a; 1977b). Coronal holes have large life times and can exist during weeks and up to several months. They play a big role in the variation of the solar wind speed as will be seen in section 2.2. Solar flares are also features that have astonished scientists; an example is the event in 1859 reported by Carrington (1859).
+Flares are produced by high energy release stored in the magnetic fields associated with an active region, where the magnetic fields are twisted and stressed (Piddington, 1980). High amount of plasma can be expelled from the Sun through coronal mass ejections (CMEs) disturbing the ambient solar wind and increasing the helium content in the wind. CME‟s are in some cases associated with flares (Sheeley et al., 1999). The different features before mentioned are illustrated in Figure 2.1. Further literature on the properties of the Sun can be found in Noyes (1982).
+18
+
+2 The Sun-Earth interaction
+Figure 2.1. 1a, 1b : Active regions and sunspots for the same event. 2. Spicules. 3. Prominences. 4. Streamers observed during a solar eclipse. 5. Coronal holes at the Sun‟s poles. 6. Flares. 7. Coronal mass ejection (Credit: NASA and ESA).
+19
+
+2 The Sun-Earth interaction
+2.2 The Solar Wind
+The solar wind is a flow of ionized particles expulsed from the Sun as a result from a disturbed solar atmosphere. It is mainly composed of a mixture of protons and electrons with a small fraction of α-particles, as its coronal origin (see table 2.1). The dynamics of the Sun‟s atmosphere has been described by Parker (1958; 1965), who theorized that the Sun‟s outermost gas envelope, the corona, expands through the interplanetary medium due to its extended temperatures near the Sun and can reach out a distance of billions of kilometers (Parker, 1965). Observations made by Richardson et al. (1995) based on data from the Pioneer 10 and Voyager 2 spacecraft showed a decrease in solar wind density by with radial distance, as would be expected for a spherical expansion. Typical numbers for the density, velocity and temperature at 1 AU (around 150 million kilometers from the Sun‟s center) are given in Table 2.2. The solar wind has coronal properties, and consists of protons ( ), electrons ( -) and a small amount of ionized helium ( ). The solar wind can be classified into two basic states (e.g. Schwenn, 1990; Feldman et al., 2005): the fast wind and the slow wind, which differs in velocity, density and temperature (Table 2.2). The fast wind has been associated with coronal holes, while the slow wind with coronal streamers and active regions (Cranmer, 2002). Figure 2.2. illustrates the source regions for the different solar wind parameters and the solar wind structure in the ecliptic.
+
+Table 2.2. Average solar wind parameters at 1 AU compiled by Schwenn and Marsch, 1990 during solar minimum.
+
+Flow speed
+Proton density
+Proton temperature
+Electron temperature
+Helium content
+
+Slow wind 250-400 km 10.7 3.4 × K
+1.3 × K
+2.5 %, variable
+
+Fast wind 400-800 km 3.0 2.3 × K
+1× K
+3.6 %, stationary
+
+20
+
+2 The Sun-Earth interaction
+Figure 2.2. 1. Solar wind source regions (left) and 2. solar wind structure in the ecliptic (view towards north)(right) (adapted from Pröls, 2004).
+The first case in Figure 2.2 shows the open magnetic field lines in the region of the coronal hole, which is surrounded by closed magnetic structures, or loops. The second case shows the outward motion of the solar wind due to the rotation of the Sun, giving it a characteristic Archemedian spiral structure (or Parker spiral). Rarefaction and compression regions will be formed as a result of the different speed regions. Short-lived sources, such as a coronal mass ejection is also illustrated. The second case gives us an idea about the large scale structure of the different events produced by the Sun and the development in interplanetary medium as it reaches Earth‟s orbit.
+2.3 The Fluid Model- Magneto Hydro Dynamics (MHD)
+From the solar wind properties observed, two main theoretical models have been developed to describe the solar wind dynamics: the gas dynamic model and the hydrodynamic model, depending on whether we are treating the solar wind as a neutral gas or as a fluid. Parker (1958) was the first to develop a simple model to describe the solar wind using gas dynamics, where he considered the solar atmosphere being composed of a mixture of protons and electrons. The model involves the following assumptions:
+1. same particle density for protons and electrons (quasi-neutral) (2.1)
+2. no relative motion between protons and electrons (2.2)
+3. the proton and electron temperatures are the same and approximately constant
+(2.3) 4. the solar wind outflow is spherically-symmetric
+21
+
+2 The Sun-Earth interaction
+
+5. stationary expansion (2.4)
+6. particle sources or sinks are omitted
+Using the ideal gas law, the equation of motion (momentum) and the equation of continuity which will be listed shortly after, and using the points listed above, leads to the theory of a supersonic velocity outflow, i.e. the solar wind (Parker, 1958). However, the first assumption requires that no currents flow in the solar wind since protons and electrons move with the same velocity leaving out any electric field in the plasma. Parker also neglected any solar magnetic fields. Nevertheless, when the magnetic field pressure is comparable to the gas dynamic pressure in the interstellar medium it is necessary to use ideal magneto hydro dynamics (MHD) (Baranov, et al., 1995). The set of MHD equations is based on Maxwell‟s equations and Euler‟s gas dynamic equations and were first developed by Alfvén (1942). The general form for the MHD equations is listed below:
+
+×B= j × E =
+0
+v v) = j = (E + v × B)
+
+(2.5) (2.6) (2.7) (2.8) (2.9) (2.10)
+
+, v, p and T are the plasma density, velocity, pressure and temperature respectively; E and B is the electric and magnetic field, is the permeability constant and j is the electric current density;
+c is the speed of light, is the ratio of specific heats (adiabatic constant), is the conductivity, is the kinematic viscosity and g is the gravitational acceleration. The first two equations are derived from Maxwell‟s equations corresponding to Ampère‟s and Faraday‟s law, the former relating the magnetic field to the net current j. Equations (2.7), (2.8) and (2.9) are Euler‟s gas dynamic equations which are the equations of continuity (mass conservation), energy conservation and momentum conservation. The equations listed above yield for a vacuum case with viscous and resistive forces taken into account. Equation (2.10) is a generalized form of Ohm‟s law (discussion on it‟s application can be found in Vasyliunas (1975)) which we will return to in the next section. For an “ideal” MHD model the conductivity ∞ and equations (2.5)-(2.9) reduce to the equations for a supersonic (above the sound velocity) model of the solar wind.
+22
+
+2 The Sun-Earth interaction
+
+2.4 Interplanetary Magnetic Field (IMF)
+
+The interplanetary magnetic field is a consequence of the transport of Sun‟s magnetic field into interplanetary space by the solar wind, i. e. the plasma carries with it the magnetic field from the Sun when expelled into space. Plasma particles in the solar wind gyrate around the magnetic field lines such that when the particles move, the field lines move along with them. This is the socalled frozen-in condition, where equation (2.10) from the set of MHD equations plays an important role. For a collisionless plasma, the conductivity may approach ∞, and equation
+(2.10) is satisfied only if :
+
+E+ u × B = 0
+
+(2.11)
+
+This relation can further be used to substitute the current density in Faraday‟s induction law (equation (2.6)), giving:
+
+×( u × B )
+
+(2.12)
+
+This equation can be used to prove that the magnetic flux passing through a closed curve that moves with the plasma flow remains constant, implying also that plasma particles connected at any point in time by a common magnetic field line remain connected by the same field line as they move through space (e.g., Pröls, 2004). As we will later see, the frozen-in condition breaks down when reaching Earth‟s magnetic field, the magnetosphere, in a process called magnetic reconnection.
+
+23
+
+3 The Earth’s Magnetosphere
+
+The solar wind couples to the Earth‟s magnetic field. But how does the Earth ionospheremagnetosphere system respond to the solar wind? In this section we will learn more about the Earth‟s magnetic field, the magnetosphere, and about the disturbances on it provoked by the solar wind. We start with a brief introduction on the configuration of the magnetosphere; its different regions and boundary layers.
+
+3.1 The Inner Magnetosphere
+
+Within approximately 1 000 km in height up to 6 Earth Radii (≃ 30 000 km height), the geomagnetic field assimilates to that of a dipole field (Pröls, 2004). According to Barker et al.
+(1986), the dipole moment of the Earth is tilted about 11 to the rotation axis. The inner field is divided into different regions according to the energy of the charged particle populations, these are: the radiation belt, the ring current, and the plasmasphere (see Figure 3.1).
+
+The Radiation Belt (Van Allen belt)
+
+This population of charged particles represents the highest energy population at low and middle latitudes, having protons with energies ranging from 1-100 MeV and electrons ranging from 50 keV-10 MeV. The particles are confined within Earth‟s near magnetic field, moving along the closed field, bouncing back and forth between opposite magnetic hemispheres. At around 2.2 from Earth‟s center, along the geomagnetic equatorial plane, there is a minimum in energy flux which separates the radiation belt in an „„inner belt‟‟ (closest to Earth) and an „„outer belt‟‟. The particles have high drift velocities around the Earth. However, the current density is negligible because of the low particle density.
+
+The Ring Current
+
+The ring current is composed of medium energy particles, with ion energies of 1-200 keV. The peak particle fluxes and densities are observed between 3-6 from the geomagnetic equatorial plane. The motion of these particles also consists of gyration about the local magnetic field line, a bouncing motion along the field line, and a drift around the Earth. In contrast to the radiation belt, the ring current is highly influenced by magnetic disturbed conditions, increasing the particle density in this region and thus, increasing the electric current induced by the drift motion around the Earth (e.g., Pröls, 2004).
+
+The Plasmasphere
+
+The plasmasphere is a population of dense (~
+
+- ) and cold plasma, with particles whose
+
+energies range between 0 and 1 eV. It is mainly composed of protons ( ) and electrons ( -). Its
+
+outer region has a sharp density gradient which is called the plasmapause, at an altitude of 3-5 .
+
+24
+
+3 The Earth’s Magnetosphere
+The plasmasphere has been observed to corotate with the Earth (e.g., Sandel et al., 2003; Burch et al., 2004). These particles have so low energies that they do not experience any bouncing between opposite magnetic hemispheres, and neither a drift around the Earth. Nevertheless, the do gyrate along field lines. The outer radiation belt and the ring current overlap, thus the trapped particles in the radiation belt contribute to the ring current. The plasmasphere coexists at about the same region as the inner radiation belts (see Figure 3.1.1).
+Figure 3.1. Near Earth magnetospheric regions (adapted from Kivelson and Russell, 1995).
+3.2 The Outer Magnetosphere
+The magnetosphere is usually described by a geocentric solar magnetospheric (GSM) coordinate system, where the x-axis is directed towards the Sun, the y-axis is defined to be perpendicular to the Earth‟s dipole axis, and the z-axis pointing along the vertically magnetic field lines at the north pole (see appendix A). The magnetosphere is commonly represented by an ellipsoidal form (Roelof and Sibeck, 1993). It can be considered as a dipole field being deformed and stretched out due to the solar wind, compressed at the dayside magnetic region and extended in the nightside magnetic region forming what is called the magnetotail. At the dayside, the solar wind experiences a shock, acquiring subsonic speeds. The region behind the bow shock is called the magnetosheath. The magnetopause is the outer boundary of the magnetosphere which separates the geomagnetic field and the terrestrial plasma from the solar wind plasma. The point laying overhead at noon is the subsolar point, at a distance of around 10 (≃ 64 000 km) from the Earth‟s center, although its distance varies and can sometimes be around 6-14 (e.g., Kalegaev and Dmitriev, 2000). The subsolar point will be brought up later, in relation to the reconnection phenomenon. The magnetopause changes in size and shape due to dynamic pressure caused by the solar wind and the interplanetary magnetic field (IMF) orientation. Numerous statistical studies have been done in order to describe the structure of the magnetopause (see Suvorova et
+25
+
+3 The Earth’s Magnetosphere al., 1999, and references therein). Portions on the magnetopause have been ascribed different names, as it has been observed by spacecrafts (e.g., ISIS 1, IMP 5 and IMP 6, HEOS 2) that the characteristics from one region to another on the boundary layer differ considerably. These regions are: the mantle/High Latitude Boundary Layer, the entry layer, the exterior cusp/cleft and the Low Latitude Boundary Layer (LLBL). Additionally, we find distinguished particle populations in the magnetotail region close to Earth: the plasma sheet and the tail lobes. These are illustrated in Figure 3.2.
+Figure 3.2. Configuration of the outer magnetosphere. On the right hand a slice of the cylindrical part of the tail is shown (two figures superposed, adapted from Pröls, 2004).
+The Plasma Mantle/High Latitude Boundary Layer Rosenbauer et al. (1975) found out that, what they termed as the plasma mantle, extended over the entire surface of the magnetotail. They used plasma observations of the distant polar magnetosphere provided by the spacecraft HEOS 2, which also showed that the thickness of this layer varied greatly and ranged up to 4 . It was also observed that the mantle is mainly formed by plasma of magnetosheath origin (Earth-origin ions are also likely to be found), with flows tailward and flow speeds slightly less than the exterior magnetosheath flow. The Entry Layer Paschmann et al. (1976) also used observations provided by HEOS 2, thus establishing the existence of a layer being typically 1-2 thick at the dayside magnetopause, called the entry layer, believed to be the main entry region of solar wind plasma into the magnetosphere. They found that this layer had characteristic magnetosheath type plasma. Measurements made later,
+26
+
+3 The Earth’s Magnetosphere
+onboard PROGNOZ-7 suggested that the entry layer is characterized by strong variability of magnetosheath plasma entry (flux-transfer events) (Lundin and Dubinin, 1984).
+The Exterior Cusp/Cleft
+The exterior cusp or cleft, is the region connected to the proper polar cusp, i.e. where the magnetic field is zero (magnetic null) (e.g., Jaroensutasinee and Rowlands, 2000), being quite sensitive to solar wind conditions (Russell et al., 2001). The cusp distinguishes from the entry layer by its smaller variations of the plasma parameters (Lundin, 1987).
+The Low Latitude Boundary Layer (LLBL)
+The low latitude boundary layer extends from noon and all the way tailwards, and thus has the largest contact surface with the magnetosheath. In contrast to the other boundary layers in which the plasma flow is mainly directed along the magnetic field lines, in the LLBL the plasma flow on the dayside has considerable cross-field flow components (Lundin, 1987). It contains a mix of magnetosheath and magnetospheric plasma.
+The Plasma Sheet
+The plasma sheet is the mid plane particle population of the magnetotail. The plasma sheet ion population consists of a mix of solar wind and Earth related particles. The average ion flow is low (not much larger than 100 km/s), being fastest as we move towards the tail. High-speed flows do exist, but they are short lived (lasting not more than 10 s). The transition layer between the plasma sheet and the tail lobes is called the plasma sheet boundary layer (PSBL) which has lower temperature than the hot central plasma sheet. For more details on the observational properties of the plasma sheet, see Baumjohan et al. (1989).
+The Tail Lobes
+The tail lobes are the regions between the plasma sheet and the magnetotail boundary layers at the magnetopause. The lobes have low temperature and densities. The magnetic field lines of the lobes have their footpoints at the polar cap, forming a ring around it (the auroral oval). More detail information about the tail lobes can be found in Koleva and Sauvaud (2008).
+The plasma mantle, the entry layer and the cusp all lies on „open‟ magnetic field lines while the LLBL has been thought to lie on both open and closed field lines (dipole field lines) (Kivelson and Russell, 1995), therefore containing a mixture of plasma from both the magnetosheath and the magnetosphere. The plasma sheet lies for the most part on closed field lines while the tail lobes normally lie on open field lines. More about the origin of open magnetic field lines will follow in section 3.3.
+3.3 Reconnection
+Energy and momentum from the solar wind is transferred into the inner magnetosphere through the magnetopause. Many theories on processes that may allow such transfer have been proposed (Song and Lysak, 1997 and references within), but the greater part of the energy is thought to be transferred through magnetic reconnection (Marcucci, 2003). Sweet (1958) and Parker (1957)
+27
+
+3 The Earth’s Magnetosphere
+proposed a model for the reconnection process occurring in solar flares. The model presumes that in a narrow electric current sheet where opposite directed field lines are forced together, the frozen-in condition breaks down, reconnecting to the opposite field region. At the magnetopause the plasma on either side will be different, on one side there will be a region consisting of plasma from the magnetosheath and on the other side of plasma of magnetospheric origin (e.g., Eastman and Hones, 1979). A resulting sketch from the developed theories on reconnection at the dayside magnetopause is given by Gosling et al. (1990) (Figure 3.3).
+Figure 3.3. Geometry of dayside magnetopause reconnection at an x-line. S1 and S2 are the two reconnecting field lines. E1, E2 and I1, I2 are the boundaries to accelerated the electrons and ions respectively, in the reconnection process (Adapted from Gosling et al., 1990).
+3.4 IMF
+The near Earth magnetosphere is like a dipole field, with exclusively closed field lines. However, „open‟ magnetic field lines are generated due to reconnection with the interplanetary magnetic field (IMF). Dungey (1961) proposed that a southward component (in GSM coordinates) brought along with the solar wind, merges with Earth‟s magnetic field at the subsolar point and subsequently, as these merged fields are dragged tailwards at the polar cap, reconnect again at the magnetotail. In Figure 3.4 the closed-open configuration is illustrated, together with the flow lines generated in the polar caps. The polar cap is the region which connects via magnetic field lines to the magnetotail lobe. The polar oval (auroral zone) connects to the tail plasma sheet on the nightside and to the cusp and magnetospheric boundary layers to the dayside. The figure at the bottom describes the footpoint trajectory of the plasma threads. The convection pattern generated at the poles (see lower figure) will be better explained in later sections (chapter 4). For northward IMF , reconnection can occur at the magnetospheric lobes (e.g., Gosling, 1991; Pryse and Smith, 1999), giving a sunward flow over the polar cap rather than an antisunward flow as for the case in which reconnection occurs on the dayside magnetosphere. A case for a northward reconnection is shown in Figure 3.5.
+28
+
+3 The Earth’s Magnetosphere
+Figure 3.4. Closed-open magnetic field configuration. Flow lines in the northern hemisphere are shown in the lower figure (adapted from Kivelson and Russell, 1995).
+Figure 3.5. Lobe reconnection due to northward . The dashed blue arrow indicates the (sunward) direction of the flow (adapted from Gosling, 1991).
+29
+
+4 The Ionosphere
+
+The ionosphere is the ionized region of Earth‟s atmosphere and is greatly influenced by the solar wind-magnetosphere interaction as we will see. In this section we will discuss the main characteristics of this region. At the end of this section we will briefly introduce the aurora, as it is the only ionospheric feature that can be seen with the minimum eye.
+
+4.1 Height profile at high latitudes
+
+Figure 4.1 shows the density profiles of the major ionospheric ion species ( , , , )
+
+and electrons for medium solar activity, without the influence of electric fields set up in the
+
+ionosphere (see section 4.3). The profile has a peak of ~ 2 ×
+
+- (2 ×
+
+- ) around an
+
+altitude of 300 km, being quite similar to the density profile at mid latitudes for low solar activity
+
+(Johnson, 1966). However, the peak fluctuates strongly in both altitude and density since it is very
+
+dependent on solar activity, season, daytime and latitude. At high latitudes during high solar
+
+activity, the peak has been observed to lay around 350 km altitude (Stolle et al., 2004; Moen et al.,
+
+2008b).
+
+Figure 4.1. Ionospheric composition during the day at high latitudes for non effective electric fields (adapted from Schunk, 1975).
+The ion composition varies with altitude dividing the ionosphere into different layers: the E layer at altitudes ranging from approximately 90 to 170 km, mainly composed of and , and the F layer from 170 to 1000 km mainly composed of (Pröls, 2004). Below 90 km we find the D layer (not shown in Figure 4.1) being distinct from the other layers for the existence of negative ions produced by interactions of ions and neutrals with electrons (e.g., Hiroshi, 1994). The density profile in the F region varies differently with altitude; the density increases exponentially with altitude up to the F region density peak and decreases exponentially with
+30
+
+4 The Ionosphere
+
+altitude above the F region density peak (Pröls, 2004). The neutral particle density (which is not
+
+shown in Figure 4.1) exceeds
+
+- at F region altitudes dominating over the ion density
+
+(Johnson, 1969). The height profiles for the neutral gas, ion and electron temperatures during
+
+daytime at mid-latitudes for low solar activity are shown in Figure 4.2. The ion temperature is
+
+in thermal equilibrium with the neutral gas below 300 km altitude, while they decouple above this
+
+height with the ion temperature increasing strongly from 1000 K up to 2200 K at 900 km, and
+
+the electron temperature being greater than the ion temperature.
+
+Figure 4.2. Temperature profile for the ionospheric constituents (adapted from Pröls,2004).
+
+4.2 Ionization production and loss in the F-region
+
+Ions at the ionosphere are produced by solar EUV and x-ray radiation through photoionization. Precipitation of energetic particles into the ionosphere also plays an important role. Since we later are going to focus on the F-layer, it is important to get familiar with the production and loss mechanisms which are significant for the total amount of charged particles at these altitudes. For instance, particle precipitation plays an important role at high latitudes. The process can be written as:
+
+X +
+
+( 12.06 eV)
+
++
+
++
+
+(4.1)
+
+Where X is an atom or molecule and
+
+and
+
+are the precipitating electron and newly
+
+produced electron, respectively. For a photoionization process we may write:
+
+31
+
+4 The Ionosphere
+
+X + photon( 103 nm)
+
++ e
+
+(4.2)
+
+where energies of 12.06 eV are required to ionize molecular oxygen ( ), 13.62 eV for atomic oxygen (O) and 15.57 eV for molecular nitrogen ( ), corresponding to wavelengths around 80100 nm. On the other hand, the loss of oxygen ions in the F region occurs mainly via charge exchange with and , which can be written as:
+
++
+
++ N
+
+(4.3)
+
++
+
++ O
+
+(4.4)
+
+At polar altitudes there is additional loss from plasma escaping along open magnetic field lines referred to as polar wind (Axford, 1968), being similar to the flow of solar plasma away from the Sun (Parker, 1963). Besides local production and/or loss, the ions may be transported horizontally by convection into or out of a volume in the ionosphere due to electric fields set up in the ionosphere (see section 4.3). Chemical reaction rates such as (4.3) and (4.4) may also change due to electric fields as plasma is transported through the neutral background (Schunk, 1983). Frictional heating from collisions between ions and neutrals raises the ion temperature (Schunk, 1987). This again induces vertical winds which change the amount of O atoms with respect to the amount of molecules (e.g., Rishbeth et al., 1987), altering the processes in (4.3) and (4.4).
+
+4.3 Electric Fields and Convection in the Polar Cap
+Electric fields are generated by the solar wind interaction with the Earth‟s magnetosphere being mapped down to the high latitude ionosphere. Typical electric fields set up are of the order of 25150 mV - . Nevertheless, field strengths of 200 mV - can occasionally arise (Schunk, 1975). The magnetospheric electric field executes an × - drift (see appendix C) of the charge carriers in the upper ionosphere as shown in Figure 4.3. The × - drift generates a two-cell convection pattern, where plasma drifts anti-sunward in the polar cap and towards the Sun in the polar oval (auroral region). Reinisch et al. (1987) observed average plasma velocities varying from 100 to 300 km/s at auroral latitudes and from 300 to 800 m/s in the polar cap. The drift motion described is maintained in the F region, where collisions between ions and neutrals can be neglected. Solar wind and magnetospheric plasma must first get attached to open magnetic field lines for an anti-solar × - drift to take place across the polar cap (Pröls, 2004). Figure 4.3 is thus associated with the reconnection model proposed by Dungey (1961) (see Figure 3.4).
+
+32
+
+4 The Ionosphere
+Figure 4.3. Plasma convection and electric fields in the upper polar atmosphere. NP is the north geomagnetic pole (adapted from Pröls, 2004).
+4.4 Ionospheric Currents
+The collision frequency of charged particles with neutrals is quite small above 150 km altitude (Schunk, 1987). However, at lower heights collision frequencies with neutrals dominate, changing the motion of the charge carriers. The change of the ion motion (being more affected than the electron motion) produces horizontal currents in the lower atmosphere; Pedersen current along the electric field, and Hall current perpendicular to the electric field (e.g., Primdahl and Spangslev, 1977). These currents attain their greatest intensities in the so called dynamo layer (around 200 km altitude) in the E layer. Field aligned currents (FACs), also known as Birkeland currents, play an important role in the coupling of the ionosphere and magnetosphere. FACs such as the Region 1 currents (see Figure 4.4 a)) flow out of the ionosphere in the evening and into the ionosphere in the morning. Region 2 FACs, equatorial currents flow into the ionosphere in the evening and into the ionosphere in the morning. They connect magnetospheric boundary layers to the ionosphere as these flows into and away from the Earth‟s auroral region as shown in Figure 4.5. It is worth mentioning that additional currents can arise in the nightside ionosphere during tail reconnection events, generating so-called electrojets (Akasofu et al., 1965, and references therein). This thesis does not focus on the nightside ionosphere and we will therefore not go into details on disturbances produced by tail events.
+33
+
+4 The Ionosphere
+Figure 4.4. a) Pattern of Birkeland currents (FAC's) (adapted from Iijima and Potemra, 1978) and b) the corresponding electric fields (adapted from Kivelson and Russell, 1994). The currents in the poleward region of the auroral oval are called Region 1 currents. The currents equatorward of the auroral oval are called Region 2 currents.
+Figure 4.5. Possible magnetospheric-ionospheric current system (adapted from Brekke, 1997).
+4.5 The Aurora
+The aurora forms as a consequence from precipitating particles (ions and electrons) exciting atmospheric constituents (O, N, , , , ) thus making them emit radiation from ultraviolet to infrared. The commonly observed lines of the auroral spectrum are the „green‟ and „red‟ lines at 557.7 nm and 630 nm, respectively, from atomic oxygen. These lines are produced from oxygen atoms which have been excited when interacting with auroral particles. The transition time of an electron from an excited state to a lower energy state of atomic oxygen is much larger for the case of a red line emission. Thus, red line emission is less likely to occur as the collision frequency exceeds the expected emission frequency of each excited atom. Due to the rapidly increasing particle density with decreasing altitude below 200 km, collisions become more frequent and thus red-line emissions equally less frequent (Kivelson and Russell, 1995). Consequently, green aurora is most common at lower altitudes, and the opposite is true with red aurora (see Figure 4.6). The oval shaped band (light blue) shown in Figure 4.5 is the auroral band,
+34
+
+4 The Ionosphere within which auroras are common. The particles producing the auroras have their sources in different particle population regions as shown for example by Hartz (1971). On the dayside, energetic particles present magnetosheath characteristics (with energies <1 keV). These lowenergy particles penetrate down to the atmosphere through the cusp region, producing dayside auroras. On the nightside, medium-energy particles (~0.5-50 keV) stem from the magnetotail plasma sheet. Figure 4.6 illustrates the difference between dayside and nightside aurora along with altitude. Nightside aurora dominates at lower altitudes than dayside aurora, since it is produced by higher energy particles which can penetrate further down in the atmosphere. The 427.8 nm aurora from excited nitrogen ions ( ) is also shown.
+Figure 4.6. Dayside and nightside aurora versus altitude (adapted from Kivelson and Russell, 1995)
+35
+
+5 Polar Cap Patches
+
+Many theories about the formation of polar cap patches have been developed throughout the years. In this section we will give an insight into some of the main patch generation mechanism.
+
+5.1 Source of Plasma for Polar Cap Patches
+
+High-density plasma from lower latitudes in the postnoon sector has been observed to enter the
+
+polar cap, serving as a source of plasma for the generation of polar cap patches (Anderson and
+
+Buchau, 1988; Foster, 1993; Foster et al., 2005 and several others). Postnoon plasma driven by
+
+convection electric fields counteract Earth‟s rotation and stagnate, being overexposed to solar
+
+EUV radiation and hence, accumulating large ionization build-up before entering the cusp region
+
+(Foster et al., 1993; Moen et al., 2008b). The flow leads to a tongue of enhanced ionization (TOI)
+
+which is segmented into patches as it is driven from the dayside to the nightside by cross polar
+
+cap electric fields (see section 4.3)(Sojka et al., 1994). Observations made by Foster et al. (2005)
+
+showed a characteristic F peak density > 1.5 ×
+
+- , with corresponding ion and electron
+
+temperatures of approximately 2500 K. Figure 5.1 shows a plume of storm enhanced density
+
+(SED) transported from low latitudes in the postnoon sector toward higher latitudes, giving rise
+
+to a TOI entering the polar cap (orange-red pattern).
+
+Figure 5.1. Global map of ionospheric convection and total electron content (TEC) showing a SED/TOI extending though the dayside cusp region (adapted from Foster et al., 2005).
+5.2 Patch production by Transient Magnetopause Reconnection
+In the dayside auroral ionosphere convection bursts of plasma have been observed and interpreted in terms of transient magnetopause reconnection, so called Flux Transfer Events (FTEs). These events are controlled by open field lines due to reconnection at the magnetopause (Lockwood and Carlson, 1992). The reconnection point (X-line) on the dayside magnetopause
+36
+
+5 Polar Cap Patches map down to the ionospheric footprint of the cusp (the merging gap), producing an electric field in the ionosphere which drives ionospheric flow poleward. FTEs make the polar cap expand as the open flux within increases, moving the open-closed field line boundary equatorward (Cowley and Lockwood, 1992). Once the reconnection burst ends, the merging gap returns poleward along with enhanced equatorward plasma (which previously resided in sunlight) (Lockwood and Carlson, 1992). Figure 5.2 illustrates what happens during the dayside reconnection. Figure 5.3 illustrates the mechanism whereby discrete patches are produced in the polar cap. The reconnection burst causes the merging gap to bring sunlit density plasma from the equatorward edge to the polar cap. Thus, the polar cap expands onto a high density plasma region. Figure 5.4 shows the effects from such mechanism, in which there is an increase in the amount of open flux in the polar cap. As we can see, model d. is related to the two-cell convection pattern in the upper ionosphere earlier described in section 4.3.
+Figure 5.2. Mapping of the magnetopause reconnection X-line (AB) to the ionosphere merging gap (ab) (adapted from Lockwood and Cowley, 1992).
+Figure 5.3. Sequence of reconnection pulses at the dayside (noon is at the top and dawn to the right in each case). The contour segment ab is the merging gap shown in Figure 5.2. The solid line indicates the high plasma density contour (adapted from Cowley et al., 1991).
+37
+
+5 Polar Cap Patches
+Figure 5.4. Open-closed field line boundary (solid line) response due to impulsive dayside reconnection event (FTE): a. no plasma flow, b. perturbed boundary (solid line) with an increment in the open flux dF, after reconnection impulse together with a new zero flow boundary (dashed line), c. flow pattern once perturbed, d. new equilibrium boundary corresponding to a new amount of open-flux F+dF (adapted from Cowley and Lockwood, 1992).
+5.3 Plasma depletion due to fast plasma jets
+Strong plasma flows associated with FTEs cause significant depletions of the F-region plasma concentration, thus segmenting the tongue of plasma entering the polar cap. Enhanced ion velocities cause high plasma loss rates due to ion-neutral collisions (Schunk et al., 1975). These short-lived convection jets are called flow channel events (FCE‟s) and were first proposed by Rodger et al. (1994). Valladares et al. (1994) observed that these events are associated with high F region ion temperatures (>4000 K). It is worth mentioning that plasma depletions can also be caused by large upward (field aligned) plasma flows during rapid polar cap expansions, increasing the F peak height (Idenden et al., 1997).
+5.4 Reorientation of the convection pattern due to IMF
+Reorientation of the dayside convection pattern has also been proven to be an important mechanism for the production of polar cap patches (e.g., Lockwood et al., 2005). Sojka et al. (1993) modeled the configuration of the convection pattern at the polar cap due to changes in the IMF component. The convection trajectory is very much affected by the direction of . The inflow region was reoriented towards dusk or dawn during negative and for positive, respectively. Figure 5.4 shows how the two-cell convection pattern may change under the influence of non-zero IMF . Alternating intake of high density plasma (afternoon for IMF
+>0) and low density plasma (prenoon for IMF <0) has been suggested as a patch formation mechanism by Anderson et al. (1988), Rodger et al. (1994) and Milan et al. (2002).
+38
+
+5 Polar Cap Patches
+Figure 5.5. Convection pattern configuration under southward IMF and for negative, zero and positive IMF By, respectively (adapted from Cowley and Lockwood, 1992).
+5.5 Soft Particle Precipitation
+Ion and electron precipitation are shown to be important ionospheric production sources in the cusp region. Millward et al. (1999) showed that periods in which electron precipitation is dominant lead to an electron concentration increase in the upper F region ( -region), and that periods in which ion precipitation is dominant lead to electron concentration increases in lower F regions (below the peak). Precipitating particles can be of different magnetospheric region type (cusp, LLBL and BPS). The most energetic particles stem from the LLBL and the BPS, while soft particles (low-energy particles) are of cusp origin. Vontrat-Reberac et al. (2001) show the effects in the ionosphere due to particle precipitation from the different regions. They show that soft particle precipitation has most effect in the F region, producing high electron temperatures and contributing to density increases which build up with time and reach several
+- ; they also show that these precipitating particles, especially the low-energy particles, contribute to heat the ambient electrons and to trigger ion upflow. Figure 5.5 shows the electron temperature and density profiles in the ionosphere during particle precipitation measured from Vontrat-Reberac et al. (2001).
+39
+
+5 Polar Cap Patches
+Figure 5.6.Electron temperature and density profiles during particle precipitation from LLBL, BPS and cusp (adapted from Vontrat-Reberac et al., 2001).
+40
+
+6 Patch occurrence
+We have earlier mentioned the 11 year activity cycle of the Sun (see chapter 2). The number of patches in the polar cap is related to the sunspot activity. The patch occurrence frequency also changes during daytime and season. In this chapter we give an insight into the yearly, daily and seasonal variation of the number of polar cap patch occurrences.
+6.1 Solar cycle
+From 1985 to 2008, there have been two peaks in the sunspot number. The solar maxima are shown in Figure 6.1.
+Figure 6.1. Monthly sunspot numbers from the National Geophysical Data Center (NGDC). The sunspot numbers are for the years 1985 to 2008.
+Dandekar (2002) studied the solar cycle dependence for 4 years from ionospheric data from Qaanaaq in Greenland. These corresponded to four different levels of sunspot activity. In Figure 6.2 we can see how the number of patches changes for the years 1989-1997. From 1989 to 1990 the patch number is 15 times more than from 1996-1997, corresponding to the periods of sunspot maxima and sunspot minima in Figure 6.1. The IMF distribution during each year at Qaanaaq is shown in Figure 6.3. It was observed that for periods of maximal activity the distribution for peaked at -1 nT, while for periods of minimum activity it peaked at +2 nT, indicating thus that patch occurrences are more common for southward IMF during high sun activity, while they are more common for northward IMF during low sun activity.
+41
+
+6 Patch occurrence
+Figure 6.2. Occurrence of polar cap patch occurrence frequency for various levels of sunspot activity versus density. The observations are made at Qaanaaq, Greenland (adapted from Dandekar, 2002).
+Figure 6.3. Distribution of IMF at Qaanaaq, Greenland (adapted from Dandekar, 2002).
+6.2 Seasonal variations
+Patches are present during summer and winter, especially during winter solstice and equinox (e.g., Buchau et al., 1985; Sojka et al., 1994; Coley and Heelis, 1998). In summer months, patches are observed to be enhancements of a lower density TOI (Milan et al., 2002). Coley and Heelis (1998) observed that the greatest occurrence frequency of polar cap patches for a southward IMF configuration in the northern hemisphere is during winter. A contour plot of the occurrence frequency of patches in the northern hemisphere versus time and month is shown in Figure 6.4. They concluded that some of the preconditions for the formation of patches were that the Earth has to be inclined in such way to provide a low background density in the polar cap in which patches are visible; that the cusp needs to be positioned at the terminator or at dayside to provide a gateway for the high density plasma into the polar cap; and that the convection pattern on the dayside needs to provide for an adequate residence time in which sunlit plasma can build up the ion densities to the characteristic patch densities observed.
+42
+
+6 Patch occurrence
+Figure 6.4. Contour plot of the patch occurrence frequency from the Dynamics Explorer 2 satellite data (number of patches observed per hour in the polar cap when was negative) as a function of UT and month (adapted from Coley and Heelis, 1998)
+6.3 Daily variations
+The daily patch occurrence displays a maximum around magnetic noon (Rodger and Graham, 1996; Coley and Heelis, 1998). Coley and Heelis (1998) observed that the greatest frequency of patch occurrence during winter is in the 10:00-22:00 UT range, corresponding to the interval when the northern magnetic pole (hence the cusp) lies farthermost towards the dayside. The poleward flow observed by Foster et al. (1984) during a period of high sun activity, spanned over 3-4 hours of local time on the dayside region, from approximately 09:00 to 15:00 MLT (12 MLT = 08:50 UT) as shown in Figure 6.5.
+Figure 6.5. Polar plot (looking down on the northern hemisphere) showing the poleward convection of plasma entry to the polar cap spanning 3 hours of local time around noon (Foster et al., 1984).
+43
+
+Section II: Instruments and data
+processing
+44
+
+7 Observation methods
+The characteristics of a patch are dependent on the type of instrument used. The properties of patches were at first studied by using all-sky imagers, being characterized by having increased intensities of 630 nm (Weber et al., 1984). The use of all-sky imagers has its restrictions though, giving useful observations only during dark periods (during winter months), when conditions are „moonless and cloud free‟ (Crowley, 1996). Ionosondes and radars are more applicable nowadays for the study of polar patches. Satellite observations are frequently used to measure scintillation caused by polar patches. Each technique has its advantages and disadvantages, depending on what we want to study. Which instruments are used for polar cap patch observations? Can radar data be a better choice to work with than ionosonde data? These questions will be covered in the following.
+7.1 Incoherent scatter radars
+Incoherent scatter radars are high power transmitters sending signals in gigawatts and receiving in picowatts. The high altitude European Incoherent Scatter (EISCAT) radars in Scandinavia is a system composed of three incoherent scatter radars systems (see Figure 7.1), one of them transmitting from Tromsø (Norway) in Ultra High Frequency (UHF– 931 MHz) and in Very High Frequency (VHF– 224 MHz) having receivers in Sodankylä (Finland) and Kiruna (Sweden), and then the EISCAT Svalbard Radar in Longyearbyen (500 MHz). These radars are able to measure ionospheric properties such as electron density, ion and electron temperature, and ion drift velocity, along an altitude from about 50 km up to 2500 km (EISCAT Scientific Association, 2009).
+Figure 7.1. EISCAT incoherent radars located in Svalbard (transmitter/receiver),Tromsø (UHF and VHF receiver/transmitter), Sodankylä and Kiruna (UHF receivers)(www.obs.ujf-grenoble.fr/observation/esr+TKS.gif).
+45
+
+7 Observation methods
+The main idea behind incoherent scatter radars is that they send electromagnetic waves into the ionosphere making the electrons oscillate and emit radiation at almost the same frequency as the one transmitted. This effect is called Thomson Scattering and is illustrated in Figure 7.2. Electrons are lighter than protons contributes to most of the received signal. A power spectrum can be derived from the signal received, from which it is possible to obtain the different plasma parameters. Although the received signal comes from the electrons, the power spectrum is controlled by the ions. Ions are shielded by electrons, thus electrons follow the ion motion generating an “ion line” in the power spectrum. More detail is given in later sections.
+
+Figure 7.2. Thomson scattering. Electromagnetic wave transmitted (k being the wave vector) exciting particles in the ionosphere. (as power point presentation from the research section for Plasma and Space Physics at UiOs homepages).
+
+7.2 Incoherent Scatter (IS) Radars vs. Ionosondes
+
+Ionosonde stands for ionospheric sounding and is used to recreate a structure of the changes of electron density with height. This device sends out signals vertically to the ionosphere in a range of frequencies between (0.1- 30 MHz). The signals sent back to the receiver will come from different layers in the ionosphere, depending on the frequency transmitted. Higher frequencies will reach higher altitudes as shown in Figure 7.3. An important parameter measured by an ionosonde is the critical frequency, usually denoted as ƒ0F2, being the minimum frequency required for penetrating the layer without being reflected back. This occurs when the transmitted frequency is equal to the plasma frequency, being proportional to the square root of the electron density in the ionosphere (expression (7.1)).
+
+=
+
+(7.1)
+
+46
+
+7 Observation methods
+Figure 7.3. Example of reflection and transmission of radio waves (adapted from Pröls, 2004).
+Incoherent scatter (IS) radars usually operate with a fixed frequency and permit a direct measurement up to the topside region of the ionosphere, while ionosondes give good measurements of the lower part of the ionosphere. Some of the reasons for the differences between ionosonde and radar measurements rely on the covered volume by the signals transmitted (Lilensten et al., 2005). The ionosonde has an aperture angle of 10º while the ESR has an aperture of 0.9º (personal communication with Moen). Ionosondes illuminate a wider region giving better resolution on larger scale in the ionosphere but not giving enough information on smaller scales. Incoherent scatter radar data is therefore preferred against ionosonde data for the study of substructures. Figure 7.4 illustrates the idea behind what we have discussed (in the figure the aperture of the radar beam has been approximated to 1°).
+Figure 7.4. Coverage for ionosonde and incoherent scatter radar at 350 km altitude.
+47
+
+7 Observation methods
+7.3 The EISCAT Svalbard Radar (ESR)
+The EISCAT Svalbard Radar is an incoherent scatter (IS) radar which satisfies the characteristics mentioned earlier about incoherent scattering. The ESR is a dual antenna radar system, these are the 32m steerable antenna and the 42m fixed antenna. Data from both antennas are used in this study. Figure 7.5 shows the directional patterns used to measure the ionospheric parameters, elevation angle and azimuth. Azimuth is taken clockwise from Geographic North. The elevation angle is the angle the antenna points above the horizontal plane. Measurements from the 32m antenna were taken using an elevation angle of 30º with -24 º in azimuth; the 42m antenna which is fixed along the magnetic field has an elevation angle of 81.6 º and 181 º in azimuth.
+Figure 7.5. Elevation and azimuth configuration for the 32m (red line) and the 42m (blue line) antenna used in this study.
+7.3.1 The power spectrum The ESR is a monostatic radar system, meaning that it functions as a transmitter and as a receiver. The radar sends out a modulated signal which hits a finite volume in the ionosphere. Part of the incident energy (electromagnetic wave) is scattered by free electrons through Thomson Scattering. Data of the plasma properties recollected are given as average values rather than single points. These averaged values are correlated values, put together into a profile matrix as shown in Figure 7.6. When measuring plasma correlation profiles of the ionosphere, the main parameters are the spatial resolution and the time resolution. The scattered plasma cross section is a function of range and lag (see Figure 7.7). Resolution in range limits the dimensions of the smallest details that can be seen in the ionosphere; resolution in lag is needed in order to get a good shape of the plasma autocorrelation function, sampling frequently enough such that the plasma parameters can be estimated. The reader is referred to Woodman (1991) and Lehtinen
+48
+
+7 Observation methods and Huuskonen (1996) for a general insight into the theory behind ionospheric radars and analysis. Figure 7.7 illustrates the auto-correlation function and it‟s Fourier Transform, the power density spectrum.
+Figure 7.6. Data process path.(Nygrén, 1996)
+Figure 7.7. Autocorrelation function (ACF) and power spectrum (from Markkanen‟s power point presentation slides, course material at https://e7.eiscat.se/groups/Documentation/CourseMaterials/ 2006Qingdao/CodingExpDesign_JM.pdf).
+49
+
+7 Observation methods
+When electromagnetic waves are sent to a volume in the ionosphere, charged particles are accelerated and emit radiation, which is received as a weak scattered signal by the radar. Most of the scattered signal comes from electrons, being effective radiators because of their small mass. Nevertheless, what we see in Figure 7.6 and Figure 7.7 is the “ion line”. The ions are surrounded by electrons, which form a shielding layer around each ion. The electron motion is thus controlled by the ions.
+The power density spectrum which shows the ion line, gives us the information we need about the scattered plasma volume such as the electron density Ne, the ion velocity Vi and the ion and electron temperatures Te and Ti (Figure 7.6). These parameters are found by fitting the measured spectrum with a theoretical Maxwellian model spectrum, where the parameters in the theoretical model are changed until they fit with the experiment. The area under the curve is dependent on the electron density. The height difference between the two peaks and the “valley” of the ion line vary with ion and electron temperature, being dependent on the ratio of them. The displacement from 0 frequency of the valley is dependent on the ion velocity drift.
+7.4 Super Dual Auroral Radar Network (SuperDARN)
+SuperDARN is an international network composed of High Frequency (HF) coherent backscatter radars, providing a global view of the dynamics in the high latitude convection. Currently, there are 12 radars located in the Northern Hemisphere and 7 in the Southern Hemisphere forming part of the SuperDARN network (see Figure 7.8). The SuperDARN radars cover a frequency range from 8-20 MHz. Each radar is composed of 16 transmitting antennas each pointing in a different direction with a beamwidth of 3.25º, giving a full angular coverage of 16×3.25º= 52 º. The range resolution is dependent on the transmitted pulse length, which normally is 300 microseconds. This would give a range resolution of 45 km, hence determining the autocorrelation function (ACF) in a range from 180 to 3300 km for 70 gates (typically) (Lester, 2008). The large range gate applied gives large coverage making it appropriate for the study of large scale convection. Coherent radars detect field aligned irregularities in electron density which causes changes in the refractive index in the ionosphere. Incident waves will reinforce as a result of constructive interference when having irregularities one half the size (decameter irregularities) of the transmitted wavelength (similar to Bragg scattering). The radars detect scattering from waves with a wave vector orthogonal (perpendicular) to the magnetic field (Lester, 2008). From the scattered waves it is then possible to obtain parameters such as the lineof-sight velocity (Doppler shift), the backscatter power and the spectral width.
+50
+
+7 Observation methods
+Figure 7.8. Field-of-view for the SuperDARN radars in a) the Northern Hemisphere and b) the Southern Hemisphere (Lester 2008).
+7.5 Co-operative UK Twin Auroral Sounding System (CUTLASS)
+The Co-operative UK Twin Auroral Sounding System (CUTLASS) is a system composed of two high frequency (HF) radars, one located at Pykkvibaer in Iceland and the other one at Hankasalmi in Finland, forming part of SuperDARN network (Figure 7.9).The CUTLASS radars have a field of view covering the ionospheric area above Svalbard as shown in Figure 7.9. Each of the two radars operate with 16 beams, beams 9-11 from the radar at Hankalsalmi and beams 06 from the radar at Pykkvibaer intersect with ESR‟s 32m antenna beam. The radars can hence be used to compare velocity drift observation with observations from the ESR, providing additional information on the velocity drift direction of the plasma. In this study we have used velocity data from CUTLASS Finland radar along beam 9.
+Figure 7.9. Field-of-view of the CUTLASS radars and for the ESR 32m antenna (red line). Beams 0,9 and 15 for the radar at Pykkvibaer (Iceland) and beams 0,7 and 15 for the radar at Hankasalmi (Finland) are indicated. The solid black lines show the range gates for each radar beam (adapted from Milan et al., 1997). Please notice that the range gates used here are for a specific day and are not the same for the days when the 32m pointed north-west. The range gates change depending on the mode used, corresponding to the experiment being run at a specific day.
+51
+
+7 Observation methods
+7.6 Advance Composition Explorer (ACE)
+The Advanced Composition Explorer (ACE) spacecraft is situated at the Lagrange L1 point (Figure 7.10) at 1.5 million kilometers from Earth (equivalent to 230 Earth radii), i.e. outside the Earth‟s magnetosphere and where the Earth-Sun gravitational forces are at equilibrium (Garrard et al., 1998). At this position the spacecraft is able to make continuous measurements of the interstellar medium which is influenced by the solar wind.
+Figure 7.10. Lagrange points (adapted and modified from history.nasa.gov/ap15fj/pics/lagrange.gif).
+Two of ACE‟s instruments provide useful information for the study of polar cap patches, these are the Solar Wind Electron, Proton & Alpha Monitor (SWEPAM) and the Magnetometer (MAG). These instruments give us measurements of the solar wind velocity components and the interplanetary magnetic field (IMF) components (Garrard et al., 1998). In this study we have used SWEAMP and MAG data of Level 2 quality with 16-seconds time resolution (retrieved at the Coordinated Data Analysis Web).
+7.7 GPS Scintillation
+High electron concentration plasma crossing the polar cap have shown that GPS signals experience both phase and amplitude scintillation (e.g. Mitchell et al, 2005). Satellites transmitting at 250 MHz are often used to measure scintillation from polar cap patches in the ionosphere. The results from 250 MHz scintillation measurements can be used to determine 1 km to 100 m irregularities (e.g., Basu et al., 1998). In this study 250 MHz scintillation data from receivers at Ny-Ålesund and Longyearbyen have been used. The receivers provide 5 min averaged values of high latitude scintillation measurements, given as scintillation indices ( ). The scintillation index is defined as the standard deviation of power signal fluctuations divided by the average power (Milan et al., 2005). The scintillation index ranges from 0 to approximately 1, with 1 being considered the most severe (Anderson, 2003).
+52
+
+8 Data processing
+Most of our work relied on the processing of data from the ESR. The ESR can be run at different modes, depending on the purpose of the observations. A variety of experiments and programs have been used to study the ionosphere. Raw data from the ESR has been analyzed and result files have been used to make plots of the different parameters that have been measured. Each data set has been checked for unphysical values. We also use ACE data in our observations, where we have to consider the propagation time from ACE to the magnetopause. In the following it will be explained how ESR data was processed and we show how we estimated the time delay from ACE in order to get the corresponding time span we will focus on.
+8.1 Experiments and programs
+The data used in this study is Common Program (CP) data. Several experiments have been run as CP experiments; the most commonly used at the ESR is tau0. The tau0 experiment is the most appropriate one for the study of the F region, having the largest altitude range.
+Figure 8.1. Experiments for the ESR. The graph shows the radar efficiency up to an altitude of 1400 km (from EISCATs homepages)
+As can be seen from Figure 8.1, the tau0 experiment gives range coverage from approximately 60 km to 1300 km with highest efficiency around 350 km -1150 km. The “radar efficiency” is the power amount of the radar used at different ranges. tau0 consists of two 960 s alternating codes that are sampled every 20 s (3 km). The tau0 experiment originally used a pre-integration time of 3.2s, 6.4s or 12.8s. However, the version with 3.2s integration time was avoided since it turned
+53
+
+7 Observation methods out to give technical problems resulting in missing data dumps. The version extensively used is the one with 6.4s integration time (EISCAT, 2008). The data set used in this thesis has integration times of 6.4s and 12.8s.
+8.2 GUISDAP
+The Grand Unified Incoherent Scatter Data Analysis Program (GUISDAP) is a program used to analyze EISCAT data recorded in MATLAB format (in .mat files) and reduce these into physical quantities. Figure 8.2 gives an idea of how the ESR data files are processed.
+Figure 8.2. Description of the analysis process (from EISCAT homepages).
+Raw data is restored and available for download through the EISCAT schedule webpage (http://www.eiscat.se/raw/schedule/schedule.cgi). The raw data from the tau0 experiment can have pre-integration times of 3.2, 6.4 or 12.8s. The GUISDAP setup window allows us to choose any integration time before we start the analysis, depending on what we want to study and the resolution needed. The plots generated using GUISDAP has been analyzed with an integration time which has been set to 1 second, allowing us to see one and one data dump. Individual data dumps were equivalent to 6.4s and 12.8s, respectively for the data sets used. GUISDAP works by fitting theoretically calculated measurements values to measured values (Lethinen and Huuskonen, 1996). Once it has analyzed the raw data, the result files can be used to generate plots of the measured parameters in the ionosphere: electron density , ion and electron temperature and , and ion velocity .
+8.2.1 Satellite check GUISDAP has a default „satellite‟ check function for some experiments. Hard targets make a fit difficult and needs to be removed. Whenever there is such a detection, the whole pre-integrated
+54
+
+7 Observation methods
+
+dump is skipped. This function worked perfectly for the 42m data on 23 February 2001 and 21 February 2002. However, it did not work for data from the 32m during these two days and thus caution has to be taken when studying the corresponding color plots presented in section 9.
+
+Figure 8.3 shows the average density from 650km to 750 km for the data from the previous day,
+
+between 06:00 -12:00 UT. Panels a) and b) show unchecked and satellite checked data,
+
+respectively. The six features which have been numbered in panel a) give deviations in density
+
+from factors of 2 up to >12 from a background density around
+
+- , and are most probably
+
+due to satellite clutter.
+
+Figure 8.3. Average density from 650km to 750 km. In the upper panel six spikes are found revealing satellites passing through the radar. In the lower panel these have been removed.
+8.3 Data resolution
+The ESR data sets used in this thesis have been processed using GUISDAP. The integration time on the GUISDAP setup window was set to 128s, 64s and 1s (notice that 1s integration time is the same as not integrating the data set at all), in order to compare the resolution from each autogenerated color plot. Although it was effective to use large integration times (data was processed quickly), the resolution obtained was not reliable. Figure 8.4 and Figure 8.5 shows plots with different integration times based on data from 23 February 2001. Figure 8.4 shows dumps of 64s each while Figure 8.5 shows dumps of 12.8s each. The color plots obtained show the electron density versus altitude and time measured by the 42m and the 32m antennas, respectively. The two lower panels show plots of the density variation between 300-400 km in altitude. For the study of fine structures we are to integrate over short time periods, but how short should the time period be for our study? Comparing Figure 8.4 and Figure 8.5 it is obvious that the shorter the integration time is, the better the resolution is for the features observed and more structure can be identified in the two lowermost panels from Figure 8.5 while the two
+55
+
+7 Observation methods lowermost plots from Figure 8.4 do not show all the smaller density gradients. Patches will typically drift with velocities from 0.5-1 km/s (shown in section 9). The aperture for the ESR is 10 , giving a coverage of ~6 km at an altitude of 350 km (see Figure 7.4). If the ESR samples a patch moving at 1 km/s with an integration time of 12.8s, then the radar would have integrated over a length of 1 km/s × 12.8s = 12.8 km, which is more than double from the length the beam covers. The parameters measured from the patch will thus contain information from totally different locations having totally different characteristics. The shortest integration period for the ESR is of 6.4s, which in this case would measure over 6.4 km for a patch moving at 1 km/s through the beam.
+Figure 8.4. 64s integrated data on 23 February 2001 showing the electron density variation versus altitude and time (two upper panels) and the electron density variation between 300-400 km altitude (two lower panels) from the ESR 32m and 42m beams.
+56
+
+8 Data processing
+Figure 8.5. Same type of plot as in Figure 8.4 but in this case showing dumps of 12.8s each (pre-integrated dumps)
+8.4 Additional program functions
+The analysis result files contain information on the different parameters measured along the beam at a certain time. The status on the fit and the errors in the parameters are also stored. In the status parameter (r_status), a bad fit will be given a value “1”, no fit is given a value “2”, while an OK fit is given a value “0”. We have created our own program in matlab to generate plots of the electron density versus universal time, using only values with status 0. Additional programs forming part of the GUISDAP analysis package, such as gp, vizu and rtg were also used. 8.4.1 Power spectra asymmetry check We have thus used rtg to visualize the power spectrum and inspect the spectrum from the raw data on the selected days for any asymmetry. We have earlier presented the characteristic two
+57
+
+8 Data processing shoulder spectrum from weak echoes of excited plasma waves detected by incoherent radars (see Figure 7.6). Intense radar echoes might enhance considerably the shoulders of the power spectra, and are usually associated with so-called NEIALs. NEIALs have been observed in the F region (> 300 km) and in the E region (< 200 km) (Forme et al., 1995). In the F region the phenomenon gives large asymmetries in the power spectrum and is related to large electron temperatures, ion outflows and particle precipitation (e.g., Rietveld et al., 1991; Forme et al., 1995; Strømme, 2005; Ogawa et al., 2006; Lunde, 2007, 2009). No asymmetries in the power spectra were observed in our datasets, however, satellite targets were frequently identified. Figure 8.6 shows the sequence of two data dumps with a 64s integration time. The power spectrum in the left panel shows no defects while in the right panel there is a possible satellite target above the left shoulder to the power spectrum.
+Figure 8.6. Sequence of the power spectrum for two data dumps on 23 February 2001.
+8.4.2 Electron density profile check Plots of the electron density, the ion and electron temperatures and the velocity profiles are given by running gp. We have inspected the electron density profiles for each dump to see if there were any large deviations due satellite clutter, and evaluated the approximate height ranges that could be used to plot the electron density variation with time so that we do not include too much noise. The dumps presented large distortions above 600 km. Figure 8.7 shows the electron density profiles of altitudes from 150 km up to 800 km for three different data dumps on 23 February 2001. The two last dumps show that distortions in the data may give values exceeding the F2 peak. Large errobars are observed above 600 km as well, giving large uncertainties in the measurements.
+58
+
+8 Data processing
+Figure 8.7. Electron density profiles for three data dumps on different times on 23 February 2001.
+8.4.3 Three dimensional color plots of , , , We have used the integrated GUISDAP program vizu to generate color plots of the electron density, electron and ion temperatures and ion velocity. These give the changes in the electron temperature versus universal time (UT) and altitude. For the 32m antenna, the variation in electron density can be given in geographic latitude.
+8.5 Gaps in the measurements
+There may be noticeably large gaps in the measurements because the radar was switched off for brief periods. These have been included in our plots. We have also added gaps in the plots showing the electron density variation versus time whenever values >5 × 12 - were detected, since these values are set to NaN (see appendix F). The reason is that these values are most probably related to hard targets (Moen et al., 2008b). It is worth to mention that since both antennas cannot run simultaneously they alternate, and only one antenna is used at the time. Consequently, for each antenna there will also be gaps between data dumps. Plotting routine vizu stretches the analyzed result by a default of 65 seconds, which is longer than any post-integration. The gaps between data dumps will therefore be hidden in the plots.
+8.6 IMF propagation delay
+The solar wind propagation delay to the sub-solar point on the magnetopause is of approximately 1 hour (e.g. Weimer et al., 2002). Once we have the average value for the solar wind velocity and
+59
+
+8 Data processing
+
+knowing the distance between the position of the satellite and the magnetopause, the time delay can be estimated (see appendix F.2). Although it sounds simple, we have to consider that the distance from Earth to the sub-solar point or stand-off distance, changes due to the compression of the dayside magnetosphere from the solar wind pressure. An estimation of the stand-off distance can be derived by balancing the magnetic pressure from Earth‟s magnetosphere to the solar wind pressure (Russell et al., 2001), we then obtain:
+(8.1)
+
+Where is the stand-off distance in km, N and U is the average density and average wind velocity in - and in , respectively. The time delay ∆T used when analyzing data from ACE has been estimated from the following calculation:
+
+∆T = - / U
+
+(8.2)
+
+60
+
+Section III: Observations, discussion and
+conclusions
+61
+
+9 Observations
+Our main goal is to study patches observed by the EISCAT Svalbard radar (ESR). We decided though, to start by presenting data from ACE and SuperDARN, to give an overall picture of the effects of the IMF on the convection pattern in the ionosphere. At the end of this section, we approach the scintillation problematic. The latter will be proceeded by studying smaller scale irregularities in the enhanced plasma, using GPS scintillation and HF coherent data (CUTLASS). Data on 23 February 2001 and on 21 February 2002 will be studied. The following steps were taken in order to narrow down the available ESR data for both the 32m and 42m antenna:
+1. Focus was on the years 2000-2001, taking advantage of data near solar maximum, when patches are most pronounced.
+2. Measurements made during winter have been preferred due to the strong polar cap patch activity during winter months (e.g. Dandekar, 2002).
+3. Data was selected from intervals when the tau0 experiment was run at the ESR, taking advantage of its efficiency at ranges spanning the F-region.
+4. We focus on the dayside, at times between 06:00-12:00 UT which spans the region of plasma inflow to the polar cap.
+5. Only time periods where the ESR antennas were held fixed, with the 42m antenna pointing (slightly to the south) along the magnetic field and the 32m antenna pointing towards north-east with an elevation angle of 30 , were selected (since several modes can be used during one day).
+6. Days showing significant electron plasma structures were chosen.
+There were 36 days in November-February where the ESR was run using both antennas. From these days, 24 of them had at least 4 hours of continuous ESR measurements between 06:00 12:00 UT in the configuration mentioned in point 5. 6 of these days showed remarkable electron enhancements (~ - ). Two days were finally chosen since they showed well defined signs of patch structures.
+9.1 ACE and SuperDARN
+SuperDARN provides convection flow maps of the northern hemisphere polar cap that frame the context for the localized measurements by the ESR. In the following we observe the effects of the IMF at morning, noon and afternoon hours.
+9.1.1 Case 1: 23 February 2001
+The three panels in Figure 9.1 illustrate the IMF components in GSM coordinates on 23 February 2001. The radial component of the solar wind velocity is measured by the ACE SWEPAM instrument (see section 8.4). The solar wind velocity was mostly around 349 km/s. Thus, the corresponding time delay from ACE to the magnetopause is around 68 min (see
+62
+
+9 Observations section 8.5), in well agreement with the approximately 1 hour time delay which is normally expected (Weimer et al., 2002). Since we focus on times spanning 06:00- 12:00 UT in the ionosphere over Svalbard, the corresponding time span for ACE is shifted 68 minutes earlier. The convection cells over the northern hemisphere at dayside are measured over 2 min time intervals by SuperDARN. The convection pattern is shown in a magnetic local time (MLT) (see appendix B) and magnetic latitude grid. The field of view for the ESR 32m beam is indicated by a black solid line, and extends from 80º-85º geographic latitude (corresponding to 75º-80º magnetic latitude). Three regions are identified in Figure 9.1, corresponding to times when Svalbard is in the morning, noon and afternoon local time sector as shown in Figure 9.2. Region I. After 05:10 UT the IMF is mostly southward, with increasing down to 7 nT. and have magnitudes of 5 nT, in which IMF is negative and positive. Region II. The noon sector is strongly influenced by negative ( > 5 nT), with and
+being < . Region III. Around afternoon, there is a strong influence from negative with magnitudes around - 8 nT, with and < .
+Figure 9.1. Interplanetary magnetic field components (IMF) in GSM coordinates on 23 February 2001. The solid vertical lines indicate regions of different IMF configurations when Svalbard is in the morning, noon and afternoon sectors
+Most of the time interval during this day was influenced by negative and . The convection cells given in Figure 9.2, show Svalbard in the morning, noon and afternoon sectors. Notice that
+63
+
+9 Observations Figure 9.2 is only a model and has been included to illustrate the convection pattern. It does not give any information about the velocity vectors since no data coverage was available during this day. The maps 1-6 include two well defined convection cells, indicating the influence of negative
+. A prenoon cell will dominate in each case, consistent with an IMF negative (e.g., Cowley et al., 1992). This asymetric convection pattern arising from negative IMF , puts Svalbard well below the entry region during morning times.
+Figure 9.2. SuperDARN convection cells on 23 February 2001. Six corresponding convection patterns when Svalbard is in the morning, noon and afternoon local time sectors are shown. The black solid line indicates the ESR field of view (32m). The maps can only be used to illustrate a possible model of the convection pattern and may not be fully correct since there is no or not enough data coverage on the maps.
+9.1.2 Case 2: 21 February 2002 The IMF configuration in GSM coordinates is measured on 21 February 2002. During this day the solar wind velocity was mostly around 455 km/s. The time delay from ACE to the sub-solar point at the magnetopause is around 52 minutes. The time span for the IMF components is shifted accordingly.
+64
+
+9 Observations
+The IMF was mostly southward between 05:02 UT and 07:30 UT, from that time on it is rotated northward. During this day the IMF was strongly influenced by positive , reaching up to 9 nT. IMF was mostly negative during the whole time interval, although it experiences drastic polarity changes in some cases, going for instance from being 4 nT to become negative down to 8 nT at around 08:00 UT. Four regions are identified in Figure 9.3, corresponding to times when Svalbard is located in the morning, noon and afternoon sectors. We divided the noon sector into two regions after the two distinct IMF configurations during these times. Region I. In the morning hours both components and are negative. This region is strongly influenced by positive, where > and . Region II-III. Region II shows a southward IMF with positive . Right after 08:00 UT, in region III, there is a northward turning in the IMF and a negative rotation of the component. Region IV. In the afternoon hours the IMF component remained positive. is negative and
+is still positive and dominating.
+Figure 9.3. Interplanetary magnetic field components in GSM coordinates on 21 February 2002 measured by ACE. The solid vertical lines indicate regions of different IMF configurations when Svalbard is in the morning, noon and afternoon local time sector.
+Figure 9.4 shows the flow patterns in the ionosphere due to the IMF orientations indicated in region I, II, III and IV in Figure 9.3. During this day there was enough data coverage which could confirm the directional pattern to the flow. The convection maps 1 and 2 correspond to times when the IMF is southward. A southward IMF contributes with large plasma inflow through the polar cap due to reconnection at the dayside magnetopause (Lockwood et al., 1990). In map 2 large drifts are observed above Svalbard. The symmetry in the convection pattern is affected to some extent, in response to the large positive and due to negative. The latter, being present in region III and IV, gives a shift of the cusp inflow region towards prenoon
+65
+
+9 Observations (Cowley and Lockwood,1992). Around noon the convection pattern is strongly disturbed and develop additional cells, consistent with a northward IMF rotation (e.g., Crooker 1992; Pitout et al., 2002). The two convection maps in the afternoon are dominated by a postnoon cell. At preenoon in map 5 there are two smaller cells at the dayside, being consitent with a northward IMF configuration. There is no data coverage above Svalbard in map 5 and very litlle in map 6. Additional cells in the convection pattern can make the ionospheric plasma circulate, giving both antisunward and sunward flows in the polar cap. When the ESR is located in the conditions shown in convection map 4, it may detect both eastward and westward flows. Large drifts are measured in map 2.Although Svalbard is loacted close to the inflow region in each case in Figure 9.4, none of the the convection maps show plasma flow paralell to the f-o-v of the 32m antenna.
+Figure 9.4. SuperDARN convection cells and velocity vectors on 21 February 2002. The corresponding convection patterns when Svalbard is in the morning sector, around noon, and in the afternoon sector. The black solid line indicates the ESR field of view (32m).
+9.2 ESR
+Data on 23 February 2001 and 21 February 2002 from the 32m and the 42m ESR antennas are studied. At these days the 42m antenna was pointing along the magnetic field, with 181 in azimuth and an elevation angle of 81.6 . The 32m antenna was pointing at low elevation towards north-east, with azimuth angle -24 and an elevation angle of 30 (see section 8.2). Different plots are presented in this section, in which electron density, electron and ion temperature and
+66
+
+9 Observations
+
+ion velocity are given (see section 9.2 for further information about the programs used). Data from each day has been studied in the following way:
+
+1. Color plots of the different parameters ( , , , ) for data from the 32m antenna were generated and used to identify patches visually.
+
+2. A quantitative approach is followed to search for patches using both the total electron content (TEC) and the F2 region density peak ( F2) as indicators for density regions exceeding twice the background density.
+
+3. Patch velocity and dimension was measured manually by using the generated color plot from the 32m and the 42m antenna.
+
+4. The average density at satellite altitude was compared to the electron density peak.
+
+We have subdivided this section according to the different data that has been studied. Each subsection will contain a description of the conditions on each day. First we start by comparing the different features observed on each day through the 32m radar beam.
+
+9.2.1 Identification of patches in the 32m radar beam
+
+It turns out that patches are more easily identifiable in the 32m beam pointing north at low
+
+elevation than in the 42m beam fixed along the magnetic field. Figure 9.5 shows a sequence of
+
+northward moving polar cap patches of enhanced electron concentration. The patches are
+
+marked as 1, 2, 3, 4 … and so on, where P stands for patch, 32 indicates that it is
+
+observed by the 32m antenna, and the last number indicates the first, second, third... patch
+
+observed as time develops. Figure 9.6, on the other hand, shows features that are less well
+
+defined but also with remarkable density concentrations in the order of
+
+- , as expected for
+
+dayside patches (Weber et al., 1984). Both cases show that a horizontally moving patch will give
+
+signatures in the ion and electron temperature, giving a decrease in the electron temperature and
+
+a slight increase in the ion temperature. It is difficult to see any relationship between the density
+
+structures and the ion velocity since the direction of the flow will not necessarily pass along the
+
+beam of the antenna. In addition to horizontal flows there may also be vertical flows, as will be
+
+discussed later. The panel for the ion velocity shows positive values indicating flow moving away
+
+from the radar while negative values show flow moving towards the radar. Twelve patches are
+
+easily identified on 23 February 2001, and five on 21 February 2002.
+
+67
+
+9 Observations
+Figure 9.5. Six hours of ESR 32m observations in the dayside ionosphere on 23 February 2001. The four panels represent a) the electron density, b) the electron temperature, c) the ion temperature and d) the line of sight velocity, respectively. The dotted lines in each panel indicate the first, second, third…patch, and are marked as 1,
+2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12.
+68
+
+9 Observations
+
+Figure 9.6. Same type of plot as Figure 9.5 but for 21 February 2002. The dotted lines indicate only 5 patches observed during this day, marked as 1, 2, 3, 4, and 5.
+
+9.2.2 Electron density measurements - TEC and F2
+The total electron content (TEC) for the field aligned antenna (42m antenna) is plotted versus time for the two days. This parameter gives the integrated electron density from an altitude range, which in this case spans 100-800 km in altitude. In integral form this would be
+
+TEC =
+
+dh
+
+The total electron content gives the electron number per square meter in units of and is a good indicator of the overall ionization of the ionosphere (e.g., Leitinger, 1998). This quantity is regularly measured by global positioning satellite receivers (GPS), and it is estimated from the delay in the propagation time between the satellite and the GPS receiver at two different
+69
+
+9 Observations
+
+frequencies. Incoherent scatter radars are also used for this purpose, giving similar variations in TEC as GPS TEC. Though, GPS TEC will have higher scale values since it integrates a much larger range along the signal path (e.g., Lilensten et al., 2005).
+
+The peak electron density F2 for each day is also given (second panel) along with the height
+
+of the measured density peak, the peak height F2 (bottom panel). There is an additional panel
+
+(third panel) showing the variation of the electron peak in a logarithmic scale to base 2 (i.e., X
+
+=
+
+), making it easier to distinguish gradients in density of the order of two or more
+
+(typical patch characteristic, see section 5). The variation in TEC is similar to the F2 variation which guarantees to some extent that enhancements are real and not due to bad data. Thus, we have only indicated features that are observed simultaneously in both plots (first and second panels), satisfying the requirement of at least a factor 2 over the background. In the following we will describe the features that were observed each day.
+
+Figure 9.7. TEC, peak electron density, logarithmic scale to base 2 for the density peak, and peak height on 23 February 2001. The plot is based on analysis of individual 12.8 seconds data dumps.
+70
+
+9 Observations
+
+Figure 9.8. Same as Figure 9.7, but for data on 21 February 2002 based on analysis of individual 6.4 seconds data dumps.
+
+Case 1: 23 February 2001
+
+The ESR 42m antenna gave 12.8 seconds pre-integrated data during this day. In Figure 9.7 Nine
+
+events have been identified as patches, each satisfying the factor of two patch criteria. The
+
+highest densities are observed between 08:00 and 10:00 UT, where the electron density peak
+
+fluctuates around 400 km altitude. Just after 08:00 UT there is a remarkable increase from around
+
+10 in TEC up to 60 and from 0.5 ×
+
+- up to 2 ×
+
+- in electron density, within
+
+approximately 5 minutes. The enhancement lasts for about 40 minutes. Around 08:40 UT there is
+
+a similar gradient, however the enhancement does not persist for more than 8 minutes. Right
+
+after 09:00 UT there is yet another sudden increase in density, this time with an enhancement
+
+lasting over one hour (~68 minutes). The patches are highly structured. For instance, been 6a
+
+71
+
+9 Observations
+
+and 6b have been identified as sub-patches since each have density gradients of an order of two or more developing within a larger patch.
+
+Case 2: 21 February 2002
+
+Data on this day has been pre-integrated for 6.4 seconds, showing finer structures than for the
+
+previously described day. Figure 9.8 shows three possible patch events between 08:00 and 10:12
+
+UT. The density peak is most of the time around 300 km. The patches attain values of 2.5 ×
+
+- in electron density and 60 in TEC. There is a gradual increase in density in event 3, from
+
+around 5 ×
+
+- up to 2.5 ×
+
+- within 30 minutes, compared to the more drastic
+
+density increase in event 1, from 5 ×
+
+- up to 2 ×
+
+- within less than 2 minutes.
+
+Patch 1 lasts for about 9 minutes, patch 2 about 40 minutes and patch 3 lasts for over one
+
+hour.
+
+Even though the variation in density given in TEC and in F2 is similar, it will be appropriate
+
+for us to use the latter, which is commonly used, in our identification of patches. The bottom
+
+panels in Figure 9.7 and Figure 9.8 show that most of the electron concentration is at heights
+
+between 300-400 km. TEC is an integration over a larger altitude range, it is therefore sensitive to
+
+artifacts passing through the antenna beam (detection of hard targets and space debris increases
+
+remarkably above 600 km altitude) which can give large artificial enhancements in TEC. These
+
+enhancements in TEC can easily be misinterpreted as patches. During both days it was possible
+
+to observe gradients in density where there is an increase of a factor >2 from the background.
+
+The enhancements attain values around 2 ×
+
+- . The duration of the enhancements vary
+
+from minutes to hours. For both days the largest enhancements, which also are observed to last
+
+longer, span the noon sector from 08:00-10:00 UT.
+
+9.2.3 Patch velocity and dimension
+
+The 32m antenna can be used to estimate the horizontal velocity of the flow passing along the beam. The horizontal velocity has been estimated for each of the patches observed on the first panel in Figure 9.5 and Figure 9.6. Figure 9.9 illustrates a field aligned patch structure moving poleward through the radar beam.
+
+Figure 9.9. Patch structure along the magnetic field moving through the 32m radar beam. The patch moves with a horizontal velocity though the radar beam. In the first case the leading edge corner hits the radar beam at . In the second case the leading edge corner B hits the radar beam at and the trailing edge corner D hits the radar beam at
+72
+
+9 Observations
+
+. is he patch velocity along the beam. L and l is the horizontal patch extension from D to E and from E to A, respectively.
+
+The leading corner A of the structure hits the radar beam at time at an altitude . As time
+
+evolves the structure moves further into the radar beam, and corner B is observed at and
+
+thereafter the structure is no longer observed at by the radar.
+
+is the velocity along the
+
+line-of-sight (l-o-s). The horizontal velocity can then be estimated from the following
+
+expression:
+
+= =
+
+(9.1)
+
+-
+
+Where L is the horizontal length from D to E as shown in the second case in Figure 9.9, and = - , = - . A second term which includes l (due to the magnetic field inclination of ~7 ), which extends from E to A, has been left out since it does not contribute considerably. Since the radar has an elevation angle of 30 , the horizontal dimension will be written in the following form:
+
+L= ( - )
+
+(9.2)
+
+Inserting expression (9.1) into (9.2) gives the following expression for the dimension:
+
+L=
+
+-
+
+(9.3)
+
+-
+
+Under these approximations it has been assumed a „flat‟ Earth; the expressions do not take into account the inclination of the magnetic field. In reality the curvature of the surface has to be considered since it gets quite significant when moving a few degrees north. In this case we will keep things simple by using the expressions given above to measure the horizontal dimensions and velocities for some of the patches observed through the 32m antenna on 23 February 2001 and 21 February 2002. The results are given in table 9.1 and 9.2. We have also included the horizontal velocity component estimated from the drift velocity along the beam given in Figures 9.5 and 9.6 (panel d)).
+
+73
+
+9 Observations
+
+Table 9.1. Estimates of the horizontal patch dimension and velocity for different patches, observed through the
+
+32m beam on 23 February 2003. The last panel shows the horizontal velocity component
+
+, estimated from
+
+panel d in Figure 9.5.
+
+23 February 2001
+
+32m
+
+1
+
+2
+
+3
+
+5
+
+7
+
+10
+
+208 km
+
+277 km
+
+346 km
+
+208 km
+
+69 km
+
+173 km
+
+608 m/s 165 m/s 1012 m/s 404 m/s 401 m/s 504 m/s
+
+260 m/s 650 m/s 563 m/s 400 m/s 464 m/s 400 m/s
+
+Table 9.2. Estimates of the horizontal patch dimension and velocity for different patches, observed through the
+
+32m beam on 21 February 2002. The last panel shows the horizontal velocity component
+
+, estimated from
+
+panel d in Figure 9.6.
+
+21 February 2002
+
+32m
+
+2
+
+4
+
+139 km
+
+277 km
+
+232 m/s
+
+231 m/s
+
+217 m/s
+
+325 m/s
+
+Case 1: 23 February 2001
+
+The dimension and velocity for six patches on 23 February 2001 are given, including: the biggest
+
+or „widest‟ feature observed ( 2); three structures with about 1/3 the width of the widest patch
+
+( 1, 3 and 5); two relatively small structures ( 7 and 10). The horizontal dimensions for the identified patches varied between 70-350 km, with velocities between 160-1000 m/s. The
+
+measured velocities for 1, 2 and 3 deviates markedly from the derived
+
+.
+
+for 1 and 3 is smaller than , while for 2 it is larger.
+
+Case 2: 21 February 2002
+
+On 21 February 2002 the dimension and velocity was estimated only for two patches because of
+
+the unstructured forms observed during this day. We have selected patches 2 and 4. The
+
+identified patches have horizontal extents of approximately 140 and 270 km, respectively. Both
+
+have a horizontal velocity around 230 m/s, being more or less equally to
+
+.
+
+Notice that the velocities given in the color plots in Figure 9.5 and Figure 9.6 (bottom panel) do not show the same magnitudes as the ones given in table 9.1and table 9.2., respectively. The
+
+74
+
+9 Observations
+
+values given above are the horizontal components of the velocities while the radar gives velocities
+
+along the beam, which is directed 30 from the horizontal plane. To estimate
+
+we have
+
+multiplied the average drift velocity from up to with the cosine of 30 . Nevertheless, there
+
+are still great differences between and
+
+in some cases. This may indicate that the patch
+
+has velocity components perpendicular to the beam directions.
+
+9.2.4 32m and 42m observations
+If the right conditions are satisfied, both antennas might measure the same events. In order for both antennas to observe the same patch, the patch must form equatorward from the 42m and subsequently move poleward along the pointing direction for the 32m. Such conditions are rarely met. Figure 9.10 illustrates a case where the velocity vector directed from post-noon to north is decomposed into a component aligned with the 32m beam and another component normal to the beam. The radar beam will thus show greater magnitudes in the ion velocity if is largest, on the other hand there will be little flow along the beam if is dominant.
+
+Figure 9.10. Field-of-view of the 32m antenna (black line) and the velocity vector passing through the beam, being decomposed into normal ( ) and vertical ( ) components (polar cap seen from above).
+The example given in the figure above is very simplified and shows only one velocity vector. Large flows can give several velocity vectors which might also cover the field of view of the 42m antenna (see Figure 9.4). In the following, the signatures in density from both antennas are shown for the two days that we have followed so far. The density variations measured by the 32m antenna is given along with geographic latitude.
+75
+
+9 Observations
+Figure 9.11. ESR 32m (panel I.) and 42m (panel II.) observations of electron density on 23 February 2001. The black lines indicate possible related events. 1, 2, , 7, 8 in the lower panel are the same patches indicated in Figure 9.7.
+Figure 9.12. As in Figure 9.11 but for observations made on 21 February 2002. No clear relationships are observed between the plots.
+76
+
+9 Observations
+Case 1: 23 February 2001 During this day, five of the patches observed through the 32m antenna (upper panel) in Figure 9.11 seem to coincide with the features observed through the 42m antenna (lower panel). We could have used SuperDARN data to see whether there was a significant flow passing through both antennas simultaneously. Unfortunately, there was no data coverage in the actual region during this time interval. However, it can be seen that the ESR is located very close to the inflow region around 06:00 UT, 06:30 UT and 08:30 UT from Figure 9.2. Case 2: 21 February 2002 From Figure 9.12 we can hardly see any relation between structures from the 32m and the 42m antenna during this day. The convection pattern is strongly influenced by northward IMF and strong IMF during the whole time interval as shown in Figure 9.3. Additional cells developing in the convection pattern around noon and afternoon (see Figure 9.4) make it even more unlikely for a patch to move through both antennas.
+The number of patches observed by the 32m antenna is different from the 42m. We have earlier observed in section 9.1 that the conditions required to observe the same patch, first by the 42m antenna and then along the 32m antenna, are dependent on the position of the ESR with respect to the inflow region. On 23 February 2001 the convection had a characteristic two-cell pattern at the six time intervals shown between 06:00-12:00 UT. On 21 February 2002 on the other hand, there were additional cells at some time intervals, making it even more difficult for a patch to be observed by both radars simultaneously. This is consistent with the observational differences in Figure 9.12. The 42m antenna gives a band of high electron density covering most of the daytime interval from 08:00 UT to 10:00 UT. Patches are more easily identifiable through the 32m. 9.2.5 Gradients in electron density at satellite altitudes In order to study the electron density distribution at satellite heights, the average density from 650-750 km in altitude has been derived for both days, and we have additionally taken the base 2 logarithm of the averaged value to sort out patches, as previously done for the identification of patches at density peak heights in section 9.2.2. The identified patches at satellite height are indicated as and the number corresponding to the first, second, third…patch identified. Patches identified within patches are denoted with small letters.
+77
+
+9 Observations
+
+Figure 9.13. ESR 42m density plot at heights between 650-750 km on 23 February 2001. The lower panel shows the density variation in a logarithmic scale to base 2. Enhancements with a factor > 2 are identified.
+
+Figure 9.14. Same type of plot as in Figure 9.2.5.1 but for data on 21 February 2002.
+
+Case 1: 23 February 2001
+
+The highest electron densities are observed between 08:00-10:00 UT, like in the case for the
+
+F2 peak. The electron density is reduced at higher altitudes (see section 4.1), being around 6 ×
+
+- at its highest with a background density around 1 ×
+
+- . The number of patches
+
+identified in Figure 9.13 is 8 and 3 sub-patches ( 4a, 4b and 4c). The patches are not
+
+78
+
+9 Observations
+
+necessarily related to the patches identified at F-region peak heights. Patch 1 and 2 in
+
+Figure 9.7 are not identified at these altitudes. The first identified patch in this case happens at
+
+around 07:40 UT, where the third patch at F-region peak height is identified. Patch 7 and 8
+
+are new patches and were not identified in F2. Within patch 6, which is associated with
+
+patch 4 in Figure 9.7, there is a third sub-patch identified. It is worth noticing the relationship
+
+between 1, 2 and 3 and 1, 2 and 3. Plasma has probably acquired upward
+
+velocity components in these cases, which might explain the deviations in horizontal velocity
+
+component and
+
+that have been estimated in table 9.1.
+
+Case 2: 21 February 2002
+
+During this day the highest electron concentrations are observed between 08:00UT and 10:10
+
+UT, which is comparable with the observations made at F-region peak heights. The highest
+
+density concentrations are detected around 08:00 UT, reaching 7 ×
+
+- with a background
+
+lying around 1 ×
+
+- . Nevertheless, the number of patches is more than doubled from the
+
+number of patches defined from F2, indicating that vertical transport is important for patch
+
+structures above the F2 region peak.
+
+The background densities at higher altitudes decrease by a factor 5-7 from those at peak heights.
+
+During both days the background density was around
+
+- , showing gradients in density
+
+which increases up to 7 ×
+
+- , being a factor 3-5 smaller than the density enhancements
+
+observed at peak heights. The number of patches observed at F2 peak heights and satellite
+
+altitudes are definitely not the same. Upward flows may explain some of the enhancements in
+
+density observed at higher altitudes.
+
+9.2.6 Vertical temperatures and velocities
+
+We have so far identified patches at F-region peak heights and at higher altitudes using electron density measurements from the vertically pointing antenna. Still the ion and electron temperatures with the respective vertically ion velocity for the identified patches have not been discussed. These parameters might give some indications on the characteristics observed in the density at high altitudes. We have already said something about ion upflow, Birkeland currents and particle precipitation. These events leave their mark in the ionosphere by changing for instance the ion and electron temperatures. We will inspect further the distribution of these parameters. Figure 9.15 and Figure 9.16 show the corresponding color plots for the different parameters measured by the 42m antenna on 23 February 2001 and 21 February 2002.
+
+79
+
+9 Observations
+Figure 9.15. Six hour plot of ESR 42m observations in the dayside ionosphere. The four panels represent the height profiles of the electron density, the electron temperature, the ion temperature, and the ion field-aligned velocity, respectively. The grey arrows indicate regions of low temperature. The black arrows indicate regions of high electron density and ion velocity, possibly related to particle precipitation.
+80
+
+9 Observations
+Figure 9.16. Same plot type as the one given in Figure 9.15, but for 21 February 2002. The black arrows indicate regions which might be related to particle precipitation.
+81
+
+9 Observations
+Case 1: 23 February 2001
+In panels B-D in Figure 9.15 we have indicated with black arrows simultaneous changes in temperature and velocity, coinciding with enhanced density structures. These show an increase in these four parameters. The grey arrows indicate simultaneous decrease in electron and ion temperature. The strong increase in electron temperature also give large ion outflows (e.g., Fontaine et al., 2002), as can be seen from the large ion velocities (~1000 m/s) away from the radar. This would give electron density enhancements at higher altitudes, consistent with the signatures in Figure 9.13 marked as 5 and 7. The electron temperatures at around 08:20 UT and 08:50 UT are significantly lower (~ 1000 K) than that of the surrounding plasma, which indicates that plasma is transported rather than being produced locally (Stolle et al., 2006). The patches around 07:40 UT, 08:40 UT and 10:30 UT corresponding to 3, 4 and 8 (which are possibly related to 1, 2 and 10) show an increase in vertical velocity (panel D) around 600 km altitude. Notice that the latter patches also had large deviations between and
+(see section 9.2.3).
+Case 2: 21 February 2002
+The two arrows shown in panel B-D in Figure 9.16 indicate simultaneous increases in electron and ion temperature and in the ion velocity. The former gives its signature at satellite altitudes relating to 2 in Figure 9.14. Most of the background between 08:00 UT and 10:00 UT, accompanied by high electron densities, is dominated by low electron temperatures (1000-2000 K). Around 08:10 UT (not marked with an arrow) there is an increase in the ion temperature while the electron temperature is hardly affected, neither is the ion velocity.
+9.3 Scintillation and coherent backscatter
+We have so far observed patch structures with typical scales sizes ranging from 70-400 km. Patches are highly structured due to instability processes causing irregularities in the plasma (Moen et al., 1997). Irregularities in the plasma are known to have scale sizes ranging from tens of km to meters (Basu et al., 1990).When radio waves propagate through these irregularities they experience strong alterations both in amplitude and phase (Carlson et al., 2008). We investigate the relationship between ESR measurements with scintillation measurements and observations of ionospheric backscatter by the CUTLASS Finland radar.
+9.3.1 Case 1: 23 February 2001
+Scintillation data on 23 February 2001 has been obtained from the receiver at Ny-Ålesund. The geometry for the observations is illustrated in Figure 9.17. The location of the station at magnetic noon (08:50 UT) is indicated by a cross (NY) together with the location of the ESR (LYR). Observations are made for 6 hours, three hours on either side of magnetic noon. The position of the ESR 42m is given as one point, since it is directed along the magnetic field. For ESR 32m and for scintillation data, 6 points are given each hour (from 100-600 km altitude) due to the inclination of the signal trajectory. From Figure 9.17 we can see that scintillation data is obviously closer to the 42m beam. This day the 42m signal and the scintillation signal was separated by 100-
+82
+
+9 Observations
+200 km most of the time (increasing with altitude). Between 10:30-12:00 UT they were only separated by a few kilometers, giving thus better chances to observe the same event.
+Figure 9.17. Geometry of 250 MHz scintillation observations in magnetic local time and magnetic latitude grid. The measurements were made from Ny-Ålesund (NY) at Svalbard by quasi-stationary beacon satellites (figure provided by Oksavik).
+Figure 9.18 shows CUTLASS, ESR and scintillation data. Measurements of the plasma velocity and power, shown in panel a) and b), were obtained from the CUTLASS Finland radar beam 9, which covers the field of view of the ESR (see Figure 7.9). Both ionospheric backscatter and ground scatter are identified in panel b); the latter is indicated in grey. The velocity for the plasma away from the radar is negative. The black line indicates the latitudinal location for the ESR. In panel c) the F2 has been averaged out, between values with small error bars (see appendix F.6). Panel d) shows the scintillation index . The limit to the scintillation coverage is marked by a red line.
+At dawn, patch 1 is accompanied by strong coherent backscatter. There is also a strong peak in the scintillation index at these times. From Figure 9.2 we saw that Svalbard was located close to the cusp region at dawn. The CUTLASS backscatter may therefore be related to cusp precipitation. This would be consistent with the increased electron temperature (Doe et al., 2001; Moen et al., 2004a and references therein; Oksavik et al., 2006) in Figure 9.15. Irregularities are also identified within 3, which also has a peak in up to 0.8. The scintillation is greatly enhanced within 4 5, 6 and 7, although there is no noticeable CUTLASS backscatter detected right over the ESR 42m antenna. Close to dusk, 8 shows some irregularities and reaches 0.8 in magnitude around 08:30 UT. A strong peak in is observed within 9, although there is no CUTLASS backscatter within the coverage for the transmitting satellite (i.e., between the red line and the black dotted line, see Figure 9.17). It is probably easier to see in the 32m beam where in the patch irregularities are developed. The patches 2 and 3 show irregularities at the edges from around 77 -80 in magnetic latitude. The peaks in S4 within the events 4 and 5 for instance, are observed closer to where the gradient in density increases markedly, i.e. at the left edges. The former event might be divided in two (we did not divide it
+83
+
+9 Observations because of the gap around 08:30-08:40 UT), hence the two peaks in S4. The same relation is clearly observed within 3.
+Figure 9.18. Panels a) and b) present latitude-time plots of backscatter power, line-of sight plasma drift as measured by the CUTLASS Finland radar. Ground scatter is shown in grey in the latter panel. The dashed lines indicate the location of the ESR. Panel c) shows the averaged peak density from ESR 42m data. Panel d) shows the scintillation index from 250 MHz transmitted signals.
+84
+
+9 Observations 9.3.2 Case 2: 21 February 2002 Scintillation data on 21 February 2002 has been obtained from the receiver at Longyearbyen as shown in Figure 9.19. Data was obtained during the 8 hours for which ESR 42m and 32m was operating. The separation between the received scintillation signal and the 42m beam only increased from 25-110 km with increasing altitude during this day.
+Figure 9.19. Same type of figure as shown in Figure 9.17 but for measurements made on 21 February 2002. The scintillation measurements were made from Longyearbyen (LYR) at Svalbard (figure provided by Oksavik).
+Figure 9.20 compares data from the three different instruments already mentioned, as in Figure 9.18. Most of the backscatter originates before 08:00 UT, where the is greatest. Around 06:30 UT there are large flows moving poleward, consistent with panel 2 in Figure 9.2. The ESR did not provide data between 06:00 UT and 08:00 UT and we are therefore unable to compare the corresponding CUTLASS backscatter and scintillation data to ESR backscatter data during these times. None of the indicated patches gave any observable HF backscatter. However, the scintillation index increases near both the right and left edges in 3. No clear irregularities are observed by CUTLASS from 08:00 UT to 12:00 UT.
+85
+
+9 Observations
+Figure 9.20. As in Figure 9.18 but for 21 February 2002.
+86
+
+10 Discussion
+
+Even though ionosondes have long been used for the study of patches, that instrument has not been applied in this thesis because of its limited spatial resolution, providing no information on the detailed structuring within a patch. The beam width of the ESR at 350 km is ~6 km (see Figure 7.4), making its use optimal for the study of substructures. The patches identified have velocities ranging from 160 m/s to 1 km/s. Thus, to capture information from these high speed features requires small integration times in order to get a good temporal/spatial resolution. On 21 February 2002 the ESR operated with an integration time of 6.4s while on 23 February 2001 it operated with an integration time of 12.8s. However, limitations have to be taken on how small the integration times should be. For instance, it was difficult to identify patches by the factor two criteria (Weber et al., 1984) from the plots generated in Figure 9.8 and Figure 9.14 (shortest integration time used) because the density varied enormously from one data dump to the next one. Caution has to be taken since there may be errors in the dumps. Satellite clutter can cause large deviations in the electron density; giving spikes of the order of 2-12 from the background density (see Figure 8.7).
+
+Two commonly used parameters to identify great enhancements in density are TEC and F2.
+
+We have applied and compared both of them. TEC and F2 varied similarly however, we
+
+mentioned that the latter was preferred because it leaves out most of the noise (especially due to
+
+satellites) above 600 km altitude. The patches identified from the F2 peak increased up to a factor
+
+4 above the background, attaining values of 2 ×
+
+- . Though, it has been observed that at
+
+solar maximum the patches can reach a factor of 10 above the background (Buchau and Reinisch,
+
+1991). The estimated dimensions for the patches are within 70-400 km, being within what should
+
+be expected (e.g., Weber et al., 1984).
+
+On 23 February 2001 and 21 February 2002 it was possible to observe a southward IMF configuration allowing for reconnection at the sub-solar point (Lockwood et al., 1990). We have observed that a negative rotation in IMF and might allow high plasma densities to pass through the 42m and subsequently, move along the 32m antenna when Svalbard is located in the morning sector (see Figure 9.2). The same is the case for a southward IMF with a positive turn in
+when Svalbard is located in the afternoon sector; and for a dominant IMF negative when the location is at noon (Cowley and Lockwood, 1992). Northward shifts in the IMF are also observed on 21 February 2001, being characterized by strong asymmetries in the convection pattern and by additional cells. A northward IMF is anti-parallel to the Earth‟s magnetic field at points poleward of the cusp, making reconnection possible in the lobes (Dungey, 1963). For positive turns in the IMF component, conditions are inappropriate to detect the same event from both antennas. Under such conditions flows may circulate above the radar when the ESR is located just under such a cell. In this case a patch will probably move in and out of the 32m radar beam. The relation between the IMF configuration and the convection pattern generated in the polar cap is consistent with what has been theorized and observed during the years (e.g., Reiff et al., 1985; Cowley and Lockwood, 1992; Newell et al., 2004; Ruohonemi et al., 2005).
+
+87
+
+10 Discussion
+The patches identified on 23 February 2001 clearly moved poleward, giving well defined structures. Most of them had velocities of 500 m/s along the line-of sight of the 32m antenna. On this day the IMF remained mostly southward with negative. Some of the events seem to be related to the observations made by the 42m antenna, especially between 06:00-09:00 UT. These events may be associated with polward moving auroral forms (PMAFs) observed in the cusp, which are thought to generate from FTEs (Oksavik et al., 2004). If these forms were elongated east-west, as the ones described by Sandholt et al. (1993), and if the radar is located away from the cusp, it would be difficult to observe such an event from both radar beams (32m and 42m) simultaneously. This is especially the case after 08:40 UT when Svalbard is located in the dusk sector (see Figure 9.2). When such a structure moves to higher latitudes, it will probably not be detected by the 42m antenna, while the 32m antenna could possibly detect the edge to the poleward moving patch. This may explain the unrelated features between panel 1 and 2 in Figure 9.11 between 09:00-12:00 UT.
+On 21 February 2002 we observed patches which are not well defined, and hardly any possible related events are seen between the two antennas (Figure 9.12). Contrary to the former day, this day was dominated by a northward IMF configuration during the time interval measured by the radar. For a northward IMF configuration polar cap arcs are common (Sandholt et al., 2002). These are produced by soft particle precipitation and move from dawn to dusk (Buchau et al., 1983). The increase in ion temperature close to the density minima of 1 (around 08:10 UT) observed in Figure 9.16, with no effects on either the electron temperature or ion velocity, may be due to large plasma flows. The effects of high plasma flows have been presented by Balmforth et al. (1998). Ion-neutral collisions from large plasma flows will give high plasma loss rates (Schunk, 1975) which may explain why such an effect is observed at lower densities.
+Both days showed large ion drifts in the 42m data (Figure 9.15 and Figure 9.16). Soft particle precipitation from the cusp is commonly related to increases in the plasma drift velocity (in a direction away from the field aligned radar), which increases the ionization rate at the ionosphere and heats up the electron gas. This will again increase the electron pressure gradient and thus generate strong ambipolar electric fields which accelerate upflowing ions (Kagan and St. Maurice, 2005). The PMAFs we earlier mentioned have also been observed in conjunction with soft particle precipitation (Sandholt et al., 1993; Farrugia et al., 1998).
+There is a clear diurnal variation in the F2 peak density which shows the highest densities between 08:00 UT and 10:00 UT. The peak height is dependent on the solar zenith angle, and should be highest at dawn and lowest towards dusk (Moen et al., 2008b). However, there are some deviations from the diurnal variation in observed in the plots, especially on 23 February 2001. The peak height of the electron density profile is dependent on the scale length over which the plasma density changes by a factor ~ 1/e. (see appendix D). This is again dependent on the ion and electron temperatures. If these are large, then the scale height will be large and the electron density profile will have a density peak at higher altitudes, most likely reaching 650-750 km altitude. High density plasma patch material is accumulated due to long exposure to solar EUV and transported across the polar cap (Foster, 1984; Foster et al., 2005). The directional configuration of the antennas (see section 8.2) allows us to observe the large EUV exposed plasma accumulated at the inflow region and the segmented plasma moving antisunward. This
+88
+
+10 Discussion
+
+explains the large band of high electron density observed by the 42m antenna and the more discrete patches observed along the f-o-v of the 32m antenna. The observations from the 42m antenna were characterized by low electron and ion temperatures being around 2500 K at the F peak. These characteristics relates well to a TOI (Foster et al., 2005). Such a tongue of enhanced ionization is identified between 09:00 UT and 10:00 UT in Figure 9.15 and Figure 9.16. What is interesting to see is that patches are generated within the TOI (see Figure 9.7). These „subpatches‟ are not enhanced from the average background yet they do have density gradients increases of a factor 2.
+
+The characteristic diurnal variation at the F2 peak is also observed at higher altitudes. The densities will be reduced higher up, because of the exponential decrease in density with height. Nevertheless, the similarity of the electron density variation at these two heights is very much altered due to particle precipitation and ambipolar electric fields, which cause large ion upflows (Wahlund et al., 1992). Large vertical ion velocities increase the density higher up, structuring the enhanced plasma even more, and increasing the patch number at altitudes between 650 km and 750 km. On 23 February 2001 it should be expected that the horizontal velocities were lower
+
+than for the velocities estimated from the 32m radar beam,
+
+, for patches with large ion
+
+upflow in the 42m beam. This is only the case for 2 ( 4). On the other hand, 3 and 10
+
+( 5 and 8) have larger horizontal velocity components, not coinciding with the large vertical ion velocities in Figure 9.15. The numbers in Table 9.1 and Table 9.2 are average values; the horizontal velocities may thus have been overestimated or underestimated. Another possibility is
+
+that 3 and 5 and 10 and 8, respectively, are unrelated events. The large deviations
+
+between
+
+and for these features may have to do with a geometric factor, meaning that
+
+the shape of the patch also has implications on the velocity and dimension observed by the 32m antenna. If the patch is elongated, being large in extent and small in width, and moves across the 32m beam with the largest part tilted with respect to the l-o-s, the radar would detect this as a
+
+patch moving towards higher latitudes. There will be no ion drift along the l-o-s, while we will nonetheless be able to estimate a horizontal velocity from the electron density distribution from expression (9.1). The dimension will also be detected as if the patch was thick in width.
+
+The identified patches display large scintillation values indicating the existence of structures with scales sizes of 1 km to 100 m (see appendix E). The S4 index varied similarly to the density variation at F2 peak. Polar cap patches are characterized by giving severe scintillation of 250 MHz satellite beacon signals (Buchau et al., 1985). The scintillation enhancements in Figure 9.18 and Figure 9.20 did not necessarily occur where the highest density concentrations were observed. The signals are more sensitive where there are large fluctuations in density rather than to the plasma concentration itself (private communication with Moen). Some of the patches also displayed HF coherent backscatter, which means that even smaller irregularities can be detected within the patches, ranging in scales sizes of 19 m to 7 m (appendix E). Milan et al. (2002) observed that the HF backscatter power in polar patches is highest at the trailing edges. On 23 February 2001 (Figure 9.18) between 08:00 UT and 09:00 UT there is a continuous trace of HF backscatter very close the 32m antenna patches 2 and 3, though it is difficult to tell whether the backscatter occurs at the trailing edges. On the other hand, 1 shows great backscatter intensities for the entire patch. On 21 February 2002 (Figure 9.10), there is also a great amount of backscatter around 06:00-08:00 UT. During these times, the IMF is southward
+
+89
+
+10 Discussion with negative, allowing the cusp to be close to Svalbard. Thus, strong backscatter at these local times may be associated with soft particle precipitation. Apparently, there is also a tendency for the S4 to peak close to the limit between density minima and maxima, particularly at the trailing edges. If we assume that the plasma moves antisunward faster than the neutral atmosphere, then the trailing edge of a patch is unstable due to a × instability (Linson and Workman, 1970). This mechanism causes small scale irregularities in the order of 1 km to 100 meters at the trailing edge of a patch. It is believed that this gradient drift instability dominate structuring in southward IMF polar cap patches (e.g., Chaturvedi and Huba, 1987; Tsunoda, 1988; Basu et al., 1990). Another mechanism producing instabilities in the plasma occurs for sufficiently strong plasma velocity shears, which is thought to dominate the structuring of the northward IMF polar cap, in particular polar cap arcs (Kelley and Carlson, 1977). In this case it is most likely that the latter mechanism caused some of the irregularities detected on 21 February 2002, while the former being dominant on 23 February 2001. However, Carlson et al. (2008) purposed that plasma structuring can be caused by both mechanisms acting together. Actually, in-situ measurements are needed for further investigation of plasma irregularity formation.
+90
+
+11 Conclusions
+
+Observations from the ESR 32m and 42m antennas showed several polar cap patches originating during 23 February 2001 and 21 February 2002. The former day had a persistent southward IMF configuration with negative shifts in , allowing structured forms to move poleward. The latter day was dominated by a northward IMF configuration, thus the large asymmetries in the convection pattern and the unstructured forms observed moving along the l-o-s of the 32m antenna. We have measured the TEC, F2 peak and the average density at satellite height along the line- of- sight of the 42m antenna to identify patches. Noting that there might be uncertainties in our estimations, the following points can be drawn from the results obtained:
+
+1. The advantage of the ESR is that it can be used to detect fine-structures within patches.
+
+2. The ESR can measure patches with large velocities ranging from 160 m/s- to 1 km/s.
+
+Thus, to obtain an appropriate resolution on substructures within patches, the integration
+
+time should not be larger than 6.4s.
+
+3. Patch identification is more reliable based on the F2 peak density than by identification
+
+though variations in TEC.
+
+4. The patches identified at F2 peak heights had densities of ~
+
+- , exceeding a factor
+
+two above the background density. The TOI was highly structured and even showed
+
+density gradients of an order of two.
+
+5. At satellite heights (650-750 km altitude) the average density for the patches was a factor
+
+5-7 lower from those identified at F2 peak heights.
+
+6. The number of patches identified at the satellite height increased from the number of
+
+patches observed at F2 peak height.
+
+7. Patches associated with large electron and ion temperature increases gave large ion
+
+upflows with velocities up to 1000 km/s.
+
+8. Irregularities with scale sizes ranging 10 km -7 m are observed within the patches.
+
+9. There is a tendency for the 250 MHz scintillation to peak at the trailing edge of the
+
+identified patches.
+
+The directional configuration for the ESR 42m and 32m antennas allowed us to observe the sunlit source of high density and the poleward moving patches into the polar cap. The features observed from either will not always relate to each other. Coinciding structures in both radar beams will occur only when Svalbard is located under the cusp inflow region. Few cases were observed to satisfy with the remainder during the studied days. Apparently, the conditions on 23 February 2001 allowed plasma forms in both radar beams, and hence more information could be obtained on the patch characteristics, using the field aligned antenna to provide precise altitude profiles and the antenna pointing towards north to provide information about the ion drift velocity into the polar cap.
+
+91
+
+12 Future Work
+In this thesis we have only looked at data from two different days, yet a large amount of ESR data has been collected during the international polar years 2001-2002 and remains to be studied. We have presented different topics which are being investigated and the practical work that still has to be done, such as combining the large data base of scintillation data with EISCAT Svalbard radar data. We have estimated ionospheric densities at satellite heights based on the ESR. The measurements still have to be compared with actual satellite data. This thesis is meant to point out some of the areas which will be interesting to set focus on once the Norwegian satellite CubeSTAR is sent into orbit, providing data around 600-700 km altitude. We have shown that 250 MHz signals suffer severe scintillation during patch events, particularly due to small scale irregularities within such features. It would be interesting to make further investigations on the effects of ion upflow at satellite altitudes. Although ion upflow does not generate structures at F-region peak heights, it does show to be an effective structuring mechanism at satellite altitudes. It is important to study the size of these irregularities for future understanding of cusp structuring phenomena. CubeSTAR is a 10×10×20 cm satellite with 4 probes, which will measure the electron density in the ionosphere. This satellite is intended to have spatial resolution of at least 5 m. This will hopefully provide more detailed information about polar cap patch structures, and may be a very effective space weather forecasting tool of scintillation.
+92
+
+13 Appendix
+A. Geocentric Solar Magnetospheric (GSM) Coordinate System
+A frequently used coordinate system to describe the magnetospheric topology is the GSM Coordinate system, which is shown below in Figure 13.1. The x-axis points towards the Sun, the xz-plane describes the geomagnetic dipole, and the y-axis points towards the dusk being normal to the xz-plane.
+Figure 13.1. Topology of the outer magnetosphere in a geocentric solar magnetospheric coordinate system (adapted from Pröls, 2004).
+B. Universal Time (UT) and Magnetic Local Time (MLT)
+Universal Time (UT) measures time following the rotation of the Earth, starting (UT=0) when it is midnight in Greenwich. The magnetic local time on the other hand, measures position relative to the Sun. The MLT is 12 (noon) when the location is facing the Sun, while it is 0 (midnight) when facing away from the Sun. For Longyearbyen magnetic noon corresponds to 08:50 UT, and there is a 3 hr shift between the two time systems. Figure 13.2 illustrates the dayside time interval (gray spanned area) in UT that we have been focusing on with the corresponding MLT interval.
+Figure 13.2. Six hours span in universal local time (UT) and the corresponding times in magnetic local time system (MLT).
+93
+
+13. Appendix
+C. × – drift
+Charged particles in an external field can accelerate due to a drift caused by the electric and magnetic field interaction as
+Since positive and negative charges move together in the same direction with the same velocity, the charge cancels out and no current is produced. The drift motion for ions and electrons is shown in Figure 13.3.
+Figure 13.3. × trajectory for ions and electrons (Pröls, 2004).
+D. Scale height
+The plasma scale height is the altitude range by which the plasma density changes with a factor 1/e, where e is the exponential factor. The plasma scale height is given as
+= Where k is Boltzmans constant, and are the electron and ion temperature, m is the ion mass and g is the gravitational constant. The density which is dependent on height will change as
+n(h) ~ - where h and are the heights at different altitudes. Figure 13.4 illustrates the change in density with height at the lower and upper regions.
+94
+
+13. Appendix
+Figure 13.4. Density height profile. The upper slope changes as -1/ (adapted from Pröls, 2004).
+E. Scale lengths for different observation methods
+Figure 13.5 shows the wide range of scale lengths that can be studied on electron density structures by the use of different techniques. CUTLASS, usually operates with frequencies of 820 MHz, and can thus only measure irregularities down to 7 m for the highest frequency transmitted.
+Figure 13.5. Range of scale lengths for the study of electron density structures using different techniques (adapted from Tatarskii et al., 1993).
+F. Program codes
+F.1 Sun spot cycle The following code is used to create a plot over the monthly measured sunspots during 19852008 shown in Figure 6.1.
+95
+
+13. Appendix
+clc; clear;
+SunSpot = 'Sunspot1985-2008.txt'; [yr,spotnr] = ...
+textread(SunSpot,'%f %f','headerlines',1);
+plot(yr,spotnr) xlabel('Year') ylabel('Sun spot number')
+F.2 IMF from ACE
+This code estimates the time delay from ACE to the magnetopause and plots the different IMF components measured by ACE versus time which have been used in Figure 9.1 and Figure 9.3. The time delay is measured by using the same expressions given in section 8.6.
+clc; clear;
+%Data from ACE is downloaded. We uncomment the line for SWE and MFI for the date %we want to plot, i.e., either data set on 23 February 2001 or 21 %February 2002,respectively (here we have uncommented data on 23 February %2001).
+SWE = 'AC_H0_SWE_2001_02_23_0452-1052.txt'; %SWE = 'AC_H0_SWE_2002_02_21_0508-1108.txt';
+MFI = 'AC_H0_MFI_2001_02_23_0452-105200.txt'; %MFI = 'AC_H0_MFI_2002_02_21_0508-1108.txt';
+[day_mag,hour_mag,minute_mag,seconds_mag,Bx, By, Bz] = ... textread(MFI,'%s %f %f %f %f %f %f','headerlines',3);
+[day_swe,hour_swe,minute_swe,seconds_swe,H_dens,speed, Vx, Vy, Vz] = ... textread(SWE,'%s %f %f %f %f %f %f %f %f ','headerlines',3);
+%%% From SWEPAM data %%% figure(1); day_n_swe = datenum(day_swe); time_swe = day_n_swe + datenum(0,0,0,hour_swe,minute_swe,seconds_swe);
+% Here we have to eliminate errors in our measurements and replace these % with the average correct resluts to get a continue velocity plot.
+is_nan=find(Vx < -1e30); Vx(is_nan)=NaN; is_good=find(Vx > -1e30); V_avg=mean(Vx(is_good)); Vx(is_nan)=V_avg; V_avg
+%The solar wind velocity versus time is plotted. plot(time_swe,Vx) datetick('x'); xlabel('UT(hrs)'); ylabel('Velocity(km/s)');
+96
+
+13. Appendix
+%%% From MAG data %%% figure(2); day_n_mag = datenum(day_mag); time_mag = day_n_mag + datenum(0,0,0,hour_mag,minute_mag,seconds_mag);
+% Here we have to eliminate errors in our measurements and replace these % with the average correct resluts to get a continue velocity plot.
+is_nan=find(Bx < -1e30); Bx(is_nan)=NaN; is_good=find(Bx > -1e30); Bx_avg=mean(Bx(is_good)); Bx(is_nan)=Bx_avg;
+is_nan=find(By < -1e30); By(is_nan)=NaN; is_good=find(By > -1e30); By_avg=mean(By(is_good)); By(is_nan)=By_avg;
+is_nan=find(Bz < -1e30); Bz(is_nan)=NaN; is_good=find(Bz > -1e30); Bz_avg=mean(Bz(is_good)); Bz(is_nan)=Bz_avg; %Plots for the magnetic field disturbances in the x,y,z direction measured %at ACE subplot(3,1,1); plot(time_mag,Bx); set(gca,'Fontsize',12) datetick; xlabel('UT') ylabel('Bx [nT]');
+title('ACE: 23 Febr. 2001') %title('ACE: 21 Febr. 2002') grid subplot(3,1,2); plot(time_mag,By); set(gca,'Fontsize',12) datetick; xlabel('UT') ylabel('By [nT]'); grid subplot(3,1,3); plot(time_mag,Bz); set(gca,'Fontsize',12) datetick; xlabel('UT') ylabel('Bz [nT]'); grid
+%Error values in solar wind density are replaced by NaN. is_nan2=find(H_dens < -1e30); H_dens(is_nan2)=NaN; is_good2=find(H_dens > -1e30); H_avg=mean(H_dens(is_good2)); H_dens(is_nan2)=H_avg;
+%Solar wind density versus time is plotted.
+97
+
+13. Appendix
+figure(3); plot(time_swe,H_dens) datetick('x'); xlabel('UT(hrs))'); ylabel('Density(1/cm^3)'); %The standoff distance Xm is measured. Xm=107.4.*(H_dens.*Vx.^2).^(-1/6); figure(4); plot(time_swe,Xm) datetick('x'); xlabel('UT(hrs)'); ylabel('Distance(Earth radi)'); %Distance between Ace And MP: Ace is localized at the Lagrange point(L1), %1.5 mill. km from Earth. We have: L1-Xm Xm_avg=mean(Xm); %The distance between Earth and L1 is about 235.5 Earth radii. L1=235.5; %Distance Ace - MP: ACE_MP_dist=L1-Xm_avg %ACE_MP_dist = 222.2378 Earth radii. % Time delay: distance between ACE and MP divided with average velocity. Delay=((ACE_MP_dist*6370)/abs(V_avg)); min_delay=Delay/60
+F.3 Density and height peak - F2, F2 The maximal electron density in the F2 region has been found at altitudes ranging 150-600 km. In order to minimize eventual discrepancies in the data points, the maximal density has been averaged between two neighboring points as shown in Figure 13.6. If the maximal value lies at either the upper or lower boundary (i.e. at 600 km or 150 km), then we average with the data point sampled right after 600 km or right before 150 km, respectively. The height for the electron density peak has been computed in the same way.
+Figure 13.6. Density profile from gp Showing how to average between three points about density maxima ( max.).
+98
+
+13. Appendix
+%All .mat files from the ESR are read files=dir([datadir,'*.mat']);
+%The following parameters are defined UT1=[]; UT2=[]; Nelma_gjen=[]; hma_interv=[];
+%Files are loaded for i=1:length(files) load([datadir,files(i).name]);
+%Time is converted to matlab format UT1 = [UT1,datenum(r_time(1,:))]; UT2 = [UT2,datenum(r_time(2,:))];
+%Values exceeding 5e12 m^-3 are set to NaN. for d=1:length(r_param)
+if r_param(d,1)>5.0e+012
+r_param(d,1)=NaN; end
+end
+%The index number for values between 150-600 km are found. indeksd_h=find((r_h>150 & r_h<600) & r_status==0);
+%The remainder values are sat into a vector Neld=r_param(indeksd_h(1:end),1);
+%The corresponding heights for the measured values between 150 and 600 km are put into a vector hma=r_h(indeksd_h(1:end));
+%The index number containing the maximal density are sorted out. indeks_Nema=find(Neld==max(Neld));
+%The average between three points around the maximal value is measured. The same is done for the peak height.
+if indeks_Nema==numel(Neld) %In case the peak density value is precisely at the upper altitude limit (~600 km) we average with the value right after this limit.
+Nelma_gjen=[Nelma_gjen,(r_param(indeksd_h(numel(indeksd_h)1)+1)+Neld(indeks_Nema)+r_param(indeksd_h(numel(indeksd_h)-1)1))./3];
+hma_interv=[hma_interv,(r_h(indeksd_h(numel(indeksd_h)1)+1)+r_h(indeksd_h(numel(indeksd_h)1))+r_h(indeksd_h(numel(indeksd_h)-1)-1))./3];
+elseif indeks_Nema==1 %In case the peak density value is precisely at the lower altitude limit (~150 km)we average with the value right after this limit.
+99
+
+13. Appendix
+
+Nelma_gjen=[Nelma_gjen,(r_param(indeksd_h(1)+1)+Neld(1)+r_param(indek sd_h(1)-1))./3];
+
+hma_interv=[hma_interv,(r_h(indeksd_h(1)+1)+r_h(indeksd_h(1))+r_h(ind eksd_h(1)-1))./3];
+
+else
+
+%Otherwise, the values we average over are within the altitude range
+
+Nelma_gjen=[Nelma_gjen,(Neld(indeks_Nema+1)+Neld(indeks_Nema)+Neld(in deks_Nema-1))./3];
+
+hma_interv=[hma_interv,(hma(indeks_Nema+1)+hma(indeks_Nema)+hma(indek s_Nema-1))./3];
+
+end
+
+end
+
+%We create a stretching time of 65 seconds for each measurement.
+
+tid_diff=abs(UT2(1:end-1)-UT1(2:end));
+stretch_sec=65; index = find(tid_diff>stretch_sec/3600/24);
+
+%Lap time between end and start time for each data dump.
+%Converts to hours.
+
+if length(index)>0
+
+for i=length(index):-1:1 UT1 = [UT1(1:index(i)),NaN,UT1((index(i)+1):end)]; UT2 = [UT2(1:index(i)),NaN,UT2((index(i)+1):end)]; Nelma_gjen=[Nelma_gjen(1:index(i)),NaN,Nelma_gjen((index(i)+1):end)];
+end
+
+end
+
+%Time and density values are synchronized. UT=zeros(1,2*length(UT1)); UT(1:2:2*length(UT1)) = UT1; UT(2:2:2*length(UT2)) = UT2;
+
+emaxdensity=zeros(1,2*length(Nelma_gjen)); emaxdensity(1:2:2*length(Nelma_gjen)) = Nelma_gjen; emaxdensity(2:2:2*length(Nelma_gjen)) = Nelma_gjen;
+
+Time and height values are synchronized. hm=zeros(1,2*length(hma_interv)); hm(1:2:2*length(hma_interv)) = hma_interv; hm(2:2:2*length(hma_interv)) = hma_interv;
+
+%Generates plots of density peak vs. time, the logarithm to base 2 of the density peak vs. time and height peak vs. time, respectively. xmin=min(UT) xmax=max(UT);
+
+figure(1) plot(UT,emaxdensity) set(gca,'Fontsize',12,'xlim',[xmin,xmax])
+
+%Plotts NmF2
+
+100
+

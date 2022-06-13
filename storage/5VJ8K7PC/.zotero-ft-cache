@@ -1,0 +1,351 @@
+Journal of Atmospheric and Solar–Terrestrial Physics 219 (2021) 105666 Contents lists available at ScienceDirect
+Journal of Atmospheric and Solar–Terrestrial Physics
+journal homepage: www.elsevier.com/locate/jastp
+
+Research paper
+Characterization of high latitude radio wave propagation over Canada
+T.G. Cameron a,∗, R.A.D. Fiori a, E.M. Warrington b, A.J. Stocker b, T. Thayaparan c, D.W. Danskin a,1
+a Geomagnetic Laboratory, Natural Resources Canada, 2617 Anderson Rd K1A 0E7, Ottawa, Ontario, Canada b School of Engineering, University of Leicester, University Road, Leicester, LE1 7RH, United Kingdom c Defense Research and Development Canada, Ottawa Research Centre, 3701 Carling Avenue K1A 0Z4, Ottawa, Ontario, Canada
+
+ARTICLE INFO
+Keywords: High-frequency radiowave propagation Ionosphere Absorption Space weather
+
+ABSTRACT
+High frequency (HF) radio wave propagation is sensitive to ionospheric disturbances caused by space weather. Changes in propagation conditions can be directly measured with an HF transmitter/receiver link. This paper presents data from one such link, consisting of a transmitter located in Ottawa, ON, Canada, and a directional receiver located in Alert, NU, Canada. The transmitter emits signals at 6 distinct frequencies between 5.4 and 14.4 MHz on a set schedule that are detected and processed by the receiver. Based on 644 days of archived data, a statistical analysis characterizing HF radio wave propagation conditions over the course of the day and over the year are presented. HF propagation is found to follow the regular diurnal variation in ionospheric density, modulated by seasonal trends. A new method for distinguishing space weather effects from diurnal changes to HF propagation is presented, which utilizes quiet day baselines, similar to riometer quiet day curves. This method allows for easy analysis of the impacts of space weather on HF radio propagation between two points. This method is applied to an auroral absorption event that occurred on 06 June 2016, and is used to successfully distinguish auroral absorption related dropouts from dropouts related to daily ionospheric variation.
+
+1. Introduction
+The characteristics of the Earth’s ionosphere are important for the propagation of high frequency (3–30 MHz, HF) radio waves. The spatially varying ionospheric electron density causes the reflection and refraction of HF radio waves, allowing for propagation over long distances (Davies, 1990; Hunsucker and Hargreaves, 2002). Spatial and temporal variations in ionospheric electron density caused by space weather events (hereafter called ionospheric disturbances) cause offgreat circle propagation effects and signal disruption effects such as Doppler shifts, Doppler and delay spreads, scintillations, and enhanced absorption (Mitra, 1970; Warrington et al., 2006, 2012; Stocker et al., 2013).
+Ionospheric disturbances can weaken, or even completely interrupt HF radio signals, leading to significant impacts on technologies depending on HF radio wave propagation (Milan et al., 1998; Siddle et al., 2013). Long distance HF radio communication is used, for example, by the aviation industry, the military, the shipping industry, the Canadian Coast Guard (CCG), and many other groups, especially at polar latitudes where other communication methods are too costly or inconvenient (National Research Council, 2008; Neal et al., 2013; Warrington et al.,
+
+2016). HF radio is also used for remote sensing of the ionosphere (e.g., MacDougall and Jayachandran, 2001; Chisham et al., 2007; Jayachandran et al., 2009), and over the horizon radar (OTHR) (Cameron, 1995; Li, 1998; Riddolls, 2006; Thayaparan et al., 2018, 2019). Because of the ubiquity of HF radio, disruptions to HF radio propagation can have large impacts. For example, Redmon et al. (2018), and Frissell et al. (2019) both studied how a series of strong space weather events in September 2017 affected HF radio communications during hurricane relief efforts in the Caribbean.
+There are two main factors that affect HF radio wave propagation: ionospheric electron density distribution, and selection of signal frequency. Ionospheric electron density distribution controls whether a given radio signal will be reflected or refracted, pass through, or be absorbed by the ionosphere (Davies, 1990). Absorption is also affected by the rate at which electrons and ions in the ionosphere collide with neutral particles. A wave incident on an ionospheric layer with high enough electron density will be reflected or refracted back towards the Earth. If the electron density is not high enough, the wave will pass through. As the wave passes through, interactions with free electrons, which then collide with neutrals, will cause some of the wave’s energy
+
+∗ Corresponding author. E-mail address: taylor.cameron@canada.ca (T.G. Cameron).
+1 Retired.
+https://doi.org/10.1016/j.jastp.2021.105666 Received 2 November 2020; Received in revised form 15 April 2021; Accepted 21 April 2021 Available online 3 May 2021 1364-6826/Crown Copyright © 2021 Published by Elsevier Ltd. All rights reserved.
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 1. Map of the NRCan transmitter network, along with the locations of NRCan magnetometer stations considered in this study, and GO-RIO network riometers. Transmitters located across Canada send out HF radio waves detected by a directional receiver in Alert, Nu. Red lines indicate operational links, and blue lines indicate future links. Teal crosses indicate GO-RIO riometer locations (labelled with 4 letter acronyms), and pink stars indicate NRCan magnetometer locations (pertinent ones labelled with 3 letter acronyms). The green shading indicates the average location of the auroral zone.
+
+to be dispersed, or absorbed as heat. This signal absorption causes a reduction in the signal strength, sometimes reducing the signal strength to below that required for detection.
+The ionosphere is divided into several regions. The lowest of these is the D-region (60–90 km) that has a relatively low electron density that is insufficient to reflect signals in the HF band. HF radiowaves passing through this region may experience significant absorption due to the high neutral density. Above the D region are the E and F regions (90–150 km and 150–500 km respectively) that have higher electron densities that are sufficient for the reflection of HF radiowaves. HF radio paths are often described by the number of hops and the reflecting layer used to reach a target. For example, a radio wave that is reflected off the F-region twice before reaching the target describes 2-hop F-region propagation. In general, propagation paths involving more hops or higher reflecting layers are longer, leading to higher time delays between the transmitter and receiver. Because these time delays can be estimated for different propagation paths, measurements of time-of-flight (TOF) between a transmitter and receiver can be used to identify the propagation paths HF radio waves used to reach a receiver. Frequency selection also plays a role in governing how a signal will be impacted by the ionosphere. Low frequency signals are more easily absorbed, while high frequency signals are less impacted by the ionosphere.
+The interaction between HF radio wave frequency and ionospheric electron density results in a range of frequencies that are useable for long distance HF radio propagation. Often, the lower and upper limits of this frequency range are characterized by the lowest useable frequency (LUF), and the maximum useable frequency (MUF) (Davies, 1990). Ionospheric disturbances (usually caused by space weather) change the frequency range, therefore changing the frequency values for LUF and MUF. Because receiver sensitivity and transmission power are variable, LUF is a system dependent quantity. MUF is independent of transmitter power and receiver sensitivity, making it more commonly studied in the context of HF propagation (e.g. Fotiadis et al., 2004; Athieno and Jayachandran, 2016).
+
+The largest variation in ionospheric electron density is the result of solar photoionization. As a result, ionospheric electron density is highest during the day and lowest at night. This basic pattern leads to LUF and MUF rising and falling over the course of the day, with both also being highest during the day and lowest at night (Davies, 1990).
+While daily ionospheric variation affects HF propagation in a semipredictable way, ionospheric disturbances can suddenly and severely disrupt HF radio wave propagation. For example, solar x-ray flares can cause brief but intense increases in D-region ionization on the sunlit side of the Earth, resulting in HF blackouts lasting on the order of an hour to several hours, called shortwave fadeout (Mitra, 1974; Fiori et al., 2018). Precipitation of high energy (> 30 keV) electrons into the auroral zone, primarily on the nightside, causes increased D-region ionization causing auroral absorption (Mitra and Shain, 1953). This absorption results in an increased LUF preventing certain frequencies from being used for communications (Hargreaves, 1969; Stauning, 1996). Solar protons precipitating into the high-latitude ionosphere can similarly increase D-region absorption, in a phenomenon called polar cap absorption (Kavanagh et al., 2004; Hargreaves, 2005; Fiori and Danskin, 2016; Warrington et al., 2017a).
+Absorption impacts HF radio wave propagation by raising the LUF thereby decreasing the range of useable frequencies. Similar effects result from a reduction of the MUF. During a geomagnetic storm, enhanced energetic particle precipitation causes auroral absorption and increases the LUF requiring HF transmission to shift to higher frequencies. Within 24 h a geomagnetic storm can be followed by a decrease in the F-region ionospheric density causing a reduction in the MUF lasting several days (Davies, 1990; Goodman, 1992). Reduction in the MUF lowers the upper range of useable frequencies requiring a shift to lower frequencies for transmission. This effect is typically called MUF depression or post-storm depression.
+HF radio wave propagation paths typically follow the great circle. However, ionospheric disturbances can cause HF radio waves to travel over longer, off-great circle paths. Because these paths are longer, and involve interaction with different parts of the ionosphere, offgreat circle propagation can result in increased absorption, or alter
+
+2
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 2. Example plot of data received by the ALE receiver from the OTT transmitter for Oct 16–19, 2019. From the top, plotted quantities are: (a) Time of flight (ms), (b) Signal-to-noise ratio (dB), (c) Doppler shift (Hz), (d) Azimuth (deg), (e) Elevation (deg), (f) Periods of HF reception of signals at the prescribed frequency. Frequencies recorded are: 5.4 MHz (blue), 6.9 MHz (orange), 8.1 MHz (green), 10.4 MHz (red), 11.1 MHz (purple), 14.4 MHz (brown). Time is indicated by day of month and HH:MM on the bottom two x axes, with the month and year indicated in the lower right. Shaded portions of plots correspond to times when the midpoint of the OTT–ALE pat is not sunlit. The dashed line in (a) indicates the great circle travel time between OTT and ALE, and the dashed line in (d) indicates the great circle azimuthal arrival angle.
+
+HF radio signals in unanticipated ways. In some cases, off-great-circle propagation can even cause radio frequencies to arrive at a target that would otherwise not reach it. There have been many studies done on quantifying and modelling the effects of off-great circle propagation on HF radio signals (e.g. Warrington et al., 1997; Stocker et al., 2003; Zaalov et al., 2005; Warrington et al., 2006).
+Better understanding of the effect of ionospheric disturbances on HF radio wave propagation is needed in order to mitigate the effects on impacted systems. One direct way of detecting impacts to HF radio propagation experimentally is with HF radio transmitters and receivers. By measuring time-of flight, Doppler shift, and other parameters over the propagation path, detailed information can be obtained about the structure of the intervening ionosphere. Angle of arrival measurements can allow for off-great circle propagation paths to be identified and studied. Many studies have been performed investigating HF propagation through the ionosphere using HF transmitters and receivers (e.g. Stocker et al., 2003; Warrington, 2002; Stocker and Warrington, 2011). Even simply examining the occurrence of dropouts in the connection between HF transmitter–receiver links can yield useful information. For example, Frissell et al. (2014) investigated the effect an X2.9 solar flare had on HF radio link dropouts in the Reverse Beacon Network.
+
+Associating HF radio dropouts with ionospheric disturbances, such as those caused by space weather, can be complicated. Depending on the location of the transmitter and receiver, and the time of year, a given dropout could be due to diurnal photoionization influencing the LUF and MUF. Any method for detecting dropouts in a large HF radio data set would need to take into account local diurnal variation in HF radio connectivity. We propose characterizing the local diurnal variation in HF signal reception for a given HF radio link by examining the statistical properties of this variation. By establishing a diurnal curve describing signal reception for a given time period, deviations from this curve could be identified as ionospheric disturbance related dropouts, similar to riometer quiet day curves (NORSTAR, 2014).
+In this paper, data from a network of radio transmitters located across Canada and a directional receiver located in Alert, NU are introduced. A statistical analysis of 644 days of archived data from the directional receiver receiving radio signals from a transmitter located in Ottawa, ON is presented. Since the great circle path between Ottawa and Alert runs through the sub-auroral, auroral and polar cap regions, this data set is sensitive to ionospheric disturbances that occur in any of these three regions. Average diurnal trends in time-of-flight and signalto-noise ratio are examined. Additionally, signal reception between the
+
+3
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 3. Raytraced oblique ionograms for a raypath from Ottawa to Alert. HF radio waves were traced through a model ionosphere generated by E-CHAIM version 3.0, for times of: (a) 05:00 UT, (b) 11:00 UT, (c) 17:00 UT, (d) 23:00 UT, corresponding approximately to local times of 00:00, 06:00, 12:00 and 18:00 respectively. Raytraces were allowed to propagate for up to four hops, all of which are labelled. The path was too long to support 1-hop propagation. The six frequencies transmitted by the OTT transmitter are indicated by light blue vertical lines.
+
+two sites is examined on a seasonal and yearly basis. This information is used to construct daily HF propagation baselines. The utility of these baselines is demonstrated in identifying and examining an auroral absorption event in the Ottawa–Alert HF radio data set.
+2. Instrumentation
+To study the effects of ionospheric absorption on HF communications, Natural Resources Canada (NRCan) operates a network of HF radio transmitters located across Canada (Fiori et al., 2019). The transmitters transmit signals through end-fed inverted-V antennas at 500 W, cycling through 6 distinct frequencies between 5.4 and 14.4 MHz. This paper analyzes the data from the some of the network outlined in Danskin et al. (2011), in which it was proposed that a network of transmitters and receivers could be used to provide realtime information on ideal frequencies for HF communication in the Arctic.
+The HF transmitters are designed to operate continuously on a set schedule that staggers transmissions by frequency at each transmitter, so that the receiver only receives one transmission at a time. Each transmission is a Barker-13 coded sequence at one of the following frequencies: 5.4, 6.9, 8.1, 10.4, 11.1, and 14.4 MHz. For a given transmitter and frequency, the time between transmissions varies from 2.5 to 15 min.
+Transmitters are located in Ottawa (OTT), Fort Churchill (FCC), and Yellowknife (YKN). While the OTT transmitter has been operational since late 2010, the FCC transmitter began operation in November 2019 and the YKN transmitter began operation in June 2020. Planned future transmitter sites include Iqaluit (IQA) and Resolute Bay (RES). Fig. 1 shows the locations of all current and future HF transmitter sites (see Table 1).
+Signals emitted by the HF transmitters are detected by a multiantenna directional receiver installed in Alert, NU (ALE, see Fig. 1). These signals are recorded and processed, so that derived parameters can be output for each transmission. Derived parameters include: timeof-flight, signal power, signal-to-noise ratio (3 kHz band), azimuth and elevation angle of arrival, Doppler shift, and Doppler spread.
+
+Table 1 NRCan HF transmitter and receiver information. First light refers to the first time data from the transmitter was received, or when the receiver was first turned on.
+
+Transmitter
+
+Location
+
+Coordinates
+
+First light
+
+OTT FCC YKN IQA RES
+
+Ottawa, ON Fort Churchill, MB Yellowknife, NT Iqaluit, NU Resolute Bay, NU
+
+45.42 N, 75.70 W 58.76 E, 94.08 W 62.45 E, 114.37 W 63.75 E, 68.52 W 74.70 N, 94.83 W
+
+Dec 2010 Nov 2019 Jun 2020 N/A N/A
+
+Receiver
+
+Location
+
+Coordinates
+
+First light
+
+ALE
+
+Alert, NU
+
+82.50 N, 62.35 W
+
+Dec 2010
+
+The ALE receiver was previously used by the University of Leicester to characterize HF radio response to ionospheric disturbances using a different set of HF transmitters (e.g Warrington et al., 2012, 2016, 2017b). Previous studies that used the receiver show that it is able to successfully measure the effects of ionospheric disturbances on HF radio propagation. For example, Warrington et al. (2017b) examined the effects of a polar cap absorption event on an HF link between a transmitter in Qaanaaq, Greenland and the same multidirectional receiver in Alert, NU. The receiver was able to detect the polar cap absorption event through decreased received signal power, and some interruption of signal. Additionally, large changes in the direction of arrival due to spatial variations in ionospheric density were detected. It was speculated that some of these variations were due to a tongue of ionization in the polar cap. A ray tracing simulation of the event was able to reproduce many features of the event found in the received data, supporting the use of such simulations for providing frequency management information to industry.
+Locations of HF transmitter sites were chosen relative to the receiver site to establish a variety of transmission paths that pass through sub-auroral, auroral and polar cap regions. In the future, comparing measurements from multiple transmission paths will allow for spatial variation in HF radio connectivity to be considered. This paper focuses on 644 full days of data spanning 19 December 2013–20 October 2019, from the OTT–ALE link. Gaps in data are due to transmitter or receiver outages.
+
+4
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 4. 2-D discrete probability density distribution of TOF (ms) and time of day (UTC and EST) for 644 days of OTT–ALE data for each transmitted frequency. From the top down, frequencies are (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz. White vertical dotted lines in each panel indicate local solar noon at the midpoint between OTT and ALE.
+
+3. Results
+In this section we show an example of data measured along the OTT–ALE propagation path, and present a statistical analysis of the archived OTT–ALE data. This statistical analysis will motivate and support finding a method for characterizing the variation in HF radio signal reception.
+3.1. Sample OTT - ALE HF data
+Data received at ALE from the OTT transmitter from 16–19 October 2019 for all six frequencies are shown in Fig. 2. This period of time was chosen as an example because it is undisturbed. No solar X-ray flares or solar proton events were detected, and the Kp index was <2 over the whole interval. From the top down, panels show time-of-flight (TOF), signal-to-noise ratio (SNR) in the 3 kHz band of the receiver, Doppler shift, azimuth angle of arrival, elevation angle of arrival, and detected frequency versus time. In each panel, frequencies are plotted in different colours, and times when the sun has set are indicated by darker shading. These times are computed for a point exactly halfway along the great circle path between OTT and ALE at roughly F-region altitude (250 km).
+Initial examination indicates the radio transmission is received predominantly during the day light hours (seen most clearly in panel f)
+
+when the transmission path is solar illuminated. Night time propagation, when it occurs, is predominantly at the lower frequencies (5.4 and 6.9 MHz). During the day, D-region absorption results in the lower frequencies not being received. The higher frequencies (8.1, 10.4, 11.1 and 14.4 MHz) propagate during the daytime when the ionospheric electron density is higher. At these higher frequencies, the D-region absorption is lower than at the lower frequencies and is insufficient to prevent reception of the signals.
+TOF (panel a), shows the delay between the time the signal is transmitted from OTT to the time it is received at ALE. TOF ranges from ∼14 - 16 ms. The dashed line in panel (a) indicates the time of flight (13.86 ms) between transmitter and receiver were the signals to travel at ground level (there is no suggestion that the signals actually propagate via this path), and as such represents a baseline value. Propagation entirely via the E-region ionosphere would exhibit times of flight slightly above this value (approximately 14.0 ms for 3 hop propagation). It is evident that a range of times of flight are present, often associated with differing propagation modes (e.g. 2 hop F and 3 hop F). Day to day variation is also apparent. TOF variation will be examined in more detail in the following section. SNR (panel b, shown in dB) varies considerably over the time period shown, ranging between −10 dB and 25 dB. Lower frequencies tend to have lower SNR than the higher frequencies, as expected since lower frequencies are impacted more by D-region absorption. Doppler shifts (panel c) measured for this
+
+5
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 5. 2-D discrete probability density distribution of SNR (dB) and time of day (UTC and EST) for 644 days of OTT–ALE data for each transmitted frequency. From the top down, frequencies are (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz. White vertical dotted lines in each panel indicate local solar noon at the midpoint between OTT and ALE. Number of points is indicated by colour according to the colour bar on the right.
+
+time period are generally zero, with increases to ∼15 Hz during the day on the 17th and 18th.
+The directional receiver at Alert can also discern azimuthal and elevation angle of arrival, as seen in panels (d) and (e), respectively. Due to technical issues with the receiver, angle of arrival could only be measured for the lower three frequencies for this time interval. Azimuthal angle of arrival is centred on the great circle direction towards OTT from ALE (187◦). Elevation angle of arrival varies considerably, though most points are less than 20◦. The average elevation angle for the ≤ 20◦ population of points is 9.3◦. Assuming idealized reflection off the F-region ionosphere at 250 km, simple spherical geometry predicts elevation angles of 8.6 and 16.4◦ for 2 and 3 hops respectively. This suggests that the main population of arrival elevations correspond to great circle propagation. The determination of arrival azimuth, and especially arrival elevation is less accurate when SNR is low. For this reason, it is likely that the spread in arrival azimuths and elevations seen in panels (d) and (e) is due to the low SNR for this HF link and time interval, and should be disregarded. Angle of arrival information for the path between Qaanaaq and Alert seen in Warrington et al. (2017b) was much clearer, probably due to the shorter path length and fewer hops.
+
+3.2. Comparison with ray-tracing simulation
+In order to investigate propagation modes and expected times of flight further, a number of ray-tracing simulations have been undertaken by ray-tracing through an ionosphere generated by E-CHAIM (Version 3.0, Themens et al., 2017, 2018, 2019) for 17 October 2019. Modelled oblique ionograms are presented in Fig. 3 for 05:00, 11:00, 17:00 and 23:00 UT, corresponding approximately to 00:00, 06:00, 12:00 and 18:00 local time for the full path as it runs close to geographic north. At all times, propagation was specifically facilitated by F-region reflection. Propagation paths are labelled in each ionogram according the number of hops.
+At 05:00 UT, the simulated oblique ionogram shows 2-hop, 3hop and 4-hop F-region propagation (the path is too long for 1-hop propagation to be prevalent) with maximum frequencies of 6.5, 5.0, and 4.0 MHz respectively, commensurate with only the 5.4 MHz signal being received at this time. As explained in Section 1, propagation paths involving more hops lead to higher TOFs, making identification of propagation paths in an ionogram straightforward when the reflecting layer does not change. At 11:00 UT, the 2-hop, 3-hop and 4-hop maximum frequencies have increased to 8.5, 6.2, and 5.4 MHz respectively, again in agreement with the reception of the higher signal frequencies, although it should be noted that 5.4 MHz is no longer received. At 17:00 UT, the maximum frequencies are 15.1, 11.7, and 6.0 MHz for 2, 3, and 4-hops respectively, about the highest occurring during the
+
+6
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 6. Fractional occurrence vs month and time (UT) for each frequency transmitted by the OTT transmitter for 2014. Fractional occurrence of 1 means all data from the transmitter was received at that UT and time of year, while 0 means no data was received. The colour bar on the right indicates the scale. Panels are from the top down, (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz. Horizontal white dotted lines in each panel indicate local apparent noon at the midpoint between OTT and ALE. Times with no data are coloured white.
+
+day, and the absorption has increased such that signals below around 10 MHz are not expected to be received. Again, this is commensurate with the frequencies actually received, and it is also interesting to note that the 14.4 MHz signal is received via 2-hop propagation whereas the 10.4 and 11.1 MHz signals are received via 3-hop propagation with a correspondingly longer time of flight. By 23:00 UT the maximum frequencies have reduced to 9.5, 7.5, and 6.3 MHz for the 2, 3, and 4-hop modes respectively. The absorption has also decreased allowing the lower frequencies to propagate.
+3.3. Statistical characterization of the OTT-ALE HF data
+2-D discrete probability density distributions of parameters measured by the HF receiver and time of day (UT) were generated using all 644 days of data measured from the OTT–ALE HF link. Probability density is normalized so that ∫ 𝑝(𝑥, 𝑦)d𝑥d𝑦 = 1. Fig. 4 shows the 2-D discrete probability density of TOF data and UT for each frequency received. UT bins were 30 min wide, and TOF bins were 0.1 ms wide. The white vertical dotted lines in each panel indicate local solar
+
+noon at the midpoint between OTT and ALE. Note that individual probability density bins cannot be compared across frequency, since each distribution has been normalized to sum to 1.
+Diurnal variation in signals received based on the frequency of the transmitted signal in general matches what was seen in Fig. 2. Lower frequencies arrive at the ALE receiver more often at night, while higher frequencies arrive more during the day. In terms of distribution of TOF, there are two distinct distributions seen in the lower frequencies (5.4, 6.9, 8.1, 10.4 MHz). The first population of points is narrowly concentrated along ∼14 ms, and the second population of points is much wider in time) extending > 14 ms. Comparison with the raytraced ionograms seen in Fig. 3 suggests that the narrow distribution likely corresponds to a 2-hop propagation path, while the wider distribution corresponds to 3-hop propagation.
+Fig. 5 shows the 2-D discrete probability density of SNR data for the same 644 days of data. UT bins were defined in the same way as the previous plot, and SNR bins were 0.75 dB wide. From this plot it is clear that SNR is in general <10 dB most of the time at all frequencies. For 8.1, 6.9 and 5.4 MHz, higher SNR is observed at night, as expected due
+
+7
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 7. Superposed epoch analysis of hourly occurrence of HF radio over course of the day for the months of January 2014 (left) and June 2014 (right). Translucent blue lines show occurrence data for each day in the month, the solid black line is the mean, the dashed line is the 80th percentile, and the dotted line is the maximum. Panels from the top down (on both sides) show analyses for (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz.
+
+to the weaker D-region. For 10.4, 11.1 and 14.4 MHz, SNR is lower at night, and higher during the day. While SNR is in general higher during the day for 14.4, 11.1, and 10.4 MHz, it peaks during the evening and morning. This effect could be the result of a combination of MUF depressing SNR at night, and LUF depressing SNR during the day for these frequencies.
+Ionospheric conditions are highly dependent on photoionization, which in turn varies over both the day and year; HF propagation therefore depends both on time of year and time of day. Fig. 6, shows the average HF occurrence plotted against both UT and week of the year in 2014 at different frequencies. Occurrence is defined as the ratio of HF data received at ALE in a given hour to HF data transmitted in that hour. The number of transmissions per hour varies from 4 to 24, depending on frequency and date. An occurrence of 1 means all possible transmissions in the hour were received, while an occurrence of zero means no transmissions were received. From the top down, panels show occurrence for 14.4, 11.1, 10.4, 8.1, 6.9, and 5.4 MHz. The horizontal white dotted lines in each panel indicate local apparent noon at the midpoint between OTT and ALE. Note that the bin wide depression in late June (most apparent at 6.9 MHz) is due to equipment malfunction.
+The diurnal variation in occurrence broadly matches what was seen in previous plots, with peaks at similar times, though the variation also changes over the course of the year. Focusing on 5.4 MHz (bottom panel), occurrence is highest at night, and drops to zero during the day. In January, this period of zero occurrence ranges between 13:00 and 19:00 UT. As the year progresses, the period of zero occurrence widens until in June it is past 06:00 UT and before 02:00 UT. It then narrows again as the season progresses to winter. This pattern is cleanly
+
+explained by changes in LUF, which is controlled primarily by photoionization affecting D-region absorption. During the summer, there are more hours of daylight than in the winter, causing the LUF to be higher for more hours of the day.
+The variation observed for 14.4 MHz (top panel) is in many ways the opposite of that seen for 5.4 MHz. Occurrence in general is highest during the day for much of the year, and lowest at night. In January, occurrence is highest past 13:00 and before 01:00 UT, and close to zero outside this window. Moving towards June, this period of high occurrence expands to most of the day, past 08:00 UT and before 04:00 UT. This pattern is complicated by a lowering of occurrence during the middle of the day during the summer. This sequence can also be explained by the changes in MUF and LUF. The period of high daytime occurrence, which gets longer during the summer, is a consequence of changes in the MUF. During the summer, the longer period of daylight keeps the MUF high for longer, allowing 14.4 MHz waves to bounce back to Earth for longer compared to winter. The lowering of occurrence at noon during the summer is the result of the LUF becoming high enough to affect the 14.4 MHz frequencies. This absorption prevents HF waves from reaching ALE during the middle of the day, even though the MUF is high enough that they should be able to otherwise. The frequencies between 5.4 and 14.4 MHz follow similar patterns, which with increasing frequency gradually transition from mostly being affected by the LUF, to mostly being affected by the MUF.
+Occurrence demonstrated in Fig. 6 can be compared to echo occurrence rates observed by the high-latitude Super Dual Auroral Radar Network (SuperDARN) radar. Based on 21 years of observation from the Saskatoon SuperDARN radar (∼10 − 12 MHz), Ghezelbash et al.
+
+8
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 8. Monthly HF radio occurrence baselines for every month in 2014. Panels from the top down show baselines for (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz. Baselines were calculated as the 80th percentile occurrence using all the days in a given month.
+
+(2014) observed seasonal and diurnal trends in the echo occurrence rates. Their observations during solar minimum are consistent with observations observed here: occurrence is enhanced near noon during the winter months, at dawn/dusk at equinox, and near midnight during the summer. Ghezelbash et al. (2014) also observe an asymmetry in the pre and post-noon occurrence with more echoes observed in the post-noon sector, as observed here, most clearly in the 11.1 and 14.4 MHz signals. They attribute this asymmetry to the slow decay of F-region electron density compared to the fast decay of the E-region electron density, such that propagation is still possible. Post-midnight echo occurrence is reduced due to the continued decay of the F-region, disappearance of the E-region, and increased D-region absorption caused by substorm particle injections.
+4. Creating HF radio baselines
+In this paper we have introduced data from a high latitude HF transmitter and receiver network with the intention of using it to identify and study the effects of space weather on HF radio wave propagation. While most links of the network have just started transmitting, there exists years of archived data from the OTT–ALE link. Using this data, some general trends were observed. Broadly, HF occurrence varies across the day depending on time of year, and on frequency. For lower
+
+frequencies (<11.1 MHz), occurrence peaks at night, and is lowest during the day, while the opposite is true for the higher frequencies. The periods of high (low) occurrence at night for low (high) frequencies persists the longest during the winter, and the shortest during the summer. These changes in occurrence are primarily due to changes in D, E and F region photoionization, and can be summarized using the concepts of MUF and LUF.
+To accurately identify the effects of ionospheric disturbances on HF radio propagation, it is necessary to separate dropouts due to ionospheric disturbances from the aforementioned diurnal variation. We propose using the archived quiet time data around an event to construct a baseline occurrence curve. Then, dropouts due to ionospheric disturbances can be identified as deviations from this baseline curve. This is very similar to the method of using a quiet day curve to identify absorption in riometer measurements (NORSTAR, 2014).
+Towards creating such a baseline curve, occurrence in the months of January and June 2014 were examined in detail. The left side of Fig. 7 shows a superposed epoch analysis of occurrence vs UT for all days in January, 2014, for each frequency. The solid black lines show the mean occurrence, the dotted black lines show the 80th percentile occurrence, and the dashed lines show the maximum occurrence for each hour, for each frequency. The means plotted in Fig. 7 for January broadly match trends demonstrated in Fig. 6 for the same period. For the lowest
+
+9
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 9. Magnetometer, riometer, and HF data for an auroral absorption event recorded from June 4–8, 2016. Panels from the top down show: (a) Magnetometer X hourly range as measured by magnetometers in Ottawa, Sanikiluaq, Iqaluit and Resolute Bay, (b) ionospheric absorption as measured by riometers in Pinawa, Island Lake, Gillam, Churchill, Rankin Inlet, and Taloyoak, (c) Periods of HF reception of signals at the prescribed frequency. Riometer and magnetometer data has been plotted in a staggered fashion, ordered by station latitude. Shading in (c) indicates night at a point halfway between OTT and ALE. Black dashed vertical lines indicate period of increased absorption as measured by the Fort Churchill riometer.
+
+frequencies (5.4, 6.9 MHz), occurrence drops to zero between 14:00 and 20:00 UT, showing these frequencies were unusable during those times. For the highest frequencies (11.1, 14.4 MHz), occurrence is near zero before 02:00 UT, and after 13:00 UT. For the middle frequencies (8.1, 10.4 MHz), the low and high frequency patterns are combined.
+The right side of Fig. 7 shows a superposed epoch analysis for June 2014. Compared to January, occurrence is much lower for the lower frequencies, matching the progression from January to June seen in Fig. 6. For example, for 5.4 MHz, signals are only received from 02:00 to 8:00 UT (6 h), compared to from 20:00 to 14:00 UT (18 h) in January. At the highest frequency (14.4 MHz), mean occurrence is > 0 at all times, though it is at a minimum between 02:00 and 8:00 UT.
+Based on Figs. 6 and 7, there are clear times when dropouts can be expected, which vary based on time of year. Also, the mean, 80th percentile, and the maximum follow similar daily trends. Fig. 8 shows example baseline curves generated for every month data were available in 2014. The baseline curve for a given month was generated by calculating the 80th percentile of occurrence for every hour in the day for the ‘quiet’ days in the month. Quiet days were selected as days where the GOES X-ray flux < 5 × 10−5 Wm−2, GOES > 10 MeV proton flux < 10 cm−2 s−1 sr−1, and the magnetometer hourly range (see description below) measured by the NRCan Iqaluit magnetometer <300 nT. These thresholds were chosen to eliminate the days with the most activity from consideration. The 80th percentile was used instead of the mean because even after the above selection process, ionospheric disturbance related dropouts decrease the mean below what the ‘expected’ occurrence is. The maximum is not used because temporary ionospheric conditions may allow for signals to travel to ALE (possibly on off-great circle paths) when they otherwise should not be able to, increasing occurrence at times when it should be zero.
+
+In general, baseline curves consist of a period of time with occurrence close to 1, with the rest of the time close to zero occurrence, with roughly 3 h transitions between the two. The high occurrence periods are during the day for higher frequencies, and at night for the lower frequencies. This pattern is broken for 10.4 MHz, in which there is a transition from the lower to higher frequency behaviour, and for higher frequencies during the summer, where the baseline curve never reaches zero. Note that no data exists for November and December, 2014, so baseline curves were not generated for these months.
+To show the use of these generated baselines, we present an auroral absorption event recorded on 06 June 2016 by the ALE receiver in Fig. 9. At this time, the Kp index reached a peak of 5+, and the AE index reached > 1300 nT. Solar wind measurements from ACE show a solar wind speed of 600 km/s, and large fluctuations (±10 nT) in IMF Bz in the preceding 12 h.
+Local geomagnetic activity, characterized by the magnetic field hourly range confirms local geomagnetic perturbations were observed on 06 June 2016. Hourly range (HR), used by the Canadian Space Weather Forecast Center to quantify geomagnetic activity, is typically enhanced during periods of auroral absorption (Fiori et al., 2020). HR is defined as the maximum of the range of the X and Y components of the local geomagnetic field observed over 1-hour based on 1-minute magnetic field data (Hruska and Coles, 1987; Trichtchenko et al., 2009; Danskin and Lotz, 2015). Local HR data for the RES, IQA, SNK, and OTT magnetometer stations (Fig. 9a) indicate a period of heightened geomagnetic activity throughout the day on 05–06 June 2016 with the strongest peaks observed at the auroral stations (IQA, SNK) at 01:00–02:00 UT and 06:00–07:00 UT on 06 June 2016.
+Fig. 9b shows the corresponding absorption during the event measured by multiple auroral zone GO-RIO riometers, ordered by latitude.
+
+10
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 10. Comparison of generated baseline to HF data for an auroral absorption event recorded 04–08 June 2016. Real occurrence is plotted in orange, the baseline is plotted in blue. Panels from the top down show data for (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz. The bottom panel (g) shows ionospheric absorption as observed by the Fort Churchill (CHUR) riometer. Black dashed vertical lines indicate the period of increased absorption as observed by the Fort Churchill riometer. Baselines were calculated as the 80th percentile occurrence for the month.
+
+Enhanced absorption is observed between 02:00 and 13:00 UT on 06 June 2016. The peak absorption is observed at 06:00 UT, corresponding with the peak in HR. Enhanced absorption can lead to weakened HF signals, and even total absorption of the radio wave.
+During the period between roughly 05 June 23:00 UT and 06 June 17:00 UT, a significant interruption of signal was experienced by the ALE HF receiver at all frequencies (Fig. 9c). This interruption occurred during and after the prolonged period of magnetic activity during the ionospheric absorption described above. Together, these data indicate an auroral absorption event was responsible for the HF radio signal loss.
+Fig. 10 shows occurrence (orange) and the baseline (blue) for each frequency transmitted by the OTT transmitter. Baselines were generated from the 80th percentile of occurrence for quiet days (defined the same way as for Fig. 8) drawn from the 30 days around the event, as described above. The bottom panel shows ionospheric absorption as measured by the Churchill riometer to help locate the absorption event in relation to the previous plot. The effect of this absorption can be seen clearly by comparing the occurrence to the baseline for each frequency. Before and after the event, the occurrence matches the baseline curve closely. During the period of high absorption, the occurrence drops considerably for all frequencies when compared with the expected baseline curves for the month.
+
+Fig. 11 shows the difference between the measured occurrence and the expected baseline occurrence for each frequency transmitted by the OTT transmitter. Note that the y-axes are reversed for these plots, so the difference is more easily associated with the riometer data. Outside of the period of increased absorption, the difference is near zero, with intermittent, short periods of dropout. During the period of increased absorption, there is a prolonged negative period (above the dotted line) in the difference between the occurrence and baseline data. The average difference between the occurrence and the baseline curve (averaged over all frequencies) is −0.13 from 04–08 June 2016 outside of the period of auroral absorption (as determined by the Fort Churchill riometer). For the period of time when the auroral absorption is occurring, the average difference drops to −0.55. Average differences for each frequency are listed in Table 2.
+It is clear from Table 2, Fig. 10, and Fig. 11 that occurrence data for higher frequencies do not match the baselines as well as the lower frequencies. This indicates some variability in the day-to-day occurrence in the high frequency HF data that is less prevalent at lower frequencies. Additionally, small differences between the baseline and occurrence outside of the absorption event around sunset and sunrise appear as short, partial dropouts. Nonetheless, the AA related dropout
+
+11
+
+T.G. Cameron et al.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+
+Fig. 11. Baseline subtracted occurrence for an auroral absorption event recorded 04–08 June 2016. Panels from the top down show data for (a) 14.4 MHz, (b) 11.1 MHz, (c) 10.4 MHz, (d) 8.1 MHz, (e) 6.9 MHz, (f) 5.4 MHz. The bottom panel (g) shows ionospheric absorption as observed by the Fort Churchill (CHUR) riometer. Note that baseline subtracted occurrence is plotted upside down so that it can be better compared with riometer data. Black dashed vertical lines indicate the period of increased absorption as observed by the Fort Churchill riometer. Baselines were calculated as the 80th percentile occurrence for the month.
+
+Table 2 Average baseline subtracted occurrence for each frequency during and not during the auroral absorption event for 04–08 June 2016. The auroral absorption occurred between 05 June 23:45 UT–06 June 18:15 based on riometer measurements of ionospheric absorption.
+
+Freq (MHz)
+
+⟨𝛥Occ⟩quiet
+
+⟨𝛥Occ⟩event
+
+14.4
+
+−0.20
+
+−0.58
+
+11.1
+
+−0.23
+
+−0.73
+
+10.4
+
+−0.12
+
+−0.70
+
+8.1
+
+−0.12
+
+−0.57
+
+6.9
+
+−0.06
+
+−0.45
+
+5.4
+
+−0.04
+
+−0.26
+
+is clear at all frequencies. Since dropouts can be clearly detected in comparison to the baseline, this method allows for automated analyses of HF data dropouts in the high latitude region. This would allow for statistical studies to be performed on the effects of various ionospheric phenomena caused by space weather, on high latitude HF radio propagation.
+While this method allows for dropouts to be clearly detected during times when reception is expected (when the baseline is high), it can be
+
+misleading during times of already low signal reception. For example, in Fig. 10, the 14.4 MHz occurrence drops out from 00:00 to 12:00 UT. However, the baseline also drops to close to zero from ∼04:00 to 08:00 UT. In terms of the baseline subtracted occurrence seen in Fig. 11, this is seen as the dropout seeming to alleviate in the middle of the interval, even though the real occurrence is zero through the entire interval. This is not an issue for radio operators, who are likely most concerned with dropouts during times of expected reception. However, a statistical analysis studying ionospheric disturbance related dropouts identified using this method would need to account for this effect in some way.
+5. Conclusions
+Characterizing and understanding how ionospheric disturbances affect HF radio propagation is important for a large number of technologies that rely on HF radio. In this study, data from the Ottawa–Alert (OTT–ALE) link of a high latitude HF radio transmitter network were presented, and an extensive statistical analysis of 644 days of HF radio data was performed with the goal of better understanding how diurnal and seasonal ionospheric variation and ionospheric disturbances affect HF radio wave propagation. From this analysis, we found the following:
+
+12
+
+T.G. Cameron et al.
+1. Data from the OTT–ALE link of the HF network during an undisturbed time showed clear changes in signal reception over the course of the day, consistent with ionospheric diurnal variation. Time-of-flight across multiple frequencies indicated multiple great-circle propagation modes reaching ALE, supported by the azimuth and elevation angle of arrival data. Observations were found to be consistent with propagation modelling using ray-tracing software.
+2. When examining the statistical properties of years of data from the HF network, clear trends were found in signal occurrence. In terms of diurnal variation, it was found that lower frequencies (<10.4 MHz) tend to arrive at night, and drop out during the day. Higher frequencies (≥ 10.4 MHz) were found to do the opposite, as expected from diurnal variation in ionospheric density. Seasonal variation was found to modify diurnal variation according to global changes in ionospheric density. Daytime dropouts for lower frequencies were shown to be more prolonged in summer, and shorter in winter. Conversely, nighttime dropouts for higher frequencies were shown to be longer in the winter and shorter in the summer.
+3. In order to facilitate the identification of space weather related dropouts, diurnal and seasonal variation in HF occurrence needed to be filtered from the data set. A novel approach was developed by identifying and removing a quiet day baseline curve, similar to techniques used to derive absorption from riometer data. This baseline was defined as the 80th percentile of hourly HF occurrence for quiet days drawn from the 30 days surrounding a given time period. Quiet day baselines were presented for 6 different frequencies for 10 months in 2014.
+4. The new baseline method was applied to an auroral absorption event that occurred on 06 June 2016. The method successfully distinguished auroral absorption related HF dropouts from changing signal reception due to diurnal variation. It was found that the average difference between the HF occurrence and the baseline (averaged over frequency) during the auroral absorption event was 0.55, while in the days preceding and after the event the average difference was 0.16. These results lead us to conclude that the quiet day baseline will allow for better detection of the effects of ionospheric disturbances on HF radio data.
+Future work will entail using baseline curves to identify and study space weather events in archived OTT–ALE data. The results shown in this paper were all based on one HF radio path. Soon, data from other transmitter–receiver links will be available, allowing for the spatial variation in HF radio response to ionospheric disturbances to be investigated.
+Acknowledgements
+This work was supported by the Natural Resources Canada (NRCan), Lands and Minerals Sector and Public Safety Geosciences program. NRCan HF transmitter network data is available online at the Harvard Dataverse (https://doi.org/10.7910/DVN/TLAHPX). NRCan magnetic field hourly range data are available online for 2015–2017 (https ://www.spaceweather.gc.ca/data-donnee/indices/si-vi-en.php?type=h ourly_ranges). Riometer data used in this paper can be found in the GO-RIO data archive (https://www.ucalgary.ca/aurora/projects/rio), which is maintained by the University of Calgary under support from the Canadian Space Agency. This research used the ALICE High Performance Computing Facility at the University of Leicester. E-CHAIM is supported under Defence Research and Development Canada contract number W7714-186507/001/SS and is maintained by the Canadian High Arctic Ionospheric Network (CHAIN) with operations support from the Canadian Space Agency. This is NRCan publication number 20210020.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+References
+Athieno, R., Jayachandran, P.T., 2016. MUF variability in the Arctic region: A statistical comparison with the ITU-R variability factors. Radio Sci. 51, 1278–1285. http: //dx.doi.org/10.1002/2016RS006096.
+Cameron, A., 1995. The Jindalee operational radar network: its architecture and surveillance capability. In: Proceedings International Radar Conference. pp. 692–697. http://dx.doi.org/10.1109/RADAR.1995.522633.
+Chisham, G., Lester, M., Milan, S.E., Freeman, M.P., Bristow, W.A., Grocott, A., McWilliams, K.A., Ruohoniemi, J.M., Yeoman, T.K., Dyson, P.L., Greenwald, R.A., Kikuchi, T., Pinnock, M., Rash, J.P., Sato, N., Sofko, G.J., Villain, J.P., Walker, A.D., 2007. A decade of the Super Dual Auroral Radar Network (SuperDARN): Scientific achievements, new techniques and future directions. Surv. Geophys. 28, 33–109. http://dx.doi.org/10.1007/s10712- 007- 9017- 8.
+Danskin, D.W., Lotz, S.I., 2015. Analysis of geomagnetic hourly ranges. Space Weather 13, 458–468. http://dx.doi.org/10.1002/2015SW001184.
+Danskin, D.W., Warrington, E.M., Stocker, A.J., Boteler, D., 2011. Monitoring of HF communication links in northern Polar Regions. In: Proc. of the 13th International Ionospheric Effects Symposium: IES2011. (Available from www.ntis.gov, PB2011113661).
+Davies, K., 1990. Ionospheric Radio. Peter Peregrinus Ltd., http://dx.doi.org/10.1049/ pbew031e.
+Fiori, R.A.D., Boteler, D.H., Beckers, Y., Dolick, S., Thayaparan, T., Marchioni, J., 2019. Space Weather Effects on OTHR Radiowave Propagation – Interim Report. DRDC Ottawa Research Centre, DRDC-RDDC-2019-R184.
+Fiori, R.A., Danskin, D.W., 2016. Examination of the relationship between riometerderived absorption and the integral proton flux in the context of modeling polar cap absorption. Space Weather 14, 1032–1052. http://dx.doi.org/10.1002/ 2016SW001461.
+Fiori, R.A.D., Koustov, A.V., Chakraborty, S., Ruohoniemi, J.M., Danskin, D.W., Boteler, D.H., Shepherd, S.G., 2018. Examining the potential of the super dual auroral radar network for monitoring the space weather impact of solar X-ray flares. Space Weather 16, 1348–1362. http://dx.doi.org/10.1029/2018SW001905.
+Fiori, R.A.D., Thayaparan, T., Cameron, T.G., Waddington, G., Rynard, A., Boteler, D.H., 2020. Space weather effects on OTHR radio wave propagation – Final report. In: DRDC Scientific Report. DRDC-RDDC-2020-R9999.
+Fotiadis, D.N., Baziakos, G.M., Kouris, S.S., 2004. On the global behaviour of the dayto-day MUF variation. Adv. Space Res. 33, 893–901. http://dx.doi.org/10.1016/j. asr.2003.05.005.
+Frissell, N.A., Miller, E.S., Kaeppler, S.R., Ceglia, F., Pascoe, D., Sinanis, N., Smith, P., Williams, R., Shovkoplyas, A., 2014. Ionospheric sounding using real-time amateur radio reporting networks. Space Weather 12, 651–656. http://dx.doi.org/10.1002/ 2014SW001132.
+Frissell, N.A., Vega, J.S., Markowitz, E., Gerrard, A.J., Engelke, W.D., Erickson, P.J., Miller, E.S., Luetzelschwab, R.C., Bortnik, J., 2019. High-frequency communications response to solar activity in 2017 as observed by amateur radio networks. Space Weather 17, 118–132. http://dx.doi.org/10.1029/2018SW002008.
+Ghezelbash, M., Fiori, R.A.D., Koustov, A.V., 2014. Variations in the occurrence of SuperDARN F region echoes. Ann. Geophys. 32, 147–156. http://dx.doi.org/10. 5194/angeo- 32- 147- 2014.
+Goodman, J.M., 1992. HF Communications, Science and Technology. Van Nostrand Reinhold, 115 Fifth Ave. New York, New York 10003.
+Hargreaves, J.K., 1969. Auroral absorption of HF radio waves in the ionosphere a review of results from the first decade of riometry. In: Proceedings of the IEEE. http://dx.doi.org/10.1109/PROC.1969.7275.
+Hargreaves, J.K., 2005. A new method of studying the relation between ionization rates and radio-wave absorption in polar-cap absorption events. Ann. Geophys. 23, 359–369. http://dx.doi.org/10.5194/angeo-23-359-2005.
+Hruska, J., Coles, R.L., 1987. A new type of magnetic activity forecast for high geomagnetic latitudes. J. Geomagn. Geoelectr. 39, 521–534. http://dx.doi.org/10. 5636/jgg.39.521.
+Hunsucker, R.D., Hargreaves, J.K., 2002. The High-Latitude Ionosphere and its Effects on Radio Propagation. Cambridge University Press, http://dx.doi.org/10.1017/ CBO9780511535758, URL: https://www.cambridge.org/core/product/identifier/ 9780511535758/type/book.
+Jayachandran, P.T., Langley, R.B., MacDougall, J.W., Mushini, S.C., Pokhotelov, D., Hamza, A.M., Mann, I.R., Milling, D.K., Kale, Z.C., Chadwick, R., Kelly, T., Danskin, D.W., Carrano, C.S., 2009. Canadian high arctic ionospheric network (CHAIN). Radio Sci. 44, 1–10. http://dx.doi.org/10.1029/2008RS004046.
+Kavanagh, A.J., Marple, S.R., Honary, F., McCrea, I.W., Senior, A., 2004. On solar protons and polar cap absorption: Constraints on an empirical relationship. Ann. Geophys. 22, 1133–1147. http://dx.doi.org/10.5194/angeo-22-1133-2004.
+Li, L., 1998. High-frequency over-the-horizon radar and ionospheric backscatter studies in China. Radio Sci. 33, 1445–1458. http://dx.doi.org/10.1029/98RS01606.
+MacDougall, J.W., Jayachandran, P.T., 2001. Polar cap convection relationships with solar wind. Radio Sci. 36, 1869–1880. http://dx.doi.org/10.1029/2001RS001007.
+Milan, S.E., Lester, M., Jones, T.B., Warrington, E.M., 1998. Observations of the reduction in the available HF band on four high latitude paths during periods of geomagnetic disturbance. J. Atmos. Sol.-Terr. Phys. http://dx.doi.org/10.1016/ S1364- 6826(98)00005- 4.
+
+13
+
+T.G. Cameron et al.
+Mitra, A.P., 1970. HF and VHF absorption techniques in radio wave probing of the ionosphere. J. Atmos. Terr. Phys. 32, 623–646. http://dx.doi.org/10.1016/00219169(70)90212- 6.
+Mitra, A.P., 1974. Ionospheric effects of solar flares. 46. http://dx.doi.org/10.1007/97894- 010- 2231- 6.
+Mitra, A.P., Shain, C.A., 1953. The measurement of ionospheric absorption using observations of 18.3 mc/s cosmic radio noise. J. Atmos. Terr. Phys. 4, 204–218. http://dx.doi.org/10.1016/0021- 9169(53)90055- 5.
+National Research Council, 2008. Severe Space Weather Events: Understanding Societal and Economic Impacts: A Workshop Report. The National Academies Press, Washington, DC, http://dx.doi.org/10.17226/12507.
+Neal, J.J., Rodger, C.J., Green, J.C., 2013. Empirical determination of solar proton access to the atmosphere: Impact on polar flight paths. Space Weather 11, 420–433. http://dx.doi.org/10.1002/swe.20066.
+NORSTAR, 2014. CANOPUS Quiet Day Curve Generation. Technical Report, URL: http://aurora.phys.ucalgary.ca/norstar/rio/doc/CANOPUS_Riometer_Baselining.pdf.
+Redmon, R.J., Seaton, D.B., Steenburgh, R., He, J., Rodriguez, J.V., 2018. 2017’s geoeffective space weather and impacts to caribbean radio communications during hurricane response. Space Weather 16, 1190–1201. http://dx.doi.org/10.1029/ 2018SW001897.
+Riddolls, R., 2006. A Canadian Perspective on High-Frequency over-the-Horizon Radar. (DRDC Ottawa TM 2006-285), Defence R & D Canada – Ottawa, URL: http: //www.ottawa.drdc- rddc.gc.ca/docs/f/TM- 2006- 285- fra.pdf.
+Siddle, D.R., Stocker, A.J., Warrington, E.M., Zaalov, N.Y., Homam, M.J., 2013. Simultaneous observations of transionospheric and HF ionospheric propagation within the polar cap. Radio Sci. 48, 564–572. http://dx.doi.org/10.1002/rds.20062.
+Stauning, P., 1996. Investigations of ionospheric radio wave absorption processes using imaging riometer techniques. J. Atmos. Terr. Phys. http://dx.doi.org/10.1016/ 0021- 9169(95)00072- 0.
+Stocker, A.J., Warrington, E.M., 2011. The effect of solar activity on the doppler and multipath spread of HF signals received over paths oriented along the midlatitude trough. Radio Sci. 46, 1–11. http://dx.doi.org/10.1029/2010RS004482.
+Stocker, A.J., Warrington, E.M., Jones, T.B., 2003. A comparison of observed and modeled deviations from the great circle direction for a 4490 km HF propagation path along the midlatitude ionospheric trough. Radio Sci. 38, 1–11. http://dx.doi. org/10.1029/2002RS002781.
+Stocker, A.J., Warrington, E.M., Siddle, D.R., 2013. Observations of Doppler and delay spreads on HF signals received over polar cap and trough paths at various stages of the solar cycle. Radio Sci. 48, 638–645. http://dx.doi.org/10.1002/2013RS005264.
+Thayaparan, T., Dupont, D., Ibrahim, Y., Riddolls, R., 2019. High-frequency ionospheric monitoring system for over-the-horizon radar in Canada. IEEE Trans. Geosci. Remote Sens. 57, 6372–6384. http://dx.doi.org/10.1109/TGRS.2019.2905757.
+Thayaparan, T., Ibrahim, Y., Polak, J., Riddolls, R., 2018. High-frequency over-thehorizon radar in Canada. IEEE Geosci. Remote Sens. Lett. 15, 1700–1704. http: //dx.doi.org/10.1109/LGRS.2018.2856185.
+
+Journal of Atmospheric and Solar-Terrestrial Physics 219 (2021) 105666
+Themens, D.R., Jayachandran, P.T., Bilitza, D., Erickson, P.J., Häggström, I., Lyashenko, M.V., Reid, B., Varney, R.H., Pustovalova, L., 2018. Topside electron density representations for middle and high latitudes: A topside parameterization for E-CHAIM based on the NeQuick. J. Geophys. Res.: Space Phys. 123, 1603–1617. http://dx.doi.org/10.1002/2017JA024817.
+Themens, D.R., Jayachandran, P.T., Galkin, I., Hall, C., 2017. The empirical Canadian high arctic ionospheric model (E-CHAIM): NmF2 and hmF2. J. Geophys. Res.: Space Phys. 122, 9015–9031. http://dx.doi.org/10.1002/2017JA024398.
+Themens, D.R., Jayachandran, P.T., McCaffrey, A.M., Reid, B., Varney, R.H., 2019. A bottomside parameterization for the empirical Canadian high arctic ionospheric model. Radio Sci. 54, 397–414. http://dx.doi.org/10.1029/2018RS006748, URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2018RS006748.
+Trichtchenko, L., Lam, H.L., Boteler, D.H., Coles, R.L., Parmelee, J., 2009. Canadian space weather forecast services. Can. Aeronaut. Space J. 55, 107–113. http://dx. doi.org/10.5589/q09- 013.
+Warrington, E.M., 2002. Observations of the directional characteristics of ionospherically propagated HF radio channel sounding signals over two high latitude paths. In: IEE Proceedings - Microwaves, Antennas and Propagation, Vol. 145. p. 379. http://dx.doi.org/10.1049/ip- map:19982068.
+Warrington, E.M., Rogers, N.C., Jones, T.B., 1997. Large HF bearing errors for propagation paths contained within the polar cap. In: IEE Proceedings: Microwaves, Antennas and Propagation, Vol. 144. pp. 241–249. http://dx.doi.org/10.1049/ipmap:19971187.
+Warrington, E.M., Rogers, N.C., Stocker, A.J., Siddle, D.R., Al-Behadili, H.A., Honary, F., Beharrell, M.J., Boteler, D.H., Danskin, D.W., Zaalov, N.Y., 2017a. Developments in HF propagation predictions to support communications with aircraft on transpolar routes. In: Progress in Electromagnetics Research Symposium. pp. 1953–1959. http://dx.doi.org/10.1109/PIERS.2017.8262070.
+Warrington, E.M., Stocker, A.J., Hallam, J., Siddle, D.R., Zaalov, N.Y., 2017b. Observations of HF radio propagation at high latitudes and predictions using data-driven simulations. In: 15th International Ionospheric Effects Symposium. pp. 1–7, URL: http://ies2017.bc.edu/wp-content/uploads/simple-file-list/ 7A4- Warrington- paper.pdf.
+Warrington, E.M., Stocker, A.J., Siddle, D.R., 2006. Measurement and modeling of HF channel directional spread characteristics for northerly paths. Radio Sci. 41, 1–13. http://dx.doi.org/10.1029/2005RS003294.
+Warrington, E.M., Stocker, A.J., Siddle, D.R., Hallam, J., Al-Behadili, H.A., Zaalov, N.Y., Honary, F., Rogers, N.C., Boteler, D.H., Danskin, D.W., 2016. Near real-time input to a propagation model for nowcasting of HF communications with aircraft on polar routes. Radio Sci. 51, 1048–1059. http://dx.doi.org/10.1002/2015RS005880.
+Warrington, E.M., Zaalov, N.Y., Naylor, J.S., Stocker, A.J., 2012. HF propagation modeling within the polar ionosphere. Radio Sci. 47, 1–7. http://dx.doi.org/10. 1029/2011RS004909.
+Zaalov, N.Y., Warrington, E.M., Stocker, A.J., 2005. A ray-tracing model to account for off-great circle HF propagation over northerly paths. Radio Sci. 40, 1–14. http://dx.doi.org/10.1029/2004RS003183.
+
+14
+

@@ -1,0 +1,472 @@
+JOURNAL OF GEOPHYSICAL RESEARCH, VOL. 111, A08302, doi:10.1029/2006JA011701, 2006
+
+Nonlinear three-dimensional simulations of mesoscale structuring by
+multiple drives in high-latitude plasma patches
+N. A. Gondarenko1 and P. N. Guzdar1
+Received 2 March 2006; revised 2 May 2006; accepted 12 May 2006; published 15 August 2006.
+[1] We present the results for the nonlinear three-dimensional simulations of the patch structuring with two primary sources of the instabilities, the gradient drift instability (GDI) and velocity-shear-driven or the Kelvin-Helmholtz (KH) instability. These primary instabilities are combined to account for the large variability of the statistical and spectral characteristics of the satellite data by Basu et al. (1988, 1990). The interaction of the velocity-shear-driven instability with the GDI and the effect of these two dominant instabilities on mesoscale structuring have been investigated. We demonstrate that the GDI induces strong anisotropy on the density fluctuation spectra and accelerates the inverse energy cascade. The inclusion of the primary KH instability with strong shear results in production of small-scale turbulence, creates a cascade toward the smaller scales, and appears to be the dominant mechanism for isotropization of the density fluctuation spectra in the noon-midnight and dawn-dusk directions. The transition to small-scale turbulence, which occurred in our simulations of the patch structuring by multiple drives, has been demonstrated with turbulence statistics.
+Citation: Gondarenko, N. A., and P. N. Guzdar (2006), Nonlinear three-dimensional simulations of mesoscale structuring by multiple drives in high-latitude plasma patches, J. Geophys. Res., 111, A08302, doi:10.1029/2006JA011701.
+
+1. Introduction
+[2] Over the past 2 decades, the origin of high-latitude ionospheric turbulence has been the target of experimental [Weber et al., 1984, 1986; Cerisier et al., 1985; Basu et al., 1988, 1990; Kivanc¸ and Heelis, 1997, 1998; Coley and Heelis, 1998] and also theoretical and numerical investigations [Keskinen and Ossakow, 1982, 1983; Keskinen et al., 1988; Keskinen and Huba, 1990]. These studies have provided information on the statistical and spectral characteristics of the small-scale density and electric field irregularities, which are of practical application to communication because of the effects of the F region irregularities on transionospheric radio propagation. The F region of the ionosphere is affected by the two general kinds of structures. The structures of the first kind are the large-scale density enhancements extending over hundreds of kilometers, which are called patches or blobs depending on their occurrence in the polar cap or the auroral zone. The other general kind of the F region irregularities is the smallerscale (mesoscale) structures imbedded on the large-scale enhancements.
+[3] It is thought that there are at least two generic classes of instabilities producing the smaller-scale irregularities in the high-latitude ionosphere: one driven by large-scale density gradient in a homogeneous convection field [Basu et al., 1990] and the other driven by the structured convec-
+1Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, Maryland, USA.
+Copyright 2006 by the American Geophysical Union. 0148-0227/06/2006JA011701
+
+tion field [Basu et al., 1988]. Basu et al. [1990] have studied the spectral characteristics of the irregularities associated with plasma patch structuring by the gradient drift instability. The authors have provided the detailed description of the simultaneous density and electric field fluctuation spectra in two directions parallel and perpendicular to the antisunward direction of convection. They have also compared the statistical and spectral characteristics of the density and electric field fluctuations caused by the GDI and those observed in the vicinity of sheared plasma flows in the auroral oval [Basu et al., 1988]. In the large structured velocity regions, the measured spectral characteristics and the relation between the magnitudes of the observed density and electric field fluctuations are found to be in a dramatic contrast with the characteristics obtained for large-scale density gradient in a homogeneous convection field. In velocity shear driven processes, the magnitudes of the electric field perturbations were at least an order of magnitude larger when compared to the ones produced by the gradient drift instability for the same levels of the density irregularities. The spectral behavior of the observed electric field fluctuations for the intense and moderate velocity shear regions are significantly different [Basu et al., 1988]. These observations have stimulated the development of the nonlinear three-dimensional (3-D) model with two sources of mesoscale structuring, namely the primary GDI and velocity-shear-driven instabilities.
+[4] Recently, Gondarenko and Guzdar [1999, 2001, 2003, 2004a, 2004b] and Gondarenko et al. [2003] have convincingly demonstrated the nature of mesoscale structuring in high-latitude plasma patches by a combination of the primary GDI and the secondary Kelvin-Helmholtz
+
+A08302
+
+1 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+instability followed by the tertiary generation of shear flow within the patches. Gondarenko and Guzdar [2004a] have studied the magnitudes and spectral characteristics of the density DN/N and electric field DE fluctuations obtained with their 3-D model of the nonlinear evolution of the GDI and subsequent secondary instabilities. In the directions parallel and perpendicular to convection, the similarities in spectral slope distributions of both simulated [Gondarenko and Guzdar, 2004a] and observed [Basu et al., 1990] DN/N and DE have been demonstrated. The amplitudes of the simulated density fluctuations and the relation between the magnitudes of DE and DN/N were found to be in good agreement with the measured characteristics reported by Basu et al. [1990]. It was shown in the simulations by Gondarenko and Guzdar [2004a, 2004b] that the density fluctuation amplitude could be as large as 10– 20% and the corresponding DE magnitudes were less than a few millivolts per meter as were observed by Basu et al. [1990].
+[5] Gondarenko and Guzdar [2004a, 2004b] have identified the mechanisms for the generation of the small-scale irregularities and have found that the primary GDI leads to the formation of elongated fingers subsequently undergoing breakup into the smaller-scale structures by the secondary Kelvin-Helmholtz instability, which has a tendency to create vortices. These small-scale vortex configurations associated with structures in high-latitude patches can be attributed to that driven by the velocity-sheared flow in the direction transverse to the magnetic field. The velocity-shear-driven instability plays a very important role in determining the spectra of the fluctuating density and electric field. In our previous studies, the secondary KH instability occurs because of the inclusion of the polarization drift terms into the model without an assumption of the equilibrium velocity shear. It has been shown that irregularities could generate the self-consistent shear flow as a result of the secondary and tertiary instabilities [Gondarenko and Guzdar, 1999, 2001]. However, the simulated density fluctuation spectra [Gondarenko and Guzdar, 2004a, 2004b] exhibit the strong anisotropy in the noon-midnight and dawn-dusk directions not observed by Basu et al. [1990]. This anisotropy in the DN/N spectra has been also seen in the simulations of the interchange E Â B instability by Keskinen and Huba [1990].
+[6] In the simulations of the Kelvin-Helmholtz instability by Keskinen et al. [1988], the high-latitude structuring has been generated primarily by an imposed shear flow in the direction transverse to the magnetic field. The spectral indices [Keskinen et al., 1988] have been found to be in reasonable agreement with the DE satellite measurements by Basu et al. [1988] for the moderate shear category. However, for the intense shear category, the electric field spectral indices produced with the collisional KH instability by Keskinen et al. [1988] have been steeper than those obtained from the observations by Basu et al. [1988]. Encouraged by these observational and numerical studies, we have decided to combine the two sources of structuring, namely the primary GDI and KH (and its secondary/tertiary instabilities) in our fully 3-D code. This has been accomplished by adding primary shear layers in the patch. In the present model, the new equilibrium has two dominant drives, a sheared flow perpendicular to the geomagnetic field and density gradient across the shear.
+
+[7] The objective of the paper is to account for the large variability in the statistical and spectral characteristics of the satellite data by Basu et al. [1988, 1990]. Using the results of our simulations for the patch structuring by multiple instability drives, we investigate the interplay of the velocity-shear-driven instability with the gradient drift instability and the effect of these instabilities on mesoscale structuring. We demonstrate that the anisotropy in the density fluctuations spectra in the noon-midnight and dawn-dusk directions can be significantly reduced in the strong shear simulations when transition to small-scale turbulence occurs. We present the turbulence statistics including the Reynolds stresses, turbulent kinetic energy, and turbulence production.
+
+2. 3-D Simulations of Nonlinear Evolution of the GDI and the KH Instability
+2.1. Basic Equations
+[8] The basic geometry for the high-latitude plasma patch used in our 3-D nonlinear simulations is the following. The Earth’s field lines are vertical and aligned with the z axis. The Àx axis points antisunward, and the y axis is orthogonal to the x and z directions. For these simulations the size of the box is 400 km in the midnight-noon x and in the dawndusk y direction. The size in the z direction is 1100 km. To approximate the initial patch, we use a tanh function in the x direction and the Chapman function in z [Gondarenko and Guzdar, 2004b, Figure 1]. The ion-neutral collision frequency profile with nin0 $ 0.1 sÀ1 at the height of the density peak (near the F peak height) is taken [Gondarenko and Guzdar, 2004b, Figure 1a]. The equations for the structuring of a plasma patch are the electron continuity and the charge neutrality (‘‘vorticity’’) equations, which take into account the combined effect of three-dimensional dynamics and inertial effects [Gondarenko and Guzdar, 1999]. Here we present the normalized electron continuity (1) and vorticity (2) equations:
+
+
+
+
+
+
+
+@ @t
+
+þ
+
+! VE
+
+Á
+
+r
+
+nþa
+
+@ @f n
+@z @z
+
+¼ 0;
+
+ð1Þ
+
+ @ @t
+
+þ
+
+! VE
+
+Á
+
+r
+
+þ
+
+ enin w
+
+ þ enin
+
+
+! Vn
+
+þ 
+
+ rE
+
+Â
+
+^z
+
+Á
+
+rn
+
+þ
+
+benin0
+
+@ @f
+
+Á n ¼ 0;
+
+ð2Þ
+
+@z @z
+
+where n, f, and w are the density, the electrostatic potential,
+
+and the vorticity defined as w = r? Á nrf, r? is gradient in
+
+tehleecptrliacnefiepledrp~Een=diÀcurlafr ,toV!tEhe
+
+magnetic = ~E Â ~B,
+
+field, ~B = and E =
+
+B0 ^z. The 0.5(VE2x +
+
+VE2y). In these equations, the dimensionless parameters b and
+
+a are defined as
+
+b ¼ WeWi nei nin0
+
+L2?0 L2z0
+
+;
+
+a ¼ b nin0 ; Wi
+
+where L?0 and Lz0 are the characteristic scale lengths of the patch in the directions transverse and parallel to the magnetic field. enin = ninLn/Vn, where Ln is the density
+
+2 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+gradient scale length. The neutral wind velocity V~n has component parallel to the density gradient, V~n = Vn^x. In this model with multiple drives, the primary GDI and KelvinHelmholtz instabilities have been combined. The new equilibrium has two dominant drives, a sheared flow perpendicular to the geomagnetic field and density gradient across the shear. To derive the equilibrium velocity shear Vy(x) = cEx(x)/B0, we use the equilibrium condition which follows from vorticity equation (2): @[N0(x)E0x(x)]/@x = 0. Thus for the KH instability within the equilibRrium we have defined, the equilibrium potential is f0(x) = V0/N0(x)dx, where V0 is the parameter which controls the magnitude of the equilibrium velocity shear.
+[9] For typical F region parameters We $ 107 rad/s; Wi $ 102 rad/s; nei $ 103 sÀ1; nin $ 0.1 sÀ1, and with the characteristic scale lengths L?0 = 8 km and Lz0 = 179 km, b $ 2 Á 104. The peak density is assumed to be two or three times the background density N0, R = Nmax/N0, R = 2 or R = 3 [Coley and Heelis, 1995]. We initialize the perturbed density/potential as a superposition of 70 sin/cos modes in the y direction with random phases and overall amplitude of 0.1%. The electron continuity and vorticity equations are solved numerically [Gondarenko and Guzdar, 1999, 2001; Gondarenko et al., 2003], using our parallel 3-D finite difference code with a sixth-order finite difference approximation for the derivatives. The vorticity equation has contributions from the ion cross field current (Pedersen and polarization drifts) and the parallel resistive electron current. The simulations were performed on grids [512,512,52] and [1024,1024,52] with grid sizes Dx = Dy ’ 0.78 km (’0.39 km) and Dz ’ 22 km. The code has been run on the National Partnership for Advanced Computational Infrastructure (NPACI) parallel computer systems with a maximal number of 1024 processors.
+2.2. Simulation Results
+[10] The results obtained from our nonlinear 3-D simulations of the patch structuring with the primary GDI and velocity-shear-driven instability are presented in Figure 1. Here we show the density evolution in the xy plane near the peak of the density profile in z at three time instances for the simulations with no shear, V0 = 0 (Figure 1a at t1 = 0.44, t2 = 0.67, and t3 = 0.89 hours), weak shears, V0 = 0.5 and 1 (Figure 1b at t1 = 1.78, t2 = 2, and t3 = 2.22 hours and Figure 1c at t1 = 5.3, t2 = 5.6, and t3 = 5.9 hours), and strong shear, V0 = 2.25 (Figure 1d at t1 = 3.33, t2 = 4, and t3 = 5.7 hours). These simulations are performed on grids [512,512,52]. The initial patches are symmetric with the trailing edge on the right-hand side of the patches. First, it should be noted, that the inclusion of the velocity-sheardriven processes into the model with the primary gradient drift instability results in slowing down the structuring so that evolution occurs on much longer timescales. The simulation with no shear represents the patch structuring with the primary GDI when the finger-like structures developed at the earlier time phase become unstable to the secondary instabilities. These elongated fingers have much larger scale length in the x direction than that in the y direction. At a later time, the secondary KH instability causes a breakup of these elongated fingers in the x direction, as also shown in our previous simulations with higher resolutions [Gondarenko and Guzdar, 2004b, Figures 3 and
+
+4]. Finally the finger-like structures propagate into the patch reaching the leading edge of the patch, and that produces the fully structured patch, one of four patch categories identified by Kivanc¸ and Heelis [1997] using a quantitative patch definition by Coley and Heelis [1995]. In contrast to the simulations in Figure 1a at the earlier time phase t1 when high modes grow in the y direction and low modes are stabilized by the parallel dynamics, the evolution in the weak shear simulation exhibits different behavior shown as the growth of the lower modes at the earlier time phase t1 in Figure 1b. At this time, the high modes are completely suppressed. Also, there is a distinct tilt of the trailing edge fingers in the y direction that indicates the existence of the primary Kelvin-Helmholtz instability. At the later time t2, the primary KH causes the tilted finger-like structures to break up and forms the characteristic vorticies on the trailing edge of the patch. As time progresses, the changes in the fingering process indicate that the GDI dominates by reducing the tilt of the finger-like structures. As initial shear increases (Figures 1c and 1d), the Kelvin-Helmholtz-type vorticies with smaller-scale sizes are developed at the initial stage of the evolution. The presence of the second primary KH instability results in slowing down the propagation of the fingers into the lower-density region as they protrude faster into the bulk of the patch toward the leading edge. The transition to small-scale turbulence is demonstrated in Figure 1d. One can see that in the strong shear simulation, finger-like structures shown clearly in no/weak shear simulations completely break up on the small-scale vorticies by the Kevin-Helmholtz instability which here dominates the GDI. Also note that in this simulation, the leading edge of the patch becomes unstable to the KH instability as Kevin-Helmholtz-type structures develop on the left-hand side of the patch. In the simulations with larger initial density gradient R = 4 and strong shear V0 = 3, the leading edge of the patch becomes unstable to the KH instability at the initial phase of the evolution when the GDI starts to develop on the trailing edge, and that can produce the patches with structures only on the edges, the second type of four patch categories identified by Kivanc¸ and Heelis [1997].
+[11] In Figure 2, the transition to turbulence is demonstrated with density isosurfaces for the simulations shown in Figure 1 at the time instant t3 corresponding to the later time phase of the evolution. Here the leading edge is in the top of Figure 2 and the direction of convection is upward. One can see that the small-scale turbulent structures are produced in the strong shear simulations (Figure 1d). In Figure 3 we show the time evolution of the density turbulence with density isosurfaces for the strong shear simulations at three time instances (Figure 1d). Here the innermost surface represents the highest density and the outer is for the lowest.
+[12] To illustrate the drastic change in the density fluctuations DN/N during the transition to small-scale turbulence, the DN/N power spectra are plotted in Figures 4a – 4d in the x and y directions at three time instances for the simulations in Figure 1. The DN/N spectra have been obtained near the peak of the Chapman function density profile in z and averaged over y (x) for the kx (ky) spectra. From Figure 4a for no shear simulations, one can see that the GDI induces strong anisotropy on the density fluctuations over all range of k for both kx and ky spectra. By comparing the spectra at
+
+3 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+Figure 1. Time evolution of patch structuring. Density contours for (a) V0 = 0, (b) V0 = 0.5, (c) V0 = 1., and (d) V0 = 2.25 are shown.
+Figure 2. Transition to turbulence. Density isosurfaces with R = 3 for (a) V0 = 0, (b) V0 = 0.5 (R = 2), (c) V0 = 1, and (d) V0 = 2.25 are shown.
+Figure 3. Time evolution of density turbulence. Density isosurfaces for the strong shear simulations with V0 = 2.25 and R = 3 at (a) t1 = 3.33 hours, (b) t2 = 4 hours, and (c) t3 = 5.7 hours.
+4 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+Figure 4. Power spectra of the density fluctuations versus kx and ky at three time instances for simulations in Figure 1. (a) V0 = 0, (b) V0 = 0.5, (c) V0 = 1, and (d) V0 = 2.25.
+
+three time instances, we clearly see the differences in the behavior of the kx and ky spectra caused by the onset of the secondary KH instability. In the kx spectra, the lower modes (kx 0.5) dominate the spectra initially. However, at the later times, the secondary instabilities cause a direct cascade to higher modes. On the other hand, in the ky spectra, at the early time high modes dominate the spectrum because of the narrow width of the gradient drift elongated fingers, which evolve later into larger structures causing the inverse cascade process. Evidently the cascading of the fluctuation scales in the midnight-noon and dawn-dusk directions is quite different from isotropic two-dimensional turbulence because of the complex interaction between the GDI which accelerates the inverse energy cascade and the secondary Kevin-Helmholtz and tertiary instabilities which cause the direct cascade.
+[13] These differences in the energy cascading of the kx and ky spectra reduce significantly in the simulation with the primary KH instability (Figures 4b and 4c), although the imposed shear is not strong enough to isotropize spectra in the x ad y directions. We see that an increase in the initial shear strongly affects the isotropization process of the density fluctuation spectra over the significant range of the k space. Moreover, when strong shear is applied, the isotropization phenomenon occurs dramatically as can be seen in Figure 4d. The magnitudes of the density fluctuations in power spectra are lower than DN/N magnitudes in the no/weak shear simulations (Figures 4a – 4c). This is the effect of an acceleration of the energy cascade toward small scales caused by the primary Kevin-Helmholtz instability which dominates the GDI and a consequence of the generation of the small-scale turbulent fluctuations which are more sensitive to dissipation mechanisms.
+
+[14] To obtain statistical information regarding turbulence
+generation, we use averaging of the vorticity equation over
+y and z. Gondarenko and Guzdar [1999] have derived
+equation for the average momentum py = nVEy. This equation describes processes of evolution of the mean flows py altered by gradient of the Reynolds stress, rx R = @[VE0 xp0y]/@x, where V0Ex and p0y are the fluctuating velocity and momentum, respectively. Here we derive averaged equation for the mean enstrophy of the fluctuations z = 0.5 w0w0. We consider density, potential, and vorticity in equation (2) as a sum of their mean and fluctuation: n = n + n0, f = f + f0, w = w + w0. First we obtain the mean
+enstrophy equation by averaging equation (2) over y and z and then taking the scalar product of w and averaged equation for w.
+
+
+
+
+
+
+
+@ @t
+
+þ
+
+2enin
+
+@w
+
+@w @
+
+ð0:5wwÞ
+
+þ
+
+wVEx
+
+@x
+
+þ
+
+wVEy
+
+@y
+
+þ
+
+w @x
+
+E @n @x
+
+¼ 0:
+
+ð3Þ
+
+Then we take the scalar product of w and equation for w. Averaging this equation and subtracting equation (3), we obtain equation for turbulent enstrophy z = ww À w w:
+
+
+
+
+
+
+
+
+
+@ @t
+
+þ
+
+2enin
+
+@z z þ V Ex @x ¼ À
+
+VE0 x
+
+@z @x
+
+þ
+
+VE0 y
+
+@z @y
+
+À
+
+@w @x
+
+w0VE0 x
+
+À @E w0 @n0 þ @n w0 @E0
+
+ð4Þ
+
+"@x @y @x @y #
+
+À
+
+w0 @E0 @n0 À w0 @E0 @n0
+
+@x @y
+
+@y @x
+
+À
+
+eninw0
+
+@n0 @y
+
+:
+
+5 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+Figure 5. Time evolution of gradient of the Reynolds stress rxR for simulations in Figure 1. (a) V0 = 0, (b) V0 = 0.5, (c) V0 = 1, and (d) V0 = 2.25.
+
+The terms in the left-hand side of equation (4) represent the rate of change of the turbulent enstrophy. The first two terms in the right-hand side of this equation represent the diffusion of the turbulent enstrophy. The next three terms represent the product of a turbulent vorticity and velocity (density or kinetic energy) and mean rate of these quantities. These terms are generally called the production of turbulent enstrophy.
+[15] In Figures 5a –5d we show the generation of shear flow transverse to the direction of propagation with gradient of the Reynolds stress rx R for the simulations in Figure 1 at three time instances. The production of shear layers is insignificant for no/weak shear simulations (Figures 5a and 5b) at t1 and t2. As instabilities develop, the multiple shear layers are produced and spread in the x direction as seen in Figures 5a and 5b at t3. However, the generation of shear layers produced by the primary KH instability is stronger than that for the secondary KH instability. That
+is more intensified for the simulations with larger magnitude of the equilibrium velocity shear V0 = 1, as seen in Figure 5c. The production of shear layers for the simulations in Figure 5d (V0 = 2.25) at t1 and t2 is stronger than that in Figures 5a – 5c. However, it decreases at t3 when dissipation at small scales dominates.
+[16] Another representation of turbulence behavior is given in Figures 6a – 6d with the time evolution of the normalized normal stresses Rxx(x) = VE0 xVE0 x/hVE0 xVE0 xix and Ryy(x) = VE0 yVE0 y/hVE0 xVE0 xix and the Reynolds stress Ryx(x) = VE0 xp0y, which are also called the second moments of turbulence. These stresses are calculated for the simulations in Figure 1 for the late time instant t3. The anisotropic behavior of turbulence is particularly evident in the no/weak shear simulations (Figures 6a – 6c), where the magnitude of the normal stress Rxx is larger than Ryy. The behavior of turbulence changes toward isotropization when the difference in the magnitudes of the normal stresses as well as the Reynolds stress magnitude reduce, as one can see in Figure 6d for the strong shear simulations.
+
+[17] The time evolution of the turbulent kinetic energy K(x) = 0.5 Vy0Vy0 at two time instances t2 and t3 for the simulations in Figure 1 is shown in Figures 7a – 7d. In the no/weak shear simulations (Figures 7a – 7c), the evolution of
+Figure 6. Normal stresses Ryy(x) and Rxx(x) and the Reynolds stress Ryx(x) at time instance t3 for simulations in Figure 1. (a) V0 = 0, (b) V0 = 0.5, (c) V0 = 1, and (d) V0 = 2.25.
+
+6 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+Figure 7. Time evolution of turbulent kinetic energy K(x) = 0.5 Vy0Vy0 at t2 and t3 for (a) V0 = 0, (b) V0 = 0.5, (c) V0 = 1, and (d) V0 = 2.25.
+
+the energy profiles at t2 and t3 shows similarity demonstrating an increase in the velocity fluctuations with time while
+
+multiple shear layers develop and spread in the x direction.
+
+The energy level of K at t3 for these cases is approximately the same, though the magnitude of K at t2 is noticeably
+different. In Figure 7a, the generation of velocity fluctua-
+
+tions is determined by the secondary Kelvin-Helmholtz
+
+instability. In the simulations in Figure 7b at the earlier
+
+time phase t2, the complex interplay between the primary KH instability and GDI suppresses the generation of V0y. The time evolution of the turbulent kinetic energy for the
+
+strong shear simulations (Figure 7d) is quite different. This
+
+indicates that the behavior of turbulence changes. The
+
+energy level of K at t3 is smaller than that at t2. This suggests that in the turbulence generation, diffusion domi-
+
+nates instead of production. We estimate the turbulence
+
+production, using the turbulence production terms in
+
+equation (4) for turbulent enstrophy. Here production
+
+profiles
+
+G(x)
+
+=
+
+-@@wx w0VE0 x
+
+À
+
+@E @x
+
+w0
+
+@n0 @y
+
+þ
+
+@n @x
+
+w0
+
+@E0 @y
+
+are
+
+shown
+
+in
+
+Figures 8a – 8d at t2 and t3 for the simulations in Figure 1. One
+
+can see that production increases with time in Figures 8a – 8c,
+
+while it decreases in Figure 8d. The strong shear leads to the
+
+generation of the small-scale KH-type vorticies at the earlier
+
+time phase, and this intensifies as one can see a large increase
+
+in production in Figure 8d at t2. However, in the strong shear simulation, generation and further development of turbulence
+
+are determined by the dominant KH instability which accel-
+
+erates cascade toward the small scales, and that leads to an
+
+increase in the dissipative range and results in a reduction of
+
+production (see Figure 8d at t3). [18] Now we compare the high-resolution data from our
+
+simulations with the observations of the density DN/N and
+
+electric field DE fluctuations [Basu et al., 1988]. Our recent
+
+results for the structuring with the primary GDI [Gondarenko
+
+and Guzdar, 2004a] demonstrated the similarities in the
+
+spectral slope distributions of both simulated and observed
+
+density and electric field spectra in the directions parallel and
+
+perpendicular to convection. The magnitudes of the simulated
+
+density and electric field fluctuations were found to be in
+
+agreement with the measured data. However, the simulated
+
+DN/N spectra exhibit the asymmetry which has not been
+
+observed in the experimental density fluctuation spectra. We
+
+have not derived spectral slopes for the simulations presented
+
+in Figure 1, because the scaling range is less than 1 decade
+
+(Figure 4). In order to validate the asymmetry in the density
+
+fluctuation spectral indices, we perform simulations with
+
+higher resolution (400 Â 400 km patch in the xy plane on
+
+[1024,1024,52] grid) for the strong shear simulations V0 = 2.25. To preserve resolution in y, we use a sixth-order finite
+
+difference approximation for the derivatives. Thus we in-
+
+crease accuracy and enhance power law scaling range with higher-order hyperviscosity.
+[19] In Figure 9, we show the spectral characteristics in the x and y directions of DN/N (Figure 9a), DEx (Figure 9b), and DEy (Figure 9c). The dotted lines in Figure 9 correspond to spectra in the y direction and the solid lines are for spectra in the x direction. One can see that the kx spectra of DN/N are found to fall off as kxÀ1.9 in the interval kx 2 [0.42, 1.72] ($15– 3.7 km in scale size), and the spectral index in the y direction is about 1.8 in the same scale range. Note that in our simulations for the structuring with the primary GDI [Gondarenko and Guzdar, 2004a], the DN/N spectral slopes are 1.7 and 2.4 in the x and y directions, respectively. It is evident that in the strong shear simulations, an anisotropy is reduced significantly, and the spectral slopes are similar to those observed by Basu et al. [1988, 1990] (1.9 and 1.8 in the x and y directions, respectively). The simulated spectral slopes for the electric field fluctuations are 1.6 for DEx in the x direction and 1.5 for DEy in the y
+Figure 8. Time evolution of production G(x) at time instances t2 and t3 for simulations in Figure 1. (a) V0 = 0, (b) V0 = 0.5, (c) V0 = 1, and (d) V0 = 2.25.
+
+7 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+Figure 9. Power spectra for high-resolution simulations with V0 = 2.25 of (a) density fluctuations DN/N, (b) electric field fluctuations DEx, and (c) electric field fluctuations DEy versus kx and ky.
+
+direction. In the observational studies by Basu et al. [1988], the density and electric field fluctuation spectral indices were identical over a large scale length range for the intense shear category. In the scale size range from $10 km to 1 km, the indices were 1.9 for DN/N and 1.6 (1.8) for DE. Note that the observational data obtained from the DE 2 satellite are interpreted as one-dimensional cuts through the ionosphere. Thus there is no precise way of determining the twodimensional geometry of the patch. The spectral indices for the strong shear simulations are identical to those observed by Basu et al. [1988] for the intense shear category. However, the amplitudes for the electric field fluctuations in our simulations is still only a few millivolts per meqteﬃrﬃ.ﬃﬃﬃﬃTﬃﬃﬃhﬃﬃeﬃﬃﬃﬃmﬃﬃﬃﬃaﬃﬃgﬃﬃﬃnitudes of the averaged density fluctuation h hðDN =N Þ2iyix for the simulations in Figure 1 are about 20.2%, 19.7%, 14%, and 8.9%, respectively, and 6.4% for the high-resolution simulation (Figure 9). The magnitudes of the electric fields DEx and DEy are 0.8 and 3.4 mV/m (Figure 1a), 0.74 and 2.3 mV/m (Figure 1b), 0.74 and 1.9 mV/m (Figure 1c), 0.94 and 1.2 mV/m (Figure 1d), and 0.84 and 1 mV/m (Figure 9). The observations by Basu et al. [1988] indicate that the magnitudes of the electric field fluctuations associated with velocity shear driven processes can be much larger (at least an order of magnitude). Thus one can assume that some other mechanism has to be invoked to explain the observations in the region of intense shear at high latitudes.
+3. Conclusions
+[20] In conclusion, we have studied the interactions of the gradient drift instability with the velocity-shear-driven instability caused by the sheared flow perpendicular to the geomagnetic field and to the density gradient. The effect of these two dominant instabilities on mesoscale structuring at high latitudes have been investigated. This model for the high-latitude patch structuring by multiple drives has been applied to account for the large variability of the statistical and spectral characteristics of the satellite data by Basu et al. [1988, 1990]. We have demonstrated that strong anisotropy in the density fluctuation spectra induced by the GDI can be significantly reduced when the Kelvin-Helmholtz instability is taken into account. We have shown that the inclusion of the strong shear results in production of smallscale turbulence and appears to be the dominant mechanism for isotropization of the density fluctuation spectra in the
+
+noon-midnight and dawn-dusk directions. The transition to small-scale turbulence occurred in the simulations has been demonstrated with turbulence statistics including the Reynolds stresses, turbulent kinetic energy, and turbulence production.
+[21] Acknowledgments. This research was supported by the NSF
+under grant ATM-0437174 and in part by the NSF cooperative agreement ACI-9619020 through computing resources provided by the NPACI San Diego Supercomputer Center and Pittsburgh Supercomputer Center.
+[22] Amitava Bhattacharjee thanks J. Huba and W. Coley for their
+assistance in evaluating this paper.
+References
+Basu, S., S. Basu, E. MacKenzie, P. F. Fougere, W. R. Coley, N. C. Maynard, J. D. Winningham, M. Sugiura, W. B. Hanson, and W. R. Hoegy (1988), Simultaneous density and electric field fluctuation spectra associated with velocity shears in the auroral oval, J. Geophys. Res., 93, 115.
+Basu, S., S. Basu, E. MacKenzie, W. R. Coley, J. R. Sharber, and W. R. Hoegy (1990), Plasma structuring by the gradient drift instability at high latitudes and comparison with velocity shear driven processes, J. Geophys. Res., 95, 7799.
+Cerisier, J. C., J. J. Berthelier, and C. Beghin (1985), Unstable density gradient in the high-latitude ionosphere, Radio Sci., 20, 755.
+Coley, W. R., and R. A. Heelis (1995), Adaptive identification and characterization of polar ionization patches, J. Geophys. Res., 100, 23,819.
+Coley, W. R., and R. A. Heelis (1998), Structure and occurrence of polar ionization patches, J. Geophys. Res., 103, 2201.
+Gondarenko, N. A., and P. N. Guzdar (1999), Gradient drift instability in high latitude plasma patches: Ion inertial effects, Geophys. Res. Lett., 26, 3345.
+Gondarenko, N. A., and P. N. Guzdar (2001), Three-dimensional structuring characteristics of high-latitude plasma patches, J. Geophys. Res., 106, 24,611.
+Gondarenko, N. A., and P. N. Guzdar (2003), Structure of turbulent irregularities in high-latitude plasma patches—3D nonlinear simulations, in Disturbances in Geospace: The Storm-Substorm Relationship, Geophys. Monogr. Ser., vol. 142, edited by A. S. Sharma, Y. Kamide, and G. S. Lakhina, p. 205, AGU, Washington, D. C.
+Gondarenko, N. A., and P. N. Guzdar (2004a), Density and electric field fluctuations associated with the gradient drift instability in the high-latitude ionosphere, Geophys. Res. Lett., 31, L11802, doi:10.1029/ 2004GL019703.
+Gondarenko, N. A., and P. N. Guzdar (2004b), Plasma patch structuring by the nonlinear evolution of the gradient drift instability in the high-latitude ionosphere, J. Geophys. Res., 109, A09301, doi:10.1029/2004JA010504.
+Gondarenko, N. A., P. N. Guzdar, J. J. Sojka, and M. David (2003), Structuring of high latitude plasma patches with variable drive, Geophys. Res. Lett., 30(4), 1165, doi:10.1029/2002GL016437.
+Keskinen, M. J., and S. L. Ossakow (1982), Nonlinear evolution of plasma enhancements in the auroral ionosphere: 1. Long wavelength irregularities, J. Geophys. Res., 87, 144.
+Keskinen, M. J., and S. L. Ossakow (1983), Nonlinear evolution of convecting plasma enhancements in the auroral ionosphere: 2. Small scale irregularities, J. Geophys. Res., 88, 474.
+Keskinen, M. J., and J. D. Huba (1990), Nonlinear evolution of high-latitude ionospheric interchange instabilities with scale-size-dependent magnetospheric coupling, J. Geophys. Res., 95, 15,157.
+
+8 of 9
+
+A08302
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A08302
+
+Keskinen, M. J., H. G. Mitchell, J. A. Fedder, P. Satyanarayana, S. T. Zalesak, and J. D. Huba (1988), Nonlinear evolution of the Kelvin-Helmholtz instability in the high-latitude ionosphere, J. Geophys. Res., 93, 137.
+Kivanc¸, O¨ ., and R. A. Heelis (1997), Structures in ionospheric number density and velocity associated with polar cap ionization patches, J. Geophys. Res., 102, 307.
+Kivanc¸, O¨ ., and R. A. Heelis (1998), Spatial distribution of ionospheric plasma and field structures in the high-latitude F region, J. Geophys. Res., 103, 6955.
+Weber, E. J., J. Buchau, J. G. Moore, J. R. Sharber, R. C. Livingston, J. D. Winningham, and B. W. Reinisc (1984), F layer ionization patches in the polar cap, J. Geophys. Res., 89, 1683.
+
+Weber, E. J., J. A. Klobuchar, J. Buchau, H. C. Carlson Jr., R. C. Livingston, O. de la Beaujardiere, M. McCready, J. G. Moore, and G. J. Bishop (1986), Polar cap F patches: Structure and dynamics, J. Geophys. Res., 91, 12,121.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+N. A. Gondarenko and P. N. Guzdar, Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, MD 20742, USA. (ngondare@umd.edu; guzdar@glue.umd.edu)
+
+9 of 9
+

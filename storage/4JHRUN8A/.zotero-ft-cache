@@ -1,0 +1,2424 @@
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - CLASSICAL MECHANICS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Classical Mechanics 1: Optimal wind power machine In this problem you will derive an upper limit on the eﬃciency with which a machine
+can harvest kinetic energy from a steady wind. We model the machine as a ﬂat disk of area A that (through unspeciﬁed means) removes
+kinetic energy and momentum from an airstream ﬂowing perpendicular to the disk. The air ﬂow is steady, laminar, and incompressible, with density ρ, with streamlines that are azimuthally symmetric around the disk’s symmetry axis.
+The ﬁgure below shows the ﬂow tube that includes the perimeter of the disk. Far upwind, the ﬂow tube has a cross-sectional area A1 < A, the wind speed is v1, and the air pressure is p0. Just in front of the turbine, the wind speed has been slowed to v2 = (1 − a)v1, where 0 < a < 1 is a parameter characterizing the machine. Just behind the machine, the wind speed is v3 and the pressure has dropped to p3. While the machine is operating, p2 > p3 > p0. Far downstream, the ﬂow tube has a cross-sectional area A4 > A, the wind speed has slowed further to v4, the pressure is back to the ambient pressure p0.
+Not all of the quantities deﬁned above are independent. In particular, as you will show, the fraction of wind power extracted by the machine depends solely on a.
+(a) (1 pt) Use conservation of mass and incompressibility of the ﬂow to relate v2 and v3. (b) (7 pts) Calculate the power P extracted by the disk, in terms of ρ, A, v1, and a.
+Hint: consider the diﬀerences (if any) in the ﬂuxes of mass, momentum and energy into the ﬂow tube at A1 and out of the ﬂow tube at A4. (c) (2 pts) Calculate the eﬃciency η ≡ P/P0, where P0 is the total rate at which kinetic energy of the air would ﬂow through the area A if the turbine were not present. Your answer should be solely a function of a. Then, calculate the maximum possible eﬃciency ηmax, and value of a for which the maximum is attained.
+1
+
+Classical Mechanics 2: Stabilizing an inverted pendulum
+A pendulum has a mass m connected by a rigid rod of length to a pivot point. An external force causes the pivot point to oscillate vertically, with y = y0 cos ωt and ω2 g/ .
+
+(a) (1 pt) Write the Lagrangian for the pendulum, in terms of the angular coordinate φ.
+(b) (2 pts) Derive the equation of motion for φ, which by virtue of a cancellation takes the form φ¨ = f (φ, t), as opposed to f (φ, φ˙, t).
+
+Next we will ﬁnd an approximate solution of the form φ = φs +φf. The “slow” component φs(t) is the solution of the equation of motion after time-averaging over the rapid oscillations of the pivot point. The “fast” component φf(t) is a small perturbation (|φf(t)| 1), and averages to zero over the rapid oscillations.
+
+(c) (5 pts) Derive a leading-order equation for φf. Solve it, and then use the solution to derive a time-averaged equation for φs of the form
+
+φ¨s = A sin φs + B sin φs cos φs,
+
+(1)
+
+where A and B depend only on the constants g, , ω, and y0.
+(d) (2 pts) Rewrite the preceding equation for φs in the form φ¨s = −dUeﬀ/dφs, i.e., motion in an eﬀective potential. Then derive a condition on ω and y0 such that φs = π is a stable equilibrium point.
+
+2
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - CLASSICAL MECHANICS — WITH SOLUTIONS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Classical Mechanics 1: Optimal wind power machine In this problem you will derive an upper limit on the eﬃciency with which a machine
+can harvest kinetic energy from a steady wind. We model the machine as a ﬂat disk of area A that (through unspeciﬁed means) removes
+kinetic energy and momentum from an airstream ﬂowing perpendicular to the disk. The air ﬂow is steady, laminar, and incompressible, with density ρ, with streamlines that are azimuthally symmetric around the disk’s symmetry axis.
+The ﬁgure below shows the ﬂow tube that includes the perimeter of the disk. Far upwind, the ﬂow tube has a cross-sectional area A1 < A, the wind speed is v1, and the air pressure is p0. Just in front of the turbine, the wind speed has been slowed to v2 = (1 − a)v1, where 0 < a < 1 is a parameter characterizing the machine. Just behind the machine, the wind speed is v3 and the pressure has dropped to p3. While the machine is operating, p2 > p3 > p0. Far downstream, the ﬂow tube has a cross-sectional area A4 > A, the wind speed has slowed further to v4, the pressure is back to the ambient pressure p0.
+Not all of the quantities deﬁned above are independent. In particular, as you will show, the fraction of wind power extracted by the machine depends solely on a.
+(a) (1 pt) Use conservation of mass and incompressibility of the ﬂow to relate v2 and v3. (b) (7 pts) Calculate the power P extracted by the disk, in terms of ρ, A, v1, and a.
+Hint: consider the diﬀerences (if any) in the ﬂuxes of mass, momentum and energy into the ﬂow tube at A1 and out of the ﬂow tube at A4. (c) (2 pts) Calculate the eﬃciency η ≡ P/P0, where P0 is the total rate at which kinetic energy of the air would ﬂow through the area A if the turbine were not present. Your answer should be solely a function of a. Then, calculate the maximum possible eﬃciency ηmax, and value of a for which the maximum is attained.
+1
+
+• Solutions by Josh Winn.
+
+(a) Consider the ﬂow tube shown in the ﬁgure. Conservation of mass requires that m˙ = ρAv be constant across all cross-sections of the tube. Since ρ is itself constant, this requires Av = constant. In particular, v2 = v3.
+
+(b) Momentum enters the tube on the upwind face at a rate m˙ v1. Since a portion is extracted by the disk, the wind must exert a force F equal to the rate of momentum extraction. The remainder of the momentum departs through the downwind face at a rate m˙ v4. Therefore
+
+m˙ v1 − F = m˙ v4
+
+(1)
+
+F = m˙ (v1 − v4) = ρAv2(v1 − v4).
+
+(2)
+
+Next consider energy, which enters the tube on the upwind face at a rate m˙ v12/2, and exits downwind at a rate m˙ v42/2. Since the pressure at both locations is p0, the
+diﬀerence must be equal to the power absorbed by the disk:
+
+1 2
+
+m˙ (v12
+
+−
+
+v42)
+
+=
+
+P = F v2
+
+(3)
+
+1 2
+
+ρAv2(v12
+
+−
+
+v42)
+
+=
+
+ρAv22(v1 − v4)
+
+(4)
+
+1
+
+2 (v1 + v4)(v1 − v4) = v2(v1 − v4),
+
+(5)
+
+leading to the result v2 = (v1 + v4)/2, or
+
+v4 = 2v2 − v1 = [2(1 − a) − 1]v1 = (1 − 2a)v1.
+
+(6)
+
+Now we can evaluate the power in terms of the desired quantities:
+
+P = F v2
+
+(7)
+
+= ρAv22(v1 − v4)
+
+(8)
+
+= ρA(1 − a)2v12[v1 − (1 − 2a)v1]
+
+(9)
+
+= ρAv132a(1 − a)2.
+
+(10)
+
+(c) If the machine were not present, the kinetic energy ﬂux through the area A would be
+
+P0
+
+=
+
+1 2
+
+ρv13
+
+A,
+
+(11)
+
+hence
+
+η
+
+=
+
+P P0
+
+=
+
+ρAv132a(1 − a)2
+
+1 2
+
+ρv13
+
+A
+
+=
+
+4a(1 − a)2.
+
+(12)
+
+By setting dη/da = 0 we ﬁnd ηmax = 16/27 for the choice a = 1/3. This is known as the Betz limit.
+
+2
+
+Classical Mechanics 2: Stabilizing an inverted pendulum
+A pendulum has a mass m connected by a rigid rod of length to a pivot point. An external force causes the pivot point to oscillate vertically, with y = y0 cos ωt and ω2 g/ .
+
+(a) (1 pt) Write the Lagrangian for the pendulum, in terms of the angular coordinate φ.
+(b) (2 pts) Derive the equation of motion for φ, which by virtue of a cancellation takes the form φ¨ = f (φ, t), as opposed to f (φ, φ˙, t).
+
+Next we will ﬁnd an approximate solution of the form φ = φs +φf. The “slow” component φs(t) is the solution of the equation of motion after time-averaging over the rapid oscillations of the pivot point. The “fast” component φf(t) is a small perturbation (|φf(t)| 1), and averages to zero over the rapid oscillations.
+
+(c) (5 pts) Derive a leading-order equation for φf. Solve it, and then use the solution to derive a time-averaged equation for φs of the form
+
+φ¨s = A sin φs + B sin φs cos φs,
+
+(1)
+
+where A and B depend only on the constants g, , ω, and y0.
+(d) (2 pts) Rewrite the preceding equation for φs in the form φ¨s = −dUeﬀ/dφs, i.e., motion in an eﬀective potential. Then derive a condition on ω and y0 such that φs = π is a stable equilibrium point.
+
+3
+
+• Solutions by Josh Winn, 2015
+
+(a) Take the origin to be the pivot point at t = 0. Then the position of the mass is x = sin φ and y = y0 cos ωt − cos φ. The time derivatives are
+
+x˙ = φ˙ cos φ
+
+(2)
+
+y˙ = −y0ω sin ωt + φ˙ sin φ.
+
+(3)
+
+The kinetic energy is
+
+T
+
+=
+
+1 m
+
+x˙ 2 + y˙2
+
+(4)
+
+2
+
+1 =m
+2
+
+2φ˙2 cos2 φ + y02ω2 sin2 ωt − 2y0ω φ˙ sin ωt sin φ + 2φ˙2 sin2 φ
+
+(5)
+
+1 =m
+2
+
+2φ˙2 + y02ω2 sin2 ωt − 2y0ω φ˙ sin ωt sin φ .
+
+(6)
+
+The potential energy is
+
+U = mgy = mg(y0 cos ωt − cos φ).
+
+(7)
+
+The Lagrangian is therefore
+
+1 L= m
+2
+
+2φ˙2 + y02ω2 sin2 ωt − 2y0ω φ˙ sin ωt sin φ − mg(y0 cos ωt − cos φ).
+
+(8)
+
+(b) The equation of motion is obtained from
+
+d ∂L ∂L
+
+dt
+
+∂φ˙
+
+=. ∂φ
+
+(9)
+
+The relevant derivatives of the Lagrangian are
+
+∂L ∂φ = −my0ω
+
+φ˙ sin ωt cos φ − mg
+
+sin φ,
+
+(10)
+
+∂L ∂φ˙
+
+=
+
+m
+
+2φ˙
+
+−
+
+my0ω
+
+sin ωt sin φ,
+
+(11)
+
+and
+
+d dt
+
+∂L ∂φ˙
+
+= m 2φ¨ − my0ω2 cos ωt sin φ − my0ω φ˙ sin ωt cos φ,
+
+(12)
+
+leading to the equation of motion
+
+m 2φ¨ − my0ω2 cos ωt sin φ − my0ω φ˙ sin ωt cos φ = −my0ω φ˙ sin ωt cos φ − mg sin φ. (13)
+The third term on the left side cancels the ﬁrst term on the right side. After dividing through by m 2 and rearranging we have
+
+φ¨
+
+=
+
+g −
+
+sin
+
+φ
+
++
+
+y0ω2
+
+sin
+
+φ
+
+cos
+
+ωt.
+
+(14)
+
+4
+
+(c) We insert φ = φs+φf into the equation of motion, and use the ﬁrst-order approximation
+
+sin φ = sin(φs + φf) ≈ sin φs + φf cos φs,
+
+(15)
+
+giving
+
+φ¨s
+
++
+
+φ¨f
+
+=
+
+g −
+
+sin φs
+
+−
+
+g φf
+
+cos φs
+
++
+
+y0ω2
+
+sin φs
+
+cos ωt
+
++
+
+y0ω2 φf
+
+cos φs
+
+cos ωt.
+
+(16)
+
+To take advantage of the separation of timescales, we average this equation over the rapid oscillation period. On the left side, φ¨f averages to zero. On the right side, the second and third terms average to zero. (The fourth term generally does not average
+to zero.) Therefore we have
+
+φ¨s
+
+=
+
+g −
+
+sin φs
+
++
+
+y0ω2
+
+cos φs
+
+φf
+
+cos ωt
+
+.
+
+(17)
+
+The task remains to compute the time average φf cos ωt . We insert Eqn. (17) back into Eqn. (16), obtaining
+
+φ¨f
+
+=
+
+g − φf
+
+cos φs
+
++
+
+y0ω2
+
+sin φs cos ωt
+
++
+
+y0ω2
+
+cos φs (φf
+
+cos ωt −
+
+φf cos ωt ) .
+
+(18)
+
+To obtain the leading-order equation we neglect the ﬁrst term (because ω2 the last term (because φf is a small perturbation), giving
+φ¨f = y0ω2 sin φs cos ωt,
+
+g/ ) and (19)
+
+for which the solution is
+
+φf = − y0 sin φs cos ωt.
+
+(20)
+
+We may now compute the time average
+
+φf cos ωt
+
+= − y0 sin φs cos2 ωt
+
+=
+
+− y0 2
+
+sin
+
+φs.
+
+(21)
+
+Inserting back into Eqn. (16), we have the desired equation:
+
+φ¨s
+
+=
+
+g −
+
+sin
+
+φs
+
+−
+
+ω2y02 22
+
+sin
+
+φs
+
+cos
+
+φs.
+
+(22)
+
+(d) To check on the stability of the equilibrium point φs = π, we write the equation of
+
+motion in the form
+
+φ¨s
+
+=
+
+− dUeﬀ dφs
+
+,
+
+(23)
+
+with the eﬀective potential given by
+
+Ueﬀ
+
+=
+
+g −
+
+cos φs
+
++
+
+ω2y02 42
+
+sin2 φs.
+
+(24)
+
+5
+
+The second derivative of the eﬀective potential is
+
+d2Ueﬀ dφ2s
+
+=
+
+g
+
+cos φs +
+
+ω2y02 22
+
+cos2 φs − sin2 φs
+
+,
+
+(25)
+
+which evaluates to −g/ + ω2y02/2 2 at φs = π. For stability we need the second derivative to be positive, leading to the condition
+
+ω2y02
+
+>
+
+g ,
+
+ω2y02 > 1.
+
+(26)
+
+22
+
+2g
+
+6
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - ELECTRICITY AND MAGNETISM
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Electromagnetism 1: Induced Dipole Moment on Conducting Sphere A positive electric point charge +q is placed at a distance D from a conducting sphere of
+radius a that carries no net charge (D a).
+(a) (4 pts) Calculate the induced dipole moment of the sphere. In which direction does it point?
+(b) (3 pts) Determine the induced surface charge density σ(θ) (see ﬁgure). (c) (3 pts) Determine the force of the sphere (magnitude and direction).
+1
+
+Electromagnetism 2: Light intensity behind circular hole A circular hole of radius a, cut in a large opaque screen, is illuminated at normal inci-
+dence with plane monochromatic radiation of wavelength λ (see ﬁgure). You may treat the radiation ﬁeld as a scalar.
+(a) (5 pts) Calculate the light intensity at a point P lying on the symmetry axis of the aperture as a function of the distance from the aperture z. Assume that z a, but that z is comparable to a2/λ.
+(b) (2 pts) Normalize the light intensity so that, in the absence of a screen and aperture, the intensity is 1. With the screen and aperture in place, and for a2/(4λ) ≤ z ≤ 2a2/λ, what is the maximum intensity and at what value(s) of z does it occur?
+(c) (3 pts) What would be the light intensity distribution on the symmetry axis along z (in the same region as in (a)) if the screen plus hole were replaced by a opaque disk of radius a?
+2
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - ELECTRICITY AND MAGNETISM — WITH SOLUTIONS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Electromagnetism 1: Induced Dipole Moment on Conducting Sphere A positive electric point charge +q is placed at a distance D from a conducting sphere of
+radius a that carries no net charge (D a).
+(a) (4 pts) Calculate the induced dipole moment of the sphere. In which direction does it point?
+(b) (3 pts) Determine the induced surface charge density σ(θ) (see ﬁgure). (c) (3 pts) Determine the force of the sphere (magnitude and direction).
+1
+
+• Solutions by Markus Klute (December 2015) An earlier version of this problem also appeared on the Spring 2008 exam.
+
+(a) By symmetry, the induced dipole moment d points along the ±x axis. Since the point charged q attracts the opposite charges at the surface closer to the point charge, the dipole moment, pointing from the negative to the positive charge, points, along the positive x axis if q > 0.
+
+The scalar potential of the dipole ﬁeld is
+
+d cos θ
+
+φ(r, θ) = 4π 0r2 ,
+
+(1)
+
+such that the tangential component of the dipole ﬁeld is given by
+
+1 ∂φ d sin θ
+
+Eθ
+
+=
+
+− r
+
+∂θ
+
+=
+
+4π
+
+. 0r3
+
+(2)
+
+Since D a, we can view the ﬁeld of the point charged as constant over the sphere,
+
+q
+
+E0 = 4π 0D2 eˆx,
+
+(3)
+
+with tangential component −E0 sin θ. Since the tangential component of the ﬁeld must vanish at the surface of the conducting sphere, we obtain
+
+d sin θ q sin θ
+
+=
+
+(4)
+
+4π 0a3 4π 0D2
+
+qa3
+
+⇒d= .
+
+(5)
+
+D2
+
+(b) The surface charge density can be determined from the normal component of the electric ﬁeld. The radial component of the dipole ﬁeld is given by
+
+∂φ d cos θ qa3 cos θ
+
+Er
+
+=
+
+− ∂r
+
+=
+
+2π
+
+0r3
+
+=
+
+2π
+
+, 0D2r3
+
+(6)
+
+while the radial component of the constant ﬁeld from the point charge is given by E0cosθ. The total radial ﬁeld just outside the surface is thus
+
+3q
+
+E1 = 4πD2 .
+
+(7)
+
+From Gauss’s law for a small area A we ﬁnd E1A = σA/ 0 and
+
+3q cos θ
+
+σ(θ) =
+
+.
+
+(8)
+
+4πD2
+
+(c) The energy of the system is −d · E0. The force is given by
+
+∂ q2a3
+
+q2a3
+
+F
+
+=
+
+−∇(−d · E0)
+
+=
+
+eˆx ∂D 4π
+
+0D4
+
+=
+
+− π
+
+0D5 eˆx.
+
+(9)
+
+An induced dipole is attracted towards regions of increasing ﬁeld strength.
+
+2
+
+Electromagnetism 2: Light intensity behind circular hole A circular hole of radius a, cut in a large opaque screen, is illuminated at normal inci-
+dence with plane monochromatic radiation of wavelength λ (see ﬁgure). You may treat the radiation ﬁeld as a scalar.
+(a) (5 pts) Calculate the light intensity at a point P lying on the symmetry axis of the aperture as a function of the distance from the aperture z. Assume that z a, but that z is comparable to a2/λ.
+(b) (2 pts) Normalize the light intensity so that, in the absence of a screen and aperture, the intensity is 1. With the screen and aperture in place, and for a2/(4λ) ≤ z ≤ 2a2/λ, what is the maximum intensity and at what value(s) of z does it occur?
+(c) (3 pts) What would be the light intensity distribution on the symmetry axis along z (in the same region as in (a)) if the screen plus hole were replaced by a opaque disk of radius a?
+3
+
+• Solutions by Markus Klute (December 2015) An earlier version of this problem also appeared on the Fall 2008 exam.
+
+(a) According to Huygens’ principle, each point in the aperture can be viewed as an emitter
+
+of a sphercial wave. All emitters oscillate in phase as the incident plane wave has a
+
+constant phase over the aperture. The electric ﬁeld Ehole at point P is obtained by summing electric ﬁelds from all diﬀerent point emitters
+
+√
+
+a
+
+eik z2+ρ2
+
+Ehole = A 2πρdρ
+0
+
+, z2 + ρ2
+
+(1)
+
+where A is a normalization factor. Substituting integration variables y = dy = (ρ/y)dρ, we have
+
+√
+
+Ehole = 2πA
+
+z
+
+z2+a2 eikydy = 2πA ik
+
+√
+eik z2+a2 − eikz
+
+.
+
+Since z a we can expand the ﬁrst phase as
+
+√ ik z2
+
++
+
+a2
+
+≈
+
+ikz
+
++
+
+ka2 i
+
++
+
+O
+
+ka2 a2
+
+.
+
+2z
+
+z z2
+
+ρ2 + z2, (2) (3)
+
+Since ka2/z ∼ O(1) and a2/z2 1, the last term can be neglected, and the total ﬁeld can be written as
+
+Ehole
+
+≈
+
+2πA eikz ik
+
+eika2/2z − 1
+
+= 4πA eikzeika2/4z sin k
+
+ka2 4z
+
+.
+
+(4)
+
+Thus the intensity at point P is proportional to
+
+Ihole ∝ |Ehole|2 =
+
+4πA
+
+2
+sin2
+
+k
+
+ka2 4z
+
+.
+
+(5)
+
+(b) The ratio of normalization factors can be found from Eq. 5 and by letting a → ∞ in Eq. 3, and asking that we obtain the incident wave. We can set eika2/2z to 0 in Eq. (4),
+
+or obtain the same result more formally by assuming a smooth envelope for the ﬁeld
+
+that goes to zero as ρ → ∞, e.g., a Gaussian envelope, integrate, and then let the
+
+spatial size of the envelope go to inﬁnity. If the incident plane wave is E0eikz, then
+
+from
+
+Eq.
+
+3
+
+we
+
+have
+
+E0eikz
+
+=
+
+i2π A/keikz ,
+
+or
+
+E0
+
+=
+
+i
+
+2πA k
+
+.
+
+The
+
+maximum
+
+of
+
+Ihole/I0
+
+is
+
+4,
+
+and it occurs at z = a2/(3λ) and z = a2/λ (see ﬁgure below).
+
+4
+
+(c) According to Babinet’s principle, the ﬁelds of the screen with hole Ehole and of the opaque disk Edisk must add to the incident ﬁeld E0eikz. Then the ﬁeld of the opaque
+disk is given by
+
+Edisk
+
+=
+
+E0eikz
+
+−
+
+Ehole
+
+=
+
+E0eikz
+
+−
+
+2πA eikz ik
+
+eika2/2z − 1
+
+= E0eikzeika2/2z.
+
+(6)
+
+The intensity behind the circular disk on axis is constant and equal to the incident intensity. This is called the Poisson spot.
+
+5
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - QUANTUM MECHANICS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Quantum Mechanics 1: Harmonic Oscillator Gains Weight over the Holidays
+Consider a particle moving in 1-d subject to a harmonic potential, and suppose that the mass is slowly increasing; i.e.
+
+H(t) = p2 + 1 m(t)ω2x2,
+
+(1)
+
+2m(t) 2
+
+where m(t) = m0eνt for some constants m0, ν. Suppose that at time t = 0 the particle is in the ground state of H(0).
+
+(a) (3 pts) For small values of ν, the adiabatic theorem guarantees that the particle will remain approximately in the ground state at later times. How small does ν have to be to make this true?
+
+(b) (2 pts) Suppose that there exists an operator A satisfying
+
+iνp
+
+−iνx
+
+[A, p] =
+
+and [A, x] =
+
+.
+
+(2)
+
+2
+
+2
+
+Show that this implies that
+
+H(t) = eiAtH(0)e−iAt.
+
+(3)
+
+(c) (2 pts) Find a Hermitian operator A satisfying Eq. (??). [Hint: consider products of x and p.]
+
+(d) (3 pts) Let |ψ(t) be the solution of the Schro¨dinger equation. It turns out that
+
+|ψ(t) = e−iAteiBt |ψ(0)
+
+(4)
+
+Find B.
+
+1
+
+Quantum Mechanics 2: Scattering from a Spherical Potential
+
+A spinless non-relativistic particle with momentum k, represented by a normalized plane wave state |k , is incident on a region with a (weak) potential V (r). An outgoing scattered particle with momentum k is represented by the plane wave state |k . If we observe outgoing particles in a small solid angle dΩ about the direction of k , Fermi’s golden rule tells us that the transition rate ωkk is given by
+
+ωkk
+
+2π = g(Ek )|
+
+k
+
+|V | k
+
+|2,
+
+(1)
+
+where g(E) is the density of (outgoing) states deﬁned from dN = g(Ek)dEk , where dN is
+the number of states with energy in the interval dEk about Ek and direction within dΩ. For normalization work in a large cubic box of volume L3.
+
+(a) (2 pts) Write the normalized wave function x |k for a plane wave state. Calculate g(Ek) in terms of m, L, k , dΩ, and .
+(b) (2 pts) Compute the probability current density Jinc corresponding to the incident state |k [recall: J = m Im(ψ∗∇ψ)]. What are the units of Jinc? What are the units of ωkk ?
+
+(c) (2 pts) Relate Jinc, the diﬀerential cross section dσ, and ωkk to obtain a formula for
+
+dσ Ω
+
+of
+
+the
+
+form
+
+dσ = f (m, L,
+
+, k, k )|
+
+k |V | k
+
+|2.
+
+(2)
+
+Ω
+
+Give the explicit form of f . Since the scattering is elastic, k = k may be used to
+
+simplify the answer.
+
+(d) (4 pts) Consider the potential V (r) equal to V0 for r < a and zero for r > a. Let q ≡ k − k and q = |q|. Give q in terms of k and the deﬂection angle θ? Calculate
+
+k |V | k as a function of q, a, and other constants. Find the diﬀerential cross section
+
+dσ Ω
+
+and
+
+its
+
+approximate
+
+value
+
+when
+
+qa
+
+1.
+
+2
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - QUANTUM MECHANICS — WITH SOLUTIONS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Quantum Mechanics 1: Harmonic Oscillator Gains Weight over the Holidays
+Consider a particle moving in 1-d subject to a harmonic potential, and suppose that the mass is slowly increasing; i.e.
+
+H(t) = p2 + 1 m(t)ω2x2,
+
+(1)
+
+2m(t) 2
+
+where m(t) = m0eνt for some constants m0, ν. Suppose that at time t = 0 the particle is in the ground state of H(0).
+
+(a) (3 pts) For small values of ν, the adiabatic theorem guarantees that the particle will remain approximately in the ground state at later times. How small does ν have to be to make this true?
+
+(b) (2 pts) Suppose that there exists an operator A satisfying
+
+iνp
+
+−iνx
+
+[A, p] =
+
+and [A, x] =
+
+.
+
+(2)
+
+2
+
+2
+
+Show that this implies that
+
+H(t) = eiAtH(0)e−iAt.
+
+(3)
+
+(c) (2 pts) Find a Hermitian operator A satisfying Eq. (2). [Hint: consider products of x and p.]
+
+(d) (3 pts) Let |ψ(t) be the solution of the Schro¨dinger equation. It turns out that
+
+|ψ(t) = e−iAteiBt |ψ(0)
+
+(4)
+
+Find B.
+
+1
+
+• Solutions by Aram Harrow (2015)
+
+(a) First calculate
+
+H˙ = −ν p2
+
+mω2x2
+
++ν
+
+.
+
+2m
+
+2
+
+Recall the standard relations between a and x, p:
+
+mω
+
+ip
+
+a ≡ a(t) =
+
+(x + )
+
+2
+
+mω
+
+x=
+
+(a† + a)
+
+2mω
+
+p = i mω (a† − a). 2
+
+Rewriting H˙ in terms of a, a† we obtain
+
+H˙ = −ν 1 − mω (a† − a)2 + ν mω2
+
+(a† + a)2
+
+(5)
+
+2m 2
+
+2 2mω
+
+= ων (a†a† + aa)
+
+(6)
+
+4
+
+Let {|n ≡ |n(t) } denote the instantaneous eigenstates of H(t). If we start in |0 then H˙ couples the state only to |2 and the matrix element is O( ων).
+The adiabatic condition is that this is g2/ , where g = ω is the gap. This is equivalent to the condition that ν ω.
+Another way to derive this condition is that there are only two time-scales in this question and they are given by ω and ν.
+
+(b) Note that [A, p2] = iνp2 and [A, x2] = −iνx2. Now consider Eq. (3). At t = 0, Eq. (3) is obviously true. Now we verify that Eq. (1) satisﬁes Eq. (3). Diﬀerentiating the RHS of Eq. (3) we obtain
+
+d eiAtH(0)e−iAt = i[A, eiAtH(0)e−iAt] = i[A, H(t)] = −ν p2
+
++
+
+mω2x2 ν
+
+=
+
+H˙
+
+(7)
+
+dt
+
+2m
+
+2
+
+Since the derivatives and initial conditions match, we have that Eq. (1) satisﬁes Eq. (3) for all t.
+
+(c) Note that [xp, p] = [x, p]p = i p and [xp, x] = x[p, x] = −i x. Thus xp is proportional to something with the right commutation relations, although it is not Hermitian. We would obtain the same conclusions if we replaced xp with px. To make A Hermitian we should make it proportional to xp + px. Speciﬁcally we should choose
+ν A = (xp + px).
+4
+
+(d) Diﬀerentiating Eq. (4) and using the Schro¨dinger equation we ﬁnd
+
+i − H(t) |ψ(t)
+
+= iAeiAteiBt |ψ(0) + eiAtiBeiBt |ψ(0)
+
+(8)
+
+= iA |ψ(t) + eiAtiBeiAt |ψ(t)
+
+(9)
+
+2
+
+Thus H(t) = − A − eiAtBe−iAt. Rearranging we have
+
+B = e−iAt(H(t) − A)eiAt
+
+(10)
+
+= e−iAtH(t)eiAt − A
+
+(11)
+
+= H(0) − A
+
+(12)
+
+=
+
+p2 2m0
+
++
+
+1 2
+
+m0ω2
+
+x2
+
+−
+
+ν (xp
+4
+
++
+
+px)
+
+(13)
+
+Full credit is given for an answer of the form Eq. (12) or anything equivalent.
+
+3
+
+Quantum Mechanics 2: Scattering from a Spherical Potential
+
+A spinless non-relativistic particle with momentum k, represented by a normalized plane wave state |k , is incident on a region with a (weak) potential V (r). An outgoing scattered particle with momentum k is represented by the plane wave state |k . If we observe outgoing particles in a small solid angle dΩ about the direction of k , Fermi’s golden rule tells us that the transition rate ωkk is given by
+
+ωkk
+
+2π = g(Ek )|
+
+k
+
+|V | k
+
+|2,
+
+(1)
+
+where g(E) is the density of (outgoing) states deﬁned from dN = g(Ek)dEk , where dN is
+the number of states with energy in the interval dEk about Ek and direction within dΩ. For normalization work in a large cubic box of volume L3.
+
+(a) (2 pts) Write the normalized wave function x |k for a plane wave state. Calculate g(Ek) in terms of m, L, k , dΩ, and .
+(b) (2 pts) Compute the probability current density Jinc corresponding to the incident state |k [recall: J = m Im(ψ∗∇ψ)]. What are the units of Jinc? What are the units of ωkk ?
+
+(c) (2 pts) Relate Jinc, the diﬀerential cross section dσ, and ωkk to obtain a formula for
+
+dσ Ω
+
+of
+
+the
+
+form
+
+dσ = f (m, L,
+
+, k, k )|
+
+k |V | k
+
+|2.
+
+(2)
+
+Ω
+
+Give the explicit form of f . Since the scattering is elastic, k = k may be used to
+
+simplify the answer.
+
+(d) (4 pts) Consider the potential V (r) equal to V0 for r < a and zero for r > a. Let q ≡ k − k and q = |q|. Give q in terms of k and the deﬂection angle θ? Calculate
+
+k |V | k as a function of q, a, and other constants. Find the diﬀerential cross section
+
+dσ Ω
+
+and
+
+its
+
+approximate
+
+value
+
+when
+
+qa
+
+1.
+
+4
+
+• Solutions by Markus Klute (December 2015) An earlier version of this problem also appeared on the Fall 2005 exam.
+
+(a) We have
+
+ψk(r)
+
+=
+
+1 eik·r. L3/2
+
+(3)
+
+This is well normalized since
+
+k |k = d3r ψk∗ (r)ψk(r) = δk ,k.
+
+(4)
+
+From kiL = 2πni we ﬁnd d3kL3 = (2π)3dN . Since we observe states along dΩ, we ﬁnd
+
+d3k = dΩ 4πk2dk.
+
+(5)
+
+4π
+
+Therefore,
+
+dN
+
+=
+
+dΩ 4πk2dk L3
+
+4π
+
+(2π)3
+
+=
+
+dΩ L3 k(kdk)
+4π 2π2
+
+=
+
+dΩ mL3 4π 2π2 2 kdEk,
+
+(6)
+
+where we used Ek =
+
+. 2k2
+2m
+
+It
+
+follows
+
+that
+
+dΩ mL3
+
+g(Ek ) =
+
+4π 2π2
+
+k.
+2
+
+(7)
+
+(b)
+
+Jinc
+
+=
+
+m Im(ψk∗∇ψk)
+
+=
+
+mL3 Im(e−ik·x∇eik·x)
+
+=
+
+k mL3 .
+
+(8)
+
+The units of Jinc are particles (no units) per unit of time per unit of area, of T −1L−2. The units of ωkk is one over time, or T −1.
+
+(c) The rate ωkk is given by the ﬂux times the cross section,
+
+ωkk
+
+2π = Jincdσ = g(Ek )|
+
+k
+
+|V | k
+
+|2.
+
+(9)
+
+The diﬀerential cross section is then
+
+dσ 1 =
+
+1
+
+mL3 k|
+
+k
+
+|V | k
+
+|2.
+
+(10)
+
+dΩ 2 Jinc 2π2 2
+
+Using the value of Jinc we ﬁnd
+
+dσ =
+
+mL3
+
+2
+| k |V | k |2.
+
+(11)
+
+dΩ
+
+2π2 2
+
+This determines f .
+
+5
+
+(d) Since k and k form the deﬂection angle θ, we ﬁnd q = 2k sin(θ/2). We have
+
+1 k |V | k = L3
+
+d3xe−i(k −k)·xV (x)
+
+(12)
+
+= V0
+
+d3xe−iq·x
+
+L3 |x|<a
+
+(13)
+
+= V0 2π
+
+a
+r2dr
+
+1
+d(cos θ )e−iq cos(θ )r
+
+L3
+
+0
+
+−1
+
+(14)
+
+= V0 2π a r2dr(−2) sin qr
+
+(15)
+
+L3
+
+0
+
+qr
+
+= (−4π) V0
+
+qa
+udu sin u
+
+(16)
+
+q3L3 0
+
+= (−4π) V0 (sin qa − qa cos qa).
+
+(17)
+
+q3L3
+
+For small qa we ﬁnd
+
+sin qa − qa cos qa ≈ qa − 1 (qa)3 − qa 1 − 1 (qa)2 ≈ 1 (qa)3
+
+(18)
+
+6
+
+2
+
+3
+
+and can approximate the diﬀerential cross section to
+
+dσ =
+
+2mV0a3
+
+2
+.
+
+(19)
+
+dΩ
+
+32
+
+6
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - STATISTICAL MECHANICS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Statistical Mechanics 1: Leaky spacesuit
+Suppose that Matt Damon is ﬂoating in space, wearing a spacesuit that (for simplicity) contains pure nitrogen gas. The spacesuit also contains a small hole which we assume is much smaller than the mean free path of the gas. Assume further that the escape rate is slow enough that the remaining gas remains in equilibrium by collisions among the gas molecules; neglect any interaction between the gas and Matt Damon. Neglect also the thickness of the spacesuit.
+(a) (1 pt) What is the average energy of a gas molecule inside the spacesuit at temperature T ? Treat the rotational modes of the diatomic gas classically, but neglect the vibrational mode which is not excited at room temperature.
+(b) (4 pts) What is the average energy, including both kinetic and rotational, per molecule of gas that escapes when the gas inside the spacesuit is at temperature T ?
+(c) (2 pts) Suppose the spacesuit initially contains N0 molecules at temperature T0. Once there are only N molecules remaining, what is the temperature T of the remaining gas?
+(d) (3 pts) Eventually all of the gas will escape. Assume that Matt Damon does not rotate so that the hole is always pointing in the same direction. What will his momentum be once all the gas is gone (N = 0)?
+
+For convenience we include the following formula.
+
+∞
+e−uundu = Γ(n + 1) =
+0
+
+n!
+
+(2n+1)! 4n+1(n+1/2)!
+
+√ 4π
+
+if n is an integer if n + 1/2 is an integer
+
+(1)
+
+1
+
+Statistical Mechanics 2: Atom-Molecule Equilibrium in a Harmonic Trap In this problem we are analyzing the equilibrium between atoms and molecules trapped
+in three-dimensional, spherically symmetric harmonic potentials. There are two species of atoms A, B with masses mA, mB. Atoms A and B can form a molecule M in a reaction A + B ↔ M , where the molecular binding energy is −E with E > 0, i.e., a molecule at rest has less energy than a pair of atoms A, B at rest. We assume that two atoms of the same species do not form molecules, and that there is only one relevant state of the molecule (rotational and vibrational modes are frozen out). The numbers of particles of each species are denoted by NA, NB, and NM . The system is assumed to be in thermal equilibrium at suﬃciently high temperature T , such that the fermionic or bosonic character of the particles is irrelevant.
+(a) (1 pt) For each particle, the eigenenergies are given by Ej = (j + 3/2) ω, with degeneracy gj, where the same value of ω applies independently of whether the particles are atoms A or B, or molecule M . What is the degeneracy gj for the energy EJ ? If you do not know how to compute gj, you may simply leave it in symbolic form and go on to do the rest of the problem.
+(b) (2 pts) Determine the single-particle partition functions Zα, where α = A, B, M . Given particle numbers Nα, what is the condition on Zα and Nα that allows one to ignore the fermionic or bosonic character of the particles?
+(c) (2 pts) Find the partition function for the complete system of atoms and molecules at ﬁxed particle numbers NA, NB, and NM expressed in terms of the single-particle atomic partition function ZA.
+(d) (5 pts) Assume that initially there are NA0 and NB0 atoms A, B and no molecules. The system then reaches atom-molecule equilibrium at temperature T with particle number Nα, with α = A, B, M . Determine the equilibrium molecule number NM in terms of NA, NB, the single-particle partition functions, and the other quantities given in the problem. Explain why the conversion eﬃciency of atom pairs into molecules remains small for E ∼ kT even though the molecules have less energy. Use Stirling’s approximation: lnN ! ≈ N lnN − N to simplify the calculations.
+2
+
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+DEPARTMENT OF PHYSICS
+
+Academic Programs Room 4-315
+
+Phone: (617) 253-4851 Fax: (617) 258-8319
+
+DOCTORAL GENERAL EXAMINATION WRITTEN EXAM - STATISTICAL MECHANICS — WITH SOLUTIONS
+January 25, 2016
+
+DURATION: 75 MINUTES
+
+1. This examination has two problems. Read both problems carefully before making your choice. Submit ONLY one problem. IF YOU SUBMIT MORE THAN ONE PROBLEM FROM A SECTION, BOTH WILL BE GRADED, AND THE PROBLEM WITH THE LOWER SCORE WILL BE COUNTED.
+2. If you decide at this time not to take this section of the exam, please inform the faculty proctor. ONCE YOU BEGIN THE EXAM, IT WILL BE COUNTED.
+3. Calculators may not be used.
+4. No books or reference materials may be used.
+
+Statistical Mechanics 1: Leaky spacesuit
+Suppose that Matt Damon is ﬂoating in space, wearing a spacesuit that (for simplicity) contains pure nitrogen gas. The spacesuit also contains a small hole which we assume is much smaller than the mean free path of the gas. Assume further that the escape rate is slow enough that the remaining gas remains in equilibrium by collisions among the gas molecules; neglect any interaction between the gas and Matt Damon. Neglect also the thickness of the spacesuit.
+(a) (1 pt) What is the average energy of a gas molecule inside the spacesuit at temperature T ? Treat the rotational modes of the diatomic gas classically, but neglect the vibrational mode which is not excited at room temperature.
+(b) (4 pts) What is the average energy, including both kinetic and rotational, per molecule of gas that escapes when the gas inside the spacesuit is at temperature T ?
+(c) (2 pts) Suppose the spacesuit initially contains N0 molecules at temperature T0. Once there are only N molecules remaining, what is the temperature T of the remaining gas?
+(d) (3 pts) Eventually all of the gas will escape. Assume that Matt Damon does not rotate so that the hole is always pointing in the same direction. What will his momentum be once all the gas is gone (N = 0)?
+
+For convenience we include the following formula.
+
+∞
+e−uundu = Γ(n + 1) =
+0
+
+n!
+
+(2n+1)! 4n+1(n+1/2)!
+
+√ 4π
+
+if n is an integer if n + 1/2 is an integer
+
+(1)
+
+1
+
+• Solutions by Aram Harrow: Adapted from Fall 97 SM1
+
+(a)
+
+5 2
+
+kT
+
+from three momentum degrees of freedom and two rotational degrees of freedom.
+
+(b) First we compute the velocity distribution. The components vx, vy, vz are independent Gaussians satisfying E[vi] = 0 and E[vi2] = kT /m ≡ σ2. Thus their density is
+
+p(vi)
+
+=
+
+1 2πσ2
+
+exp(− vi2 ), 2σ2
+
+and p(v1, v2, v3) = p(v1)p(v2)p(v3). The ﬂux of gas leaving the spacesuit is
+
+∞
+dN = −n dA dt p(v3)v3dv3.
+0
+
+To calculate the change in energy, ﬁrst note that the energy has contributions from ﬁve modes: three from the p1, p2, and p3 components of momentum and two from the rotational modes, which we call ω1 and ω2. The total energy can thus be written as
+
+E = Ep1 + Ep2 + Ep3 + Eω1 + Eω2 .
+
+Of
+
+these
+
+only
+
+Ep3
+
+=
+
+m 2
+
+v32
+
+is
+
+correlated
+
+with
+
+v3.
+
+For
+
+the
+
+others,
+
+the
+
+change
+
+in
+
+energy
+
+is
+
+directly proportional to the number of molecules leaving the spacesuit, i.e.
+
+kT
+
+dEp1 = dEp2 = dEω1 = dEω2 =
+
+dN. 2
+
+For Ep3 the change in energy is
+
+dE3 = −n dA dt
+
+∞ 0
+
+mv32 2
+
+v3
+
+p(v3)dv3
+
+(2)
+
+and the ratio is
+
+dE3 = m dN 2
+
+∞ 0
+
+p(v3)v33
+
+dv3
+
+∞ 0
+
+p(v3
+
+)v3dv3
+
+(3)
+
+We will need to calculate
+
+e v dv = ∞
+
+−
+
+v2 2σ2
+
+2n+1
+
+u≡
+
+v2 2σ2
+
+1 (2σ2)n+1
+
+∞ e−uundu = 1 (2σ2)n+1Γ(n + 1),
+
+0
+
+2
+
+0
+
+2
+
+where
+
+Γ(n + 1)
+
+=
+
+n!
+
+for
+
+integer
+
+values
+
+of
+
+n
+
+and
+
+Γ(n + 1)
+
+=
+
+(2n+1)! 4n+1(n+1/2)!
+
+√ 4π
+
+for
+
+half-
+
+integer n. Thus we have
+
+∞ 0
+
+p(v3)v33
+
+dv3
+
+∞ 0
+
+p(v3
+
+)v3dv3
+
+=
+
+2σ2 Γ(2) Γ(1)
+
+=
+
+2kT m
+
+.
+
+(4)
+
+Substituting into Eq. (3) we ﬁnd that dE3/dN = kT .
+
+Putting
+
+all
+
+the
+
+contributions
+
+together
+
+we
+
+have
+
+that
+
+dE dN
+
+= 3kT .
+
+2
+
+(c)
+
+There
+
+are
+
+eﬀectively
+
+5
+
+degrees
+
+of
+
+freedom
+
+per
+
+molecule
+
+so
+
+E
+
+=
+
+5 2
+
+N
+
+kT
+
+.
+
+We
+
+calculate
+
+dE in two diﬀerent ways—using the product rule and using (a)—to obtain
+
+5
+
+5
+
+dE = N kdT + kT dN = 3kT dN.
+
+2
+
+2
+
+This yields the diﬀerential equation
+
+which has solution
+
+dT 1 dN =,
+T 5N
+
+T
+
+N 1/5
+
+=
+
+.
+
+T0
+
+N0
+
+(d) The average z-momentum of a departing particle is
+
+m
+
+∞ 0
+
+vz2
+
+p(vz
+
+)dvz
+
+∞ 0
+
+vz
+
+p(vz
+
+)dvz
+
+√ = m 2σ2Γ(3/2) =
+
+π σ=
+2
+
+π mkT =
+2
+
+π
+
+N 1/10
+
+2 mkT0 N01/10
+
+(5)
+
+Summing over all the particles we obtain
+
+N0 0
+
+π
+
+N 1/10
+
+2 mkT0 N01/10 dN =
+
+π 2
+
+mkT0
+
+N011/10
+
+11 10
+
+N01/10
+
+=
+
+√ 5 2π
+11
+
+mkT0N0
+
+(6)
+
+The momentum in the x and y directions is 0 by symmetry.
+
+Note that this problem could also explain that mysterious scene in Gravity where some force is pulling George Clooney away from Sandra Bullock and she ends up releasing him.
+
+3
+
+Statistical Mechanics 2: Atom-Molecule Equilibrium in a Harmonic Trap In this problem we are analyzing the equilibrium between atoms and molecules trapped
+in three-dimensional, spherically symmetric harmonic potentials. There are two species of atoms A, B with masses mA, mB. Atoms A and B can form a molecule M in a reaction A + B ↔ M , where the molecular binding energy is −E with E > 0, i.e., a molecule at rest has less energy than a pair of atoms A, B at rest. We assume that two atoms of the same species do not form molecules, and that there is only one relevant state of the molecule (rotational and vibrational modes are frozen out). The numbers of particles of each species are denoted by NA, NB, and NM . The system is assumed to be in thermal equilibrium at suﬃciently high temperature T , such that the fermionic or bosonic character of the particles is irrelevant.
+(a) (1 pt) For each particle, the eigenenergies are given by Ej = (j + 3/2) ω, with degeneracy gj, where the same value of ω applies independently of whether the particles are atoms A or B, or molecule M . What is the degeneracy gj for the energy EJ ? If you do not know how to compute gj, you may simply leave it in symbolic form and go on to do the rest of the problem.
+(b) (2 pts) Determine the single-particle partition functions Zα, where α = A, B, M . Given particle numbers Nα, what is the condition on Zα and Nα that allows one to ignore the fermionic or bosonic character of the particles?
+(c) (2 pts) Find the partition function for the complete system of atoms and molecules at ﬁxed particle numbers NA, NB, and NM expressed in terms of the single-particle atomic partition function ZA.
+(d) (5 pts) Assume that initially there are NA0 and NB0 atoms A, B and no molecules. The system then reaches atom-molecule equilibrium at temperature T with particle number Nα, with α = A, B, M . Determine the equilibrium molecule number NM in terms of NA, NB, the single-particle partition functions, and the other quantities given in the problem. Explain why the conversion eﬃciency of atom pairs into molecules remains small for E ∼ kT even though the molecules have less energy. Use Stirling’s approximation: lnN ! ≈ N lnN − N to simplify the calculations.
+4
+
+• Solutions by Markus Klute (December 2015) An earlier version of this problem also appeared on the Spring 2007 exam.
+
+(a)
+
+The potential V
+
+can
+
+be written in
+
+cartesian coordinates as V (x, y, z) =
+
+1 2
+
+mαω2(x2
+
++
+
+y2 + z2), α = A, B, M . For a level with energy Ej = (j + 3/2) ω, if nz = j, there is one
+
+possible way to redistribute the remaining energy between x and y, (nx, ny) = (0, 0),
+
+if nz = j − 1, there are two ways, (nx, ny) = (1, 0), (0, 1), etc. The degeneracy of the
+
+level
+
+with
+
+eigenenergy
+
+Ej
+
+is
+
+thus
+
+gj
+
+=
+
+1+
+
+2
+
++
+
+3
+
++ ...
+
++
+
+(j
+
++
+
+1)
+
+=
+
+1 2
+
+(j
+
++ 1)(j
+
++
+
+2).
+
+(b) Since the atoms A, B have the same trapped potential energies, the single-particle partition function is the same, and given by
+
+ZA = ZB =
+
+gj e−βEj
+
+=
+
+e−
+
+3 2
+
+β
+
+ω1 2
+
+(j
+
++ 1)(j
+
++ 2)e−jβ
+
+ω
+
+≡
+
+e−
+
+3 2
+
+β
+
+ω Z1 ,
+
+(1)
+
+where β ≡ (kBT )−1. In order to simplify the following formulas, we have deﬁned the
+
+partition
+
+function
+
+Z1
+
+that
+
+is
+
+obtained
+
+if
+
+one
+
+ignores
+
+the
+
+zero-point
+
+energy
+
+3 2
+
+ω
+
+kT .
+
+The molecule is trapped in a harmonic potential with the same frequency ω, but its
+
+energy is lower, EMj = Ej − E. Consequently
+
+ZM =
+
+gj e−β(Ej−E) = eβE ZA.
+
+(2)
+
+Quantum statistical eﬀects can be ignored if the population of the ground state, n0,
+
+and hence any trap state remains much smaller than unity. Since the ground state for
+
+A, B, (M )
+
+has
+
+energy
+
+E0
+
+=
+
+3 2
+
+ω(E0
+
+=
+
+3 2
+
+ω − E), its population in thermal equilibrium
+
+is
+
+n0
+
+=
+
+NA,B
+
+e−
+
+3 2
+
+β
+
+ω
+
+=
+
+NA,B
+
+for the atoms,
+
+ZA,B
+
+Z1
+
+(3)
+
+n0
+
+=
+
+NM
+
+e−β
+
+(
+
+3 2
+
+ω−E)
+
+=
+
+NM
+
+for the molecules.
+
+ZM
+
+Z1
+
+(4)
+
+The system behaves like a classical gas as long as NA,B,M /Z1 1.
+
+(c) We either know that for subsystems of diﬀerent atoms the partition functions simply multiply, while for N subsystems of identical particles the product of partition functions has to be divided by N ! to avoid multiple counting of the same many-particle states.
+
+Z = eNM βE (ZA)NA+NB+NM .
+
+(5)
+
+NA!NB!NM !
+
+Or we can proceed as follows: If the NA of A atoms have the same set of single-particle
+energies {Ej}, with the set of indices denoted by {j} = {j1, ..., jNA}, and similarly for the B atoms, {Ek}, with {k} = {k1, ..., kNB }, and the molecules, {El − E}, with {l} = {l1, ..., lNB }, then the total energy is
+
+NA
+
+NB
+
+NM
+
+E{j}{k}{l} =
+
+Eji +
+
+Eki + (Eli − E).
+
+(6)
+
+i=1
+
+i=1
+
+i=1
+
+5
+
+The degeneracy of the many-particle state is
+
+g{j}{k}{l} = ΠNi=A1gji ΠNi=B1gki ΠNi=M1 gli .
+
+(7)
+
+For each of the subsystems α = A, B, M there are Nα! permutations of the indices that represent the same Nα particle state. (Strictly, this is only true if all indices {j} are diﬀerent, but this represents the dominant contribution.) For diﬀerent particles, there are no such considerations. Consequently, we have
+
+Z
+
+=
+
+1 NA!NB!NM !
+
+{j}
+
+{k}
+
+g e {j}{k}{l} −βE{j}{k}{l}
+{l}
+
+1 =
+NA!
+
+∞
+gj e−βEj
+j=0
+
+NA
+1 NB !
+
+∞
+gk e−β Ek
+k=0
+
+NB
+1 NM !
+
+= (ZA)NA (ZB)NB (ZM )NM NA!NB!NM !
+= eNM βE (ZA)NA+NB+NM . NA!NB!NM !
+
+(8)
+
+∞
+gle−βEl−E
+l=0
+
+NM
+(9)
+
+(10)
+
+(11)
+
+(d) The system can lower its energy by creating more molecules. However, two atoms have more degrees of freedom (their relative motion) than a molecule in a single state. Therefore, the entropy is increased by dissociating molecules. The equilibrium is determined by the minimum of the free energy F = W − T S that can also be written as F = −k T lnZ. Thus it is suﬃcient to ﬁnd the maximum of the partition function as the molecule number is varied.
+If NA, NB, NM denote the particle numbers in equilibrium, particle conservation requires that NA = NA0 − NM and NB = NB0 − NM . Using the results from part (c),
+
+lnZ = βNM E +(NA0 +NB0 +NM )lnZA −ln(NA0 −NM )!−ln(NB0 −NM )!−lnNM !, (12)
+
+the Stirling approximation yields
+
+∂lnNM ! ∂NM
+
+=
+
+lnNM + NM /NM − 1 = lnNM ,
+
+(13)
+
+∂ln(NA0 − NM )! ∂NM
+
+=
+
+−ln(NA0 − NM ),
+
+(14)
+
+and thus
+
+∂lnZ ∂NM
+
+=
+
+βE
+
+− lnZA + ln(NA0
+
+− NM ) + ln(NB0
+
+− NM ) − lnNM
+
+=
+
+βE
+
++ ln NANB ZANM
+
+(15)
+
+The
+
+condition
+
+∂Z ∂NM
+
+=0
+
+requires
+
+e−βE = NANB . ZANM
+
+(16)
+
+6
+
+Consequently the molecule number is given by
+
+NM
+
+=
+
+eβE NANB . ZA
+
+(17)
+
+Since NA/ZA, NB/ZB 1, for E ∼ k T the molecule number NM (NA/ZA)/NB = (NB/ZB)/NA NA, NB remains small. This is because there are more degrees of freedom for two atoms than for one molecule. Therefore, unless the molecule is strongly energetically favored (E k T ), the number of molecules remains small because there are many more two-atom states than molecule states.
+
+7
+

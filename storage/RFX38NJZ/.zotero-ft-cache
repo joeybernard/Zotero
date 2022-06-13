@@ -1,0 +1,792 @@
+Wave Polarisation and Stokes Parameters
+
+1 Wave Polarisation
+Electromagnetic waves are transverse, meaning that their oscillations are perpendicular to their direction of propagation. If the wave vector and wave electric ﬁeld deﬁne a plane that does not change as the wave propagates, then the wave is linearly polarised, since the wave is seen to deﬁne a line when viewed along the direction of propagation (as illustrated in ﬁgure 1). Characterizing the polarisation of an arbitrarily polarised, band limited wave is the subject of this section (see also Kraus 1986; Rohlfs and Wilson 2000).
+y y
+
+x
+
+z
+
+z x
+
+a)
+
+b)
+
+Figure 1: A linearly polarised wave in the y direction (y-z plane) viewed: a) parallel to the x axis, b) along the z axis, the direction of propagation.
+
+1.1 The Polarisation Ellipse
+
+Consider two orthogonal, linearly polarised electromagnetic waves of the same frequency travelling in the kˆ (z) direction, the ﬁrst polarised in the x direction (x-z plane), the second in the y direction (y-z plane). The electric ﬁelds of the two waves, as illustrated in ﬁgure 2a, may be described by the following equations:
+
+Ex = E1 cos(kz − ωt)
+
+(1)
+
+Ey = E2 cos(kz − ωt − δ)
+
+(2)
+
+where k is the wavenumber, ω is the frequency, t is time, and δ is the phase oﬀset between the two waves (δ = δx − δy). The detected wave will be the vector sum of these two individual waves as illustrated in ﬁgure 2b and c. At z = 0, the components of E may be reduced to:
+
+Ex = E1 cos(ωt)
+
+(3)
+
+Ey = E2 cos(ωt + δ)
+
+(4)
+
+1
+
+y
+
+y
+
+y
+
+x
+
+Ex
+
+k^
+
+Ey
+
+a)
+
+Ey
+
+E
+
+Ex x
+
+E = Ex ^i + E y^j b)
+
+E
+x
+c)
+
+Figure 2: Wave Polarisation: a) Two orthogonal linearly polarised waves travelling in the z direction, b) addition of components, c) the locus of points of the tip of E.
+
+Combining equation 3 and equation 4 results in the equation of an ellipse:
+
+1 = aEx2 − bExEy + cEy2
+
+(5)
+
+where
+
+a
+
+=
+
+1 E12sin2δ
+
+b
+
+=
+
+2 cos δ E1E2sin2δ
+
+c
+
+=
+
+1 E22sin2δ
+
+(6)
+
+This equation describes the locus of points traced out by the vector E as
+
+the wave propagates through space. The ellipse, known as the polarisation
+
+ellipse, may be characterized by two angles, τ and ε, as illustrated in ﬁgure
+
+3.
+
+polarisation ellipse
+
+E2 B
+A ε
+
+τ
+
+O
+
+E1
+
+Figure 3: The Polarisation Ellipse (after ﬁgure 4.5 in Kraus 1986).
+
+The angle τ is known as the tilt angle or polarisation angle. It gives a
+
+measure of inclination of the ellipse with respect to the x axis and is deﬁned
+
+within the limits of 0◦ ≤ τ ≤ 180◦. The second angle, ε, is determined
+
+by the ratio of the major axis (OA) to the minor axis (OB) through the
+
+relation:
+
+ε
+
+=
+
+cot−1(∓
+
+OA OB
+
+)
+
+(7)
+
+2
+
+and is deﬁned within the limits −45◦ ≤ ε ≤ +45◦. The use of the ∓ depends on the “handedness” of the wave. If E moves counterclockwise when viewed travelling towards the observer, as in ﬁgure 2c, then the wave is said to have “right-hand” polarisation and the negative sign is used. Conversely, if E moves clockwise as viewed from the same vantage point, the wave is said to have “left-hand” polarisation and the positive sign is used. This deﬁnition of handedness is the IEEE convention, and is the standard in radio astronomy, since it is consistent with the well known ‘right hand rule’.1
+Depending on the properties of E1, E2 and δ, the polarisation ellipse will take on diﬀerent forms. In general, waves with 0◦ < δ < 180◦ will be left elliptically polarised whereas waves with 180◦ < δ < 360◦ (−180◦ < δ < 0◦) will be right elliptically polarised. If δ = 0◦ or δ = 180◦, the wave will be linearly polarised. In all of these cases, the polarisation angle of the wave subsequently depends on the relative amplitudes of E1 and E2. For example, if E1 = E2 and δ = 0, the polarisation angle is 45◦ (note that ε = 0 in this case). Furthermore, if E1 = E2 and δ = 90◦ [δ = 270◦] the wave will be left [right] circularly polarised and τ is undeﬁned. In cases where E1, E2 and δ are such that elliptical polarisation results, the wave can be thought of as having some component of linear polarisation, and some component of circular polarisation.
+
+1.2 Stokes Parameters and the Poincare´ Sphere
+
+The state of polarisation represented by the polarisation ellipse may be described mathematically by the four so-called the Stokes parameters. Introduced by Stokes in 1852, they are
+
+I = E12 + E22
+
+(8)
+
+Q = E12 − E22 = I cos 2ε cos 2τ
+
+(9)
+
+U = 2E1E2 cos δ = I cos 2ε sin 2τ
+
+(10)
+
+V = 2E1E2 sin δ = I sin 2ε
+
+(11)
+
+Stokes I is the total intensity of the wave, Stokes Q and U are measures of the linear polarisation of the wave, and Stokes V is a measure of the circular polarisation of the wave.
+In this formalism of the Stokes parameters, I have used a linearly polarised basis. Alternatively, I could use a circularly polarised basis, since it
+1Under the classical physics convention, the handedness deﬁnition is reversed. I use the IEEE convention.
+
+3
+
+is possible to construct a linearly polarised wave from two orthogonal cir-
+cularly polarised waves. In this case, the deﬁnitions have the same form,
+except E1 is replaced by Er, the right circularly polarised amplitude, and E2 is replaced by El, the left circularly polarised amplitude (Jackson, 1975). As I ﬁnd it easier to visualize linearly polarised waves, I will continue my
+discussion using the linearly polarised basis. Of the four parameters, only three are independent, since I2 = Q2 +
+U 2 + V 2. Since the Stokes parameters may be obtained from the observable
+quantities E1, E2, and δ, it is then possible to determine the polarisation angle of the wave from the relation
+
+τ
+
+=
+
+1 2
+
+tan−1
+
+U Q
+
+(12)
+
+The Stokes parameters, when written in terms of τ and ε, are the Cartesian coordinates of the points on a sphere. This sphere is known as the Poincar´e Sphere and provides an alternative way of describing the polarisation state of a wave. Figure 4a illustrates the sphere. For any location on the sphere, the longitude is given by 2τ , and the latitude by 2ε. The equator represents states of pure linear polarisation, while the poles represent states of pure circular polarisation. The northern hemisphere represents waves with left circular polarisation, while the southern hemisphere represents waves with right circular polarisation. Figure 4b shows one state of polarisation. From its location on the sphere, we know that the represented wave is left circularly polarised, with 2τ ∼ 45◦, and 2ε ∼ 45◦. In addition Cartesian coordinates x and y, given by the Stokes parameters Q and U , indicate the type of linear polarisation of the wave, while the z coordinate, Stokes V , indicates the amount of circular polarisation.
+
+left circular polarisation (north pole)
+a)
+
+z
+b)
+
+ = state of
+
+polarisation
+
+
+
+ε=τ=0
+
+linear polarisation (equator)
+
+2ε y
+
+Right circular polarisation (south pole)
+
+x
+
+2τ
+
+Figure 4: The Poincar´e Sphere: a) The full sphere; b) One octant illustrating a state of polarisation (after ﬁgures 4.7 and 4.6 in Kraus 1986).
+
+4
+
+1.3 Time Variations and Partial Polarisation
+
+The above discussion dealt with a completely polarised or monochromatic wave, where E1, E2 and δ are constant. In general, emissions from celestial radio sources usually extend over a wide range of frequencies. Within any ﬁnite range of frequencies detected by a receiver, the wave will consist of a superposition of a large number of statistically independent waves with a variety of polarisations. Thus equations 3 and 4 become
+
+Ex =
+
+Ek(1) cos(wkt) = E1(t) cos(ωt)
+
+(13)
+
+k
+
+Ey =
+
+Ek(2) cos(wkt + δk) = E2(t) cos(ωt + δ(t))
+
+(14)
+
+k
+
+where ω is now the mean frequency, and E1(t) and E2(t) are the time dependent amplitudes resulting from the addition of all independent E1’s and E2’s respectively. Due to the time dependence, it is necessary to take the time averages of the Stokes parameters, so that
+
+I = < E12 > + < E22 > = S
+
+(15)
+
+Q = < E12 > − < E22 > = S < cos 2ε cos 2τ >
+
+(16)
+
+U = 2 < E1E2 cos δ > = S < cos 2ε sin 2τ >
+
+(17)
+
+V = 2 < E1E2 sin δ > = S < sin 2ε >
+
+(18)
+
+As a result, it is now possible to have I2 ≥ Q2 + U 2 + V 2. For a completely unpolarised wave, Q = U = V = 0. Thus the presence of a polarised component in the wave requires at least one of these components to be non-zero. The degree or fraction of polarisation is deﬁned as
+
+dp
+
+=
+
+polarised power total power
+
+=
+
+Q2 + U 2 + V 2 S
+
+(19)
+
+where 0 ≤ dp ≤ 1. Thus, dp = 1 for a completely polarised wave, while d = 0 for a completely unpolarised wave. Similarly, the fraction of linear polarisation is deﬁned as
+
+M=
+
+Q2 + U 2 S
+
+.
+
+(20)
+
+2 Faraday Rotation
+
+When a linearly polarised electromagnetic wave propagates through a region of magnetized plasma, its plane of polarisation will rotate, as illustrated in
+
+5
+
+ﬁgure 5 . This phenomenon is known as Faraday rotation. Faraday rotation can be understood as a consequence of birefringence, where the magnetised plasma has two diﬀerent indices of refraction corresponding to two diﬀerent states of incident polarisation (Hecht, 1998).
+
+τ = τ
+
+Magnetized Plasma B
+
+τ=τ +Ψ
+
+B
+
+Figure 5: Faraday rotation of a polarised electromagnetic wave as it propagates through a magnetized plasma cloud.
+
+In particular, the birefringence is with respect to right and left circularly polarised waves. Since a linearly polarised wave can be constructed from two circularly polarised waves, the birefringence will slow one of the circularly polarised waves with respect to the other, resulting in a rotation of their sum, the linearly polarised wave, as illustrated in ﬁgure 6.
+
+LCP
+
+RCP
+
+a)
+
++
+
+=
+
+B
+
+Φ
+
+b)
+
++
+
+Ψ
+=
+
+Figure 6: Faraday rotation through birefringence: a) linearly polarised wave decomposed into a left and right circularly polarised wave, b) the same wave after travelling through a birefringent medium. The LCP wave leads the RCP wave by a phase angle of Φ, resulting in a rotation of the linearly polarised wave by an angle Ψ (after ﬁgures 4.43 and 4.44 in Chen 1984).
+To calculate the indices of refraction for a cosmic magnetised plasma,
+6
+
+the quasi-longitudinal (QL) approximation is invoked (Ratcliﬀe, 1962). The validity of the QL approximation depends on how closely the direction of propagation of a wave (kˆ) coincides with the ﬁeld direction (bˆ), deﬁned θ = cos−1(bˆ · kˆ), and on the electron density and the collision frequency. In practice, it is possible that the QL approximation is valid for values of θ deviating signiﬁcantly from zero. As θ approaches 90◦, a linearly polarised wave will aquire some ellipticity (known as the Cotton-Mouton eﬀect), instead of simply rotating as it would in the QL regime.
+The QL approximation is valid if (Hutchinson, 1987)
+
+Ω ω
+
+sec
+
+θ
+
+1
+
+(21)
+
+and if
+
+ωp2 ω2
+
+1,
+
+(22)
+
+where Ω is the cyclotron frequency, and ωp is the plasma frequency. If
+the total strength of the Galactic magnetic ﬁeld is, on average, roughly B◦ = 10 µG (10−9 T), the electron cyclotron frequency is
+
+Ω
+
+=
+
+eB◦ me
+
+(23)
+
+= 175.63 rad/s
+
+where e and me are the electron charge and mass, respectively. If we set
+
+(Ω/ω) sec θ holds for θ
+
+= <
+
+81901.0909,8t8h7e◦n.
+
+with ω = Similarly,
+
+2π for
+
+× 1420 MHz, the QL equation 22, using ne
+
+approximation = 1 cm−3 (106
+
+m−3), the plasma frequency is
+
+ωp =
+
+1
+nee2 2
+◦me
+
+(24)
+
+= 56 × 103 rad/s
+
+As a result, ωp2/ω2 = 4 × 10−11 1. Clearly, for radio wave propagation in the ISM, the QL approximation holds.
+Using the QL approximation, the indices of refraction for circularly po-
+larised waves in a magnetised plasma are (Spitzer, Jr., 1978)
+
+1
+
+N±
+
+=
+
+c v
+
+=
+
+1
+
+−
+
+ωp2 ω2
+
+1
+
+±
+
+Ω ω
+
+cos
+
+θ
+
+−1
+
+2
+
+(25)
+
+7
+
+The ‘−’ sign corresponds to the circular polarisation mode rotating in the same direction as an electron gyrating around the magnetic ﬁeld line. In ﬁgure 6, the ‘−’ sign would apply to the right circularly polarised wave. Conversely, the ‘+’ sign refers to the circular polarisation mode rotating in the opposite direction of the electron gyration motion.
+The phase diﬀerence, δΦ, between the two circularly polarised waves travelling a distance dl through the medium is given by2
+
+δΦ
+
+≡
+
+(N+
+
+−
+
+N−)
+
+ω c
+
+dl.
+
+(26)
+
+The linearly polarised wave subsequently rotates through an angle dΨ:
+
+dΨ
+
+=
+
+δΦ 2
+
+.
+
+(27)
+
+In order to calculate Ψ, the ﬁrst task is to evaluate N+ and N−. To begin,
+
+let
+
+A
+
+=
+
+ωp2 ω2
+
+1
+
++
+
+Ω ω
+
+cos
+
+θ
+
+−1
+
+(28)
+
+and
+
+B
+
+=
+
+ωp2 ω2
+
+1 − Ω cos θ −1 ω
+
+(29)
+
+Since ωp2/ω2 1, then A and B are both much less than 1. Therefore, we can use the binomial approximation so that
+
+N+
+
+1
+
+−
+
+1 2
+
+A
+
+(30)
+
+and
+
+N−
+
+1
+
+−
+
+1 2
+
+B.
+
+(31)
+
+Therefore,
+
+δΦ
+
+1 2
+
+(B
+
+−
+
+A)
+
+ω c
+
+dl
+
+1 ωp2 2 ω2
+
+1
+
+−
+
+Ω ω
+
+cos
+
+θ
+
+−1
+−
+
+1
+
++
+
+Ω ω
+
+cos
+
+θ
+
+−1
+
+.
+
+(32)
+
+2I remind the reader that throughout this paper, dl is a diﬀerential path element towards the observer.
+
+8
+
+Since Ω/ω 1, we can again use the binomial approximation to reduce this to
+
+δΦ
+
+1 ωp2 2 ω2
+
+1
+
++
+
+Ω ω
+
+cos
+
+θ
+
+−
+
+1
+
++
+
+Ω ω
+
+cos
+
+θ
+
+ω c
+
+dl
+
+ωp2 ω2
+
+Ω c
+
+cos
+
+θdl.
+
+(33)
+
+Substituting equation 33 into equation 27, and using equations 23 and 24,
+
+we ﬁnd
+
+dΨ
+
+1 2
+
+◦
+
+e3 m2e c
+
+1 ω
+
+neB◦
+
+cos
+
+θdl.
+
+(34)
+
+Replacing ω with 2πc/λ, recognizing that B◦ cos θdl = B·dl, and integrating over the full path length, gives
+
+Ψ
+
+λ2
+
+e3 8π2 ◦me2c3
+
+neB · dl.
+
+(35)
+
+Substituting in the appropriate values yields
+
+Ψ λ22.631 × 10−13 neB · dl (rad)
+
+(36)
+
+where the remaining variables are in mks units. In astronomy, however, it is more common to use cgs units. In addition, it is more practical to work with the magnetic ﬁeld in units of µG, and path lengths in units of pc. Thus, multiplying equation 36 by the appropriate ‘correction’ factors (ie. 1 µG = 10−10 T, 1 pc = 3.085×1016 m, 1 cm = 0.01 m) yields
+
+Ψ
+
+λ2(0.812 neB · dl) (rad)
+
+(37)
+
+λ2RM
+
+where λ is in units of m, ne is in units of cm−3, B is in units of µG, dl is in units of pc, and RM is the rotation measure:
+
+RM = 0.812 neB · dl (rad m−2).
+
+(38)
+
+It is important to recognize the signiﬁcance of three key elements of equation 37. First, it is wavelength dependent. As a result, waves of diﬀerent frequency will experience diﬀerent amounts of rotation through the same plasma. Second, the eﬀect of Faraday rotation is weighted by the electron
+
+9
+
+density; higher electron densities will result in greater rotation. Finally, it is the direction of the line-of-sight component of the magnetic ﬁeld (B ) that determines the sign of the rotation measure. Since the path length is deﬁned to be from the source to the receiver, (ie. the telescope on Earth), a magnetic ﬁeld with B directed towards us results in a positive RM, while a magnetic ﬁeld with B directed away from us results in a negative RM. It is this sign dependence that makes the rotation measure an extremely valuable tool for studying the magnetic ﬁeld in the Galaxy.
+3 Rotation Measure Sources
+Two classes of astronomical object are used as sources for RM studies of the Galactic magnetic ﬁeld. These are pulsars (within the Galaxy) and extragalactic sources, the latter including both external galaxies and quasars. These sources have been used in studies to explore the Galactic magnetic ﬁeld.
+Polarised emissions from the RM sources arise from synchrotron radiation. Synchrotron radiation is produced by relativistic electrons gyrating in a magnetic ﬁeld (recall that accelerating charges radiate) The relativistic speeds of the electrons results in a ‘beaming’ of their radiation, much like a locomotive’s headlight (Griﬃths, 1999). The resulting radiation is primarily linearly polarised.3 A source emitting synchrotron radiation can at most appear to have dp = 0.7 (Pacholczyk, 1970). Any disordering of the magnetic ﬁeld or the presence of Faraday rotation within the source will decrease the degree of polarisation.
+Taylor et al. (1993) compiled a list of all known pulsars and their parameters, and maintain a publicly accessible database as more pulsars are discovered (Taylor et al., 1995). From this database (as it was in 1999), I constructed a list of pulsars with known rotation measures and combined it with a recently published list of another 63 pulsars (Han et al., 1999). In total, there are approximately 316 pulsars with known rotation measures. Figure 7 is an all-sky plot of RM for these pulsars. As shown, more than half (191) reside at low latitudes (−8◦ < b < 8◦). Of these, only 38 are located in the outer Galaxy (90◦ < l < 270◦).
+Simard-Normandin et al. (1981) published an extensive all-sky catalog of 555 extragalactic RM sources. This catalog was combined with several smaller studies by Broten et al. (1988), who applied further selection criteria
+3Observationally, extragalactic sources exhibit less than 0.5% fraction of circular polarisation (Roberts et al., 1975).
+10
+
+180
+
+90
+
+60
+
+30
+
+270
+
+180
+
+0
+
+-30
+
+-60
+
+Figure 7: All-sky projection of pulsars with known rotation measures. Symbols are scaled with the magnitude of rotation measure to a maximum of 700 rad m−2. Filled circles indicate positive RM; open circles indicate negative RM. The box indicates the Canadian Galactic Plane Survey (CGPS) region.
+for Faraday-thin4, one component sources, resulting in an enhanced catalog of 674 extragalactic RM sources. Since then, Clegg et al. (1992) determined the RM of 33 sources (some with mulitiple components) in the Galactic disk, while Oren and Wolfe (1995) and Minter and Spangler (1996) determined RMs for 61 and 38 high latitude sources, respectively. For my thesis, I consolidated the last four lists into one list of about 800 RM sources. Figure 8 is an all-sky plot of these sources. As illustrated, the sources are distributed somewhat uniformly, with an average source density of roughly 1 source per 80 square degrees. Of these, only 121 sources are located close to the Galactic disk (−8◦ < b < 8◦) with only 53 having lines-of-sight primarily through the outer Galaxy (90◦ < l < 270◦).
+For my thesis work, I examined more than 700 polarised sources in the Canadian Galactic Plane Survey (CGPS). Using a detailed algorithm to
+4Faraday-thin objects are small in the sense that waves emitted at the far end of the object do not undergo signiﬁcant rotation by the time they reach the near end of the object. In other words, the emitted synchrotron radiation is in the optically-thin frequency range, and the object does not exhibit signs of any signiﬁcant internal Faraday rotation. For a given object, the Faraday-thin regime is identiﬁed as the frequencies where the polarisation angle changes linearly with the square of the wavelength (Vall´ee, 1980).
+11
+
+180
+
+90
+
+60
+
+30
+
+270
+
+180
+
+0
+
+-30
+
+-60
+
+Figure 8: All-sky projection of extragalactic sources with known rotation measures. Symbols are scaled with the magnitude of rotation measure to a maxium of 700 rad m−2. Filled circles indicate positive RM; open circles indicate negative RM. The box indicates the CGPS region.
+sort through the data, verifying the quality of the rotation measures, these data were reduced to a list of 380 sources. Figure 9 is a plot of the RM sources in the CGPS region, before and after the addition of the new CGPS sources. This ﬁgure highlights the density of the CGPS sources, which is approximately 1 source per square degree.
+The most striking qualitative feature of the data is the predominance of negative rotation measures throughout the CGPS region, and the systematic increase in |RM| with decreasing longitude. This result is consistent with the uniform magnetic ﬁeld being approximately aligned with the spiral arms. At the higher longitudes in ﬁgure 9, we are looking almost perpendicular to our local arm, as well as to the Perseus and Outer arms. As a result, we would expect the line-of-sight component of the ﬁeld to be small, producing low rotation measures. Conversely, at lower longitudes in ﬁgure 9, we are looking almost along our local arm, and therefore along the magnetic ﬁeld lines. Since previous studies have demonstrated conclusively that the local ﬁeld is directed away from us at l ∼ 90◦, we would expect the magnitudes of the rotation measures at the lower longitudes to be large and negative, as demonstrated in this ﬁgure. In addition, the predominately negative values
+12
+
+indicate the average magnetic ﬁeld in this region is directed away from us. These two insights provide important pieces in the puzzle to understand the global structure of the magnetic ﬁeld in the Galaxy.
+
+5
+
+BEFORE CGPS
+
+3
+
+0
+
+Galactic Latitude
+
+-3
+
+5
+
+CGPS
+
+3
+
+0
+
+-3
+
+150
+
+130
+
+110
+
+90
+
+70
+
+Galactic Longitude
+
+Figure 9: CGPS region (indicated by the dashed box) in rotation measure. Top panel: Previously observed EGS (circles) and pulsars (squares); Bottom panel: CGPS EGS sources. Source symbols are linearly scaled to the magnitude of the RM, between 100 and 600 rad m−2. Filled circles are positive RM; open circles are negative RM.
+
+References
+Broten, N. W., MacLeod, J. M., and Vall´ee, J. P. 1988, Astrophys. Space. Sci., 141, 303.
+Chen, F. F. 1984, Introduction to Plasma Physics and Controlled Fusion, (Plenum Press).
+Clegg, A. W., Cordes, J. M., Simonetti, J. M., and Kulkarni, S. R. 1992, Astrophys. J., 386, 143.
+Griﬃths, D. J. 1999, Introduction to Electrodynamics, (Prentice-Hall, Inc.).
+
+13
+
+Han, J. L., Manchester, R. N., and Qiao, G. J. 1999, Mon. Not. R. Astron. Soc., 306, 371.
+Hecht, E. 1998, Optics, (Addison Wesley Longman Inc.). Hutchinson, I. H. 1987, Principles of Plasma Diagnostics, (Cambridge Univ.
+Press). Jackson, J. D. 1975, Classical Electrodynamics, (John Wiley & Sons Inc.). Kraus, J. D. 1986, Radio Astronomy, (Cygnus-Quasar Books). Minter, A. H. and Spangler, S. R. 1996, Astrophys. J., 458, 194. Oren, A. L. and Wolfe, A. M. 1995, Astrophys. J., 445, 624. Pacholczyk, A. G. 1970, Radio Astrophysics, (W.H. Freeman and Co.). Ratcliﬀe, J. A. 1962, The Magneto-Ionic Theory and Its Appliations to the
+Ionosphere, (Cambridge Univ. Press). Roberts, J. A., Cooke, D. J., Murray, J. D., Cooper, B. F. C., Roger, R. S.,
+Ribes, J.-C., and Biraud, F. 1975, Australian Journal of Physics, 28, 325. Rohlfs, K. and Wilson, T. L. 2000, Tools of Radio Astronomy, (Springer-
+Verlag), 3 edition. Simard-Normandin, M., Kronberg, P. P., and Button, S. 1981, Astrophys.
+J., Suppl. Ser., 45, 97. Spitzer, Jr., L. 1978, Physical Processes in the Interstellar Medium, (John
+Wiley & Sons, Inc.). Taylor, J. H., Manchester, R. N., and Lyne, A. G. 1993, Astrophys. J.,
+Suppl. Ser., 88, 529. Taylor, J. H., Manchester, R. N., Lyne, A. G., and Camilo, F. 1995, Catalog
+of 706 Pulsars, http://pulsar.princeton.edu/pulsar. Vall´ee, J. P. 1980, Astron. Astrophys., 86, 251.
+14
+

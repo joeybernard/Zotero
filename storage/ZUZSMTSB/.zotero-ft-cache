@@ -1,0 +1,966 @@
+JOURNAL OF GEOPHYSICAL RESEARCH, VOL. 110, A09304, doi:10.1029/2005JA011142, 2005
+
+Generation and evolution of density irregularities due to self-focusing in ionospheric modifications
+N. A. Gondarenko
+Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, Maryland, USA
+S. L. Ossakow
+Plasma Physics Division, Naval Research Laboratory, Washington, D. C., USA
+G. M. Milikh
+Department of Astronomy, University of Maryland, College Park, Maryland, USA
+Received 18 March 2005; revised 10 June 2005; accepted 16 June 2005; published 17 September 2005.
+[1] Simulations of the generation and evolution of ionospheric density irregularities due to thermal self-focusing are presented. A nonlinear, self-consistent development of the self-focusing instabilities (SFI) is studied with a two-dimensional model of HF radio wave propagation in inhomogeneous magnetized plasmas. The full-wave model is coupled with the electron temperature and plasma density equations. In these studies, the pump beam is incident vertically or tilted to the magnetic zenith direction. Our results demonstrate that irregularities generated and developed due to a local heating of the anisotropic ionosphere plasma are density depletions/striations with a strong enhancement of electron temperature inside depletions elongated along the magnetic field lines. For the ordinary mode (O mode) heating the reflection point is shifted upward with decreasing electron concentration. During the nonlinear evolution of the SFI instability the bunching of striations is observed. A number of the bunch-scale irregularities increase when the beam is tilted to the magnetic zenith direction. The presented results are consistent with the experiments carried out at the midlatitude SURA HF heating facility.
+Citation: Gondarenko, N. A., S. L. Ossakow, and G. M. Milikh (2005), Generation and evolution of density irregularities due to selffocusing in ionospheric modifications, J. Geophys. Res., 110, A09304, doi:10.1029/2005JA011142.
+
+1. Introduction
+[2] In ionospheric modification experiments, powerful HF electromagnetic ordinary mode (O mode) waves incident on the F region of the ionosphere produce a wide range of nonlinear effects occurring on time scales from tens of microseconds to minutes and with scale sizes from meters to kilometers. Among these nonlinear phenomena are the production of enhanced airglow, Langmuir turbulence (LT), and the generation of geomagnetic-field-aligned density irregularities (FAI).
+[3] Experimental studies to examine the enhancement of artificial airglow production by high-power radio waves have been performed at the Arecibo facility by Bernhardt et al. [1989], Sura facility by Migulin [1997], EISCAT facility by Bra¨ndstro¨m et al. [1999], and recently at HAARP by Pedersen et al. [2003]. A number of experiments to study the exitation of Langmuir turbulence occurring in the vicinity of the O mode reflection layer have been conducted at the Arecibo facility by Fejer et al. [1991], Djuth et al. [1990], and Sulzer and Fejer [1994] and at EISCAT by Isham et al. [1996]. During the Ionospheric Focusing
+Copyright 2005 by the American Geophysical Union. 0148-0227/05/2005JA011142
+
+Heating Experiment 1992, Bernhardt et al. [1995] have performed in situ measurements of the pump excited turbulence, when the small-scale density depletions near the reflection height have been detected.
+[4] The observational studies of kilometer-scale density irregularities with a few percent plasma depletion have been made with a scintillation technique by Basu et al. [1980, 1987] and radar scattering by Duncan and Behnke [1978], LaHoz [1982], and Farley et al. [1983]. Small-scale FAI irregularities have been observed by Utlaut [1970]. Recently temporal evolution of the FAI has been studied by Basu et al. [1997], Frolov et al. [1997], and Yampolski et al. [1997]. During in situ rocket measurements at Arecibo, Kelley et al. [1995] have observed local stationary density depletions with scales of the order of five meters across and several kilometers along the magnetic field lines and large-scale structures consisting of a number of closely packed bunches of striations.
+[5] Recent ionospheric modification experiments to examine the dependence of the nonlinear effects on the direction of the pump beam have been performed at the high-latitude facilities HAARP [Pedersen et al., 2003] and EISCAT [Isham et al., 1999; Rietveld et al., 2003], and at the midlatitude Sura facility [Tereshchenko et al., 2004]. Observations indicate when the pump beam is directed
+
+A09304
+
+1 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+along the magnetic field lines, the magnetic zenith effect (a strong amplification of modification effects: enhanced airglow, excitation of LT, and generation of striations) occurs as a result of a combination of nonlinear processes.
+[6] The recent theories developed for interpretation of these nonlinear processes include two dominant instabilities in the O wave reflection region. One of these instabilities is the resonance instability which has an explosive character and is the result of the local heating of a strongly anisotropic ionospheric plasma by the upper hybrid waves generated at the upper hybrid resonance point within density depletion on the striations [Gurevich et al., 1995, 1998]. The resonance instability by Gurevich et al. [1995] results in excitation of small-scale striations with a strong enhancement of electron temperature and a permanent small deficit of plasma density inside the stationary FAI. The average electron density is reduced due to the negative density perturbations inside of a large number of striations. As a result, self-focusing on striations takes place that leads to the formation of nonlinear structures, bunches of striations aligned along the magnetic field [Gurevich et al., 1998]. The onset of the resonance instability requires the existence of weak seed irregularities, which could be created by selffocusing of plasma waves generated initially in the vicinity of the ordinary wave reflection point due to the parametric instability, another dominant instability in the O wave reflection region. The parametric instability results in the generation of a Langmuir turbulence region, that takes place at the Langmuir resonance point close to the reflection point of the pump wave. A model with combination of the thermal parametric and resonance instabilities for excitation of FAI has been proposed by Istomin and Leyser [1997].
+[7] The parametric and resonance instabilities occur in a different range of time scales. The former generates smallscale fluctuations (on the order of meters or less) within 10 ms of HF beam turn-on, and the latter operates on a time scale of 1 s or longer. Gurevich et al. [2002] noted a dependence of the excitation of LT on the pump wave frequency. For a low-frequency heater wave ($3 – 4 MHz), the excitation of LT is less likely due to anomalous absorption on striations that diminishes the pump wave amplitude in the LT region. For a high-frequency wave ($6 – 9 MHz), absorption in striations is much weaker and LT could be strong.
+[8] The first 2-D numerical model of the thermal SFI by Bernhardt and Duncan [1982, 1987] was developed for under-dense plasmas, where the instability is convective in character. Guzdar et al. [1996] also studied SFI for the under-dense case in two dimensions. More recently, Guzdar et al. [1998] and Gondarenko et al. [1999] simulated the propagation of HF radio waves in an inhomogeneous gyrotropic medium near the reflection height, where the thermal SFI is an absolute instability. These studies addressed the full nonlinear self-consistent development of the absolute SFI instability starting at the critical surface and resulting in field-aligned filamentary structures which extend above and below the critical surface. However, in those studies [Guzdar et al., 1998; Gondarenko et al., 1999], a simplified model for wave propagation was used with the assumption that the wave was incident normally and propagated vertically along the magnetic field and the direction of inhomogeneity.
+
+[9] In the present study for the HF radio wave propagation, we use the full-wave model allowing for propagation of a radio wave in an inhomogeneous magnetized plasma when the wave is incident at an arbitrary angle to the direction of inhomogeneity, and an arbitrary orientation of the geomagnetic field is taken into account. This full-wave model is also discussed in the work by Gondarenko et al. [2004], where the numerical scheme and method of solution are given in detail. In the simulations by Gondarenko et al. [2003] the full-wave 1-D and 2-D models are utilized for simulating the propagation of waves that are totally or partially reflected from the ionosphere and allow one to describe the process of linear conversion of electromagnetic waves into electrostatic waves when the ordinary waves are normally (or obliquely) incident from the lower boundary. The model takes into account absorption of electromagnetic waves by a magnetoactive plasma. The linear mode conversion of the pump wave to the plasma wave can result in self-focusing of plasma waves in the resonance region (near the ordinary mode reflection layer) that can lead to the excitation of small-scale irregularities elongated along the magnetic field [Vas’kov et al., 1981]. When an HF electromagnetic wave of ordinary polarization (O wave) is incident obliquely on an inhomogeneous magnetized plasma, the O wave can be transformed in the vicinity of the reflection point into the Z wave, which after the reflection is converted into a plasma wave at the resonance layer [Gondarenko et al., 2003]. In time, the rapid development of the irregularities results in the extending these irregularities along the magnetic field upward and downward, and may lead to the penetration to the upper hybrid region where the irregularities are amplified by the resonant instability, and the electromagnetic wave can be coupled to the upper hybrid wave.
+[10] In the 2-D simulations presented by Gondarenko et al. [2003] a model with a two-dimensional electron density profile to approximate the electron density patch associated with the sporadic E layer [Bernhardt, 2002] has been used. The 2-D simulation results have been focused on determining the localized mode conversion and resonance regions where plasma waves can be created. An enhancement of the field in these regions can lead to the excitation of Langmuir waves generated by the parametric decay instability (PDI) when the threshold for PDI is exceeded.
+[11] In the studies discussed by Gondarenko et al. [2003] the structure and the amplitude of the fields near the reflection or resonance regions have been simulated for given electron density profiles. However, the disturbances in the F region of the ionosphere are associated with changes in electron density. The heating of the plasma by radio waves can lead to a decrease in the plasma density and to a nonlinear change of the refractive index of the wave. The nonlinearity associated with the changes of the refractive index causes a stratification of the beam in the region of wave reflection, modulation in the wave field, and perturbation of the plasma density. The presence of density irregularities results in the excitation of the self-focusing instability. The evolution of the electron density affects the propagation of HF radio waves and, therefore it is necessary to find solutions for the electromagnetic fields varying slowly on the time scale of the density evolution. In the presented studies, the full-wave model is coupled with
+
+2 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+density and temperature evolution equations to study the full nonlinear, self-consistent development of the thermal self-focusing instability that results in field-aligned bunchscale structures.
+[12] In the present paper, we concentrate on the observational studies carried out at the midlatitude Sura HF facility by Tereshchenko et al. [2004]. They use satellite radio tomography and scintillation measurements to detect irregularities in a range of scale sizes from about several tens of kilometers to about a hundred of kilometers as well as bunch-scale structures of 0.2 –2 km. It has been observed that a high number of bunch-scale irregularities are located near the magnetic zenith. Using the results of a spectral analysis of 180 MHz amplitude fluctuations, the authors have demonstrated that the value of the power spectra index becomes steeper when the direction of pump beam is receded from the magnetic zenith.
+[13] In section 2 the basic equations for the self-focusing instability are presented. In section 3 we derive the characteristic scales of the self-focusing instability. In section 4 the results of numerical simulations for the vertical incidence and the tilted beam cases are described. The comparisons of our simulations with observations are discussed in section 5. Finally, in section 6, our conclusions and directions for future work are outlined.
+
+2. Basic Equations for the Self-Focusing Instability
+
+[14] A model for the thermal self-focusing instability is represented by a system of 2-D nonlinear equations for the evolution of plasma density N and electron temperature Te [Gurevich, 1978] coupled with the full-wave model for wave propagation in a ‘‘cold’’ inhomogeneous magnetized plasma [Ginzburg, 1970]. The general equation for wave propagation in an arbitrary medium for oblique incidence of the wave on a layer of magnetoactive plasma is [Ginzburg, 1970]:
+
+Àr2~E
+
+þ
+
+r~Àr
+
+Á
+
+~EÁ
+
+¼
+
+w2 c2
+
+ D~
+
+þ
+
+i
+
+ 4p~j ; w
+
+Di
+
+þ
+
+i
+
+4p w
+
+ji
+
+¼
+
+e0ijEj;
+
+ð1Þ
+
+where
+
+ei0j(w)
+
+=
+
+eij(w)
+
++
+
+4p i w sij(w)
+
+is
+
+the
+
+complex
+
+permittivity
+
+tensor describing the electromagnetic properties of a plasma
+
+in a magnetic field, and sij is the conductivity tensor. [15] In the coordinate system we choose, the z axis is
+
+along the density gradient, and the external constant geomagnetic field H(0) is in the xz plane (the plane of magnetic
+
+meridian). The magnetic field makes an angle a with the z
+
+axis, and in the case of normal incidence, the HF radio wave
+
+is launched vertically upward (parallel to the z axis). In the case of oblique incidence, the wave vector ~k is at an angle q0 with the z axis.
+
+[16] In the case of wave propagation in inhomogeneous
+
+media when the electron density varies with time, the
+
+solutions of the slowly varying electromagnetic fields are
+
+found on the time scale of the density evolution. In the
+
+general case when a wave is incident obliquely to the
+
+direction of inhomogeneity as well as the direction of
+
+the magnetic field, the slow evolution of the electric
+
+fields is described by a system of three Schro¨dinger-type
+
+equations for the components of the electric field vector
+
+[Gondarenko et al., 2003]. Thus the basic equations describing the evolution of the thermal self-focusing instability are
+
+
+
+
+
+
+
+@N @ ¼
+@t @z
+
+DNk
+
+@ @z
+
+@ Nþ
+@z
+
+DNk T
+
+N Te
+
+@ @z
+
+Te1 þ q À aN 2;
+
+ð2Þ
+
+@Te1 @t
+
+¼
+
+@ @z
+
+ DTk
+
+
+
+@ @z
+
+Te1
+
+þ
+
+s? E02? N0
+
+þ
+
+skE02k N0
+
+À
+
+dneTe1;
+
+ð3Þ
+
+@Ex @t
+
+¼
+
+i
+
+1 2w
+
+@2Ex @z2
+
+À
+
+i
+
+ 1@ 2w @x
+
+þ
+
+ ikx0
+
+@Ez @z
+
+wÀ
+
+Á
+
+þ i 2c2 exxEx þ exyEy þ exzEz ;
+
+ð4Þ
+
+@Ey @t
+
+¼
+
+i
+
+1 2w
+
+@2Ey @z2
+
+þ
+
+i
+
+ 1@ 2w @x
+
+þ
+
+2 ikx0 Ey
+
+wÀ
+
+Á
+
+þ i 2c2 eyxEx þ eyyEy þ eyzEz ;
+
+ð5Þ
+
+@Ez @t
+
+¼
+
+i
+
+1 2w
+
+ @ @x
+
+þ
+
+2 ikx0 Ez
+
+À
+
+i
+
+1 2w
+
+ @ @x
+
+þ
+
+ ikx0
+
+@Ex @z
+
+wÀ
+
+Á
+
+þ i 2c2 ezxEx þ ezyEy þ ezzEz ;
+
+ð6Þ
+
+where kx0 = wp0/c is the x component of the wave vector at the lower boundary on which the incident wave is
+specified (p0 = sin q0), w is the pump wave frequency, c is the velocity of light, Te(1) and Ne(1) are the perturbed electron temperature and density, N = Ne(1) + N0, Te = Te(1) + Te0, N0 is the background plasma density, Te0 is the unperturbed electron temperature, d is the average fraction
+of the electron energy lost by an electron in one collision,
+and eij is the component of the complex permittivity tensor which changes with time in response to density evolution. The number of electrons recombining per cm3 per second can be represented in the form aN2, where
+a(Te) is the effective coefficient of dissociative recombination, and q is the total intensity of the ionization [Gurevich, 1978]. DkN = Dek/(0.51kT), DkNT = 1.71Dek/ 0.51, DkT = 5.93Dek, kT = Te/(Te + Ti), Dek = Te/(mne) is the electron transport coefficient along the magnetic field,
+m is the mass of the electron, ne0 is the effective collision frequency of electrons with ions and neutral particles, ne(Te, N) = ne0N/Te3/2, and Dek(Te, N) = Te0Te5/2/(Nmne0). We consider the modification of the ionospheric magne-
+tized plasma, in which the transport processes are
+determined by diffusion and heat conductivity along the
+magnetic field lines. The transport processes across the
+magnetic field are neglected, because the longitudinal
+transport processes are the most significant in the F region of the ionosphere. The heating (T À Te0 > 0) of the F-region plasma by a sufficiently powerful wave leads
+to a decrease in plasma concentration, i.e., density depletion (N À N0 < 0). From the constancy of electron pressure, it follows that N(1)/N0 = ÀTe(1)/(Te0 + T(1)). As the parallel thermal conduction transports the heat along
+
+3 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+the magnetic field lines, the field-aligned filaments are
+formed that allows radio waves to propagate upward.
+Near the O mode reflection layer, the heating is determined by s?E02? and skE02k,
+
+À
+
+ÁÀ
+
+Á
+
+s?E02? N0
+
+¼
+
+dneTe
+
+Ex Æ iEy Ex Æ iEy 2Ep2
+
+* ;
+
+skE02k ¼ nee2ÀðEzÞðEzÞÁ* ;
+
+N0 Ep2
+
+¼
+
+33Tmee2mwd2þðwnÆ2e
+
+ WeÞ2þn2e ;
+
+where We is the cyclotron frequency. We normalize spatial variables to the Airy length, z0 = (c2L/w2)1/3, and time t to t0 = 2wz02/c2, L is thepﬃsﬃﬃcﬃﬃaﬃﬃlﬃeﬃ length of the density inhomogeneity, and kx0 = L=z0p0.
+[17] The full-wave 1-D and 2-D numerical models of radio wave propagation in inhomogeneous magnetized plasmas have been presented by Gondarenko et al. [2003, 2004]. It has been shown that the inclusion of the geomagnetic field and electron collisions into the model is essential in calculating the electric field patterns. Gondarenko et al. [2003] have demonstrated that the effect of the geomagnetic field results in an increase of the electric field which is much greater than that for the isotropic case and that the swelling of the electric field is more marked at the higher latitudes (Tromsø) than for the lower latitudes (Arecibo). The electric field patterns calculated with our model for the parameters relevant to the Tromsø and Arecibo experiments [Gondarenko et al., 2003, 2004] are consistent with the results obtained by Lundborg and Thide [1986].
+[18] In the case of wave propagation in magnetized plasmas when the geomagnetic field is at an angle to the density inhomogeneity or the wave is incident obliquely, the electric field parallel to the density gradient is finite and it is larger than the transverse electric field. The maximum of the electric field corresponds to the point where the wave approaches the resonance layer near the O mode reflection layer, at which the plasma wave can be excited.
+[19] To solve the time-dependent 2-D equations for the components of the electric field (4) –(6), the alternating direction implicit (ADI) method with implementation of the Maxwellian perfectly matched layers (PML) technique for approximating nonreflecting arbitrary boundary conditions has been used [Gondarenko et al., 2004]. The transport equations (2) – (3) have been solved with the second-order leapfrog time-stepping scheme.
+
+3. Characteristic Scales of the Self-Focusing Instability
+[20] The plasma density irregularities with a wide range of scales can be excited near the wave reflection layer due to the self-focusing instability when strong radio waves of ordinary polarization are incident on the ionosphere. Observations indicate that the smaller-scale density irregularities are produced when the pump beam is tilted toward the magnetic zenith [Tereshchenko et al., 2004]. To get an idea about the dependence of characteristic scales of the self-focusing instability on aspect angle, we derive the dispersion relations of SFI with allowance for diffraction
+
+for the cases of the beam propagation along the vertical and field-aligned directions.
+[21] For simplicity, we consider wave propagation in an isotropic plasma. By using the Van der Pol’s method to separate the rapidly and slowly varying parts of the field of the wave propagating in the z directiRon, and substituting the electric field in the form ~E = [E(r)ei kdz + c.c.], r = [x, y, z], (which implies that the field amplitude varies more slowly than the phase) into wave equation (1), we obtain a scalar equation describing the focusing [Gurevich, 1978]:
+
+@E dk
+
+w2
+
+2ik @z þ iE dz þ 4?E þ c2 enE ¼ 0;
+
+ð7Þ
+
+where 4? is the Laplace operator in the pplanﬃﬃeﬃﬃﬃﬃpﬃﬃeﬃﬃrpendicular to the beam propagation direction, k = w e0ðzÞ/c, e0 is the real part of the complex permittivity e0 in an inhomogeneous medium, en is the nonlinear increment to e0. For the propagation of a beam in a homogeneous (dk/dz = 0) isotropic plasma when perturbation of the dielectric constant is caused only by a change in the electron density, equation (7) becomes
+
+2ik
+
+@E @z
+
+þ
+
+4?E
+
+À
+
+4pe2 mc2
+
+Neð1Þ E
+
+¼
+
+0:
+
+ð8Þ
+
+Let us consider stationary equations for the electron
+
+temperature and density perturbations along the magnetic
+
+field
+
+L2N
+
+ cos
+
+a
+
+@ @z
+
+þ
+
+sin
+
+a
+
+@ 2 @x
+
+Neð1Þ
+
+þ
+
+kT L2N
+
+N0 Te0
+
+ cos
+
+a
+
+@ @z
+
+þ
+
+sin
+
+a
+
+@ 2 @x
+
+Teð1Þ
+
+¼
+
+Neð1Þ;
+
+ð9Þ
+
+L2T
+
+ cos
+
+a
+
+@ @z
+
+þ
+
+sin
+
+a
+
+@ 2 @x
+
+Teð1Þ
+
+¼
+
+Teð1Þ
+
+À
+
+Te0j Ep2
+
+jEj2;
+
+ð10Þ
+
+where LN = (DkNtN)1/2 and LT = (DkT/(dne))1/2 are the characteristic scales of the transport processes of plasma
+density and electron temperature along the magnetic field,
+tN is the average electron lifetime, j = jp/jT, jT is the nonisothermal factor and jp is the polarization factor [Gurevich, 1978].
+[22] We consider the field E of a plane wave, taking into account small perturbations E(1) as E = [E0 + E(1)]eiDkz, where E0 is the plane wave amplitude, Dk is the correction in the wave vector due to the modification of the plasma by E0. By expanding the perturbations E(1) = E1qei(qzz+qrr) + E2qeÀi(qzz+qrr) and, in similar manner, Ne(1) and Te(1) into a Fourier integral form with respect to coordinates r = [x, y] and z (r ? z) and substituting these expressions into scalar
+wave equation (8) and equations (9) – (10), we obtain the
+dispersion equation
+
+
+
+
+
+q2z ¼ À
+
+q2x þ q2y 4k2
+
+
+
+
+
+2b À q2x À q2y ;
+
+b
+
+¼
+
+w20 E02 j c2 Ep2
+
+ð1
+
+þ
+
+kT FN FT Þð1
+
+þ
+
+FN
+
+Þ
+
+;
+
+ð11Þ
+
+FT ¼ L2T ðqx sin a þ qz cos aÞ2; FN ¼ L2N ðqx sin a þ qz cos aÞ2:
+
+4 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+cos gz + sin gx and x0 = cos gx À sin gz, where g is the angle between the wave propagation direction z0 and the vertical. Then the dispersion relation for the beam propagation in the z0 direction is
+
+
+
+
+
+q2z ¼ À
+
+q2y þ cos2 gq2x 4k2
+
+
+
+
+
+2b1 À q2y À cos2 gq2x À q2x þ cos2 gq2x ;
+
+b1
+
+¼
+
+w20 E02 j c2Ep2 ð1
+
+þ
+
+kT FN FN Þð1
+
+þ
+
+FT Þ
+
+;
+
+ð13Þ
+
+where for a = p/2, FN = LN2 cos2 gqx2 and FT = LT2 cos2 gqx2. In this case, the dependence of qy on qx for qz = 0 is shown in Figure 1b (with magnified fragment). The characteristic scale of the instability for g = 12° is 2p/qxm $ 0.2 km, which is smaller compared to the case when a beam is
+directed vertically,
+
+q2xm
+
+ﬃ
+
+(" 1
+
+þ
+
+2
+
+sin2 cos2
+
+g g
+
+2 k2L2 þ
+
+2kT w20E02j c2Ep2
+
+L2
+
+À
+
+#1=2 1
+
+ À1
+
+À
+
+2
+
+sin2 cos2
+
+g g
+
+k
+
+'0À
+
+2L2
+
+cos2
+
+Á gL2 ;
+
+ð14Þ
+
+Figure 1. Dependencies of qy on qx, with magnified fragments, for a = 90°, (a) g = 0° and (b) g = 12°.
+
+[23] If qz2 < 0, small field perturbations in the xy plane grow in the direction of beam propagation. The instability
+threshold can be found from the condition qz ! 0. For simplicity, we consider the case of transverse propagation, a = p/2, then FN = LN2 qx2 and FT = LT2qx2. In Figure 1a (with magnified fragment) we show the dependence of qy on qx obtained from dispersion relation (11) for qz = 0, qy = ±[2b À qx2]1/2, with w0 = w = 2.7 Á 107 rad/s, E0/Ep = 1, k = w/c, and LN = LT = 30 km. By letting qy = 0, we find the maximum instability scale in the x direction $1/qxm
+
+q2xm
+
+¼
+
+(" ÀL2N
+
+À
+
+L2T Á)2, þ 8kTcw2E20Ep2 02j L4N L2T #1=2
+
+À ÀL2N þ L2T Á
+
+À2L2N
+
+L2T
+
+Á :
+
+ð12Þ
+
+As one can see in Figure 1a, qy ) qx, and from equation (12) we find characteristic scale 2p/qxm $ 3 km.
+[24] For the tilted beam case, we expand the perturbations with respect to the coordinates r = [x0, y] and z0 (r ? z0), z0 =
+
+where L = LT = LN. [25] In this analysis, we consider stationary density
+depletions/striations strongly aligned in the direction of the magnetic field lines. Because of self-focusing the wave is channelled into the striation and as a result the pump beam is trapped in the depletion region. The form of the depletion and the initial width of the beam trapped into the depletion depend on the amplitude of the pump wave electric field. When a beam is incident on a plane boundary of a nonlinear medium, it becomes focused over the entire cross section when the total power is P > Pst, where the Pst is the power of a stationary beam in the nonlinear medium and is inversely proportional to the width of the beam [Talanov, 1965]. The relation between the intensity and the width of the beam can be considered as the relation between the pressure p and volume V in an adiabatic process pV2  const. Thus with the growth of the beam intensity, the width of the beam decreases [Gurevich et al., 2002, Figure 2]. If the beam is tilted toward the magnetic field, the main part of the beam propagates along the field lines that results in a stronger focusing of the beam with a smaller width of the focused region compared to the case of the vertically incident beam.
+[26] In the general case, the formation of the field-aligned density depletions and self-focusing are nonlinear processes which develop self-consistently, and during the nonlinear evolution these processes can initiate various instabilities occurring in the F region of the ionosphere.
+4. Two-Dimensional Simulation Results
+[27] Let us now discuss the solutions for the differential equations (4) –(6) for the generation and evolution of the density irregularities due to self-focusing. The sets of parameters chosen for these simulations are for the F region at the SURA HF facility [Tereshchenko et al., 2004]. The facility transmitted radiation ($90 MW, E0 $ 0.21 V/m) either vertically (g = 0°) or in the direction tilted by 12° to
+
+5 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+the south (g = 12°) toward the geomagnetic field line
+
+direction. In this case, the angle between the magnetic
+
+field direction and vertical is about a = 19°. Under typical
+
+F region conditions for an HF heating experiment
+
+[Tereshchenko et al., 2004] in the reflection region of the
+
+O wave, the pump wave frequency w = 2p Á 4.3 MHz,
+
+the electron cyclotron frequency we = 2p Á 1.3 MHz, the effective electron collision frequency ne0 = 500 sÀ1, and Te0 =
+
+1105À080q°Kﬃdﬃ.ﬃTﬃﬃeﬃTﬃ0ﬃﬃÀhﬃﬃweﬃﬃﬃ2ﬃﬃpﬃþﬃﬃlﬃaﬃnﬃsﬃﬃ2emﬃ0ﬃﬃÁﬃaﬃ
+
+field estimated with V/m for d $ 10À4 is
+
+Ep = about
+
+4.2 Á Ep $
+
+0.4 V/m, E0 $ Ep. For the plasma density, we consider a linear model with the scale length L = 20 km.
+
+[28] In our simulations, the size of the box in the x
+
+direction Lx = 14.4 km is larger than the box size in the vertical z direction Lz = 5.4 km in order to resolve the wave pattern in z and bunch-scale density irregularities in x. The grid sizes are Dx $ 115 m and Dz $ 10.5 m so that there are about 6 points per wavelength in the z direction. In our
+
+simulations, the intensity of the incident radiation is given at
+
+the lower boundary along which the boundary condition is
+
+applied. The incident intensity is considered as a sum of the
+
+upward and the downward propagating waves, and by
+
+eliminating the unknown amplitude of the downward prop-
+
+agating wave, the mixed Dirichlet-Neumann boundary
+
+condition which accounts for the amplitude and the phase
+
+of the upward going wave is derived [Gondarenko et al.,
+
+2004]. The top boundary is approximated with about 2
+
+wavelength PML layer to absorb the outgoing energy. In
+
+order to avoid reflection from the side boundaries, the PML
+
+layers with a 10-point length are applied at the right and left
+
+sides of the domain. The implementation of the Maxwellian
+
+formulation of the PML technique to approximate the
+
+absorbing boundaries is discussed by Gondarenko et al.
+
+[2004]. In the case of a tilted beam, the reflecting boundary
+
+is used at the upper boundary to approximate the reflection
+
+at the higher level. It has been discussed by Gondarenko et
+
+al. [2003] that in the oblique incidence case, a small part of
+
+the electromagnetic energy can be transferred through
+
+the critical layer V = 1, the O mode reflection layer, to the
+
+higher reflection level, V = 1 + Y, which is out of the computational box. Here V = wp2e/w2 and Y = We/w, where
+wpe is the electron plasma frequency.
+[29] For the temperature and density at the lower and
+
+upper boundaries, we have the Neumann boundary con-
+
+ditions by setting the gradient of the perturbed temperature
+
+and density along the magnetic field lines to be zero. In the
+
+x direction, we use a periodic boundary condition for the
+
+density and the Dirichlet boundary condition for the per-
+
+turbed temperature. Our initial conditions are the following:
+
+the temperature is uniform in the box, the density has linear variation in z, N(z) = 1 + (z À zc)/L, where L is the scale length of the density inhomogeneity and zc is the critical layer at which the local plasma frequency matches the given
+
+wave frequency. We initialize the perturbed density in the small region in z ($50 m above and below the critical layer)
+
+as a superposition of 8 sine modes in the x direction with random phases and overall amplitude of $1%.
+
+[30] In Figures 2a – 2e we show the contours of the
+density fluctuations dNe = NÀ hNix, the electron temperature fluctuations dTe, the amplitude of the total electric field jEj, and the density N = N0 + dNe at five time instances t =
+
+0.4, 9.96, 45.8, 124.92, and 275.16 ms, respectively. The
+
+electric field plots in Figure 2a demonstrates the Airy
+
+pattern formed by the reflection of the O mode. One can
+
+see that the swelling (an increase in the field strength of the
+
+first few maxima of the electric field) due to the effect of the
+
+geomagnetic field is significant. The field amplitude
+
+increases by a factor of 10. The electric field is perturbed in the vicinity of the critical layer (at $2.7 km) due to the presence of the small-scale density irregularities dNe and as a result of the self-focusing instability. At this time, the
+
+waves of higher-intensity heat the plasma at the localized
+
+regions and small temperature perturbations dTe appear. The density perturbations become elongated in the direction of
+
+the magnetic field due to transport processes. Because the
+
+changes in the ionization balance at this time are insignif-
+
+icant and the averaged value of the density perturbations is less than $1%, the changes in the plasma density are not
+
+apparent on the density contours shown in Figure 2a.
+
+[31] At a later time t = 9.96 ms, one can observe
+
+significant changes in the scale sizes and amplitudes of
+
+the density and temperature perturbations. As localized
+
+regions of the perturbed density and temperature diffuse
+
+both above and below the original O mode reflection layer
+
+along the magnetic field, the temperature fluctuations increase while the plasma density is depleted dNe = N À N0 < 0. The diffusion of heat into the over-dense plasma reduces
+
+the density in the region above the critical layer allowing the
+
+heater wave to propagate upward that results in the shift of
+
+the original O wave reflection point as seen in Figure 2b. It
+
+has been demonstrated by Gurevich [1965] that the reflec-
+
+tion point shifts upward into the interior of the plasma when
+
+the electron concentration decreases under the influence of
+
+the alternating electric field of the wave. According to his
+
+estimation, the shift of the reflection point increases with
+
+decreasing the electron concentration gradient in the unperturbed plasma (de/dz)0 and is largest as (de/dz)0 ! 0:
+
+Dz
+
+¼
+
+À 1:89 E0
+
+=Ep
+
+Á4=3=ðde=dzÞ0
+
+:
+
+ð15Þ
+
+[32] In Figure 2c at t = 45.8 ms, one can observe a modulation in the electric field pattern and wavy density structures occurring due to the formation of four fieldaligned striations with the minimal amplitude inside striations of $5%. During the nonlinear evolution, the density and temperature fluctuations spread more uniformly along the magnetic field lines and evolve into two bunchscale structures (Figure 2d, t = 124.92 ms). Finally, at t = 275.16 ms (Figure 2e) the bunches of the field-aligned striations have formed with the transverse scale size of $3.6 km, which is on the order of an analytical estimation obtained with equation (12). The magnitudes of the averaged densitqy ﬃaﬃﬃnﬃﬃﬃdﬃﬃﬃﬃﬃtﬃeﬃﬃmﬃﬃﬃﬃpﬃﬃeﬃﬃrﬃﬃaﬃﬃture flucqtuaﬃﬃtﬃiﬃoﬃﬃﬃnﬃﬃsﬃﬃﬃﬃﬃ(ﬃtﬃﬃhﬃﬃeﬃﬃﬃﬃﬃrﬃoﬃﬃﬃot mean square) h hðÁNe=N Þ2izix and h hðÁTe=Te0Þ2izix are about 7.8% and 53.7%, respectively. The maximal temperature inside bunches of striations is $1.6 Te0. The amplitude of the electric field is reduced when compared with the electric field at the earlier time t = 0.4 ms. The absorption of the field is estimated as A(dB) = 10 log(E0/E). For this case, A $ 2.2 dB.
+[33] Our next simulations in Figures 3a – 3e are for the case when the pump beam is tilted by 12° toward
+
+6 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+Figure 2. Contours of the electron temperature and density fluctuations, amplitude of the total electric field, and density N = N0 + dNe for g = 0°, a = 19°, ne0 = 500 sÀ1 at five times: (a) t = 0.4 ms, (b) t = 9.96 ms, (c) t = 45.8 ms, (d) t = 124.92 ms, and (e) t = 275.16 ms.
+7 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+Figure 3. Contours of the electron temperature fluctuation dTe, density fluctuation dNe, amplitude of the total electric field jEj, and density N = N0 + dNe for g = 12°, a = 19°, ne0 = 500 sÀ1 at five times: (a) t = 0.4 ms, (b) t = 11 ms, (c) t = 41 ms, (d) t = 191.28 ms, and (e) t = 347.28 ms.
+8 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+Figure 4. Time evolution of maxima dTe/Te0 and minima dNe/N0 inside striations for ne0 = 500 sÀ1, (a) g = 0° and (b) g = 12°.
+the magnetic field direction as in the experiment by Tereshchenko et al. [2004]. It is seen in Figure 3a that self-focusing starts at the critical layer as in the case of normal incidence. However, the field amplitude in Figure 3a is smaller than that in Figure 2a. Since the path which the wave traverses in the tilted beam case is longer than the vertical incidence path, the loss on reflection reduces the field amplitude near the O mode reflection layer. Also, as it has been discussed by Gondarenko et al. [2003] for the oblique incidence, there is partial reflection at the critical layer, the O wave is partly transmitted to the second reflection layer V = 1 + Y. In the tilted beam case, the Airy wave pattern is smeared out and swelling increases the field amplitude only by a factor of 4. As a consequence, the magnitude of the temperature perturbations in Figure 3a is smaller than that in Figure 2a. At this earlier time, the magnitude of the density irregularities which start to diffuse along the field line is small so that no changes are observed in the density contours.
+[34] At the next time t = 11 ms (Figure 3b), the density and temperature irregularities have undergone a significant evolution, which is quite different from the normal incidence case. One interesting feature to observe is that the heating occurs mostly in the under-dense region. The depth of the depletions continue to decrease in this region, so that the reduction of the density occur mostly below the O mode reflection layer where the heat energy source is concentrated. Thus the wave cannot propagate above the critical layer and the shift of the original O wave reflection point is not observed in Figure 3b. Another interesting feature is that the number of filamentary structures in temperature contours is greater than that for the case in Figure 2b. There are about 10 field-aligned structures with
+
+the transverse scale size of $1 km in Figure 3b. At this moment, the field amplitude is slightly reduced and the magnitude of the field perturbations decreases with a decrease in the magnitude of the density perturbations. At a later time, t = 41 ms, the striations are heated further, mostly in the under-dense plasma. In this region, with an increase of the temperature in the striations, the depths of the density depletions increase and the minimum amplitude of the depletions reaches $2%. The field amplitude begins to increase in the localized regions near the reflection layer. As time progresses, the original density and temperature perturbations evolve into six field-aligned bunches of striations (Figure 3d, t = 191.28 ms), which at a later time (Figure 3e, t = 347.28 ms) form five bunch-scale structures with the transverse scale size of $1.8 km. The maximal depth of the depletions is $10%. At t = 347.28 ms (Figure 3e), the enhancement of the field by a factor of two compared to the electric field at the critical layer at t = 0.4 ms is caused by an increase in the amplitude of the Ez component of the electric field due to the generation of plasma waves at the resonance layer near the O mode reflection layer shifted upward.
+[35] At this time, the magnitudes of the averaged density and temperature fluctuations are about 5.4% and 23.9%, respectively. The maximal temperature inside the bunches of striations is Te $ 1.24 Te0.
+[36] We note that in both cases shown in Figures 2 and 3 the growth of the perturbations slows down at the late time of evolution. In Figures 4a and 4b we show the time evolution of the maximal dTe/Te0 and minimal dNe/N0 inside bunches of striations for the cases of vertical incidence g = 0°, and when the pump beam is tilted toward the magnetic field direction (g = 12°), respectively.
+[37] The reduction in growth of temperature perturbations in Figure 4a and 4b is due to the fact that Te is inversely proportional to the characteristic scale of the transport process along the field lines LT as follows from the solution of equation (10): Te $ E02/LT. The electrical thermal conductivity coefficient increases with increasing electron temperature: Dek $ Te5/2. The longitudinal heat conductivity length also increases: LT = (Dek/dn)1/2 $ Te5/4. In a strong field E02 > Ep2 this causes a slowing of the growth of electron temperature and, consequently, of the density perturbations [Gurevich, 1978].
+[38] It has been discussed by Gondarenko et al. [2003] that in a cold plasma model, the inclusion of absorption (the effective electron collision frequency ne0) into the model resolves singularity occurring when the wave approaches resonance layer V1 near the O mode reflection layer so that absorption can be interpreted as conversion of electromagnetic waves into electrostatic waves. The refractive index is modified by collisions between the electrons and heavy particles, and the wave undergoes absorption as at each collision some energy is transferred from the wave to the neutral particles. In the absence of absorption, the refractive index goes to infinity at V1.
+[39] The solutions of the nonlinear system (4) – (6) obtained for ne0 = 103 sÀ1 are shown in Figures 5 and 6 for the vertical incidence and tilted beam cases, respectively. In the normal incidence case (Figure 5a), the field amplitude has not been reduced significantly compared to that in Figure 2a with ne0 = 500 sÀ1 because in the latter case,
+
+9 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+Figure 5. Contours of the electron temperature fluctuation dTe, density fluctuation dNe, amplitude of the total electric field jEj, and density N = N0 + dNe for g = 0°, a = 19°, ne0 = 103 sÀ1 at two times: (a) t = 0.4 ms and (b) t = 354 ms.
+
+the frequency ne0 is only two times larger. However, a decrease in the transport coefficients (which are inversely proportional to the collision frequency ne0) results in a significant increase of electron temperature because the heat diffuses more slowly. At the later phase of the nonlinear evolution (Figure 5b, t = 354 ms), one field-aligned bunchscale structure is formed with a large temperature inside structure, Te $ 2.1 Te0 and the averaged density perturbations $9.7%. The field pattern and density are modified noticeably as seen in contours for jEj and N in Figure 5b. The field amplitude is absorbed by $1.8 dB. The changes in transport coefficients affect the nonlinear evolution of the density perturbations so that in this case (Figure 5b), the reduction in the density is slower than that in the former case in Figure 2e. As a result, the shift of the original reflection layer for simulations with ne0 = 103 sÀ1 is slowing down.
+[40] In the tilted beam case with increased collision frequency (Figure 6b), the stronger heating due to changes in transport coefficients results in generation of a greater number of field-aligned bunches of striations comparing with the tilted beam case with ne0 = 500 sÀ1 in Figure 3e. One can observe about 7 bunch-scale structures with scale sizes of about 1 km and with the magnitudes of the averaged density fluctuations of about 4.6%. The maximal temperature inside bunches of striations is Te $ 1.46 Te0. In this simulation at the earlier phase of the evolution, the heating occurs mostly in the under-dense region as it has been observed in the tilted beam case in Figures 3b and 3c. The enhancement of the field amplitude at the depletion near the reflection layer is smaller when compared to the case with a
+
+lower collision frequency in Figure 3e. Although ne20/w2 ( 1, the absorption is considerable near the resonance region V1. As expected, the amplitude of Ez component of the electric field for the tilted beam case in Figure 6b decreases with increasing electron collisions.
+[41] The decrease in the field strength at the localized depletion region near the reflection layer results in smaller amplitude of the density perturbations. The reduction in the density is smaller than that in Figure 3e and the shift of the original reflection layer for simulations with ne0 = 103 sÀ1 is insignificant. In Figure 7 we display the time evolution of the maximal dTe/Te0 inside bunches of striations for simulations shown in Figure 5 (solid circles) and Figure 6 (open circles). One can see that in the normal incidence case, the temperature perturbations are almost saturated to the quite large value of dTe/Te0 while in the tilted beam case, the stabilization has not occurred yet and the value of dTe/Te0 at t $ 300 ms is smaller compared with g = 0° simulations. It has been noted by Gurevich et al. [1995] that the stabilization resulting from the nonlinear growth of transport coefficients with temperature is possible only for large enough values of dTe/Te0 > 1.6. In our simulations this value is reached for the normal incidence case at time scales of a few hundreds of milliseconds.
+5. Discussions
+[42] Let us now compare the results of our simulations with recent observations by Tereshchenko et al. [2004] using scintillation measurements for detecting artificial density disturbances produced by the SURA HF facility.
+
+10 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+Figure 6. Contours of the electron temperature fluctuation dTe, density fluctuation dNe, amplitude of the total electric field jEj, and density N = N0 + dNe for g = 12°, a = 19°, ne0 = 103 sÀ1 at two times: (a) t = 0.4 ms and (b) t = 302.24 ms.
+
+These observations demonstrate that a high number of bunch-scale irregularities occur near the magnetic zenith direction. The observed spectra by Tereshchenko et al. [2004, Figure 4] have been computed in the spectral frequency range between 0.1 and 25 Hz with the spectral slopes in the frequency range of about 1– 10 Hz, which is equivalent to scales 0.2– 2 km. The observed spectral slopes are shallower near the magnetic zenith direction with the minimal values 1.6 – 1.8 in the interval approximately corresponding to the region covered by the antenna beam (which is 5°– 10° from the magnetic zenith direction) and the slopes become steeper, reaching the maximal value 3.2– 3.5, with receding from the magnetic zenith.
+[43] In Figure 8 the density fluctuations and the corresponding spectra computed from our simulations shown in Figures 2e, 3e, 5b, and 6b at the later phase of the development of the irregularities. The density fluctuations dNe/N are taken near the reflection layer. The density fluctuation spectra have been computed in the interval kx 2 [0.436, 23.5] kmÀ1 ($14.4 –0.267 km in scale size) with the spectral slopes determined in the interval $7.21 – 0.66 km in scale size. It is evident from our simulations that the spectral slope is shallower when the pump beam is directed to the magnetic zenith (g = 12° or 7° from the zenith) while for the normal incidence, the slopes are steeper. One can see that there is a local maximum in the spectrum in Figure 8a at k$3.05 kmÀ1 which corresponds to a wavelength of $2.06 km ($1.8 km in Figure 8c). This can be interpreted as the dominant scale size, the scale size of the depletions. At wave numbers higher than that corresponding to the dominant scale size,
+
+the fluctuation spectrum falls rapidly which is associated with the finite gradient in the edges of striations. The peak in the power spectrum (Figure 8a) corresponds to the separation scale between the bunch-scale structures where dNe/N > 0. For normal incidence (Figures 8b and 8d), a maximum in the spectrum at k $ 1.74 kmÀ1 ($3.6 km in scale size) is the dominant scale size at which the spectrum falls rapidly with increasing wave numbers.
+[44] It is important to note that formation and evolution of the striations show marked differences in two cases of incidence (g = 12° and g = 0°). In the tilted beam case
+Figure 7. Time evolution of maxima dTe/Te0 inside striations for ne0 = 103 sÀ1 and g = 0° (solid circles) and g = 12° (open circles).
+
+11 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+Figure 8. Amplitudes and power spectra of dNe/N for ne0 = 500 sÀ1, (a) g = 12° and (b) g = 0°, and for ne0 = 103 sÀ1, (c) g = 12° and (d) g = 0°.
+
+during the early phase of the evolution (tens of milliseconds after the heater turn-on), the heating occurs mostly below the heater reflection layer that causes a rapid development of the density irregularities in this region. These disturbances can penetrate from the critical layer downward to the upper hybrid layer where they can be amplified by the resonance instability. The resonance instability can be exited in the presence of small-scale irregularities ($10 m or less in scale sizes) that results in the strong ohmic heating of electrons in the focused region due to anomalous absorption of a pump wave. However, the modelling of the resonance instability requires a significant increase in the resolution in the x direction, which is beyond the limits of the present simulations. At the later phase of the evolution, the enhancement in the electric field is observed in the localized regions at the shifted O mode reflection layer, where the pump wave is trapped and focused inside depletions. The field enhancement may exceed the threshold for the parametric decay instability leading to the excitation of Langmuir waves and generation of strong turbulence.
+[45] For the normal incidence case in the early phase, the heating occurs both above and well below the reflection height. The enhancement in the field is strong and the parametric instability near the reflection layer can be excited. At the same time, the resonance instability can be initiated once the small-scale striations reach the upper hybrid layer. However, at a later time when bunch-scale field-aligned structures are formed, absorption reduces the amplitude of the field. For high pump frequencies, absorption would not be so strong [Gurevich et al., 2002] and the parametric instability could be excited.
+6. Conclusions
+[46] We have presented the 2-D numerical model for the thermal self-focusing instability represented by a system of nonlinear equations for the evolution of electron tempera-
+
+ture and plasma density coupled with the full-wave model for HF radio waves propagating in inhomogeneous magnetized plasmas. The full-wave model is utilized for simulating the propagation of waves that are totally or partially reflected from the ionosphere and allows us to describe the process of linear conversion of electromagnetic waves into electrostatic waves. We have demonstrated that irregularities generated and developed due to a local heating of the anisotropic ionosphere plasma are (4 – 10%) density depletions with a strong enhancement of electron temperature inside the depletions (Te % (1.2 – 2.1)Te0) elongated along the magnetic field lines. The characteristics of the simulated density and temperature irregularities are in a good agreement with the theories by Gurevich et al. [1995, 1998, 2002]. During the nonlinear evolution of the self-focusing instability, the reflection point of the ordinary wave is shifted upward with decreasing electron concentration and the bunching of striations is observed. We have investigated a self-consistent development of the density and temperature perturbations for the normal incidence of the pump beam and when a beam is directed toward the magnetic zenith direction. In these two directions, the formation and evolution of the irregularities show marked differences. When a beam is tilted to the direction of the magnetic field, a number of field-aligned bunch-scale structures with scale sizes of $1.8 – 2 km increase and the electric field is amplified in the localized regions at the shifted O mode reflection layer, where the pump wave is trapped and focused inside the bunches of striations. For the normal incidence, the larger bunch-scale structures and absorption of the pump wave energy on bunching striations are observed. The spectral characteristics of the simulated density fluctuations are consistent with the observed spectral characteristics by Tereshchenko et al. [2004]. The nonlinear effects observed in the modelling of midlatitude experiments are expected to be intensified in the simulations with high-latitude parameters. Numerical studies with
+
+12 of 13
+
+A09304
+
+GONDARENKO ET AL.: GENERATION OF DENSITY IRREGULARITIES
+
+A09304
+
+higher resolution are required to investigate the nonlinear effects observed in the high-latitude ionosphere.
+[47] Acknowledgments. This research was supported by the Office
+of Naval Research and in part by the HAARP program.
+[48] Arthur Richmond thanks Michael Rietveld and another reviewer
+for their assistance in evaluating this paper.
+References
+Basu, S., S. Basu, A. L. Johnson, J. A. Klobuchar, and C. M. Rush (1980), Preliminary results of scintillation measurements associated with ionospheric heating and possible implications for the solar power satellite, Geophys. Res. Lett., 7, 609.
+Basu, S., S. Basu, P. Stubbe, H. Kopka, and J. Waaramaa (1987), Daytime scintillations induced by high-power HF waves at Tromso, Norway, J. Geophys. Res., 92, 11,149.
+Basu, S., E. Costa, R. C. Livingston, K. M. Groves, H. C. Carlson, P. K. Chaturvedi, and P. Stubbe (1997), Evolution of subkilometer scale ionospheric irregularities generated by high-power HF waves, J. Geophys. Res., 102, 7469.
+Bernhardt, P. A. (2002), The modulation of sporadic-E layers by KelvinHelmholtz billows in the neutral atmosphere, Atmos. Sol. Terr. Phys., 64, 1487 – 1504.
+Bernhardt, P. A., and L. M. Duncan (1982), The feedback-diffraction theory of ionospheric heating, J. Atmos. Terr. Phys., 4, 1061.
+Bernhardt, P. A., and L. M. Duncan (1987), The theory of ionospheric focused heating, J. Atmos. Terr. Phys., 49, 1107.
+Bernhardt, P. A., C. A. Tepley, and L. M. Duncan (1989), Airglow enhancements associated with plasma cavities formed during ionospheric heating experiments, J. Geophys. Res., 94, 9071.
+Bernhardt, P. A., et al. (1995), The ionospheric focused heating experiment, J. Geophys. Res., 100, 17,331.
+Bra¨ndstro¨m, B. U. E., T. B. Leyser, A˚ . Steen, M. T. Rietveld, B. Gustavsson, T. Aso, and M. Ejiri (1999), Unambiguous evidence of HF pumpenhanced airglow at auroral latitudes, Geophys. Res. Lett., 26, 3561 – 3564.
+Djuth, F. T., M. P. Sulzer, and J. H. Elder (1990), High resolution observations of HF-induced plasma waves in the ionosphere, Geophys. Res. Lett., 17, 1893.
+Duncan, L. M., and R. A. Behnke (1978), Observations of self-focusing electromagnetic waves in the ionosphere, Phys. Rev. Lett., 41, 998.
+Farley, D. T., C. LaHoz, and J. A. Fejer (1983), Studies of the self-focusing instability at Arecibo, J. Geophys. Res., 88, 2093.
+Fejer, J. A., M. P. Sulzer, and F. T. Djuth (1991), Height dependence of the observed spectrum of radar backscatter from HF-induced ionospheric Langmuir turbulence, J. Geophys. Res., 96, 15,985.
+Frolov, V. L., L. M. Erukhimov, S. A. Metelev, and E. N. Sergeev (1997), Temporal behaviour of artificial small-scale ionospheric irregularities: Review of experimental results, J. Atmos. Terr. Phys., 59, 2317.
+Ginzburg, V. L. (1970), The Propagation of Electromagnetic Waves in Plasmas, Elsevier, New York.
+Gondarenko, N. A., P. N. Guzdar, G. M. Milikh, A. S. Sharma, K. Papadopoulos, and S. L. Ossakow (1999), Spatio-temporal development of filaments due to the thermal self-focusing instability near the critical surface in ionospheric plasmas, Izv. Vyssh. Uchebn. Zaved Radiofiz., 7, 670.
+Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt (2003), Linear mode conversion in inhomogeneous magnetized plasmas during ionospheric modification by HF radio waves, J. Geophys. Res., 108(A12), 1470, doi:10.1029/2003JA009985.
+Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt (2004), Perfectly matched layers for radio wave propagation in inhomogeneous magnetized plasmas, J. Comput. Phys., 194, 481 – 504.
+Gurevich, A. V. (1965), Penetration of an electromagnetic wave into a plasma with account of non-linearity, Sov. Phys. JETP, 21, 462 – 466, Engl. Transl.
+Gurevich, A. V. (1978), Nonlinear Phenomena in the Ionosphere, Springer, New York.
+
+Gurevich, A. V., A. V. Lukyanov, and K. P. Zybin (1995), Stationary state of isolated striations developed during ionospheric modification, Phys. Lett. A, 206, 247.
+Gurevich, A. V., T. Hagfors, H. Carlson, A. N. Karashtin, and K. Zybin (1998), Self-oscillations and bunching of sriations in ionospheric modifications, Phys. Lett. A, 239, 385.
+Gurevich, A. V., K. P. Zybin, H. C. Carlson, and T. Pedersen (2002), Magnetic zenith effect in ionospheric modifications, Phys. Lett. A, 305, 264 – 274.
+Guzdar, P. N., P. K. Chaturvedi, K. Papadopolous, M. Keskenin, and S. L. Ossakow (1996), The self-focusing instability in the presence of density irregularities in the ionosphere, J. Geophys. Res., 101, 2453.
+Guzdar, P. N., P. K. Chaturvedi, K. Papadopoulos, and S. L. Ossakow (1998), The thermal self-focusing instability near the critical surface in the high-latitude ionosphere, J. Geophys. Res., 103, 2231.
+Isham, B., C. LaHoz, H. Kohl, T. Hagfors, T. Leyser, and M. Rietveld (1996), Recent EISCAT heating results using chirped ISR, J. Atmos. Terr. Phys., 58, 369.
+Isham, B., M. T. Rietveld, T. Hagfors, C. La Hoz, E. Mishin, W. Kofman, T. B. Leyser, and A. P. Van Eyken (1999), Aspect angle dependence of HF enhanced incoherent backscatter, Adv. Space Res., 24, 1003.
+Istomin, Y. N., and T. B. Leyser (1997), Small-scale magnetic field-aligned density irregularities excited by a powerful electromagnetic wave, Phys. Plasmas, 4, 817.
+Kelley, M. C., T. L. Arce, J. Saloway, M. Sulzer, T. Armstrong, M. Carter, and L. Duncan (1995), Density depletions at the 10-m scale induced by the Arecibo heater, J. Geophys. Res., 100, 367.
+LaHoz, C. (1982), Studies of the self-focusing instability during ionospheric heating experiments, Ph.D. thesis, Cornell Univ., Ithaca, N. Y.
+Lundborg, B., and B. Thide (1986), Standing wave pattern of HF radio wave in the ionospheric reflection region: 2. Applications, Radio Sci., 21, 486.
+Migulin, V. V. (1997), Investigations of ionospheric modifications in Russia, J. Atmos. Terr. Phys., 59, 2253.
+Pedersen, T., M. McCarrick, E. Gerken, C. Selcher, D. Sentman, H. Carlson, and A. Gurevich (2003), Magnetic zenith enhancement of HF radio-induced airglow production at HAARP, Geophys. Res. Lett., 30(4), 1169, doi:10.1029/2002GL016096.
+Rietveld, M. T., M. J. Kosch, N. F. Blagoveshchenskaya, V. A. Kornienko, T. B. Leyser, and T. K. Yeoman (2003), Ionospheric electron heating, optical emissions, and striations induced by powerful HF radio waves at high latitudes: Aspect angle dependence, J. Geophys. Res., 108(A4), 1141, doi:10.1029/2002JA009543.
+Sulzer, M. P., and J. A. Fejer (1994), Radar spectral observations of HF-induced ionospheric Langmuir turbulence with improved range and time resolution, J. Geophys. Res., 99, 15,035.
+Talanov, V. I. (1965), Self focusing of wave beams in nonlinear media, JETP Lett., 2, 138 – 141, Engl. Transl.
+Tereshchenko, E. D., B. Z. Khudukon, A. V. Gurevich, K. P. Zybin, V. L. Frolov, E. N. Myasnikov, N. V. Muravieva, and H. C. Carlson (2004), Radio tomography and scintillation studies of ionospheric electron density modification caused by a powerful HF-wave and magnetic zenith effect at mid-latitudes, Phys. Lett. A, 325, 381.
+Utlaut, W. F. (1970), An ionospheric modification experiment using very high power, high frequency transmission, J. Geophys. Res., 75, 6402.
+Vas’kov, V. V., A. V. Gurevich, and A. N. Karashtin (1981), Thermal selffocusing instability of plasma waves near resonance, Geomagn. Aeron., 21, 724.
+Yampolski, Y. M., V. S. Beley, S. B. Kascheev, A. V. Koloskov, V. G. Somov, D. L. Hysell, B. Isham, and M. C. Kelley (1997), Bistatic HF radar diagnostics induced field-aligned irregularities, J. Geophys. Res., 102, 7461.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+N. A. Gondarenko, IREAP, University of Maryland, College Park, MD 20742, USA. (ngondare@umd.edu)
+G. M. Milikh, Department of Astronomy, University of Maryland, College Park, MD 20742, USA. (milikh@astro.umd.edu)
+S. L. Ossakow, Plasma Physics Division, Naval Research Laboratory, Washington, DC 20375-5346, USA. (ossakow@ccs.nrl.navy.mil)
+
+13 of 13
+

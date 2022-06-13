@@ -1,0 +1,329 @@
+JOURNAL OF GEOPHYSICAL RESEARCH, VOL. 109, A09301, doi:10.1029/2004JA010504, 2004
+
+Plasma patch structuring by the nonlinear evolution of the
+gradient drift instability in the high-latitude ionosphere
+N. A. Gondarenko and P. N. Guzdar
+Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, Maryland, USA
+Received 26 March 2004; revised 27 May 2004; accepted 23 June 2004; published 4 September 2004.
+[1] Results from the three-dimensional nonlinear simulations of the gradient drift instability to study structuring in high-latitude plasma patches are presented. Simulations demonstrate that the existence of the mesoscale structures (10 km to 100 m) on both leading and trailing edges and inside a patch is due to (1) the nonlinear development of the gradient drift instability (GDI) or due to (2) occasional reversal of the direction of convection. The high-resolution simulation data have a dynamic range that allows us to make detailed comparisons with the observed density and velocity fluctuation spectra. We use the measured ion density and horizontal velocity data from the Dynamic Explorer 2 (DE 2) spacecraft examined by Kivanc¸ and Heelis [1997] to compare them with our simulations. Density structures in the leading and trailing edges of patches have been examined, and comparison of statistical characteristics of the average density gradient on these edges with those in the work by Coley and Heelis [1998] has been performed. The dynamics and evolution of the density fluctuations over the realistic time scale are shown, thereby providing a significant evidence of the existence of the GDI at high latitudes as a structure-generating mechanism and a first principle understanding of the hierarchy of the instabilities involved in the observed structuring in high-latitude plasma patches. INDEX TERMS: 2439 Ionosphere: Ionospheric irregularities; 2475 Ionosphere: Polar
+cap ionosphere; 7843 Space Plasma Physics: Numerical simulation studies; 7863 Space Plasma Physics: Turbulence; KEYWORDS: plasma patch structuring, 3-D nonlinear simulations, gradient-drift instability, irregularities in high-latitude plasma patches
+Citation: Gondarenko, N. A., and P. N. Guzdar (2004), Plasma patch structuring by the nonlinear evolution of the gradient drift instability in the high-latitude ionosphere, J. Geophys. Res., 109, A09301, doi:10.1029/2004JA010504.
+
+1. Introduction
+[2] The observation of the plasma structures associated with polar cap ionization patches and primarily focused on the mesoscale structures have been reported by Weber et al. [1984, 1986], Basu et al. [1990], and more recently by Kivanc¸ and Heelis [1997, 1998] and Coley and Heelis [1998]. These mesoscale irregularities with scale sizes ranging from a few tens of kilometers to tens of meters are embedded in the large-scale structures referred to as patches and auroral blobs with scale sizes of hundreds of kilometers. The observations of these plasma structures have been reviewed by Tsunoda [1988], Crowley [1996], and Basu and Valladares [1999]. According to a conventional definition from these reviews and modeling studies [Schunk and Sojka, 1987; Sojka et al., 1993, 1997; Basu et al., 1995], a patch can have densities with amplitudes of 2 to 10 over the background, drift antisunward with velocities of few hundreds meters per second, and convect to long distances, $3000 km [Weber et al., 1986], for long periods of time (hours), retaining its distinct identity and integrity. Recently, Coley and Heelis [1995] introduced a quantitative
+Copyright 2004 by the American Geophysical Union. 0148-0227/04/2004JA010504
+
+definition of the patches for the identification and characterization of these density structures.
+[3] The occurrence of the mesoscale structures can be attributed to the naturally occurring plasma instabilities like the gradient drift instability (GDI). There are a number of the observational studies providing convincing evidence that the GDI is operating at high latitudes [Cerisier et al., 1985; Basu et al., 1988a; Weber et al., 1984, 1986]. Density spectral characteristics of the gradient drift instability, associated with polar cap ionization patches, were reported by Basu et al. [1988b]. Later, Basu et al. [1990] provided the detailed description of the simultaneous density and electric field fluctuation spectra in two directions parallel and perpendicular to the antisunward direction of convection.
+[4] An earlier numerical model of the interchange E Â B instability, which has been proposed by Keskinen and Ossakow [1982, 1983] to be a source of the density and electric field fluctuations in the high-latitude ionosphere, was developed by Keskinen and Huba [1990]. Numerical studies of the nonlinear evolution of the interchange E Â B instabilities at high latitudes with scale-size-dependent magnetospheric coupling by Keskinen and Huba [1990] provided theoretical spectral indices for the density and electric field fluctuations in the directions parallel and perpendicular to the spacecraft trajectory, which were com-
+
+A09301
+
+1 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+pared with the spectral slopes of the measured data by Basu et al. [1990]. Although these spectral characteristics were generally in agreement with the observations, the dynamics and evolution of the fluctuations over the realistic time scale were not produced with the above model [Keskinen and Huba, 1990]. Chaturvedi and Huba [1987] demonstrated with their linear theory that the inclusion of dynamics along the field line resulted in the reduction of the growth rate and stabilization at long wavelengths that affected the structuring process. The inclusion of the three-dimensional (3-D) effects into our model [Guzdar et al., 1998] resulted in slowing down the structuring so that the evolution occurred on time scales comparable to the observations. The effects of parallel dynamics and the inertial effects [Gondarenko and Guzdar, 1999], which are responsible for the generation of the secondary Kelvin-Helmholtz (KH) and tertiary shearflow instabilities, prevent the patch from disintegrating for hours. It was shown [Gondarenko and Guzdar, 2001] that anisotropy prevailed in the density and velocity spectra and the ion-inertial effects tend to isotropize the spectra as was predicted in the simulation study by Mitchell et al. [1985].
+[5] Most recently, Gondarenko and Guzdar [2004] have studied the magnitudes and spectral characteristics of the density and electric field fluctuations obtained with the 3-D model of the nonlinear evolution of the GDI and subsequent secondary instabilities. In the directions parallel and perpendicular to convection, the similarities in spectral slope distributions of both simulated [Gondarenko and Guzdar, 2004] and observed [Basu et al., 1990] density and electric field fluctuations were demonstrated. The amplitudes of the simulated density fluctuations DN/N and the relation between the magnitudes of the electric field DE and DN/N were found to be in agreement with the measured characteristics reported by Basu et al. [1990]. It was shown in the simulations [Gondarenko and Guzdar, 2004] that the density fluctuation amplitude could be as large as 10– 20% and the corresponding electric field fluctuations were less than a few millivolts per meter as was observed by Basu et al. [1990].
+[6] Although spectral characteristics of the observed plasma structures are found to be consistent with those provided by the numerical simulations of the GDI [Gondarenko and Guzdar, 2004], it is understood that there are various structure-producing mechanisms at high latitudes. The investigation of the averaged irregularity amplitudes and spectral indices can help to identify the dominant mechanism of the mesoscale structuring. However, the variety of the observed structuring characteristics in plasma patches leads to uncertainty which mechanism is dominant in the generation of the density DN/N and velocity DV fluctuations. Using a quantitative patch definition [Coley and Heelis, 1995], Kivanc¸ and Heelis [1997] identified four groups of the patches based on their structuring characteristics. They are (1) fully structured patches, (2) patches with structure only on the edges, (3) patches with only one structured edge, and (4) unstructured patches. Furthermore, the majority of the patches belonged to the first two categories.
+[7] It is thought that the existence of a significant asymmetry between the trailing edge and leading edge of the patches is due to the gradient drift instability, and the other source mechanism like stirring or turbulent mixing
+
+[Kintner and Seyler, 1985] will produce structures on both gradients so that there will be no preferential asymmetry between the two edges of the patch. Kivanc¸ and Heelis [1997] noted that it is difficult to draw conclusions regarding the structure-generating mechanism without considering the convection histories of patches, which can help to identify the observed edges as a leading or trailing. Also, they proposed to use the quantitative comparison of power in DN/N and DV for determining the level of structure on the patch edges, and when the structuring occurred on the gradient of both signs, they found it in contradiction with the existence of the primary GDI. However, the asymmetry in the structuring of the patch edges as well as the presence of the large-scale density gradient could not be the only necessary requirements in identifying the GDI as a dominant mechanism. For instance, the observations of largeamplitude density fluctuations without the presence of a significant density gradient can be explained with the latetime nonlinear evolution of the GDI when the highly structured original large-scale gradient is not seen [Tsunoda, 1988]. Similarly, the symmetry in the observed structuring scale sizes of the patch edges can be explained with the latetime GDI evolution when the structuring occurs on the leading edge. Kivanc¸ and Heelis [1997, 1998] investigated kilometer-size structures in patches to conduct statistical studies of patches convecting in the antisunward direction. Although they found supportive evidence for the E Â B drift instability operating in the polar cap region, the existence of small-scale structures on the edges of the patch were explained with dominant stirring. They concluded that the patch cases when the irregularities are present on the leading edge of the patch and inside a patch could be more readily explained with the turbulent mixing structureproducing mechanism.
+[8] Gondarenko et al. [2003] have demonstrated that by taking into account the temporal character of the convection velocity and the variable ionospheric collisionality, the large variability in the observed features of the structures can be produced. It was shown that the structuring characteristics of plasma patches are strongly influenced by variable drive since the GDI, which depends on the magnitude and direction of the flow velocity, is the primary instability that causes the structuring. If the flow velocity (a combination of the E Â B and neutral wind velocity) changes the direction of convection, structuring initially occurring on the trailing edge of the patch develops on the leading edge.
+[9] An important finding of our previous studies, first for the collisional GDI [Guzdar et al., 1998] when the basic structuring occurred in highly elongated ‘‘fingers’’ and next for the simulations with the ion inertial effects [Gondarenko and Guzdar, 1999, 2001, 2003] when the finger-like structures are unstable to secondary instabilities, is that the initial instability does develop on the trailing edge, but the irregularities do not remain localized on the edges of the plasma patch. In this study we demonstrate that the instability, in its full nonlinear development, penetrates through the entire patch and reaches the leading edge over the realistic time scale.
+[10] The purpose of this paper is to demonstrate that the enhanced level of structures on both edges of the plasma patches is due to the nonlinear evolution of the gradient drift instability and thus to provide another supporting evidence
+
+2 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+height) shown in Figure 1a. The electron continuity and the charge neutrality (‘‘vorticity’’) equations [Drake et al., 1988] with polarization drift terms representing the inertial effects give rise to three dimensionless parameters [Gondarenko and Guzdar, 1999, 2001] b, n, and R defined as
+
+b ¼ WeWi neinin
+
+L2?0 L2z0
+
+;
+
+n ¼ ninLn=Vn;
+
+and R ¼ Nmax=N0;
+
+Figure 1. Equilibrium density and ion-neutral collision frequency profiles (a) in the z direction and (b) density profile in the x direction.
+of the operating GDI as a primary structure-producing mechanism at high latitudes. We use the high-resolution data from our simulations to study spectral characteristics of the density and velocity mesoscale structures. These data obtained with our parallel 3-D finite-difference code have a dynamic range that allows us to make detailed comparisons with the observed spectral characteristics computed using in situ measurements of the DE 2 spacecraft [Kivanc¸ and Heelis, 1997].
+2. Three-Dimensional Simulations of Nonlinear Evolution of the GDI 2.1. Numerical Simulation Geometry
+[11] The basic geometry for the high-latitude plasma patch used in our 3-D nonlinear simulations is the following. The Earth’s field lines are vertical and aligned with the z axis. The Àx axis points antisunward, and the y axis is orthogonal to the x and z directions. For these simulations we have considered the whole patch with the leading and trailing edges. In the midnight-noon x direction, the size of the box is 400 km and in the dawn-dusk y direction, the box size is varied from 25 km to 100 km. The size of the patch in the z direction is 1100 km. In the x direction the initial density profile is given by a tanh function to model a localized patch (Figure 1b) and for the z dependence the Chapman function is used (Figure 1a). In our simulations we use the ion-neutral collision frequency profile with nin $ 0.1 sÀ1 at the height of the density peak (near the F peak
+
+where L?0 and Lz0 are the characteristic scale lengths of the patch in the directions transverse and parallel to the magnetic field, Ln is the density gradient scale length, Vn is the neutral wind velocity, and N0 is the density of the uniform background. For typical F-region parameters We $ 107rad/s; Wi $ 102rad/s; nei $ 103sÀ1; nin $ 0.1 sÀ1, and with the characteristic scale lengths L?0 = 8 km and Lz0 = 179 km, b $ 2 Â 104. The peak density is assumed to be two or three times the background density, R = 2 (R = 3) [Coley and Heelis, 1995]. The electron continuity and vorticity equations are solved numerically [Gondarenko and Guzdar, 1999, 2001, 2003], using our parallel 3-D finite-difference code. The vorticity equation has contributions from the ion cross field current (Pedersen and polarization drifts) and the parallel resistive electron current. The neutral wind has component parallel to the density gradient. The electric field ~E = Àrf, where f is the electrostatic potential. The equilibrium potential is zero. We initialize the perturbed density/potential as a superposition of 70 sin/cos modes in the y direction with random phases and overall amplitude of 0.1%. The simulations were performed on grids [512, 256, 52], [512, 512, 52], and [1024, 1024, 52] with grid sizes Dx = 0.784 km (0.392 km) and Dz = 22 km. In the y direction the grid size is increased accordingly with an increase in the size of the computational box, Dy = 0.098 km. The code has been run on the National Partnership for Advanced Computational Infrastructure (NPACI) parallel computer systems with maximal 1024 processors.
+2.2. Simulation Results
+[12] In the present study we discuss the results obtained from our nonlinear simulations of the GDI instability for two cases, representing the variable and constant flow velocities. In Figures 2a – 2d for these two cases, five isosurfaces of the initial patch densities (Figures 2a and 2b) and at the late-time phase of the nonlinear evolution (Figures 2c and 2d) are shown, respectively. Here the innermost surface represents the highest density and the outer is for the lowest. The initial patches are symmetric with the trailing edge on the right sides of the patches. For the case in Figures 2a and 2c we used the variable convection velocity. Note that primary gradient drift instability greatly depends on the magnitude and direction of the flow velocity. The convection velocity used in this simulation was obtained from the ionospheric module of the NRL global MHD code [Gondarenko et al., 2003]. The magnitude of the convection velocity was varying for a period of time between 1900 UT and 2300 UT and was as large as 1500 m/s. For the simulation run depicted in Figure 2c, the unperturbed patch (Figure 2a) was launched at 1920 UT, just about the time the direction of convection became sunward. The direction of flow velocity changes from the antisunward to the sunward directions at
+
+3 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+about 1930 UT. The sunward flow was sustained for $45 min after which the velocity made a number of excursions from the sunward to the antisunward directions in a period of 3 hours. For the case in Figures 2b and 2d the convection velocity was a constant in time with the magnitude of $1000 m/s.
+[13] Figures 2c and 2d show fully structured patches at t = 3.3 hours and t = 1.2 hours, respectively, when the structuring occurred on both edges and throughout the entire patch. The effect of the flow reversal is evident in Figure 2c, where the trailing edge is now on the leading left edge of the patch, while in Figure 2d the trailing edge remains on the right side of the patch. For the simulated case with the variable velocity, there is a clear asymmetry in the scale sizes of the density irregularities between the trailing and leading edges of the patch. The finger-like structures developed on the earlier phase due to the GDI are unstable to the secondary instabilities. These elongated fingers have much larger scale length in the x direction than that in the y direction because of the small width of the fingers. At a later time the secondary KH instability causes a breakup of these elongated fingers in the x direction that results in a direct cascade to the higher mode numbers. On the other hand, in the y direction, the irregularities evolve to a larger scale length. This migration to a longer scale length is the inverse-cascade process. The cascading of fluctuation scales in these two directions is determined by the complex interplay between the primary GDI and secondary instabilities. During the nonlinear evolution of the structuring, the irregularities with larger scales compared with the earlier phase develop on the trailing edge, since secondary instabilities and inverse cascade have taken place. When the flow velocity reverses, the irregularities with smaller scale sizes occur on the leading edge (now the trailing edge) similarly to the instability evolution at the earlier phase. The right edge (now the leading side) is longer with a larger density scale length due to the turbulence driven transport. Although stabilization is taking place on the right side of the patch (Figure 2c), the damping which depends on the density scale length is too weak to completely suppress the fluctuations. In this case, one can see the clear signature of the GDI instability viewed as an asymmetry in scale sizes when the trailing edge has a longer scale length compared with that of the leading edge. However, for the constant drive case, more symmetry in the scale sizes between the trailing and leading edges is observed, as can be seen in Figure 2d.
+[14] In Figures 3a – 3c and 4a – 4c we show the density evolution in the xy plane near the peak of the density profile in the z direction for the high-resolution simulations (D x = 0.392 km) of the 402 km patch with R = 2 and R = 3 at three different time instances t = 0.44, 0.9, and 1.8 hours and t = 0.44, 0.8, and 1.5 hours, respectively. One can see, as time progresses, the fluctuations evolve to a larger scale length that is the evidence of the inverse cascade nature of the instability. Finally, when the instability reaches the leading edge of the patch, the scale sizes of two edges become comparable so that an asymmetry in scale sizes is reduced. An important feature of the nonlinear 3-D evolution is that in this nonlinear late-time phase, even though the patch is fully structured, it is not disintegrated.
+[15] To demonstrate the differences in the density structures of the patch edges, we examine the average density
+
+gradients on the leading and trailing edges of the patches. In Figures 5a – 5c we show histograms of the logarithm of the leading/trailing gradient ratio obtained with 256, 512, and 1024 density cuts in the y direction for the variable drive case with R = 2 (Figure 2c), for the constant flow velocity cases with R = 3 (Figure 2d), and R = 2 (Figure 3c), respectively. In the first case the average value of the logarithm is 0.09, which corresponds to a leading/trailing gradient ratio of 1.24. For the latter cases the logarithm averages are 0.14 and 0.23 with corresponding leading/ trailing gradient ratio of 1.39 and 1.7. Obviously, for these cases, the leading edge tends to be steeper than the trailing edge. However, in the constant drive cases this tendency is more pronounced, partly because of the difference in the phases of the instability evolution. For the constant drive cases the leading edge just undergoes structuring, while in the variable drive case the structuring is significant in the leading (now trailing) edge after flow reversal. It was found from the observations [Coley and Heelis, 1998] that the median value for the leading gradient was approximately 67% larger than the median value for the trailing gradient. Also, the computed distribution of the logarithm of the leading/trailing gradient ratio for 72 observed patches by Coley and Heelis [1998, Figure 8] gives the average value of the logarithm 0.12, which corresponds to a leading/ trailing gradient ratio of $1.31. As one can see, our results are consistent with the ones obtained by Coley and Heelis [1998].
+[16] To conduct more detailed examination of the irregularities in the density along patch edges, we present lineouts of the density at the F peak and for an arbitrary cut in y. In Figures 6a – 6b and 7a –7c, density lineouts are plotted for the variable drive case shown in Figure 2c and for the constant drive case shown in Figure 2d, respectively. In Figure 6a the lineout demonstrates the highly structured left edge, which is now the trailing edge because of the reversal of the flow. Although Figure 6b is for the same instant of time, the lineout for this specific location in the y direction demonstrates more symmetry between two edges. Finally, for the constant drive case, the first two lineouts on Figures 7a and 7b are very asymmetric with the steeper leading edge in Figure 7a and with the steeper trailing edge in Figure 7b. However, for an arbitrary cut in the dawn-dusk y direction shown in Figure 7c, there is no general asymmetry in the density profile. Note that lineouts in Figures 7a – 7c are for the same instant of time. Hence one can see that just within one single event and without the reversal of the flow velocity, at least two of four different patch morphologies categorized by Kivanc¸ and Heelis [1997] have been observed in the simulations.
+[17] To compare our numerical results with the observations, we present Figure 8a with a 500-km segment of the density from the DE 2 satellite by Kivanc¸ and Heelis [1997, Figure 1b] and Figure 8d with a 700 km density lineout constructed from our high-resolution simulations for the constant drive cases with R = 3 and R = 2. Also, for arbitrary cuts in the y direction, Figures 8b– 8c are for R = 3 and Figure 8e is for R = 2. The observed density lineout was for the midnight-noon satellite direction. The simulated density lineouts demonstrate characteristics similar to those from the observations. In these lineouts, very steep density drops are associated with the edges of the high-density regions
+
+4 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Figure 2. Density isosurfaces for the variable drive case at (a) t = 0 and (c) t = 3.3 hours and for the constant drive case at (b) t = 0 and (d) t = 1.2 hours. In our simulations the right side of the patch is associated with the trailing edge of the patch.
+
+representing the irregularities while they propagate to the region of low density during the nonlinear evolution of the primary GDI. With these similarities in the observed and simulated density lineouts, we would expect the spectral characteristics of the density in the midnight-noon direction to be in very good agreement with the observations.
+[18] Note that the observational data obtained from the DE 2 satellite are interpreted as one-dimensional cuts
+
+through the ionosphere. Thus there is no precise way of determining the two-dimensional geometry of the patch. However, in the work of Basu et al. [1990], the detailed description of the density and electric field spectra in two directions parallel and perpendicular to the antisunward convection was provided. Although their high-resolution data were not sampled simultaneously in two orthogonal directions, the provided statistical information on density and electric field spectral indices can demonstrate the spectral behavior in these two directions. It was concluded by the authors [Basu et al., 1990] that it is important to consider the magnitudes of the density and electric field perturbations as well as their spectral shape in order to
+
+Figure 3. Density contour R = 2 at (a) t = 0.44 hours, Figure 4. Density contour R = 3 at (a) t = 0.44 hours,
+
+(b) t = 0.9 hours, and (c) t = 1.8 hours.
+
+(b) t = 0.8 hours, and (c) t = 1.5 hours.
+
+5 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Figure 5. Histograms of the logarithm of the leading/trailing gradient ratio (a) for the variable drive and (b) – (c) for constant drive cases shown in Figures 2d and 3c.
+
+determine the type of the instability. The high-resolution data from our simulations were compared with the observations of the simultaneous density DN/N and electric field DE fluctuations in the directions parallel and perpendicular to the plasma patch convection [Basu et al., 1990]. Our recent results [Gondarenko and Guzdar, 2004] demonstrated the similarities in the spectral slope distributions of both simulated and observed density and electric field spectra in the directions parallel and perpendicular to convection. The magnitudes of the simulated density and electric field fluctuations were found to be in agreement with the measured data. In Table 1 we present a comparison of spectral indices of the simulated DN/N and DE and spectral characteristics of the measured DE 2 data [Basu et al., 1990]. Shown are the mean values of the numerically computed distributions of spectral indices of DN/N and DE [Gondarenko and Guzdar, 2004].
+[19] In the present manuscript we show the power spectra of the density and velocity fluctuations in Figures 9a – 9b and Figures 10a– 10d, respectively. The dotted lines in these Figures correspond to the variable drive case with R = 2 shown in Figure 2c, the solid lines are for the constant drive case with R = 3 shown in Figure 2d, and the dashed lines are for the high-resolution case (R = 2) in Figure 3c. Using the detrending process, the density and electric field fluctuation spectral slopes were determined for the high-resolution case ([1024, 1024, 52]). One can see that the power spectra for the density irregularities as a function of kx are found to fall off as kxÀ1.67 in the interval kx 2 [0.16, 1.6] (Figure 9a), and the spectral index in the y direction is $À2.3 in the interval k 2 [0.625, 4.5] (Figure 9b). Note that the fluctuation levels for the constant drive case with R = 3 (solid line in Figure 9a) are higher than those for the cases with
+
+different initial density gradient R = 2 as was expected.
+
+However, in all three cases the power in the lower mode
+
+numbers for both kx and ky dominates the spectra as a result of the inverse cascade process in the evolution of the
+
+instabilities [Gondarenko and Guzdar, 2001]. For the
+
+variable drive case (dotted line in Figure 9a) there is an
+
+increase in the fluctuation level of the density spectrum in
+
+the interval kx 2 [0.16, 1.]. This can be explained by the reversal of the flow direction and by the onset of the
+
+secondary Kelvin-Helmholtz instability that causes a direct
+
+cascade to the higher mode numbers. When the flow
+
+velocity reverses, the elongated fingers develop on the
+
+leading edge and similarly to the initial evolution of the
+
+instability, the irregularities with smaller scale sizes occur
+
+since the KH instability breaks up these elongated fingers
+
+in the x direction. This results in a direct cascade to the
+
+higher mode numbers and in an increase in the energy
+
+level in the above kx intervarl. ﬃDﬃﬃTﬃﬃﬃhﬃﬃeﬃﬃﬃﬃﬃmﬃﬃﬃﬃaﬃﬃgﬃﬃnﬃEﬃﬃiﬃtﬃudes of the
+
+averaged density fluctuation
+
+ðDN =N Þ2 x for these
+y
+
+three cases are $7.4%, 20.5%, and 9.8%, respectively.
+
+Again, if we compare the power spectra for the simulated
+
+(our Figure 9a) and observed [Basu et al., 1990, Figure 5]
+
+density irregularities in the midnight-noon direction in the
+
+range 40-4 km in scale size, the agreement is very good.
+
+[20] In the dawn-dusk direction the spectral slopes of the
+
+density and electric field fluctuations were computed in the
+
+range 10– 1.6 km in scale size. Note that the density slope
+
+from the observations [Basu et al., 1990, Figure 13] was
+
+derived in the range from 8 km to 800 m in scale size. The
+
+asymmetry in the electric field spectra in the midnight-noon
+
+and dawn-dusk directions has been reported by Basu et al.
+
+[1990]. One important feature of our simulations is that the
+
+electric field fluctuation spectrum is steeper in the y direc-
+
+Figure 6. Density lineouts (at the F peak in z and an Figure 7. Density lineouts (at the F peak in z and an
+
+arbitrary cut in y) for the variable drive.
+
+arbitrary cut in y) for a constant drive.
+
+6 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Figure 8. Density lineouts (a) 500 km segment of data observed by Kivanc¸ and Heelis [1997] and simulations for a constant drive (b) – (c) R = 3, (e) R = 2, and (d) 700 km segment obtained from simulations for the constant drive cases with R = 3 and R = 2.
+
+tion (DVx in Figure 10b) than that in the x direction (DVy in Figure 10c). For the variable drive case as well as constant drive cases (Figures 10c – 10d), power spectra of the velocity vy display a strong asymmetry for both kx and ky spectra. Again as shown for the density spectra for the variable drive case, there is an increase in the energy level for the higher modes that demonstrates the evidence of the direct cascade process. However, since the vy velocity spectrum represents the shear flow, the high k fluctuations are suppressed by the rapid phase mixing due to the shear flow. Thus the inverse cascade dominates in the evolution of the instabilities as seen from ky spectra. The spectral indices of vy spectra in the x and y directions are $À1.5 and $À2.5, respectively. The spectral index for the horizontal velocity obtained from the 2-s segment (16 km) of the data examined by Kivanc¸ and Heelis [1997] is $À2.278.
+[21] The difference in the spectral slopes for the simulated (Figure 9b) and observed [Basu et al., 1990, Figure 13] DN/ N fluctuations in the dawn-dusk direction could be caused by the initial conditions for the density which is uniform in y and has a large gradient in the x direction that results in the intrinsic difference between the x and y directions to start with. Also, since the damping of the shear flow and KH instabilities depends on the ion-neutral collisions, the shear flow generation is reduced with nin = 0.1 sÀ1 at the F peak and the dominant GDI produces the structures with different scale lengths in the x and y directions. It was shown [Gondarenko and Guzdar, 1999, 2001] that with the smaller ion-neutral collisions, stronger shear flow was produced. A similar asymmetry in spectral indices is seen for the velocity fluctuations DVx and DVy in the x and y directions. The Vy velocity represents the shear flow. When the instabilities spread in the x direction, multiple shear layers are produced. In the y direction the spectral slope of the shear velocity fluctuations is steeper than that of the DVx fluctuations since the shear flow leads to a faster energy transfer to higher k where dissipation dominates. The Vx spectra are dominantly affected by the inverse cascade process, while the Vy spectra
+
+cascade toward larger scales more slowly. Although the inertial effects could result in the production of more isotropic structures in the xy plane, a complete isotropization of the spectra due to the inertial effects would not be possible because of the intrinsic asymmetry between the x direction of convection and the y direction of quasi-periodic variations of the structures.
+Figure 9. Power spectra of the density fluctuations versus (a) kx and (b) ky for (dotted line) the variable drive case with R = 2 shown in Figure 2c, (solid line) the constant drive case with R = 3 shown in Figure 2d, and (dashed line) the constant drive case with R = 2 shown in Figure 3c.
+
+7 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Table 1. Comparison of Spectral Indices Computed From Simulations of the GDI Instability and Measured DE 2 Data
+
+Numerical Simulationsa
+
+Results From Observations
+
+DN/N
+DEx DEy
+
+kx 1.77 ± 0.03 1.53 ± 0.03 2.21 ± 0.02
+
+1.9 ± 0.1 1.9 ± 0.1
+
+DN/N
+
+ky 2.27 ± 0.05
+
+1.9 ± 0.1
+
+DEy
+
+2.33 ± 0.06
+
+1.9 ± 0.1 2.3 ± 0.1 3.3 ± 0.1
+
+DEx
+
+2.52 ± 0.07
+
+aMean values and standard deviations of the means.
+
+[22] As discussed in the previous section, it is thought that the GDI will produce structures on the trailing edge of the patch, while the stirring is expected to produce structures on gradients of either sign so that the leading edge as well as trailing edge would be structured. Also, Coley and Heelis [1998] observed intermediate scale ($15 km) irregularities on both edges of the patches. They found that the irregularity level is only slightly higher on the trailing edge of the patch than that on the leading edge. Kivanc¸ and Heelis [1997, 1998] investigated kilometer-size structures in patches to demonstrate the existence of structure on both leading and trailing edges. For the density irregularities, the largest observed value of the power spectral density (PSD) at 6 Hz ($1.3 km) was À4.5 and À7 was the lowest. The existence of structures on the edges was identified by using the level of structures À6 in PSD as an indicator. To investigate the level of structures in the simulated patch edges, we divided our patch into 32-km segments and a spectral analysis was performed on each segment. The
+
+values of PSD in DN/N at $4.6 km scale size were recorded. In Figures 11a – 11d and 11e – 11h, we show the values of parameters derived for each 32-km segment of the patches at three different time instances for R = 3 and R = 2, respectively. The corresponding densities are shown in Figures 3a – 3c and Figures 4a – 4c. The upper panels (Figures 11a and 11e) show the mean values of the density in each segment. The lower panels display the PSD at 4.6 km in the density and velocity fluctuations. The solid horizontal lines in these Figures at À5.5, À2.5, and À2 are plotted to help compare the fluctuation levels for the patches at different time instances. One can see that in the earlier phase of the evolution, at about t = 0.44 hours (dash-dotted lines), when the instability is developed on the trailing edge, the density irregularity PSD is under À7 for most of the patch except for a narrow part of the patch represented by segments 6 – 10. As time progresses, the high-level structures occur on the major part of the patch (dashed lines, segments 4 – 12). Finally, in the late phase of the evolution at t = 1.5 (1.8) hours, the structures occur on the leading edges due to the nonlinear evolution of the primary GDI (solid lines). Thus the existence of structures on the gradient of both signs and the observed symmetry in the scale sizes of the patches could be explained by the late-time GDI evolution. Also note that at a later time the large-amplitude density fluctuations are developed while the original large-scale density gradient is significantly reduced as occasionally seen in observations [Tsunoda, 1988].
+[23] We now investigate the changes in spectral indices of the density and velocity irregularities during the nonlinear evolution of the primary GDI, subsequent secondary Kelvin-Helmholtz, and tertiary shear-flow instabilities. We use high-resolution simulations for the case shown in
+
+Figure 10. Power spectra of the velocity fluctuations DVx and DVy versus ((a) and (c)) kx and ((b) and (d)) ky for (dotted line) the variable drive case with R = 2 shown in Figure 2c, (solid line) the constant drive case with R = 3 shown in Figure 2d, and (dashed line) the constant drive case with R = 2 shown in Figure 3c.
+8 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Figure 11. ((a) and (e)) Mean values of the density, and power spectral densities ((b) and (f)) of the densities and ((c) and (d)), ((g) and (h)) velocities for the constant drive cases with R = 3 and R = 2 shown in Figures 4a, 3a at t = 0.44 hours (dash-dotted lines), Figures 4b, 3b at t = 0.8(0.9) hours (dashed lines), and Figures 4c, 3c at t = 1.5(1.8) hours (solid lines).
+
+Figures 3a – 3c (R = 2) at three time instances t = 0.89 hours, t = 1.33 hours, and t = 1.78 hours. Figures 12a – 12c and 12d –12f show the distributions of spectral indices computed for each 32-km segment in the x direction and averaged over 5-km segment in the y direction, resulting in $240 indices for the density DN/N and the dawn-dusk component of the velocity DVy fluctuations, respectively. In these segments the spectral slopes in the range 16-2 km in scale size were recorded. The dotted lines in Figures 12a– 12f show the distributions for the leading edges only, and the dashed lines are for the trailing edges of the patches. In Figure 3a the irregularity propagation in the x direction is caused by the primary GDI, although by this time instant the secondary KH instability has taken place. As a consequence, a clear shift toward larger spectral indices for DN/N in the distribution of the leading edges is seen (Figure 12a). At a later time the instabilities propagate further, which is demonstrated with shallower spectral indices of the trailing edge. However, in the leading edge distribution there is an increase for the smaller spectral slopes, indicating that the instability occurs on the leading edge. Finally, when the structuring develops on the leading edge, the spectral index distribution of the DN/ N trailing edges becomes more symmetric. The total distribution of spectral indices is shifted toward smaller indices as the distribution of the leading edges shifts toward shallower indices and becomes more similar to the trailing edge distribution (Figure 12c). Now there is only a slight shift
+
+toward higher indices for the leading edges as was observed by Kivanc¸ and Heelis [1997, Figure 8b]. Similarly, the corresponding distributions of the trailing and leading edges of DVy become more identical, demonstrating more symmetry in scale sizes of the patch edges.
+3. Conclusions
+[24] In conclusion, we have studied the nonlinear evolution of the primary gradient drift instability and subsequent secondary Kelvin-Helmholtz and tertiary shear-flow instabilities, using our three-dimensional nonlinear simulations of the structuring in high-latitude plasma patches. We have demonstrated that the existence of the mesoscale structures on the edges and inside a patch is due to (1) the nonlinear development of the gradient drift instability which occurs initially on the trailing edge and penetrates through the entire patch or due to (2) occasional reversal of the direction of convection. The high-resolution simulations obtained with our parallel 3-D code have a dynamic range that allows us to make detailed analysis of the structures of the patch edges. The simulated density and velocity fluctuation spectral characteristics were compared with the observed ion density and horizontal velocity data from the DE spacecraft examined by Kivanc¸ and Heelis [1997]. Investigating the density structures in the leading and trailing edges of patches, we demonstrated that the leading edge tends to be steeper than
+
+9 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Figure 12. Histograms of spectral slopes of DN/N and DVy at ((a) and (d)) t = 0.44 hours, ((b) and (e)) t = 0.9 hours, and ((c) and (f)) t = 1.8 hours for the constant drive case with R = 2 shown in Figures 3a – 3c.
+
+the trailing edge as was found by Coley and Heelis [1998]. We showed that irregularity levels on the trailing and leading edges become comparable in the later phase of the nonlinear evolution of the instabilities which develop over the realistic range of time scale in our simulations. The existing symmetry in the observed structuring scale sizes of the patch edges could be explained with the primary structure-producing GDI instability, therefore providing more evidence for coexistence of the gradient drift instability as a primary instability and subsequent secondary Kelvin-Helmholtz and tertiary shear flow instabilities involved in the structuring of high-latitude plasma patches.
+[25] Acknowledgments. This research was supported by the NSF
+under grant ATM-0122874 and in part by the NSF cooperative agreement ACI-9619020 through computing resources provided by the NPACI San Diego Supercomputer Center and Pittsburgh Supercomputer Center.
+[26] Arthur Richmond thanks W. Coley and M. J. Keskinen for their
+assistance in evaluating this paper.
+References
+Basu, S., Su. Basu, J. J. Sojka, R. W. Schunk, and E. MacKenzie (1995), Macroscale modeling and mesoscale observations of plasma density structures in the polar cap, Geophys. Res. Lett., 22, 881 – 884.
+Basu, Su., and C. Valladares (1999), Global aspects of plasma structures, J. Atmos. Sol. Terr. Phys., 61, 127.
+Basu, Su., S. Basu, E. MacKenzie, P. F. Fougere, W. R. Coley, N. C. Maynard, J. D. Winningham, M. Sugiura, W. B. Hanson, and W. R. Hoegy (1988a), Simultaneous density and electric field fluctuation spectra associated with velocity shears in the auroral oval, J. Geophys. Res., 93, 115.
+
+Basu, Su., S. Basu, E. J. Weber, and W. R. Coley (1988b), Case study of polar cap scintillation modeling using DE-2 irregularity measurements at 800 km, Radio Sci., 23, 545.
+Basu, Su., S. Basu, E. MacKenzie, W. R. Coley, J. R. Sharber, and W. R. Hoegy (1990), Plasma structuring by the gradient drift instability at high latitudes and comparison with velocity shear driven processes, J. Geophys. Res., 95, 7799.
+Cerisier, J. C., J. J. Berthelier, and C. Beghin (1985), Unstable density gradient in the high-latitude ionosphere, Radio Sci., 20, 755.
+Chaturvedi, P. K., and J. D. Huba (1987), The interchange instability in high latitude plasma blobs, J. Geophys. Res., 92, 3357.
+Coley, W. R., and R. A. Heelis (1995), Adaptive identification and characterization of polar ionization patches, J. Geophys. Res., 100, 23,819.
+Coley, W. R., and R. A. Heelis (1998), Structure and occurrence of polar ionization patches, J. Geophys. Res., 103, 2201.
+Crowley, G. (1996), Critical Review on Ionospheric Patches and Blobs, Rev. of Radio Sci., vol. 1, Oxford Univ. Press, New York.
+Drake, J. F., M. Mulbrandon, and J. D. Huba (1988), Three-dimensional equilibrium and stability of ionospheric plasma clouds, Phys. Fluids, 31(11), 3412.
+Gondarenko, N. A., and P. N. Guzdar (1999), Gradient drift instability in high latitude plasma patches: Ion inertial effects, Geophys. Res. Lett., 26, 3345.
+Gondarenko, N. A., and P. N. Guzdar (2001), Three-dimensional structuring characteristics of high-latitude plasma patches, J. Geophys. Res., 106, 24,611.
+Gondarenko, N. A., and P. N. Guzdar (2003), Structure of turbulent irregularities in high-latitude plasma patches: 3D nonlinear simulations, in Disturbances in Geospace: The Storm-Substorm Relationship, Geophys. Monogr. Ser., vol. 142, edited by A. S. Sharma, Y. Kamide, and G. S. Lakhina, p. 205, AGU, Washington, D. C.
+Gondarenko, N. A., and P. N. Guzdar (2004), Density and electric field fluctuations associated with the gradient drift instability in the highlatitude ionosphere, Geophys. Res. Lett., 31, L11802, doi:10.1029/ 2004GL019703.
+Gondarenko, N. A., P. N. Guzdar, J. J. Sojka, and M. David (2003), Structuring of high latitude plasma patches with variable drive, Geophys. Res. Lett., 30(4), 1165, doi:10.1029/2002GL016437.
+
+10 of 11
+
+A09301
+
+GONDARENKO AND GUZDAR: STRUCTURING IN HIGH-LATITUDE PATCHES
+
+A09301
+
+Guzdar, P. N., N. A. Gondarenko, P. K. Chaturvedi, and S. Basu (1998), Three-dimensional nonlinear simulations of the gradient drift instability in the high latitude ionosphere, Radio Sci., 33, 1901.
+Keskinen, M. J., and J. D. Huba (1990), Nonlinear evolution of highlatitude ionospheric interchange instabilities with scale-size-dependent magnetospheric coupling, J. Geophys. Res., 95, 15,157.
+Keskinen, M. J., and S. L. Ossakow (1982), Nonlinear evolution of convecting plasma enhancements in the auroral ionosphere: 1. Long wavelength irregularities, J. Geophys. Res., 87, 144.
+Keskinen, M. J., and S. L. Ossakow (1983), Nonlinear evolution of convecting plasma enhancements in the auroral ionosphere: 2. Small-scale irregularities, J. Geophys. Res., 88, 474.
+Kintner, P. M., and C. E. Seyler (1985), The status of observations and theory of high latitude ionospheric and magnetospheric plasma turbulence, Space Sci. Rev., 41, 91.
+Kivanc¸, O¨ ., and R. A. Heelis (1997), Structures in ionospheric number density and velocity associated with polar cap ionization patches, J. Geophys. Res., 102, 307.
+Kivanc¸, O¨ ., and R. A. Heelis (1998), Spatial distribution of ionospheric plasma and field structures in the high-latitude F region, J. Geophys. Res., 103, 6955.
+Mitchell, H. G., J. A. Fedder, M. J. Keskinen, and S. T. Zalesak (1985), A simulation of high latitude F-layer instabilities in the presence of magnetosphere-ionosphere coupling, Geophys. Res. Lett., 12, 283.
+
+Schunk, R. W., and J. J. Sojka (1987), A theoretical study of the lifetime and transport of large ionospheric density structures, J. Geophys. Res., 92, 12,343.
+Sojka, J. J., M. D. Bowline, R. W. Schunk, D. T. Decker, C. E. Valladares, R. Sheehan, D. N. Anderson, and R. A. Heelis (1993), Modeling polar cap F-region patches using time varying convection, Geophys. Res. Lett., 20, 1783.
+Sojka, J. J., R. W. Schunk, M. D. Bowline, J. Chen, S. Slinker, and J. Fedder (1997), Driving a physical ionospheric model with a magnetospheric MHD model, J. Geophys. Res., 102, 22,209.
+Tsunoda, R. T. (1988), High-latitude F region irregularities: A review and synthesis, Rev. Geophys., 26, 719.
+Weber, E. J., J. Buchau, J. G. Moore, J. R. Sharber, R. C. Livingston, J. D. Winningham, and B. W. Reinisc (1984), F layer ionization patches in the polar cap, J. Geophys. Res., 89, 1683.
+Weber, E. J., J. A. Klobuchar, J. Buchau, H. C. Carlson Jr., R. C. Livingston, O. de la Beaujardiere, M. McCready, J. G. Moore, and G. J. Bishop (1986), Polar cap F patches: Structure and dynamics, J. Geophys. Res., 91, 12,121.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+N. A. Gondarenko and P. N. Guzdar, Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, MD 20742, USA. (ngondare@umd.edu; guzdar@glue.umd.edu)
+
+11 of 11
+

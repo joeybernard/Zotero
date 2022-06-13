@@ -1,0 +1,1792 @@
+Feynman Diagrams for Beginners∗
+Krešimir Kumericˇki†
+Department of Physics, Faculty of Science, University of Zagreb, Croatia
+
+arXiv:1602.04182v1 [physics.ed-ph] 8 Feb 2016
+
+Abstract
+We give a short introduction to Feynman diagrams, with many exercises. Text is targeted at students who had little or no prior exposure to quantum ﬁeld theory. We present condensed description of single-particle Dirac equation, free quantum ﬁelds and construction of Feynman amplitude using Feynman diagrams. As an example, we give a detailed calculation of cross-section for annihilation of electron and positron into a muon pair. We also show how such calculations are done with the aid of computer.
+
+Contents
+
+1 Natural units
+
+2
+
+2 Single-particle Dirac equation
+
+4
+
+2.1 The Dirac equation . . . . . . . . . . . . . . . . . . . . . . . . . 4
+
+2.2 The adjoint Dirac equation and the Dirac current . . . . . . . . . 6
+
+2.3 Free-particle solutions of the Dirac equation . . . . . . . . . . . . 6
+
+3 Free quantum ﬁelds
+
+9
+
+3.1 Spin 0: scalar ﬁeld . . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+3.2 Spin 1/2: the Dirac ﬁeld . . . . . . . . . . . . . . . . . . . . . . . 10
+
+3.3 Spin 1: vector ﬁeld . . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+4 Golden rules for decays and scatterings
+
+11
+
+5 Feynman diagrams
+
+13
+
+∗Notes for the exercises at the Adriatic School on Particle Physics and Physics Informatics, 11
+– 21 Sep 2001, Split, Croatia
+†kkumer@phy.hr
+
+1
+
+2
+
+1 Natural units
+
+6 Example: e+e− → µ+µ− in QED
+
+16
+
+6.1 Summing over polarizations . . . . . . . . . . . . . . . . . . . . 17
+
+6.2 Casimir trick . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+
+6.3 Traces and contraction identities of γ matrices . . . . . . . . . . . 18
+
+6.4 Kinematics in the center-of-mass frame . . . . . . . . . . . . . . 20
+
+6.5 Integration over two-particle phase space . . . . . . . . . . . . . . 20
+
+6.6 Summary of steps . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+
+6.7 Mandelstam variables . . . . . . . . . . . . . . . . . . . . . . . . 22
+
+Appendix: Doing Feynman diagrams on a computer
+
+22
+
+1 Natural units
+To describe kinematics of some physical system or event we are free to choose units of measure of the three basic kinematical physical quantities: length (L), mass (M) and time (T). Equivalently, we may choose any three linearly independent combinations of these quantities. The choice of L, T and M is usually made (e.g. in SI system of units) because they are most convenient for description of our immediate experience. However, elementary particles experience a different world, one governed by the laws of relativistic quantum mechanics.
+Natural units in relativistic quantum mechanics are chosen in such a way that fundamental constants of this theory, c and , are both equal to one. [c] = LT −1, [ ] = M L−2T −1, and to completely ﬁx our system of units we specify the unit of energy (M L2T −2):
+1 GeV = 1.6 · 10−10 kg m2 s−2 ,
+approximately equal to the mass of the proton. What we do in practice is:
+• we ignore and c in formulae and only restore them at the end (if at all)
+• we measure everything in GeV, GeV−1, GeV2, . . .
+
+Example: Thomson cross section
+Total cross section for scattering of classical electromagnetic radiation by a free electron (Thomson scattering) is, in natural units,
+
+8πα2
+
+σT = 3m2e .
+
+(1)
+
+To restore and c we insert them in the above equation with general powers α and β, which we determine by requiring that cross section has the dimension of area
+
+1 Natural units
+
+3
+
+(L2):
+
+8πα2 σT = 3m2e
+
+αcβ
+
+(2)
+
+[σ]
+
+=
+
+L2
+
+=
+
+1 M
+
+2
+
+(M
+
+L2T
+
+−1
+
+)α(LT
+
+−1)β
+
+⇒ α = 2 , β = −2 ,
+
+i.e.
+
+σT
+
+=
+
+8πα2 3m2e
+
+2
+c2
+
+=
+
+0.665
+
+·
+
+10−24 cm2
+
+=
+
+665 mb
+
+.
+
+(3)
+
+Linear independence of and c implies that this can always be done in a unique way.
+
+Following conversion relations are often useful:
+
+1 fermi = 5.07 GeV−1 1 GeV−2 = 0.389 mb 1 GeV−1 = 6.582 · 10−25 s
+1 kg = 5.61 · 1026 GeV 1 m = 5.07 · 1015 GeV−1 1 s = 1.52 · 1024 GeV−1
+
+Exercise 1 Check these relations.
+
+Calculating with GeVs is much more elegant. Using me = 0.511·10−3 GeV
+
+we get
+
+σT
+
+=
+
+8πα2 3m2e
+
+=
+
+1709 GeV−2
+
+=
+
+665 mb
+
+.
+
+(4)
+
+right away.
+
+Exercise 2 The decay width of the π0 particle is
+
+1
+
+Γ = = 7.7 eV.
+
+(5)
+
+τ
+
+Calculate its lifetime τ in seconds. (By the way, particle’s half-life is equal to τ ln 2.)
+
+4
+
+2 Single-particle Dirac equation
+
+2 Single-particle Dirac equation
+
+2.1 The Dirac equation
+
+Turning the relativistic energy equation
+
+E2 = p2 + m2 .
+
+(6)
+
+into a differential equation using the usual substitutions
+
+∂
+
+p → −i∇ , E → i ,
+
+(7)
+
+∂t
+
+results in the Klein-Gordon equation:
+
+( + m2)ψ(x) = 0 ,
+
+(8)
+
+which, interpreted as a single-particle wave equation, has problematic negative energy solutions. This is due to the negative root in E = ± p2 + m2. Namely, in relativistic mechanics this negative root could be ignored, but in quantum physics one must keep all of the complete set of solutions to a differential equation.
+In order to overcome this problem Dirac tried the ansatz∗
+
+(iβµ∂µ + m)(iγν∂ν − m)ψ(x) = 0
+
+(9)
+
+with βµ and γν to be determined by requiring consistency with the Klein-Gordon equation. This requires γµ = βµ and
+
+γµ∂µγν∂ν = ∂µ∂µ ,
+
+(10)
+
+which in turn implies
+
+(γ0)2 = 1 , (γi)2 = −1 ,
+
+{γµ, γν} ≡ γµγν + γνγµ = 0 for µ = ν .
+
+This can be compactly written in form of the anticommutation relations
+
+1 0 0 0 
+
+{γµ, γν} = 2gµν ,
+
+gµν
+
+=
+
+  
+
+0 0
+
+−1 0
+
+0 −1
+
+0 0
+
+ 
+
+.
+
+
+
+(11)
+
+0 0 0 −1
+
+These conditions are obviously impossible to satisfy with γ’s being equal to usual numbers, but we can satisfy them by taking γ’s equal to (at least) four-by-four matrices.
+∗ ansatz: guess, trial solution (from German Ansatz: start, beginning, onset, attack)
+
+2 Single-particle Dirac equation
+
+5
+
+Now, to satisfy (9) it is enough that one of the two factors in that equation is
+
+zero, and by convention we require this from the second one. Thus we obtain the
+
+Dirac equation:
+
+(iγµ∂µ − m)ψ(x) = 0 .
+
+(12)
+
+ψ(x) now has four components and is called the Dirac spinor. One of the most frequently used representations for γ matrices is the original
+Dirac representation
+
+γ0 =
+
+10 0 −1
+
+γi =
+
+0 σi −σi 0
+
+,
+
+(13)
+
+where σi are the Pauli matrices:
+
+σ1 =
+
+01 10
+
+σ2 =
+
+0 −i i0
+
+σ3 =
+
+10 0 −1
+
+.
+
+(14)
+
+This representation is very convenient for the non-relativistic approximation, since then the dominant energy terms (iγ0∂0 − . . . − m)ψ(0) turn out to be diagonal.
+Two other often used representations are
+• the Weyl (or chiral) representation — convenient in the ultra-relativistic regime (where E m)
+• the Majorana representation — makes the Dirac equation real; convenient for Majorana fermions for which antiparticles are equal to particles
+(Question: Why can we choose at most one γ matrix to be diagonal?)
+
+Properties of the Pauli matrices:
+
+σi† = σi
+
+(15)
+
+σi∗ = (iσ2)σi(iσ2)
+
+(16)
+
+[σi, σj] = 2i ijkσk
+
+(17)
+
+{σi, σj} = 2δij
+
+(18)
+
+σiσj = δij + i ijkσk
+
+(19)
+
+where ijk is the totally antisymmetric Levi-Civita tensor ( 123 = 231 = 312 = 1, 213 = 321 = 132 = −1, and all other components are zero).
+
+Exercise 3 Prove that (σ · a)2 = a2 for any three-vector a.
+
+6
+
+2 Single-particle Dirac equation
+
+Exercise 4 Using properties of the Pauli matrices, prove that γ matrices in the Dirac representation satisfy {γi, γj} = 2gij = −2δij, in accordance with the anticommutation relations. (Other components of the anticommutation relations, (γ0)2 = 1, {γ0, γi} = 0, are trivial to prove.)
+Exercise 5 Show that in the Dirac representation γ0γµγ0 = γµ†.
+Exercise 6 Determine the Dirac Hamiltonian by writing the Dirac equation in the form i∂ψ/∂t = Hψ. Show that the hermiticity of the Dirac Hamiltonian implies that the relation from the previous exercise is valid regardless of the representation.
+The Feynman slash notation, a/ ≡ aµγµ, is often used.
+
+2.2 The adjoint Dirac equation and the Dirac current
+
+For constructing the Dirac current we need the equation for ψ(x)†. By taking the Hermitian adjoint of the Dirac equation we get
+
+ψ†γ0(i
+
+←
+∂/
+
++
+
+m)
+
+=
+
+0
+
+,
+
+and we deﬁne the adjoint spinor ψ¯ ≡ ψ†γ0 to get the adjoint Dirac equation
+
+ψ¯(x)(i
+
+←
+∂/
+
++
+
+m)
+
+=
+
+0
+
+.
+
+ψ¯ is introduced not only to get aesthetically pleasing equations but also because it can be shown that, unlike ψ†, it transforms covariantly under the Lorentz trans-
+formations.
+
+Exercise 7 Check that the current jµ = ψ¯γµψ is conserved, i.e. that it satisﬁes the continuity relation ∂µjµ = 0.
+Components of this relativistic four-current are jµ = (ρ, j). Note that ρ = j0 = ψ¯γ0ψ = ψ†ψ > 0, i.e. that probability is positive deﬁnite, as it must be.
+
+2.3 Free-particle solutions of the Dirac equation
+
+Since we are preparing ourselves for the perturbation theory calculations, we need
+
+to consider only free-particle solutions. For solutions in various potentials, see the
+
+literature.
+
+The fact that Dirac spinors satisfy the Klein-Gordon equation suggests the
+
+ansatz
+
+ψ(x) = u(p)e−ipx ,
+
+(20)
+
+2 Single-particle Dirac equation
+
+7
+
+which after inclusion in the Dirac equation gives the momentum space Dirac equa-
+
+tion
+
+(p/ − m)u(p) = 0 .
+
+(21)
+
+This has two positive-energy solutions
+
+
+
+
+
+χ(σ)
+
+u(p, σ) = N  
+
+σ·p
+
+,  χ(σ)
+
+σ = 1, 2 ,
+
+(22)
+
+E+m
+
+where
+
+χ(1) =
+
+1 0
+
+, χ(2) =
+
+0 1
+
+,
+
+(23)
+
+and two negative-energy solutions which are then interpreted as positive-energy antiparticle solutions
+
+
+
+σ·p
+
+ (iσ2)χ(σ)
+
+v(p, σ) = −N  E + m
+
+ , σ = 1, 2, E > 0 . (24)
+
+
+
+
+
+(iσ2)χ(σ)
+
+N is the normalization constant to be determined later. Spinors above agree with those of [1]. The momentum-space Dirac equation for antiparticle solutions is
+
+(p/ + m)v(p, σ) = 0 .
+
+(25)
+
+It can be shown that the two solutions, one with σ = 1 and another with σ = 2, correspond to the two spin states of the spin-1/2 particle.
+
+Exercise 8 Determine momentum-space Dirac equations for u¯(p, σ) and v¯(p, σ).
+
+Normalization
+
+In non-relativistic single-particle quantum mechanics normalization of a wavefunction is straightforward. Probability that the particle is somewhere in space is equal to one, and this translates into the normalization condition ψ∗ψ dV = 1. On the other hand, we will eventually use spinors (22) and (24) in many-particle quantum ﬁeld theory so their normalization is not unique. We will choose normalization convention where we have 2E particles in the unit volume:
+
+ρ dV =
+
+ψ†ψ dV = 2E
+
+(26)
+
+unit volume
+
+unit volume
+
+This choice is relativistically covariant because the Lorentz contraction of the volume element is compensated by the energy change. There are other normalization conventions with other advantages.
+
+8
+
+2 Single-particle Dirac equation
+
+Exercise 9 Determine the normalization constant N conforming to this choice.
+
+Completeness Exercise 10 Using the explicit expressions (22) and (24) show that
+
+u(p, σ)u¯(p, σ) = p/ + m ,
+
+(27)
+
+σ=1,2
+
+v(p, σ)v¯(p, σ) = p/ − m .
+
+(28)
+
+σ=1,2
+
+These relations are often needed in calculations of Feynman diagrams with unpolarized fermions. See later sections.
+
+Parity and bilinear covariants The parity transformation:
+• P : x → −x, t → t • P : ψ → γ0ψ
+
+Exercise 11 Check that the current jµ = ψ¯γµψ transforms as a vector under parity i.e. that j0 → j0 and j → −j.
+Any fermion current will be of the form ψ¯Γψ, where Γ is some four-by-four matrix. For construction of interaction Lagrangian we want to use only those currents that have deﬁnite Lorentz transformation properties. To this end we ﬁrst deﬁne two new matrices:
+
+γ5 ≡ iγ0γ1γ2γ3 Dira=c rep.
+
+01 10
+
+, {γ5, γµ} = 0 ,
+
+(29)
+
+σµν ≡ i [γµ, γν] , σµν = −σνµ .
+
+(30)
+
+2
+
+Now ψ¯Γψ will transform covariantly if Γ is one of the matrices given in the following table. Transformation properties of ψ¯Γψ, the number of different γ
+
+3 Free quantum ﬁelds
+
+9
+
+matrices in Γ, and the number of components of Γ are also displayed.
+
+Γ
+1 γµ σµν γ5γµ γ5
+
+transforms as scalar vector tensor
+axial vector pseudoscalar
+
+# of γ’s 0 1 2 3 4
+
+# of components 1 4 6 4 1
+
+This exhausts all possibilities. The total number of components is 16, meaning
+that the set {1, γµ, σµν, γ5γµ, γ5} makes a complete basis for any four-by-four matrix. Such ψ¯Γψ currents are called bilinear covariants.
+
+3 Free quantum ﬁelds
+
+Single-particle Dirac equation is (a) not exactly right even for single-particle systems such as the H-atom, and (b) unable to treat many-particle processes such as the β-decay n → p e−ν¯. We have to upgrade to quantum ﬁeld theory.
+Any Dirac ﬁeld is some superposition of the complete set
+
+u(p, σ)e−ipx , v(p, σ)eipx , σ = 1, 2, p ∈ R3
+
+and we can write it as
+
+ψ(x) =
+σ
+
+d3p (2π)32E
+
+u(p, σ)a(p, σ)e−ipx + v(p, σ)ac†(p, σ)eipx
+
+. (31)
+
+Here 1/ (2π)32E is a normalization factor (there are many different conventions), and a(p, σ) and ac†(p, σ) are expansion coefﬁcients. To make this a quantum Dirac ﬁeld we promote these coefﬁcients to the rank of operators by imposing the anticommutation relations
+
+{a(p, σ), a†(p , σ )} = δσσ δ3(p − p ),
+
+(32)
+
+and similarly for ac(p, σ). (For bosonic ﬁelds we would have a commutation
+
+relations instead.) This is similar to the promotion of position and momentum
+
+to the rank of operators by the [xi, pj] = i δij commutation relations, which is
+
+why is this transition from the single-particle quantum theory to the quantum ﬁeld
+
+theory sometimes called second quantization.
+
+Operator a†, when operating on vacuum state |0 , creates one-particle state
+
+|p, σ
+
+a†(p, σ)|0 = |p, σ ,
+
+(33)
+
+10
+
+3 Free quantum ﬁelds
+
+and this is the reason that it is named a creation operator. Similarly, a is an anni-
+
+hilation operator
+
+a(p, σ)|p, σ = |0 ,
+
+(34)
+
+and ac† and ac are creation and annihilation operators for antiparticle states (c in ac stands for “conjugated”).
+Processes in particle physics are mostly calculated in the framework of the theory of such ﬁelds — quantum ﬁeld theory. This theory can be described at
+
+various levels of rigor but in any case is complicated enough to be beyond the
+
+scope of these notes. However, predictions of quantum ﬁeld theory pertaining to the elementary
+particle interactions can often be calculated using a relatively simple “recipe” — Feynman diagrams.
+
+Before we turn to describing the method of Feynman diagrams, let us just specify other quantum ﬁelds that take part in the elementary particle physics interactions. All these are free ﬁelds, and interactions are treated as their perturbations.
+
+Each particle type (electron, photon, Higgs boson, ...) has its own quantum ﬁeld.
+
+3.1 Spin 0: scalar ﬁeld
+
+E.g. Higgs boson, pions, ...
+
+φ(x) =
+
+d3p
+
+a(p)e−ipx + ac†(p)eipx
+
+(35)
+
+(2π)32E
+
+3.2 Spin 1/2: the Dirac ﬁeld
+E.g. quarks, leptons We have already speciﬁed the Dirac spin-1/2 ﬁeld. There are other types: Weyl
+and Majorana spin-1/2 ﬁelds but they are beyond our scope.
+
+3.3 Spin 1: vector ﬁeld
+Either • massive (e.g. W,Z weak bosons) or • massless (e.g. photon)
+
+Aµ(x) =
+λ
+
+d3p (2π)32E
+
+µ(p, λ)a(p, λ)e−ipx + µ∗(p, λ)a†(p, λ)eipx (36)
+
+4 Golden rules for decays and scatterings
+
+11
+
+µ(p, λ) is a polarization vector. For massive particles it obeys
+
+pµ µ(p, λ) = 0
+
+(37)
+
+automatically, whereas in the massless case this condition can be imposed thanks to gauge invariance (Lorentz gauge condition). This means that there are only three independent polarizations of a massive vector particle: λ = 1, 2, 3 or λ = +, −, 0. In massless case gauge symmetry can be further exploited to eliminate one more polarization state leaving us with only two: λ = 1, 2 or λ = +, −.
+Normalization of polarization vectors is such that
+
+∗(p, λ) · (p, λ) = −1 .
+
+(38)
+
+E.g. for a massive particle moving along the z-axis (p = (E, 0, 0, |p|)) we can
+
+take
+
+0
+
+ |p| 
+
+(p, ±)
+
+=
+
+1 ∓√
+2
+
+  
+
+1 ±i
+
+  
+
+,
+
+(p, 0) =
+
+1
+
+ 
+
+m
+
+0 0
+
+  
+
+(39)
+
+0
+
+E
+
+Exercise 12 Calculate
+
+µ∗(p, λ) ν(p, λ)
+
+λ
+
+Hint: Write it in the most general form (Agµν + Bpµpν) and then determine A and B.
+
+The obtained result obviously cannot be simply extrapolated to the massless case via the limit m → 0. Gauge symmetry makes massless polarization sum somewhat more complicated but for the purpose of the simple Feynman diagram calculations it is permissible to use just the following relation
+
+µ∗(p, λ) ν(p, λ) = −gµν .
+λ
+
+4 Golden rules for decays and scatterings
+Principal experimental observables of particle physics are • scattering cross section σ(1 + 2 → 1 + 2 + · · · + n ) • decay width Γ(1 → 1 + 2 + · · · + n )
+
+12
+
+4 Golden rules for decays and scatterings
+
+On the other hand, theory is deﬁned in terms of Lagrangian density of quantum
+
+ﬁelds, e.g.
+
+L
+
+=
+
+1 2
+
+∂µφ∂
+
+µφ
+
+−
+
+1 m2φ2 2
+
+−
+
+g φ4 4!
+
+.
+
+How to calculate σ’s and Γ’s from L?
+
+To calculate rate of transition from the state |α to the state |β in the pres-
+
+ence of the interaction potential VI in non-relativistic quantum theory we have the Fermi’s Golden Rule
+
+α→β transition rate
+
+=
+
+2π |
+
+β |VI |α
+
+|2
+
+×
+
+density of ﬁnal quantum states
+
+.
+
+(40)
+
+This is in the lowest order perturbation theory. For higher orders we have terms
+
+with products of more interaction potential matrix elements |VI| .
+
+In quantum ﬁeld theory there is a counterpart to these matrix elements — the
+
+S-matrix:
+
+β|VI |α + (higher-order terms) −→ β|S|α .
+
+(41)
+
+On one side, S-matrix elements can be perturbatively calculated (knowing the interaction Lagrangian/Hamiltonian) with the help of the Dyson series
+
+S =1−i
+
+d4x1
+
+H(x1)
+
++
+
+(−i)2 2!
+
+d4x1 d4x2 T {H(x1)H(x2)} + · · · , (42)
+
+and on another, we have “golden rules” that associate these matrix elements with cross-sections and decay widths.
+It is convenient to express these golden rules in terms of the Feynman invariant amplitude M which is obtained by stripping some kinematical factors off the Smatrix:
+
+β|S|α = δβα − i(2π)4δ4(pβ − pα)Mβα
+i=α,β
+
+1 .
+(2π)3 2Ei
+
+(43)
+
+Now we have two rules:
+
+• Partial decay rate of 1 → 1 + 2 + · · · + n
+
+dΓ
+
+=
+
+1 2E1
+
+|Mβα|2
+
+(2π)4δ4(p1
+
+− p1
+
+n
+− · · · − pn)
+i=1
+
+d3pi (2π)3 2Ei
+
+,
+
+(44)
+
+• Differential cross section for a scattering 1 + 2 → 1 + 2 + · · · + n
+
+dσ
+
+=
+
+1 uα
+
+1 2E1
+
+1 2E2
+
+|Mβα
+
+|2
+
+(2π)4δ
+
+4(p1
+
++
+
+p2
+
+−
+
+p1
+
+−
+
+·
+
+·
+
+·
+
+−
+
+pn
+
+)
+
+n i=1
+
+d3pi (2π)3 2Ei
+
+,
+
+(45)
+
+5 Feynman diagrams
+
+13
+
+where uα is the relative velocity of particles 1 and 2:
+
+uα =
+
+(p1 · p2)2 − m21m22 , E1E2
+
+(46)
+
+and |M|2 is the Feynman invariant amplitude averaged over unmeasured particle spins (see Section 6.1). The dimension of M, in units of energy, is
+
+• for decays [M] = 3 − n
+
+• for scattering of two particles [M] = 2 − n
+
+where n is the number of produced particles. So calculation of some observable quantity consists of two stages:
+
+1. Determination of |M|2. For this we use the method of Feynman diagrams to be introduced in the next section.
+
+2. Integration over the Lorentz invariant phase space
+
+dLips
+
+=
+
+(2π)4δ4(p1
+
++ p2
+
+− p1
+
+n
+− · · · − pn)
+i=1
+
+d3pi (2π)3 2Ei
+
+.
+
+5 Feynman diagrams
+
+Example: φ4-theory
+
+L
+
+=
+
+1 2
+
+∂µφ∂
+
+µφ
+
+−
+
+1 m2φ2 2
+
+−
+
+g φ4 4!
+
+• Free (kinetic) Lagrangian (terms with exactly two ﬁelds) determines particles of the theory and their propagators. Here we have just one scalar ﬁeld: φ
+
+• Interaction Lagrangian (terms with three or more ﬁelds) determines possible vertices. Here, again, there is just one vertex:
+φ φ
+φ φ
+
+14
+
+5 Feynman diagrams
+
+We construct all possible diagrams with ﬁxed outer particles. E.g. for scattering of two scalar particles in this theory we would have
+
+1 3
+
+M(1 + 2 → 3 + 4) =
+
++
+
++
+
++ ...
+
+2
+
+4
+
+t
+
+In these diagrams time ﬂows from left to right. Some people draw Feynman
+
+diagrams with time ﬂowing up, which is more in accordance with the way we
+
+usually draw space-time in relativity physics.
+
+Since each vertex corresponds to one interaction Lagrangian (Hamiltonian)
+
+term in (42), diagrams with loops correspond to higher orders of perturbation
+
+theory. Here we will work only to the lowest order, so we will use tree diagrams
+
+only.
+
+To actually write down the Feynman amplitude M, we have a set of Feynman
+
+rules that associate factors with elements of the Feynman diagram. In particular,
+
+to get −iM we construct the Feynman rules in the following way:
+
+• the vertex factor is just the i times the interaction term in the (momentum space) Lagrangian with all ﬁelds removed:
+
+φ
+
+iLI
+
+=
+
+−i g φ4 4!
+
+remov⇒ing ﬁelds
+
+φ
+
+φg = −i
+4!
+φ
+
+(47)
+
+• the propagator is i times the inverse of the kinetic operator (deﬁned by the free equation of motion) in the momentum space:
+
+Lfree Euler-L−ag→range eq. (∂µ∂µ + m2)φ = 0
+
+(Klein-Gordon eq.) (48)
+
+Going to the momentum space using the substitution ∂µ → −ipµ and then taking the inverse gives:
+
+(p2 − m2)φ = 0 ⇒
+
+φ
+
+i
+
+= p2 − m2
+
+(49)
+
+(Actually, the correct Feynman propagator is i/(p2 − m2 + i ), but for our purposes we can ignore the inﬁnitesimal i term.)
+
+5 Feynman diagrams
+
+15
+
+• External lines are represented by the appropriate polarization vector or spinor (the one that stands by the appropriate creation or annihilation operator in the ﬁelds (31), (35), (36) and their conjugates):
+
+particle ingoing fermion outgoing fermion ingoing antifermion outgoing antifermion ingoing photon outgoing photon ingoing scalar outgoing scalar
+
+Feynman rule u u¯ v¯ v
+µ
+µ∗
+1 1
+
+So the tree-level contribution to the scalar-scalar scattering amplitude in this
+
+φ4 theory would be just
+
+g
+
+−iM = −i .
+
+(50)
+
+4!
+
+Exercise 13 Determine the Feynman rules for the electron propagator and for the only vertex of quantum electrodynamics (QED):
+
+L
+
+=
+
+ψ¯(i∂/
+
++
+
+eA/
+
+−
+
+m)ψ
+
+−
+
+1 4 FµνF
+
+µν
+
+Note that also
+
+F µν = ∂µAν − ∂νAµ . (51)
+
+p
+
+i =
+
+σ u(p, σ)u¯(p, σ) ,
+
+p2 − m2
+
+(52)
+
+i.e. the electron propagator is just the scalar propagator multiplied by the polarization sum. It is nice that this generalizes to propagators of all particles. This is very helpful since inverting the photon kinetic operator is non-trivial due to gauge symmetry complications. Hence, propagators of vector particles are
+
+massive: massless:
+
+p, m
+
+−i
+
+gµν
+
+−
+
+pµpν m2
+
+=
+
+,
+
+p2 − m2
+
+(53)
+
+p
+
+−igµν
+
+=
+
+.
+
+p2
+
+(54)
+
+16
+
+6 Example: e+e− → µ+µ− in QED
+
+This is in principle almost all we need to know to be able to calculate the Feynman amplitude of any given process. Note that propagators and external-line polarization vectors are determined only by the particle type (its spin and mass) so that the corresponding rules above are not restricted only to the φ4 theory and QED, but will apply to all theories of scalars, spin-1 vector bosons and Dirac fermions (such as the standard model). The only additional information we need are the vertex factors.
+“Almost” in the preceding paragraph alludes to the fact that in general Feynman diagram calculation there are several additional subtleties:
+• In loop diagrams some internal momenta are undetermined and we have to integrate over those. Also, there is an additional factor (-1) for each closed fermion loop. Since we will consider tree-level diagrams only, we can ignore this.
+• There are some combinatoric numerical factors when identical ﬁelds come into a single vertex.
+• Sometimes there is a relative (-) sign between diagrams.
+• There is a symmetry factor if there are identical particles in the ﬁnal state.
+For explanation of these, reader is advised to look in some quantum ﬁeld theory textbook.
+
+6 Example: e+e− → µ+µ− in QED
+
+There is only one contributing tree-level diagram:
+
+vxw #" $&%('©)!0'21
+
+FG&HPIRQ!STIAU 
+
+fhgRip
+
+qhrRsut
+
+¡£¢¥¤§¦©¨! 
+
+y 3547698A@2BC8ED
+
+W5V X7Ya`cb2d`!e 5
+
+We write down the amplitude using the Feynman rules of QED and following
+
+6 Example: e+e− → µ+µ− in QED
+
+17
+
+fermion lines backwards. Order of lines themselves is unimportant.
+
+−iM
+
+=
+
+[u¯(p3, σ3)(ieγν)v(p4, σ4)]
+
+−igµν (p1 + p2)2
+
+[v¯(p2, σ2)(ieγµ)u(p1, σ1)]
+
+,
+
+(55)
+
+or, introducing abbreviation u1 ≡ u(p1, σ1),
+
+M
+
+=
+
+(p1
+
+e2 + p2)2
+
+[u¯3γµv4][v¯2
+
+γ
+
+µ
+
+u1]
+
+.
+
+(56)
+
+Exercise 14 Draw Feynman diagram(s) and write down the amplitude for Compton scattering γe− → γe−.
+
+6.1 Summing over polarizations
+If we knew momenta and polarizations of all external particles, we could calculate M explicitly. However, experiments are often done with unpolarized particles so we have to sum over the polarizations (spins) of the ﬁnal particles and average over the polarizations (spins) of the initial ones:
+
+|M|2 → |M|2 =
+
+11 22
+σ1 σ2
+
+sum over ﬁnal pol.
+|M|2 .
+σ3 σ4
+
+avg. over initial pol.
+
+(57)
+
+Factors 1/2 are due to the fact that each initial fermion has two polarization (spin) states. (Question: Why we sum probabilities and not amplitudes?)
+In the calculation of |M|2 = M∗M, the following identity is needed
+
+[u¯γµv]∗ = [u†γ0γµv]† = v†γµ†γ0u = [v¯γµu] .
+
+(58)
+
+Thus,
+
+|M|2
+
+=
+
+e4 4(p1 +
+
+p2)4
+
+[v¯4γµu3][u¯1γ µv2][u¯3γν v4][v¯2γ ν u1]
+σ1,2,3,4
+
+.
+
+(59)
+
+18
+
+6 Example: e+e− → µ+µ− in QED
+
+6.2 Casimir trick
+
+Sums over polarizations are easily performed using the following trick. First we write [u¯1γµv2][v¯2γνu1] with explicit spinor indices α, β, γ, δ = 1, 2, 3, 4:
+
+u¯1αγαµβv2β v¯2γ γγνδu1δ .
+σ1 σ2
+
+(60)
+
+We can now move u1δ to the front (u1δ is just a number, element of u1 vector, so it commutes with everything), and then use the completeness relations (27) and (28),
+
+u1δ u¯1α = (p/1 + m1)δα ,
+σ1
+
+v2β v¯2γ = (p/2 − m2)βγ ,
+σ2
+
+which turn sum (60) into
+
+(p/1 + m1)δα γαµβ (p/2 − m2)βγ γγνδ = Tr[(p/1 + m1)γµ(p/2 − m2)γν] .
+
+(61)
+
+This means that
+
+|M|2
+
+=
+
+4(p1
+
+e4 +
+
+p2)4 Tr[(p/1
+
++
+
+m1)γµ(p/2
+
+−
+
+m2)γν] Tr[(p/4
+
+−
+
+m4)γµ(p/3
+
++
+
+m3)γν ]
+
+.
+
+(62)
+
+Thus we got rid off all the spinors and we are left only with traces of γ matri-
+
+ces. These can be evaluated using the relations from the following section.
+
+6.3 Traces and contraction identities of γ matrices
+All are consequence of the anticommutation relations {γµ, γν} = 2gµν, {γµ, γ5} = 0, (γ5)2 = 1, and of nothing else!
+
+Trace identities
+1. Trace of an odd number of γ’s vanishes:
+1
+Tr(γµ1 γµ2 · · · γ ) µ2n+1 = Tr(γµ1 γµ2 · · · γµ2n+1 γ5γ5) (moving γ5 over each γµi ) = −Tr(γ5γµ1 γµ2 · · · γµ2n+1 γ5) (cyclic property of trace) = −Tr(γµ1 γµ2 · · · γµ2n+1 γ5γ5) = −Tr(γµ1 γµ2 · · · γµ2n+1 ) =0
+
+6 Example: e+e− → µ+µ− in QED
+
+19
+
+2. Tr 1 = 4
+
+3. Trγµγν = Tr(2gµν − γνγµ) (=2.) 8gµν − Trγνγµ = 8gµν − Trγµγν
+⇒ 2Trγµγν = 8gµν ⇒ Trγµγν = 4gµν
+
+This also implies:
+
+Tra//b = 4a · b
+
+4. Exercise 15 Calculate Tr(γµγνγργσ). Hint: Move γσ all the way to the left, using the anticommutation relations. Then use 3.
+Homework: Prove that Tr(γµ1γµ2 · · · γµ2n) has (2n − 1)!! terms.
+
+5. Tr(γ5γµ1γµ2 · · · γ ) µ2n+1 = 0. This follows from 1. and from the fact that γ5 consists of even number of γ’s.
+
+6. Trγ5 = Tr(γ0γ0γ5) = −Tr(γ0γ5γ0) = −Trγ5 = 0
+
+7. Tr(γ5γµγν) = 0. (Same trick as above, with γα = µ, ν instead of γ0.)
+
+8. Tr(γ5γµγνγργσ) = −4i µνρσ, with 0123 = 1. Careful: convention with 0123 = −1 is also in use.
+
+Contraction identities
+
+1.
+
+γµγµ
+
+=
+
+1 2 gµν
+
+(γµγν
+
++
+
+γνγµ)
+
+=
+
+gµν gµν
+
+=
+
+4
+
+2gµν
+
+2. γµ γαγµ = −4γα + 2γα = −2γα
+−γµγα+2gµα
+3. Exercise 16 Contract γµγαγβγµ.
+4. γµγαγβγγγµ = −2γγγβγα
+
+Exercise 17 Calculate traces in |M|2:
+
+Tr[(p/1 + m1)γµ(p/2 − m2)γν] = ? Tr[(p/4 − m4)γµ(p/3 + m3)γν] = ?
+Exercise 18 Calculate |M|2
+
+20
+
+6 Example: e+e− → µ+µ− in QED
+
+6.4 Kinematics in the center-of-mass frame
+In e+e− coliders often pi me, mµ, i = 1, . . . , 4, so we can take
+
+mi → 0 Then
+
+“high-energy” or “extreme relativistic” limit
+
+|M|2
+
+=
+
+8e4 (p1 + p2)4 [(p1
+
+·
+
+p3)(p2
+
+·
+
+p4)
+
++
+
+(p1
+
+·
+
+p4)(p2
+
+·
+
+p3)]
+
+(63)
+
+To calculate scattering cross-section σ we have to specialize to some particular frame (σ is not frame-independent). For e+e− colliders the most relevant is the
+center-of-mass (CM) frame:
+
+prqtsvu(wxsvy
+
+¦¨§ C¢DFEHG I"P#IRSUQ T
+
+£¥¤  "!#%&($ '
+
+i ¢¡
+)¥0213 4"57684%@B9 A
+
+© V¢WYX` a"b7c8aefhd g
+
+Exercise 19 Express |M|2 in terms of E and θ.
+
+6.5 Integration over two-particle phase space
+
+Now we can use the “golden rule” (45) for the 1+2 → 3+4 differential scattering cross-section
+
+11 1
+
+dσ
+
+=
+
+uα
+
+2E1
+
+|M|2 2E2
+
+dLips2
+
+(64)
+
+where two-particle phase space to be integrated over is
+
+dLips2
+
+=
+
+(2π)4δ4(p1
+
++ p2
+
+−
+
+p3
+
+−
+
+p4
+
+)
+
+d3p3 (2π)3 2E3
+
+d3p4 (2π)3 2E4
+
+.
+
+(65)
+
+6 Example: e+e− → µ+µ− in QED
+
+21
+
+First we integrate over four out of six integration variables, and we do this in general frame. δ-function makes the integration over d3p4 trivial giving
+
+dLips2
+
+=
+
+1 (2π)2 4E3E4
+
+δ(E1
+
++ E2
+
+− E3
+
+− E4)
+
+d3p3
+
+(66)
+
+p23d|p3|dΩ3
+
+Now we integrate over d|p3| by noting that E3 and E4 are functions of |p3|
+
+E3 = E3(|p3|) = p23 + m23 ,
+
+E4 = p24 + m24 = p23 + m24 ,
+
+and by δ-function relation
+
+δ(E1 + E2 −
+
+p23 + m23 −
+
+p23 + m24) = δ[f (|p3|)] =
+
+δ(|p3| − |p(30)|) |f (|p3|)||p3|=|p(30)|
+
+.
+
+(67)
+
+Here |p3| is just the integration variable and |p(30)| is the zero of f (|p3|) i.e. the
+
+actual momentum of the third particle. After we integrate over d|p3| we put
+
+|p(30)| → |p3|.
+
+Since
+
+f
+
+(|p3|)
+
+=
+
+−
+
+E3 + E4 E3E4
+
+|p3
+
+|
+
+,
+
+(68)
+
+we get
+
+dLips2
+
+=
+
+|p3|dΩ 16π2(E1 + E2)
+
+.
+
+(69)
+
+Now we again specialize to the CM frame and note that the ﬂux factor is
+
+4E1E2uα = 4 (p1 · p2)2 − m21m22 = 4|p1|(E1 + E2) ,
+
+(70)
+
+giving ﬁnally
+
+dσCM =
+
+1
+
+|p3| |M|2 .
+
+(71)
+
+dΩ 64π2(E1 + E2)2 |p1|
+
+Note that we kept masses in each step so this formula is generally valid for any
+
+CM scattering. For our particular e−e+ → µ−µ+ scattering this gives the ﬁnal result for dif-
+ferential cross-section (introducing the ﬁne structure constant α = e2/(4π))
+
+dσ =
+
+α2 (1 + cos2 θ) .
+
+dΩ 16E2
+
+(72)
+
+Exercise 20 Integrate this to get the total cross section σ.
+
+Note that it is obvious that σ ∝ α2, and that dimensional analysis requires σ ∝ 1/E2, so only angular dependence (1 + cos2 θ) tests QED as a theory of
+leptons and photons.
+
+22
+
+6 Example: e+e− → µ+µ− in QED
+
+6.6 Summary of steps
+To recapitulate, calculating (unpolarized) scattering cross-section (or decay width) consists of the following steps:
+1. drawing the Feynman diagram(s)
+2. writing −iM using the Feynman rules
+3. squaring M and using the Casimir trick to get traces
+4. evaluating traces
+5. applying kinematics of the chosen frame
+6. integrating over the phase space
+6.7 Mandelstam variables
+Mandelstam variables s, t and u are often used in scattering calculations. They are deﬁned (for 1 + 2 → 3 + 4 scattering) as
+s = (p1 + p2)2 t = (p1 − p3)2 u = (p1 − p4)2
+Exercise 21 Prove that s + t + u = m21 + m22 + m23 + m24 This means that only two Mandelstam variables are independent. Their main
+advantage is that they are Lorentz invariant which renders them convenient for Feynman amplitude calculations. Only at the end we can exchange them for “experimenter’s” variables E and θ.
+Exercise 22 Express |M|2 for e−e+ → µ−µ+ scattering in terms of Mandelstam variables.
+
+Appendix: Doing Feynman diagrams on a computer
+There are several computer programs that can perform some or all of the steps in the calculation of Feynman diagrams. Here is a simple session with one such program, FeynCalc [2] package for Wolfram’s Mathematica, where we calculate the same process, e−e+ → µ−µ+, that we just calculated in the text. Alternative framework, relying only on open source software is FORM [3].
+
+REFERENCES
+
+23
+
+FeynCalcDemo.nb
+
+1
+
+FeynCalc demonstration
+
+This Mathematica notebook demonstrates computer calculation of Feynman invariant amplitude for e e Μ Μ scattering, using Feyncalc package.
+
+First we load FeynCalc into Mathematica
+
+In[1]:= HighEnergyPhysics‘fc‘
+
+FeynCalc 4.1.0.3b Evaluate ?FeynCalc for help or visit www.feyncalc.org
+
+Spin−averagedFeynman amplitude squared 2 after using Feynman rules and applying the Casimir trick:
+
+In[2]:= Msq
+
+e4 Contract Tr GS p1
+4 p1 p2 4
+
+me .GA Μ . GS p2
+
+Tr GS p4 mm .GA Μ . GS p3 mm .GA Ν
+
+me .GA Ν
+
+Out[2]=
+
+1 4 p1 p2 4
+
+e4
+
+64 mm2 me2
+
+32 p3 p4 me2
+
+32 mm2 p1 p2
+
+32 p1 p4 p2 p3
+
+32 p1 p3 p2 p4
+
+Traces were evaluated and contractions performed automatically. Now we introduce Mandelstam variables by substitution rules,
+
+In[3]:= prod a_, b_ : Pair Momentum a , Momentum b ;
+
+mandelstam prod p1, p2
+
+s me2 me2 2, prod p3, p4
+
+s mm2 mm2 2,
+
+prod p1, p3
+
+t me2 mm2 2, prod p2, p4
+
+t me2 mm2 2,
+
+prod p1, p4
+
+u me2 mm2 2, prod p2, p3
+
+u me2 mm2 2, p1 p2
+
+s;
+
+and apply these substitutions to our amplitude:
+
+In[5]:= Msq . mandelstam
+
+Out[5]=
+
+1 4 s2
+
+e4
+
+64 mm2 me2
+
+16 s
+
+2 mm2 me2
+
+8
+
+me2
+
+mm2
+
+t2
+
+8
+
+me2
+
+mm2
+
+u2
+
+16 mm2 s
+
+2 me2
+
+This result can be simplified by eliminating one Mandelstam variable:
+
+In[6]:= Simplify TrickMandelstam %, s, t, u, 2 me2 2 mm2
+
+2 e4 2 me4 4 mm2 u me2 2 mm4 s2 2 u2 4 mm2 u 2 s u
+
+Out[6]=
+
+s2
+
+If we go to ultra−relativistic limit, we get result in agreement with our hand calculation:
+
+In[7]:= Simplify %% . mm 0, me 0
+
+2 e4 t2 u2
+
+Out[7]=
+
+s2
+
+References
+[1] D. Grifﬁths, Introduction to elementary particles, Wiley (1987)
+
+24
+
+REFERENCES
+
+[2] V. Shtabovenko, R. Mertig and F. Orellana, New Developments in FeynCalc 9.0, arXiv:1601.01167 [hep-ph].
+[3] J. A. M. Vermaseren, New features of FORM, math-ph/0010025.
+

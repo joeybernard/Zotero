@@ -1,0 +1,314 @@
+JOURNAL OF GEOPHYSICAL RESEARCH, VOL. 108, NO. A9, 1336, doi:10.1029/2002JA009712, 2003
+
+Using radio-induced aurora to measure the horizontal structure
+of ion layers in the lower thermosphere
+P. A. Bernhardt,1 N. A. Gondarenko,2 P. N. Guzdar,2 F. T. Djuth,3 C. A. Tepley,4 M. P. Sulzer,4 S. L. Ossakow,1 and D. L. Newman5
+Received 30 September 2002; revised 15 April 2003; accepted 16 May 2003; published 6 September 2003.
+[1] Two-dimensional images of sporadic E layers have been produced using a technique called radio-induced aurora. This technique makes the ion layer regions glow when being stimulated by high-power radio waves. Normally, the neutral regions near the ion layers do not radiate visible emissions. Experiments in January 1998 at Arecibo Observatory in Puerto Rico have shown that the ion layer regions at 120 km altitude can be made to glow at 557.7 nm and other wavelengths by illuminating them with radio waves at 3.175 MHz with effective radiated powers of 80 MW. The regions of the sporadic E layers that have electron densities greater than the critical density for reflection of the radio waves emit energetic electrons that collide with and excite atmospheric atomic oxygen and molecular nitrogen. Because the electron collisions increase at lower altitudes where the neutral densities are higher, major differences in excitation can occur between layers at 120 km altitude and at 100 km altitude. A charge-coupled device imager located on the ground is used to capture images of the glowing E region structures. The camera exposure times were in the range of 15–45 s. The images obtained using this technique show a wide variety of structures in the sporadic E layers. Some layers cover the 15 Â 30 km region illuminated by the radio wave beam. Other layers show strong modulation of the E region by instabilities driven by a shear in the neutral wind. Two-dimensional computer simulations of the coupling between neutral wind turbulence and the ion layers replicate the structure shown in the images. The optical emissions are explained using one- and two-dimensional simulations of radio propagation to produce localized regions of large electric fields. Electrons are accelerated out of these regions yielding the artificial aurora. INDEX TERMS: 2439 Ionosphere: Ionospheric irregularities; 0310 Atmospheric Composition and
+Structure: Airglow and aurora; 2403 Ionosphere: Active experiments; 2494 Ionosphere: Instruments and techniques; KEYWORDS: sporadic E layers, ionospheric heating, remote sensing
+Citation: Bernhardt, P. A., N. A. Gondarenko, P. N. Guzdar, F. T. Djuth, C. A. Tepley, M. P. Sulzer, S. L. Ossakow, and D. L. Newman, Using radio-induced aurora to measure the horizontal structure of ion layers in the lower thermosphere, J. Geophys. Res., 108(A9), 1336, doi:10.1029/2002JA009712, 2003.
+
+1. Introduction
+[2] At night, the lower thermosphere and the upper mesosphere between 90 and 130 km is a dynamic region that is difficult to study using remote sensing techniques. Ground-based observations of nightglow emissions provide data on small-scale gravity waves propagating in the region. Natural optical emissions from atomic oxygen (OI at 557.7 nm) are centered on an 8-km-thick layer near 96 km altitude and from hydroxyl radical (OH-Meinyl bands)
+1Plasma Physics Division, Naval Research Laboratory, Washington, D. C., USA.
+2Physics Department, University of Maryland, College Park, Maryland, USA.
+3Geospace Corporation, El Segundo, California, USA. 4Arecibo Observatory, Arecibo, Puerto Rico. 5Center for Integrated Plasma Studies, University of Colorado, Boulder, Colorado, USA.
+Copyright 2003 by the American Geophysical Union. 0148-0227/03/2002JA009712
+
+near 87 km altitude [Taylor et al., 1995; Swenson et al., 1995]. Space-based measurements of neutral winds in the 90 to 115 km range are obtained by measuring Doppler shifts of the green line (557.7 nm) emissions [Shepherd et al., 1993]. These winds are horizontally averaged over a 400 km line of sight with a height resolution of 2 km. Finally, incoherent scatter data can be obtained from 95 to 145 km altitude to yield E region winds and temperatures but nighttime radar is usually too poor to be usable [Zhou et al., 1997]. Consequently, a new technique to measure both winds and the spatial variations near 100 to 120 km should be very valuable to extend the knowledge of this region.
+[3] Three recent papers describe artificial optical emissions from sporadic E layers produced by high-power radio wave transmissions. In the first paper, Newman et al. [1998] use Langmuir turbulence to explain the acceleration of electrons to produce optical emissions. Newman et al. [1998] discuss that a major difference between F region and E region interactions of high-power radio waves is that the E region is much closer to the ground transmitter and the
+
+SIA 1 - 1
+
+SIA 1 - 2 BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS
+
+gradients in the E layer are much steeper. Under these conditions, the electromagnetic wave energy density is large enough to generate Langmuir waves via an absolute parametric decay instability. The present paper complements this work by demonstrating that large amplitude Langmuir waves can also be generated by linear mode coupling on the sharp gradients at the bottom of the E layer. The results of the direct conversion calculation are given in section 3.
+[4] In the second paper, Djuth et al. [1999] present observations of airglow enhancements resulting from high-frequency (HF) wave interactions with sporadic E layers. The Djuth et al. [1999] paper describes an overview of the initial discovery of enhanced 557.7 nm and N2 first positive emissions from non-Maxwellian electron distributions generated by incident electromagnetic waves from the Arecibo HF facility. Langmuir waves produced by the parametric decay instability of Newman et al. [1998] are thought to be responsible for the electron acceleration. The optical observations were backed up with radar measurements of the showing a 1.2-km-thick sporadic E layer at 120 km altitude. Detailed simulations of the artificial aurora were promised for a future date. These simulations are provided in section 3 of the present paper.
+[5] With the third paper, Kagan et al. [2000] propose the use of high-power radio waves to visualize the horizontal structure of sporadic E layers. This paper shows airglow clouds that come from inside the HF radio beam at E layer heights near 120 km altitude. The concept of ‘‘holes’’ in the E region to allow the penetration of HF waves is developed. Dense patches of sporadic E plasma are thought to be responsible for wave reflection where suprathermal electrons are produced. These high-energy electrons are attributed to the parametric decay instability given in the paper by Newman et al. [1998]. In a subsequent paper, Kagan et al. [2002] combine optical excitation of E layer irregularities with simultaneous of observation of the layer vertical structure using radio-induced artificial periodic irregularities (API). The present paper extends the work of Kagan et al. [2000] by (1) computing the horizontal drift velocity of the sporadic E structure using the radio-induced aurora (RIA) technique, (2) presenting previously unpublished data of meridional ripples in the artificial aurora clouds, (3) describing both plasma and neutral instability mechanisms for the formation of the E region irregularities, and (4) calculating the full-wave electromagnetic fields in the E region with quantitative results. The ideas of Kagan et al. [2002] are extended with the calculation in this paper of the electromagnetic waves responsible for the API.
+[6] The main objective of this paper is to quantitatively expand on the conclusions of these four previous papers with (1) additional observations, (2) theoretical models of artificial aurora production and (3) an enhanced physical explanation of the horizontal structures observed using RIA. RIA (or artificial airglow) uses a beam of high-power radio waves to excite optical emissions from neutrals imbedded in sporadic E layers of the ionosphere. The sporadic E layers trace the neutral motion produced by shear driven turbulence or atmospheric gravity waves. Section 2 describes observations of E region, ion layer structures observed near 120 km altitude above the Arecibo Observatory in Puerto Rico. The observations reported here show horizontal wavelengths near 8 and 2 km in the zonal and meridional
+
+directions, respectively. Section 3 describes the optical excitation process in terms of electron acceleration by electric fields generated as high-power radio waves reflecting from the ion layers. The energetic electron spectra required to produce the observed emissions is calculated using an energetic electron transport model. The electric fields near the HF wave reflection altitude are computed using a one-dimensional full-wave model for linear mode conversion. The observed structures in the RIA images are interpreted as modulations in the ion layer densities by quasiperiodic billows in the neutral atmosphere or by a plasma layer instability. The theory for generation of the plasma structures is outlined in section 4. Reflection of HF waves from the E layer modulations is computed to give the two-dimensional pattern of the high-power electromagnetic waves. This two-dimensional structure is consistent with the observations of artificial aurora. Finally, the section 5 summarizes the paper and proposes future uses for the RIA technique.
+2. Observations
+[7] The measurements of RIA in the lower thermosphere are an exciting new discovery that is useful to study the turbulence in this region. Djuth et al. [1999] and Kagan et al. [2000] have provided an overview of the first and only measurements of radio induced aurora from sporadic E layers that were obtained in January 1998 using the ionospheric modification facility (18.476°N, 66.666°W) operated by the Arecibo Observatory in Puerto Rico. For these measurements, a high-power radio wave transmitter operating at 3.175 MHz continuously illuminated a 7° Â 14° cone above the transmitter. The Arecibo 430 MHz radar was used to detect the densities in the ambient ionosphere and the modifications of temperature and density produced by the HF transmitters. Figure 1 illustrates a sample of the radar data showing variations in backscatter from the F region, a weak descending layer, and a sharp enhancement of the E region density near 0240 UT on 23 January 1998. Previous E region heating experiments at Arecibo and at the European Incoherent Scatter (EISCAT) HF facility in Norway have used ground-based, incoherent scatter radars (ISR) to detect Langmuir oscillations and ion waves that are strongly excited by the high-power radio waves [Gordon and Carlson, 1976; Djuth, 1984; Schlegel et al., 1987; Djuth and Gonzales, 1988]. Langmuir waves are thought to be responsible for energetic electrons that excite artificial airglow [Bernhardt et al., 1989; Newman et al., 1998]. Consequently, the presence of Langmuir turbulence near the modified E region is a strong motivation for attempting to observe artificial aurora emissions.
+[8] Sample radar data for both the F region and E layer during the heating experiment are illustrated in Figure 1. The white/black bar at the bottom of Figure 1 indicates the respective on/off times of the HF facility. On 23 January 1998, between 0145 and 0240 UT, the E layer at 120 km altitude was not dense enough to reflect the HF waves. During this time period, a weak descending layer (shown by the dashed line) approaches the altitude of the E layer. When the layers merge, a dense region of plasma is formed near 0235 to a maximum density at 0245. The HF beam reflects from the plasma when the density is greater than
+
+BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS SIA 1 - 3
+
+Figure 1. Dense region of the E layer occurring at 0240 UT when a descending layer merges with a weak sporadic E layer. The black/white bar at the bottom indicates the respective off/on periods of the HF facility. The image of the corresponding sporadic E layer structure is shown in Figure 3c.
+
+1.25 Â 105 cmÀ3, which is between 0240 and 0246 in Figure 1. At this time the critical frequency of the E layer is momentarily greater the 3.175 MHz frequency of the highpower transmitter. This causes a temporary burst of optical emission at 557.7 nm, which was recorded with the ground imager at 0240 (see Figure 3c). When the next 557.7 nm image was recorded at 0247 UT, the optical emission shown in the frame of Figure 3c was gone.
+[9] There exist several descriptions for the types of natural layers shown in Figure 1. Mathews et al. [1997] and Mathews [1998] use tidal ion layer (TIL) to label the descending intermediate layer. A descending wind shear is thought to be responsible for this category of layer. Mathews [1998] puts the sporadic E layer into a second category that range between 90 and 110 km altitude. The results illustrated in Figure 1 combine these two classes as the density of the sporadic E layer at 120 km is suddenly enhanced as it is merged with a descending layer.
+[10] The January 1998 campaign employed a full complement of optical diagnostics. These included chargecoupled device (CCD) cameras with 512 Â 512 pixel formats provided by Cornell University and the Naval Research Laboratory. The Cornell University camera provided observations at 557.7 nm, which is the green line of atomic oxygen. Both the NRL and Cornell cameras made observations at the red line of atomic oxygen (630.0 nm), but no red line enhancements were detected in association with E region excitation. The exposure times for the CCD cameras ranged from 20 to 60 s. The threshold for airglow detection with a 60-s exposure was 3 Rayleighs. The University of Arizona provided a high-resolution spectrograph covering the 510.0 to 700.0 nm wavelength range.
+
+The spectrograph recorded enhancements in 557.7 nm and N2 first positive emissions in the 640 to 700 nm range [Djuth et al., 1999]. Both 557.7 nm and 630.0 nm were recorded by 5° field of view photometers from the Arecibo Observatory. The photometers provided a temporal history of the airglow development during the HF experiments.
+Figure 2. Geometry for ionospheric observations by radio induced aurora. High-power radio wave transmissions illuminate existing structures in the E and F regions.
+
+SIA 1 - 4 BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS
+
+Figure 3. Shadowing of F Region heating by an E layer patch. (a) The red line optical emission shows a continuous field-aligned structure just before the E region patch crosses the HF antenna pattern. (b) The intensity structure of the F region red line glow becomes interrupted when (c) the overdense patch occults the radio beam.
+Finally, neutral wind velocities in the F region were measured with the Arecibo Fabry-Perot interferometer.
+[11] Figure 2 is a schematic diagram of the experimental observations. An ordinary mode (O-mode) electromagnetic wave is generated with a ground-based transmitter and beamed upward using a large antenna array. Usually, the beam passes through the E region because the densities are too low to reflect the 3.175 MHz waves. The beam then encounters the F region plasma near 250 km altitude to excite 630 nm (red line) emissions [Bernhardt et al., 1988, 1989, 2000]. If dense patches of E region plasma drift in front of the HF beam, the wave reflects and totally or partially blocks the electromagnetic (EM) waves. This occurs when the plasma frequency of electron density in the E layer exceeds the transmission frequency of the radio wave. These ‘‘overdense’’ patches glow with green line emission when they are excited by the high-power radio waves. The HF pump wave that is not blocked by the E layer patches passes up to the overlying F layer and excites 630 nm emissions.
+[12] Ground optical systems recorded both the red line (i.e., F region) and green line (i.e., E region) emissions. The Arecibo incoherent scatter radar and digital ionosonde played a crucial rule by determining the height of the ion layers. All of the 557.7 images reported here are from thin (600-m-thick) layers located at 120 km altitude. The observations at 630 nm were from F region excitation near 260 km. The time history of E region and F region optical emissions given in Figure 3 and the radar observations in
+
+Figure 1 were used to derive the concept diagram shown in Figure 2. A small patch of overdense E layer plasma passed into the high-power radio beam of the HF facility (Figure 3c). The disruption of the HF beam at 120 km caused shadowing of the 630 nm image from 260 km altitude (Figures 3a and 3b). Thus the structure of the E layer was viewed with direct observations of the E layer 557.7 nm induced aurora and with indirect observations of shadowing of the F layer 630 nm glow.
+[13] Earlier on the night of 23 January 1998, the optical emissions showed rippled densities that were also elongated in the zonal, east west direction (Figure 4). The observations in Figures 3c and 4 indicate that similar structure occurred on two separate occasions separated by 1.5 hours in time. The wavelength of the rippled irregularities was about 2 km. There were no field-aligned irregularities observed during this period of time. The maximum intensity in green line emission was 50 Rayleighs above background at 0113:31 UT (2013:31 AST). Changes in the position of the structures between the airglow images at 0106 and 0113 UT (Figure 4) were used to determine a horizontal ion drift speed of 9 m/s to the south. The structure shown in Figure 3c at 0240 UT occurred in only one image frame, and the drift speed at that time could not be determined.
+[14] A second type of E region structure was observed using the RIA technique (Figure 5). Large field-aligned clumps were detected drifting though the HF beam. When these overdense clumps entered the HF antenna beam, they began glow at 557.7 nm with a peak intensity near 20 Rayleighs above the background 557.7 nm intensity. The spacing between the elongated structures was about 8 km. Figure 5 shows images of these drifting clumps relative to the radio beam. The RIA technique only shows structures that enter the radio beam. Consequently, the high-power beam acts like a flashlight to illuminate existing structures. The radio beam of the Arecibo HF facility is not easily steerable, being fixed to the zenith. Consequently, natural convection was required to bring the irregularities into view. Using the cross-correlation technique described by Bernhardtet al. [2000], successive CCD images were used to derive a horizontal velocity of 21 m/s in the eastward
+Figure 4. Rippled ion layer image at 557.7 nm wavelength obtained using the Cornell CCD Imager. The eastwest alignment of the irregularity is 90° from the alignment of the structure shown in Figure 4, but the orientation and period of the structure is similar to that shown in Figure 3c.
+
+BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS SIA 1 - 5
+
+Figure 5. Ion layer images in 557.7 nm using illumination by high-power radio waves obtained with 60-s exposures using the Cornell CCD Imager. The dashed oval is the projection of the HF antenna pattern to 120 km altitude. The natural sporadic E patches drift through the illuminated volume at about 21 m/s eastward perpendicular to the magnetic meridian.
+
+direction. Simultaneous measurements with the Arecibo Fabry-Perot interferometer near 300 km altitude yielded a wind vector of 50 m/s eastward and 113 m/s northward. The altitude of the F region winds was determined from the height of the layer as shown by the radar data in Figure 1. The RIA technique at 120 km altitude produced ion drift velocities that were 6 times less than the neutral winds wind at 300 km altitude.
+[15] The papers by Djuth et al. [1999] and Kagan et al. [2000] show other RIA images of sporadic E layers. The images obtained with this technique often show both the structure and motion of the ion layers. From the limited samples of irregularities and motion in Figures 3, 4, and 5, one may conclude that the elongation of the structures is perpendicular to the ambient drift direction. Further observations are needed to validate this conclusion.
+[16] The requirements for making the measurements are (1) clear skies, (2) minimal light interference from the moon or other sources, (3) a transmitter capable of illuminating the upper atmosphere with effective radiated powers greater than 40 MW in the 3 to 8 MHz frequency range, and (4) sporadic E patches with overdense regions that reflect the HF transmitted frequency. Besides Arecibo, HF facilities capable of making RIA measurements are EISCAT in Tromsø Norway [Kosch et al., 2000], SURA near Nishny Novgorod, Russia [Bernhardt et al., 2000], and the HAARP and HIPAS facilities located in Alaska. Section 3 outlines the mechanisms for generation of artificial airglow, which aid in the interpretation of the optical data.
+
+3. Airglow Production
+
+[17] All of the RIA airglow is produced by electron impact onto background neutral species. The red line and green line emissions are produced from atomic oxygen by the reaction
+
+e*
+
+þ
+
+OÀX3PÁ
+
+!
+
+OÀÀ1D2
+
+or Á
+
+1S0Á
+
+! O X3P þ hvð630:0 or 557:7 nmÞ
+
+ð1Þ
+
+where e* represents an energetic electron that produces the metastable O(1D) or O(1S) states. The effective excitation
+
+energies for 630 and 555.7 nm are 3.1 and 5.4 eV,
+respectively [Bernhardt et al., 1989]. Because of its lower excitation energy, O(1D) will be produced in greater abundance than O(1S). The radiative lifetime of the O(1D)
+state is 148 s. On the basis of the quenching rates given by
+Bernhardt et al. [1989] and neutral densities from the
+MSIS97 model [Hedin, 1997], the collisional quenching reduces the O(1D) quenched lifetime to about 30 s in the F
+region and to less than 0.1 s at 120 km altitude.
+Consequently, the source of the red line emission is
+collisionally quenched in the E region before emission occurs. The radiative lifetime of the O(1S) state is 0.7 s and
+quenching at 120 km can be neglected [Torr and Torr,
+1982]. The brightest optical emitter in the 100 to 120 km range will be 557.7 nm from O(1S).
+[18] Nitrogen is the most abundant species in the 100 to
+120 km altitude range. The N2 first positive emission comes from the reactions
+
+e*
+
+þ
+
+ N2 X1Æþg
+
+!
+
+e
+
+þ
+
+N2ÀA3Åþu ;
+
+B3Åg
+
+;
+
+C3ÆuÁ
+
+ÀÁ N2 B3Åg
+
+!
+
+N2ÀA3Æþu Á
+
+þ
+
+hvð580
+
+to
+
+1050
+
+nmÞ
+
+ð2Þ
+
+[19] The threshold for the excitation of the N2 first positive band is greater than 9 eV. Since the electron fluxes at this energy are less than those at the lower energies, the N2-1P emissions will be less than green line emissions from atomic oxygen.
+[20] Bernhardt et al. [1989] have developed a model for airglow excitation that follows the transport and scattering of energetic electrons in a multispecies neutral atmosphere. This model was used to estimate the energetic electron spectrum needed to produce the optical emissions produced by RIA at 120 km altitude. The two-stream transport of electron fluxes up and down magnetic field lines is computed in the model neutral atmosphere illustrated in Figure 6. The densities are derived using the MSIS97 model [Hedin, 1997]. Energetic electrons travel along magnetic field lines to collide with both neutral and ion species. At 120 km altitude, the mean free path of the electrons is about 1 km, so all the energy will be deposited near the ion layer. The electrons are accelerated close to the reflection altitude of
+
+SIA 1 - 6 BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS
+
+Figure 6. Neutral atmosphere near 120 km altitude used for the simulation of artificial airglow excitation by highpower radio waves. N2 and O are the primary species that are excited by electron impact.
+the high-power radio wave. This altitude is determined by the electron density profile as shown in Figure 7.
+[21] The energy spectrum of electrons accelerated by high-power radio wave interactions is estimated by matching the measured intensities observed during the experiments. Since only three optical wavelengths are observed (i.e., 630.0 nm, 557.7 nm, and N21P) only a few parameters are available for adjustment in the description of the energetic electron spectra. The excitation cross-sections used in the model are given by Majeed and Strickland [1997]. Figure 8 illustrates the source spectra using the tail of a Maxwellian distribution with a characteristic temperature of 20,000°K (1.72 eV) and an accelerated fraction of n*/N0 = 0.000806. Most of the electron flux is dissipated close to the excitation region. At 119.5 km altitude (300 m below the excitation height), the fluxes with energies between 2 and 3.5 eV are depleted primarily by excitation of vibrational states of N2 [Bernhardt et al., 1989]. The upward and downward fluxes shown in Figure 8 illustrate this depletion along with a higher energy reduction up to 10 eV from excitation of electronic states of atomic oxygen and molecular nitrogen. This spectral distribution produces the profiles of excited oxygen shown in Figure 9. Most of the emissions come from the altitude region within 500 m of the interaction altitude. Consequently, images of the artificial airglow clouds yield the precise location and structure of the ion layers. The volume emission rate is determined by multiplying the transition probability times the excited state densities given in Figure 9. Vertical integration though the volume emission rate yields intensities of 52.1 Rayleighs for 557.7 nm and 12.0 Rayleighs for the N21P intensities which matches the values from the ground observations reported by Djuth et al. [1999]. The calculations also verify the low intensity (1.4 Rayleighs) of the 630.0 nm emission observed in the data.
+[22] The E layer peak density was located near 120 km altitude for the Arecibo HF experiments. This is an unusually
+
+Figure 7. Ion layer profile with a peak density of 2 Â 105 cmÀ3. The profile was chosen to match the electron density provided by the Arecibo incoherent scatter radar. The 3.175-MHz pump wave reflects at 119.8 km where the layer plasma frequency is equal to the wave frequency. high altitude for the nighttime E layer. Normally, this layer is found within 10 km of 100 km altitude [Mathews, 1998]. Heating the E layer at a lower altitude will produce weaker 557.7 nm intensities because of enhanced collisions with neutrals. Increasing the collision frequency will (1) damp
+Figure 8. Distribution of energetic electron fluxes producing the observed 557.7, 630.0, and N2-1P optical emissions. The dashed curve shows the initial energy spectra at the HF reflection altitude. The curves labeled down and up show the collisionally modified spectra 0.3 km below the source altitude.
+
+BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS SIA 1 - 7
+
+Figure 9. Computed profiles of excited oxygen that yields the intensities of the measured airglow. The volume emission rate is proportional to the densities shown.
+the Langmuir waves that accelerate the electrons [Djuth et al., 1999] and (2) quench more of the O(1S) before they can radiate. To illustrate this later effect, the source distribution shown in Figure 8 was used in the excited species calculation at 108 km altitude. At this lower altitude the 577.7 nm intensity was reduced to 29 Rayleighs, the 630.0 nm intensity dropped to 0.1 Rayleighs, but the N21P emission intensities was increased to 53 Rayleighs because of the larger concentration of molecular nitrogen (N2). Consequently, 120 km was an optimum altitude for the E layer to be excited by the HF waves. Any higher would cause a reduction in the HF power by spreading of the radio beam and any lower would have suffered the effects of enhanced collisional damping of the Langmuir waves and quenching of the excited states of the metastable species O(1S) and O(1D). HF experiments with a sporadic E layer near 100 km should be conducted to determine the usefulness of the RIA technique at lower altitudes.
+[23] The conversion of the electromagnetic energy from the HF wave to energetic electrons involves the production of Langmuir waves. The Langmuir waves can be produced either by nonlinear processes involving parametric instabilities [Newman et al., 1998] or linear mode conversion [Mjølhus, 1990]. In either process, electric fields with amplitudes larger than the initial HF wave are produced which then accelerate electrons through wave particle interactions. The first step in determining the acceleration of electrons is to calculate the electric field amplitudes near the HF interaction region. Figure 10 illustrates the magnitude of the total electric field for a 3.175 MHz wave at 80 megawatts, reflecting from the E layer profile near 120 km altitude. Figure 10 is derived using the Naval Research Laboratory model called WAVEG, which is a one-dimen-
+
+sional code that calculates the propagation of three-dimensional electric field in a warm plasma. Previously, the computer model, which supports ordinary (O-mode), extraordinary (X-mode), and Langmuir waves, has been applied to the modified F region [Bernhardt et al., 1995]. In the E region, the maximum electric field occurs at the resonance altitude of 119.76 km and has a value of 3 V/m. The O-mode cutoff occurs at 119.78 km altitude where the wave frequency matches the plasma frequency along the profile. At this point, the O-mode becomes evanescent, and the amplitude is damped for propagation to higher altitudes.
+[24] The incident electromagnetic wave can be converted into Langmuir waves by three processes: (1) the modulational instability (MI), (2) the parametric decay instability (PDI), and (3) direct linear conversion (DLC). For the PDI in a steep plasma gradient, the WKB analysis reveals that the instability is limited by convective losses [Perkins and Flick, 1971; Rosenbluth, 1972; Newman et al., 1998]. Essentially, the three-wave matching condition is detuned as Langmuir waves propagate along the electron density gradient. The study performed by Perkins and Flick [1971] also shows that the MI threshold is increased by the presence of a large electron density gradient. Newman et al. [1998] describe a numerical method that is not limited by the WKB approximation; it yields the full spectrum of stable and unstable eigenfrequencies together with the corresponding eigenmodes. They conclude that the HF electric field in the sporadic E event described above is large enough to overcome the increased PDI threshold resulting from the sharp electron density gradient and collisional losses. Values calculated for the absolute (i.e., nonconvective) PDI threshold are about an order of magnitude less than estimated HF pump power. The absolute PDI
+Figure 10. Standing wave pattern of high-power radio waves reflecting from the ion layer at 120 km altitude. Linear mode conversion excites both the extraordinary Z-mode and the electrostatic Langmuir waves. The slow moving Langmuir waves yield the spike in electric field amplitudes that is larger than the electromagnetic pump wave.
+
+SIA 1 - 8 BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS
+
+appears to be the dominant instability in sporadic E. Its
+
+calculated growth rate is large enough to make the MI
+
+inconsequential.
+
+[25] The third process of direct linear conversion (DLC)
+
+cannot be ruled out. Because of the sharp gradient in the E
+
+region profile, there is coupling to the extraordinary mode
+
+(called Z-mode), which propagates to its cutoff at 119.87 km
+
+altitude. Finally, the Z-mode linearly couples to a Langmuir
+
+wave, which has a resonance at 119.76 km. At this resonance
+
+the electric field amplitude peaks at 2.8 V/m. These
+
+Langmuir waves can accelerate the waves directly through
+
+resonant absorption [Shoucri et al., 1987; Morales et al.,
+
+1988]. Also, the primary Langmuir waves can pump
+
+secondary Langmuir waves via strong turbulence. The
+
+b
+
+collapse of Langmuir packets leads to the formation of
+
+energetic tails on the electron distributions [Newman et
+
+al., 1998]. Further research needs to be conducted to close
+
+the theoretical link between the electric field profiles
+
+illustrated in Figure 10 and the distribution function shown
+
+in Figure 9.
+
+4. Interpretation of the Optical Structures
+[26] The artificial aurora structures illustrated in section 2 demonstrate that the sporadic E layers become modulated to form elongated, periodic patches. The wavelengths of the periodic structures range from about 2 to 8 km. The source of the sporadic E irregularities shown in the images can be from either plasma or neutral instabilities.
+[27] Cosgrove and Tsunoda [2002] describe a plasma instability that may be responsible for layer structure. This instability occurs at night by forming electric fields that enhance the vertical amplitude of a small perturbation in the layer height. Cosgrove and Tsunoda [2002] limit their theory to 100 km altitude where the ion-neutral collision frequency (ni) is much larger than the ion-cyclotron frequency (wi) so that ri = ni/w ( 1. The observations described here occurred at 120 km altitude where the ion collision and cyclotron frequencies are about equal and ri $ 1. Without any assumptions for ri, the growth rate (l) for the instability driven by a zonal neutral wind shear is derived to be
+
+l
+
+¼
+
+ksuE sin q00 ÆE þ ÆF
+
+ sin
+
+q0
+
+cos
+
+q0ÆE
+
+À
+
+1
+
+ri þ
+
+r2i
+
+ ÆF
+
+ð3Þ
+
+where the symbols of Cosgrove and Tsunoda [2002] are used with ks the wind shear vertical wave number, uE the wind amplitude, q ‘‘the magnetic dip angle, Tan q = Tan q0 Cos q’’, Àq the azimuth for the phase front of the instability relative to magnetic north, and ÆE and ÆF the field line integrated Pedersen conductivities of the E and F regions, respectively. This expression is identical to the one given by Cosgrove and Tsunoda [2002] if ri goes to zero and the second term vanishes. This growth rate maximizes for q0 = 45° and is reduced by enhanced Pedersen conductivity in the F region because of shorting out of polarization electric fields. At Arecibo, where the dip angle is 50°, the growth rate maximizes for a wave vector direction of À33° azimuth (east of north). The image data in Figures 3c and 4 and the data of Figure 5 show wave vectors with azimuths of À90° and 0°, respectively. The Cosgrove-Tsunoda instability
+
+Figure 11. Formation of low-amplitude billows by the Kelvin-Helmholtz instability driven by the neutral wind shear in a background atmosphere near 120 km altitude. The mass density (a) is disturbed by the convection pattern and (b) is driven by an imposed shear in the neutral wind. The periodic structures from the Kelvin-Helmholtz instability have an 8% density perturbation and a maximum disturbance of 22 m/s in the neutral wind. The vortex centers of the flow are clearly seen. (Adapted from Bernhardt [2002]).
+does not provide the correct direction for the observed wave vector but it can produce irregularities with scale sizes of 2 km as observed in the optical data.
+[28] For a neutral instability mechanism, a Kelvin-Helmholtz instability driven by a wind shear is considered. This mechanism was first proposed by Larsen [2000] and has been numerically modeled by Bernhardt [2002]. These structures arise from the interaction of neutral turbulence driven by neutral wind shears in the lower thermosphere. The formation of a structured E layer is modeled using a system of coupled equations for continuity and momentum that describes both the neutrals and plasma. In the model, an externally imposed neutral wind shear drives the neutral atmosphere unstable and produces Kelvin-Helmholtz billows. This same wind shear compresses the ions into a layer with a well-defined vertical profile centered on the node of the wind shear. The Kelvin-Helmholtz (K-H) turbulence introduces quasiperiodic (Q-P) structures on the layer in the horizontal direction. Bernhardt [2002] gives details on this K-H model.
+[29] Figure 11 illustrates the calculated wind billows in a two-dimensional plane that contains both the neutral wind shear and gravitational acceleration vectors. The solution is displayed at the time when the maximum amplitude of vertical velocity perturbation uz is 10% of the driving wind U0. The perturbations of the neutral density and neutral wind are displayed by Figures 11a and 11b, respectively. The two-dimensional plots of the total disturbed density and velocity field show a quasiperiodic structure centered on
+
+BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS SIA 1 - 9
+
+Figure 12. Quasiperiodic density clumps in the E layer near 120 km altitude produced by KelvinHelmholtz modulations of the neutral wind. Small-amplitude perturbations of the zonal neutral wind produce relatively large amplitude structures in the ion layer. (a), (b) and (c) The density scale is given at the top of the plots. In the last three displays, the maximum density is (d) 6.0, (e) 7.5, and (f ) 9.5 electrons per cmÀ3. At the end of the simulation, the ion layer modulation amplitude is twice the unperturbed density. For times greater than 303 s, the steady state wind perturbation drives the plasma with the amplitude illustrated in Figure 10. (Adapted from Bernhardt [2002]).
+
+120 km altitude with a period of 10 km. The relative amplitude of the neutral disturbance equals 0.08. The velocity perturbation in the billow normalized to the maximum wind shear has a maximum value of 0.22. This relatively small disturbance in the neutral wind makes a large change in the ion layer structure.
+[30] The time-dependent distortion of the ion layer is illustrated in Figure 12. After 72 s, the initial 0.1% neutral wind perturbation grows to a 0.3% change in amplitude, but there is no noticeable effect on the ion layer. Later, 223 s into the simulation, the neutral perturbation amplitude increases to 3% and there is a 3% modulation of the ion layer. The effect of the K-H billow is to modulate the altitude of the plasma layer by ±200 m and to modulate the density by ±50% (Figure 11b). The layer continues to evolve yielding a thin tilted sheet with a maximum density of 0.6 Â 105 cmÀ3 at 303 s when the vertical amplitude of the neutral wind perturbation is 10% of the maximum wind shear velocity. The neutral wind drives the ions into vortex flows that form clumps.
+[31] The calculation is continued assuming that the K-H instability saturates with the wind illustrated in Figure 11. With this steady quasiperiodic (QP) wind structure, the ion layer evolves in time by transport around of the dense regions. The ions are compressed by the vortex flow into clumps with two times the original density (Figure 12f ).
+
+When the simulation was terminated at time 1500 s, the maximum electron density in the ion layer had reached an equilibrium value of 1 Â 105 cmÀ3. A relatively weak neutral wind billow can completely change the character of the ion layer. This density clumping process has been shown by Bernhardt [2002] to be relatively unaffected by the shorting effects of F region Pedersen conductivity and to produce the longer scale sizes seen in the optical data.
+[32] The K-H instability driven by a zonal shear provides irregularities with a wave vector direction azimuth of 90° in agreement with the images shown in Figure 5. This process cannot account for the structure shown in Figures 3c and 4 where the wave vector direction is near 0° azimuth. Bernhardt [2002] mentions that a shear driven instability that forms longitudinal irregularities may be responsible for this structure. A full three-dimensional fluid simulation is required to form these longitudinal features in both the neutral and plasma gases. As mentioned above, the plasma layer instability of Cosgrove and Tsunoda [2002] is another possible mechanism for structures of this scale size.
+[33] The next step in the theoretical simulations of the RIA technique is to propagate a two-dimensional electromagnetic wave to the density irregularities. The UMDWAVE2D model [Gondarenko et al., 2003] (also N. A. Gondarenko et al., Linear mode conversion in inhomogeneous magnetized plasmas in radio wave propagation,
+
+SIA 1 - 10 BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS
+coupling to Langmuir waves in the warm plasma simulation by the NRL WAVEG code or (2) more efficient coupling on the curved surface using the UMD WAVE2D code. Figure 12 clearly illustrates the localization of large electric fields on the bottom side of a clump. Acceleration of electrons from the overdense regions of the sporadic E irregularity will produce volume emission regions that resemble the electric field strength of Figure 13a.
+[35] Kagan et al. [2002] recently describe three-dimensional E layer imaging using high-power radio waves to simultaneous produce (1) radio induced aurora (RIA) for optical observations and (2) artificial periodic irregularities (API) for vertical radio wave scattering. Both Figures 10 and 13 illustrate standing electromagnetic waves that are responsible for the artificial periodic irregularities (API) in the E region as described by Belikovich et al. [1997]. The bottomside E layer will become modulated by the standing wave pattern to yield density variations such that larger electric fields yields reduced electron densities. Radio signals scattered from these API structures contain density and velocity information. Figure 13 shows that, at the edges of the E layer clumps, the API structure are not vertical and the diagnostic technique proposed by Kagan et al. [2002] can be extended to oblique scatter.
+
+Figure 13. Computed electric fields (a) of an electromagnetic wave illuminating a (b) quasiperiodic E layer structure. The high-power radio waves build up large electric fields on the bottom of the overdense portions of the structures. Electrons accelerated from the thin layer of enhanced radio frequency (RF) electric fields excite localized regions of optical emissions.
+submitted to Journal of Geophysical Research, 2003) calculates the propagation of electromagnetic waves in a cold plasma. The O-mode and X-mode electric fields can be computed in an arbitrary plasma density. An O-mode plane wave is launched upward from the bottom. Plasma clumps similar to those illustrated in Figure 11 are placed in the path of the plane wave. The maximum plasma density in the clumps is chosen to be 1.0 Â 105 cmÀ3. The wave frequency is chosen to be 72% the critical frequency of the structures causing the wave (1) to reflect on the bottom side of the clumps and (2) to pass through the unionized regions between the clumps.
+[34] The two-dimensional, full wave computation of electric fields is illustrated in Figure 13. The bottom of the clump (Figure 13b) shows strong electric fields (Figure 13a) that have maximum strength greater than 8 V/m. In the transition between ‘‘overdense’’ to ‘‘underdense’’ regions of the layer, the electromagnetic wave is refracted around the electron density structures. These portions of the electromagnetic wave will propagate to the overlying F region where they are reflected. The largest electric fields are found on the bottom side of the irregularity, where the conversion efficiency is the largest due to the optimal angle between the wave vector of the incident wave and the density inhomogeneity. The electric field profile (Figure 13a) at the horizontal distance of 5 km shows larger electric fields than is shown using the one-dimensional simulation in Figure 9. These differences may be the result of (1) inclusion of
+
+5. Conclusions
+[36] A number of new observations and computations have been presented in this paper. The first images of 2-kmscale horizontal lengths were shown in Figures 3c and 4. The measurements in Figure 3c occurred when a descending intermediate layer coalesced with a sporadic E layer at 120 km altitude. The observed structures could come from either shear-driven plasma or neutral instabilities. The source of the airglow excitation was explored by considering conversion of the electromagnetic pump waves into Langmuir waves and speculating on the effectiveness of neutral collisions on damping the Langmuir waves and quenching the airglow. The absolute parametric decay instability and direct conversion of electromagnetic waves to Langmuir waves need to be considered for the E region airglow excitation. Also, a better understanding of the refraction of the radio waves on the edges of the structures is needed to relate the electron densities and the optical intensities.
+[37] Numerical calculations verify that at 120 km altitude, the 557.7 nm emission from atomic oxygen is more intense than the N21P emission and that the 630.0 nm emissions are very weak. A suprathermal distribution function with a characteristic energy of 1.72 eV provides intensities consistent with the optical measurements. The calculations also show that at lower altitudes, the N21P emission may dominate over the green line (557.7 nm) intensities. Predictions are that at F region altitudes above 200 km the red line 630.0 nm emission will be the brightest, at 120 km altitude 557.7 nm emissions will dominate, and at 100 km altitude the red emissions from N21P will be favored. For future experimental verification of this, multiple wavelength observations are needed during HF modification of the ionospheric layers.
+[38] This paper has demonstrated by both observations and theory that radio-induced aurora (RIA) can be a
+
+BERNHARDT ET AL.: USING RADIO-INDUCED AURORA TO MEASURE ION LAYERS SIA 1 - 11
+
+powerful tool to study the irregular structure in the tidal ion layers between 90 and 150 km altitude. Future experiments using high-power radio waves from ground transmitters located in Alaska, Norway, Russia, and Puerto Rico can be used to excite electron acceleration near the radio wave reflection points. Electrons with energies above 3.5 eV can excite the green line of atomic oxygen. Even more energetic electrons (E > 9 eV) can excite the first-positive states of molecular nitrogen. Ground observations of artificially excited airglow can provide images of the horizontal structures in sporadic E regions. These observations may represent turbulence in the neutral atmosphere driven by wind shears, gravity waves, and other processes in the lower thermosphere. The irregularity observations may provide a means for studying wind shear-driven plasma instabilities such as described by Cosgrove and Tsunoda [2002]. New observations with the RIA technique will provide a better understanding of the dynamics for the nighttime ion layers that can affect radio communications from space to ground and between different points on the Earth’s surface.
+[39] Acknowledgments. The Office of Naval Research supported the
+work at the Naval Research Laboratory. Arecibo Observatory is part of the National Astronomy and Ionosphere Center, which is operated by Cornell University under a cooperative agreement with NSF. The optical image data were obtained using the Cornell Imager located at the Arecibo Observatory. FTD acknowledges support from the NSF under grant ATM-9529392.
+[40] Arthur Richmond thanks Mike Kosch and another reviewer for
+their assistance in evaluating this paper.
+References
+Belikovich, V. V., et al., Diagnostics of the ionosphere and neutral atmosphere at E-region heights using artificial periodic in homogeneities, J. Atmos. Sol. Terr. Phys., 59, 2447 – 2460, 1997.
+Bernhardt, P. A., The modulation of sporadic-E layers by Kelvin-Helmholtz billows in the neutral atmosphere, J. Atmos. Sol. Terr. Phys., 64, 1487 – 1504, 2002.
+Bernhardt, P. A., L. M. Duncan, and C. A. Tepley, Artificial airglow excited by high-power radio waves, Science, 242, 1022 – 1027, 1988.
+Bernhardt, P. A., C. A. Tepley, and L. M. Duncan, Airglow enhancements associated with plasma cavities formed during ionospheric heating experiments, J. Geophys. Res., 94, 9071 – 9092, 1989.
+Bernhardt, P. A., et al., The ionospheric focused heating experiment, J. Geophys. Res., 100, 17,331 – 17,345, 1995.
+Bernhardt, P. A., M. Wong, J. D. Huba, B. G. Fejer, L. S. Wagner, J. A. Goldstein, C. A. Selcher, V. L. Frolov, and E. N. Sergeev, Optical remote sensing of the thermosphere with heater induced artificial airglow (HIAA), J. Geophys. Res., 105, 10,657 – 10,671, 2000.
+Cosgrove, R. B., and R. T. Tsunoda, A direction-dependent instability ofsporadic-E layers in the nighttime midlatitude ionosphere, Geophys. Res. Lett., 29(18), 1864, doi:10.1029/2002GL014669, 2002.
+Djuth, F. T., HF-enhanced plasma line in the low ionosphere, Radio Sci., 19, 383 – 394, 1984.
+Djuth, F. T., and C. A. Gonzales, Temporal evolution of the HF-enhanced plasma line in sporadic E, J. Geophys. Res., 93, 196 – 208, 1988.
+Djuth, F. T., et al., Production of large airglow enhancements via waveplasma interactions in sporadic-E, Geophys. Res. Lett., 26, 1557 – 1560, 1999.
+Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt, Vector parabolic equation with PML absorbing boundaries for radio wave propagation in an inhomogeneous magnetized plasma, J. Comput. Phys., in press, 2003.
+Gordon, W. E., and H. C. Carlson, The excitation of plasma line in blanketing sporadic E, J. Geophys. Res., 81, 1016 – 1018, 1976.
+
+Hedin, A. E., MSIS-86 thermospheric model, J. Geophys. Res., 92, 4649 – 4662, 1997.
+Kagan, L. M., M. C. Kelley, F. Garcia, P. A. Bernhardt, F. T. Djuth, M. P. Sulzer, and C. A. Tepley, The structure of electromagnetic wave-induced 557.7-nm emission associated with a sporadic-E event over Arecibo, Phys. Rev. Lett., 85, 218 – 221, 2000.
+Kagan, L. M., N. V. Bakhmet’eva, V. V. Belikovich, A. V. Tolmacheva, and M. C. Kelley, Structure and dynamics of sporadic layers of ionization in the ionospheric E region, Radio Sci., 37(6), 1106, doi:10.1029/ 2001RS002534, 2002.
+Kosch, M. J., M. T. Rietveld, T. Hagfors, and T. B. Leyser, High-latitude HF-induced airglow displaced equatorwards of the pump beam, Geophys. Res. Lett., 27, 2817 – 2820, 2000.
+Larsen, M. F., A shear instability seeding mechanism for quasi-periodic radar echoes, J. Geophys. Res., 105, 24,931 – 24,937, 2000.
+Majeed, T., and D. J. Strickland, New survey of electron impact cross sections for photoelectron and auroral electron energy loss calculations, J. Phys. Chem Ref. Data, 26, 335 – 349, 1997.
+Mathews, J. D., Sporadic E: Current views and recent progress, J. Atmos. Sol. Terr. Phys., 60, 413 – 435, 1998.
+Mathews, J. D., M. P. Sulzer, and P. Perillat, Aspects of layer electrodynamics inferred from high-resolution ISR observations of the 80 – 270 km ionosphere, Geophys. Res. Res., 24, 1411 – 1414, 1997.
+Mjølhus, E., On linear conversion in a magnetized plasma, Radio Sci., 25, 1321 – 1339, 1990.
+Morales, G. J., M. M. Shoucri, and J. E. Maggs, Self-consistent modification of a fast-tail distribution by resonant fields in nonuniform plasmas, Phys. Fluids, 31, 1471 – 1480, 1988.
+Newman, D. L., M. V. Goldman, F. T. Djuth, and P. A. Bernhardt, Langmuir turbulence associated with ionospheric modification: Challenges associated with recent observations during a sporadic-E event, Phys. Space Plasmas, 15, 259 – 264, 1998.
+Perkins, F. W., and J. Flick, Parametric instabilities in inhomogeneous plasmas, Phys. Fluids, 14, 2012 – 2018, 1971.
+Rosenbluth, M. N., Parametric instabilities in inhomogeneous media, Phys. Rev. Lett., 29, 565 – 568, 1972.
+Schlegel, K., M. Rietveld, and A. Maul, A modification event of the auroral E region studied with EISCAT and other diagnostics, Radio Sci., 22, 1063 – 1072, 1987.
+Shepherd, G. G., et al., WINDII, the wind imaging interferometer on the Upper Atmospheric Research Satellite, J. Geophys. Res., 98, 10,725 – 10,750, 1993.
+Shoucri, M., G. J. Morales, and J. E. Maggs, Modification of the ionospheric electron velocity distribution function due to resonant absorption of HF waves, J. Geophys. Res., 98, 246 – 254, 1987.
+Swenson, G. R., M. R. Taylor, P. J. Expy, G. S. Gardner, and X. Tao, ALOHA-93 measurements of intrinsic AGW characteristics using airborne airglow imager and ground-based Na wind/temperature lidar, Geophys. Res. Lett., 22, 2841 – 2844, 1995.
+Taylor, M. J., T. T. Gu, X. Tao, C. S. Gardner, and M. B. Bishop, An investigation of intrinsic gravity wave signatures using coordinated lidar and nightglow imaging measurements, Geophys. Res. Lett., 22, 2853 – 2856, 1995.
+Torr, M. R., and D. G. Torr, The role of metastable species in the thermosphere, Rev. Geophys., 20, 91 – 144, 1982.
+Zhou, Q. H., M. P. Sulzer, and C. A. Tepley, An analysis of tidal and planetary waves in the neutral winds and temperature observed a lowlatitude E region heights, J. Geophys. Res., 102, 11,491 – 11,505, 1997.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+P. A. Bernhardt and S. L. Ossakow, Plasma Physics Division, Naval Research Laboratory, Code 6794, 4555 Overlook Avenue, SW, Washington, D. C. 20375-5320, USA. (bern@ppd.nrl.navy.mil)
+F. T. Djuth, Geospace Corporation, El Segundo, CA 90245, USA. N. A. Gondarenko and P. N. Guzdar, Physics Department, University of Maryland, College Park, MD 20742, USA. D. L. Newman, Center for Integrated Plasma Studies, University of Colorado, 390 UCB, Boulder, CO 80309-0390, USA. M. P. Sulzer and C. A. Tepley, Arecibo Observatory, Arecibo, Puerto Rico 00613.
+

@@ -1,0 +1,479 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/322938893
+
+Compressible Kolmogorov ﬂow in strongly coupled dusty plasma using molecular dynamics and computational ﬂuid dynamics. II. A comparative study
+
+Article in Physics of Plasmas · January 2018
+DOI: 10.1063/1.5013060
+CITATIONS
+4
+3 authors:
+Akanksha Gupta Indian Institute of Technology Kanpur 15 PUBLICATIONS 37 CITATIONS
+SEE PROFILE
+Ashwin Joy Institute for Plasma Research 23 PUBLICATIONS 214 CITATIONS
+SEE PROFILE
+
+READS
+74
+Rajaraman Ganesh Institute for Plasma Research 124 PUBLICATIONS 480 CITATIONS
+SEE PROFILE
+
+Some of the authors of this publication are also working on these related projects: Multi-cusp Plasma Device View project Project title : A first principle numerical simulation of strongly coupled multi ion plasma in the presence of an external magnetic field View project
+
+All content following this page was uploaded by Akanksha Gupta on 23 April 2019. The user has requested enhancement of the downloaded file.
+
+Kolmogorov flow in two dimensional strongly coupled Yukawa liquid: A molecular dynamics study
+Cite as: Phys. Plasmas 22, 103706 (2015); https://doi.org/10.1063/1.4934535 Submitted: 23 September 2015 . Accepted: 11 October 2015 . Published Online: 23 October 2015 Akanksha Gupta, Rajaraman Ganesh, and Ashwin Joy
+ARTICLES YOU MAY BE INTERESTED IN Molecular shear heating and vortex dynamics in thermostatted two dimensional Yukawa liquids Physics of Plasmas 23, 073706 (2016); https://doi.org/10.1063/1.4958943 Kolmogorov flow in two dimensional strongly coupled dusty plasma Physics of Plasmas 21, 073707 (2014); https://doi.org/10.1063/1.4890488 Molecular dynamics study of flow past an obstacle in strongly coupled Yukawa liquids Physics of Plasmas 23, 123703 (2016); https://doi.org/10.1063/1.4971449
+
+Phys. Plasmas 22, 103706 (2015); https://doi.org/10.1063/1.4934535 © 2015 AIP Publishing LLC.
+
+22, 103706
+
+PHYSICS OF PLASMAS 22, 103706 (2015)
+
+Kolmogorov flow in two dimensional strongly coupled Yukawa liquid: A molecular dynamics study
+
+Akanksha Gupta, Rajaraman Ganesh,a) and Ashwin Joy
+Institute for Plasma Research, Bhat, Gandhinagar, Gujarat 382428, India
+
+(Received 23 September 2015; accepted 11 October 2015; published online 23 October 2015)
+
+The transition from laminar to turbulent ﬂows in liquids remains a problem of great interest despite
+
+decades of intensive research. Here, we report an atomistic study of this transition in a model
+
+Yukawa liquid using molecular dynamics simulations. Starting from an thermally equilibrated
+
+Yukawa liquid, for a given value of coupling parameter C (deﬁned as ratio of potential energy to
+
+kinetic energy per particle) and screening length j, a subsonic ﬂow of magnitude U0 is superposed and transition to an unstable regime is observed eventually leading to turbulent ﬂow at sufﬁciently
+
+high Reynolds numbers. We have performed a parametric study for a range of Reynolds number R
+
+and found that the ﬂow is neutrally stable for R < RcðCÞ, while a transition from laminar to turbulent ﬂow occurs for R > RcðCÞ, where Rc is the critical value of Reynolds number. Strong molecular shear heating is observed in all cases studied here. It is found that the coupling
+
+parameter C decreases because of molecular shear heating on a time scale comparable to the
+
+instability time scale. Irrespective of the initial value of coupling parameter C, the average heating
+
+rate is where
+
+found vth ¼
+
+qtoﬃbﬃ e sensitive to the ratio of equilibrium ﬂow C2. Our results reported here are expected to
+
+speed to the thermal speed, say, be generic and should apply to
+
+a a
+
+¼
+
+, U0
+vth
+
+wide
+
+variety of strongly coupled systems such as laboratory dusty plasma, molten salts, and charged
+
+colloidal systems. VC 2015 AIP Publishing LLC. [http://dx.doi.org/10.1063/1.4934535]
+
+I. INTRODUCTION
+It is well known that micron-sized dust grains immersed in a conventional plasma acquire a high value of charge because of high mobility of electrons.1 These grains interact with each other via screened Coulomb potential, also known as the Yukawa potential. Screening is because of the background plasma and is characterized by dimensionless screening parameter j ¼ a=kD (where a is intergrain-spacing and kD is Debye length of background plasma). These interacting dust grains behave as a medium which can exhibit solidlike,2–4 liquid-like,5 and gas-like1 features, depending upon screening parameter j and the value of coupling parameter C (C ¼ Q2d=4pe0akBTd, wherein Qd and Td are charge and temperature of dust grain).
+The dynamics of microscopic dust grains can be visualized and tracked (many a times even by unaided eye) by optical cameras in the dusty plasma experiments.2 Molecular dynamics comes as a powerful tool to study different properties such as phase transition, instability, transport, grain crystallization physics, and also to visualize the dust grains dynamics. For example, in the past, various dynamical properties of dusty plasma determination of transport coefﬁcients, such as shear and bulk viscosities,6 Maxwell relaxation time (sm),7 heat conduction, wave dispersion,8 self diffusion9 and ﬂuid instability like Kelvin-Helmholtz instability,10 had been addressed using the molecular dynamics simulation.
+In an earlier molecular dynamics study,11 shear heating was identiﬁed. In past, macroscopic shear ﬂows have been induced by external laser-drive in Yukawa liquids.12,13 In
+a)Electronic mail: ganesh@ipr.res.in
+
+one of these experiments,12 a co-evolving shear heating was observed. However, a detailed study of shear heating in macroscopic ﬂows in Yukawa liquids has not yet been addressed.
+In the present work, we consider the well known macroscopic ﬂow, namely, Kolmogorov14,15 ﬂow [see Fig. 3] as our initial shear ﬂow. Kolmogorov ﬂow is a sinusoidal periodic shear ﬂow, which was ﬁrst introduced by Russian mathematician Andrey Kolmogorov in 1958–1959. This particular shear ﬂow has been addressed analytically,14 numerically,16 and experimentally15,17 to explore linear, nonlinear,18 and statistical19 properties of laminar to turbulent transition in ﬂuids.
+Using “ﬁrst principle” molecular dynamics, the early phase and late time dynamics of this hydrodynamic ﬂow in strongly coupled plasma is addressed. We have also performed a parametric study of stability of the ﬂow with Reynolds number R and found that below a critical value of Reynolds number Rc, ﬂow exhibits a neutral stability. However, above R > Rc, a transition occurs from laminar to unstable state and eventually turning into a turbulent ﬂow. We observe that for the given value of initial coupling parameter C and screening parameter j, molecular shear heating strongly reduces the magnitude of dynamic coupling parameter and its decay-rate is mainly found to be dependent upon the ratio of equilibrium shear velocity to thermal velocity. We ﬁnd that the magnitude of coupling parameter decays exponentially by the end of the growth phase, thus altering the state of “background grains” dramatically.
+Present paper is organized in the following manner. In Sec. II, we describe the details of molecular dynamics simulation method. In Sec. III, equilibrium proﬁle
+
+1070-664X/2015/22(10)/103706/7/$30.00
+
+22, 103706-1
+
+VC 2015 AIP Publishing LLC
+
+103706-2 Gupta, Ganesh, and Joy
+of shear ﬂow and its laminar to turbulent transition are described. In Sec. IV, molecular shear heating effects on coupling strength are described. Finally in Sec. V, we discuss and summarize our present work and indicate future directions.
+
+Phys. Plasmas 22, 103706 (2015)
+
+II. MOLECULAR DYNAMICS SIMULATION
+As described in the Introduction, the interaction between grains can be modeled as a Yukawa interaction given by the inter-particle potential energy
+
+UðrijÞ
+
+¼
+
+Q2d 4p0
+
+XN
+j6¼i
+
+eÀrij =kD rij
+
+;
+
+(1)
+
+where rij ¼ jri À rjj is the distance between ith and jth dust grain. Note that due to fast dynamics of background plasma,
+
+we consider plasma properties to be invariant and model
+
+only grain dynamics. The N-body problem is then numerically integrated using our parallel code.20 Time, distance,
+
+and eneprgﬃyﬃ are normalized to inverse of dust plasma fre-
+
+quency 2xÀpd1 age Coulomb
+
+¼ xÀ0 1, energy
+
+mean inter-gain spacing a, and aver-
+
+of
+
+dust
+
+particle
+
+, Q2d
+4pe0 a
+
+respectively.
+
+Hence, all physical quantities appearing henceforth in the
+
+paper are dimensionless. In our simulations, the size of the
+
+system is decided by average number of dust particles n. For
+
+our
+
+choice
+
+of
+
+n
+
+¼
+
+1 p
+
+and
+
+total
+
+number
+
+of
+
+particles
+
+Nd ¼ 62 500, Lx ¼ Ly ¼ L ¼ 443:12. Screening parameter j
+
+is 0.5. In present work, we do not consider Ewald sums21
+
+because of sufﬁciently large system size.
+
+The Yukawa liquid is ﬁrst thermally equilibrated by connecting the system to a Gaussian thermostat20 at desired C and is evolved for time t0 ¼ 300xÀ0 1. For next 300xÀ0 1, the system is isolated from heat-bath and evolved micro-
+
+canonically. In Fig. 1, the total energy as a function of time
+
+is plotted. As can be expected, in the canonical phase (see
+
+Fig. 1) a mean energy is attained for a constant value of
+
+coupling parameter C and in the micro-canonical phase,
+
+the total energy is seen to be conserved. However, when
+
+shear ﬂow is superimposed over thermally equilibrated
+
+dust particles, the total energy changes from 1.147 to
+
+1.3967 (see Fig. 1).
+
+To calculate the “ﬂuid” variables from particle dynam-
+
+ics, a meshgrid of size 55 Â 55 is superimposed on to the sys-
+
+tem of particles. On an average, each bin would contain
+
+Nb
+
+¼
+
+Nd 55Â55
+
+’
+
+20
+
+particles,
+
+which
+
+is
+
+found
+
+to
+
+be
+
+sufﬁcient
+
+to
+
+estimate average local quantities. We calculate average local
+
+“ﬂuid” velocity UðxG; yG; t0Þ, average local vorticity
+x ðxG; yG; t0Þ (x ¼ r Â U), average local coupling parameter C ðxG; yG; t0Þ, and average local temperature TðxG; yG; t0Þ
+
+at the grid points, where ðxG; yGÞ is the location of a center
+
+of a particular bin. For example, average local ﬂuid veloc-
+
+iPtieNsb
+i¼1
+
+along vix; U
+
+yx¼aNn1bdPyNi¼bd1ivreiyc,tiwonhserearveix
+
+calculated
+
+as
+
+Ux
+
+¼
+
+1 Nb
+
+and viy are individual
+
+particle velocities along x and y direction. Similarly, average
+
+local coupling parameter of grain ﬂuid element velocities is
+
+calculated by the following expression:
+
+FIG. 1. Total energy vs time plot for coupling parameter C0 ¼ 50, screening parameter j ¼ 0:5, spatial period number n0 ¼ 3 in canonical ð0 À 300ÞxÀ0 1 and micro-canonical run ð300 À 600ÞxÀ0 1. Next ð600 À 1600ÞxÀ0 1 plot is after superposition of shear ﬂow proﬁle over thermally equilibrated dust par-
+ticles (micro-canonical run). Superposition of shear ﬂow increases the
+velocity of particles, hence the value of total energy changes from 1.147 to
+1.3967 as shown above.
+
+À
+
+Á
+
+C xG; yG; t0 ¼
+
+1
+
+X Nb
+
+Nb i¼1
+
+2
+
+À vixðt0Þ
+
+À
+
+Ux
+
+Á2
+
+þ
+
+ viyðt0Þ
+
+À
+
+Uy
+
+2 !
+
+:
+
+(2)
+
+Data shown in Fig. 2 are divided into three regions. In the ﬁrst region (a), coupling parameter C ðt0Þ with time ð0 À 300ÞxÀ0 1 has been plotted in canonical phase where thermostat is on, in second region (b), the same variable is plotted against time ð300 À 600ÞxÀ0 1 with thermostat off condition (micro-canonical phase). In the last region (c), after superposition of shear ﬂow U0ðxÞy^ (see Sec. III for details of shear ﬂow) over system of particle velocities, dynamic coupling parameter C is plotted for time ð600 À 1600ÞxÀ0 1. Fig. 2 shows that the coupling parameter is constant before
+superposition of shear proﬁle however, as shear proﬁle
+superimposed on thermally equilibrated dust grains and the
+system is evolved further the value of coupling parameter
+decays. In Sec. III, we report early and late time behavior of
+shear ﬂow in strongly correlated Yukawa liquids. Noticeable
+thing is that shear ﬂow is adiabatic (non-thermostatted)
+which implies that the heat transfer away from the shear
+layer is minimal.
+
+III. KOLMOGOROV FLOW AS A INITIAL VALUE PROBLEM IN YUKAWA LIQUID
+We have presented in Fig. 3 the equilibrium ﬂow proﬁle of shear ﬂow having spatial periodic number n0 ¼ 3, where the ﬂow is directed towards y^-direction and has transverse shear along x^-direction. In ﬂuid dynamics study such shear ﬂows have been extensively used to understand the laminar to turbulent transition of ﬂows.14 We superpose shear ﬂow
+
+103706-3 Gupta, Ganesh, and Joy
+
+Phys. Plasmas 22, 103706 (2015)
+
+FIG. 2. Average coupling parameter C ðt0Þ vs time plot for initial coupling
+parameter C0 ¼ 50, screening parameter j ¼ 0:5 spatial period number n0 ¼ 3 and shear velocity U0 ¼ 1. (a) canonical run for time ð0 À 300ÞxÀ0 1, (b) micro-canonical run for time ð300 À 600ÞxÀ0 1, wherein peak to peak ﬂuctuation 1.406%, (c) micro-canonical run for time ð600 À 1600ÞxÀ0 1 after superposition of shear ﬂow proﬁle over thermally equilibrated particles of
+the system.
+
+over thermally equilibrated dust particles at a desired tem-
+
+perature and allow it to evolve micro canonically up to
+
+1000xÀ0 1 without heat-bath. The initial equilibrium shear
+
+ﬂow is U~0 ðxÞ ¼ U0 cosð2Lpx n0xÞð1 þ d cosð2Lpy myÞÞy^, where
+
+U0 ¼ 1 (the magnitude of equilibrium velocity, n0 ¼ 3 (spa-
+
+tial period number), d ¼ 0:01 (magnitude of perturbation),
+
+m ¼ 2(perturbed mode number). Coupling parameter Cðt0Þ
+
+at time t0 ¼ 0 iqs Cﬃﬃﬃﬃ0 ¼ Cðt0 ¼ 0Þ ¼ 50, for which the thermal
+
+velocity vth ¼
+
+2 C0
+
+¼
+
+0:2.
+
+It
+
+is
+
+estimated
+
+that
+
+the
+
+longitudinal
+
+sound speed of the system for C0ðt0 ¼ 0Þ ¼ 50 and j ¼ 0:5 is with in the range of 2–2.5.22 Hence, equilibrium velocity
+
+(U0 ¼ 1) is greater than thermal speed (vth ¼ 0.2) but smaller
+
+than sound speed (Cs ¼ 2 À 2:5) of the system, therefore
+
+ﬂow regarded as “subsonic” in nature.
+
+Note that the entire macroscopic ﬂow speed is along y^
+
+direction initially. The transition from laminar to turbulent
+
+ﬂow along y^ direction to an unstable macroscopic dynamics
+
+state may be identiﬁed by calculating the change in per-
+
+turbed kinetic energy along x^ direction as deﬁned in the fol-
+
+lowing equation:
+
+ddEEkkiinnðð0tÞÞ
+
+¼
+
+ð
+
+ð
+
+Â
+
+Ã
+
+v2xðtÞ À v2xð0Þ dxdy
+
+ðð
+
+:
+
+v2x ð0Þdxdy
+
+(3)
+
+Note that, for convenience, we rewrite time variable t0 as t ¼ t0 À 600xÀ0 1. Henceforth, in the rest of the paper, dynamics will be described with respect to t.
+In Fig. 4, perturbed kinetic energy along xÀdirection and coupling parameter is plotted on a log-linear scale
+against time t. Growth rate of perturbation is found to be approximately equal to 5:5 Â 10À2. In Fig. 4, perturbed kinetic energy along with decay of coupling parameter C are
+plotted in the same ﬁgure. A noticeable thing is that the mo-
+lecular shear heating reduces the value of coupling parameter by 50% (C ’ 26 at t ¼ 220xÀ0 1) from its initial value (C0 ¼ 50 at t ¼ 0). From Fig. 4, it is evident that molecular shear heating is very fast at initial phase of shear ﬂow (before t ¼ 0 to t ¼ 220xÀ0 1). As observed in Ref. 11, the following two processes are appeared to be at work in the shear
+region: (a) Decay of coupling parameter or rise in tempera-
+ture which changes the local viscosity of the system and (b)
+on macroscale, the free energy in ﬂow shear is released as an
+instability. Due to this free energy and also because of low
+viscosity, perturbed modes start to grow. In late time regime,
+inertial effects dominate over the stabilizing viscous effects.
+The ﬂuid undergoes laminar to turbulent ﬂow transition, and
+late time saturation in perturbed kinetic energy is seen. In
+Fig. 5, we have presented the time evolution of vorticity
+
+FIG. 3. Kolmogorov velocity (U0 ¼ 1) proﬁle in xy plane. White arrows show the direction of local ﬂow along y direction and shear along x direction.
+
+FIG. 4. Perturbed kinetic energy (left y-axis) and decay of coupling parameter (right y-axis) in linear-log scale for number for perturbation mode m ¼ 2, initial coupling parameter C0ðt ¼ 0Þ ¼ 50, screening parameter j ¼ 0:5, spatial period number n0 ¼ 3; and shear velocity U0 ¼ 1. Calculated growth rate from simulation is 5:5 Â 10À2.
+
+103706-4 Gupta, Ganesh, and Joy
+
+Phys. Plasmas 22, 103706 (2015)
+
+FIG. 5. Fluid vorticity (x ¼ r Â U~) contour plots. The grain velocity in the bins is ﬂuidized through a 55 Â 55 grid to construct vorticity. The side color bar shows the magnitude of vorticity and blue and red strips show the opposite sign vorticity, respectively. Perturbation mode m ¼ 2, initial coupling parameter C0 ¼ 50, screening parameter j ¼ 0:5 equilibrium spatial period number is n0 ¼ 3, initial Reynolds number R ¼ 235.149, and shear velocity U0 ¼ 1. Vorticity plots generated from microscopic velocity show Kolmogorov instability in molecular dynamics; the micro scale heating quickly destroys the vorticity structures.
+structure in Yukawa liquid at initial coupling parameter C0 ¼ 50. As described earlier, to construct these vorticity structures, we ﬁrst obtain the local velocity by “ﬂuid” dust particle velocities over a 55 Â 55 meshgrid. In vorticity evolution plot [see Fig. 5], it is depicted that in initial time perturbed mode m ¼ 2 ﬁrst grows and in late time modemode interaction dominate and nonlinear patterns are obtained. It is found that after some time, vorticity structures are destroyed because of microscale molecular shear heating, the details of which will be discussed in Sec. IV.
+In Fig. 6, we have shown results of a parametric study for maximum growth-rate of perturbed mode with initial Reynolds number R ¼ U0ln=g, where l and g are the shearing length and initial shear viscosity of the ﬂow, respectively. Here, the value of shear viscosity g is calculated using the Green-Kubo formalism.7,23 It is depicted in Fig. 6 that for a given value of C0 and j, ﬂow is neutrally stable below
+FIG. 6. Growth-rate vs initial Reynolds number R plot showing transcritical kind of bifurcation.
+
+R < Rc, where Rc is the critical value of Reynolds number and for R > Rc ﬂow becomes unstable and eventually turbulent [see Fig. 6]. It is tempting to speculate from the result shown in Fig. 6 that such laminar to turbulent transition in our system could be a transcritical bifurcation.24 Interestingly, we ﬁnd that higher value of coupling parameter C decreases the critical value of Reynolds number Rc.
+In Sec. IV, we study the effect of viscous heating on shear ﬂow.
+IV. MOLECULAR HEATING DUE TO SHEAR FLOW
+It is found that, whenever there is a shear in macroscopic velocity proﬁles, viscous shear heating occurs at the microscale. For some ﬂuids, it is not necessary for shear heating to increase the temperature at the shear layer, because heat conduction can be so rapid at the location of the velocity shear where the heat is formed that as soon as heat is generated, it is carried away. Conventionally, the effect of viscous shear heating and thermal conduction is measured by a dimensionless parameter, known as Brinkman number25,26 Br % gðDVÞ2=kDT (where g and k are shear viscosity and thermal conductivity and DV and DT are difference in ﬂow velocity and temperature, respectively).26 Mostly, Br which is the ratio of viscous heating to thermal conduction is smaller than the unity. The higher is the value of Br, the lesser will be the heat conduction, and hence, larger the temperature rise near the shear layer. For example, for Taylor-Couette ﬂow in Newtonian and visco-elastic ﬂuids trapped between concentric and rotating cylinders, value of Br is found to be 0.0035927 and for conventional water ﬂow in a channel28 its value is approximately in the range of ð1 À 17Þ Â 10À8.
+Recently in dusty plasma experiments, using laser driven shear ﬂow study, high temperature peaks are reported13 in the regions of velocity shear in two-dimensional layer. These high temperature peaks are due to shear heating, which occurs due to collisional scattering at the region of shear location. In such dusty plasma experiments, value of Br is estimated to be 0.5.13 We have calculated Brinkman number from our numerical simulation and found that Br ¼ 0.9445 for our system parameters at the grid location xG % 110 and time t ¼ 0 for C0 ¼ 50; j ¼ 0:5; gðt ¼ 0Þ ¼ 0:2 (Ref. 7) and kðC0 ¼ 50; j ¼ 0:5Þ ¼ 0:4235,29,30 the value of DT and DV are 0.02 and 0.2 from Figs. 7 and 8.
+In the shear layers, frequency of collisions between dust grains can be expected to be high. These collisions increase the random thermal velocity of particles. Temperature of dust grains depends upon the random thermal velocity which is directly related to kinetic energy. Moreover, viscous dissipation effects become important when either the viscosity is larger or when the ﬂuids have a low thermal conductivity, which increases the temperature gradients. One can clearly see the viscous shear heating at shear locations in Fig. 7, in which space dependent temperature proﬁle has been plotted at various times. In these temperature proﬁles because of spatial period number 3, six maxima (at the location of interface between two consecutive anti parallel ﬂow) show the shear heating locations. As time increases, magnitude of temperature increases and at time t ¼ 1000xÀ0 1, temperature
+
+103706-5 Gupta, Ganesh, and Joy
+
+Phys. Plasmas 22, 103706 (2015)
+
+FIG. 7. TðxGÞ ¼ hTðxG; 0; tÞi, temporal evolution of temperature proﬁle as a function of x for different time for C0 ¼ 50, equilibrium velocity magnitude U0 ¼ 1, screening parameter j ¼ 0:5.
+starts to saturate. In Fig. 8, space dependent “ﬂuidizing” velocity proﬁle has been plotted at y ¼ 0 axis. Again a clear signal of molecular shear heating is visible, which shows that because of shear heating vorticity structures are destroyed. In Fig. 9, we have plotted average C which is inverse of temperature as a function of time. The thermal speed for C0 ¼ 50; 100; and 150 are 0.2, 0.14142, and 0.11547, respectively, and are much smaller than equilibrium velocity speed U0 ¼ 1 (therefore, the shear heating phenomena occur and result in the decay in C value). We ﬁnd that decayrate is dependent on equilibrium ﬂow velocity. To better understand the interplay between heat conduction and viscous heating, we deﬁne a parameter a which is a ratio of equilibrium speed of shear ﬂow to the thermal speed a ¼ U0=vth.
+We divide our observations into three categories:
+(a) [a ¼ 0.5 or ðU0 < vthÞ]: For this case, the thermal speed is greater than the equilibrium velocity speed. In Fig. 10, shear heating is very small for a ¼ 0:5 for various
+
+FIG. 9. Spatial average coupling parameter C vs time plot for different value of initial C0 for equilibrium velocity magnitude U0 ¼ 1, screening parameter j ¼ 0:5 at y ¼ 0 axis.
+values of coupling parameter. One can say, that for larger value of thermal speed, the coupling parameter will be constant with very small ﬂuctuations throughout the simulation. (b) [a ¼ 2.0 or ðU0 > vthÞ]: In this case, it is found that the decay rate of higher C0 ¼ 100; 150 is quite close, however, a slight smaller for C0 ¼ 50. (c) [a ¼ 6.0 or ðU0 ) vthÞ]: For this case, the thermal speed is much smaller than the equilibrium velocity speed, results in the faster decay for high C0 ¼ 100; 150. For C0 ¼ 100; 150, decay-rate is close to each other while for C0 ¼ 50 it is slower compared to the higher C0.
+
+FIG. 8. vyðxGÞ ¼ hvðxG; 0; tÞi, temporal evolution of velocity proﬁle as a function of x for different time for C0 ¼ 50, equilibrium velocity magnitude U0 ¼ 1, screening parameter j ¼ 0:5.
+
+FIG. 10. Spatially averaged coupling parameter CðtÞ as a function of time for three different values of initial C0, namely, C0 ¼ 50ðÃÞ; 100ð(Þ and 150ð᭺Þ. Colors correspond to the cases a ¼ 0:5ðredÞ; 2ðgreenÞ; and 6 ðblueÞ.
+
+103706-6 Gupta, Ganesh, and Joy
+
+Phys. Plasmas 22, 103706 (2015)
+
+FIG. 11. hCixy vs time plot for C0 ¼ 50, equilibrium velocity to thermal velocity ratio, say, a ¼ U0=vth ¼ 5. Fit line is 0:2½1 þ 4:0 expðÀbtÞ. Calculated decay rate is b ¼ 3.4 Â10À3.
+In Fig. 11, we have ﬁtted the decay-rate data with an exponentially ﬁt a½1 þ b expðÀbtÞ, where a ¼ 0.2, b ¼ 4.0, b are intercept, coefﬁcient of exponential part and decay-rate, respectively. b describes how rapidly the coupling parameter decreases as the time increases. The decay rate b of coupling parameter is approximately 3:4 Â 10À3 qualitatively. To see the dependency of decay rate on equilibrium velocity to thermal velocity ratio (a ¼ U0=vth), we have plotted decay rate vs a in Fig. 12 for coupling parameter C0 ¼ 50. It is clear that the decay rate of particular coupling parameter monotonically increases with a value. V. CONCLUSIONS
+In the present work, we have investigated laminar to turbulent transition of Kolmogorov ﬂow in strongly coupled Yukawa liquid using “ﬁrst principle” based molecular
+FIG. 12. Decay rate vs a ¼ U0=vth plot for the number of perturbation mode m ¼ 2, coupling parameter C0 ¼ 50, screening parameter j ¼ 0:5; equilibrium spatial period number n0 ¼ 3.
+
+dynamics simulation. Parametric study for range of Reynolds number R has been performed and reveals that the Yukawa liquid in neutral stable state for R < Rc and unstable for R > Rc, where Rc is a transition point from where laminar to turbulent transition occurs. The nature of the growth of perturbed mode against Reynolds number exhibits transcritical like bifurcation. We have presented the effect of molecular shear heating on the stability of shear ﬂow in Yukawa liquid. In the early phase, we ﬁnd that the coupling parameter decays exponentially. At the late times, coherent vortices are destroyed because of molecular shear heating. The description of viscous heating is characterized by space dependent temperature proﬁle at a given coupling parameter (C0 ¼ 50) of x at y ¼ 0 for different times. These space dependent temperature proﬁles reveal the rise in temperature at shear location. It is also seen that the decay-rate of C with time depends upon the ratio of equilibrium shear velocity to thermal velocity. The inﬂuence of suppressed molecular shear heating on shear ﬂow to represent the ﬂuid properties without heat dissipation in strongly coupled dusty plasma will be presented in future communication.
+ACKNOWLEDGMENTS
+The numerical work reported in this paper was done on the Udbhav computational cluster at the Institute for Plasma Research, Gandhinagar. We would also like to thank Abhijit Sen and Nirmal Bisai for comments on our manuscript.
+1P. K. Shukla, N. N. Rao, and M. Y. Yu, Planet. Space Sci. 38, 543 (1990). 2H. Thomas, G. E. Morﬁll, V. Demmel, J. Goree, B. Feuerbacher, and D. M€ohlmann, “Plasma crystal: Coulomb crystallization in a dusty plasma,” Phys. Rev. Lett. 73, 652 (1994). 3J. H. Chu and I. Lin, “Direct observation of Coulomb crystals and liquids in strongly coupled rf dusty plasmas,” Phys. Rev. Lett. 72, 4009 (1994). 4G. E. Morﬁll and A. V. Ivlev, “Complex plasmas: An interdisciplinary research ﬁeld,” Rev. Mod. Phys. 81, 1353 (2009). 5V. E. Fortov, V. I. Molotkov, A. P. Nefedov, and O. F. Petrov, “Liquidand crystallike structures in strongly coupled dusty plasmas,” Phys. Plasmas 6, 1759–1768 (1999). 6V. Nosenkol and J. Goree, “Shear ﬂows and shear viscosity in a two dimensional Yukawa system (dusty plasma),” Phys. Rev. Lett. 93, 155004 (2004). 7J. Ashwin and A. Sen, “Microscopic origin of shear relaxation in a model viscoelastic liquid,” Phys. Rev. Lett. 114, 055002 (2015). 8H. Ohta and S. Hamaguchi, Phys. Rev. Lett. 84, 6026 (2000). 9H. Ohta and S. Hamaguchi, Phys. Plasmas 7, 4506 (2000). 10J. Ashwin and R. Ganesh, “Kelvin Helmholtz instability in strongly coupled Yukawa liquids,” Phys. Rev. Lett. 104, 215003 (2010). 11J. Ashwin and R. Ganesh, “Coherent vortices in strongly coupled liquids,” Phys. Rev. Lett. 106, 135001 (2011). 12W.-T. Juan, M.-H. Chen, and I. Lin, “Nonlinear transports and microvortex excitations in sheared quasi-two-dimensional dust Coulomb liquids,” Phys. Rev. E 64, 016402 (2001). 13Y. Feng, J. Goree, and B. Liu, “Observation of temperature peaks due to strong viscous heating in a dusty plasma ﬂow,” Phys. Rev. Lett. 109, 185002 (2012). 14L. D. Meshalkin and Y. G. Sinai, J. Appl. Math. Mech. 25, 1700 (1961). 15A. M. Obukhov, “Kolmogorov ﬂow and laboratory simulation of it,” Russ. Math. Surv. 38, 113 (1983). 16I. Bena, M. Malek Mansour, and F. Baras, “Hydrodynamic ﬂuctuations in the Kolmogorov ﬂow: Linear regime,” Phys. Rev. E 59, 5503 (1999). 17D. H. Kelley and N. T. Ouellette, “Using particle tracking to measure ﬂow instabilities in an undergraduate laboratory experiment,” Am. J. Phys. 79, 267 (2011).
+
+103706-7 Gupta, Ganesh, and Joy
+18V. I. Kliatskin, “On the nonlinear theory of stability of periodic ﬂows,” J. Appl. Math. Mech. 36, 243–250 (1972).
+19L. D. Landau and E. M. Lifshitz, Fluid Mechanics (Pergamon, Oxford, 1984). 20J. Ashwin and R. Ganesh, “Effect of external drive on strongly coupled
+Yukawa systems: A nonequilibrium molecular dynamics study,” Phys. Rev. E 80, 056408 (2009). 21G. Salin and J.-M. Caillol, “Transport coefﬁcients of the Yukawa onecomponent plasma,” Phys. Rev. Lett. 88, 065002 (2002). 22S. A. Khrapak and H. M. Thomas, “Fluid approach to evaluate sound velocity in Yukawa systems and complex plasmas,” Phys. Rev. E 91, 033110 (2015). 23J. P. Hansen and I. McDonald, Theory of Simple Liquids: With Applications to Soft Matter, 4th ed. (Academic, Oxford, 2013). 24P. G. Drazin, Introduction to Hydrodynamic Stability (Cambridge Text in Applied Mathematics University Press, Cambridge, England, 2002).
+
+Phys. Plasmas 22, 103706 (2015)
+25J. D. Huba, NRL Plasma Formulary (Naval Research Laboratory, Washington, DC, 1994).
+26A. F. Mills, Heat and Mass Transfer (CRC Press, 1995), p. 377. 27J. M. White and S. J. Muller, “Viscous heating and the stability of
+Newtonian and viscoelastic Taylor-Couette ﬂows,” Phys. Rev. Lett. 84, 5130–5133 (2000). 28C. P. Tso and S. P. Mahulikar, “Experimental veriﬁcation of the role of Brinkman number in microchannels using local parameters,” Int. J. Heat Mass Transfer 43, 1837–1849 (2000). 29G. Faussurier and M. S. Murillo, “Gibbs Bogolyubov inequality and transport properties for strongly coupled Yukawa ﬂuids,” Phys. Rev. E 67, 046404 (2003). 30P. Hartmann, G. J. Kalman, Z. Donko, and K. Kutasi, “Equilibrium properties and phase diagram of two-dimensional Yukawa systems,” Phys. Rev. E 72, 026409 (2005).
+
+View publication stats
+

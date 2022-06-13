@@ -1,0 +1,622 @@
+JOURNAL OF GEOPHYSICAL RESEARCH, VOL. 112, A01206, doi:10.1029/2006JA012015, 2007
+
+A nearly universal solar wind-magnetosphere coupling function
+inferred from 10 magnetospheric state variables
+P. T. Newell,1 T. Sotirelis,1 K. Liou,1 C.-I. Meng,1 and F. J. Rich2
+Received 10 August 2006; revised 9 October 2006; accepted 25 October 2006; published 12 January 2007.
+[1] We investigated whether one or a few coupling functions can represent best the interaction between the solar wind and the magnetosphere over a wide variety of magnetospheric activity. Ten variables which characterize the state of the magnetosphere were studied. Five indices from ground-based magnetometers were selected, namely Dst, Kp, AE, AU, and AL, and five from other sources, namely auroral power (Polar UVI), cusp latitude (sin(Lc)), b2i (both DMSP), geosynchronous magnetic inclination angle (GOES), and polar cap size (SuperDARN). These indices were correlated with more than 20 candidate solar wind coupling functions. One function, representing the rate magnetic flux is opened at the magnetopause, correlated best with 9 out of 10 indices of magnetospheric activity. This is dFMP/dt = v4/3BT2/3sin8/3(qc/2), calculated from (rate IMF field lines approach the magnetopause, $v)(% of IMF lines which merge, sin8/3(qc/2))(interplanetary field magnitude, BT)(merging line length, $(BMP/BT)1/3). The merging line length is based on flux matching between the solar wind and a dipole field and agrees with a superposed IMF on a vacuum dipole. The IMF clock angle dependence matches the merging rate reported (albeit with limited statistics) at high altitude. The nonlinearities of the magnetospheric response to BT and v are evident when the mean values of indices are plotted, in scatterplots, and in the superior correlations from dFMP/dt. Our results show that a wide variety of magnetospheric phenomena can be predicted with reasonable accuracy (r > 0.80 in several cases) ab initio, that is without the time history of the target index, by a single function, estimating the dayside merging rate. Across all state variables studied (including AL, which is hard to predict, and polar cap size, which is hard to measure), dFMP/dt accounts for about 57.2% of the variance, compared to 50.9% for EKL and 48.8% for vBs. All data sets included at least thousands of points over many years, up to two solar cycles, with just two parameter fits, and the correlations are thus robust. The sole index which does not correlate best with dFMP/dt is Dst, which correlates best (r = 0.87) with p1/2dFMP/dt. If dFMP/dt were credited with this success, its average score would be even higher.
+Citation: Newell, P. T., T. Sotirelis, K. Liou, C.-I. Meng, and F. J. Rich (2007), A nearly universal solar wind-magnetosphere coupling function inferred from 10 magnetospheric state variables, J. Geophys. Res., 112, A01206, doi:10.1029/2006JA012015.
+
+1. Introduction 1.1. Magnetospheric State Variables
+[2] The magnetosphere is large and complex. It contains a myriad of electromagnetic, gas dynamic, and particle processes coupled over scales lengths varying by orders of magnitude. The magnetosphere can therefore be characterized in many distinct ways. Because of their long duration and continuity, ground-based magnetometers have formed the major source for most indices in widespread use. The Dst index is a measure of ring current strength, Kp measures
+1Johns Hopkins University Applied Physics Laboratory, Laurel, Maryland, USA.
+2Space Vehicles Directorate, Air Force Research Laboratory, Hanscom Air Force Base, Bedford, Massachusetts, USA.
+Copyright 2007 by the American Geophysical Union. 0148-0227/07/2006JA012015
+
+general planetary wide geomagnetic disturbances at midlatitude, AE measures the overall intensity of auroral currents, while AU measures currents (and hence probably convection) in the dayside auroral oval, and AL measures nightside auroral oval currents, particularly those related to substorms. For more than a century, success in quantitatively monitoring and researching the behavior of the magnetosphere has relied heavily on such magnetometer-station derived data.
+[3] Although the space age is a half-century old, it is only within the last 2 decades that satellite-based data sets of comparable continuity and longevity have appeared. Although there probably never will be a satellite data set which combines the high time resolution, global scope, and continuous daily coverage that the magnetic indices offer, alternatives now do exist. These are valuable because of inherent uncertainties surrounding magnetometer measurements. For example, Mayaud [1980] argued that Kp ‘‘nor-
+
+A01206
+
+1 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+malizes’’ away actual geophysical daily and diurnal variations. Similarly, the AE index has UT and seasonal variability which Ahn et al. [2000] attributes to the local time location of the individual stations (in effect, an artifact), while Newell et al. [2002a] argued that much of the AE UT and seasonal effects are geophysical and can be reproduced by satellite data. In general, any effect which may be attributed to variations in solar illumination are likely to be a source of controversy when measured exclusively by ground-based magnetometers.
+[4] Moreover, satellite data can characterize phenomena that magnetometers do not. Our statistical studies here therefore add five space age alternative characterizations of the magnetosphere, to the five magnetometer derived indices previously cited. These alternate indices are (1) auroral power, measured in Gigawatts, and inferred from Polar UVI measurements. Although auroral power can be estimated in other ways (mainly particle data), only images currently have the documented ability to measure instantaneous large-scale auroral power. (2) Lc, the equatorward boundary of the cusp. This measurement is particularly easy and thus subject to less uncertainty than most other indices. It characterizes the extent to which the dayside magnetosphere is open. (3) Polar cap (open) magnetic flux, FPC. This can be measured in a variety of ways, including imagers and particle data. Unfortunately, it hard to do well on a global basis. We have found the best results, as far as continuity and global scale, from using SuperDARN radar data as calibrated by DMSP particle data. (4) The nightside magnetic inclination angle as measured by GOES, a measure of magnetotail stretching, and hence energy stored in the magnetotail. (5) The ion isotropy boundary, b2i, also a measure of magnetotail stretching. The chief problem with both indices 4 and 5 are that a measurement taken at any given local time does not necessarily apply across the entire magnetotail.
+[5] In the literature of course other indices exist. Several additional ground-based magnetic indices have been used, including the polar cap index [Troshichev et al., 1988] among others. Satellite and radar estimates of the ionospheric cross-polar cap potential can also be correlated with the solar wind, and perhaps the most extensive previous work on solar wind-magnetospheric coupling functions comes from fitting polar cap potentials (notably Reiff et al. [1981], Wygant et al. [1983], and Weimer [2001]). There is not a widely available database of cross polar cap potential, however, and we felt that 10 distinct indices characterizing the state of the magnetosphere would be enough to draw some conclusions.
+[6] A major motivation for this study was to determine whether different physical processes, ranging from the magnetic configuration of the dayside (cusp latitude) and nightside (GOES inclination angle and b2i) magnetosphere, to energetic ion behavior (Dst) and auroral power dissipation, respond to different aspects of the solar wind, or whether a small number of solar wind coupling functions can account for much about the magnetosphere. The latter is possible if a single unifying mechanism drives the circulation of plasma and magnetic flux throughout the magnetosphere. The two likely candidates are the solar wind electric field (vBT), mapped along open geomagnetic field lines, and magnetic merging between the solar wind and the frontside
+
+magnetosphere [Siscoe and Huang, 1985; Cowley and Lockwood, 1992].
+1.2. Solar Wind Coupling Functions
+[7] The earliest solar wind parameters considered, even before the solar wind was discovered to be continual and not merely episodic, was the density and velocity, and hence dynamic pressure [Chapman and Ferraro, 1931]. The latter variable does approximately predict the location of the magnetopause. Some early work on the solar wind velocity suggested it might be a key parameter [Crooker et al., 1977] but later worked showed v to be disappointing [Crooker and Gringauz, 1993; Papitashvili et al., 2000]. On the basis of this early work, neither density, nor velocity, nor pressure by themselves is likely to have much predictive power for magnetospheric indices, though for completeness all are included among the 20 candidate coupling functions we document in detail. (A much larger number of functions were tested, at least against a few data sets to see if they seemed promising, but documenting every variant seemed unnecessarily tedious, for us and our readers.)
+[8] Once the IMF was realized to be continual and continuously varying, the importance of Bz and merging was contemplated [Dungey, 1961]. Indeed, Bz does better predict magnetospheric behavior than does v or p. However, in most published studies and as our work here quantifies on a general basis, Bz predicts only a little better than a quarter of the variance in magnetospheric state variables. If the time history of the target state variable is included, it is always possible to do much better, in fact merely knowing the last previous value of Kp or Dst helps greatly in predicting the next value, but we are concerned with ab initio predictions, those that use only the solar wind input. We are particularly interested in the physics implied by the coupling function which works best.
+[9] Various combinations of the basic parameters have been tried, with variations on the solar wind electric field most common. The half-wave rectifier (vBs, which is zero for Bz < 0) works much better than does the actual solar wind electric field, vBT. Burton et al. [1975] provided perhaps the first clear evidence for the value of vBs, demonstrating that vBs works well for predicting Dst. Although an important advance on earlier work, vBs does not uniquely fit Dst, as several other functions have since had even better success with that index, e.g., Temerin and Li [2006]. Wygant et al. [1983] considered vBs as one of three candidate functions (all variations on the solar wind electric field) worth comparing to polar cap potential.
+[10] There seems to have been relatively little recent work on finding optimal functions for most global magnetic indices. Most work has involved using the previous time series of the index coupled with techniques such as linear prediction filters, neural networks, and other (often nonlinear) approaches. Using the previous time series unquestionably does produce the best results in predicting an index, sometimes yielding better than r = 0.9 correlation coefficients. For space weather applications (or real weather, for that matter), such real time monitoring of current status and input of the previous time history of indices is necessary to get the best results.
+[11] Yet from a theoretical viewpoint, it is still worth investigating whether an ideal solar wind coupling function
+
+2 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+exists, that is, whether a single, simple, function is well correlated with a wide variety of indices. It may reveal basic aspects of solar wind-magnetosphere coupling. It may also provide a better basis for inputs to a neural network or other advanced technique actually used in space weather applications. Finally, it lets us investigate the extent to which the magnetosphere is coherent, with diverse aspects predictable from one or a few input functions.
+[12] Although those interested in predicting magnetic indices have not much troubled themselves searching for an optimal coupling function, two groups have: those interested in ionospheric potential, and certain theorists making predictions about how the solar wind should interact with the magnetosphere.
+[13] Excluding the often used but noncompetitive Bz, probably the candidate coupling functions most often encountered in current space physics research are (1) the half-wave rectifier; (2) the e parameter of Perreault and Akasofu [1978] (e = vB2sin4(qc/2)); and (3) the Kan-Lee electric field (EKL = vBT2 sin2(qc/2)) [Kan and Lee, 1979]. Here the IMF clock angle is defined by qc = arctan(By/Bz). All three consistently produce better results than Bz does alone.
+[14] A less often encountered function (which however works a little better than EKL, as Table 3 will show) is what Wygant et al. [1983] called the ‘‘intermediate’’ function, EWAV = vBT sin4(qc/2) (using the nomenclature of Newell et al. [2006]). EWAV implies magnetopause merging drops off with declining magnetic shear more slowly than does the half-wave rectifier (which has no merging for northward IMF) but more quickly than the Kan-Lee electric field. Wygant et al. [1983] reported that cross-polar cap potential fit best EWAV. Liou et al. [1998] found that nightside auroral power correlated better with EWAV than the alternatives discussed thus far, at about the 0.60 level. Likewise, Newell et al. [2006] found that cusp latitude correlated better with EWAV than eight other commonly encountered coupling functions (which list did not include dFMP/dt introduced here, which, incidentally, was discovered empirically, by exhaustive testing).
+[15] Some work has been done comparing the major geomagnetic indices with coupling functions, notably Papitashvili et al. [2000]. However, this work did not include the most promising candidate functions. Also, most such work has either fit data from a small number of days [e.g., Burton et al., 1975; Burke et al., 1999] or has averaged over many weeks or even months [Crooker et al., 1977; Papitashvili et al., 2000], leaving the actual number of data points relatively small (and some solar wind parameters average to near zero over such periods). In this study we use both a relatively high cadence (hourly), yet with multiple years of data, so that the data sets all contain at least several thousand points over many years. The same simple two parameter fit is applied to all the data within a given solar cycle. We believe this approach is necessary to minimize the tendency of seemingly excellent fits to deteriorate sharply when applied more widely.
+[16] Thus the Kan-Lee electric field has been reported to fit ionospheric potential up to r = 0.98 for a single day [Burke et al., 1999], but when applied to less than 50 passes over a single season (autumn 1976) the correlation dropped to r = 0.76. Reiff et al. [1981] fit 32 AE-C spacecraft determinations of ionospheric potential and found the best
+
+correlation, r = 0.87, with e. When applied to longer time periods and a larger number of points, both e and the KanLee electric field correlate with ionospheric potential at far lower levels, and in fact, at least as applied to SuperDARN data, do no better than vBs or other alternatives (K. B. Baker, personal communication, 2006).
+[17] Here we sought only the single highest solar wind correlate of each index, rather than a multivariable fit. The study is thus designed more to search for a pattern among the various highest correlates than to maximize the prediction of any single index. Nonetheless, the correlations reported here are the highest obtained for large data sets (multiyear and thousands of points) from ab initio calculation (solar wind data only) for at least many of the variables (cusp latitude, auroral power, nightside geosynchronous tilt inclination). Indeed we are not aware of any multiyear ab inito correlations with any of these ten indices that are as high, regardless of the number of parameters used.
+2. Data and Techniques
+[18] Every data set used here includes thousands of data points, and in some cases, tens of thousands. Because of persistence, not every hourly average is fully independent of its neighbors. Nonetheless, discarding data is unjustified, and we did fit the full data sets.
+2.1. Global Magnetic Indices (Dst, AE, AU, AL, and Kp)
+[19] AE, AU, and AL for the 5 years 1983 – 1987 were downloaded from the World Data Center at Kyoto in Japan. The AE, AU, and AL data sets lacked days 339 – 365 of each year. Dst and Kp were downloaded from NOAA’s Space Data Center. Kp covers the years 1984 –2005, which is divided into two data runs, one from 1984 to 1994 and the other from 1995 to 2005. Dst covers the period 1984 – 2002 and is divided into the periods 1984 –1994 and 1995 – 2002. Hourly averages of all five variables were used. Kp was treated as a single data point occurring at 1.5 hours into the 3 hour period.
+[20] Although Kp has been used for decades, differing opinions exist as to its precise meaning and linearity with respect to other geomagnetic parameters. (The same could be said for most or all of the ground-based magnetometerderived indices, another good reason for adding the satellitebased indices). Figure 9 of Hardy et al. [1985] suggests that auroral power is roughly linear over the range of Kp = 0 to Kp = 5 (with all Kp lumped together beyond 5, creating a jump.) Our own unpublished work suggests that Kp is approximately linear with respect to auroral power from Polar UVI and with respect to magnetotail stretching. The ambiguity in several of these indices is one reason we included square roots and squares of common solar wind coupling functions in Table 1.
+[21] A basic guiding principle of our work was to avoid the use of any extra hidden parameters. These often greatly improve correlations, but the results subsequently rarely prove robust when applied to new data. An exception was made for Dst, where an additional term proportional to p1/2 was used to correct for magnetopause currents. The same pressure correction to Dst was applied to all candidate coupling functions, and the same value was used for both
+
+3 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Table 1. Twenty Candidate Solar Wind-Magnetosphere Coupling Functions and Their Origins in Roughly Historical Order
+
+Name
+Bz Velocity Density p Bs
+Half-wave rectifier
+e e2 e3
+Solar wind E-field EKL EKL1/2
+EKLV EWAV EWAV2 EWAV1/2 EWV ESR ETL dFMP/dt
+
+Functional Form
+Bz v n nv2/2 Bz (Bz < 0); 0 (Bz > 0) vBs vB2sin4(qc/2) vBT2sin4(qc/2) vBsin4(qc/2)
+vBT vBTsin2(qc/2) [vBTsin2(qc/2)]1/2
+v4/3BTsin2(qc/2)p1/6 vBTsin4(qc/2) [vBTsin4(qc/2)]2 [vBTsin4(qc/2)]1/2 v4/3BTsin4(qc/2)p1/6 vBTsin4(qc/2)p1/2 n1/2v2BT sin6(qc/2) v4/3BT2/3sin8/3(qc/2)
+
+Reference
+Dungey [1961] Crooker et al. [1977]
+Chapman and Ferraro [1931]
+Burton et al. [1975] Perrault and Akasofu [1978]
+Variant on e Variant on e
+Kan and Lee [1979] Variant on the Kan-Lee electric field Vasyliunas et al. [1982] Wygant et al. [1983] Variant on EWAV Variant on EWAV Vasyliunas et al. [1982] Scurry and Russell [1991] Temerin and Li [2006] This paper
+
+solar cycles. Thus our correlations with ‘‘Dst’’ are actually with Dst – 18.9p1/2 (p in nPa). The p1/2 term was evaluated over 72 h, according to Table 4. Another term proportional to the current p1/2 (i.e., present hour only) does further improve correlations (to r = 0.89), but we chose not to introduce additional terms.
+2.2. SuperDARN/OVATION Polar Cap Index (FPC)
+[22] The OVATION system for identifying the equatorward and poleward boundaries of the auroral oval is documented by Newell et al. [2002b]. The system uses DMSP particle boundaries as a starting point and calibrates other measurements, particularly the SuperDARN radar measurements, to these boundaries, using a different statistically determined offset at each 1 hour MLT. Figure 1 shows an example of the SuperDARN determination of the auroral oval in the SuperDARN system on 28 January 2003, around 2200 UT. The lowercase ‘‘r’’ refers to radar equatorward boundaries, and the capital ‘‘R’’ refers to poleward boundaries (the convection reversal boundary, or CRB, offset by the mean difference from the DMSP-determined open-closed particle boundaries). The DMSP boundaries are marked by an ‘‘x.’’ The polar cap magnetic flux, FPC, measured in megaWebers (in this case 738 MWb) is determined by numerically integrating the IGRF magnetic field over the region within the poleward boundaries. Further details on OVATION can be found in the work of Newell et al. [2002a, 2002b], while the actual SuperDARNDMSP cross-calibration was discussed by Sotirelis et al. [2005]. An alternate method of identifying the open-closed boundary based on spectral widths rather than on the CRB is discussed by Chisham et al. [2005]. It is not yet clear which approach, if either, works best.
+[23] We used the SuperDARN boundaries primarily because of their availability for most hours, unlike the particle boundaries, which are often unavailable (unless one uses single satellite pass measurements to infer the whole oval,
+
+which is markedly less reliable [Sotirelis et al., 1998]). Data from 1994 to 2003 were used. OVATION produces a SuperDARN auroral boundary once every 10 min. In this study, FPC was averaged over 1 hour intervals. All FPC values determined from at least three-point radar measurements were included. A significant limitation of this data set is that SuperDARN cannot measure the CRB when it is shifted to much higher or lower latitudes than normal. Thus the dynamic range of the data set is less than optimal, which may partly account for the lower correlations observed with this index.
+2.3. Cusp Latitude (sin(Lc)) From DMSP [24] The database of cusp latitude as identified by DMSP
+has recently been described by Newell et al. [2006]. Indeed, that work inspired us to test the general utility of EWAV, a search which ultimately led to the present study. Specifically, the cusp equatorward boundary (Lc) in degrees MLAT (AAGCM coordinates), with a (relatively minor) correction for dipole tilt dependence is used. Since cusp latitude has an MLT dependence, only instances between 1100 and 1300 MLT were correlated. The number of measurements is much too sparse to permit hourly averages, so each cusp pass represents its own data point (and thus is an instantaneous snapshot). Data from 1984 to 2005 was used, divided into two separately considered 11-year periods, 1984 – 1994 and 1995– 2005.
+[25] We here present a modest improvement on the work of Newell et al. [2006], by correlating sin(Lc) rather than Lc itself. This fits closer to theoretical predictions, such as superposing a dipole and a uniform IMF [e.g., Weimer, 2000]. After all, 2REsin(Lc) is approximately the crosspolar cap dimension. In terms of correlating with Bz, as is traditionally done with the cusp, the difference is tiny. However, as the correlations rise with improved coupling functions, the difference becomes not altogether insignificant. Specifically, the correlation of Lc with dFMP/dt over two consecutive solar cycles is 0.835 and 0.818, while correlating sin(Lc) raises this to 0.845 and 0.834. Although not dramatic, a simple change which better fits theoretical understanding and also improves experimental results is worth making. (Note that there is an offset between the
+Figure 1. SuperDARN was cross-calibrated with DMSP to estimate the polar cap flux, in this case, 738 MWb.
+
+4 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+center of the auroral oval and the geomagnetic pole, with the oval shifted toward midnight, but we did not wish to introduce an offset as a free parameter. It is unclear therefore whether such an offset could be used to further improve correlations.)
+[26] Although data on cusp latitude is too sparse to serve as a general purpose monitor of the magnetosphere, it has highly desirable properties for this type of study. First, it is a particularly clean and easy measurement and thus has far lower uncertainties (leading to higher correlations) than other variables. Second, it reveals a rather basic fact about the topology of the magnetosphere.
+2.4. Ion Precipitation Isotropy Boundary (b2i) From DMSP
+[27] The nightside equatorward boundary of multi-keV ion precipitation, or b2i in the nomenclature of Newell et al. [1996], corresponds to the limit of ion pitch angle scattering by the curvature of magnetotail field lines [Lyons and Speiser, 1982; Sergeev et al., 1983]. Thus b2i is a measure of magnetotail stretching [Newell et al., 1998], and magnetic energy storage in the magnetotail. The principal problem with b2i is that it correlates well with magnetotail stretching only in the local time of actual measurement, as considerable local time variability exists. The values of b2i used here are statistically normalized to midnight, but this does not eliminate the locality issue. Values of b2i identified according to the algorithm of Newell et al. [1996] are available on our Web site. In this paper we used a slightly cleaned set of b2i points T. Sotirelis developed for his own research, covering the years 1984 – 1994. As before, hourly averages (of the normalized values) were used, although this made very little difference, since in most cases only a single b2i value existed for a given hour.
+2.5. Geosynchronous Magnetic Inclination Angle From GOES
+[28] GOES magnetometer data at 5 min resolution was downloaded from NOAA. The correlations reported here are from our 1 hour averages of the 5 min data. For this study, data from GOES-8 was used from 1994 to 2004 but only from 1800 to 1900 MLT. The angle of inclination was taken to be the arctan(v/h), where v and h are components provided in the NOAA database.
+[29] Some further tweaking of the data, for example by removing dipole tilt dependency (or seasonal effects), seems possible. There is also a direct effect of solar wind pressure compressing the magnetosphere, although accounting for all this would require adding extra parameters. Thus our finding that the predictably of GOES tilt angle is not as high as AE or Kp, or perhaps even cusp latitude, might not hold after multiparameter adjustments. Still, the correlations with magnetotail inclination angle we report here are significantly higher than those previously found with GOES data [Wing and Sibeck, 1997].
+2.6. Nightside Auroral Power as Inferred From Polar UVI
+[30] The Polar UVI auroral power database was compiled by Kan Liou and has been discussed elsewhere [Liou et al., 1998; Newell et al., 2001]. This database currently covers
+
+the years 1996 – 2000. The intrinsic resolution of the data set is about 1 min. We tried our correlations at full resolution and with hourly averages. The order of goodness of the various coupling functions was not changed by the change in time resolution, but the absolute values of the correlations were modestly higher for hourly averages, as expected. We tried using premidnight (2100 – 2400 MLT) and postmidnight (0000– 03000 MLT) auroral power values to see if there was a difference. We found no difference in the order of the top few coupling functions (e.g., dFMP/dt worked best for both, followed by EWV). Because auroral luminosity peaks premidnight, and because substorms initiate there, we chose the premidnight auroral power as the most interesting for the present study. Only instances when the entire target sector was within the Polar UVI field of view were included (i.e., all of 2100 – 2400 MLT from 60° MLAT to 80° MLAT). Even larger viewing windows could be selected, although this markedly decreases the number of independent data points.
+2.7. IMF Data
+[31] We downloaded the solar wind magnetic field and plasma data from the National Space Sciences Data Center (NSSDC) at NASA Goddard, at both the highest time resolution available (about 15 s for magnetic field data and 1 min for plasma data) and at hourly average resolution, for 1984– 2005. There are several possible ways to treat the IMF data. Interestingly, none of the ways we tried changed the relative order of goodness of the various coupling functions tested.
+[32] The best results were obtained using the IMP-8 hourly IMF averages compiled by NSSDC, which are not propagated (IMP-8 is generally fairly close to the magnetopause) and using NSSDC’s propagation for other satellites (mainly ACE and WIND). The number of hours of IMF data to use, and the relative weighting of each previous hour of IMF, was determined by experimentation for each of the 10 indices separately. In all cases, it was beneficial to weight the most recent IMF data most heavily, and to reduce the weighting of previous hours by a multiplicative constant that varied with the index considered. The most typical case (such as nightside auroral power) involved about 4 hours of data, weighted 0.65n, where n = number of hours prior to the index measurement. For example, correlations with Dst optimized at 72 hours of IMF integration time (with a relative weight of 0.95n) while the cusp correlations were highest using just the current hourly value and the previous hourly value of IMF. The optimized weighting and integration time of the solar wind input for each of the 10 indices of magnetospheric activity are discussed in section 4.
+2.8. Twenty Coupling Functions
+[33] Table 1 lists twenty candidate functions describing the coupling between the magnetosphere and the ionosphere. An initial set was selected based upon frequent usage in the existing literature and relative simplicity. Although good fits to an individual data set are often reported using more complex functions, these formulas do not seem to be capable of describing multiple observational sets. It quickly became apparent that certain formulas worked much better than others. Ionospheric potential
+
+5 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Figure 2. Scatterplots of AE versus Bz (top left), EKL (top right), and dFMP/dt (bottom).
+
+[Wygant et al., 1983], auroral power [Liou et al., 1998], and
+cusp latitude [Newell et al., 2006] have all been reported to correlate best with EWAV = vBT sin4(qc/2) (although many functions have been used for ionospheric potential). Alto-
+gether a great many more formulas were tried than we can
+document here (although some formulas were tested only
+against cusp latitude, AE and Dst, to see if they looked
+promising). The ones selected for full documentation here
+either are widely used, illustrate a point, or demonstrate a
+trend. [34] Once it became clear that the e formula was a poor
+predictor despite its usually respectable sin4(qc/2) dependence, and its resemblance to the much better performing
+EWAV, we wish to determine why. It had to be due either to the use of B rather than BT, or to the squaring of B. Thus two variants on e were introduced, namely e2 = vBT2 sin4(qc/2), and e3 = vBsin4(qc/2). The latter proved to work relatively well, while the former reform (sometimes encountered in
+the literature) worked quite poorly. (Ironically, ‘‘correcting’’ the e function by replacing B with BT actually degrades its
+
+predictive ability, although other functions do work best with BT).
+[35] This work with e suggests that raising BT to any power larger than one significantly degrades correlations. This is confirmed by the poor performance of all other functions with a higher power of BT than 1 (e.g., EW2 AV). Conversely, raising BT to a power smaller than one (initially, such as BT1/2) sometimes improved results, for some indices (EW1/A2V, for example, did much better than one might expect). Such experimentation eventually led us to BT2/3, which worked best, as will become clear below.
+3. Correlations Between the 10 Indices and 20 Coupling Functions
+[36] The indices of magnetospheric behavior which are the most predictable from solar wind data alone are Dst, Lc, and AE, in that order. Dst is a special case; essentially, the order in which a function, f, predicts the other nine indices, determines how well p1/2f will correlate with Dst. Let us consider AE as an example. Figure 2 (top left) shows the
+
+6 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Figure 3. Scatterplots of cusp latitude (actually sin(Lc)) versus Bs (top left), EKL (top right), and dFMP/dt (bottom).
+
+correlation of AE with the Bz, producing r = 0.610. This accounts for just 37% of the variance in AE. The solid line
+is a least squares fit, as is true of all fits shown in this paper.
+[37] EKL is often considered to be the best coupling function for many purposes, and indeed EKL can predict AE at the r = 0.759 level (58% of the variance), as shown
+top right in Figure 2. Many of the correlations of various
+phenomena with Bz reported in the literature would be higher if EKL were used instead.
+[38] However the best performing coupling function is dFMP/dt, which correlates with AE at the r = 0.830 level, as shown bottom in Figure 2. Thus dFMP/dt accounts for 69% of the variance in AE, a significant improvement over EKL. Indeed, given the uncertainties in measuring IMF, in how it
+propagates through the bow shock, and in measuring AE itself, correlations significantly better than dFMP/dt may be difficult, at least over a multiyear period, and without the
+use of additional parameters.
+[39] Scatterplots for each of the other indices consistently shows the same pattern, with the tightest scatter for dFMP/ dt, although the difference is not usually as dramatic as for AE. Figure 3 shows the results for sin(Lc), a fairly typical
+
+case (the advantage of dFMP/dt is slightly below average for the full set of 10 variables). In Figure 3, it is clear that dFMP/dt works better, both in terms of a tighter scatter at intermediate activity levels, and in terms of a better fit to the full set of data, particularly the minority of points at high activity levels.
+[40] Table 2 ranks the 10 state variables from most predictable (Dst) to least predictable (AL), and lists the five coupling functions which work best for each index. There are two solar cycles of data for each of Lc, Dst, and Kp, and these solar cycles were fitted independently, in order to test for reproducibility. Strikingly, in each of these three cases with a second solar cycle, the same coupling function repeated as a winner, and the top few were quite similar. The slopes and offsets (not listed here) also were typically close between multiple solar cycles. Thus the correlations show a high degree of reproducibility.
+[41] For 9 out of the 10 indices, dFMP/dt is the best predictor. The exception is Dst. Even Dst is predicted better with dFMP/dt than with any commonly used alternative (such as vBs, or EKL). However, three previously published formulas work better for Dst than does dFMP/dt. These are
+
+7 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Table 2. Characterizations of the Magnetosphere Range From Highly Predictable (About 75% of the Variance Accounted for) to Moderately Predictable (About Half the Variance) and Largely Unpredictable (About 1/4 of the Variance Predicted)a
+
+State Variable
+
+Years
+
+n
+
+Top Function/r
+
+Dst Dst Cusp lat
+Cusp lat
+AE
+AU Geos tilt
+Kp Kp
+Aur pow b2i PC size
+AL
+
+1995 – 2002 1984 – 1994 1984 – 1994
+1995 – 2005
+1983 – 1987
+1983 – 1987 1995 – 2004
+1984 – 1994 1995 – 2004
+1996 – 2000 1984 – 1994 1994 – 2003
+1983 – 1987
+
+59666 21418 499
+4444
+10352
+10352 2506
+10638 27232
+4707 10965 21017
+10352
+
+p1/2dFMP/dt/À.866 p1/2dFMP/dt/À.857 dFMP/dt/À.845
+dFMP/dt/À.834
+dFMP/dt/.830
+dFMP/dt/.765 dFMP/dt/À.760
+dFMP/dt/.760 dFMP/dt/.753
+dFMP/dt/.741 dFMP/dt/À.720 dFMP/dt/.614
+dFMP/dt/À.528
+
+aAll but Dst (less a p1/2 term) are best predicted by dFMP/dt.
+
+Second Best f
+ESR/À.860 EWV/À.844 EWAV/À.830
+EWAV/À.813
+EWV/.798 EWAV1/2/.741 EWAV/À.751
+EKLV/.721 EKL1/2/.715
+EWV/.726 EKL/À.707 EWAV1/2/.592 EWAV1/2/À.502
+
+Third Best f
+ETL/.859 ESR/À.838
+e3/À.822
+EWAV1/2/À.796
+EWAV/.787
+EKLV/.735 vBs/.744 EKL1/2/.712 EWAV1/2/.702
+EKLV/.713 EKL1/2/À.704
+e3/.582 e3/À.478
+
+Fourth Best f
+EWV/À.855 ETL/.834 EWV/À.821
+e3/À.796 e3/.777
+EWV/.735
+e3/À.736
+EKL/.709
+e3/.691
+EWAV/.702 EWAV1/2/À.700 EWAV/.570
+EWAV/À.467
+
+Fifth Best f
+EKLV/À.834 EKLV/À.832 EWAV1/2/À.818 EWV/À.795 EWAV1/2/À.774
+EWAV/.734 Bs/.735
+EWV/.700 EKL/.685
+ESR/.701 EKLV/À.700 EKL1/2/.561 EWV/À.467
+
+ETL = n1/2v2BT sin6(qc/2) [Temerin and Li, 2006], ESR [Scurry and Russell, 1991], and EWV = v4/3BT sin4(qc/2)p1/6. This latter formula was introduced by Vasyliunas et al.
+[1982], primarily to be linear in BT yet dimensionless when suitably combined with the Earth’s dipole moment. The
+success of Scurry-Russell’s formula for Dst took us by
+surprise (as did that of EWV). ETL was specifically designed for Dst, so its success is reasonable. Note that the ScurryRussell formula is just p1/2EWAV, while EWAV is the best commonly used function for the other nine indices. ETL, although data derived rather than theoretical, is actually
+similar to ESR, though written differently. This led us to wonder whether it is a general principle that taking a formula
+which works well for the other nine indices, and multiplying by p1/2 is the best way to predict Dst. This appears to be the case, as introducing p1/2dFMP/dt did produce a new winner, correlating with Dst over the 1995– 2002 interval (when more
+solar wind data is available) at the r = 0.866 level. This is quite
+high considering that it is done ab initio, with a simple linear
+correlation fit over nearly a solar cycle.
+
+[42] It is possible to quantitatively rank the 20 coupling functions based on the total variance of the magnetospheric variables explained. This is calculated simply from Sr2/13, since there are 13 independent runs, counting the extra solar cycle of data available for Dst, cusp latitude, and Kp. The order of the coupling functions does not change if these latter three extra runs are omitted. Table 3 shows this ranking of the 20 coupling functions, from number 1 (dFMP/dt, predicting 57.2% of variance) to n (predicting <0.1% of the variance). The best formula already used in multiple published papers is the intermediate function of Wygant et al. [1983], EWAV, followed by the Kan-Lee function, followed by the half-wave rectifier.
+[43] Many of the commonly used functions work rather poorly: e accounts for just 35.6% of variability, Bz just 26.4%, and v, still often used as a stand-alone variable, accounts for just 15.0%. Because the best any linear combination of two variables can predict is the sum of the variance individually predicted, it follows that no multivariate linear combination of Bz and v, even in principle, could
+
+Table 3. Correlations Between 20 Coupling Functions and 10 Indicesa
+
+Rank, f
+
+Lc
+
+Dst
+
+AE
+
+AU
+
+Goes
+
+Kp
+
+Auro
+
+b2i
+
+FPC
+
+AL
+
+Sr2/n
+
+1. dFMP/dt 2. EWAV 3. EWV
+4. e3
+5. EKL 6. EKLV 7. Ewav0.5 8. vBs 9. EKL1/2 10. ESR 11. ETL 12. Bs
+13. e 14. e2
+15. EWAV2 16. Bz 17. vBT 18. p
+19. v
+20. n
+
+À.845 À.830 À.821 À.822 À.794 À.776 À.818 .803 À.776 À.788 À.775 .757 À.745 À.707 À.698 .644 À.406 À.277 À.324 À.041
+
+À.796 À.816 À.855 À.812 À.797 À.835 À.714 .810 À.714 À.860 À.859 .732 À.770 À.735 À.654 .476 À.633 À.551 À.395 .102
+
+.830 .787 .798 .777 .759 .772 .774 À.754 .732 .756 .740 À.695 .670 .620 .628 À.610 .385 .312 .374 .001
+
+.765 .734 .735 .718 .732 .735 .741 À.684 .720 .706 .675 À.654 .632 .587 .547 À.556 .414 .357 .279 .093
+
+À.760 À.751 À.696 À.737 À.721 À.671 À.731 .744 À.697 À.586 À.581 .733 À.567 À.541 À.460 .573 À.452 À.202 À.321 .033
+
+.760 .688 .700 .699 .709 .721 .696 À.642 .712 .670 .645 À.575 .552 .515 .459 À.417 .551 .512 .582 .058
+
+.741 .701 .726 .699 .689 .713 .681 À.675 .658 .701 .691 À.629 .582 .554 .537 À.537 .460 .391 .399 .122
+
+À.720 À.695 À.690 À.673 À.707 À.700 À.700 .648 À.704 .670 À.645 .620 À.556 À.532 À.462 .450 À.491 À.474 À.315 À.172
+
+.614 .570 .542 .582 .551 .528 .592 À.560 .561 .476 .463 À.549 .365 .321 .263 À.445 .344 .217 .254 .058
+
+À.528 À.477 À.467 À.478 À.443 À.433 À.501 .465 À.453 À.410 À.407 .429 À.338 À.311 À.312 .440 À.132 À.085 À.251 .070
+
+57.3% 52.6% 52.6% 52.2% 51.0% 50.8% 50.6% 48.8% 48.2% 46.9% 45.1% 42.4% 36.6% 32.2% 28.2% 26.4% 22.6% 15.3% 14.7% 0.8%
+
+aThe coupling functions are ranked from best (dFMP/dt) to worst (n) by the total variance of the 10 indices (13 data sets, counting multiple solar cycles for Lc, Dst, and Kp) predicted, as given in the right-hand column.
+
+8 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Figure 4. (top) A (well sampled) linear fit to a 2/3 exponent. (bottom left) The mean values of Kp for 10 activity levels of dFMP/dt except linear in BT. (bottom right) Kp versus dFMP/dt.
+
+do as well as dFMP/dt (despite one fewer free parameter for the latter). Here we are seeking only the single highest solar wind coupling correlate for each variable. It is worth mentioning, however, that p, despite its relatively low overall performance as a stand alone variable, is a very promising candidate to add in any subsequent multivariable fit. Partly, this is because it has very little correlation with dFMP/dt, while most of the other functions are much more strongly correlated.
+[44] The best performing coupling function, dFMP/dt, is supralinear in v and infralinear in BT. The nonlinear nature of the response of the magnetosphere to both v and BT evinces not just in the correlation coefficients. Perhaps a more satisfying and certainly more graphic way to consider the issue is to consider systematic deviations from the best fit slope when the data is binned. We present two examples.
+
+[45] In the bottom two panels of Figure 4, the (arithmetic)
+mean value of Kp is plotted against dFMP/dt, in bins. That is, the independent variable was divided into 12 interval
+ranges, and the mean value of the dependent variable, here
+Kp, was calculated. The error bars are uncertainties in the mean (thus the sample standard deviation divided by n1/2). The top panel of Figure 4 is a linear fit to y = x2/3, wherein
+the values of x (all integers 0 – 999) are binned. The linear fit accounts for 98% of the variance in x2/3. Thus the
+effect of having an exponent incorrect by a factor of 1/3
+is roughly a 2% drop in variance explained. The bottom
+two panels plot mean values of Kp versus dFMP/dt (left), and v4/3BT sin8/3(qc/2) (which is dFMP/dt, except linear in BT). The linear fit shows clearly the skewing created by underestimating the exponent.
+[46] The data sampling is typically not uniform, and thus
+the fit may not follow the classic pattern of Figure 4 in all
+
+9 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Figure 5. The mean auroral power versus dFMP/dt, except that, on the left, the function is linear in BT.
+
+cases. Nonetheless, the fit always appears most linear when v is raised to the 4/3 power and BT to the 2/3. Figure 5 shows such an example, namely auroral power. In Figure 5, the pattern of the mean auroral power clearly matches the least-squares fit better for BT2/3 than when a BT1 function is used. Although the details vary, the mean plots consistently look more linear when plotted versus v4/3BT sin8/3(qc/2) than any other function we have found. Incidentally, in Figure 5, substituting say, EKL as a comparison produces a very similar result (slightly further degraded) as the linear BT plot actually used.
+4. Time Integration of Solar Wind Required for Each Index
+[47] Our set of 10 indices was chosen to represent a variety of magnetospheric phenomena. It should not then be surprising that these indices respond to solar wind driving over a variety of timescales and decay with a differing hysteresis. We determined the optimal solar wind integration time for each of the 10 indices, both because the knowledge is intrinsically interesting and because we wished to work with the best (highest) correlations possible. The optimization was done early in our work, using a reduced set of about 10 relatively well known functions (including the half-wave rectifier, EKL, Bz, and EWAV). It quickly became apparent that the integration time for a given index is fairly invariant of the coupling function used.
+[48] Therefore the integration time is not specific to the coupling function (and in fact precedes our discovery of dFMP/dt). The fortunate result is that optimizing solar wind integration and optimizing the coupling function are independent operations. The integration was done after the coupling functions were calculated (i.e., the coupling functions were not calculated from an average of solar wind data but rather at an hourly time resolution).
+[49] The procedure was to vary the number of hours of solar wind data integrated over, and the weights, w, used in the integration, separately. Each hour was weighted
+
+w (0 < w < 1) times the previous hour, with the earliest hour used then reduced by relative weight wn compared to the current hour. A simple trial and error search was used to find the optimal values of w and n.
+[50] Table 4 lists the 10 indices and the optimum values for w and n. Two special cases occurred, namely Kp and Lc. Cusp latitude required special treatment because of the extreme shortness of the integration time. Since only 1 hour worked best, we tried high time resolution data and discovered that integrating over the previous 60 ± 5 min (from the time IMF encountered the bow shock under the Weimar propagation rule) worked best. For hourly averages, we then used a different approach, combining m/60 times the current hour and 1 À m/60 times the previous hour, where m is the number of minutes into the present hour. Thus toward the end of an hour, only the current hour’s IMF data is used for the cusp, while at the beginning, only the previous hour’s data is used. In effect, this approximates an integration over just 1 hour.
+[51] Kp required special handling because as a 3-hour index, it does not make sense (and does not work) to count, say, the first hour of the 3-hour period as having a lower weight than the middle hour. The time tag associated with
+
+Table 4. Solar Wind Integration Time Optimizing Each Indexa
+
+Index
+
+Number of Hours of IMF
+
+w
+
+Cusp latitude Dst AE AU
+
+1
+
+1.0
+
+72
+
+0.95
+
+3
+
+0.69
+
+3
+
+0.77
+
+Goes tilt
+
+5
+
+0.78
+
+Kp
+
+6
+
+n/a
+
+Auroral Power
+
+4
+
+0.65
+
+b2i
+
+6
+
+0.76
+
+Polar cap magnetic flux
+
+7
+
+0.57
+
+AL
+
+3
+
+0.69
+
+aFor example, Dst is best predicted by integrating over 72 hours of IMF
+data, with the hour n-hours previous to the present receiving relative weight of 0.95n. Kp and cusp latitude had to be treated somewhat differently.
+
+10 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+the Kp value was the midpoint of its 3-hour interval. In fact, the best formula we found for integrating Kp was to weight the 3 hours prior to the observation equally and to weight the three previous to that by 0.7, 0.6, and 0.5.
+[52] Many of these weighting results are more or less as might be guessed. It is logical that Dst, a measure of the ring current strength, requires the longest solar wind integration (72 hours) and that AE and auroral power (3 and 4 hours) are shorter than the polar cap magnetic flux (7 hours), since the polar cap can take a long time to shrink after dayside merging ceases [Newell et al., 1997]. The biggest mystery is why Lc depends only one a single hour integration, as the cusp position should be a balance between dayside merging and nightside return flux.
+
+5. Physical Interpretation
+[53] The most widely used coupling functions, including vBs, EKL, and EWAV, involve the product of the solar wind electric field with a function of the IMF clock angle, the latter of which represents the varying fraction of IMF field lines impacting the magnetosphere which actually merge. This is unsatisfactory, in that the solar wind electric field is vBT, not vBT times the fractional merging rate of IMF field lines. If the solar wind electric field maps directly into the ionosphere, why should it be independent of the length of the merging line (which must increase as BT increase), and independent of the strength of the magnetopause magnetic field (the flux actually being opened), yet depend on a single merging parameter?
+[54] Siscoe and Huang [1985], Lockwood et al. [1990], and Cowley and Lockwood [1991] have all pointed out that the merging rate itself provides a basis for calculating ionospheric convection. The rate magnetic flux is removed from the dayside magnetopause is itself an electric field. Thus trying to combine the solar wind electric field with the merging rate introduces redundancy, the latter already suffices. Here we combine the ideas of the aforecited authors with the work of Weimer [2001], who matched open flux between the magnetosphere and solar wind. One difference is that our calculation will be applied directly to the magnetopause, rather than the ionosphere (also Weimer mapped the solar wind electric field, rather than considering the merging rate). Of interest is the functional dependence of merging on the IMF, without worrying the various constants involved.
+5.1. Deriving the Function
+[55] We calculate the rate magnetic flux is opened at the magnetopause as a function of four factors, namely the rate at which field lines are convected toward the magnetopause, the probability that they subsequently merge, the strength of the IMF (and thus the amount of flux opened), and the length of the merging line along the magnetopause. Thus
+
+
+
+
+
+dFMP=dt ¼ ðvÞ sin8=3 ðqc=2Þ ðBT ÞðBMP=BT Þ1=3
+
+¼ v4=3B2T=3 sin8=3 ðqc=2Þ
+
+[56] The simplification arises from the fact that pressure balance requires that BMP be proportional to v. Let us consider the four factors left of the first equal sign in turn.
+[57] The first factor is simply the solar wind velocity, v, and represents the rate at which IMF field lines are convected toward the magnetopause. Not all IMF field lines impacting the magnetopause subsequently merge, however, with the probability depending on the IMF clock angle. This second factor is probably cannot be calculated from first principles, and the value used in our equation is wholly empirical. As will be shown in the subsequent subsection, it does indeed agree with such high-altitude observations as exist. Our specific clock angle dependence was calculated only from our 10 indices, however.
+[58] The need for the third term, BT, should be clear. The amount of flux opened is clearly proportional to BT.
+[59] The length of the merging line is the least obvious factor. Yet some guidance is clear on rather basic principles. The relative strength of the IMF to the magnetopause field strength is the only logical parameter, thus we expect a function of (BT/BMP), with the merging line longer for larger BT. BT can be ‘‘large’’ or ‘‘small’’ only in comparison to BMP. In fact, the requirement that magnetic flux be matched between the roughly dipole field and the roughly uniform IMF imposes the needed condition. For example, as Weimer [2001] points out, in the superposition of a uniform IMF and a vacuum dipole, the size of the polar cap is 2REsinLc $ (BT/Bion)2/3 (strictly speaking this assumes BT/Bion ( 1, which is always the case). We point out that this result does not need to be applied just at the height of the ionosphere. In fact, if flux is conserved, the only way to match a dipole with a uniform solar wind magnetic field in an altitude-independent manner is to make the linear dimension of the opening proportional to (BEARTH/BT)1/3.
+[60] At the magnetopause, the Earth’s field is still essentially dipolar, still much stronger than the IMF, and must match a uniform IMF. Therefore the first approximation to the length of the merging line is (BMP/BT)1/3.
+5.2. Interpreting the Sin8/3(qc/2)
+[61] Despite the awkwardness of the 8/3 exponent, interpreting the dependence of dFMP/dt on IMF clock angle is the most straightforward part of the result. The physical meaning is simply the fraction of field lines impacting the magnetosphere which merge and is a function of the magnetic shear. The shear dependency varies with position on the magnetopause (as will shortly become clear), and the ensemble of magnetosheath field line draping and magnetopause geometry is quite involved. Almost certainly, there is not an analytical formula which can be derived on first principles which could apply to the magnetopause as a whole. Thus our formula is necessarily an empirical fit to a complex situation. The oddness of the best fit exponent is therefore not surprising.
+[62] Figure 6 shows the relationship between three forms for the clock angle dependence as given by the half-wave rectifier, EKL, and dFMP/dt. In all three cases the greatest amount of merging is predicted for a due southward IMF, and all three functions go to zero for a strictly northward IMF. The half-wave rectifier model predicts no merging at all for an IMF with any northward component and thus goes
+
+11 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Figure 6. The merging rate for EKL (left curve), half-wave rectifier (right) and dFMP/dt (middle). Superposed (‘‘*’’) is the merging rate from an ISEE-2 survey at the magnetopause.
+
+to zero at a 90° clock angle. The EKL function allows considerable merging even past 90° clock angle and predicts the greatest amount of northward IMF interaction between the magnetosphere and solar wind. The dFMP/dt function (like EWAV) intermediate between the other two, allowing some merging for northward IMF, but not so much as EKL.
+[63] Less in situ work on determining the merging rate as a function of magnetic shear at the magnetopause has been done than one might wish. The most relevant statistics are still perhaps Gosling et al. [1990], who computed the merging rate as a function of clock angle (in broad bins) at the nose of the magnetopause, and Gosling et al. [1986], who did the same along the flanks of the magnetopause. This was done looking for flow reversals in ISEE-2 data. Merging occurs for smaller shears at the nose than elsewhere, consistent with the report of Fuselier et al. [2000] that merging can occur for surprisingly small shears near the subsolar point.
+[64] When observations suffer from poor counting statistics (Gosling et al. [1990] included just 17 merging events, and the Gosling et al. [1986] study included 28), smoothing may improve the results. This is particularly true when one of several conditions apply. In this case, there is strong theoretical reason to expect that merging is a monotonic function of magnetic shear (i.e., that a smaller shear does not lead to a higher merging rate). Thus we (separately) smoothed the data of Gosling et al. [1990] and Gosling et al. [1986] by a nearest-neighbor algorithm (fn = 0.25 * fnÀ1 + 0.5 * fn + 0.25 * fn+1). The ISEE-2 data from the subsolar region is suggestive of EKL, although not quite as liberal in terms of merging allowed for low shears. The data from the flanks is more suggestive of a half-wave rectifier or even slightly more restrictive.
+
+[65] It is not clear how to combine these two studies to estimate the global merging rate. The global response of the magnetopause to the IMF must be some combination of low-latitude frontside merging (which allows merging for small clock angles) and merging elsewhere on the magnetopause (which requires larger shears). We took the simplest possible approach and added the two probabilities distributions together and divided by two. The result is shown in Figure 6 (stars). The combination of merging near the frontside and away from the frontside collectively approximates the dFMP/dt function.
+[66] Figure 6 is presented only to show that the results from our study are at least roughly consistent with the (all too limited) work at high altitude. The high-altitude data is too sparse to reach any definite conclusions. In principle, if the frequency of merging as a function of magnetic shear were sampled at several locations along the magnetopause, the data could be combined with a draping model for the magnetosheath magnetic field, and the combination would give the global merging response with enough accuracy to be widely useful.
+[67] Again, the precise functional form we ended with was based on a trial and error search through the possible exponents. The correlations proved slightly higher for 8/3 than the next higher or lower step (i.e., 7/3 or 3).
+6. Confidence in dFMP/dt = v4/3BT2/3sin8/3(qc/2) 6.1. Functional Form
+[68] Statistical uncertainties in correlation coefficients can be calculated using several assumptions about the sample population which appear not to be justified. For example, hourly cadence data points are only partially independent.
+
+12 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Nonetheless, the odds of the results presented here occurring by chance are astronomical.
+[69] Here we have used 10 widely different observational approaches constituting tens of thousands of data points over a wide variety of conditions and techniques. For example, the cusp latitude alone was tested over two consecutive complete solar cycles, with different DMSP satellites and different IMF satellites for each cycle. Yet the same functions finished as the best predictor for the cusp, in about the same order. Moreover, we verified that even the slopes and intercepts were consistent. For example, sin(Lc) = 2.6 Â 10À6dFMP/dt + 0.983 for the first cycle, and sin(Lc) = 2.7 Â 10À6dFMP/dt + 0.983 for the second solar cycle, a change little different than the calibration uncertainties in the solar wind monitors. (Here and throughout, when calculating dFMP/dt, v is in km/s, n in cmÀ3, and BT in nT.) Collectively, across the disparate multiple data sets spanning years, and each with thousands of data points, many of the uncertainties or biases which can be ascribed to a single data set are unlikely.
+[70] The odds of a single function, out of the 20 documented, correlating best by chance alone with all 11 nonDst data sets is 20À11, is too small to consider. One might instead compare only, say, against the best performing functions. More quantitatively, dFMP/dt outperformed EKL, and EWAV for 13 out of 13 data runs, which could occur through chance alone only 3À13, or roughly 1 chance in 106. The actual likelihood is far smaller, since this approach assumes results such as Figure 2 and Figure 3 are no more probative than a flip of a coin, yet any single one of these figures actually has virtually no chance of being accidental. The out performance of dFMP/dt relative to the commonly used functions is statistically so overwhelming that only absurdly small numbers can be associated with the probability of a chance occurrence.
+[71] However, it is reasonable to inquire as to the approximate uncertainty associated with each exponent in dFMP/dt. Let us consider each in turn. In what follows, we compute the results of having all the other exponents at their optimum values (those used in dFMP/dt) but making a slight change in one exponent. This of course minimizes the advantages of the merging function (since the competitor is then nearly the same). Also keep in mind that at extrema (the right value of the exponent), slopes go to zero. As a reference point, over all 13 data runs, dFMP/dt accounts for 57.2% of the variance.
+[72] The exponent of BT is greater than 0.5 and less than 1.0 with excellent confidence. Changing the functional dependence of dFMP/dt on BT to BT1/2 reduces the total variance accounted for (across all 13 data runs) to 56.4%, while making in linear in BT drops the performance to 53.3% (raising BT to linear is a greater deviation from the peak-performing exponent of 2/3 than dropping it to 1/2 and thus produces a larger performance hit). It is worth noting that the superiority of BT2/3 is evident not just in the higher correlation but also shows up in the plots of mean values of the indices (see Figures 4 and 5). It is the case, however, that Kp is slightly better fit by BT1/2 than BT2/3, and this is true for both solar cycles.
+[73] Reducing the exponent on v to linear reduces the variance dFMP/dt accounts for to 56.1% and produces clear deviations in mean plots (the not-shown equivalent of
+
+Figures 4 and 5, but for v). However, raising dFMP/dt to v3/2 produces only a miniscule and statistically insignificant drop (a more dramatic drop occurs with any further increase in exponent). The reasons for preferring v4/3 to v3/2 then are partly theoretical (as outlined in section 5). However, v4/3 does work best for the indices with highest correlations, notably the cusp and AE, AU, and Kp. Hence we had already converged on v4/3 before reaching the theoretical understanding of the function.
+[74] The ‘‘8/3’’ dependence of sin(qc/2) probably does not arise from a fundamental principle but is an average over the details of magnetopause geometry, magnetic field draping in the magnetosheath, and the merging rate as a function of shear, which differs with location along the magnetopause. We are only willing to say that 8/3 edged out its nearest competitors (cubed or 7/3) in our data set and that it is considerably better than either sin2(qc/2) or sin4(qc/2).
+[75] The indices which are well measured and predictable (by any formula) can all be predicted with correlations above 0.8 by dFMP/dt alone, over multiple solar cycles, and without any time history included. No doubt further refinements to dFMP/dt will be found by future research. Here v4/3BT2/3sin8/3(qc/2) works significantly better than any other published function in predicting a wide variety of magnetospheric activity. If, instead of being compared to minor variants, dFMP/dt is compared to popular functions actually in wide use (such as EKL), its out performance is much larger.
+6.2. Time Resolution
+[76] It might be wondered if the hourly cadence used here produces different results than higher time resolution data would. In fact, two of the measurements, cusp latitude and b2i (the equatorward boundary of multi-keV ion precipitation in the nightside oval), are essentially instantaneous measurements (or at least, have at most a few seconds uncertainty). Sin(Lc) and b2i produced the same results as did the other approaches.
+[77] For three other data sets, namely auroral power (Polar UVI), GOES inclination angle, and polar cap size (FPC) we have higher time resolution data. These three showed lower correlations when considered at higher time resolution but still correlated best with dFMP/dt. Thus Polar UVI auroral power measurements, considered at 1 min resolution, correlated at the r = 0.69 level with dFMP/dt, with the same closest competitors as for the hourly averages (incidentally, this is a much higher correlation than Liou et al. [1998] achieved with the same data set). Similarly, FPC evaluated at 5 min cadence drops the correlation with dFMP/dt to r = 0.56, but this remains the highest correlate. The correlation with GOES, when evaluated at 5 min resolution, remains highest with dFMP/dt, at r = 0.74, which again is higher than achieved in previous work using other functions [Wing and Sibeck, 1997].
+[78] We believe that evaluating a large number of data points over a wide range of solar wind conditions is key to determining the form of the solar wind-magnetosphere coupling function. A higher than hourly cadence does not improve the variety of solar wind experienced but does increase the noise in the data.
+
+13 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+7. Some Selected Implications
+7.1. Approximate Invariance in Predictability of an Index
+[79] As our study progressed, the approximate order of predictability of the various magnetospheric state variables did not change, even as the correlations rose. Thus using, say, EKL, cusp latitude is more predictable than is AE, and AE is more predictable than auroral power, which is more predictable than AL. With our intermediate candidates and with the final optimized function the same holds true.
+[80] One implication is that all the various coupling functions do is to provide estimates, of varying quality, of the same physical process which drives all magnetospheric state variables. That is, as far as the magnetosphere is concerned, Bz is not measuring something different than EKL, it is measuring the same thing, less capably. It would seem to be an unwise choice to bin any magnetospheric activity by Bz. There is not a ‘‘southward IMF’’ magnetosphere and a ‘‘northward IMF’’ magnetosphere. There is a magnetosphere under a state of rapid dayside merging and one under the state of slow dayside merging. This is why there are more ‘‘southward’’ IMF cusp signatures than ‘‘northward’’ IMF cusp signatures and why the polar cap for northward IMF so often resembles ‘‘southward IMF’’ conditions. (Incidentally, hdFMP/dti = 4421 over 1995 – 2002, where v is in km/s and BT in nT, which thus divides high from low merging rates.)
+[81] Another implication is that Dst (the most predictable variable) is determined almost entirely by the solar wind alone, while cusp latitude and AE are primarily solar wind driven. AL is largely due to internal magnetospheric dynamics. While not a startling inference, Table 2 does seem to be a somewhat quantitative ordering of how directly driven various aspects of magnetospheric behavior are. Polar cap flux is an exception in Table 2, in that it probably is not unpredictable, merely difficult to measure well.
+7.2. Invariance of the Solar Wind Integration Time
+[82] The solar wind integration times given in Table 4 were determined quite early in our study, at which point the best performing functions were such as EWAV, EKL, and vBs. Interestingly, after higher-correlating functions, notably dFMP/dt, were found, the solar wind integration times remained optimized. Thus for a given index, the times given in Table 4 appear to be invariants. As a result, they represent the hysteresis of the indices. By and large they are unsurprising (no one would expect cusp latitude to have near as long an integration time as Dst), but this appears to be a good way to quantify this aspect of various magnetospheric phenomena. It is not obvious, for example, why both measures of magnetotail stretching (b2i and GOES inclination angle) have significantly longer integration times (5 and 6 hours) than does, say, AE (3 hours) or auroral power (4 hours).
+7.3. A Few Unanswered Issues
+[83] Since the strength of the magnetopause magnetic field is proportional to p1/2, our derivation of the dayside merging rate implies an n1/6 dependency in dFMP/dt. We cannot verify this empirically, although neither can we exclude that factor. The dynamic range of n1/6 (or most solar wind properties to the 1/6 power) is somewhat limited.
+
+Including the n1/6 factor actually reduces the correlation (by a few thousandths) for cusp latitude and AE, while improving it (by the same margin) for auroral power and b2i. The two runs (solar cycles) of Kp split. The factor does help correlations with Dst, but hurts the much higher correlation of p1/2dFMP/dt with Dst.
+[84] In the end, we have omitted the n1/6 because it slightly deteriorates our biggest success, namely the high correlations with cusp latitude, AE, and of p1/2dFMP/dt with Dst. Nonetheless, it is not an easy decision. Those who prefer theory may prefer to use p1/6vBT2/3sin8/3(qc/2). The results will be very similar.
+[85] Another issue is the need to use only the most recent hour of solar wind data to optimize correlations with cusp latitude. Although superficially reasonable (the cusp is thought of as under direct solar wind control), cusp latitude must surely depend on the balance between dayside merging and nightside reconnection. Without return flux from the nightside, the cusp latitude would only decline. Therefore it seems as though nightside merging (which clearly has a several hour integration time response to the solar wind) needs be considered. Perhaps this could be resolved through the use of an extra term, with lower weight, integrating the last few hours, and of opposite sign to the main (immediate dayside response) term.
+[86] Another issue is the time integration applied to the p1/2 ‘‘correction’’ term for Dst. We found that using either the current value of p1/2 or using p1/2 integrated over 72 hours improved Dst. Using both terms simultaneously improved the correlation the most (to r = 0.89, probably the highest-ever correlation for a multiyear calculation of any index from solar wind data alone). Since we sought to avoid multiple parameters, in this study we kept only the term proportional to p1/2 integrated over 72 hours, which gave the greater improvement. Conversely, this implies that only a portion of the advantage of ‘‘correcting’’ Dst for p1/2 actually arises because the ring current perturbation on the ground-station magnetometers. In other words, the actual ring current itself does respond to p1/2, presumably because of the increased proximity of the magnetopause.
+8. Summary
+[87] We have studied 10 different indices characterizing magnetospheric activity, looking for a pattern in the highest single correlate with solar wind coupling functions. Very large data sets, comprising multiple years, up to two solar cycles, were used at relatively high cadence (hourly), to minimize statistical fluctuations and issues of instrumental artifact. In addition to five indices from ground-based magnetometers (Kp, AE, AU, AL, and Dst) we added five space age indices: Polar UVI measurements of auroral power, DMSP measurements of cusp latitude and the nightside multi-keV ion precipitation boundary (b2i), magnetotail inclination angle from NOAA GOES-8, and the polar cap size as inferred from SuperDARN convection reversal boundaries. It is thus difficult to be misled by the limitations of any given index.
+[88] A pattern did emerge: all indices correlate best with a single solar wind coupling function, dFMP/dt = v4/3BT2/3sin8/3(qc/2), except Dst, which correlates best with p1/2dFMP/dt. The apparent physical interpretation is that
+
+14 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+the rate of merging on the dayside magnetopause is the single largest correlate for most magnetospheric activity.
+[89] The most commonly encountered coupling functions in general use are products of the solar wind electric field multiplied by a snippet extracted from the merging rate, with other factors discarded. Thus EKL = vBT sin2(qc/2) appends an estimate of the fractional merging rate as a function of magnetic shear to the electric field, while not including such factors as the strength of the magnetic field at the magnetopause, or the length of the merging line. In contrast, the work of Siscoe and Huang [1985], Lockwood et al. [1990], and Cowley and Lockwood [1992] has demonstrated how the merging rate can explain ionospheric convection without the need to reference the solar wind electric field. The latter is thus superfluous.
+[90] Although these ideas have been most extensively applied to the ionosphere, our results suggest that they apply to the entire magnetosphere. Indeed, we have chosen to drop consideration of the solar wind electric field and estimate the four factors which go into the rate magnetic flux is opened at the magnetopause. These are the rate field lines are convected toward the magnetopause (v), the percentage of field lines which subsequently merge (sin8/3(qc/2)), the strength of the MF (BT), and the length of the merging line ((BMP/BT)1/3, to match flux between a dipole and a uniform IMF.
+[91] Some ambiguities remain. From our derivation of dFMP/dt, a factor of n1/6 theoretically should be attached. We cannot ascertain whether this correct or not, as some indices (cusp latitude, AE) correlate slightly better without it, while a few (notably b2i, auroral power, and AU) correlate better with it (the difference is tiny, typically in the third decimal place, because of the limited dynamic range of n1/6). The two runs of Kp (over consecutive solar cycles) split. For that matter, Kp is slightly better fit by a BT1/2 than BT2/3, and other minor fluctuations occur (e.g., auroral power slightly prefers v3/2 to v4/3). We do not know whether these minor fluctuations reflect geophysical reality, or merely the remaining limitations of the various measurement techniques, or residual statistical uncertainties.
+[92] If, instead of comparing dFMP/dt to minor variants of itself, it is compared to existing coupling functions in general use, the picture is much clearer. Here dFMP/dt correlates best with all 11 non-Dst runs, and p1/2dFMP/dt correlates best with Dst over two solar cycles. Recall that fitting y = x2/3 with a linear fit reduces the variance accounted for by about 2% (e.g., Figure 4). The traditional coupling functions have three such errors in the values of exponents and thus explain roughly 6% less of the total variance than does dFMP/dt, as Table 3 demonstrates. Notwithstanding remaining uncertainties, dFMP/dt is the single highest solar wind correlate of a broad range of magnetospheric activity.
+[93] Acknowledgments. This work was supported by NASA grants
+NNG05GJ90G and NNG05GB72G and by NSF grant ATM-0548678. The AE, AU, and AL data were downloaded from the Web site of the World Data Center at Kyoto. GOES data was downloaded at 5 min resolution from NOAA in Boulder, Colorado, as was Kp and Dst. SuperDARN data was provided courtesy of R. A. Greenwald, J. M. Ruohoniemi, and many other SuperDARN P.I.s around the world. G. Parks of U.C. Berkeley is the P.I. for NASA’s Polar UVI instrument. This research would not be possible without the work of the NSSDC at NASA Goddard or without the work of scientists such as J. King, R. Lepping, and N. Papatashvilli, who make the solar wind and IMF data widely available in convenient and reliable formats.
+
+[94] Zuyin Pu thanks Alan Rodger for the assistance in evaluating this
+paper.
+References
+Ahn, B.-H., H. W. Kroehl, Y. Kamide, and E. A. Kihn (2000), Universal time variations in the auroral electrojet indices, J. Geophys. Res., 105, 267.
+Burke, W. J., D. R. Weimer, and N. C. Maynard (1999), Geoeffective interplanetary scale sizes derived from regression analysis of polar cap potentials, J. Geophys. Res., 104, 9989.
+Burton, R. K., R. L. McPherron, and C. T. Russell (1975), An empircal relationship between interplanetary conditions and Dst, J. Geophys. Res., 80, 4204.
+Chapman, S., and V. C. A. Ferraro (1931), A new theory of magnetic storms, part I, The initial phase, Terr. Magn. Atmos. Electr., 36, 171.
+Chisham, G., M. P. Freeman, M. M. Lam, G. A. Abel, T. Sotirelis, R. A. Greenwald, and M. Lester (2005), A statistical comparison of SuperDARN spectral width boundaries and DMSP particle precipitation boundaries in the afternoon sector ionosphere, Ann. Geophys., 23, 3645.
+Cowley, S. W. H., and M. Lockwood (1992), Excitation and decay of solar wind-driven flows in the magnetosphere-ionosphere system, Ann. Geophys., 10, 103.
+Crooker, N. U., and K. I. Gringauz (1993), On the low correlation between long-term averages of solar wind speed and geomagnetic activity after 1976, J. Geophys. Res., 98, 59.
+Crooker, N. U., J. Feynman, and J. T. Gosling (1977), On the high correlation between long-term averages of solar wind speed and geomagnetic activity, J. Geophys. Res., 82, 1933.
+Dungey, J. W. (1961), Interplanetary magnetic field and auroral zones, Phys. Rev. Lett., 6, 47.
+Fuselier, S. A., K. J. Trattner, and S. M. Petrinec (2000), Cusp observations of high- and low-latitude reconnection for northward interplanetary magnetic field, J. Geophys. Res., 105, 253.
+Gosling, J. T., M. F. Thomsen, S. J. Bame, and C. T. Russell (1986), Accelerated plasma flows at the near-tail magnetopause, J. Geophys. Res., 91, 3029.
+Gosling, J. T., M. F. Thomsen, S. J. Bame, R. C. Elphic, and C. T. Russell (1990), Plasma flow reversals at the dayside magnetopause and the origin of asymmetric polar cap convection, J. Geophys. Res., 95, 8073.
+Hardy, D. A., M. S. Gussenhoven, and E. Holeman (1985), A statistical model of auroral electron precipitation, J. Geophys. Res., 90, 4229.
+Kan, J. R., and L. C. Lee (1979), Energy coupling and the solar wind dynamo, Geophys. Res. Lett., 6, 577.
+Liou, K., P. T. Newell, C.-I. Meng, M. Brittnacher, and G. Parks (1998), Characteristics of the solar wind controlled auroral emissions, J. Geophys. Res., 103, 17,543.
+Lockwood, M., S. W. H. Cowley, and M. P. Freeman (1990), The excitation of plasma convection in the high latitude ionosphere, J. Geophys. Res., 95, 7691.
+Lyons, L. R., and T. W. Speiser (1982), Evidence for current sheet acceleration in the geomagnetic tail, J. Geophys. Res., 87, 2276.
+Mayaud, P. N. (1980), Derivation, Meaning, and Use of Geomagnetic Indices, Geophys. Monogr. Ser., vol. 22, AGU, Washington, D. C.
+Newell, P. T., Y. I. Feldstein, Y. I. Galperin, and C.-I. Meng (1996), The morphology of nightside precipitation, J. Geophys. Res., 101, 10,737.
+Newell, P. T., D. Xu, C.-I. Meng, and M. G. Kivelson (1997), The dynamical polar cap: A unifying approach, J. Geophys. Res., 102, 127.
+Newell, P. T., V. A. Sergeev, G. R. Bikkuzina, and S. Wing (1998), Characterizing the state of the magnetosphere: Testing the ion precipitation maxima latitude (b2i) and the ion isotropy boundary, J. Geophys. Res., 103, 4739.
+Newell, P. T., C.-I. Meng, T. Sotirelis, and K. Liou (2001), Polar Ultraviolet Imager observations of global auroral power as a function of polar cap size and magnetotail stretching, J. Geophys. Res., 106, 5895.
+Newell, P. T., T. Sotirelis, J. P. Skura, C.-I. Meng, and W. Lyatsky (2002a), Ultraviolet insolation drives seasonal and diurnal space weather variations, J. Geophys. Res., 107(A10), 1305, doi:10.1029/2001JA000296.
+Newell, P. T., T. Sotirelis, J. F. Carbary, K. Liou, J. P. Skura, C.-I. Meng, C. Deehr, D. Wilkinson, and F. J. Rich (2002b), OVATION: Oval Variation, Assessment, Tracking, Intensity, and Online Nowcasting, Ann. Geophys., 20, 1039.
+Newell, P. T., T. Sotirelis, K. Liou, C.-I. Meng, and F. J. Rich (2006), Cusp latitude and the optimal solar wind coupling function, J. Geophys. Res., 111, A09207, doi:10.1029/2006JA011731.
+Papitashvili, V. O., N. E. Papitashvili, and J. H. King (2000), Solar cycle effects in planetary geomagnetic activity: Analysis of 36-year long OMNI dataset, Geophys. Res. Lett., 27, 2797.
+
+15 of 16
+
+A01206
+
+NEWELL ET AL.: UNIVERSAL COUPLING FUNCTION
+
+A01206
+
+Perreault, W. K., and S-I. Akasofu (1978), A study of geomagnetic storms, Geophys. J. R. Astron. Soc., 54, 547.
+Reiff, P. H., R. W. Spiro, and T. W. Hill (1981), Dependence of polar cap potential drop on interplanetary parameters, J. Geophys. Res., 86, 7639.
+Scurry, L., and C. T. Russell (1991), Proxy studies of energy transfer to the magnetopause, J. Geophys. Res., 96, 9541.
+Sergeev, V. A., E. M. Sazhina, N. A. Tsyganenko, J. A. Lundblad, and F. Soraas (1983), Pitch-angle scattering of energetic protons in the magnetotail current sheet as the dominant source of their isotropic precipitation into the nightside ionosphere, Planet. Space Sci., 31, 1147.
+Siscoe, G. L., and T. S. Huang (1985), Polar cap inflation and deflation, J. Geophys. Res., 90, 543.
+Sotirelis, T., P. T. Newell, and C.-I. Meng (1998), The shape of the openclosed boundary of the polar cap as determined from observations of precipitating particles by up to four DMSP satellites, J. Geophys. Res., 103, 399.
+Sotirelis, T., J. M. Ruohoniemi, R. J. Barnes, P. T. Newell, R. A. Greenwald, J. P. Skura, and C.-I. Meng (2005), Comparison of SuperDARN radar boundaries with DMSP particle precipitation boundaries, J. Geophys. Res., 110, A06302, doi:10.1029/2004JA010732.
+Temerin, M., and X. Li (2006), Dst model for 1995 – 2002, J. Geophys. Res., 111, A04221, doi:10.1029/2005JA011257.
+Troshichev, O. A., V. G. Andrezen, S. Vennerstrom, and E. Friischristensen (1988), Magnetic activity in the polar cap—A new index, Planet. Space Sci., 36, 1095.
+
+Vasyliunas, V. M., J. R. Kan, G. L. Siscoe, and S.-I. Akasofu (1982), Scaling relations governing magnetospheric energy transfer, Planet. Space Sci., 30, 359.
+Weimer, D. R. (2001), An improved model of ionospheric electric potentials including substorm perturbations and application to the Geospace Environment Modeling November 24, 1996, event, J. Geophys. Res., 106, 407.
+Wing, S., and D. G. Sibeck (1997), Effects of interplanetary magnetic field z component and the solar wind pressure on the geosynchonous magnetic field, J. Geophys. Res., 102, 7207.
+Wygant, J. R., R. B. Torbert, and F. S. Mozer (1983), Comparison of S3-3 polar cap potential drops with the interplanetary magnetic field and models of magnetopause reconnection, J. Geophys. Res., 88, 5727.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+K. Liou, C.-I. Meng, P. T. Newell, and T. Sotirelis, Johns Hopkins University Applied Physics Laboratory, 11100 Johns Hopkins Road, Laurel, MD 20723, USA. (patrick.newell@jhuapl.edu)
+F. J. Rich, Space Vehicles Directorate, Air Force Research Laboratory, Hanscom Air Force Base, Bedford, MA 01731, USA.
+
+16 of 16
+

@@ -1,0 +1,842 @@
+JGSP 30 (2013) 49–61
+
+A MODEL SUITABLE FOR NUMERICAL INVESTIGATION OF BEAM-SOLITON INTERACTION IN ELECTROSTATIC PLASMAS
+EVSTATI G. EVSTATIEV
+Communicated by Jean-Francois Ganghoffer
+Abstract. We derive a model suitable for computer simulations of a weak ion beam with solitons of the Korteweg-de Vries (KdV) equation. This type of interactions arise in experiments on soliton generation in double plasma devices and include soliton growth, damping, or decay. Our simpliﬁed model aims at capturing only the essential physics of these interactions. The model is formulated in the context of plasma physics in the electrostatic approximation. The bulk plasma is described by cold ﬂuid ions and warm, massless electrons. The ion beam is included as a separate plasma species and is coupled to the bulk plasma through Poisson’s equation. The derivation uses the Lagrangian of the system of plasma and beam and an expansion in small amplitude perturbations around an equilibrium. The Korteweg-de Vries equation arises from this expansion naturally. The model is thus applicable to general weakly non-linear ion-acoustic plasma waves, of which solitons are a particular case. A novel feature of our method is that it includes both the evolution of the wave and the perturbation while in previous analyses the perturbation is kept ﬁxed. The computational advantages of such description other approaches, such as ﬂuid description of both plasma and beam or all kinetic description, are that in the former case particle trapping cannot be fully simulated while in the latter case the computational time is much longer and the numerical noise is higher than in our hybrid approach.
+
+1. Introduction
+
+The Korteweg-de Vries (KdV) equation has been derived in multiple areas of physics [19], including plasma physics [4, 9, 23] (see also the review article [20], and references therein). Ion-acoustic solitons were ﬁrst observed by Ikezi et al. [13] and subsequently conﬁrmed by other experimental groups [2, 18]. In plasma physics experiments it is rare that when plasmas are excited only the phenomenon under investigation develops. As a rule, a variety of phenomena occur simultaneously and often their interaction affects, or even obscures, the targeted physics. For example, in double plasma experiment machines [2, 13, 18], the excitation of
+
+doi: 10.7546/jgsp-30-2013-49-61
+
+49
+
+50
+
+Evstati G. Evstatiev
+
+a soliton is accompanied by a burst of ions [1] and the two co-propagate and interact with each other [2, 18]. This interaction may lead to modiﬁcations of the soliton such as growth, damping, or decay. It is, therefore, of interest to investigate the more complex, simultaneous development of interacting waves (solitons) and beam particles.
+The study of solitons and co-propagating (resonant) particles has been done theoretically [14, 16, 22] as well as numerically [2, 16, 17]. Theoretical studies are useful since explicit expressions for the damping rates may be obtained. However, a drawback is their restriction to either the linear stage or only the initial stages of the non-linear regime of interaction. Only exceptional cases of perturbative analysis of solitons yield themselves to non-linear treatment, one example being given by the case of soliton-soliton interactions [10, 11, 15]. A further drawback is that the time evolution of the perturbation itself is not taken into account. In contrast, numerical studies permit a more general investigation. One of the most prevalent and important non-linear kinetic effects is wave particle trapping, which necessarily includes the time evolution of the perturbation beam particles. While this effect is particularly difﬁcult to tackle analytically, it is readily accessible from a numerical viewpoint. Yet, it is our opinion that this phenomenon has not been the subject of a comprehensive and systematical numerical study. It is the purpose of this paper to derive a model suitable for the numerical investigation of weakly non-linear ion-acoustic waves (e.g., solitons) and particle interaction in electrostatic plasmas. A novel and necessary feature in this model is the inclusion of the time evolution of both the wave and the perturbation (beam particles).
+The two most common techniques of plasma simulations are ﬂuid and kinetic [5, 12, 21]. Kinetic methods have the most general validity, i.e., comprehensive physics, but also the disadvantages of long computational times and high numerical noise; the latter may sometimes obscure importantly physics. In comparison, ﬂuid simulations have fast computational times and very low numerical noise but have a limited validity, i.e., miss some relevant physics. For example, in the ﬂuid picture the plasma is assumed to be in a local thermal equilibrium while this may be a good approximation for the bulk plasma, it is not necessarily true for the beam particles of interest here. Therefore, the most advantageous approach to the simulation of a beam-soliton system is the hybrid ﬂuid-kinetic, where the soliton is described by a ﬂuid while the ion beam is described by a collection of particles. Such approach combines the advantages of ﬂuid simulations–fast computational time and low noise–and those of kinetic models with the more comprehensive modeling of kinetic effects.
+
+A Model Suitable for Numerical Investigation of Beam-soliton...
+
+51
+
+2. Background
+
+Taniuti and Washimi [23] looked for weakly non-linear solutions of the following system of equations
+
+∂tn + ∂x(nu) = 0, ∂tu + u∂xu = E, ∂xne = −neE, ∂xE = n − ne. (1)
+
+In (1), n denotes the ion ﬂuid density, u is the ion ﬂuid velocity, ne is the electron density, and E is the electric ﬁeld. The system of equations (1) describes plasma in the electrostatic approximation. The ﬁrst equation is the continuity equation for ions in the cold ﬂuid approximation, the second is the momentum equation for the ions, the third equation is the momentum equation for the electron species of the plasma, assumed massless and in local thermal equilibrium (reduced to just the force balance condition), and the fourth equation in (1) is Poisson’s equation. All variables are dimensionless, where the density is given in units of some characteristic density n0, velocity is in units of κTe/M (ion-acoustic sound speed), with Boltzmann constant κ and constant electron temperature Te, dimensions of length are in units of Debye length, κTe/4πe2n0, and electric potential is measured in units of κTe/e. Here M and e denote the ion mass and ion charge. The boundary condition is taken at x → ∞
+
+n = ne = 1, u = 0.
+
+(2)
+
+The dispersion relation following from the linearized system (1) is k2 = ω2/(1 −
+
+ω2), where k is the wave number and ω is the wave frequency. This dispersion
+
+relation may be expanded for small ω as k ≈ ω
+
+1
+
++
+
+1 2
+
+ω2
+
+. The wave phase may
+
+be written as
+
+kx − ωt = (x − t)ω + 1 ω3. 2
+
+Deﬁning μ as ω2 = μ2, with a small parameter , we can write
+
+kx − ωt = μ
+
+1/2(x − t) +
+
+1 μ2 2
+
+3/2x
+
+(3)
+
+which suggests the coordinate transformation
+
+ξ = 1/2(x − t),
+
+η = 3/2x.
+
+(4)
+
+After making this coordinate change in equations (1) and considering the ﬁrst two orders in the expansion in , the KdV equation results [23].
+
+52
+
+Evstati G. Evstatiev
+
+3. Coupled System of Ion Beam and Plasma in the Weakly Non-linear Approximation
+
+We now derive the main result of this paper, a model for a small ion beam interacting with weakly non-linear plasma waves. Our derivation proceeds from a variational principle. (A Hamiltonian perturbative derivation of KdV was given in [6]. We consider our method more general and more suitable as a computational starting point.) First, we note that the boundary condition (2) must be modiﬁed to include the ion beam; at x → ±∞ we have
+
+n=1
+
+(5)
+
+ne = 1 + nb
+
+(6)
+
+u=0
+
+(7)
+
+where nb is a speciﬁed, constant equilibrium ion beam density. Next we note that in the electrostatic approximation the electric ﬁeld E may be derived from an electric potential, E = −∂xφ. Then the third equation in (1) may be solved and the boundary condition (6) used to yield the electron density
+
+ne(x) = (1 + nb) eφ(x).
+
+(8)
+
+Deﬁne a velocity potential Υ as
+
+u = ∂xΥ.
+
+(9)
+
+We may write the following Lagrangian for the cold ion ﬂuid, ion beam, and warm electrons
+
+L=− −
+
+dx n(x)
+
+1 2
+
+(∂xΥ)2
+
++
+
+∂tΥ
+
+1 +
+2
+
+dx (∂xφ)2
+
+(10)
+
+dx nφ +
+
+dx (1 + nb)eφ(x) +
+
+Np
+
+wj
+
+X˙ j2 2
+
+−
+
+Np
+
+wj φ(Xj )
+
+j=1
+
+j=1
+
+with particle coordinates and velocities given by Xj and X˙ j, respectively. The particle weight is deﬁned as wj = nb/Np. In fact, these computational particles may represent thousands of physical ions.
+
+A Model Suitable for Numerical Investigation of Beam-soliton...
+
+53
+
+We write out the full set of equations following from the Lagrangian (10)
+
+δL δΥ
+
+−→
+
+∂x (n∂xΥ) + ∂tn = 0
+
+(continuity ﬂuid equation)
+
+(11)
+
+δL δn
+
+−→
+
+−
+
+1 2
+
+(∂x
+
+Υ)2
+
+−
+
+Υ˙
+
+−
+
+φ(x)
+
+=
+
+0
+
+(momentum ﬂuid equation) (12)
+
+δL δφ
+
+−→
+
+Np
+−∂xxφ − n(x) − wjδ(x − Xj) + (1 + nb)eφ = 0
+
+j=1
+
+(Poisson’s equation) (13)
+
+δL δXj
+
+−→ −X¨j − ∂Xj φ(Xj) = 0.
+
+(Newton’s second law).
+
+(14)
+
+The system (11)–(14) is a coupled system of a ﬂuid and kinetic plasma disturbances represented by the ﬂuid quantities n and Υ, and Np the number of particles at locations Xj. The ﬂuid and particles interact with each other through electric ﬁeld, which is found self-consistently (i.e., electric ﬁeld time evolution is determined by all charges in the system, whose time evolution, in turn, is determined by the electric ﬁeld) from equation (13). (Strictly speaking, the charge neutrality condition for the ion beam in equilibrium is not satisﬁed by a ﬁnite number of particles, Np. This deﬁciency is removed when a computational grid is introduced; then, the computational particles are endowed with spatial extent and the charge neutrality condition may be satisﬁed exactly by a ﬁnite number of particles. For further details, please refer to [5, 8, 12] and the discussion in Section 4.) Such system is still very general in that the ﬂuid and particle disturbances may be of very general form. We are interested only in small amplitude ﬂuid perturbations and weak ion beams. Therefore, we will derive a system that captures these features explicitly. For this purpose, we ﬁrst perform the change of variables (4) (which deﬁnes scaled time and space variables and a change to a moving reference frame, see equation (3)) and then expand the Lagrangian (10) around the equilibrium (uniform plasma density, zero ﬂuid ion velocity, constant beam velocity, and zero electric potential) in the small parameter . Using the following relations
+
+∂ −→ 3/2 ∂ + 1/2 ∂
+
+∂x
+
+∂η
+
+∂ξ
+
+∂ −→ − 1/2 ∂
+
+(15)
+
+∂t
+
+∂t
+
+dx −→ −3/2dη
+
+54
+
+Evstati G. Evstatiev
+
+the Lagrangian, after the change of variables and factoring out −3/2, takes the form
+
+L=−
+
+⎛ dη n ⎝ 1 2
+2
+
+∂Υ˜ 2 ∂Υ˜ ∂Υ˜
+
++
+
++
+
+∂η
+
+∂η ∂ξ
+
+⎞
+
+∂Υ˜ 2 − ∂Υ˜ ⎠
+
+∂ξ
+
+∂ξ
+
+1 + dη
+
+3
+
+∂φ
+
+2
++
+
+2 ∂φ ∂φ +
+
+∂φ 2
+
+(16)
+
+2
+
+∂η
+
+∂η ∂ξ
+
+∂ξ
+
+Np
+− dη nφ + dη (1 + 2n˜b)eφ + w˜j
+
+1 2
+
+dΞj dξ
+
+2
+− 2φ(Ξj) .
+
+j=1
+
+In deriving (16) we have assumed that the ion beam density is of order nb = 2n˜b and we have used the scaled velocity potential Υ˜ = 1/2Υ. In addition, because of the stretching coordinate transformation, the particle weight scales as −3/2, which has been factored out from the full Lagrangian and the new particle weights become w˜j = n˜b/Np.
+We expand all variables as
+
+n ≈ 1 + n(1) + 2n(2)
+
+(17)
+
+Υ˜ ≈ ≈ Υ(1) + 2Υ(2)
+
+(18)
+
+φ ≈ φ(1) + 2φ(2)
+
+(19)
+
+Ξ˙ j ≈ 1 + 3/2Ξ˙ (j1).
+
+(20)
+
+The dot in equation (20) is a differentiation with respect to the scaled time ξ. Note
+that the ordering of the velocity in equation (20) matches the order of the scaled velocity potential, Υ˜ . After substitution of (17)–(20) into (16), we collect the terms of order 2 and 3. The result is
+
+⎛
+
+⎞
+
+L(2) = −
+
+dη ⎝ 1 2
+
+∂Υ(1) ∂ξ
+
+2 − n(1) ∂Υ(1) ⎠− ∂ξ
+
+dη n(1)φ(1)+ 1 2
+
+dη
+
+φ(1) 2
+
+(21)
+
+A Model Suitable for Numerical Investigation of Beam-soliton...
+
+55
+
+and L(3) = −
+
+⎧
+
+⎛
+
+dη
+
+⎨ ∂Υ(1) ∂Υ(1) ⎩ ∂η ∂ξ
+
+∂Υ(1) ∂Υ(2) +
+∂ξ ∂ξ
+
++ n(1) ⎝ 1 2
+
+∂Υ(1) ∂ξ
+
+⎞ 2 − ∂Υ(2) ⎠
+∂ξ
+
+−n(2) ∂Υ(1) + 1
+
+∂φ(1)
+
+2
+−
+
+n(1)φ(2) + n(2)φ(1)
+
++ φ(1)φ(2)
+
+(22)
+
+∂ξ 2 ∂ξ
+
+1 +
+6
+
+φ(1) 3
+
+Np
++ w˜j
+
+j=1
+
+1 2
+
+Ξ˙ (j1)
+
+2
+−
+
+dη φ(1)(η)δ(η − Ξj) .
+
+The beam of ions only contributes to L(3), as desired by the assumed ordering. The last term in (22) was written explicitly identifying the particle as a delta function with support at Ξj and in Section 4 we indicate how to relax this assumption. Next we derive the equations of motion. First, variation of L(2) gives
+
+δL(2) δΥ(1)
+
+−→
+
+∂2Υ(1) ∂ξ2
+
+−
+
+∂n(1) ∂ξ
+
+=
+
+0
+
+(23)
+
+δL(2) δn(1)
+
+−→
+
+∂Υ(1) − φ(1) = 0 ∂ξ
+
+(24)
+
+δL(2) δφ(1)
+
+−→ −n(1) + φ(1) = 0.
+
+(25)
+
+From the three equations (23)–(25) we deduce
+
+n(1) = φ(1),
+
+∂Υ(1) = n(1).
+
+(26)
+
+∂ξ
+
+The second of the relations (26) was obtained by integrating (23) once in ξ and
+using the boundary conditions for the ﬂuid velocity and density of the bulk plasma ions. Next, we vary the Lagrangian L(3). Variation with respect to Υ(1) gives
+
+δL(3) δΥ(1)
+
+−→
+
+∂2Υ(1) ∂2Υ(2) ∂
+
+2
+
++
+
+∂ξ∂η
+
+∂ξ2
+
++ ∂ξ
+
+n(1) ∂Υ(1) ∂ξ
+
+− ∂n(2) = 0 ∂ξ
+
+from which by an additional integration in ξ and using the boundary conditions we
+
+obtain
+
+∂Υ(1) 2
+
++
+
+∂Υ(2)
+
++ n(1) ∂Υ(1)
+
+− n(2)
+
+=
+
+0.
+
+∂η
+
+∂ξ
+
+∂ξ
+
+(27)
+
+Variation with respect to n(1) gives
+
+δL(3) δn(1)
+
+−→
+
+∂Υ(2) ∂ξ
+
+−
+
+1 2
+
+∂Υ(1)
+
+2
+− φ(2) = 0.
+
+∂ξ
+
+(28)
+
+56
+
+Evstati G. Evstatiev
+
+Variation with respect to φ(1) yields
+
+δL(3) δφ(1)
+
+∂2φ(1) −→ − ∂ξ2
+
+− n(2)
+
++ φ(2)
+
++
+
+1 2
+
+φ(1)
+
+2
+
+Np
+
+− w˜j δ(η − Ξj) = 0.
+
+(29)
+
+j=1
+
+Finally, after a variation with respect to the particle coordinate Ξj, we have
+
+Ξ¨ j
+
++
+
+∂φ(1) ∂η
+
+(Ξj )
+
+=
+
+0.
+
+(30)
+
+From equations (27)–(29) we can exclude all second order quantities. Adding equations (28) and (29) yields
+
+∂Υ(2) −n(2) − 1
+
+∂ξ
+
+2
+
+∂Υ(1) ∂ξ
+
+2 ∂2φ(1) 1
+
+−
+
+∂ξ2
+
++ 2
+
+φ(1)
+
+2 Np
+− w˜j δ(η −Ξj) = 0.
+
+(31)
+
+j=1
+
+We see that from equations (27) and (31) we can solve for the second order quantity
+
+∂ Υ(2) ∂ξ
+
+−
+
+n(2)
+
+while
+
+the
+
+two
+
+right-hand
+
+sides
+
+must
+
+be
+
+equal
+
+(compatibility
+
+condition)
+
+1 2
+
+∂Υ(1) ∂ξ
+
+2
+
++
+
+∂2φ(1) ∂ξ2
+
+−
+
+1 2
+
+φ(1)
+
+2
++
+
+Np
+
+w˜j
+
+δ(η −Ξj)
+
+=
+
+−2 ∂Υ(1) ∂η
+
+− n(1) ∂Υ(1) · ∂ξ
+
+j=1
+
+(32)
+
+Using relations (26), we can express all ﬂuid quantities in equation (32) in terms
+
+of velocity potential
+
+∂Υ(1) 1 +
+∂η 2
+
+∂Υ(1) ∂ξ
+
+2 1 ∂3Υ(1)
+
++ 2
+
+∂ξ3
+
+=−
+
+Np
+
+w˜j 2
+
+δ(η − Ξj)
+
+(33)
+
+j=1
+
+which is the KdV equation with a perturbation of a beam of ions (given by the right-hand side). The beam particles evolve according to
+
+Ξ¨ j
+
+=
+
+∂2Υ(1) − ∂ξ∂η (Ξj)
+
+(34)
+
+where relations (26) were used again. The coupled equations (33) and (34) repre-
+
+sent the desired beam-plasma model. By using relations (26) we can rewrite the
+
+Lagrangian (22) to eliminate all but the velocity potential Υ(1) and the particle
+
+coordinates Ξj L(3) = −
+
+⎡
+
+dη
+
+⎣ ∂Υ(1) ∂Υ(1)
+
+1 +
+
+∂ξ ∂η 3
+
+∂Υ(1) 3 1
+
+−
+
+∂ξ
+
+2
+
+⎤
+
+∂2Υ(1)
+
+2
+⎦
+
+∂ξ2
+
+(35)
+
+Np
++ w˜j
+
+1 2
+
+Ξ˙ (j1)
+
+2
+−
+
+∂Υ(1) dη ∂ξ δ(η − Ξj) .
+
+j=1
+
+A Model Suitable for Numerical Investigation of Beam-soliton...
+
+57
+
+Variation of (35) yields KdV equation for the velocity [with u(1) = ∂ξΥ(1)]
+
+∂u(1) ∂η
+
++ u(1) ∂u(1) ∂ξ
+
+1 ∂3u(1)
+
++ 2
+
+∂ξ3
+
+=−
+
+Np
+
+w˜j 2
+
+∂ δ(η − Ξj) ∂ξ
+
+(36)
+
+j=1
+
+which is just the ∂ξ derivative of (33). The ξ dependence on the right-hand side of equation (36) is through Ξj. The other two ﬂuid quantities, density and electric potential, satisfy the same equation (36).
+We would like to stress the generality of the coupled equations (33) and (34). Previous authors have derived equations similar to (36) [16, 17] but their further analytical development required particular choices for the distribution function of the beam particles, which is a limitation of their approach. In addition, a ﬁxed choice of the ion beam distribution function does not take into account its temporal modiﬁcation due to the beam-wave interaction, which is a further limitation. In comparison, our model evolves the non-linear (soliton) as well as the beam particles. Since the ion beam distribution is simulated kinetically (with particles), it captures the correct evolution of the beam distribution function too.
+
+4. Discussion and Conclusions
+The model presented by Lagrangian (35) is the most convenient form for further reduction and computer simulations. We brieﬂy outline the steps necessary to proceed, referencing the reader to the more detailed discussions in [5, 8, 12]. As it stands, the model is still an inﬁnite degree-of-freedom (DOF) system and thus unsuitable yet for computer simulations. Two steps are necessary to reduce (35) to a ﬁnite DOF system: spatial discretization and time discretization. The two steps may either be performed simultaneously (however, the action then need be considered) or separately. The simpler approach is to consider the two steps separately. The variational principle allows for two general numerical approaches: use of ﬁnite differences to approximate the spatial derivatives of Υ(1) in conjunction with an integration rule or the use of a truncated basis expansion. Either of these approaches reduces integrals of ﬁeld quantities in (35) to ﬁnite sums. After the spatial discretization is performed, one varies the Lagrangian with respect to the ﬁeld coefﬁcients and particle positions to derive the equations of motion. Then time discretization must be done. The only restriction on a choice of a time integrating method is the possibility of encountering a numerical instability or high numerical dissipation. In our experience, second or fourth order accurate explicit RungeKutta methods perform satisfactory in wave-particle interaction simulations [7].
+
+58
+
+Evstati G. Evstatiev
+
+We note that as an alternative way to the spatial discretization of the Lagrangian described above, one could ﬁrst obtain the continuous Euler-Lagrange equations and then perform the spatial discretization. However, such procedure may introduce undesirable numerical errors (of the order of the accuracy of discretization); it is known that such errors may lead to loss of conservation properties of the original (continuous) system. In comparison, the approach described above allows to more fully utilize the relation between symmetries of the Lagrangian and conserved quantities in the discretized system. An illustration is provided by our continuous ﬁeld Lagrangian (35): it does not contain explicit time dependence, hence, this system conserves total energy. Explicit time dependence is not introduced by the spatial discretization and therefore the resulting discrete system (time kept continuous) is guaranteed to also conserve energy.
+A more subtle question we alluded to previously is our choice of a delta-function particle shape, which helped simplify the presentation. In kinetic simulations of plasmas via the so-called Particle-In-Cell (PIC) method [5, 12], particles are endowed with a spatial extent. Important advantages of using ﬁnite-size particles are the much lower numerical noise and the lack of certain numerical instabilities present in simulations with delta-function particles. In a recent publication [8], the author has revisited the concept of particle shapes. In particular, the connection of the particle shape and the numerical accuracy of the force on a particle is exhibited. The essence of the relevant results is the following. Take the case of a reduction of the continuous ﬁelds by a ﬁnite element basis. Finite elements [3] offer a consistent way of spatial discretization with increasing accuracy. Continuous quantities are solved for (and known) on a computational grid and a rule (e.g., polynomials) is given for ﬁnding the values of the solution between grid points. Therefore, if one represents the solution as sum over ﬁnite elements Ψk(η)
+
+Ng
+
+Υ(1)(ξ, η) = Uk(ξ)Ψk(η)
+
+(37)
+
+k=1
+
+the last term in equation (35) reduces to
+
+Np Ng
+
+U˙ k dη Ψk(η)S(η − Ξj)
+
+(38)
+
+j=1 k=1
+
+where we have replaced the delta function with a more general (shape) function S. One can verify that for the simple choices of a top-hat function for S and linear ﬁnite elements, each particle contributes a certain amount of charge (in the PIC terminology, this is called the charge deposition rule) to not one but three grid points.
+
+A Model Suitable for Numerical Investigation of Beam-soliton...
+
+59
+
+Therefore, a particle is not a point in space but a “blob” of charge described by its centroid and velocity Ξj and Ξ˙ j, respectively. By the use of such extended particles the quasi-neutrality condition of the plasma in equilibrium may be satisﬁed exactly. We conclude this discussion by noting that Lagrangian ﬁnite elements offer a consistent way of interpolating the force (with a desired accuracy) from the grid to the particle location and for constructing charge deposition rules [8].
+A natural further simpliﬁcation of our model would be the special case of an ion beam interacting with a weakly coupled train of solitons, in a manner similar to that in [10, 11]. Of course, we no longer expect a nice reduction to another integrable system since the original system of beam and solitons is not integrable. However, such reduction should provide a much faster numerical solution since each soliton would now be described by only two parameters, a position and an amplitude. In addition, the numerical noise in such reduced system will be even lower than that of our hybrid model.
+In conclusion, we have derived a model of a weak ion beam interacting with weakly non-linear solutions of the Korteweg-de Vries equation in the context of plasma physics in the electrostatic approximation. Particular advantages are the generality of our derivation from a Lagrangian starting point, the lower expected numerical noise in the hybrid ﬂuid–particle approach, and the inclusion of kinetic effects of wave-particle interactions, including their non-linear stage. Further simpliﬁcation of the model is suggested, which would apply to the interaction of a weakly coupled soliton train with a small ion beam. Interesting questions in these numerical investigations would be soliton growth and damping rates, soliton decay conditions, beam particles wave trapping, and the possibility of formation of new, quasi-stable structures of solitons and beam particles.
+
+References
+[1] Alexeff I., Jones W. and Lonngren K., Excitation of Pseudowaves in a Plasma via a Grid, Phys. Rev. Lett. 21 (1968) 878–881.
+[2] Aziz F., Malik H., Enge S., Stollenwerk L. and Stroth U., Experimental and Simulation Studies on Soliton Generation in a Double-Plasma Device: Role of Fast Ions, Plasma Phys. Contr. F. 53 (2011) 065012.
+[3] Becker E., Carey G. and Oden J., Finite Elements: An Introduction vol. 1, Prentice-Hall, Lebanon 1981.
+[4] Berezin Y. and Karpman V., Nonlinear Evolution of Disturbances in Plasma and Other Dispersive Media, Soviet Physics JETP 24 (1967) 1049–1056.
+
+60
+
+Evstati G. Evstatiev
+
+[5] Birdsall C. and Langdon A., Plasma Physics via Computer Simulations. Plasma Physics Series, Institute of Physics Publishing, Bristol 1991.
+[6] Broer L. and Sluijter F., Stable Approximate Equations for Ion-Acoustic Waves, Phys. Fluids 20 (1977) 1458–1460.
+[7] Evstatiev E., Morrison P. and Horton W., A Relativistic Beam-Plasma System with Electromagnetic Waves, Phys. Plasmas 12 (2005) 072108.
+[8] Evstatiev E. and Shadwick B., Variational Formulation of Particle Algorithms for Kinetic Plasma Simulations, arXiv:1210.3743 (2012).
+[9] Gardner S. and Morikawa G., Courant Institute of Mathematical Sciences Report # NYO-9082, (unpublished) 1960.
+[10] Gerdjikov V., Kaup D, Uzunov I. and Evstatiev E., Asymptotic Behavior of N-Soliton Trains of the Nonlinear Schrödinger Equation, Phys. Rev. Lett. 77 (1996) 3943–3946.
+[11] Gerdjikov V., Uzunov I., Evstatiev E. and Diankov G., Nonlinear Schrödinger Equation and N-Soliton Interactions: Generalized Karpman-Solov’ev Approach and the Complex Toda Chain, Phys. Rev. E 55 (1997) 6039–6060.
+[12] Hockney R. and Eastwood J., Computer Simulation Using Particles, Taylor & Francis, New York 1988.
+[13] Ikezi H., Taylor R. and Baker D., Formation and Interaction of Ion-Acoustic Solitions, Phys. Rev. Lett. 25 (1970) 11–14.
+[14] Karpman V., The Effects of the Interaction Between Ion-Sound Solitons and Resonance Particles in a Plasma, JETP 50 (1979) 695–701.
+[15] Karpman V. and Solov’ev V., A Perturbational Approach to the Two-Soliton Systems, Physica D 3 (1981) 487–502.
+[16] Karpman V., Lynov J., Michelsen P., Pècseli H., Rasmussen J. and Turikov V., Modiﬁcation of Plasma Solitons by Resonant Particles, Phys. Rev. Lett. 43 (1979) 210–214.
+[17] Karpman V., Lynov J., Michelsen P., Pècseli H., Rasmussen J. and Turikov V., Modiﬁcation of Plasma Solitons by Resonant Particles, Phys. Fluids 23 (1980) 1782–1794.
+
+A Model Suitable for Numerical Investigation of Beam-soliton...
+
+61
+
+[18] Lonngren K., Khaze M., Gabl E. and Bulson J., On Grid Launched Linear and Nonlinear Ion-Acoustic Waves, Plasma Physics 24 (1982) 1483, doi:10.1088/0032-1028/24/12/002.
+[19] Miura R., The Korteweg-de Vries Equation: A Survey of Results, SIAM Review 18 (1976) 412–459.
+[20] Pecseli H., Solitons and Weakly Nonlinear Waves in Plasmas, IEEE T. Plasma Sci. 13 (1985) 53–86.
+[21] Tajima T., Computational Plasma Physics, Frontiers in Physics, Westview Press, Boulder 2004.
+[22] Vandam J. and Taniuti T., Nonlinear Ion Acoustic Waves with Landau Damping, J. Phys. Soc. Jpn. 35 (1973) 897–906.
+[23] Washimi H. and Taniuti T., Propagation of Ion-Acoustic Solitary Waves of Small Amplitude, Phys. Rev. Lett. 17 (1966) 996–998.
+Evstati G. Evstatiev FAR-TECH, Inc. 10350 Science Center Drive, Suite 150 San Diego, CA 92121-1136, USA E-mail address: evstati@mailaps.org
+

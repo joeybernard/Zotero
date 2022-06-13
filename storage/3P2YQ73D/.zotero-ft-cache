@@ -1,0 +1,1314 @@
+JOURNALOF GEOPHYSICALRESEARCHV, OL. 106,NO. All, PAGES24,611-24,62N0,OVEMBER1,2001
+
+Three-dimensional structuring characteristics of high-latitude plasma patches
+N. A. Gondarenko and P. N. Guzdar Institute for PlasmaResearchU, niversityof Maryland, CollegePark, Maryland, USA
+
+Abstract. A three-dimensionalnonlinearstudy of the turbulenceand sheared
+flow, generatedby the gradientdrift instabilitywith ion inertial effectsin the high-latitudeplasmapatches,is presented.Numericalsimulationsdemonstrate quasi-two-dimensiontaulrbulencewith irregularitiesalignedalongthe magnetic field direction. Power spectraof the velocitiesin the plane transverseto the magneticfieldand the densityirregularitiesdisplayanisotropyin the turbulence. SecondarKy elvin-Helmholtzinstabilityofthe gradientdrift elongatedvorticestends to isotropizethe spectra.Ion-neutralcollisionsdeterminethe levelof the shear flow and therefore the saturation level of density and potential fluctuations. The
+irregularitiespenetratethroughthe entirepatchdueto the nonlineardevelopment of the instabilityanddo not remainlocalizedon the edgesof the plasmapatch. The computedspectraandspatialstructureso, bservedby DE 2 satellitein the midnightnoondirection,are in goodagreement.The inertialtermsunify the gradientdrift and Kelvin-Helmholtz instabilities,the sourcesof small-scalestructuresgenerated
+in the polarcapplasmapatchesa, nd giveriseto irregularitycharacteristicwshich are in a goodagreementwith generalfeaturesof the observedstructures.
+
+1. Introduction
+
+field and to the direction of the ambient density gradient
+
+in long elongated "fingers". The inclusionof dynamics
+
+The high-latitude ionosphericplasma has irregularities which range over many decadesof spatial scales frommetersto hundredsof kilometers[Tsunoda1, 988; Crowley,1996;Basuand Valladares1, 999].The largescalestructuresrangingfrom hundredsto thousandsof kilometershavebeencategorizedas "patches"(in the polarcap) or "blobs"(at aurorallatitudes)[Weberet al., 1984,1986;Basuet al., 1990,1994].The mesoscale
+
+along the field line was responsiblefor slowingdown the structuring processdue to the stabilizing influenceof parallelelectricfields[Chaturvedai ndHuba,1987].The structuringprocessfor this collision-dominated(ionneutral plasma produced a highly anisotropic spectra of the irregularities in the two directionstransverseto the magnetic fields. A preliminary report of the re-
+sults that demonstrated the role of the nonlinear ion
+
+features in the range of 0.1 km to tens of kilometers are believed to arise from naturally occurring instabilitiesin a two-componenptlasma.Observations[Weber et al., 1986;Basu et al., 1994]as well as (large-scale)
+
+inertial effectswas presentedby Gondarenkoand Guzdar [1999].It wasshownthat the finger-likestructures developedin the early phasedue to the nonlinear development of the gradient drift instability are unstable to
+
+modeling[Sojkaet al., 1993]showthat the patchesconvectto distancesof the orderof 3000km [Weberet al.,
+
+secondaryinstabilities. The originally highly elongated vorticesare broken up into the smaller onesbecauseof
+
+1986]andforperiodsofa fewhourswhileretainingtheir the Kelvin-Helmholtz instability. As a result of this,
+
+integrity. The mesoscaleirregularities,observedwithin thesepatchesthroughouthe polarcapregion[Weberet al., 1984,1986;Tsunoda1, 988;Basuet al., 1990,1995],
+
+the small-scale vortices can further undergo a second instability which generatesshear flow transverseto the magnetic field. In this paper we discussin detail the
+
+occasionallyare more intenseon the trailing edgethan onthe leadingedge[Weberet al., 1984].
+
+changesin the characterof the irregularitiesbecauseof the inertial terms and how the ion-neutral collisionality
+
+In ourearlierpaper,three-dimensiona(3l -D) nonlin- plays a significantrole in determining both the level of
+
+ear simulationswere presentedfor the collisionalgra- the fluctuations and the nature of the turbulent spectra
+
+dient drift instability(GDI) [Guzdaret al., 1998]to
+model the mesoscale structures. The basic structur-
+
+of the density and potential irregularities.
+
+ing occurredtransverseto the directionof the magnetic
+2. Basic Equations
+
+Copyrigh2t001bytheAmericanGeophysicUalnion.
+
+The starting equations for the gradient drift insta-
+
+Paper number 2000JA000440. 0148-0227/01/ 2000JA000440509.00
+
+bility with ion inertial effects are the continuity equation, the momentum transfer equations for electrons
+
+24,611
+
+24,612
+
+GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+
+and ions, and the resultingcurrent conservationequa- flows.Herewe focuson the studyof the changeisn
+
+tion. The basic equations are
+
+thescalesizeof thesmallstructuregseneratedby the
+
+secondariynstabilityandonthe effectof thesechanges
+
++ v. - 0,
+
+(1)
+
+onthe isotropizatioonf the spectra.Thesechangeasre dominantlycontrolledby the ion-neutral collisionfre-
+
+quency.
+
+__
+
+The resultsof simulationsperformedwith/•- 2000
+
+and y - 10 werepresentedearlier[Gondarenkoand (2) Guzdar,1999]. There the normalizationandchoiceof
+
+the parameters/• and y were introduced. In this work
+
+we show the results of simulations with a different value
+
+xi]
+
+of ion-neutralcollision,y- 2. Let us remind the read-
+ers that v is the value of the ion-neutral collision fre-
+
+quencynormalizedto 1/70 - 100s, sothat y - 2 correspondsto the 0.02 s-•. In Plates la-lf and 2a-2f we
+
+V. J = V. [ne(• -t•)]- 0.
+
+(4) showthe evolutionof the densityand potentialin the
+
+xy planenearthepeakoftheChapmanfunctiondensity
+
+In the above,n , c, and Vq are the density,ve- profilein z at sixdifferenitnstanceosftime,t=8, 10,12,
+
+locity of light, and velocity of speciesq, respectively. 16,24, and44. The timeis in normalizedunits,andby flq = eqBo/raqC(eq= -be)isthecyclotronfrequencoyf usingnormalization above one can estimate that Plates
+
+speciesq, Vq•isthe qspecies-neutraclollisionfrequency, If and2f correspontdo 4400s in realtime. At t-8, as
+
+Veiis the electron-ioncollisionfrequencya, nd
+
+seenin Plate la, the instabilitystartsto develop.The
+
+refersto electronsor ions. For the coordinatesystem growthof the amplitudeof the initial perturbationis
+
+representingthe high-latitude ionosphere,the Earth's causedby the gradientdrift instability.At a later time,
+
+fieldlinesarenearlyverticalandassumedalignedto the t- 10, the perturbationhasdevelopedto a significant
+
+z direction,the z directionis sunward,and the y direc- amplitudeso as to drasticallymodify the initial den-
+
+tion is orthogonalto the z and z directions.A plasma sity profile. The potential contoursat the t - 8 and
+
+patchisassumetodhaveafinitelengthalong•magnettic- 10 in Plates 2a-2b showthe elongatedvorticesin
+
+field B = B02'with neutral wind velocityV• = V•f. the x directioncausedby the primarygradientdrift in-
+
+The electricfield is E - -V•b, where•bis the electro- stability. There are -.. 25 fingersand vorticesin Plates
+
+static potential.
+
+lb and 2b, respectivelyT. he smallerboxsizein the y
+
+The electroncontinuityandthe "vorticity"equations direction(12.56km) wasspecificallcyhosensoasto re-
+
+[GondarenkaondGuzdar1, 999]usedin oursimulationssolvethesesmallscales.Thesesmall-scalgeradientdrift
+
+werederivedfrom(1)-(4) [Drakeet al., 1988].Thecur- modesgrowpreferentiallyowingto the strongstabiliz-
+
+rent conservationequation(V. J = 0), knownas the ing influenceof the electrondynamicsalongthe field
+
+vorticity equation, has contributions from differential lineof the longer-wavelengmthodes.Up to this point
+
+collisional motion between ions and electrons in the di- in the developmenotf the structuring,t _<10, the spa-
+
+rection acrossthe magneticfield and from the paral- tial characteristicsare very similar to that observedin
+
+lel resistive electron motion. The normalized electron our earlierwork[Guzdaret al., 1998]withoutinertia
+
+continuityand vorticity equationsgive riseto three di- effects.
+
+mensionlespsarameters/,•, •, and 1:l[Gondarenkoand Owing to inertial effects,the extendedvorticesin
+
+Guzdar,1999].TheparameterR istheratioofthepeak Plate 2b, whichcanbe viewedasshearlayers,become
+
+densityNmaxto the backgrounddensityStain. /• - 2 unstableto theKelvin-Helmholtzinstability,whichtends
+
+for all the simulationresultspresentedin this paper. to break up these extended vortices in the x direc-
+
+The density profiles are the same as those used in our tion. This is clearly seento happen at t - 12 in both
+
+earlierworkasarethe boundaryconditions[Guzdaret the density(Plate lc) and potentialcontours(Plate
+
+al., 1998].
+
+2c). Now as time progressetsh,e irregularitiesevolve
+
+to larger and larger scalelengthsas seenon the den-
+
+3. Numerical Results
+
+sity contoursat times t = 16 (Plate ld), t - 24 (Plate le), and t= 44 (Plate •f), respectivelyT. he
+
+The evolutionof the structuringof the densityand correspondingpotential contoursat t=16, 14, and 44
+
+potentialin the nonlinearsimulationsof the gradi- (Plates2d-2f)showthistransitionto largerscalesmore
+
+ent drift instabilitywith inertialeffectsfor the high- clearly.Thismigrationto a longerscalelength(in the
+
+latitudeplasmapatcheshasbeendiscussepdreviouslyplaneperpendiculatro the magneticfield) is the in-
+
+by GondarenkaondGuzdar[1999].It wasshownthat verse cascade process well known in two-dimensional
+
+theinitialcross-fieledlongatedstructuredsrivenbythe turbulence. Even thoughour simulationsare fully
+
+gradient drift instability are unstable to the Kelvin- three-dimensional, the dominant convective nonlinear-
+
+Helmholtzinstabilityand to the generationof sheared ities are intrinsically two-dimensionalin nature. It is
+
+GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS,
+
+12.0
+a)
+
+12.0
+b)
+
+12.0
+c)
+
+6.0
+
+6.0
+
+6.0
+
+24,613
+
+0.0
+
+25
+
+50
+
+75
+
+100
+
+0.0
+
+0
+
+25
+
+50
+
+75
+
+100
+
+0o0
+
+25
+
+50
+
+75
+
+loo
+
+X, km
+
+I
+
+1 .Ol
+
+1.25
+
+1.5o
+
+1.74
+
+1.98
+
+1 .o
+
+1.3
+
+1.5
+
+1.7
+
+2.0
+
+1.o
+
+1.3
+
+1.5
+
+1.7
+
+2.0
+
+12.0
+d)
+
+12.0
+e)
+
+•{
+
+12.0
+
+f)
+
+6.0
+
+6.0
+
+0.0 0
+
+25
+
+50
+
+75
+
+100
+
+X, km
+
+0.0 0
+
+25
+
+50
+
+75
+
+100
+
+x, km
+
+0.0 0
+
+25
+
+50
+
+75
+
+100
+
+x, km
+
+i
+
+I
+
+1.01
+
+1 . 25
+
+1.50
+
+1 . 74
+
+1.98
+
+1.00
+
+1.33
+
+1.65
+
+1.98
+
+I
+
+1 . 00
+
+1.25
+
+t
+
+1 . 50
+
+1 . 75
+
+2.00
+
+Plate 1. Densitycontoursin the xy planeat z - 2Lz/5 for (a) t - 800 s, (b) t - 1000s, (c) t- 1200s, (d) t- 1600s, (e) t - 2400s, and (f) t - 4400s. The parametersusedare fi=2000,
+R- 2, and v- 2.
+
+12.0
+a)
+
+12.0 }
+
+b)
+
+i
+
+12.0
+c)
+
+6.0
+
+0.0 0
+
+-
+
+25
+
+50
+
+75
+
+100
+
+xo k.m
+
+6.0{
+I
+{
+0.00
+
+'
+
+25
+
+50
+
+75
+
+100
+
+x, km
+
+6.0 .
+0.0 0
+
+5O
+
+75
+
+lOO
+
+-o . 0OlO
+12.0
+d)
+
+O. oooo
+
+O. 0OlO
+e)
+
+-o. 004
+
+I -0. 002
+
+-o. o01
+
+O. 001
+
+12.0
+i
+
+o. 003
+f)
+
+-0. 0075 12.0
+
+-0.0033
+
+1 0.0008
+
+0.0050
+
+6.0
+
+:;, 6.0t
+
+•, 6.0
+
+0.0 0
+
+25
+
+50
+
+75
+
+100
+
+X, kra
+
+0.0 0
+
+25
+
+50
+
+75
+
+100
+
+x, k•
+
+0 0 0
+
+25
+
+50
+
+75
+
+100
+
+x km
+
+-0. 0092
+
+-0. 0037
+
+O. 0017
+
+O. 0072
+
+-0. 010 -0 . 005 O. 000 O. 005 0 . 010
+
+I
+-0. 015 -0. 007
+
+0 . 000
+
+I
+0 . 007
+
+0.015
+
+Plate 2. Potentialcontoursin the xy planeat z = 2L•/5 for (a) t = 800 s, (b) t = 1000s, (c) t= 1200s, (d) t= 1600s, (e) t- 2400s, and (f) t- 4400s. The parametersusedarefi=2000,
+R- 2, and v - 2.
+
+24,614 GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+a)
+z x
+b)
+Plate S. Five equallyspaceddensityisosurfacebsetween2 (red) and 1 (dark blue) at (a) t = 0 s and (b) t- 3600s. The parametersusedare/•=2000, R- 2, and v - 10
+
+GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+
+24,615
+
+0.010
+
+0.006
+
+0.002
+
+-0.002
+-0.010 0
+
+.
+o. ß
+.. ß ß
+.
+
+20
+
+40
+
+60
+
+80
+
+1 O0
+
+In Plate 3a, five different isosurfacesequally spaced between the normalized minimum density Nmin = 1 and the maximum density N•nax= 2 initially at t = 0 are displayed. In Plate 3b we showthe samefive isosurfacesfor simulationwith • = 10 at t = 36 (which correspondtso an hour in real time). There are various interesting featuresassociatedwith the structuring process.What is clearly evident is that the structuring occursthroughout the plasma patch. Sincewithin the framework of linear theory the instability only occurs in the region where the density gradient exists, one expectsthat the instability, evenin the nonlinearphase, will remain confined to the edgesof the plasma patch. However,the nonlineardevelopmentclearly showsthat
+
+Figure 1. Averagevy velocityasa functionof x for u -- 10 at t -- 3600 s (the solidline) and u - 2 at
+t - 4400s (the dottedline). The parameterussedare
+/•=2000 and R- 2.
+
+2.00
+a)
+1.75 --
+
+these nonlinear terms which make the turbulence quasi-
+
+1.50 --
+
+two-dimensional.If we comparethe resultsof the cal-
+
+culationswith • = 2000 and u - 2 with the results
+
+1.25 --
+
+of calculationsreportedby Gondarenkoand Guzdar,
+
+[1999](with• = 2000andy = 10),wefindthat the
+
+secondaryKelvin-Helmholtzinstabilityis strongerfor
+
+1.00 --
+
+I
+
+I
+
+I
+
+I
+
+the y = 2 comparedto the y = 10 case. Progression
+
+o
+
+25
+
+50
+
+75
+
+100
+
+of the irregularitiestowardthe right boundaryin the
+
+2 .oo -
+
+x directionfor the presentcalculationswith the y = 2
+
+is slowerthan that with the higherion-neutralcollision u - 10. In our presentsimulationit took 4400 s for the
+
+b) 1.75--
+
+irregularitiesto reachthe right boundary,whilefor the
+
+calculationswith the y = 10 [Gondarenkoand Guzdar,
+
+1.50--
+
+1999]it took -• 3600s.
+
+The mechanismof generationof the shearflow was
+
+discussebdy Gondarenkoand Guzdar,[1999]. It was
+
+1.25--
+
+shown that the irregularities can also generate self-
+
+consistentshear flow, and for the smaller ion-neutral collisionfrequencyy, the suppressionof shearflowgeneration is reduced. The stronger generation of shear
+flow in the calculations with the smaller value of ion-
+
+1.00--
+
+I
+
+I
+
+I
+
+o
+
+25
+
+50
+
+75
+
+100
+
+2 .oo
+
+ß
+
+-
+
+neutral collisiony = 2 comparedto the y = 10 is shown
+
+in Figure1, wherethe shearvelocity< vy > is plotted
+as a function of x for the two values of the ion-neutral
+collision,u = 10 at t = 36 and y = 2 at t = 44. The
+
+1.75--
+½)
+
+amplitudeof the < vy > for the smallercollisiony = 2
+
+1.50--
+
+isover3 timeslargerthan that forthe y = 10case.One
+
+observesthat as the instability spreadsin the x direc1.25
+tion, multipleshearlayersareproduced.Shearflowpro-
+
+videsa transportbarrier,andasa consequenciet,takes
+
+a longertime for the irregularitiesto reachthe right boundaryin simulationswith the smallerion-neutral collisiony = 2 comparedto the u - 10 case. We will return to the issueof shearflow generationlater, since
+
+1 O0 0
+
+I
+
+I
+
+I
+
+25
+
+50
+
+75
+
+100
+
+x, km
+
+it playsa significanrtolein the saturationprocessfor Figure 2. Density versusx at z - 2Lz/5 and (a)
+
+the irregularitiesandhenceaffectsthe magnitudeofthe y - L•,/4, (b) y - L•,/2, and (c)y - 3L•,/4. The
+
+fluctuation level of the irregularities.
+
+parameters used are/•=2000, R- 2, and y- 10.
+
+24,616 GONDARENKOAND GUZDAR:THE 3-D STRUCTUREAND ION INERTIAL EFFECTS
+
+the irregularitiespermeatethe patchand the instabil-
+ity developosnthenonlinearleyvolvindgensitygradi-
+ent. This is also consistentwith earlier simulationsof
+
+102
+a)
+101
+
+k-1.67
+
+the collisionalRayleigh-Taylor instability in the equato-
+
+rialregionw, hertehebasicplumewsereseentoextend
+
+100
+
+into the linearly stable topside. Also seenvery clearly
+
+inPlate3bisthattheirregularitaieresbasicaflliyeld-
+
+10'1
+
+o.
+
+aligned(alongthe z direction).Finally,if onecompares
+10-2 the extent of the patch along the x direction in Plates
+
+3a and 3b, one sees that the patch has elongated in
+
+10-3
+
+the x direction(whichalsois the trailing edge). This
+
+extension is due to the "anomalous" transport caused
+
+10.4
+
+by the irregularities. The most interesting aspect of
+
+10-1
+
+100
+
+101
+
+the present simulations is that even though the patch
+
+has developedsignificant structuring causedby a com-
+
+kx
+
+bination of the gradient drift, Kelvin-Helmholtz, and
+shear-flionwstabilititehsep, atcmh aintaiintssrobust b) 102
+
+characteristics. We now focus on some details of the
+
+k-2
+
+spaticahl aracteroisftthiceisrregularities.
+
+101
+
+k'3
+
+In Figures 2a-2c we display cuts at three different lo-
+
+10o
+
+cations in y for the density profile in x at the peak of
+
+10-1
+
+a)
+
+102
+
+k-2
+
+101
+
+100
+
+10-1
+
+10-2
+
+10-2
+
+10-3
+
+10.4
+
+10-1
+
+100
+
+101
+
+kx
+
+Figure 4. Powerspectraof velocitievsx (the solid line)andvy(thedottedline)versuks• for(a) y - 10
+at t- 3600s and (b) y-2att-4400s.
+
+10-3
+
+10-1
+
+100
+
+101
+
+the densityprofilein z. This spatialstructurewould
+
+beseenbya satellitteraversintghepatchalongthe
+
+lO3
+b11)01 02 k'3
+
+midnight-noondirection. Each realizationshowsthat
+
+embeddeindtheselineoutasreverysteepdensitdyrops
+
+•
+
+(orrises).Theseareassociatwediththeedgeofthe
+"fingerso"f highdensityastheyinvadetheregionof lowdensityduringthenonlineadrevelopmeonftthein-
+
+stabilityT. hesedensitylineoutsareverysimilarto the
+
+100
+
+onesreporteidntheworkofKivan(a•ndHeelis[1997a]s
+
+10-1
+
+seenintheirFigurelc. Thesatellitpeassforthispartic-
+
+ulardatasetwasin themidnight-noodnirectionT. he
+
+10-2 _-
+
+densitylineoutshowsthe samecharacteristicass our
+
+simulationins,whichtherearesharpdensitdyropsbe-
+
+10-3
+
+tweenregionsof lower-amplitudierregularitiesA. s we
+
+10.4 100
+
+101
+ky
+
+willdiscuslaster,thesesharpdropsplaya significant rolein determininthgespectrainl dexof thedensity
+irregularitiesin midnight-noondirection.
+Shownin Figures3a-3carethespectracl haracteris-
+
+Figure 3. Density powerspectrafor v - 10 at t - 3600 ticsof the densityirregularitiesfor • = 10 and• = 2 in
+
+s (the solidline) andv - 2 at t - 4400s (the dotted themidnight-nodoinrectioxn, dawn-dudskirectioyn,
+
+line), versus(a) kx and (b) ky. The parameterussed andalongthefieldlinez, respectivelIyt .isapparent
+
+are fi=2000 and R- 2.
+
+that eventhoughthesecondarKyelvin-Helmholtrzies
+
+GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+
+24,617
+
+to isotropize the spectrum in the xy plane perpendicu-
+
+lar to the direction of the magnetic field, there is still anisotropy in the x and y directions. One would ex-
+
+a) 10'
+
+pect to observeisotropy if the original density gradient
+
+lOo
+
+k-2
+
+was weak and the fluctuations were very small so that
+
+the "Boussinesq"limit was valid. However, the initial density gradient is large, and as we have seen, the fluctuation levelsare in the 10- 25% range, hence,owing to the intrinsic difference between the x and y directions to start with, even at late time, the asymmetry is still observed. In Figure 3a, the power spectra for the
+
+10-1 10-2 10-3 10-4
+
+ß ß ß ß ,, . . . ,, ß
+ß ß .
+. ß . ß
+,, .
+
+density as a function of kx for both values of the ion-
+neutral collisions v- 10 and v- 2 are found to fall off
+
+10-5
+
+askx-2 intheintervakl E [0.53, ].Thelong-wavelength
+
+10o
+
+parts of the spectra in Figure 3a are different for dif-
+
+ß
+10'
+ky
+
+ferent valuesof y. The long scalesgrow slowerfor the
+
+smaller collisiony becausethe strongershearflow slows
+
+lO2
+
+down the inverse cascade. The power law for the density power spectrum in the y direction for the y - 10
+
+b) 10'
+
+caseis about-3 and evensteeperfor the y - 2 (Figure
+
+lOo
+
+3b). The approximationof the spectralindicesof the
+
+powerspectrafor the densityin k• and ky in the small
+
+10-1
+
+k region showsthat there is a weak anisotropy in the
+
+ß ß ß ß .
+
+ß .
+
+x and y directions. The linear lines k -• that approxi-
+
+mate the slopeof the spectra(with a equals-2 and -3)
+
+10-3
+
+have been added to guide the reader in looking at the
+
+longer-wavelengt(hsmallerk) part of the spectrawhich
+
+are not affectedby the high k hyperviscosity. Again, if we comparethe powerspectrum for the den-
+sity irregularities shown in Figure 3a in the midnightnoon direction with the spectrumdisplayedin Figure lc
+
+10-5 10o
+
+10'
+ky
+
+in the workof Kivan(•and Heelis[1997],the agreement Figure 5. Powerspectraof velocitiesvx (the solid is reasonablygood. Also, the computedpowerspectrum line)andvy (thedottedline)versusky for (a) • - 10 for the density agreeswith that reported in earlier work att-3600sand (b) v-2att-4400s.
+
+[Basuet al., 1990].Now we offeran explanationof the
+k•-2 fall-ofof fthedensitypowesr pectrumA. sshown
+
+earlier in Figure 2, there are very sharpdensitydropsin- higherk, above0.5, the amplitudeof the vy spectrumis
+
+terspersedin the fluctuations. If we first obtain a linear about the same as the amplitude of the velocity v•, in-
+
+fit to the density profile and then subtract this linear fit dicating that the turbulence is roughly isotropic in this
+
+from the correspondingcut in Figure 2, the fluctuating location. The spectral index in the region of k above
+
+density then has a series of square wave pulses associ- 0.5 is •- 2 and it changesto 3 at higher k. The larger
+
+ated with the sharp drops. The Fourier transform of a spectral index in k• for smaller y is due to the shear
+
+squarepulsefallsoffask•-1. Thusthepowesr pectrum flow stabilization of the high k• modes. The spectral
+
+has the observedspectra index of 2.
+
+indices of the velocities v• in kx are determined by the
+
+In Figures 4a and 4b we show the power spectra for valuesof the parameter v. The spectral indicesof 1.67
+
+the velocitiesvy and v• as a functionof kx for v - 10 and 2 in k• compare well with the spectral indices of and y - 2, respectively. The power spectra for the 1.8-•-0.2reportedfromsatellitemeasurement[sBasuet
+
+velocity v• in Figure 4a falls off faster compared to the al., 1990;Kivan(•and Heelis,1997].
+
+fall-offofthespectrumforthevelocityvy in the interval Shown in Figures 5a and 5b are the power spectra
+
+k E [0.3,2.5]. In thisintervalof k space,the decreaseof for the velocitiesv• and vy as a functionof ky for v --
+
+the amplitude of the velocity v• can be approximated 10 and y = 2, respectively. The spectral index of v•
+
+by a power law with an exponent close to 1.67. Both is -• 2 for both y = 10 and y = 2 in the interval of
+
+spectraof the velocitiesv• and vy in Figure 4a reveal k • [1,5]. The amplitudeof the spectrumfor v• is
+
+anisotropy of the spectra with structures propagation i order of magnitudelarger than that for vy for v --
+
+in the x direction and quasiperiodicalvariations in the 10. The differencein the amplitude of the vx and vy
+
+y direction.Figure4b showsthat the powerspectrafor spectra for y = 2 in Figure 5b is smaller compared to
+
+the velocitiesv• and vy decreaseapproximatelywith the y - 10 casein Figure 5a. The inertial effect tries to
+
+the samepowerlaw in the intervalk • [0.5,3]. At the isotropizethe spectrain the xy plane(perpendicularto
+
+24,518
+
+GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+
+12.0
+b)
+
+6.0•
+
+0.0-
+
+1.oo 12 .o -
+
+2.00
+
+o. 0060
+
+x, km
+
+x, km
+
+1.00
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+-0.0180 -0.0084
+
+0.0012
+
+0.0108
+
+O. 0204
+
+Figure 6. Contoursin thexy planeat z = 2L•/5 andt = 2800sfory = ooofthe (a) densityand (b) potential,and at t - 4000s for y = 10 of the (c) density,and (d) potential.The parameters
+used are/•=2000 and R- 2.
+
+the magneticfield), and it doesso more effectivelyfor agemomentumin the y directionshowingthat fluctuat-
+
+the • = 2 case. However,completeisotropizationis not ing momentumand potential can drive an averageflow.
+
+possible,becauseof the intrinsic asymmetry between That equation indicates that the ion-neutral collisions
+
+the y direction and the x direction of convection.
+
+damp the shear flow. In Figures 6a and 6b are shown
+
+It is important to make more detailed comparisons the structuresof the densityand potentialirregularities
+
+of our spectra with satellite data for passesboth in the in th• xy plane,at the peakof the densityprofilein the
+
+midnight-noon direction and in the dawn-dusk direc- z direction for v - co. Since the shear flow and Kelvin-
+
+tions. The spectrav• and v• in k• for • = 10 and Helmholtz(KH) are both dampedby the ion-neutral
+
+• = 2 shown in Figures 5a and 5b, respectively, have collisions,the gradient drift instability generated"fin-
+
+approximately the samespectral index equal to 2 at the gers"are not subject to the secondaryinstabilities. On
+
+long-wavelengthend of the spectrum. One can notice the other hand, for v - 10, Figures6c and 6d for the
+
+that the slopeof the powerspectrumof the shearveloc- density and potential irregularities, respectively,show
+
+ity v• changesverysharplyto a largevalueat higherk, that the secondaryKH and shearflow instabilitieslead
+
+above • 2.5, sincethe shear flow leads to a faster trans- to a breakup of the fingers. Furthermore, it takes the
+
+fer of energy to higher k where dissipationdominates. irregularitiesa longertime to reachthe right boundary.
+
+The spectravy andv• in k• shownin Figures4a and4b Forthecasev -- oothe "fingers"reachthe right bound-
+
+demonstrate different behavior in the long-wavelength ary at • = 28, while it takes • = 40 for the case with
+
+parts of the spectra. The v• spectrum in k• is domi- •=10.
+
+nantly the inversecascade.The vy spectrumcascades In Figures7a and 7b we plot the time evolutionof
+
+toward large scalesmore slowly.
+
+the mean-squareddensityand potentialfluctuationfor
+
+Earlier, we had stated that the shearflow plays a sig- u=2, 10, 50, 100, and/500. Shownin Figure 7c is the
+
+nificant role in determining the character and amplitude RMS shear flow as a function of time for the same values
+
+of the irregularities.In our previouswork [Gondarenko of u. It is clearlyseenasexpectedthat the magnitude
+
+and Guzdar,1999]wederivedan equationfor the aver- of the RMS shear flow increases as u decreases. What
+
+GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+
+24,619
+
+Kelvin-Helmholtz instabilities, the natural instability
+
+sourcesof small-scalestructuresin the polar cap plasma
+
+patches. Our previousresults[Gondarenkoand Guz-
+
+dar, 1999]showedthat Reynoldsstress,the nonlinear
+
+convectivepart of the terms describingthe inertial ef-
+
+l•j2
+
+fects, drives the self-consistentshear flows. It was indi-
+
+cated that the ion-neutral collisionssuppressthe shear
+
+flow. In order to compare our earlier simulation re-
+
+sults [Gondarenkoand Guzdar, 1999]to observations
+
+[Kivan9and Heelis,1998, 1997]we completedsimula-
+
+tions with a smaller ion-neutral collisionfrequencyv. In
+
+the present work we show the effects of • on the struc-
+
+•o•
+
+5O
+
+turing characteristicsof the irregularities. As the value
+
+of the ion-neutral collision is reduced, the shear flow
+
+generation and secondaryKelvin-Helmholtz instability
+
+increase.In fact, the ion-neutral collisionfrequencyde-
+
+termines the level of the shear flow and therefore the
+
+saturation level of the fluctuations.
+
+105
+
+The powerspectraof the density and velocitiesreveal
+
+the anisotropy in the turbulence. We show the tempo-
+
+ral changesin the scale size of the vortices with evolu-
+
+tionary dynamicsof the density and potential, revealing
+
+I
+
+the inverse cascade nature of the turbulence. We have
+
+I I
+1o6
+
+10
+
+20
+
+30
+
+40
+
+demonstrated that the Kelvin-Helmholtz instability of the original elongated vortices tends to isotropize the power spectra of the velocities in the plane transverse
+
+c)
+
+to the magnetic field. The results show conclusively
+
+that irregularitiespenetrate the entire patch becauseof
+
+the nonlinear development of the instability in contra-
+
+dictionto the lineartheorynotionsthat the instability
+
+ß 1(3•
+
+will remainconfinedto the edgesof the plasmapatches.
+
+Althoughourresultsshowthe reductionof the asym-
+
+metry in the transversespectrasincethe nonlinearpo-
+
+larization drift generatesthe secondaryinstability of
+
+elongatedvortices,it is important to make a more de-
+
+tailed comparisonof our calculatedspectrato satellite
+
+data in both directionsin the plane perpendicularto
+
+5O
+
+the magneticfield. Our next seriesof investigations
+
+will focus on simulations of various scenarios with vari-
+
+Figure 7. Time evolutionof (a) mean-squareden- able patch motionand alsothe seasonablveariability
+
+sityfluctuation(,b) mean-squarepdotentialfluctuation, and(c)theRMSshearflowvyforv = 2 (greencircle), 10(orangceircle)5, 0(bluetriangle)1,00(greensquare), and 500 (red circle).
+
+in the structuringof patchesby correlatingit to the ion-neutralcollisionfrequencyand the initial density profile.
+
+is most interesting to observe is that the level of fluctuations decreasesas the magnitude of the shear flow
+increases. The shear flow controls the saturation level
+of the fluctuations. Shearflowsuppressesthe irregulari-
+
+Acknowledgments. We acknowledgeusefuldiscussions with Sunanda Basu, Shantimay Basu, Rod Heelis, Todd Pedersen,and Jan Sojka. This researchwassupportedby the NSF under grant ATM-9813861.
+Janet G. Luhmann thanks Inez Staciarini Batista and an-
+otherrefereefor their assistancein evaluatingthis paper.
+
+ties. Thus the level of fluctuations and shear flow which
+is determinedby the ion-neutral collisionfrequencycan References
+
+accountfor the variability observedin the patch structuring.
+4. Conclusion
+The presentedresultsof our simulationsdemonstrate that the inertial terms combine the gradient drift and
+
+Basu, Su., S. Basu, E. MacKenzie, W. R. Coley, J. R. Sharber,and W. R. Hoegy, Plasma structuringby the gradient-driftinstabilityat highlatitudesandcomparison with velocity shear driven processesJ, . Geophys. Res.,
+95, 7799, 1990.
+Basu, S., Su. Basu, P. K. Chaturvedi,and C. M. Bryant Jr., Irregularitystructuresin the cusp/cleftandpolarcap regions,Radio $ci., 29, 195, 1994.
+
+24,620 GONDARENKO AND GUZDAR: THE 3-D STRUCTURE AND ION INERTIAL EFFECTS
+
+Basu, S., Su. Basu, J. J. Sojka, R. W. Schunk, and E. Kivan(:,•. , and R. A. Heelis,Structuresin ionospheric
+
+MacKenzie, Macroscale modeling and mesoscaleobserva-
+
+number density and velocity associatedwith polar cap
+
+tions of plasma density structures in the polar cap, Geo-
+
+ionization patches,J. Geophys.Res., 102,307, 1997.
+
+phys. Res. Lett., 22, 881, 1995.
+
+Sojka,J. J., M.D. Bowline,R. W. Schunk,D. T. Decker,
+
+Basu, S., and C. Valladares, Global aspectsof plasma struc-
+
+C. E. Valladares,R. Sheehan,D. N. Anderson,and R. A.
+
+tures, J. Atmos. Sol.Terr. Phys., 61, 127, 1999.
+
+Heelis, Modeling polar cap F region patchesusing time
+
+Chaturvedi, P. K., and J. D. Huba, The interchange insta-
+
+varyingconvection,Geophys.Res. Lett., 20, 1783, 1993.
+
+bility in high latitude plasma blobs, J. Geophys.Res., 92, Tsunoda,R. T., High-latitudeF regionirregularities:A
+
+3357, 1987.
+
+review and synthesis,Rev. Geophys.,26, 719, 1988.
+
+Crowley, G., Critical review on ionospheric patches and Weber, E. J., J. Buchau, J. G. Moore, J. R. Sharber, R.
+
+blobs,in The Review of Radio Science,p. 1, Oxford Univ.
+
+C. Livingston, J. D. Winningham, and B. W. Reinisch,
+
+Press, New York, 1996.
+
+F layer ionizationpatchesin the polar cap, J. Geophys.
+
+Drake, J. F., M. Mulbrandon, and J. D. Huba, Three-
+
+Res., 89, 1683, 1984.
+
+dimensionalequilibrium and stability of ionosphericplasma Weber,E. J., J. A. Klobuchar,J. Buchau,H. C. CarlsonJr.,
+
+clouds, Phys. Fluids, 31, 3412, 1988.
+
+R. C. Livingston,O. de la Beaujardiere,M. McCready,J.
+
+Gondarenko,N. A., and P. N. Guzdar, Gradient-drift insta-
+
+G. Moore, and G. J. Bishop, Polar cap F layer patches:
+
+bility in high-latitude plasma patches:Ion inertial effects,
+
+Structure and dynamics, J. Geophys. Res., 91, 12,121,
+
+Geophys. Res. Lett., 26, 3345, 1999.
+
+1986.
+
+Guzdar, P. N., N. A. Gondarenko, P. K. Chaturvedi, and
+
+S. Basu, Three-dimensionalnonlinear simulationsof the
+
+N. A. Gondarenko and P. N. Guzdar, Institute for Plasma
+
+gradient drift-instability in the high-latitude ionosphere, Research,University of Maryland, CollegePark, MD 20742,
+
+Radio Sci., 33, 1901, 1998.
+
+USA. (natalia@ipr.umd.edug;uzdar@ipr.umd.edu)
+
+Kivan(:1,•., andR.A. HeelisS, patiadl istributioonfionospheric
+
+plasma and field structuresin the high latitude F region, (ReceivedNovember27, 2000; revisedMay 9, 2001;
+
+J. Geophys.Res., 103, 6955, 1998. _.
+
+acceptedMay 9, 2001.)
+

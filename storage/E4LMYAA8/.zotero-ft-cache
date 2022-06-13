@@ -1,0 +1,679 @@
+arXiv:2105.14955v1 [physics.plasm-ph] 31 May 2021
+
+Sarkas: A Fast Pure-Python Molecular Dynamics Suite for Plasma Physics
+Luciano G. Silvestric,∗, Lucas J. Stanekc, Gautham Dharumand, Yongjun Choic, Michael S. Murilloc
+aMichigan State University, East Lansing, MI, 48824 bLawrence Livermore National Laboratory, Livermore, CA, 94550
+
+Abstract
+We present an open-source, performant, pure-python molecular dynamics (MD) suite for non-ideal plasmas. The code, Sarkas, aims to accelerate the research process by providing an MD code but also pre- and post-processing tools. Sarkas offers the ease of use of Python while employing the Numba library to obtain execution speeds comparable to that of compiled languages. The available tools in Sarkas include graphical displays of the equilibration process through a Jupyter interface and the ability to compute quantities such as, radial distribution functions, autocorrelation functions and Green-Kubo relations. Many force laws used to simulate plasmas are included in Sarkas, namely, pure Coulomb, Yukawa, and Molie`re pair-potentials. Sarkas also contains quantum statistical potentials and fast Ewald methods are included where necessary. An object-oriented approach allows for easy modiﬁcation of Sarkas, such as adding new time integrators, boundary conditions and force laws.
+Keywords: Python, NumPy, Numba, Molecular Dynamics, Plasma.
+
+Sarkas: A Fast Pure-Python Molecular Dynamics Suite for Plasma Physics
+
+Luciano G. Silvestric,∗, Lucas J. Stanekc, Gautham Dharumand, Yongjun Choic, Michael S. Murilloc
+
+∗Corresponding author. E-mail address: silves28@msu.edu
+
+Preprint submitted to Computer Physics Communications
+
+June 1, 2021
+
+cMichigan State University, East Lansing, MI, 48824 dLawrence Livermore National Laboratory, Livermore, CA, 94550
+
+PROGRAM SUMMARY
+Program Title: Sarkas CPC Library link to program ﬁles: (to be added by Technical Editor) Developer’s respository link: https://github.com/murillo-group/sarkas Code Ocean capsule: (to be added by Technical Editor) Licensing provisions: MIT Programming language: Python Nature of problem: Molecular dynamics (MD) is an important tool for non-ideal plasma physics research. The wealth of MD codes available are not designed for plasma physics problems. The available codes are written in low-level languages and do not provide preand post-processing libraries. These are instead written by researchers in interpreted languages, forcing researchers to have a high level of computing background. Solution method: Development of a MD suite for plasma physics, complete of pre- and post- processing tools most commonly used in plasma physics. The suite is entirely written in Python for enhanced user-friendliness. The slow speed of Python is tackled by using the Numba library a just-in-time compiler for Python.
+
+1. Introduction
+Molecular dynamics (MD) is a powerful tool for simulating the microscopic dynamics of many-body systems. Many MD codes have been developed across scientiﬁc disciplines, including, for example, HOOMD for soft matter [1], GROMACS for biological applications [2], LAMMPS for materials modeling [3] and VASP for electronic structure [4]. In contrast, the ﬁeld of computational plasma physics has traditionally relied on hydrodynamics [5, 6] and kinetic [7, 8] codes because the temporal and spatial scales of interest are much too large for MD to be tractable; moreover, the detailed description of discrete particles is less important and instead macroscopic ﬁeld variables are computed. However, MD plays a central role in a diverse set of plasma subﬁelds concerned with understanding microscopic particles such as astrophysical systems [9, 10], dusty plasmas [11, 12],
+
+∗Corresponding author. E-mail address: silves28@msu.edu
+Preprint submitted to Computer Physics Communications
+
+June 1, 2021
+
+ultracold neutral plasmas [13, 14], dense plasmas [15, 16], low temperature plasmas [17, 18], plasma beams [19, 20], quark-gluon plasmas [21, 22], etc.
+The earliest studies of plasmas using microscopic methods employed Monte Carlo methods [23, 24]. The key computational issue for plasmas is handling the long range Coulomb interaction with an Ewald method [25]. Seminal work by Brush, Salin and Teller examined thermodynamic properties of the one-component plasma (OCP) in the mid-1960s [23]. Hooper employed Monte Carlo methods for studies of the plasma microﬁeld [24]. Substantial development of MD for plasmas was made in the subsequent decade. Development of the Particle-ParticleParticle-Mesh (PPPM) Ewald method allowed for MD simulations with as many as 10 000 particles as early as 1973 by Hockney, Goel and Eastwood [26]. Many contributions appeared by Hansen and McDonald, and their coworkers, to examine a wide range of physical phenomena [27, 28, 29, 30]. In particular, plasmaspeciﬁc methods were developed for explicit-electron MD [31, 32, 33]. Related charged systems, such as molten salts [34, 35] and liquid metals [36, 37, 38], were studied in detail. More recent work has extended these methods to include electronic wave packet evolution [39], momentum-dependent potentials [40] and large-scale non-equilibrium MD with on-the-ﬂy potentials [41]. Very accurate interaction potentials for warm dense matter were recently obtained with force matching and from a neutral pseudoatom model [42].
+Historically, computational plasma physicists have developed their own codes; more recently, plasma physics models are being implemented in codes originally developed for other purposes. Such strategies require the plasma physicist to be part of the development process or have the skills and time to modify existing codes. Moreover, plasma physics observables are typically not available as post-processing packages. Here, we present Sarkas, a fast pure-python MD suite for plasma physics. Sarkas aims at lowering the entry barrier for computational plasma physics by providing a comprehensive MD suite complete with pre- and post-processing tools commonly found in plasma physics. It offers the ease of use of Python while being highly performant with execution speeds comparable to that of compiled languages. Its high-performance originates from the extensive use of NumPy arrays and Numba’s just-in-time compilation. It offers a variety of interaction potentials commonly used in plasma physics. Furthermore, Sarkas’ built-in pre-processing and post-processing libraries for data analysis allow researchers to get high-quality results with minimal effort.
+3
+
+Class Potentials
+Integrator Thermostat
+
+Capabilities Generalized m − n Lennard-Jones potentials (LCL), Exact Gradient Corrected Screening potential (LCL) [43],
+Moliere potential, Yukawa (PPPM), Coulomb (PPPM), Quantum Statistical Potentials (PPPM)[32]. Velocity Verlet, Magnetic Velocity Verlet [44, 45], Magnetic Boris [44], Langevin integrator Berendesen [46]
+
+Table 1: Capabilities of each class. The terms (LCL) and (PPPM) indicate whether the potential is computed using the Linked-Cell-List (LCL) or Particle-Particle-Particle-Mesh (PPPM) algorithm.
+
+2. Code Structure and Capabilities
+Sarkas aims at facilitating computational non-ideal plasma research by streamlining a researcher’s workﬂow with a comprehensive infrastructure of fast and efﬁcient libraries. Sarkas targets a broad user base: from experimentalists to computational physicists, from students approaching plasma physics for the ﬁrst time to seasoned researchers. Therefore Sarkas’ design revolves around two primary requirements: ease-of-use and extensibility. Sarkas is entirely written in Python without calls to C hence avoiding a two-language problem. It relies on the most common Python scientiﬁc packages, e.g. NumPy, Numba, SciPy, and Pandas, which provide a solid foundation built, optimized, and well documented by one of the largest community of developers. Furthermore, Sarkas is developed using an object-oriented approach allowing users to add new features in a straight-forward way.
+Figure 1 shows a diagram of the main components of Sarkas. Users need only write an input ﬁle containing all the physical and simulation parameters of the system under investigation. The user interface is composed of three main classes: PreProcessing, Simulation, PostProcessing. Finally, the outputs are divided in three sets: Simulation data, Particles’ data, and Physical Observables & Transport Coefﬁcients. Using the PreProcessing class the researcher is able to optimize the parameters and update the input ﬁle. The PreProcessing class saves to disk a set of ﬁles containing all the simulations data and class attributes
+
+4
+
+Figure 1: Diagram of Sarkas primary components and their relationships.
+e.g. physical constants and other parameters needed for restarting simulations. The MD simulation is run using the Simulation class which evolves the system in time. Particles’ trajectories, velocities, and accelerations are saved in compressed ﬁles at each timestep while thermodynamic quantities are saved in a CSV ﬁle. The desired physical quantities are computed via the PostProcessing class and saved in either CSV or HDF5 ﬁles depending on the observable.
+The input ﬁle, written in YAML, contains the necessary physical parameters of the system, e.g. charge, density, temperature, number of species, and all the simulation parameters, such as timesteps and algorithm speciﬁc parameters. In addition, it allows users to provide a list of the physical observables to be calculated.
+The three classes have two main methods: setup() and run(). The setup() method, different than the usual __init()__, is similar for all three classes and it handles the initialization of all the attributes of each class. The run() method accepts different inputs depending on the class, see below for more details.
+Each class is independent of the others allowing researchers to start and restart a project at any point. For example, once the input ﬁle has been ﬁnalized, a user is able to run multiple MD simulations, with different initial conditions as shown
+5
+
+in the following script:
+
+# Import required libraries import os import numpy as np from sarkas . processes import
+
+PreProcess ,
+
+Simulation ,
+
+PostProcess
+
+i n p u t f i l e = os . path . join ( ’ input ’ , ’ucp N10k . yaml ’ ) # Path to input f i l e # Define a random number generator r g = np . random . G e n e r a t o r ( np . random . PCG64 ( 1 5 4 2 4 5 ) )
+
+# Loop o v e r t h e number o f i n d e p e n d e n t MD r u n s t o p e r f o r m for i in range (5) :
+seed = rg . integers (0 , 15198)
+
+args = { ’ P a r a m e t e r s ’ : { ’ r a n d s e e d ’ : seed } , # new r a n d s e e d f o r each s i m u l a t i o n ’IO ’ : # St ore a l l s i m u l a t i o n s ’ data in s i m u l a t i o n s d i r , # but save the dumps in d i f f e r e n t s u b f o l d e r s ( j o b d i r ) { ’ s i m u l a t i o n s d i r ’ : ’UCP DIH N10k ’ , ’ j o b d i r ’ : ’ run {} ’ . format ( i ) },
+} # Run t h e s i m u l a t i o n . sim = Simulation ( i n p u t f i l e ) sim . setup ( read yaml=True , other inputs =args ) sim . run () # Calculate physical observables postproc = Postprocess ( input file ) postproc . setup ( read yaml=True , other inputs =args ) postproc . run ()
+Listing 1: Example of a script with comments for running multiple simulations and compute physical observables
+
+We note that the above scripts illustrates Sarkas’ predisposition to data science as similar scripts can be run on clusters to produce large databases of plasma properties.
+The structure of the PreProcessing and Simulation classes differ only in their hidden methods. Figure 2 shows a diagram of the PreProcessing and Simulation classes, their component classes, and their relationships. More information about PreProcessing and PostProcessing will be given in Secs. 4 and 5.
+Each container in Fig. 2 represents a class that handles a particular task of the simulation stage. For example, the Integrator class handles the time integration of the simulation. It updates particle coordinates at each time step using one of the available integrators, see Tab. 1 for available integrators. The system is equilibrated via the Thermostat class using the Berendsen algorithm [46]. The Potential class is used to calculate the total potential energy and force between
+
+6
+
+Figure 2: Diagram of the PreProcessing and Simulation classes. Each container is a class except for three containers outside the main class. Input File is a YAML ﬁle containing all the simulation parameters. Simulation Data and Particles Data indicate storage on disk of the relevant data.
+particles and to update particles accelerations, see Tab. 1 for available potentials. The ﬁrst three are short range potentials and use a linked-cell-list (LCL) algorithm, while the last three are long range potentials that use a generalize PPPM algorithm presented in Ref. [47]. In particular, Sarkas is the only MD code, to our knowledge, that provides quantum statistical potentials and allows for the simulation of plasmas in a constant external magnetic ﬁeld. Implementation of new integrators, thermostats, or potentials requires the addition of a new method to the corresponding class. The attributes of each class, except for Particles, SarkasTimer, and IO, are saved as .pickle ﬁles (Simulation Data).
+Figure 3 shows a diagram of the PostProcessing class and its component classes. The Observable is a parent class that handles the initialization and setup of each physical observables, represented as children classes. Each class reads in particles data and saves observables data to CSV or HDF5 ﬁles. We note that besides the most common observables, e.g. radial distribution function and the velocity autocorrelation function, Sarkas provides a class for the calculation of the velocity distributions, their moments, and the Hermite coefﬁcients for the study
+7
+
+Figure 3: Diagram of the PostProcessing class.
+of non-equilibrium systems such as ultracold neutral plasmas [48, 49]. The most common transport coefﬁcients are calculated by static methods of
+the TransportCoefficient class. Each method creates an instance of the required observable to calculate the autocorrelation function which is then integrated to obtain the desired transport coefﬁcient. This is returned to the user as a Pandas.DataFrame() and saved to disk in CSV or HDF5 ﬁles.
+3. Performance
+The speed bottleneck in a typical MD code is the force calculation which requires the calculation of the distance between all pairs of particles. The simplest algorithm scales as O(N2). Faster algorithms use linked cell lists (LCLs) and, in the case of long-range forces, Ewald summation is employed, usually within a mesh-based method [47]. We recall that the former consists in dividing the simulation box into cells and then creating two linked lists. This algorithm scales as O(N). All of these requires several nested loops which are notoriously slow in Python due to the interpretive overhead. We circumvent this and other interpretative overheads by using Numba, a just-in-time (JIT) compiler that translates a subset of Python and NumPy code into fast machine code [50]. Implementation
+8
+
+Time [s]
+
+Linked-Cell-List
+
+Python without Numba (arrays are Numpy)
+
+104
+
+C with O3 optimization (GCC) C with O3 optimization (CLANG)
+
+C without optimization (GCC)
+
+102
+
+103
+
+Python with Numba (arrays are Numpy)
+
+101 102
+
+101
+
+100
+
+Charge Assignment to Grid
+
+100
+
+10 1
+
+10 1 10 2
+
+10 2 104
+
+N = Numb1er05of particles
+
+106
+
+104
+
+N = Numb1er05of particles
+
+106
+
+Figure 4: Mean execution times of LCL routine (left) and charge assignment routine (right) using Numba (squares) and without using Numba (red dots). Execution times of an equivalent code written entirely in C and compiled with O3 optimization using GCC and CLANG compilers are shown in blue dots (dashed line) and blue crosses, respectively. Execution times for the C code without any compiler optimization (using GCC) are shown in grey plus signs. The standard deviation was found to be less than 3%, too small to be visible in the plot. Computations performed on Intel Core i5-6360U CPU @ 2.00GHz and 8GB of RAM.
+of Numba is straightforward and it requires the addition of a decorator around functions. Examples of the speed up and ease of use of Numba can be found in its documentation.
+In order to show Sarkas’ performance we compare the execution times of two of its routines - the LCL routine and the routine for charge assignment to grid with an equivalent version of the code written entirely in C. Both routines scale linearly with particle number, and therefore are some of the compute intensive parts of force calculation in Sarkas. The LCL is employed for short-range forces and in the particle-particle part of PPPM. The charge assignment routine is employed in the particle-mesh part of PPPM for mapping charges/ﬁelds from particles to grid and vice-versa. The other compute intensive part of PPPM is the FFT routine in Sarkas, but is not discussed in this section since it’s a Python wrapper of the FFTW library whose performance is well known [51].
+We calculate the Coulomb potential for a system of N charges at a constant
+9
+
+102
+
+Linked-Cell-List
+C with O3 optimization
+
+C with O3 -march=native optimization
+
+C with Ofast optimization
+
+C with Ofast -march=native optimization
+
+101
+
+Python with Numba (arrays are Numpy) Python with Numba fastmath (arrays are Numpy)
+
+10 1 100
+
+Charge Assignment to Grid
+
+Time [s]
+
+10 1 10 2
+
+10 2 104
+
+N = Numb1er05of particles
+
+106
+
+104
+
+N = Numb1er05of particles
+
+106
+
+Figure 5: Mean execution times of LCL routine (left) and charge assignment routine (right) using Numba (green circles) and Numba with fastmath optimization (black diamonds) compared against C with different high performance compiler optimization (using GCC). Computations performed on Intel Core i5-6360U CPU @ 2.00GHz and 8GB of RAM.
+density n = 1.62×1032 N/m3. The potential is cut off at a distance rc = 3.42808× 10−11 m. The mean and standard deviation of ten consecutive calculations are shown in Fig. 4. We found the standard deviation to be less than 3% in all cases. The green squares and red dots (with solid lines to guide the eye) indicate the execution times of the LCL and charge assignment routine with and without Numba’s decorator numba.njit, respectively. Execution times of an equivalent code written entirely in C and compiled with O3 optimization using GCC and CLANG compilers are indicated in blue dots (with dashed line) and blue crosses, respectively. CLANG compiler was also a choice in this comparison since LLVMs powering numba.njit are essentially CLANG based compilers. The optimized execution times using GCC and CLANG are found to be very similar for both the routines. Fig. 4 also shows the execution times (grey plus) for the C code compiled with GCC, but without any compiler optimization. The plots show that the Numba optimized LCL code is ∼ 300 times faster than the Python version, ∼ 5 times faster than the C code without optimization, and is similar in performance to the C code with O3 optimization. For the charge assignment routine, Numba op-
+10
+
+timized code is ∼ 800 times faster than the Python version, ∼ 4 times faster than the C code without optimization, and ∼ 1.5 times faster than the C code with O3 optimization.
+To further understand the performance gain due to Numba, the C code was compiled with different high performance compiler optimizations (using GCC). The mean execution times are shown in ﬁg. 5 for LCL routine (left) and charge assignment routine (right). Also included are the execution times for Numba with fastmath optimization which is similar to the compiler optimization with Ofast ﬂag for the C code. The LCL execution times using Numba with or without fastmath optimization are comparable to the execution times of the C code with the different compiler optimizations shown in Fig. 5. For the charge assignment routine, the C code becomes comparable in performance to Numba when compiled using Ofast optimization and only for particle numbers ∼106.
+We point out that this analysis does not suggest that Numba leads to codes faster than C. Instead, it is meant to show that a naive use of Numba yields performance comparable to C code with additional compiler optimizations. This indicates that the enhanced performance of Numba is potentially due to the JIT compilation performed by its LLVM compiler with high performance optimization ﬂags.
+4. Pre Processing
+The main difference between plasmas and normal liquids is the long-range aspect of the Coulomb interaction between particles which requires the use of Ewald summation [52]. Sarkas uses the generalized PPPM algortihm presented in Ref. [47]. This algorithm requires nine parameters: the short-range cut-off (rc), the Ewald screening parameter (α), the number of mesh points per direction, the charge approximation order, and the number of aliases of the Fast Fourier Transform (FFT) per direction. MD simulations are often performed with sub-optimal parameters which lead to inefﬁcient and longer runs. Furthermore, optimal parameters are not easily found as they depend not only on the type of problem under investigation, but also on the available computational hardware. Researchers are thus left to use trial-and-error approaches or rely on colleagues’ suggestions to choose simulation’s parameters. In the following we present useful metrics and an example use of the PreProcessing class for ﬁnding the optimal parameters.
+11
+
+4.1. Metrics
+Two important metrics are the force computation time, τF , and the force error ∆Ftot. We estimate the force computation time as
+
+τF = a0 + a1
+
+4πn L3 3 Nc3
+
+N + a2 + 5a3M3 log2(M3),
+
+(1)
+
+where ai are hardware dependent computation times, n is the number density of the plasma, N the total number of particles, L = Lx = Ly = Lz is the side of the simulation box, Nc = L/rc the number of cells of the LCL algorithm, and M = Mx = My = Mz the number of mesh points per direction. The ﬁrst two terms indicates the time of the particle-particle part while the third and fourth term indicate the approximate time for the particle-mesh part. We note that eq. (1) is different than eq. B1 of Ref. [53]. The reason is twofold. First, we are interested in the relationship between computation time and Nc and M only, with a ﬁxed number of particles N. The coefﬁcients a0, a2, in fact, represent the time for creating the linked lists and assigning charges to the mesh, respectively, and they both scale as O(N). Second, the FFT in Sarkas is performed via the FFTW library whose scaling is provided in their documentation page [51].
+The force error is deﬁned as
+
+∆Ftot(rc, α) = ∆FP2P(rc, α) + ∆FP2M(α)
+
+(2)
+
+where the subscripts indicate the error of the particle-particle (PP) or particlemesh (PM) part of the calculation. Formulas for ∆FPP and ∆FPM depend on the type of interaction between particles. In the case of Yukawa potential, with inverse screening length κ, we have [47]
+
+(Ze)2 ∆FPP = 2 4πε0
+
+N
+
+e−α 2 rc2 √
+
+e−κ2/4α2 ,
+
+V rc
+
+(3)
+
+and
+
+∆FPM =
+
+N (Ze)2 √ χ V 4πε0 V 1/3
+
+(4)
+
+
+
+
+
+1/2
+
+1
+
+χ
+
+=
+
+V 1/3
+
+ 
+
+∑ G2k|k|2
+k=0
+
+∑ −
+
+
+
+∑m Uˆk2+mGk+mkn · kn+m
+
+2
+
+
+
+
+2
+
+
+
+n
+
+∑m Uˆk2n+m |kn|2
+
+.
+
+(5)
+
+12
+
+In the above equations Z is the charge number, e = |e| is the positive electron charge, ε0 is the vacuum permittivity, V = L3 is the volume of the simulation box, and Gk is the optimal Green’s function
+
+1 e−(κ2+|k|2)/(4α2)
+
+Gk = ε0
+
+κ2 + |k|2
+
+(6)
+
+where k = kn is the vector of allowed wavenumbers in the simulation box
+
+kn =
+
+2πnx , 2πny , 2πnz Lx Ly Lz
+
+,
+
+ni = −Mi, . . . , 0 . . . , +Mi
+
+(7)
+
+and Uˆk is the Fourier transform of the B-spline of order p
+
+Uˆk =
+
+sin(π nx /Mx ) π nx /Mx
+
+p
+
+sin(π ny /My ) π ny /My
+
+p
+
+sin(π nz /Mz ) π nz /Mz
+
+p
+,
+
+(8)
+
+Finally m refers to the triplet of grid indices (mx, my, mz) that contribute to antialiasing. Note that in the above equations as κ → 0, we recover the corresponding error estimate for the Coulomb potential. More details on the derivation of the equations can be found in the documentation and in Refs. [47, 54, 55] and references therein.
+There is no prescribed optimal value for the force error and it is up to users to decide. Inverting the above equations users can ﬁnd optimal parameters rc, α given some desired errors ∆FPP,PM. However, while eq. (3) can be easily inverted for rc, no simple formula is available for eq. (4) and users must calculate a Green’s function for each chosen α, a task that requires considerable computation time since Gk is a Mx × My × Mz array. An analytical approximation of eq. (4) for the general case of nonzero κ can be found for fast decaying Gk [47],
+
+∆FP(Mapprox)
+
+(Ze)2 4π ε0
+
+∑ N
+V
+
+3 2π
+
+2
+
+p−1 m=0
+
+Cm(p)
+
+h 2(p+m) 2β (p, m)
+
+1/2
+,
+
+2
+
+1 + 2(p + m)
+
+(9)
+
+∞
+β (p, m) = dk
+0
+
+1 e−(κ2+k2)/4α2 ε0 κ2 + k2
+
+2
+k2(p+m+2),
+
+(10)
+
+where h = L/M and the coefﬁcients Cm(p) are listed in Table I of [56]. Despite not being invertible, eq. (9) is much faster to compute than eq. (4) and its use will be presented below.
+
+13
+
+We deﬁne a simulation to be efﬁcient when the choice of the simulation parameters leads to a small ∆Ftot and fast execution speeds. This suggests that a search for optimal parameters is not only a nine-dimensional minimization problem, but it also depends on the hardware and on the physical system under investigation. Furthermore, we are assuming that a small ∆Ftot leads to more accurate particles’ trajectories hence to more accurate postprocessed physical observables. However, we are not aware of any uncertainty quantiﬁcation studies that support such statements nor on the effect of ∆Ftot on the accuracy and precision of postprocessed quantities.
+In the following we present an example use of the PreProcessing class that allows users to ﬁnd optimal parameters for their simulation. The search is limited to only the cut-off radius rc and Ewald screening parameter α as they are both present in Eqs. (1)- (2).
+
+4.2. Example: The following is a typical script 1 for running the PreProcessing class
+# Import required libraries import os from sarkas . processes import PreProcess
+
+i n p u t f i l e = ’yukawa mks p3m . yaml ’ # Define path to input f i l e
+
+preproc = PreProcess ( input file ) # Initialize the class
+
+preproc . setup ( read yaml=True ) # Setup Sarkas classes all the parameters
+
+preproc . run ( timing=True , # time estimation loops = 20 , # the number of timesteps to average pppm estimate=True , # Produce Force Error Plots timing study = True ) # produce time and force error
+
+maps
+
+Listing 2: Example of Python script with comments
+
+The ﬁle yukawa_mks_p3m.yaml contains the simulation and physical param-
+eter of the system under consideration: a one component plasma with N = 10 000 ions with charge number Z = 1, mass m = 1.673 × 10−27 kg, at a density n = 1.62 × 1032 N/m3, temperature T = 0.5 eV, surrounded by an electron liquid with
+density ne = n and electron temperature Te = 1.25 keV. The ions interact via a Yukawa potential of the form
+
+U (r) = Ze e−r/λTF ,
+
+(11)
+
+4π ε0 r
+
+1Code ran on an Intel Core i7-8700K @ 3.70Ghz and 48GB of RAM running Ubuntu 18.04.
+
+14
+
+where r is the distance between two particles and λTF is the Thomas-Fermi length given by the electron liquid properties. These parameters lead to Γ = 101.23 and κ = aws/λTF = 0.5.
+The script produces a verbose output to screen with a summary of all simulations parameters and relevant physical constants of the system. The option timing = True instructs to estimate the required space on disk and time of the full simulation by averaging the computation time of loops=20 equilibration and production timesteps. The screen output of these option is shown in Fig. 6. We note that this information is of interest both for users running simulations on large clusters as well as personal desktops and/or laptops since it allows for better time and space management of hardware resources.
+Figure 6: Section of the output of the script in Listing. 2 split in two panels for better viewing. a) Timing of the acceleration and timesteps calculation. b) Total estimated times and size of the full simulation.
+The last two options are the primary advantage provided by Sarkas. The option timing_study = True is used to calculate the force error and estimate the ai coefﬁcients of eq. (1) by varying the number of cells Nc and the mesh size M. This option produces the plots shown in Figs. 7 - 8. Fig. 7 shows plots of the computation times of the PP and PM parts of the PPPM algorithm with their respective ﬁts. The PP and PM part are ﬁtted independently in order to show the correct scaling of each algorithm and to better identify the most time expensive between the two.
+Note that for each Nc the time of several mesh sizes is evaluated. This is because, while the computation time depends only on rc = L/Nc, the force error ∆FPP depends also on the Ewald parameter, α. There is no prescribed relation between α and M as such Sarkas uses the heuristically chosen relation α = 0.3M/L.
+15
+
+However, this choice is not particularly important as the objective is to calculate τF and to obtain an indicative value of ∆Ftot. The tuning of the rc and α parameters is obtained from the pppm_estimate option.
+Figure 7: Time estimates of the PP and PM part of the force calculation with their respective ﬁts.
+The total computation time, as the sum of the PP time and PM time, and the force error, calculated from eqs. (2)-(4), are then plotted as contour maps shown in Fig. 8. Note that these maps are created using matplotlib.pyplot.contourf() method by passing the data points in Fig. 7 and not the ﬁts, hence, the staggered contour lines. The ﬁts are provided as a way for users to calculate the computation time for meshes and cells different than those computed by Sarkas. As expected the maps indicate that the smaller the force error the larger the computation time. They are meant to provide an overview of the parameter space and help users decide their optimal value for M and approximate value of rc.
+The option pppm_estimate = True in Listing. 2 is used for ﬁne-tuning the values of rc and α. This option produces two ﬁgures shown in Fig. 9 - 10. The ﬁrst is a contour map in the (rc, α) parameters space of the approximate total force error ∆Ft(oatpprox), see eq. (9). The numbers on the white contours indicate the value of ∆Ft(oatpprox) along those lines and the black dot indicates the original choice of
+16
+
+Figure 8: Contour maps of the total force error ∆Ftot (left panel) and computation times (right panel). Colours indicates the magnitude of the force error ∆Ftot of eq. (2) (left) and the total computation time as the sum of the data points in Fig. 7 (right)
+the rc and α parameters as provided in the input ﬁle. Note that this choice of parameters while being good, it might not be optimal.
+In order to ﬁnd the best choice Sarkas provides Fig. 10. The left panel is a plot of ∆Ft(oatpprox) vs rc/aws at ﬁve different values of αaws while the right panel is a plot of ∆Ft(oatpprox) vs αaws at ﬁve different values of rc/aws. The third line in both plots is evaluated at the original choice of rc, α. The vertical black dashed lines indicate the original choice of αaws and rc/aws. The horizontal black dashed lines, instead, indicate the value of ∆Ftot obtained from eq. (2). These plots show that the analytical approximation of eq. (9) is a very good approximation and that the original choice of parameters is optimal as the intersection of the dashed lines falls exactly in the minimum of the curves. The left panel, in fact, indicates that larger values of rc lead to an inefﬁcient code since it would calculate the interaction for many more particles without actually reducing the force error. Similarly, the right panel shows that larger values of α would increase the total force error.
+5. PostProcessing
+The PostProcessing class is the most important class and what further separates Sarkas from other MD codes. This class handles the calculation of the de-
+17
+
+Figure 9: Contour map of approximate total force error ∆Ft(oatpprox). The black dot indicates the original choice of rc and α as given in the input ﬁle.
+sired physical observables. We note that other post-processing codes are available [57, 58], but are often independent of the code used to perform the MD simulation; this requires users to install additional software and learn another application programming interface.
+5.1. Example 2: Interdiffusion in a Binary Ionic Mixture As part of the PostProcessing class, Sarkas has the capability to compute
+any generic auto-correlation function [59]. These auto-correlation functions have particular importance in the context of particle transport via Green-Kubo relations. We highlight this capability by calculating the interdiffusion coefﬁcient a H-He Binary Ionic Mixture (BIM) [60]. Results reported in this section were performed on a 2.7 GHz Quad-Core Intel Core i7 processor with 16 GB 2133 MHz LPDDR3 memory, with macOS Catalina version 10.15.7. The auto-correlation function of
+18
+
+Figure 10: Line plots of approximate total force error ∆Ft(oatpprox)(rc, α) as a function of rc at ﬁxed values of α (left panel) and as a function of α at ﬁxed values of rc. The vertical dashed black line indicates the original choice of rc (left) and α (right) as given in the input ﬁle. The horizontal black dashed line indicates the value of ∆Ftot obtained from eq. (2).
+
+importance for computing the interdiffusion coefﬁcient has the form
+
+ACFID = j(0) · j(t) ,
+
+(12)
+
+Where j(t) is the interdiffusion current deﬁned as
+
+N1
+
+N2
+
+∑ ∑ j(t) = x2 v1, j(t) − x1 v2, j(t).
+
+(13)
+
+j=1
+
+j=1
+
+where, Ni is the number of species i, N = N1 + N2, xi = Ni/N is the concentration of species i, and vi, j is the velocity of the jth particle of species i. The evolution of
+
+the interdiffusion current is assumed to be stationary and include all interparticle
+
+interactions. For molecular dynamics simulation, the ensemble average for an
+
+observable O is deﬁned in terms of discrete time steps ∆t with phase space vectors
+
+xn∆t for M total states
+
+1M
+
+∑ O
+
+=
+
+M
+
+O(xn∆t ).
+n=0
+
+(14)
+
+19
+
+The interdiffusion coefﬁcient is calculated by the Green-Kubo relation [61]
+
+J D12 = 3Nx1x2
+
+∞
+
+J
+
+0 dtACFID = 3Nx1x2
+
+∞
+dt j(0) · j(t) ,
+0
+
+(15)
+
+where the prefactor J in (15) is the thermodynamic factor
+
+J = x1x2 ,
+
+(16)
+
+Scc(k = 0)
+
+where Scc(k) is the concentration-concentration structure factor that can be decomposed into partial structure factors as
+
+√
+
+Scc(k) = x1x2[x2S11(k) + x1S22(k) − 2 x1x2S12(k)].
+
+(17)
+
+Calculating the interdiffusion coefﬁcient (15) is two-fold in that we must compute the auto-correlation function (12) and the thermodynamic factor (16).
+We proceed by performing a molecular dynamics simulation for a H-He BIM with conditions described in Table 2. We compare our results to those reported by Hansen et al. [60]. To check temperature or energy drift did not occur in the equilibration or production phases of the simulation, we plot the temperature and energy versus time in Fig. 11. We see that the deviation from the desired temperature is less than 0.1% and no energy drift occurred. In the event a drift did occur, the distributions to the right of columns (a) and (b) would be skewed. A similar plot to Fig. 11 can be generated with Sarkas’ PostProcessing class using the code in Listing 3.
+from sarkas . processes import PostProcessing
+# Specify input file path postproc = PostProcessing ( input file ) postproc . setup ( read yaml = True )
+# Equilibration phase check postproc . therm . setup ( postproc . parameters ) postproc . therm . temp energy plot ( postproc , phase = ’ equilibration ’ )
+# Production phase check postproc . therm . temp energy plot ( postproc , phase = ’ production ’ )
+Listing 3: Generate plot of temperature and energy versus time, allowing for a quick analysis of the system’s thermodynamic properties.
+
+After verifying that the MD simulation is acceptable and no temperature or energy drift has occurred, we shift our focus to generating the interdiffusion autocorrelation function. In Sarkas, the interdiffusion auto-correlation function is
+
+20
+
+Parameter
+Npart x1 Nt dt∗
+Γi j
+
+This work 2000 0.5
+100,000 0.49
+40.01
+
+Ref. [60] 250 0.5
+5,000 0.15
+39.74
+
+Table 2: Simulation parameters for an H+-He2+ BIM. Note that Npart denotes the total number of particle, Nt denotes the number of time steps, dt∗ = dt/ωpai is the normalized time step as given
+in [60] and Γi j is the cross-species Coulomb coupling parameter (see [60]). These simulation
+parameters were chosen to compare to [60].
+
+computed as described in Listing 4. As (12) is subject to statistical noise from small simulations, we compute the average of four autocorrelation functions of equal length. The averaging of correlation functions is carried out in Sarkas by specifying the no_slices=4 variable. The value “4” denotes that the simulation data is broken up into four equal consecutive chunks and an autocorrelation function is computed for each chunk. The autocorrelation functions using the above approach are shown in Fig. 12 where we compare our results to those obtained from [60].
+# Import the necessary methods for calculating the autocorrrelation functions from sarkas . tools . transport import TransportCoefficient from sarkas . tools . observables import VelocityAutoCorrelationFunction ,
+DiffusionFlux
+# Compute the i n t e r d i f f u s i o n auto − c o r r e l a t i o n function jc acf = DiffusionFlux () jc acf . no slices = 4 # Slice data into 4 chunks jc acf . setup ( postproc . parameters ) jc acf . compute ()
+# Similarly for the single species velocity autocorrelation function vacf = VelocityAutoCorrelationFunction () vacf . setup ( postproc . parameters ) vacf . compute ( no slices = 4)
+Listing 4: Compute the autocorrelation functions for an H+-He2+ BIM.
+Sarkas has the ability to integrate the resulting autocorrelation function (12) as demonstrated in Listing 5. After computing the integral of (12) it only remains to compute eq. (17) which can also be done using Sarkas. The core to compute the partial structure factors is given in Listing 6. Note that (17) must be evaluated for k = 0. To evaluate (17) for k = 0, a large simulation cell is necessary and if not, an extrapolation to the k = 0 limit must be performed. This extrapolation is
+21
+
+Figure 11: System information collected in the NVE ensemble for a H-He BIM with Γi j = 40 [60]. (a) the temperature of the system. The temperature deviation is computed from the desired temperature of the system. (b) the total energy of the system. The top plot shows the deviation from the average total energy. This plot aims to inform the user of possible equilibrium issues by showing moving averages of temperature and energy versus simulation time. The density plots show also highlight potential temperature and energy drifts by skewing the distributions.
+left to the user as it is problem dependent.
+# Integral of the auto −correlation function versus time int acf = TransportCoefficient . interdiffusion ( postproc . parameters , no slices =4)
+Listing 5: Compute the integral of the interdiffusion autocorrelation functions for an H+-He2+ BIM.
+# Compute the p a r t i a l s t r u c t u r e f a c t o r s postproc . ssf . angle averaging = ’ full ’ # Radial average for improved s t a t i s t i c s postproc . ssf . setup ( postproc . parameters ) postproc . ssf . compute ()
+Listing 6: Compute the partial structure factors of an H+-He2+ BIM.
+6. Conclusions and Outlook
+In conclusion, we have developed an open-source comprehensive MD suite for the simulation and analysis of non-ideal plasmas. Sarkas novelty lies in the availability of a preprocessing library, to aid researchers in running efﬁcient simulations, and a post-processing library, for the calculation of the most common
+22
+
+Figure 12: Comparison of auto-correlation functions for a H-He BIM mixture against results from [60]. Each autocorrelation function is an average of four.
+23
+
+S(k)
+
+H-H
+
+1.5
+
+H-He He-He
+
+1.0
+
+0.5
+
+0.0
+
+0.5
+
+0
+
+2
+
+4 kaws 6
+
+8
+
+Figure 13: The static structure factors computed with the post processing tools in Sarkas for a H+-He2+ BIM for Γi j = 40. The dashed line approaching k = 0 denotes an extrapolation in order
+to compute the thermodynamic factor using (17). In this case, we computed J = 1.03.
+
+24
+
+physical observables. Sarkas is entirely written in Python because of its high level of user-friendliness. We have shown that this choice does not harm the performance of the code as it compares to equivalent code written in C. In order to demonstrates Sarkas ease-of-use, we have provided example scripts using the PreProcessing and PostProcessing classes.
+Sarkas was developed for the needs of computational, theoretical, and experimental plasma physicists and for users with different levels of computing knowledge. Beginner users are able to optimize a simulation, run a simulation, and analyze data by providing a input ﬁle and a script with less than 20 lines of code, see documentation link for an example. Intermediate and advanced users are able to easily implement new features and extend Sarkas capabilities to their desires. Furthermore, Sarkas’ documentation provides a growing list of examples usage for the most common plasma physics problems; from the classical one-component plasma model and its magnetized case to the study of non-equilibrium ultracold neutral plasmas.
+The authors would like to acknowledge funding from the Air Force Ofﬁce of Scientiﬁc Research (AFOSR) Grant No. FA9550-17-1-0394. Gautham Dharuman’s work was performed in part under the auspices of the U.S. Department of Energy by Lawrence Livermore National Laboratory under Contract DE-AC5207NA27344. All the codes and ﬁgures presented in this paper are available in Sarkas’ documentation at https://murillo-group.github.io/sarkas.
+References
+[1] J. A. Anderson, J. Glaser, S. C. Glotzer, Hoomd-blue: A python package for high-performance molecular dynamics and hard particle monte carlo simulations, Computational Materials Science 173 (2020) 109363.
+[2] M. J. Abraham, T. Murtola, R. Schulz, S. Pa´ll, J. C. Smith, B. Hess, E. Lindahl, Gromacs: High performance molecular simulations through multilevel parallelism from laptops to supercomputers, SoftwareX 1 (2015) 19– 25.
+[3] S. Plimpton, P. Crozier, A. Thompson, Lammps-large-scale atomic/molecular massively parallel simulator, Sandia National Laboratories 18 (2007) 43.
+[4] J. Hafner, Ab-initio simulations of materials using vasp: Density-functional
+25
+
+theory and beyond, Journal of computational chemistry 29 (13) (2008) 2044–2078.
+[5] J. T. Larsen, S. M. Lane, Hyades—a plasma hydrodynamics code for dense plasma studies, Journal of Quantitative Spectroscopy and Radiative Transfer 51 (1-2) (1994) 179–186.
+[6] M. M. Marinak, G. Kerbel, N. Gentile, O. Jones, D. Munro, S. Pollaine, T. Dittrich, S. Haan, Three-dimensional hydra simulations of national ignition facility targets, Physics of Plasmas 8 (5) (2001) 2275–2280.
+[7] J. R. Haack, C. D. Hauck, M. S. Murillo, Interfacial mixing in high-energydensity matter with a multiphysics kinetic model, Physical Review E 96 (6) (2017) 063310.
+[8] O. Larroche, Kinetic simulation of a plasma collision experiment, Physics of Fluids B: Plasma Physics 5 (8) (1993) 2816–2840.
+[9] C. Horowitz, A. Schneider, D. Berry, Crystallization of carbon-oxygen mixtures in white dwarf stars, Physical Review Letters 104 (23) (2010) 231101.
+[10] M. Caplan, I. Freeman, Precise diffusion coefﬁcients for white dwarf astrophysics, Monthly Notices of the Royal Astronomical Society.
+[11] D. Samsonov, J. Goree, Z. Ma, A. Bhattacharjee, H. Thomas, G. Morﬁll, Mach cones in a coulomb lattice and a dusty plasma, Physical review letters 83 (18) (1999) 3649.
+[12] W. Li, K. Wang, C. Reichhardt, C. Reichhardt, M. Murillo, Y. Feng, Depinning dynamics of two-dimensional dusty plasmas on a one-dimensional periodic substrate, Physical Review E 100 (3) (2019) 033207.
+[13] V. S. Dharodi, M. S. Murillo, Sculpted ultracold neutral plasmas, Physical Review E 101 (2) (2020) 023207.
+[14] T. Pohl, T. Pattard, J. Rost, Kinetic modeling and molecular dynamics simulation of ultracold neutral plasmas including ionic correlations, Physical Review A 70 (3) (2004) 033416.
+[15] F. R. Graziani, V. S. Batista, L. X. Benedict, J. I. Castor, H. Chen, S. N. Chen, C. A. Fichtl, J. N. Glosli, P. E. Grabowski, A. T. Graf, et al., Large-scale
+26
+
+molecular dynamics simulations of dense plasmas: The cimarron project, High Energy Density Physics 8 (1) (2012) 105–131.
+[16] M. S. Murillo, M. Dharma-Wardana, Temperature relaxation in hot dense hydrogen, Physical review letters 100 (20) (2008) 205005.
+[17] D. B. Graves, P. Brault, Molecular dynamics for low temperature plasma– surface interaction studies, Journal of Physics D: Applied Physics 42 (19) (2009) 194011.
+[18] R. Hippler, H. Kersten, M. Schmidt, K. H. Schoenbach, Low temperature plasmas.
+[19] A. Rahman, J. Schiffer, Structure of a one-component plasma in an external ﬁeld: a molecular-dynamics study of particle arrangement in a heavy-ion storage ring, Physical review letters 57 (9) (1986) 1133.
+[20] D. Murphy, R. Scholten, B. Sparkes, Increasing the brightness of cold ion beams by suppressing disorder-induced heating with rydberg blockade, Physical review letters 115 (21) (2015) 214802.
+[21] B. A. Gelman, E. V. Shuryak, I. Zahed, Classical strongly coupled quarkgluon plasma. i. model and molecular dynamics simulations, Physical Review C 74 (4) (2006) 044908.
+[22] S. Terranova, A. Bonasera, Constrained molecular dynamics simulation of the quark-gluon plasma, Physical Review C 70 (2) (2004) 024906.
+[23] S. G. Brush, H. L. Sahlin, E. Teller, Monte carlo study of a onecomponent plasma. i, The Journal of Chemical Physics 45 (6) (1966) 2102– 2118. arXiv:https://doi.org/10.1063/1.1727895, doi:10.1063/1. 1727895. URL https://doi.org/10.1063/1.1727895
+[24] C. Hooper Jr, Low-frequency component electric microﬁeld distributions in plasmas, Physical Review 165 (1) (1968) 215.
+[25] G. Hummer, The numerical accuracy of truncated ewald sums for periodic systems with long-range coulomb interactions, Chemical physics letters 235 (3-4) (1995) 297–302.
+27
+
+[26] R. W. Hockney, S. Goel, J. Eastwood, A 10000 particle molecular dynamics model with long range forces, Chemical Physics Letters 21 (3) (1973) 589– 591.
+[27] J.-P. Hansen, Statistical Mechanics of Dense Ionized Matter. I. Equilibrium Properties of the Classical One-Component Plasma, Phys. Rev. A 8 (1973) 3096–3109. doi:10.1103/PhysRevA.8.3096. URL https://link.aps.org/doi/10.1103/PhysRevA.8.3096
+[28] E. L. Pollock, J.-P. Hansen, Statistical mechanics of dense ionized matter. ii. equilibrium properties and melting transition of the crystallized onecomponent plasma, Phys. Rev. A 8 (1973) 3110–3122. doi:10.1103/ PhysRevA.8.3110. URL https://link.aps.org/doi/10.1103/PhysRevA.8.3110
+[29] J.-P. Hansen, I. R. McDonald, E. L. Pollock, Statistical mechanics of dense ionized matter. III. Dynamical properties of the classical one-component plasma, Phys. Rev. A 11 (1975) 1025–1039. doi:10.1103/PhysRevA.11. 1025. URL https://link.aps.org/doi/10.1103/PhysRevA.11.1025
+[30] J.-P. Hansen, I. R. McDonald, P. Vieillefosse, Statistical mechanics of dense ionized matter. VIII. Dynamical properties of binary ionic mixtures, Phys. Rev. A 20 (1979) 2590–2602. doi:10.1103/PhysRevA.20.2590. URL https://link.aps.org/doi/10.1103/PhysRevA.20.2590
+[31] J. Hansen, I. McDonald, Microscopic simulation of a hydrogen plasma, Physical Review Letters 41 (20) (1978) 1379.
+[32] C. S. Jones, M. S. Murillo, Analysis of semi-classical potentials for molecular dynamics and monte carlo simulations of warm dense matter, High energy density physics 3 (3-4) (2007) 379–394.
+[33] H. Feldmeier, J. Schnack, Molecular dynamics for fermions, Reviews of Modern Physics 72 (3) (2000) 655.
+[34] J.-P. Hansen, I. R. McDonald, Statistical mechanics of dense ionized matter. iv. density and charge ﬂuctuations in a simple molten salt, Phys. Rev. A 11 (1975) 2111–2123. doi:10.1103/PhysRevA.11.2111. URL https://link.aps.org/doi/10.1103/PhysRevA.11.2111
+28
+
+[35] F. Lantelme, P. Turq, B. Quentrec, J. W. Lewis, Application of the molecular dynamics method to a liquid system with long range forces (molten nacl), Molecular Physics 28 (6) (1974) 1537–1549.
+[36] P. Protopapas, H. C. Andersen, N. Parlee, Theory of transport in liquid metals. i. calculation of self-diffusion coefﬁcients, The Journal of Chemical Physics 59 (1) (1973) 15–25.
+[37] S. Mitra, Effective interionic potentials for liquid metals, Journal of Physics C: Solid State Physics 11 (17) (1978) 3551.
+[38] M. Tanaka, Molecular dynamics simulation of the structure of liquid rubidium along the saturated vapour-pressure curve, Journal of Physics F: Metal Physics 10 (12) (1980) 2581.
+[39] D. Klakow, C. Toepffer, P.-G. Reinhard, Semiclassical molecular dynamics for strongly coupled coulomb systems, The Journal of chemical physics 101 (12) (1994) 10766–10774.
+[40] G. Dharuman, J. Verboncoeur, A. Christlieb, M. S. Murillo, Atomic bound state and scattering properties of effective momentum-dependent potentials, Physical Review E 94 (4) (2016) 043205.
+[41] L. Stanton, J. Glosli, M. Murillo, Multiscale molecular dynamics model for heterogeneous charged systems, Physical Review X 8 (2) (2018) 021044.
+[42] L. J. Stanek, R. C. Clay III, M. Dharma-wardana, M. A. Wood, K. R. Beckwith, M. S. Murillo, Efﬁcacy of the radial pair potential approximation for molecular dynamics simulations of dense plasmas, Physics of Plasmas 28 (3) (2021) 032706.
+[43] L. G. Stanton, M. S. Murillo, Uniﬁed description of linear screening in dense plasmas, Phys. Rev. E 91 (2015) 033104. doi:10.1103/PhysRevE.91. 033104. URL https://link.aps.org/doi/10.1103/PhysRevE.91.033104
+[44] S. A. Chin, Symplectic and energy-conserving algorithms for solving magnetic ﬁeld trajectories 77 (6) 066401. doi:10.1103/PhysRevE.77. 066401. URL https://link.aps.org/doi/10.1103/PhysRevE.77.066401
+29
+
+[45] Q. Spreiter, M. Walter, Classical molecular dynamics simulation with the
+
+velocity verlet algorithm at strong external magnetic ﬁelds 152 (1) 102–119.
+
+doi:10.1006/jcph.1999.6237.
+
+URL
+
+https://linkinghub.elsevier.com/retrieve/pii/
+
+S002199919996237X
+
+[46] H. J. C. Berendsen, J. P. M. Postma, W. F. van Gunsteren, A. DiNola, J. R. Haak, Molecular dynamics with coupling to an external bath, The Journal of Chemical Physics 81 (8) (1984) 3684–3690. arXiv:https://doi.org/ 10.1063/1.448118, doi:10.1063/1.448118. URL https://doi.org/10.1063/1.448118
+
+[47] G. Dharuman, L. G. Stanton, J. N. Glosli, M. S. Murillo, A generalized ewald decomposition for screened coulomb interactions, The Journal of chemical physics 146 (2) (2017) 024112.
+
+[48] R. Sprenkle, L. Silvestri, M. Murillo, S. Bergeson, Temperature relaxation in strongly-coupled binary ionic mixtures (2021). arXiv:https://doi.org/ 10.21203/rs.3.rs-159714/v1, doi:10.21203/rs.3.rs-159714/v1.
+
+[49] L. G. Silvestri, R. T. Sprenkle, M. S. Murillo, S. D. Bergeson, Relaxation of strongly coupled binary ionic mixtures in the coupled mode regime (2021). arXiv:https://doi.org/10.1063/5.0048030, doi:10.1063/ 5.0048030.
+
+[50] Numba: A high performance python compiler. URL https://numba.pydata.org/
+
+[51] The benchFFT home page. URL http://www.fftw.org/benchfft/
+
+[52] R. Hockney, J. Eastwood, Computer Simulation Using Particles, Advanced book program: Addison-Wesley, McGraw-Hill, 1981. URL https://books.google.com/books?id=TNdQAAAAMAAJ
+
+[53] E. Pollock, J. Glosli, Comments on p3m, fmm, and the ewald method for large periodic coulombic systems, Computer Physics Communications 95 (2) (1996) 93–110. doi:https://doi.org/10.1016/0010-4655(96) 00043-4. URL https://www.sciencedirect.com/science/article/pii/ 0010465596000434
+
+30
+
+[54] J. Kolafa, J. W. Perram, Cutoff errors in the ewald summation formulae for point charge systems, Molecular Simulation 9 (5) (1992) 351–368. doi: 10.1080/08927029208049126.
+[55] H. A. Stern, K. G. Calkins, On mesh-based ewald methods: Optimal parameters for two differentiation schemes 128 (21) 214106. doi:10.1063/1. 2932253. URL http://aip.scitation.org/doi/10.1063/1.2932253
+[56] M. Deserno, C. Holm, How to mesh up ewald sums. ii. an accurate error estimate for the particle–particle–particle-mesh algorithm, The Journal of Chemical Physics 109 (18) (1998) 7694–7701. doi:10.1063/1.477415.
+[57] N. Michaud-Agrawal, E. J. Denning, T. B. Woolf, O. Beckstein, Mdanalysis: A toolkit for the analysis of molecular dynamics simulations, Journal of Computational Chemistry 32 (10) (2011) 2319–2327. arXiv: https://onlinelibrary.wiley.com/doi/pdf/10.1002/jcc.21787, doi:https://doi.org/10.1002/jcc.21787. URL https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc. 21787
+[58] S. H. Jamali, L. Wolff, T. M. Becker, M. de Groen, M. Ramdin, R. Hartkamp, A. Bardow, T. J. H. Vlugt, O. A. Moultos, Octp: A tool for on-the-ﬂy calculation of transport properties of ﬂuids with the order-n algorithm in lammps, Journal of Chemical Information and Modeling 59 (4) (2019) 1290–1294, pMID: 30742429. arXiv:https://doi.org/10.1021/acs. jcim.8b00939, doi:10.1021/acs.jcim.8b00939. URL https://doi.org/10.1021/acs.jcim.8b00939
+[59] J.-P. Hansen, I. R. McDonald, Theory of Simple Liquids, Elsevier, 2013. doi:10.1016/C2010-0-66723-X.
+[60] J. Hansen, F. Joly, I. McDonald, Self-diffusion, interdiffusion and long wavelength plasma oscillations in binary ionic mixtures, Physica A: Statistical Mechanics and its Applications 132 (2) (1985) 472–488. doi:https://doi.org/10.1016/0378-4371(85)90022-6. URL https://www.sciencedirect.com/science/article/pii/ 0378437185900226
+31
+
+[61] Y. Zhou, G. H. Miller, Green- kubo formulas for mutual diffusion coefﬁcients in multicomponent systems, The Journal of Physical Chemistry 100 (13) (1996) 5516–5524.
+32
+

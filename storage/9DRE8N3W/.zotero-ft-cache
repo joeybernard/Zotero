@@ -1,0 +1,1291 @@
+Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+Contents lists available at ScienceDirect
+Comput. Methods Appl. Mech. Engrg.
+journal homepage: www.elsevier.com/locate/cma
+
+Solution of high-Reynolds incompressible ﬂow with stabilized ﬁnite element and adaptive anisotropic meshing
+T. Coupez, E. Hachem ⇑
+MINES ParisTech, Center for Materials Forming (CEMEF), UMR CNRS 7635, BP 207, 06904 Sophia-Antipolis, France
+
+article info
+Article history: Received 23 September 2011 Received in revised form 6 August 2013 Accepted 8 August 2013 Available online 4 September 2013
+Keywords: Anisotropic meshing Boundary layers Navier–Stokes High Reynolds number 2D & 3D lid-driven cavity
+
+abstract
+The objective of this paper is to show that anisotropic meshes with highly stretched elements can be used to compute high Reynolds number ﬂows. In particular, it will be shown that boundary layers, ﬂow detachments and all vortices are well captured automatically by the mesh. We present an anisotropic meshing based on a posteriori estimation for the incompressible Navier Stokes equations. The proposed a posteriori estimate is based on the length distribution tensor approach and the associated edge based error analysis. The Finite Element ﬂow solver is based on a Variational MultiScale (VMS) method, which consists in here of decomposing both the velocity and the pressure ﬁelds into coarse/ resolved and ﬁne/unresolved scales. This choice of decomposition is shown to be efﬁcient for simulating ﬂows at high Reynolds number. The stabilization parameters are determined taking into account the anisotropy of the mesh using a directional element diameter. The adaptation algorithm is applied to high Reynolds number ﬂows inside the 2D and 3D liddriven cavities and compared to accurate reference solutions.
+Ó 2013 Elsevier B.V. All rights reserved.
+
+1. Introduction
+Anisotropic mesh adaptation has proved to be a powerful strategy to improve the quality and efﬁciency of ﬁnite element/ volume methods. It enables to capture scale heterogeneities that can appear in numerous physical or mechanical applications including those having boundary layers, shock waves, edge singularities and moving interfaces [1–5]. In these cases, discontinuities or gradients of the solution are highly directional and can be captured with a good accuracy using an anisotropic mesh with few additional elements.
+Several approaches to build unstructured anisotropic adaptive meshes easily are often based on local modiﬁcations [6–9] of an existing mesh. In fact, it mainly requires extending the way to measure lengths following the space directions and that can be done using a metric ﬁeld to redeﬁne the geometric distances. In parallel, theories of anisotropic a posteriori error estimation (i.e. [10]) have been well developed, leading to some standardization of the adaptation process; production of metrics from the error analysis of the discretization error and steering of remeshing by these metrics.
+It follows that most adaptive anisotropic meshing techniques take a metric map as input. In practice, it is preferable to have a nodal metric map. Indeed, during the remeshing operations, the elements are much more volatile than the mesh nodes and therefore deﬁning ﬁelds on a continuous basis ease their reconstruction, interpolation or extrapolation.
+The author in [1] has adopted a different route for the metric construction. The latter is done directly at the node of the mesh without any direct information from the element, neither considering any underlying interpolation. It is performed by introducing a statistical concept: the length distribution function. A second order tensor was introduced to approximate the
+⇑ Corresponding author. Tel.: +33 (0)4 92 95 74 58; fax: +33 (0)4 92 38 97 52.
+E-mail addresses: thierry.coupez@mines-paristech.fr (T. Coupez), elie.hachem@mines-paristech.fr (E. Hachem).
+0045-7825/$ - see front matter Ó 2013 Elsevier B.V. All rights reserved. http://dx.doi.org/10.1016/j.cma.2013.08.004
+
+66
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+distribution of lengths deﬁned by gathering the edges at the node. Using such a technique, he computed the error along each edge and in the direction of each edge.
+In this work, we pursue further the approach developed in [1] in the sense that we extend this theory to take into account multi-component ﬁelds (tensors, vectors, scalars). Rather than considering several metric intersections and thus having much computation to perform, we propose herein an easy way to account for different ﬁelds in an a posteriori analysis while producing a single metric ﬁeld. We will show that the proposed approach seems to be a powerful tool for approximating the solution of the incompressible Navier–Stokes equations as it accounts for all components of the velocity ﬁeld. It is based on controlling the interpolation error of the velocity ﬁeld as well as the velocity norm. Note that the proposed algorithm is implemented in the context of adaptive meshing under the constraint of a ﬁxed number of nodes. With such an advantage, we can avoid evaluating precisely the constant arising in the error analysis and provide a very useful tool for practical Computational Fluid Dynamic (CFD) applications.
+The leading idea of this work is to show that by applying the proposed anisotropic meshing to the recently developed ﬂow solver [11], based on a Variational MultiScale (VMS) method, we are able to produce very good accuracy properties for high Reynolds number ﬂows. Precisely, on meshes with highly stretched elements we use an appropriate deﬁnition of the stabilization parameters using the directional element diameter.
+For that purpose, we will address exhaustively the well known driven cavity benchmark in 2D and 3D. We demonstrate that using the proposed error estimate, all small vortices, ﬂow detachments and boundary layers inside the cavity are captured successfully.
+The paper is structured as follows. In Section 2, we introduce the node based metric framework and describe the anisotropic mesh adaptation procedure governed by the length distribution tensor. In Section 3, the interpolation edge error for multi-component ﬁelds is described. Section 4 presents the developed VMS Navier–Stokes solver. Section 5 provides some numerical results and examples showing the capability of the new highly parallelized anisotropic mesh adaptation.
+
+2. Edge based error estimation
+
+In [1], we have derived an a posteriori error estimate based on the length distribution tensor approach and the associated
+
+edge based error analysis. In particular, we have derived the node based metric framework and described the anisotropic
+
+mesh adaptation procedure under the constraint of a ﬁxed number of nodes. In this section, we only recall those results,
+
+but we invite the interested reader to check [1] for a detailed description and proofs. Let us recall some useful notations
+
+and deﬁnitions.
+
+We consider u 2 C2ðXÞ ¼ V and Vh a standard P1 ﬁnite element approximation space:
+
+n
+
+o
+
+Vh ¼ wh 2 C0ðXÞ; whjK 2 P1ðKÞ; K 2 K
+
+S
+
+where X ¼ K; K is a simplex (segment, triangle, tetrahedron, . . . ) and K is the set of elements of the mesh.
+
+K2K
+
+n
+
+o
+
+Denote by X ¼ Xi 2 Rd; i ¼ 1; Á Á Á ; N the set of nodes of the mesh.
+
+We also denote the Lagrange interpolation operator from V to Vh by:
+
+Ph :V # Vh u # Phu
+
+such that
+
+PhuðXiÞ ¼ uðXiÞ ¼ Ui; 8i ¼ 1; Á Á Á ; N
+with Ui beinng the node value of u at the mesho node location. We deﬁne the set of nodes connected to node i as shown in Fig. 1 by: CðiÞ ¼ j; 9iK 2 K; Xi; Xj are nodes of K .
+By introducing the following notation: Xij ¼ Xj À Xi and Uij ¼ Uj À Ui we have for a P1 element:
+
+Fig. 1. length Xij of the edge joining nodes i and j.
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+67
+
+Uj ¼ Ui þ ruh Á Xij
+
+and
+
+ruh Á Xij ¼ Uij
+
+ð1Þ
+
+Using the analysis carried in [1], we can set the following result:
+
+kr|ﬄﬄﬄuﬄﬄ{hzÁﬄﬄXﬄﬄﬄ}ij
+
+À
+
+ruðXiÞ
+
+Á
+
+Xijk
+
+6
+
+max jHðuÞðYÞXij
+Y 2½X i ;X j 
+
+Á
+
+Xijj
+
+ð2Þ
+
+Uij
+
+where HðuÞ ¼ rð2Þu is the associated Hessian of u. Recall that taking u 2 C2ðXÞ we obtain ru 2 C1ðXÞ (Fig. 2). Applying the interpolation operator on ru we get
+
+PhðruÞðXiÞ ¼ ruðXiÞ ¼ gi:
+
+where gi denotes the exact value of the gradient at node i. Such interpolation combined with (1) leads to the deﬁnition of gij ¼ gj À gi given by:
+
+rð2ÞuXij ¼ gij
+
+ð3Þ
+
+Finally by projecting (3) along the edge Xij we obtain:
+
+
+
+rð2Þu Xij Á Xij ¼ gij Á Xij
+
+ð4Þ
+
+Consequently, we have from (4) a deﬁnition of the projected second derivative of u in terms of only the values of the gradient at the extremities of the edge. Recall also that due to the fact that uhjK 2 P1ðKÞ and u is continuous along the edge, the gradient projection along the edge is also continuous although it is a piecewise constant vector ﬁeld.
+
+2.1. Error along the edge
+
+We denote the error along the edges using the following expression:
+
+eij ¼ gij Á Xij
+
+ð5Þ
+
+This error sampling is the exact interpolation error along the edge and enables us to evaluate the global L1 error [1].
+
+2.2. Gradient recovery
+
+Eq. (5) can be evaluated only when the gradient of u is known and continuous at the nodes of the mesh. However the
+
+author in [1] proposes a recovery gradient operator deﬁned by a local optimization problem as follows:
+
+X
+
+Gi ¼ argminG jG Á Xij À Uijj2
+
+ð6Þ
+
+j2CðiÞ
+
+This leads us to
+
+Gi ¼ ðXiÞÀ1 X UijXij
+
+ð7Þ
+
+j2CðiÞ
+
+where
+
+Xi
+
+¼
+
+1 jCðiÞj
+
+P
+j2CðiÞ
+
+Xij
+
+
+
+Xij
+
+is
+
+what
+
+we
+
+call
+
+the
+
+length
+
+distribution
+
+tensor
+
+at
+
+node
+
+i.
+
+Additionally,
+
+the
+
+second
+
+order
+
+is
+
+pre-
+
+served by using such a construction:
+
+
+
+
+
+
+
+
+
+j Gi À ruðXiÞ Á Xijj $ HðuÞXij Á Xij
+
+Fig. 2. Varying the edge in its own direction.
+
+68
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+2.3. Error behavior due to varying the edge length
+
+We examine now how the error behaves when we change the length of the edges. In fact the objective is to ﬁnd the opti-
+
+mal length of all the edges of the mesh.
+
+An interesting way of linking the error variations to the changes in edge lengths is by introducing a stretching factor s 2 R
+
+such that
+
+(
+
+Xe ij ¼ sXij eij ¼ s2eij ¼ s2Gij Á Xij
+
+ð8Þ
+
+where ~eij and Xe ij are the target error at edge ij and its associated edge length. Eqs. (8) mean that stretching the edge by a factor s changes the error quadratically and this corresponds to an optimal behavior for the P1 elements.
+On the other hand, from a meshing perspective, it is not sufﬁcient to break the edge if the error is too large or to enlarge it if it is too small. Indeed, it is necessary to take into account the neighborhood of the node so that the best averaging repre-
+sentation is a metric deﬁned at each node. Such a metric construction is the key point of [1].
+
+2.4. Metric construction from the edge distribution tensor
+
+The error analysis developed in the previous section together with the metric construction procedure leads to the ‘‘unit
+
+metric mesh’’:
+
+Mi ¼ 1 d
+
+1 jCðiÞj
+
+X Xij
+j2CðiÞ
+
+
+
+!À1 Xij
+
+and
+
+X Mi : Xij  Xij ¼ 1
+j2CðiÞ
+
+For a complete justiﬁcation of this result, the reader is referred to [1].
+
+Consequently, for a set of stretching coefﬁcients
+
+S
+
+È ¼ sij
+
+2 Rþ
+
+i
+
+¼
+
+1; Á Á Á ; N
+
+j ¼ 1; Á Á Á ; N;
+
+É CðiÞ \ CðjÞ – /
+
+we
+
+can simply
+
+Mi ¼
+
+1 d
+
+deﬁne the X
+s2ijXij 
+
+me!trÀi1c Xij
+
+associated
+
+with
+
+S
+
+as
+
+follows:
+
+ð9Þ
+
+j2CðiÞ
+
+Note that Mi is still positive deﬁnite when sij – 0 8ij.
+
+2.5. Computing the stretching coefﬁcient
+
+We introduce gij ¼ sÀij p as being the number of created nodes as a result of reducing the edge by a factor sij. The exponent p
+intends to take into account the fact that the nodes are created not only along the edge but also implicitly from the crossing of the newly emerged edges. It is linked to the space dimension (2 or 3). However, any choice of p could be correct as long as the relation between the stretching sij factor and the number of created nodes tends to 1. In practice and for anisotropic meshes, we ﬁxed p ¼ 1:5 in all the following numerical experiments which gives in general a faster and satisfactory results.
+Thus, if we ﬁx the total number of edges to A, the optimal mesh will be derived using the following stretching factor deﬁnition:
+ 1 k pþ2
+sij ¼ eij
+
+with
+
+k
+
+¼
+
+0P @i
+
+P
+j2CðiÞ
+
+p
+epþ2 ij
+
+1pþ2 p
+A
+
+A
+
+For further details about optimal factors, the reader is directed to [1].
+
+To simplify and clarify the presentation, we propose in what follows the main steps needed for the metric construction at
+
+the nodes. The latter construction will subsequently lead to the required adaptive anisotropic meshing:
+
+Mi ¼
+
+1 d
+
+X
+
+s2ij Xij
+
+
+
+!À1 Xij
+
+j2CðiÞ
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+69
+
+where
+
+0P P
+
+1 p
+
+1 p
+
+@
+
+i
+
+A j2CðiÞ epijþ2
+
+A
+
+sij ¼
+
+À Á1 e pþ2
+ij
+
+eij ¼ Gij Á Xij
+
+and
+
+Gi ¼ ðXiÞÀ1 X UijXij
+j2CðiÞ
+
+3. Extension to multi-component ﬁeld
+
+The main objective of this paper is to apply the adaptive anisotropic meshing to the Navier–Stokes equations. In that case we will adapt the mesh to the velocity ﬁelds. However the following remains valid for any number of components, i.e. it provides an extension of the way of adapting mesh to multiple criteria.
+A common way to adapt a mesh to several components is to calculate the metrics corresponding to each of them and then to produce a unique metric by an operation known as the intersection of metrics.
+In this work, we extend the anisotropic theory developed previously and we compute the error along the edges for a vectorial quantity. Therefore, by using an adequate scaling for all the components, we show in what follows that we can still produce only one metric.
+Let us introduce u ¼ fu1; u2; Á Á Á ; ung,
+V ¼ V ÂV ÂÁÁÁÂV
+
+and
+
+Vh ¼ Vh Â Vh Â Á Á Á Â Vh
+
+The choice of using the above theory for each component of u turns out to be particularly handy with a view to a unique
+
+metric construction. We can still simply use the same theory developed previously without any necessary modiﬁcation. It
+
+comes out immediately that the error is now a vector given by the following expression:
+
+n
+
+o
+
+eij ¼ e1ij; e2ij; Á Á Á ; enij
+
+Although there are other possibilities, we choose to produce a simple error value for each edge using the following:
+
+1.
+
+L2
+
+case:
+
+eij
+
+¼
+
+P
+k
+
+ ekij
+
+2
+
+1 2
+
+2.
+
+L1 case: eij ¼ and provides
+
+akm¼u1a;nÁÁxÁi;nqeukijeamndettrhicu. sInfrtohme
+
+a unique following
+
+eij value, the scalar theory exposed in the previous sections numerical experiments, we used the L2 case to compute the
+
+remains valid error. Indeed,
+
+for the velocity component we did not observe a signiﬁcant difference between the two norms. However, in multiphysics
+
+application, the choice of the norms would affect the results and this requires furthur investigations.
+
+Navier–Stokes at high Reynolds number exhibits the emergence of vortices of different sizes. In this work, we validate the
+
+proposed approach by comparing two and three dimensional results with very precise references on the well established lid
+
+driven cavity problem. The objective is then to adapt the mesh not only using the velocity norm, but also all the vector
+
+components.
+Denote by vh the ﬁnite element solution of the Navier–Stokes equations. In order to build a metric ﬁeld and to construct
+then the corresponding mesh, we propose to use a normalised velocity and the proposed edge-based framework. However,
+
+in this work, we highlight the capability toaccount at the same time for the velocity and its components. Therefore, we con-
+
+sider the following nodal vector ﬁeld uh ¼
+
+v jv
+
+h h
+
+j
+
+;
+
+jv h j maxjv
+
+h
+
+j
+
+made of d þ 1 components. We obtain then for every node i and direc-
+
+tion j
+
+8
+
+9
+
+uh ðXi Þ
+
+¼
+
+uðXiÞ
+
+¼
+
+>< V >:jV
+
+i
+ij
+
+;
+
+jV ij maxjV
+
+>= jj>;
+
+j
+
+The edge-based metric technique as the Hessian-based metric one rely then on an interpolation error of a certain u for which uh
+
+is the interpolant. Obviously the case jVij
+
+¼
+
+0
+
+must
+
+be
+
+accounted
+
+for
+
+by
+
+using
+
+Vi
+maxðe;jV
+
+i
+
+jÞ
+
+which means that uik
+
+¼
+
+0 when jVij
+
+¼
+
+0. All the
+
+following results will be using the error in the normalized vector ﬁeld however the norm of the velocity will also be accounted for.
+
+70
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Fig. 3. The unit vector (left) and the velocity vector (right).
+Note that adaptivity will account for both the change of direction of the velocity (as shown in Fig. 3) and and its magnitude. Consequently, and as presented by the numerical results in the following section, even the small vortices developed by the solution will be very well captured. What is even more interesting is the capability of the method to automatically detect the boundary layers due to the anisotropically adapted mesh exhibiting highly stretched elements.
+Finally, we recall that the used mesh technique referred as MTC is based on local modiﬁcations and on conformity controls through a minimal volume theorem. More details can be found in [6,5].
+
+4. VMS: incompressible Navier–Stokes solver
+
+In this section the general equations of time-dependent incompressible Navier–Stokes equation are solved. The stabilizing schemes from a variational multiscale point of view are revisited, described and presented [11]. Both the velocity and the pressure spaces are enriched which cures the spurious oscillations in the convection-dominated regime and deals with the pressure instability. The stabilization parameters will be determined rigorously taking into account the anisotropy of the mesh using a directional element diameter.
+
+4.1. Basic principles of the multiscale approach
+
+Following [12], we consider a direct sum decomposition of the velocity and the pressure ﬁelds into resolvable coarse-
+
+scale and unresolved ﬁne-scale v ¼ vh þ v0 and p ¼ ph þ p0. Likewise, we apply the same decomposition for the weighting
+functions w ¼ wh þ w0 and q ¼ qh þ q0. The unresolved ﬁne-scales are usually modelled using residual based terms that
+are derived consistently. The static condensation consists of substituting the ﬁne-scale solution into the large-scale problem
+
+providing additional terms, tuned by a local stabilizing parameter. The latter enhances the stability and accuracy of the stan-
+
+dard Galerkin formulation.
+
+The
+
+enrichment
+
+of
+
+the
+
+functional
+
+spaces
+
+is
+
+performed
+
+as
+
+follows:
+
+V
+
+¼
+
+Vh
+
+È
+
+V0; V0
+
+¼
+
+V h;0
+
+È
+
+V
+
+0 0
+
+and
+
+Q
+
+¼
+
+Qh
+
+È
+
+Q0.
+
+Thus,
+
+the
+
+mixed-ﬁnite element approximation of the time-dependent Navier–Stokes problem can read:
+
+Find a pair v : ½0; T ! V and p : ð0; T ! Q such that : 8 ðw; qÞ 2 V0 Â Q
+
+8 >>><
+
+qð@tðvh þ v0Þ; ðwh þð2leðvh þ v0Þ
+
+þ w0ÞÞX
+: eðwh þ
+
+þ qððvh
+w0 ÞÞX
+
+þ
+
+v0Þ
+
+Á
+
+rðvh
+
+þ
+
+v0Þ;
+
+ðwh
+
+þ
+
+w0ÞÞX
+
+>>>:
+
+Àððph þ
+ðr Á ðvh
+
+p0Þ; r
+þ v0Þ;
+
+Á ðwh ðqh þ
+
+þ w0ÞÞX q0ÞÞX ¼
+
+¼ 0
+
+ðf;
+
+ðwh
+
+þ
+
+w0 ÞÞX
+
+ð10Þ
+
+where q and l are the density and the dynamic viscosity, respectively. To derive the stabilized formulation, we ﬁrst solve the
+ﬁne scale problem, deﬁned on the sum of element interiors and written in terms of the time-dependent large-scale variables.
+
+Fig. 4. Longest triangle lenght in the streamline direction.
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+71
+
+Fig. 5. The 2D computational domain and the corresponding plot axis. Fig. 6. Anisotropic meshes at Reynolds 1000; 5000 and 10,000. Fig. 7. Zooms on the mesh close to the right wall.
+
+72
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Fig. 8. Comparison of velocity proﬁles in the mid-planes for Re ¼ 1000 (top), for Re ¼ 5000 (middle) and for Re = 10,000 (bottom). Left: Velocity proﬁles for Vx along x ¼ 0:5 . Right: Velocity proﬁles for Vy along y ¼ 0:5.
+Then we substitute the ﬁne-scale solution back into the coarse problem, thereby eliminating the explicit appearance of the ﬁnescale while still modelling their effects. It is worth mentioning that this would be equivalent to formulating the problem with a decomposition of linears (or bilinears) plus residual-free bubbles (see [13] for more details). At this stage, two important remarks have to be made in order to deal with the time-dependency and the non-linearity of the momentum equation of the subscale system:
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Table 1 Velocity proﬁles in median plane x = 0.5 at Re = 1000.
+
+y
+1.0000 0.9766 0.9688 0.9609 0.9531 0.8516 0.7344 0.6172 0.5000 0.4531 0.2813 0.1719 0.1016 0.0703 0.0625 0.0547 0.0000
+
+Ref. [27]
+1.0000000 0.6644227 0.5808359 0.5169277 0.4723329 0.3372212 0.1886747 0.0570178 À0.0620561 À0.1081999 À0.2803696 À0.3885691 À0.3004561 À0.2228955 À0.2023300 À0.1812881 0.0000000
+
+Ref. [28]
+1.0000000 0.6644194 0.5808318 0.5169214 0.4723260 0.3372128 0.1886680 0.0570151 À0.0620535 À0.1081955 À0.2803632 À0.3885624 À0.3004504 À0.2228928 À0.2023277 À0.1812863 0.0000000
+
+Isotropic
+1.0000000 0.6644520 0.5808070 0.5168170 0.4721800 0.3370270 0.1885570 0.0569487 À0.0620790 À0.1082040 À0.2803280 À0.3883390 À0.3001060 À0.2225900 À0.2020430 À0.1810220 0.0000000
+
+73
+Anisotropic
+1.0000000 0.6627950 0.5798160 0.5126750 0.4709190 0.3359990 0.1883090 0.0572112 À0.0616432 À0.1078430 À0.2808320 À0.3863410 À0.3009820 À0.2243200 À0.2041190 À0.1828680 0.0000000
+
+Table 2 Velocity proﬁles in median plane y = 0.5 at Re = 1000.
+
+x
+1.0000 0.995 0.99 0.98 0.97 0.9688 0.9609 0.9531 0.9453 0.9063 0.8594 0.8047 0.5000 0.2344 0.2266 0.1563 0.0938 0.0781 0.0703 0.0625 0.04 0.03 0.02 0.01 0.0000
+
+Ref. [27]
+0.0000000 – – – – À0.2279225 À0.2936869 À0.3553213 À0.4103754 À0.5264392 À0.4264545 À0.3202137 0.0257995 0.3253592 0.3339924 0.3769189 0.3330442 0.3099097 0.2962703 0.2807056 – – – – 0.0000000
+
+Ref. [28]
+0.0000000 – – – – À0.2279177 À0.2936814 À0.3553154 À0.4103691 À0.5264320 À0.4264492 À0.3202068 0.0257987 0.3253529 0.3339860 0.3769119 0.3330381 0.3099041 0.2962650 0.2807005 – – – – 0.0000000
+
+Isotropic
+0.0000000 À0.0291205 À0.0616905 À0.135746 À0.217592 À0.2276530 À0.2933580 À0.3549680 À0.4099800 À0.5262860 À0.4263870 À0.3200460
+0.0257945 0.3252190 0.3338450 0.3767000 0.3328310 0.3097090 0.2960800 0.2805250 0.218777 0.179473 0.130519 0.0708388 0.0000000
+
+Anisotropic
+0.0000000 À0.0309492 À0.0634961 À0.1383850 À0.2217140 À0.2288860 À0.2958380 À0.3577230 À0.4115380 À0.5240470 À0.4247730 À0.3188750
+0.0262780 0.3249600 0.3332520 0.3750800 0.3313150 0.3076600 0.2939980 0.2796660 0.2175300 0.1773550 0.1287840 0.0694771 0.0000000
+
+(i) the subscales are not tracked in time, therefore, quasi-static subscales are considered here (see [14] for a justiﬁcation
+
+of this choice); however, the subscale equation remains quasi time-dependent since it is driven by the large-scale
+
+time-dependent residual. For time-tracking of subscales, see [15].
+
+(ii) the convective velocity of the non-linear term may be approximated using only large-scale part so that
+
+ðvh þ v0Þ Á rðvh þ v0Þ % vh Á rðvh þ v0Þ (see [11]).
+
+Substituting the approximated v0 and p0 into the large-scale equation and applying integration by parts we get:
+
+8
+
+X
+
+>>>>>>><
+
+qð@tvh; whÞX þ ðqvh Á rvh; whÞX À ðsK
+
+X
+
+K2T h
+
+Àðph; r Á whÞX þ ðsCRC; r Á whÞK ¼
+
+RM; qvhrwhÞK þ ð2leðvhÞ
+ðf; whÞX 8wh 2 Vh;0
+
+:
+
+eðwhÞÞX
+
+>>>>>>>: ðr Á
+
+vh; qhÞX
+
+À
+
+X K2T h
+ðsKRM; rqhÞK
+
+¼
+
+0
+
+8qh 2 Q h
+
+K2T h
+
+ð11Þ
+
+with RM and RC the momentum and continuity residuals, respectively:
+
+74
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Fig. 9. Comparison of velocity proﬁles for Re ¼ 1000 (top), for Re ¼ 5000 (middle) and for Re = 10,000 (bottom). Left: Velocity proﬁles for Vy along y ¼ 0:1 . Right: Velocity proﬁles for Vy along y ¼ 0:05.
+
+RM ¼ f À q@ vt h À qðvh þ v0Þ Á rvh À rph RC ¼ Àr Á vh
+
+ð12Þ
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+75
+
+Fig. 10. Comparison of velocity proﬁles for Re ¼ 1000 (top), for Re ¼ 5000 (middle) and for Re = 10,000 (bottom). Left: Velocity proﬁles for V y along y ¼ 0:9 . Right: Velocity proﬁles for Vy along y ¼ 0:99.
+
+76
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Fig. 11. Comparison of velocity proﬁles for Re ¼ 1000 (top), for Re ¼ 5000 (middle) and for Re = 10,000 (bottom). Left: Velocity proﬁles for V x along x ¼ 0:1 . Right: Velocity proﬁles for Vx along x ¼ 0:9.
+When compared with the standard Galerkin method, the proposed stable formulation involves additional integrals that
+are evaluated element-wise. These additional terms, obtained by replacing the approximated v0 and p0 into the large-scale
+equation, represent the effects of the sub-grid scales and they are introduced in a consistent way to the Galerkin formulation. All of these terms are multiplied by stabilizing parameters and enable to overcome the instability of the classical formulation arising in convection dominated ﬂows and to deal with the pressure instabilities.
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+77
+
+In this work, we adopt the following deﬁnitions for the stabilizing parameters sK and sC as proposed in [16] and in [17]
+
+respectively:
+
+sK
+
+¼
+
+0@2q2
+Dt
+
+þ
+
+2qkvhkK 2
+hK
+
+þ
+
+!2 1À1=2
+
+4l A
+h2K
+
+;
+
+sC ¼
+
+v l2
+q
+
+þ
+
+ c2k hkK c1 hK
+
+2 !1=2
+
+ð13Þ
+
+where c1 and c2 are two constants independent from hK [17] and hK being the characteristic length of the element. Note that the calculation of hK is one of the main subjects of this paper. Recall that the stability coefﬁcients weight the
+extra terms added to the weak formulation (11) and they are deﬁned for each element K of the triangulation (13). Typically, these coefﬁcients depend on the local mesh size hK . Many numerical experiments show that good results can be obtained when using the minimum edge length of K [18], while others always use the triangle diameter (see [19] for details).
+Nevertheless, in the case of strongly anisotropic meshes with highly stretched elements, the deﬁnition of hK is still an open problem and plays a critical role in the design of the stabilizing coefﬁcients [20,17]. In [21] the authors examine deeply the effect of different element lenght deﬁnitions on disorted meshes. In [22] anisotropic error estimates for the residual free bubble (RFB) method are developed to derive a new choice of the stabilizing parameters suitable for anisotropic partitions. In this work, we adopted the deﬁnition proposed in [16] to compute hK as the diameter of K in the direction of the velocity u (see Fig. 4):
+
+hK
+
+¼
+
+2 j vh j
+
+v RNK i¼1
+
+j
+
+h Á rui
+
+j
+
+ð14Þ
+
+where NK is the number of vertices of K and u1; . . . ; uNK are the usual basis functions of P1ðKÞ mapped onto K.
+Note also that the use of the time step in the deﬁnition of the stabilizing parameter (13) is another important issue, in particular for small time steps. Several approaches can be found in the literature, in particular the use of dynamic subscales in [15] and the deﬁnition of the stabilization parameters computed from element matrices and vectors in [16]. These approaches have been used successfully and in both cases, the steady solution is independent of the time step and are stable for small time steps. In the following section, we show that we did not encounter these problems in the numerical results. Using adaptive mesh reﬁnement, the ﬁrst term in the deﬁnition of the stabilizing parameter (13) becomes small compared to the other terms. We also varied the time steps dynamically (dynamic adaptive meshing) to ensure that the stationary solution is stable and thus the contribution of the time steps in the stabilization parameter become negligible. However, the details of the stabilizing parameters are still very important and critical for successful use of stabilizing methods. Therefore, further research will focus on upgrading the existing code to take into account dynamic subscales from one hand and adaptive time stepping on the other hand in order to address mainly non stationary problem and turbulent ﬂows.
+
+5. Numerical examples
+The performance of the method will be assessed by benchmarking the driven cavity at low and high Reynolds numbers and by comparing to very accurate reference solutions. In such simulations we show that boundary layers as well as vortices can be well captured by the mesh. Results are compared with the literature and show that the ﬂow solvers based on stabilized ﬁnite element method are able to exhibit very good accuracy properties on anisotropic meshes with highly stretched elements. Additionally, we provide new measurements positioned near boundary layers as shown in Fig. 5. Such a new set of
+
+Fig. 12. Snapshots of the anisotropic meshes for Reynolds 2000 and 100,000.
+
+78
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Fig. 13. Streamlines snapshots at Reynolds 1000; 3200 and 5000.
+data can serve as a useful benchmark for comparisons of the results of the time dependent two and three dimensional incompressible Navier–Stokes equations with anisotropic mesh adaptation.
+5.1. Driven ﬂow cavity problem (2-D)
+We begin to numerically solve the classical 2-D lid-driven ﬂow problem. This test has been widely used as a benchmark for numerical methods and has been analyzed by a number of authors: [23,24] using ﬁnite difference and ﬁnite volume methods, and [25,26,11] using stabilized ﬁnite element method.
+Homogeneous Dirichlet boundary conditions for the velocity are imposed equal to one on the upper boundary of the computational domain, i.e. at y ¼ 1, and zero elsewhere on. The source term is identical to zero. The time step is ﬁxed to 0:05. The density is set to one and the viscosity is adjusted in order to obtain Reynolds number of 1000, 5000, 10,000, 20,000, and 100,000.
+An important point to mention before we start is that the following mesh adaptations are always performed for a ﬁxed number of nodes. This turns out to be an important advantage because it avoids a drastic increase in the number of unknowns and in the computational cost. In other words, it provides a very useful tool in particular for industrial applications. Therefore, for Reynolds number of 1000; 5000 and 10,000 we ﬁxed the number of nodes A to be equal to 10,000. The adaptive process always starts from the uniform mesh presented in Fig. 5 and is iterated every ﬁve time step.
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+79
+
+Fig. 14. 3D Anisotropic meshes at Reynolds 1000; 3200 and 5000.
+The results on the three respective converged meshes ($10,000 nodes) can be seen in Fig. 6. The exact number of nodes is 9771. Note the concentration of the resolution not only along all the boundary layers but also at the detachment regions. This reﬂects well the anisotropy of the solution caused by the discontinuity of the boundary conditions and the nature of the ﬂow. The elements at the central bulk of the cavity region around the primary vortex are mostly isotropic and increase in size as the Reynolds number increases. Again, this reﬂects and explains how, for a controlled number of nodes, the mesh is naturally and automatically coarsened in that region with the goal of reducing the mesh size around the secondary vortices in the bottom corners.
+As Reynolds increases, the capturing of different secondary vortices is very good. This is mainly due to the choice of the unit vector combining the velocity components and its norm. The proposed approach shows that it is capable of capturing all the vortices at all scales. Indeed, the small voricies are not intense enough to be captured accurately by classical adaptive strategies.
+The zoom on the right side of the cavity in Fig. 7 highlights how sharply the layers can be captured. It shows the correct orientation and deformation of the mesh elements (longest edges parallel to the boundary). This yields a great reduction of the number of triangles. These results give conﬁdence that the extension of the approach to take into account all the velocity components seems to work very well and plays an important role for transient ﬂows.
+The objective of these simulations is to compare now the newly obtained results to very accurate reference solutions. Therefore, we ﬁrst plot the velocity proﬁles for Vx along x ¼ 0:5 and for Vy along y ¼ 0:5 at Reynolds 1000; 5000 and 10,000. Fig. 8 shows respectively that all the results are in very good agreement with a reference solution computed on a 600 Â 600 = 360,000 points ﬁxed mesh [11].
+For more comparisons, we present in Table 1 and 2 values of the vertical and horizontal components of the velocity along x ¼ 0:5 and y ¼ 0:5, respectively. We report our results taken out from simulations made ﬁrst on a ﬁne isotropic mesh (600Â600) and second from the converged anisotropic meshes ($10,000 nodes). We compare these results to very precise computations found in [27,28] made on a uniform grid composed of 5000Â5000 nodes. As shown in Table 1 and 2, a very good agreement is pointed between the present solution on isotropic 600Â600 unstructured meshes and the references. The agreement is very good up to the fourth digit. However, also results from the anisotropic meshes compare well and agree up to the second digit with the highly accurate solutions computed on 5000 Â 5000 = 25,000,000 points [28]. Again, results obtained by the VMS ﬂow solver using either isotropic or, and in particular, anisotropic meshes compete very well to the literature.
+It is worth to mention that there is a lack in the literature of highly resolved data at high Reynolds number. In particular, measurements taken near the walls does not exist yet in the literature. Thus, it makes the comparisons and validation of the code on anisotropic meshes at high Reynolds number difﬁcult. Therefore, we will use in what follows our results carried out on the isotropic meshes (600Â600) as references.
+The newly introduced additional sensors near boundary layers are presented in Table 2. These sensors placed close to the walls are crucial for validating the efﬁciency in well capturing the boundary layers. Furthermore, we present the new plots taken near the corners in Figs. 9–11. We preview that the rich set of data presented herein could constitute a very interesting benchmark for purposes of validating the accuracy of the adaptive anisotropic meshing for incompressible Navier–Stokes near boundary layers.
+We show in these ﬁgures the velocity proﬁles for Vy along y ¼ 0:1; 0:05; 0:9 and 0:99 and for Vx along x ¼ 0:1 and 0:9 at Reynolds 1000; 5000 and 10,000. All the results are in very good agreement with the proposed reference having 600Â600 elements. It is clear that in regions of intense vortices and very close to the walls, the use of anisotropic meshes plays a critical role. All the boundary layers are sharply captured and automatically identiﬁed. We can clearly see from these plots that the creation of extremely stretched elements near the walls provides accurate results. The reference computed on a very ﬁne
+
+80
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Fig. 15. Comparison of velocity proﬁles in the mid-planes for Re ¼ 1000 (top) and for Re ¼ 3200 (bottom). Left: Velocity proﬁles for V x along x ¼ 0:5 . Right: Velocity proﬁles for Vy along y ¼ 0:5.
+isotropic mesh (600Â600) agree with the anisotropic results using only 10,000 nodes up to the second digit and differ very slightly in the third digit at some points. We provide in Tables 3–9 in the Appendix the evaluation of all the velocity proﬁles at different benchmark locations and for different Reynolds number. Such a new set of data can serve as a useful benchmark for comparisons of the results.
+Finally, in order to assess the capability of the VMS method to simulate high Reynolds number ﬂows on anisotropic meshes, we repeated the simulation for Reynolds numbers of 20,000 and 100,000. Note that details on obtaining the steady solution for different Reynolds numbers is analyzed by the authors in [11] and will not be repeated here.
+We increased the number of nodes to 20,000 in order to capture more accurately the characteristic of the unsteady solution. We present only in Fig. 12 snapshots of the meshes at a certain time step. As expected, all the main directional features characterizing the velocity inside the lid-driven cavity are detected and well captured by the anisotropic error estimator. The mesh elements are highly stretched along the direction of the layers, at the detachments regions and around all the newly appeared secondary vortices. Once again, the developed incompressible Navier–Stokes VMS solver shows to be very efﬁcient and robust at high Reynolds numbers using highly stretched elements. Again, for a given constraint on the number of elements we can ﬁnd the mesh that maximizes the accuracy of the numerical solution.
+5.2. Driven ﬂow cavity problem (3-D)
+We continue to numerically solve the classical 3-D lid-driven ﬂow problem. Same as in the 2-D case, Dirichlet boundary conditions are imposed on the velocity. At the upper wall at z ¼ 1 it is equal to one, and zero elsewhere. The source term is
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+81
+
+Fig. 16. Zooms on the mesh details inside the 3D cavity.
+identical to zero. The time step is ﬁxed to 0:05 s. The viscosity is adjusted in order to obtain Reynolds number of 1000; 3200 and 5000.
+All numerical experiments are done with a ﬁxed number of elements ($450,000). Again, in 3-D where the ﬂow characteristics are much more complicated, all the boundary layers as well as the vortices are sharply captured and identiﬁed.
+Fig. 13 highlights the stretching of the elements near the walls, in the corners and even at the buriﬁcations of the vortices for Reynolds equal 1000; 3200 and 5000 respectively. The higher the Reynolds number is, the denser the mesh around these regions is as shown in Fig. 14. The velocity proﬁles for Vy along y ¼ 0:5 and for Vx along x ¼ 0:5 at Reynolds 1000 and 3200 are presented in Fig. 15. All the results are in good agreement with the reference having a twice ﬁner mesh of 96Â96Â96 grid points [29].
+In Fig. 16 we present different zoomed captures on the mesh to show how the elements can be highly stretched along the direction of the layers. This reﬂects well the accuracy and details of the resolution caused by the discontinuity of the boundary conditions and the nature of the ﬂow.
+The anisotropic adaptive procedure modiﬁes the mesh in a way that the local mesh resolutions become adequate in all directions. Recall again that these plots reﬂect for the given ﬁxed number of elements ($450,000) the mesh that maximizes the accuracy of the numerical solution. More analysis taking into account an increased number of elements and higher Reynolds number will be the subject of further investigations. The presented test cases are considered here in the objective of demonstrating the capability of the VMS method to simulate 2D and 3D high Reynolds number ﬂows on anisotropic meshes.
+6. Conclusions
+We have showed in this paper that anisotropic adapted meshes with highly stretched elements can be used to compute high Reynolds number ﬂows. We presented an a posteriori estimate based on the length distribution tensor approach and the associated edge based error analysis. We proposed an important extension of the anisotropic theory for computing the error along the edges for a vectorial quantity. It was addressed for the incompressible Navier–Stokes equations. All the meshes are obtained under the constraint of a ﬁxed number of edges in the mesh. The Variational MultiScale (VMS) method is shown to be efﬁcient for simulating ﬂows at high Reynolds number. We demonstrated the efﬁciency of the anisotropic adaptive procedure to be capable of automatically producing boundary layer meshes inside the 2D and 3D lid-driven cavities. The numerical results show that the ﬂow solvers based on stabilized ﬁnite element method is able to exhibit good stability and accuracy properties on anisotropic meshes. All the main directional features characterizing the velocity inside the cavities are detected and well captured by the anisotropic error estimator. The mesh elements are highly stretched along the direction of the layers, at the detachments regions and around all the vortices. Further investigations will take into account the performance of the presented adaptive method in terms of the computational cost, the speed-up and the frequency of remeshing.
+
+82
+Appendix A See Tables 3–9.
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Table 3 Velocity proﬁles along y = 0.1 at Re = 1000; 5000 and 10,000.
+
+x
+
+Re 1000
+
+Isotropic
+
+Anisotropic
+
+1 0.995 0.99 0.98 0.97 0.9688 0.9609 0.9531 0.9453 0.9063 0.8594 0.8047 0.68 0.5 0.35 0.2344 0.2266 0.1563 0.0938 0.0781 0.0703 0.0625 0.04 0.03 0.02 0.01 0
+
+0.0000000 0.0028699 0.0054263 0.0096696 0.0128691 0.0131889 0.0149820 0.0162521 0.0170665 0.0152383 0.0015116 À0.0275861 À0.0826293 À0.0029825 0.0635683 0.0493690 0.0468943 0.0239369 0.0058942 0.0020474 0.0003426 À0.0011747 À0.0040851 À0.0044212 À0.0039690 À0.0025565 0.0000000
+
+0.0000000 0.0027895 0.0055768 0.0096989 0.0128372 0.0131462 0.0150070 0.0161125 0.0169030 0.0148674 0.0006643 À0.0286982 À0.0835075 À0.0012866 0.0640373 0.0496855 0.0478802 0.0242726 0.0054218 0.0016184 À0.0000599 À0.0015226 À0.0042144 À0.0044429 À0.0039641 À0.0024884 0.0000000
+
+Re 5000
+Isotropic
+0.0000000 0.0022609 0.0043189 0.0079040 0.0109648 0.0113088 0.0134933 0.0155695 0.0176123 0.0261677 0.0184806 À0.0318014 À0.2010950 À0.0072652 0.1331670 0.1378640 0.1279270 0.0332019 À0.0004629 À0.0081142 À0.0119200 À0.0154073 À0.0205180 À0.0189764 À0.0147121 À0.0081283 0.0000000
+
+Anisotropic
+0.0000000 0.0026411 0.0048305 0.0085629 0.0114453 0.0117912 0.0140684 0.0162156 0.0180973 0.0254087 0.0160643 À0.0389244 À0.1983600 À0.0022703 0.1330430 0.1351300 0.1247830 0.0324305 À0.0007638 À0.0084361 À0.0120592 À0.0154550 À0.0207243 À0.0189299 À0.0148907 À0.0085185 0.0000000
+
+Re 10000
+Isotropic
+0.0000000 À0.0012750 À0.0021747 À0.0029545 À0.0025677 À0.0024530 À0.0014134
+0.0000281 0.0017986 0.0144699 0.0321385 À0.0128059 À0.2218390 À0.0144250 0.1276830 0.1858070 0.1761140 0.0319097 À0.0010597 À0.0081202 À0.0119101 À0.0153767 À0.0189067 À0.0159045 À0.0105931 À0.0045461 0.0000000
+
+Table 4 Velocity proﬁles along y = 0.05 at Re = 1000; 5000 and 10,000.
+
+x
+
+Re 1000
+
+1 0.995 0.99 0.98 0.97 0.9688 0.9609 0.9531 0.9453 0.9063 0.8594 0.8047 0.68 0.5 0.35 0.2344 0.2266 0.1563 0.0938 0.0781 0.0703 0.0625 0.04 0.03 0.02 0.01 0
+
+Isotropic
+0.0000000 0.0008902 0.0017525 0.0033453 0.0046951 0.0048388 0.0056896 0.0063685 0.0068978 0.0076996 0.0050978 À0.0032981 À0.0269715 0.0001768 0.0201256 0.0112588 0.0104794 0.0043208 À0.0004414 À0.0014917 À0.0019374 À0.0023088 À0.0027620 À0.0025639 À0.0020560 À0.0012058 0.0000000
+
+Anisotropic
+0.0000000 0.0009659 0.0018984 0.0035058 0.0048321 0.0049933 0.0057813 0.0064311 0.0069826 0.0074276 0.0046165 À0.0035951 À0.0275438 0.0007307 0.0194718 0.0113965 0.0104955 0.0040588 À0.0005609 À0.0015394 À0.0019389 À0.0022794 À0.0026935 À0.0025075 À0.0020254 À0.0011786 0.0000000
+
+Re 5000
+Isotropic
+0.0000000 0.0001999 0.0005127 0.0013517 0.0023451 0.0024707 0.0033358 0.0042591 0.0052712 0.0124339 0.0234348 0.0157412 À0.0767299 À0.0040499 0.0710539 0.0187005 0.0153041 0.0013661 À0.0039626 À0.0059776 À0.0067746 À0.0073184 À0.0068589 À0.0056142 À0.0038784 À0.0018988 0.0000000
+
+Anisotropic
+0.0000000 0.0002589 0.0006799 0.0017475 0.0028201 0.0029521 0.0039100 0.0048604 0.0060154 0.0130972 0.0231257 0.0134464 À0.0781889 À0.0001514 0.0712776 0.0178297 0.0146643 0.0008160 À0.0038931 À0.0057965 À0.0065370 À0.0070802 À0.0068040 À0.0055226 À0.0039862 À0.0019808 0.0000000
+
+Re 10000
+Isotropic
+0.0000000 À0.0007067 À0.0013089 À0.0021640 À0.0025290 À0.0025422 À0.0024781 À0.0021953 À0.0017419
+0.0022317 0.0187009 0.0385350 À0.0849058 À0.0113926 0.0973735 0.0173825 0.0124815 À0.0009835 À0.0045315 À0.0056301 À0.0058610 À0.0057965 À0.0038715 À0.0024650 À0.0010778 À0.0000582 0.0000000
+
+Anisotropic
+0.0000000 À0.0012848 À0.0021160 À0.0026087 À0.0019286 À0.0017991 À0.0005603
+0.0010415 0.0029928 0.0176565 0.0320748 À0.0237960 À0.2112270 À0.0091832 0.1301360 0.1807570 0.1703490 0.0247442 À0.0050904 À0.0096970 À0.0119676 À0.0145103 À0.0140716 À0.0106720 À0.0053601 À0.0014558 0.0000000
+Anisotropic
+0.0000000 À0.0008429 À0.0014736 À0.0022395 À0.0024071 À0.0024069 À0.0022448 À0.0018535 À0.0012952
+0.0038367 0.0168541 0.0377868 À0.0883661 À0.0098923 0.0992060 0.0185550 0.0132321 À0.0048994 À0.0057722 À0.0061406 À0.0062199 À0.0057249 À0.0028920 À0.0013287 0.0000514 0.0004598 0.0000000
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Table 5 Velocity proﬁles along y = 0.9 at Re = 1000; 5000 and 10,000.
+
+x
+
+Re 1000
+
+1 0.995 0.99 0.98 0.97 0.9688 0.9609 0.9531 0.9453 0.9063 0.8594 0.8047 0.68 0.5 0.35 0.2344 0.2266 0.1563 0.0938 0.0781 0.0703 0.0625 0.04 0.03 0.02 0.01 0
+
+Isotropic
+0.0000000 À0.2480340 À0.4444010 À0.6576440 À0.6609390 À0.6525430 À0.5770490 À0.4953390 À0.4231750 À0.2074590 À0.1044560 À0.0597069 À0.0193010
+0.0403123 0.1105540 0.1585220 0.1601350 0.1553350 0.1156010 0.1013280 0.0937891 0.0859488 0.0610618 0.0482129 0.0336480 0.0172440 0.0000000
+
+Anisotropic
+0.0000000 À0.2374210 À0.4305950 À0.6454720 À0.6528790 À0.6443750 À0.5721810 À0.4922050 À0.4209630 À0.2065830 À0.1042430 À0.0592939 À0.0190843
+0.0411548 0.1103660 0.1578570 0.1597330 0.1541600 0.1158050 0.1018740 0.0941373 0.0863129 0.0612495 0.0487663 0.0350355 0.0186867 0.0000000
+
+Re 5000
+Isotropic
+0.0000000 À0.4129790 À0.6570230 À0.6199860 À0.4367200 À0.4192390 À0.3271570 À0.2651130 À0.2227340 À0.1414190 À0.1156070 À0.0918685 À0.0412516
+0.0273441 0.1184350 0.2270170 0.2306300 0.1593710 0.0284157 0.0125650 0.0053722 À0.0020762 À0.0255059 À0.0334514 À0.0343822 À0.0236650 0.0000000
+
+Anisotropic
+0.0000000 À0.3961480 À0.6503630 À0.6227080 À0.4396930 À0.4233690 À0.3280060 À0.2656360 À0.2245950 À0.1413580 À0.1117020 À0.0891852 À0.0401072
+0.0280508 0.1163920 0.2220070 0.2267130 0.1605970 0.0289387 0.0127329 0.0056146 À0.0017642 À0.0251423 À0.0330129 À0.0334117 À0.0224074 0.0000000
+
+Re 10000
+Isotropic
+0.0000000 À0.4987950 À0.6954080 À0.4866860 À0.3199550 À0.3068260 À0.2449050 À0.2110280 À0.1920130 À0.1594320 À0.1311300 À0.0991269 À0.0440172
+0.0254031 0.1207160 0.2595210 0.2642170 0.1222130 0.0230917 0.0083211 À0.0004326 À0.0099995 À0.0430922 À0.0583689 À0.0634282 À0.0432569 0.0000000
+
+83
+Anisotropic
+0.0000000 À0.4827920 À0.6803550 À0.4958740 À0.3213660 À0.3072800 À0.2465390 À0.2124200 À0.1935900 À0.1492320 À0.1227080 À0.0953451 À0.0431439
+0.0224895 0.1148590 0.2602630 0.2741120 0.1365680 0.0113908 0.0009286 À0.0058621 À0.0141221 À0.0502842 À0.0699510 À0.0655063 À0.0494557 0.0000000
+
+Table 6 Velocity proﬁles along y = 0.99 at Re = 1000; 5000 and 10,000.
+
+x
+1 0.995 0.99 0.98 0.97 0.9688 0.9609 0.9531 0.9453 0.9063 0.8594 0.8047 0.68 0.5 0.35 0.2344 0.2266 0.1563 0.0938 0.0781 0.0703 0.0625 0.04 0.03 0.02 0.01 0
+
+Re 1000
+Isotropic
+0.0000000 À0.5277770 À0.3723760 À0.1257640 À0.0622653 À0.0582547 À0.0402881 À0.0301517 À0.0237053 À0.0095162 À0.0039561 À0.0017550 À0.0004454
+0.0012541 0.0037907 0.0056017 0.0057209 0.0071615 0.0140076 0.0188513 0.0223668 0.0272117 0.0549943 0.0833828 0.1393910 0.2448340 0.0000000
+
+Anisotropic
+0.0000000 À0.5128060 À0.3602500 À0.1249180 À0.0624960 À0.0586169 À0.0413969 À0.0298018 À0.0232277 À0.0104561 À0.0036541 À0.0018794 À0.0002242
+0.0010831 0.0042825 0.0055479 0.0056275 0.0074235 0.0141202 0.0188171 0.0231985 0.0279507 0.0551576 0.0832599 0.1374770 0.2372800 0.0000000
+
+Re 5000
+Isotropic
+0.0000000 À0.5640270 À0.2631620 À0.1109760 À0.0619725 À0.0580748 À0.0392775 À0.0273307 À0.0193897 À0.0046628 À0.0019986 À0.0017115 À0.0006313
+0.0028427 0.0092852 0.0090120 0.0085862 0.0064402 0.0173681 0.0223872 0.0254097 0.0298009 0.0479752 0.0634829 0.0891709 0.1342370 0.0000000
+
+Anisotropic
+0.0000000 À0.5366440 À0.2551320 À0.1094850 À0.0606700 À0.0573596 À0.0392790 À0.0269379 À0.0195354 À0.0047035 À0.0022647 À0.0014548 À0.0006274
+0.0028990 0.0084678 0.0087746 0.0084005 0.0066830 0.0170248 0.0228097 0.0266948 0.0302935 0.0477673 0.0633519 0.0882913 0.1324570 0.0000000
+
+Re 10000
+Isotropic
+0.0000000 À0.5123520 À0.2524210 À0.1059230 À0.0524008 À0.0481891 À0.0292167 À0.0183906 À0.0119511 À0.0029665 À0.0021822 À0.0022306 À0.0006078
+0.0038962 0.0134061 0.0072748 0.0062134 0.0069573 0.0181011 0.0218782 0.0233280 0.0270792 0.0387719 0.0492023 0.0632557 0.0882473 0.0000000
+
+Anisotropic
+0.0000000 À0.4707860 À0.2382100 À0.0999772 À0.0515023 À0.0473677 À0.0263888 À0.0167386 À0.0113193 À0.0033222 À0.0021802 À0.0017754 À0.0006896
+0.0033581 0.0118220 0.0118728 0.0101412 0.0029185 0.0190995 0.0225945 0.0243619 0.0264865 0.0360403 0.0499145 0.0645323 0.0890454 0.0000000
+
+84
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+Table 7 Velocity proﬁles along x = 0.1 at Re = 1000; 5000 and 10,000.
+
+x
+
+Re 1000
+
+1 0.9766 0.9688 0.9609 0.9531 0.8516 0.7344 0.6172 0.5 0.4531 0.2813 0.1719 0.1016 0.0703 0.0625 0.0547 0
+
+Isotropic
+1.0000000 0.0879579 À0.0179423 À0.0685380 À0.0860776 0.0274694 0.0681588 0.0428865 À0.0137653 À0.0381087 À0.0835571 À0.0436935 À0.0100421 À0.0000898 0.0016233 0.0029850 0.0000000
+
+Anisotropic
+1.0000000 0.0886929 À0.0164327 À0.0668738 À0.0844890 0.0267402 0.0671727 0.0425175 À0.0123833 À0.0380402 À0.0838790 À0.0456156 À0.0092176 0.0002360 0.0018652 0.0031499 0.0000000
+
+Re 5000
+Isotropic
+1.0000000 À0.1496140 À0.1641260 À0.1427020 À0.1128930
+0.0570653 0.1524930 0.0906166 0.0025517 À0.0342635 À0.1744950 À0.0668056 0.0062370 0.0152411 0.0158735 0.0159750 0.0000000
+
+Anisotropic
+1.0000000 À0.1480260 À0.1611460 À0.1403300 À0.1117810
+0.0603276 0.1492400 0.0883544 0.0021438 À0.0344411 À0.1725370 À0.0663809 0.0073912 0.0155232 0.0159719 0.0160089 0.0000000
+
+Re 10000
+Isotropic
+1.0000000 À0.1809650 À0.1569970 À0.1181380 À0.0843340
+0.0452722 0.1843760 0.0993516 0.0071497 À0.0293325 À0.1994050 À0.0715993 0.0105741 0.0150959 0.0145293 0.0135615 0.0000000
+
+Table 8 Velocity proﬁles along x = 0.5 at Re = 1000; 5000 and 10,000.
+
+x
+
+Re 1000
+
+Isotropic
+
+Anisotropic
+
+1 0.9766 0.9688 0.9609 0.9531 0.8516 0.7344 0.6172 0.5 0.4531 0.2813 0.1719 0.1016 0.0703 0.0625 0.0547 0
+
+1.0000000 0.6644520 0.5808070 0.5168170 0.4721800 0.3370270 0.1885570 0.0569487 À0.0620790 À0.1082040 À0.2803280 À0.3883390 À0.3001060 À0.2225900 À0.2020430 À0.1810220 0.0000000
+
+1.0000000 0.6627950 0.5798160 0.5126750 0.4709190 0.3359990 0.1883090 0.0572112 À0.0616432 À0.1078430 À0.2808320 À0.3863410 À0.3009820 À0.2243200 À0.2041190 À0.1828680 0.0000000
+
+Re 5000
+Isotropic
+1.0000000 0.4966460 0.4775320 0.4771610 0.4778110 0.3480440 0.2043380 0.0810898 À0.0321448 À0.0761686 À0.2359640 À0.3380020 À0.4166910 À0.4453920 À0.4358020 À0.4156910 0.0000000
+
+Anisotropic
+1.0000000 0.4909960 0.4715350 0.4708050 0.4697510 0.3409100 0.1986210 0.0786197 À0.0303032 À0.0731047 À0.2295490 À0.3310870 À0.4123590 À0.4393590 À0.4375030 À0.4149380 0.0000000
+
+Re 10000
+Isotropic
+1.0000000 0.4922410 0.4990370 0.5007310 0.4958910 0.3484860 0.2072980 0.0853824 À0.0272493 À0.0711016 À0.2299490 À0.3308040 À0.3947840 À0.4372200 À0.4504880 À0.4581240 0.0000000
+
+Table 9 Velocity proﬁles along x = 0.9 at Re = 1000; 5000 and 10,000.
+
+x
+1 0.9766 0.9688 0.9609 0.9531 0.8516 0.7344 0.6172 0.5 0.4531 0.2813 0.1719 0.1016 0.0703 0.0625 0.0547 0
+
+Re 1000
+Isotropic
+1.0000000 0.5858810 0.5012220 0.4290800 0.3685090 0.0594422 À0.0073454 À0.0596426 À0.1284440 À0.1514330 À0.0799715 À0.0145768 0.0102063 0.0171627 0.0178398 0.0179611 0.0000000
+
+Anisotropic
+1.0000000 0.5867410 0.5013750 0.4302890 0.3677670 0.0570674 À0.0066659 À0.0576293 À0.1263530 À0.1496290 À0.0820036 À0.0149245 0.0097577 0.0167044 0.0175596 0.0176164 0.0000000
+
+Re 5000
+Isotropic
+1.0000000 0.4209180 0.3321440 0.2695800 0.2262920 0.0975897 0.0433834 À0.0074579 À0.0703575 À0.1027840 À0.2033250 À0.0084145 0.0137466 0.0227849 0.0231197 0.0223421 0.0000000
+
+Anisotropic
+1.0000000 0.4203090 0.3308200 0.2667960 0.2251250 0.0938108 0.0415838 À0.0048786 À0.0657928 À0.0964395 À0.2110040 À0.0102754 0.0121732 0.0224062 0.0231770 0.0229444 0.0000000
+
+Re 10000
+Isotropic
+1.0000000 0.3287090 0.2592910 0.2189880 0.1957580 0.1151170 0.0517246 À0.0009686 À0.0665846 À0.1003940 À0.2535010 0.0079659 0.0150463 0.0066649 0.0043883 0.0022242 0.0000000
+
+Anisotropic
+1.0000000 À0.1848570 À0.1706180 À0.1370530 À0.1047650
+0.0559193 0.1848910 0.0934615 À0.0009298 À0.0337474 À0.1892980 À0.0781061 0.0062385 0.0127157 0.0124104 0.0118478 0.0000000
+Anisotropic
+1.0000000 0.4789850 0.4796740 0.4829020 0.4842620 0.3422090 0.2052850 0.0841513 À0.0265688 À0.0692196 À0.2241260 À0.3201610 À0.3881530 À0.4245680 À0.4341970 À0.4438270 0.0000000
+Anisotropic
+1.0000000 0.3198220 0.2510820 0.2113070 0.1897700 0.1117690 0.0500094 À0.0003492 À0.0630727 À0.0949978 À0.2550560 0.0058222 0.0137784 0.0093663 0.0072371 0.0050614 0.0000000
+
+T. Coupez, E. Hachem / Comput. Methods Appl. Mech. Engrg. 267 (2013) 65–85
+
+85
+
+References
+
+[1] T. Coupez, Metric construction by length distribution tensor and edge based error for anisotropic adaptive meshing, J. Comput. Phys. 230 (2011) 2391–
+
+2405.
+
+[2] F. Alauset, Adaptation de maillage anisotrope en trois dimension, Applications aux simulations instationnaires en Mcanique des Fluides, Ph.D. thesis,
+
+Universit de Montpellier II, 2003.
+
+[3] P. Frey, F. Alauzet, Anisotropic mesh adaptation for CFD computations, Comput. Methods Appl. Mech. Engrg. 194 (2005) 5068–5082.
+
+[4] F. Alauzet, P. Frey, P.-L. George, B. Mohammadi, 3D transient ﬁxed point mesh adaptation for time-dependent problems: application to CFD
+
+simulations, J. Comput. Phys. 222 (2007) 592–623.
+
+[5] C. Gruau, T. Coupez, 3D tetrahedral, unstructured and anisotropic mesh generation with adaptation to natural and multidomain metric, Comput.
+
+Methods Appl. Mech. Engrg. 194 (2005) 4951–4976.
+
+[6] T. Coupez, A mesh improvement method for 3D automatic remeshing, Numerical Grid Generation in Computational Fluid Dynamics and Related Fields,
+
+Pineridge Press, 1994. 615–626.
+
+[7] X. Li, M.S. Shephard, M.W. Beall, 3D anisotropic mesh adaptation by mesh modiﬁcation, Comput. Methods Appl. Mech. Engrg. 194 (2005) 4915–4950.
+
+[8] M.S. Shephard, J.E. Flaherty, K.E. Jansen, X. Li, X. Luo, N. Chevaugeon, J.F. Remacle, M.W. Beall, R.M. Obara, Adaptive mesh generation for curved-
+
+domains, Appl. Numer. Math. 52 (2005) 251–271.
+
+[9] J.F. Remacle, X. Li, M.S. Shephard, J.E. Flaherty, Anisotropic adaptive simulation of transient ﬂows using discontinuous Galerkin methods, Int. J. Numer.
+
+Methods Engrg. 62 (2005) 899–923.
+
+[10] L. Formaggia, S. Perotto, New anisotropic a prioiri error estimate, Numer. Math. 89 (2001) 641–667.
+
+[11] E. Hachem, B. Rivaux, T. Klozcko, H. Digonnet, T. Coupez, Stabilized ﬁnite element method for incompressible ﬂows with high Reynolds number, J.
+
+Comput. Phys. 229 (2010) 8643–8665.
+
+[12] T.J.R. Hughes, G.R. Feijoo, L. Mazzei, J.N. Quincy, The variational multiscale method – A paradigm for computational mechanics, Comput. Methods Appl.
+
+Mech. Engrg. 166 (1998) 3–24.
+
+R
+
+[13] F. Brezzi, L. Franca, T. Hughes, A. Russo, b ¼ g, Comput. Methods Appl. Mech. Engrg. 145 (1997) 329–339.
+
+[14] T. Dubois, F. Jauberteau, R. Temam, Dynamic Multilevel Methods and the Numerical Simulation of Turbulence, Cambridge University Press, Cambridge,
+
+1999.
+
+[15] R. Codina, J. Principe, Dynamic subscales in the ﬁnite element approximation of thermally coupled incompressible ﬂows, Int. J. Numer. Methods Fluids
+
+54 (2007) 707–730.
+
+[16] T.E. Tezduyar, Y. Osawa, Finite element stabilization parameters computed from element matrices and vectors, Comput. Methods Appl. Mech. Engrg.
+
+190 (3–4) (2000) 411–430.
+
+[17] R. Codina, Stabilization of incompressibility and convection through orthogonal sub-scales in ﬁnite element methods, Comput. Methods Appl. Mech.
+
+Engrg. 190 (13–14) (2000) 1579–1599.
+
+[18] S. Mittal, On the performance of high aspect ratio elements for incompressible ﬂows, Comput. Methods Appl. Mech. Engrg. 188 (2000) 269–287.
+
+[19] S. Micheletti, S. Perotto, M. Picasso, Stabilized ﬁnite elements on anisotropic meshes: a priori error estimates for the advection–diffusion and the stokes
+
+problems, SIAM J. Numer. Anal. 41 (2004) 1131–1162.
+
+[20] I. Harari, T.J.R. Hughes, What are C and h?: inequalities for the analysis and design of ﬁnite element methods, Comput. Methods Appl. Mech. Engrg. 97
+
+(1992) 157–192.
+
+[21] C. Förster, W.A. Wall, E. Ramm, Stabilized ﬁnite element formulation for incompressible ﬂow on distorted meshes, Int. J. Numer. Methods Fluids 60
+
+(10) (2009) 1103–1126.
+
+[22] A. Cangiani, E. Süli, The residual-free-bubble ﬁnite element method on anisotropic partitions, SIAM J. Numer. Anal. 45 (4) (2007) 1654–1678.
+
+[23] U. Ghia, K.N. Ghia, C.T. Shin, High-Re solutions for incompressible ﬂow using the Navier–Stokes equations and a multigrid method, J. Comput. Phys. 48
+
+(3) (1982) 387–411.
+
+[24] M. Sahin, R.G. Owens, A novel fully-implicit ﬁnite volume method applied to the lid-driven cavity problem. Part I: high Reynolds number ﬂow
+
+calculations, Int. J. Numer. Methods Fluids 42 (2003) 57–77.
+
+[25] T. Hughes, L. Franca, M. Balestra, A new ﬁnite element formulation for computational ﬂuid dynamics: V. Circumventing the Babuska–Brezzi condition:
+
+a stable Petrov–Galerkin formulation of the Stokes problem accommodating equal-order interpolations, Comput. Methods Appl. Mech. Engrg. 59
+
+(1986) 85–99.
+
+[26] L. Franca, S. Frey, Stabilized ﬁnite element methods: II. The incompressible Navier–Stokes equations, Comput. Methods Appl. Mech. Engrg. 99 (1992)
+
+209–233.
+
+[27] O. Botella, R. Peyret, Benchmark spectral results on the lid-driven cavity ﬂow, Comput. Fluids 27 (1998) 421–433.
+
+[28] J.L. Guermond, P.D. Minev, Start-up ﬂow in a three-dimensional lid-driven cavity by means of a massively parallel direction splitting algorithm,
+
+International Journal for Numerical Methods in Fluids, 2011. http://dx.doi.org/10.1002/ﬂd.2583 (online).
+
+[29] S. Albensoeder, H. Kuhlmann, Accurate three-dimensional lid-driven cavity ﬂow, J. Comput. Phys. 206 (2005) 536–558.
+

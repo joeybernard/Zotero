@@ -1,0 +1,1345 @@
+arXiv:1610.03735v1 [physics.plasm-ph] 30 Aug 2016
+
+The magnetohydrodynamic description of Earth´s ionosphere
+B. P. Pandey Department of Physics and Astronomy, Macquarie University, Sydney, NSW 2109, Australia.∗
+Abstract
+The wave propagation in the partially ionized ionosphere plays an important role in the magnetosphere-ionosphere coupling. For example, the ionosphere may supports very low-frequency Alfv´en wave which can be caused by a balance between the bulk ﬂuid inertia (mostly due to neutrals in the lower and middle E–region) and the deformation of the magnetic ﬁeld. The plasma-neutral collisional momentum exchange facilitates the transfer of the magnetic stress (felt directly by the ions) to the neutrals. Therefore, in the low-frequency (with respect to the neutral-ion collision frequency) limit, waves through the ionosphere can propagate with very little damping. In the vanishing plasma inertia limit, waves can be excited due to the loading of neutral inertia on the ﬁeld lines and thus may have very long wavelength and can easily couple to the magnetosphere. The frequency of these waves are below few Hz.
+In the present work dynamics of the neutral particles have been included in the single-ﬂuid, ideal magnetohydrodynamic like framework where owing to the frequent collisions between the neutral and plasma particles, the magnetic ﬁeld is no longer frozen in the partially ionized ﬂuid but slips through it. The relative importance of this non-ideal behaviour of the ﬂuid is dependent on how often the plasma particles suﬀer collision with the neutral particles. In the limiting case, when the non-ideal eﬀects can be ignored, the equations for both the partially and fully ionized plasmas are identical except inertia of the partially ionized ﬂuid is carried by both the ions and the neutrals.
+∗Electronic address: birendra.pandey@mq.edu.au
+1
+
+I. INTRODUCTION
+The Earth´s lower ionosphere ( 400 km) poses considerable challenge to the development of an uniﬁed framework for the magnetosphere-ionosphere (MI) coupling. The origin of this diﬃculty lies in the varying fractional ionization of the matter in the ionosphere and the magnetosphere. The ionosphere is in a partially ionized plasma state and is highly collisional whereas the magnetospheric (> 400 km) plasma to a large extent can be treated as a collisonless magnetohydrodynamic (MHD) ﬂuid [1]. This results in diﬀerent approaches taken to study the ionosphere and magnetosphere. Whereas collisonless magnetospheric plasma is generally described in the ideal magnetohydrodynamics (MHD) framework, i.e. in terms of bulk plasma ﬂow (v) and magnetic ﬁeld (B)-so called (v, B) paradigm, the ionospheric dynamics is described in terms of current (J) and electric ﬁeld (E), so called (E, J) paradigm [2,3]. However, the very ﬁrst serious diﬃculty of the (E, J) paradigm is conceptual. Since the electric ﬁeld in the ionosphere is assumed to have its origin in the external events (e.g. solar wind [4] and references therein), it cannot penetrate the quasi– neutral ionospheric plasma except in a very thin boundary layer of the order of the Debye Length. Therefore, the limited penetration of such an electric ﬁeld in the plasma will not be able to set the convective motion and drive currents [5]. Another diﬃculty with the (E, J) paradigm is that the MI coupling is achieved by determining the current density from the stress balance and the electric potential is assumed constant along the ﬁeld line. However, such a description of the ionosphere and the resultant coupling to the magnetosphere not only overlooks the dynamics of the neutral particles but also presupposes stationary conditions [2 ,3 ,5].
+The observations of the mid latitude E-region of the ionosphere suggest the presence of the very low frequency ( 10−4 s−1 long wavelength (103 km slow planetary waves with a period varying between several days to less than a day [6] and fast waves with a period varying between several tenth of a minute to about a minute [7]. In the F-region of the ionosphere the fast planetary electromagnetic waves with the phase velocities from tens to several hundred km/s having similar wavelength and periods like in the E-region are also observed [8]. The phase velocities of the waves vary by an order of magnitude from the day to night in the E-region. Owing to their large phase velocities and their strong day-night phase variations in the E-region, it is impossible to identify these waves as the ordinary magnetohydrodynamic
+2
+
+(MHD) waves. Although it has long been recognised that the low frequency, long wavelength signals which propagate through the ionosphere plays an important role in the MI coupling [6], the contribution of the neutral atmosphere to the dynamics has only recently been recognised [9]. The inclusion of the neutral dynamics in a self-consistent framework tantamount to including the very low frequency dynamical response of the medium. Like ref. [9] we aim to develop a self-consistent single ﬂuid description of the partially ionized ionosphere which as we shall see reduces to the usual MHD description in the limiting case. In such a framework, the magnetic, collisional and pressure forces interacts with each other within extremely collisional environment at the lower end of the ionosphere and within the perfectly conducting environment at the higher end of the atmosphere. The advantage of such an approach is that the eﬀect of the neutral dynamics on the signal propagation through ionosphere can be properly accounted for. Note that the ﬂuid description has its own range of validity set mainly by the relevant length and time scales.
+The partially ionized ionospheric plasma is a mixture of electrons, ions and neutral particles. The three ﬂuid equations provides a detailed description of such a plasma [10, 11, 12]. Whereas multi-ﬂuid framework is well suited to describe both the high and low–frequency ﬂuctuations in various limits, it is still mathematically cumbersome and realistic treatment of the system is formidable. Thus it is desirable to further reduce the three ﬂuid equations to a single ﬂuid, MHD–like description which not only provides the economy of description but also is much simpler to handle. However, like a single ﬂuid MHD description of a fully ionized two component plasma, the single ﬂuid MHD-like description of a partially ionized three component plasma will be suitable for the investigation of only the very low-frequency, long wavelength response of the medium. Thus the single ﬂuid description (Ref. [13]; hereafter PW08), will be valid only when the plasma and the neutral particles are glued together by the frequent collision and thus move together as a single ﬂuid, i.e. when
+
+ω νni
+
+ne nn
+
+−1/2
+≡ Xe−1/2 .
+
+(1)
+
+Here Xe = ne/nn is the fractional ionization, ω is the signal frequency, and νni is the neutral–ion collision frequency which is related to the ion–neutral collision frequency νin by the following relation ρn νni = ρi νin. Note that the above equation has been derived from Eq. (20) of PW08 in the weakly ionized limit assuming that the bulk mass density (ρj = mj nj where mj and nj corresponds to the mass and number density of the jth particle) of the
+
+3
+
+10
+
+8
+
+6
+
+log10(Xe-1/2 νni)
+
+4
+
+multi-fluid regime
+
+2
+single-fluid regime
+0
+
+-2
+
+50 100
+
+200
+
+300
+
+400
+
+500
+
+Height [Km]
+
+FIG. 1: The regions where single-ﬂuid formulation of the multicomponent plasma is valid for the parameters pertaining to the ionosphere.
+ﬂuid is mainly due to the neutral gas, i.e. ρ ≈ ρn, or, D = ρ/ρn ≈ 1. Further, electrons are assumed strongly magnetized and we have assumed mi ≈ mn (although the ion and the neutral masses in the ionosphere are diﬀerent ) and imposed plasma quasineutrality condition ni ≈ ne. These are plausible assumptions and thus Eq. (1) provides a legitimate bound on the single ﬂuid MHD-like framework for the weakly ionized plasma dynamics germane to the lower and middle ionosphere. In the upper E and F regions where Xe O(1), one should use Eq. (20) of PW08 without above assumptions.
+In Fig. (1) Xe−1/2 νni is plotted against the height. It is clear from the ﬁgure that at mid altitude ( 150 − 160 km) the single ﬂuid description is valid for the signal speed of the order of ω 104 HZ. In the upper ionosphere 300 km the dynamics of low frequency ( 10 Hz) signals can be described in the single ﬂuid framework. For example, the generation and propagation of the ultralow (10−3 Hz) frequency planetary waves (∼ 103 km) can be investigated in this framework. To summarize, the single ﬂuid MHD-like description is valid
+
+4
+
+in both the ionosphere and magnetosphere if the signal frequency under investigation is very low or, the wave length is very large-a case investigated in ref. [9].
+How the present single ﬂuid formulation of the partially ionized plasma does diﬀers from the classical single ﬂuid MHD description of the fully ionized plasma? They diﬀer on several counts. (a) The ﬂuid inertia in a partially ionized medium is due to the ions as well as the neutrals. Thus at the lower and mid altitude, where plasma is weakly ionized, the inertia of the ﬂuid is due mainly to the neutrals whereas at the higher altitude mostly positive ions provides the ﬂuid inertia. (b) Therefore, the Alfv´en wave propagation in the medium with varying fractional ionization changes its character with altitude: in the lower ionosphere, it is the neutral inertia that balances the magnetic ﬁeld deformation while at higher altitude, the ion inertia balances the magnetic ﬁeld ﬂuctuations. (c) The wave propagation is aﬀected by the frequent collisions between the plasma and the neutral particles. These collisions allow the plasma and neutral particle to move together as a single ﬂuid if the wave frequency satisﬁes Eq. (1). (d) However, these collision will cause the ﬁnite drift/slippage of the magnetic ﬁeld through the partially ionized medium. (e) When the magnetic ﬁeld drift is ignored, the characteristics of the wave propagation in the partially ionized ﬂuid is similar to the fully ionized ideal–MHD except now the propagation properties depend on the fractional ionization as well as on the compressibility of the medium.
+In this paper, we ﬁrst give a very brief outline of the single ﬂuid derivation in section II. The detailed discussion about the validity of the single ﬂuid formulation is given elsewhere [PW08]. The variation of non-ideal MHD eﬀects such as Ohm, Hall and ambipolar diﬀusion in the ionosphere and their relative importance with respect to the advection term (in terms of various Reynold numbers) is also discussed. We use these equations in section III to investigate the low frequency wave propagation and their attenuation in the ionosphere. In section IV the discussion and summary of results is give.
+
+II. BASIC MODEL
+
+The partially ionized ionospheric plasma can be described in a multiﬂuid framework,
+
+where the electrons, ions and neutral particles are described by the three ﬂuid equations
+
+[9 ,10 ,11 ,12]. The continuity equation is
+
+∂ρj ∂t
+
++
+
+∇·
+
+(ρj
+
+vj )
+
+=
+
+0,
+
+(2)
+
+5
+
+where vj is the velocity of various components, j = i, e, n. We shall assume that the ions are singly charged. The momentum equations for the electrons, ions and neutrals are
+
+dve dt
+
+=
+
+−
+
+∇Pe ρe
+
+−
+
+e me
+
+E
+
++
+
+ve c
+
+×B
+
+− νej (ve − vj)
+j=i,n
+
+(3)
+
+dvi dt
+
+=
+
+−
+
+∇ Pi ρi
+
++
+
+e mi
+
+E
+
++
+
+vi c
+
+×B
+
+−
+
+νij (vi − vj)
+
+j=e,n
+
+(4)
+
+dvn dt
+
+=
+
+− ∇ Pn ρn
+
++
+
+νnj
+j=e,i
+
+(vj
+
+− vn)
+
+.
+
+(5)
+
+The electron and ion momentum equations (3)-(4) contain on the right hand side pressure
+
+gradient, Lorentz and collisional momentum exchange terms where Pj is the pressure, E and
+
+B are the electric and magnetic ﬁeld, c is the speed of light, and νij is the collision frequency for species i with species j. The electron-ion collision frequency νei can be expressed in
+
+terms of fractional ionization Xe = ne/nn and plasma temperature Te = Ti = T as [PW08]
+
+νei = 51 Xe nn T −1.5 s−1 ,
+
+(6)
+
+where T and nn are in K and cm−3 respectively. The ion–neutral νin and electron-neutral collision frequencies are [14]
+
+νi n = 2.6 × 10−9 A−1/2 nn ,
+
+νe n = 5.4 × 10−10 T 1/2 nn ,
+
+(7)
+
+where A ≈ 28 is the mean neutral mass in the atomic mass unit. Deﬁning bulk ﬂuid density ρ ≈ ρi + ρn, and velocity v = (ρi vi + ρn vn)/ρ, Eqs. (2)-(5)
+can be reduced to a single ﬂuid description. These equations are
+
+∂ρ ∂t
+
++
+
+∇
+
+·
+
+(ρ
+
+v)
+
+=
+
+0
+
+.
+
+(8)
+
+ρ
+
+dv dt
+
+=
+
+−∇ P
+
++
+
+J×B c
+
+,
+
+(9)
+
+where P = Pe + Pi + Pn is the total pressure, and J = ne e (vi − ve) is the current density. Note that the fractional ionisation varies between 10−9 − 10−4 at mid and high altitude, and
+
+thus the pressure is largely due to the neutral component.
+
+The induction equation is derived from the electron momentum equation. We write
+
+the induction equation in the ideal MHD form so that it facilitates the visualisation of the
+
+6
+
+magnetic ﬁeld as a real physical entity that is drifting through the ﬂuid with a given velocity. Here by a real physical entity we mean that if the ﬂuid particles are on the same line of force at any time, then they will always be on that line of force [15]. In this frozen–in frame, with the ﬁeld and ﬂuid drifting with vB, we have c E′ + vB×B = 0. Here
+
+E′
+
+=
+
+E
+
++
+
+vn×B c
+
+,
+
+(10)
+
+is the electric ﬁeld in the neutral frame and E is the electric ﬁeld in the ﬁxed frame of
+
+reference, commonly the frame of the rotating Earth. The induction equation can be written
+
+as [PW08]
+
+∂B ∂t
+
+=
+
+∇×
+
+(v
+
++
+
+vB )
+
+×B
+
+−
+
+4
+
+π ηO c
+
+J
+
+,
+
+(11)
+
+where
+
+vB
+
+=
+
+ηP
+
+(∇×B)⊥ ×bˆ B
+
+−
+
+ηH
+
+(∇×B)⊥ B
+
+.
+
+Here ηP and ηH are the Pedersen and Hall diﬀusivities and bˆ = B/B.
+
+(12) The Pedersen
+
+diﬀusivity ηP is the sum of the Ohm (ηO) and the ambipolar (ηA) diﬀusion, i.e.
+
+ηP = ηO + ηA .
+
+(13)
+
+In terms of the ambient plasma parameters various diﬀusivities are
+
+ηO
+
+=
+
+c2 4 πσ
+
+,
+
+ηA
+
+=
+
+D vA2 νni
+
+,
+
+ηH
+
+=
+
+vA2 ωH
+
+,
+
+(14)
+
+where
+
+√
+
+σ
+
+=
+
+me
+
+e2 ne (νen +
+
+νei)
+
+,
+
+(15)
+
+D = ρn/ρ, vA = B/ 4 π ρ is the Alfv´en speed in the bulk ﬂuid,
+
+ωH
+
+=
+
+ρi ρ
+
+ωci
+
+(16)
+
+is the Hall frequency [PW08] and ωci = e B/mi c is the ion-cyclotron frequency. It is pertinent to note here that in the ionosphere at heights between 80 − 400 km, since the fractional ionization is very low, ρi/ρ ∼ 10−9 − 10−4 the Hall frequency is ∼ 10−6 − 10−1/s.
+From the induction equation (11) we see that when the Ohm diﬀusion is negligible, the magnetic ﬂux is frozen in a frame moving with v + vB. Thus both ambipolar and Hall diﬀusion only redistributes the ﬂux in the medium. Only Ohm diﬀusion is capable of destroying the ﬂux at a rate proportional to its local value in the ionosphere. The relative
+
+7
+
+TABLE I: The ion and electron plasma beta and Alfv´en speed in the neutral medium
+
+is shown against the height for the ionospheric parameters.
+
+H[km] βi 100 10−2
+
+βe vA(km/s) 103 6.3 × 10−2
+
+200 3 × 102 104 3.6
+
+400 104 106 47
+
+importance of various diﬀusion is closely related to the question of how well the ionized
+
+matter is coupled to the magnetic ﬁeld quantiﬁed by plasma Hall parameter
+
+βj
+
+=
+
+ωcj νj
+
+,
+
+(17)
+
+a ratio of the jth particles cyclotron ωcj = e B/mj c and collision frequencies.
+
+The ratio of the ambipolar and Hall diﬀusion is determined by ion-Hall parameter βi and
+
+the ratio of Ohm and Hall diﬀusion is determined by the electron Hall parameter βe, i.e.
+
+ηA = D βi ηH , and , ηO = βe−1 ηH .
+
+(18)
+
+The characteristic scale lengths associated with the various diﬀusivities are
+
+LH
+
+=
+
+vA ωH
+
+,
+
+LA
+
+=
+
+D βi
+
+LH
+
+≡
+
+vA νni
+
+,
+
+LO = βe−1 LH .
+
+(19)
+
+Since only the electrons are magnetized in the ionosphere βe > 1, we can say that the
+
+scale LO over which the Ohm diﬀusion operates is smallest among the three scales. As is
+
+clear from the table, in the lower ionosphere βi < 1 and the ions follow the neutrals but
+
+the electrons follow the ﬁeld (βe > 1). Thus LH > LA > LO in the lower ionosphere.
+
+Physically this means that in the rest frame of the neutral, the current density is almost
+
+entirely due to electrons as is the Lorentz force J × B/c. Thus there must be an electric ﬁeld
+
+E ≈ −J × B/e ne c in this frame that prevents the electron from accelerating, since collisions are ineﬀective (βe > 1). As a result the Ohm´s Law in the frame of the neutrals becomes σH E ≈ bˆ × J , where σH ≈ e ne c/B is the Hall conductivity which is related to the Hall diﬀusivity, ηH = c2/ (4 π σH ). The parallel electric ﬁeld component is much smaller than the perpendicular component because the Ohmic conductivity σO = βe σH is much larger than σH . Therefore, Hall is the dominant diﬀusion mechanism at the lower altitude. The parameter βe increases from 1 in D layer (60 − 90 km) and reaches 104 at 200 km. It is clear
+
+8
+
+from the top panel of the Fig. (2) that the Hall is the dominant diﬀusion in the lower and
+
+mid altitude of the ionosphere. Therefore, the magnetic ﬂux is frozen in the E region and F
+
+region of the ionosphere in a frame moving with the combined velocity v + vB. Further the Hall scale, Eq. (19) which depends on the fractional ionization Xe
+
+LH ∼= Xe−1/2 δi ,
+
+(20)
+
+where δi = vA i/ωci is the ion–inertial scale, is very large for the typical values of Xe ∼ 10−9 − 10−4 in the lower and middle ionosphere, it is clear why the Hall diﬀusion is the
+
+dominant diﬀusion mechanism of the magnetic ﬁeld. However, above mid-altitude, when
+
+βi > 1 the ambipolar diﬀusion will dominate the Hall resulting in the attenuation of the waves. We also see from the ﬁgure that beyond the mid altitude Ohm diﬀusion is much
+
+smaller than the ambipolar, and as can be seen from Eq. (13) the Pedersen and Ambipolar
+
+diﬀusion become identical.
+
+Although the non-ideal diﬀusion terms in the induction Eq. (11) appear as a result of the
+
+frequent plasma-neutral collision, their relative importance on the magnetic diﬀusion can
+
+only be gauged by comparing them to the advection term. To compare the advection term
+
+∇× (v×B) ∼ v B/L with the various diﬀusion terms in the induction Eq. (11) we deﬁne
+
+magnetic Reynolds numbers Rm , Am & Hm as
+
+Rm = v L , Am = v L & Hm = v L .
+
+(21)
+
+ηO
+
+ηA
+
+ηH
+
+Recall that the single ﬂuid formulation of the partially ionised matter is valid for the fre-
+
+quencies smaller than the neutral-ion collision frequency [Eq. (1)]. Thus, the bulk velocity is
+
+of the order of vA2 /L νni. Clearly, the Reynolds numbers in a partially ionised ﬂuid becomes
+
+Rm =
+
+vA2 νni ηO
+
+,
+
+Am
+
+=
+
+vA2 νni ηA
+
+&
+
+Hm =
+
+vA2 νni ηH
+
+.
+
+(22)
+
+The variation of various Reynolds numbers against height is shown in the bottom panel of
+
+the Fig. (2). It is clear from the ﬁgure that Ohm is lest important of the three diﬀusion
+
+mechanism. Thus Rm > 1 after 110 − 120 km. However, Hm and Am remains smaller than
+
+one throughout implying that both Hall and ambipolar diﬀusion will dominate the advection
+
+of the ﬁeld.
+
+Note that in the ionosphere literature [12 ,14], rather than dealing with the induction
+
+Eq. (11) one often deals with the generalized Ohm´s law
+
+J = σ E′ + σP E′⊥ + σH bˆ×E′ ,
+
+(23)
+
+9
+
+log10(η)
+
+20
+
+ηA
+15 ηH
+
+10
+
+ηO
+
+5
+
+100
+
+200
+
+300
+
+400
+
+500
+
+Height[Km]
+
+10
+Rm
+Am
+5 Hm
+
+0
+
+-5
+
+100
+
+200
+
+300
+
+400
+
+500
+
+Height[Km]
+
+log10(Re)
+
+FIG. 2: The variation of Hall (solid), ambipolar (dashed) and Ohm (dotted) diﬀusivities (top panel) and the variation of respective Reynolds numbers (bottom panel) in the ionosphere is shown in the above ﬁgure.
+
+where E′ = E′ · bˆ , & E′⊥bˆ× E′×bˆ . The expression for various conductivities are well known [16]. Recall that the above equation is derived from the momentum equations (3)– (4) by assuming that the ﬂuid evolves on a slow (compared to the plasma-neutral collision) time-scale so that the drift of the charged particles through the neutral is determined by the instantaneous Lorentz force. Inverting Ohm´s law, Eq. (23) gives
+
+E′ = η J + ηH J×bˆ + ηP J⊥ ,
+
+(24)
+
+where the perpendicular component of the current J refers to the orientation with respect to the ambient magnetic ﬁeld
+
+J = J · bˆ bˆ , J⊥ = J − J .
+
+(25)
+
+Taking curl of Eq. (24) and making use of Maxwell´s equation c ∇×E = −∂t B we recover the induction equation (11). The relationship between diﬀusivity and conductivity is well
+
+10
+
+known [16]. We see that both these formulations are equivalent.
+
+The energy equation (see the appendix for the derivation) in a partially ionized plasma
+
+becomes
+
+∂ ∂t
+
+ε
+
++
+
+∇
+
+·
+
+(ε
+
+v)
+
+=
+
+−∇
+
+·
+
+P
+
+v + (v + 2 vB)
+
+B2 8π
+
+− (v + vB)
+
+B2 4π
+
+−ηP J2⊥ ,
+
+(26)
+
+where
+
+ε
+
+=
+
+ρ v2 2
+
++
+
+γ
+
+P −
+
+1
+
++
+
+B2 8π
+
+.
+
+(27)
+
+The energy equation for purely ambipolar case reduces to Eq. (9) of Parker [17]. Above
+
+energy equation encompasses both the ambipolar and Ohm diﬀusions.
+
+Note that in the absence of non-ideal MHD terms, i.e. setting η = ηP = ηH = 0 or, vB = 0, the set of Eqns. (8), (9) and (11) and (26) becomes identical to the ideal MHD
+
+equations, except now the plasma is partially ionized. We know that the ion Larmour radius
+
+provides an implicit scale in the ideal MHD theory [18] and thus the validity of the ideal
+
+MHD requires that the characteristic length scale of a physical system under consideration
+
+should be larger than the Larmor radius rL = cs/ωci. Here cs is the sound speed. In a partially ionized plasma this scale is19
+
+RL = Xe−1 rL .
+
+(28)
+
+Clearly, the ideal MHD like description of a partially ionized plasma is valid when the characteristic scale length L is larger than the modiﬁed Larmor radius RL. Therefore, although the ideal MHD equations for both the fully and partially ionized plasmas looks similar, the scale of their validity is quite diﬀerent.
+
+III. WAVES IN THE IONOSPHERE
+In order to study the propagation of low frequency waves at some characteristic altitude in the ionosphere, we shall assume that the medium is locally homogeneous with no background ﬂow. The local uniformity condition requires that the wavelength of ﬂuctuations is much smaller than the inhomogeneity scales. To keep the analysis simple, rather than using energy Eq. (26), we shall close the set of equations by an isothermal equation of state P = c2s ρ. We note that bot the linear and nonlinear studies of the wave propagation has been carried out
+11
+
+in Ref. [9]. However, the focus of the present investigation is to highlight the role of various
+
+magnetic diﬀusion on the waves and thus is complementary to the previous investigation.
+
+After linearizing the Eqs. (8), (9) and (11) and Fourier analysing as exp (ω t + ik · x) we
+
+get the following dispersion relation [PW08]
+
+ω2 − vA2 + i ηA ω
+
+k2 cos2 θ − i ηO k2 ω − k2 sin2 θ
+
+ω2 ω¯ 2
+
+vA2
+
++
+
+i
+
+ηA
+
+ω
+
+×
+
+ω2 − vA2 + i ηA ω k2 cos2 θ − i ηO k2 ω − k2 ηH 2 ω2 cos2 θ = 0 .
+
+(29)
+
+Here θ = (k · B) /k B is the angle between the wave vector k and magnetic ﬁeld B and
+
+ω¯2 = ω2 − k2 c2s. When the wave is propagating along the magnetic ﬁeld (θ = 0), the dispersion relation
+
+reduces to
+
+ω2 − i k2 (ηA + η) ω − ωA2 = ±ηH k2 ω .
+
+(30)
+
+The plus and minus sign describes the left and right circularly polarized waves. The Hall
+
+diﬀusion introduces the handedness in the system. In the low frequency (ω ≪ ωA) limit neglecting ω2 term in Eq. (30) gives
+
+Re[ω]
+
+=
+
+1
+
++
+
+ωH (βe−1 +
+
+D2
+
+βi)2
+
+,
+
+I m[ω ]
+
+=
+
+ωH 1+
+
+(βe−1 + D2 βi) (βe−1 + D2 βi)2
+
+.
+
+(31)
+
+which describes the modiﬁed ion–cyclotron waves. Note that since at the lower and mid
+
+altitude where D ≈ 1 the electrons are well coupled to the magnetic ﬁeld (βe ≫ 1) whereas
+
+ions are not (βi 1) the waves will propagate almost undamped as Im[ω] ≈ 0. However
+
+since
+
+Re[ω] ωA
+
+≈
+
+ωH ωA
+
+≡
+
+1 k LH
+
+,
+
+(32)
+
+we see that in the Hall regime (k LH >> 1) the ions hardly respond to the magnetic ﬂuctu-
+
+ations. This explains why the magnetic ﬂux is frozen in the electron ﬂuid only in the Hall
+
+regime.
+
+In the high frequency limit ωA ≪ ω limit and assuming ηO = 0, we get
+
+Re[ω] ωA
+
+=
+
+k LH
+
+, and ,
+
+I m[ω ] ωA
+
+=
+
+βi k LH
+
+,
+
+(33)
+
+which describes the whistler waves in a partially ionized medium. Since ions are unmagne-
+
+tized below mid altitude, the whistler propagates undamped at these altitudes. However,
+
+once βi , the whistlers will suﬀer damping in the middle and upper ionosphere.
+
+12
+
+10
+
+λcutoff[cm]
+
+5
+
+0
+
+100
+
+200
+
+300
+
+Height[Km]
+
+FIG. 3: The typical cutoﬀ wavelength against height in the ionosphere.
+
+Since above the mid-altitude ambipolar scale length is the largest Eq. (19) since βi > 1, the ambipolar becomes the dominant diﬀusion in the plasma [Fig. (2)], and the dispersion relation Eq. (30) after neglecting both the Hall and Ohm terms becomes
+
+Re[ω] ωA
+
+≈
+
+±
+
+1
+
+−
+
+1 2
+
+k ηA vA
+
+2 1/2
+,
+
+I m[ω ] ωA
+
+≈
+
+k
+
+LA
+
+≡
+
+βi
+
+k
+
+LH
+
+.
+
+(34)
+
+It is well known that the waves are damped in the weakly ionized collisional medium [20].
+
+The damping of the waves is not only dependent on the ion-neutral collision frequency but
+
+also on the ratio of the neutral to the bulk mass densities D. Clearly, only long wavelength
+
+signal can propagate undamped in the collision dominated ionosphere, i.e. when the wave
+
+frequencies are smaller than the eﬀective neutral-ion collision frequency, i.e. k LA ≪ 1. Only signals of certain wavelength will disappear due to the collisional dissipation, and the waves
+
+13
+
+with wavelengths λ exceeding
+
+√ λcut−oﬀ ≃ 2 π Xe−1
+
+vA νin
+
+,
+
+(35)
+
+propagates in the medium. Since the magnetic restoring force due to the ﬁeld deformation
+
+of wavelength λ acts only on the plasma particles, the neutrals at a distance λ apart can
+
+respond simultaneously to this restoring force only if the communication time between the neutrals (∼ λ/vA) is smaller than the eﬀective collision time tc ∼ Xe1/2/νin. Only when tc exceeds the Alfv´en crossing time ∼ λ/vA, the wave in the medium will damp. We see from the Fig. (3) that any wave with wavelength larger than few centimetre will propagate
+
+undamped in the lower and middle ionosphere. In the upper ionosphere λcutoﬀ is few meters. However, since ambipolar diﬀusion dominates Hall in the upper ionosphere, the
+
+waves will undergo signiﬁcant damping.
+
+For waves propagating transverse to the magnetic ﬁeld, i.e. assuming θ = π/2, the
+
+dispersion relation Eq. (29) nicely factorizes with one of the factors giving ω = 0 and a
+
+purely damped mode
+
+ω = i k2 ηO .
+
+(36)
+
+and the other factor gives magnetosonic
+
+ω2 = k2 c2s + vA2 ,
+
+(37)
+
+and a purely damped mode
+
+ω = i k2 ηP .
+
+(38)
+
+When the direction of wave propagation is oblique to the magnetic ﬁeld, the magnetosonic mode will split into fast and slow modes.
+
+IV. DISCUSSION AND SUMMARY
+The multi–ﬂuid description of highly collisional ionosphere can be reduced to singleﬂuid MHD-like description in the low-frequency limit. By Alfv´en waves in the ionosphere we often imply waves in the fully ionized, ideal MHD ﬂuid where the ion inertia balances the ﬁeld deformation. Frequency of these waves is often too high and thus may undergo severe damping. However, partially ionized, collision-dominated ionosphere also supports low-frequency Alfv´en wave which is caused by a balance between the bulk ﬂuid inertia and
+14
+
+the deformation of the magnetic ﬁeld. In the vanishing plasma inertia limit in the E region, it means that the inertia of the wave is solely due to the neutral particles. The collisional momentum exchange plays a crucial role in transferring the magnetic stresses to the neutrals. Therefore, in the low-frequency (in comparison with the neutral-ion collision frequency) limit, the low frequency waves in the ionosphere will propagates with very little damping.
+We have assumed locally uniform medium and thus the ﬂuctuation wavelength must be smaller than the inhomogeneity scale length. This assumption is quite restrictive in the Earth′s ionosphere. Further, the vertical stratiﬁcation of the medium has been neglected. This does not seem to be as restrictive as it appears. For example, in the Hall diﬀusion dominated E region of the ionosphere, neglecting Ohm and ambipolar diﬀusion and assuming vertical stratiﬁcation of the physical quantities in the presence of a uniform vertical ﬁeld, the system admits an exact solution
+
+Bx = B0 cos φ , By = B0 sin φ ,
+
+Vx = V0 cos φ , Vy = V0 sin φ ,
+
+(39)
+
+which we recognise as the ﬁnite-amplitude circularly polarized Alfv´en waves with the phase
+
+φ = k0 z − ω0 t. Here the wavenumber k0 and frequency ω0 are related by the following
+
+dispersion relation
+
+ω02 = k2 vA2
+
+1
+
+±
+
+ω0 ωH
+
+,
+
+(40)
+
+which in the limiting cases describes the modiﬁed ion-cyclotron [Eq. (31)] and whistler waves
+
+[Eq. (33)] in the short wavelength (ωH ≪ k0 vA) limit, and Alfv´en wave (ω0 = k0 vA) in the long (k0 vA ≪ ωH) limit. Clearly, vertical stratiﬁcation in the Hall dominated E-region leads to a similar result as the local linear analysis. Using existing analytical tools, the weakly
+
+nonlinear, weakly dispersive processes can be easily investigated in the ionosphere [9].
+
+Owing to the vast spatial and temporal scales involved in the ionosphere, the simpliﬁed lo-
+
+cal analysis is quite restricted. However, it provides important insight to the magnetosphere-
+
+ionosphere coupling. The low frequency waves which is excited in the lower ionosphere due
+
+to the loading of neutral inertia on the ﬁeld line have very large wavelength and thus couples
+
+to the magnetosphere. The frequency of these waves are below few Hz. For example, the
+
+fundamental frequencies at which magnetosphere resonates is 1.3 and 1.9 mHz [21]. Equat-
+
+ing this with the whistler speed at 100 km where vA = 4 × 103 cm/s gives λ 1000 km. This crude estimate suggests that the generation of low-frequency waves in the E-region of the
+
+15
+
+ionosphere probably could be the cause of the magnetospheric resonant tuning. However, only a proper detailed analysis of the problem can lend credence to such a conjecture.
+Large wind shears have been observed in the mesosphere and lower thermosphere region over a wide range of altitudes, longitudes, seasons, and local times for the past ﬁve decades [22]. The wind shears often exceeds 70 m/s/km and can occasionally reach 100 m/s/km. The presence of winds and wind shears in the mesosphere and lower thermosphere region causes Kelvin–Helmholtz instability. However, the role of magnetic diﬀusion on the wind shear and thus on the onset of such an instability is unclear. Such an investigation may improve our understanding of irregular structure formation in the lower ionosphere.
+To summarize, we have given a single ﬂuid MHD-like formulation of the highly collisional partially ionized ionospheric plasma which with the increasing altitude reduces to the usual MHD description of the collisonless magnetosphere. Although similar formulation with zero plasma inertia and without energy equation was given in ref. [9] for the ionosphere, they did not elaborate on the role of various diﬀusive scales in the ionosphere. Further, the limitations of such a formulation though implied was not discussed explicitly. The present framework provides a uniﬁed non-ideal framework for the description of the ionosphere-magnetosphere coupling. The non-ideal MHD eﬀects which depends are dominant in the ionosphere become negligible with increasing height. This results in a seamless transition from the single-ﬂuid MHD like description of the partially ionized ionosphere to the single-ﬂuid MHD description of the fully ionized magnetosphere.
+ACKNOWLEDGEMENTS It is my great pleasure to acknowledge numerous discussions with Prof. Mark Wardle on the subject of partially ionized plasmas in space and astrophysics.
+16
+
+Appendix
+
+We shall assume the following thermodynamic relationship P ρ−γ = const., i.e.
+
+∂P ∂t
+
++ (v
+
+·
+
+∇) P
+
+=
+
+−γ P
+
+(∇
+
+· v)
+
+.
+
+(41)
+
+In order to derive the energy equation, we multiply Eqn. (9) scalerly with v. Note that
+
+since
+
+(v · ∇) v = ∇
+
+v2 2
+
++ (∇×v × v) ,
+
+(42)
+
+the left hand side of the momentum equation, combined with the continuity equation be-
+
+comes
+
+∂ ∂t
+
+ρ v2 2
+
++∇·
+
+ρ v2 2v
+
+.
+
+(43)
+
+Next, lets evaluate v · ∇P . Note that
+
+∂P ∂t
+
+=
+
+− (v · ∇) P
+
+−γP
+
+(∇
+
+· v)
+
+≡
+
+(γ
+
+− 1) (v · ∇) P
+
+− γ∇ (P
+
+v)
+
+,
+
+(44)
+
+which gives
+
+(v
+
+·
+
+∇) P
+
+=
+
+∂ ∂t
+
+P γ−1
+
++
+
+γ γ−1
+
+∇ · (P v) .
+
+(45)
+
+Lastly the Lorentz term dotted with v in the momentum equation is
+
+v · (∇×B) ×B = − (v×B) · (∇×B)
+
+= − {[(v + vB) ×B] − vB×B} · (∇×B) .
+
+(46)
+
+Since,
+
+c E⊥ + (v + vB) ×B = 0
+
+⇒ − {[(v + vB) ×B] − vB×B} · (∇×B)
+
+= c E⊥ · (∇×B) + vB×B · (∇×B)
+
+(47)
+
+Note that
+
+−E⊥
+
+·
+
+(∇×B)
+
+=
+
+c−1
+
+∂ ∂t
+
+B2 2
+
++
+
+∇
+
+·
+
+(E×B)
+
+.
+
+(48)
+
+Thus deﬁning the total energy
+
+ε
+
+=
+
+ρ v2 2
+
++
+
+γ
+
+P −
+
+1
+
++
+
+B2 8π
+
+,
+
+(49)
+
+17
+
+the energy euation can be written as
+
+∂ ∂t
+
+ε
+
+=
+
+−∇
+
+·
+
+ρ v2 2
+
++
+
+γP γ−1
+
+v
+
++
+
+c
+
+E×B 4π
+
++ (vB×B) · (∇×B) ,
+
+(50)
+
+where Making us of Eq. (12) we see that
+
+(vB×B) = −ηP (∇×B)⊥ − ηH (∇×B)⊥ ×bˆ ,
+
+thus the energy equation becomes
+
+∂ ∂t
+
+ε
+
+=
+
+−∇
+
+·
+
+ρ v2 2
+
++
+
+γP γ−1
+
+v
+
++
+
+c
+
+E×B 4π
+
++ ηP (∇×B)2⊥ .
+
+(51)
+
+The energy equation can be written in a slightly diﬀerent form noting that the Poynting
+
+ﬂux
+
+c
+
+E×B 4π
+
+=
+
+1 4π
+
+(v + vB) B2 − (v + vB · B) B
+
+(52)
+
+and writing
+
+γ γ
+
+Pv −1
+
++
+
+c
+
+E×B 4π
+
+=
+
+γ
+
+P −
+
+1
+
++
+
+B2 8π
+
+v+P v
+
++ (v
+
++ 2 vB)
+
+B2 8π
+
+− (v
+
++ vB)
+
+B2 4π
+
+.
+
+(53)
+
+Thus the energy equation becomes
+
+∂ ∂t
+
+ε
+
++
+
+∇
+
+·
+
+(ε
+
+v)
+
+=
+
+−∇
+
+·
+
+P
+
+v + (v + 2 vB)
+
+B2 8π
+
+− (v + vB)
+
+B2 4π
+
+− ηP J2⊥
+
+(54)
+
+18
+
+[1] Strangeway, R. J., and Raeder, J., JGR, 106, 1955 (2001). [2] Parker, E., JGR, 101, 10587 (1996). [3] Parker, E., Conversations on Electric and Magnetic Fields in the Cosmos (Princeton Univ.
+Press, N. J., 2007). [4] Lysak, R. L., Space Sci. Rev., 52, 33 (1990). [5] Vasyliunas, V. M., Ann. Geophys., 30, 357 (2012). [6] Zhou, Q.H., Sulzer, M.P. & Tepley, C.A., JGR, 102,102, 491 (1997). [7] Alperovich, L. S., Drobgev, V. I., Sorokin, V. M., et al., Geomagn. Aeron. 22, 797 (1982). [8] Bauer, T.M., Baumjohann, W., Treumann, R.A., et al., JGR, 100, 9605 (1995). [9] Aburjania, G. D., Chargazia, K. Z., Jandieri, G. V., Khantadze, A. G., Kharshiladze, O. A.
+& Lominadze, J. G., Planet Space Sci., 53, 881 (2005). [10] Tanenbaum, B. S., and Mintzer, D., Phys. Fluids, 5, 1226 (1962). [11] Braginskii, S. I. 1965, Review of Plasma Physics vol. 1 ed. Leontovich, M, A., 1965, 205 (New
+York: Consultants Bureau) [12] Alperovich, L. S. & Fedorov E. N., Hydromagnetic Waves in the Magnetosphere and the
+Ionosphere (Springer, NY, 2007). [13] Pandey, B. P. & Wardle, M., MNRAS, 358, 2269 (2008). [14] Rishbeth, H. & Garriott O. K., Introduction to ionospheric Physics (Academic Press, NY,
+1969). [15] Landau, L. D. & Lifshitz E. M., Electrodynamics of Continuous Media (Oxford Press, London,
+1963). [16] Wardle, M., Adv. Space Sci., 311, 35 (2007). [17] Parker, E. N., ApJS, 8, 177 (1963). [18] Freidberg J. P., Rev. Mod. Phys., 54, 801 (1982). [19] Pandey, B. P., MNRAS, 436, 1659 (2013). [20] Kulsrud, R. & Pearce, W. P., ApJ, 156, 445 (1969). [21] Samson, J. C., Hughes, T. J., Creutzberg, F., Wallis, D. D., Greenwald, R. A. & Ruohoniemi,
+J. M., JGR, 15, 15683 (1991). [22] Larsen, M. F., JGR, 105, 24931 (2000).
+19
+

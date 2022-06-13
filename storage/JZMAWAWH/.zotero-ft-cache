@@ -1,0 +1,2947 @@
+Computers & Fluids 117 (2015) 168–182
+Contents lists available at ScienceDirect
+Computers & Fluids
+journal homepage: www.elsevier.com/locate/compﬂuid
+
+Semi-implicit BDF time discretization of the Navier–Stokes equations with VMS-LES modeling in a High Performance Computing framework
+Davide Forti, Luca Dedè ⇑
+CMCS – Chair of Modeling and Scientiﬁc Computing, MATHICSE – Mathematics Institute of Computational Science and Engineering, EPFL – École Polytechnique Fédérale de Lausanne, Station 8, Lausanne CH-1015, Switzerland
+
+article info
+Article history: Received 3 April 2015 Received in revised form 13 May 2015 Accepted 14 May 2015 Available online 23 May 2015
+Keywords: Navier–Stokes equations Variational Multiscale modeling Backward Differentiation Formulas Finite Element method Large Eddy Simulation High Performance Computing
+
+abstract
+In this paper, we propose a semi-implicit approach for the time discretization of the Navier–Stokes equations with Variational Multiscale-Large Eddy Simulation turbulence modeling (VMS-LES). For the spatial approximation of the problem, we use the Finite Element method, while we employ the Backward Differentiation Formulas (BDF) for the time discretization. We treat the nonlinear terms arising in the variational formulation of the problem with a semi-implicit approach leading to a linear system associated to the fully discrete problem which needs to be assembled and solved only once at each discrete time instance. We solve this linear system by means of the GMRES method by employing a multigrid (ML) right preconditioner for the parallel setting. We validate the proposed fully discrete scheme towards the benchmark problem of the ﬂow past a squared cylinder at high Reynolds number and we show the computational efﬁciency and scalability results of the solver in a High Performance Computing framework.
+Ó 2015 Elsevier Ltd. All rights reserved.
+
+1. Introduction
+In this work, we consider the Navier–Stokes equations with Variational Multiscale-Large Eddy Simulation (VMS-LES) modeling of turbulence for incompressible Newtonian ﬂuids at high Reynolds number, with the focus being on their efﬁcient time discretization and, more in general, their numerical solution in a parallel setting. Indeed, the accurate and efﬁcient simulation of turbulent ﬂows still represents a major challenge, even in a High Performance Computing framework. The Direct Numerical Simulation (DNS) of turbulent ﬂows requires the full representation of the whole range of spatial and temporal turbulent scales at the discrete level [24,38,40]; as consequence, even for moderate Reynolds numbers, the DNS may be unfeasible for several problems of practical interest. Conversely, with Large Eddy Simulation (LES) approaches [39,40,47] only the ‘‘large’’ scales of the ﬂow ﬁeld are fully represented and resolved at the discrete level, while the effect of the ‘‘small’’ unresolved scales is taken into account by means of suitable models based on the resolved scales, thus making the computational costs more affordable; among the others, examples of established LES models are the Smagorinsky [49] and dynamic Smagorinsky [18,35] models.
+⇑ Corresponding author. Tel.: +41 21 6932909; fax: +41 21 6935510.
+E-mail address: luca.dede@epﬂ.ch (L. Dedè).
+http://dx.doi.org/10.1016/j.compﬂuid.2015.05.011 0045-7930/Ó 2015 Elsevier Ltd. All rights reserved.
+
+The concept of deﬁning LES models for the Navier–Stokes equations by means of the Variational Multiscale method (VMS) ([29,34]) has been introduced in [31] and further extended in [32,33]; since then, the so called VMS-LES method has been widely developed and used for the numerical simulation of turbulent ﬂows in several benchmarking and applicative contexts [1–4,8,13, 20,25,28,30]. Indeed, the VMS-LES method is advantageous since it provides a uniﬁed framework for the deﬁnition of spatial approximation schemes which are stable in the sense of the well-posedness, capable of controlling the numerical instabilities arising in the convective regimes at high Reynolds numbers, and adequate to represent the turbulence LES modeling. In this framework, the LES model or ﬁlter stems from a low order approximation of the nonlinear terms deriving from the residual based VMS formulation applied to the incompressible Navier–Stokes equations.
+In this work, we focus on efﬁcient spatial and, above all, time discretization schemes for the incompressible Navier–Stokes equations with VMS-LES modeling of turbulence by aiming at the simulation of ﬂows at high Reynolds number in a parallel framework. In particular, the problem is ﬁrst discretized in space by using the Finite Element method [43], mainly with basis functions of low polynomial degree, and then in time by means of Finite Differences [41]. More speciﬁcally, we approximate the time derivative in the Navier–Stokes equations by means of Backward
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+169
+
+Differentiation Formulas (BDF) of orders 1; 2, or higher; see e.g. [19,41]. Then, in order to obtain an efﬁcient formulation, we propose a semi-implicit treatment of the nonlinear terms appearing in the fully discrete scheme, for which we ‘‘linearize’’ the discrete problem at each discrete time instance by means of temporal extrapolations based on Newton–Gregory backward polynomials [44]. The approach proposed leads to assemble and solve a unique linear system for each discrete time instance; conversely, a fully implicit approach, e.g. using the Newton method, would require, in principle, repeated assembly and solutions of a linear system. While our semi-implicit BDF method for VMS-LES modeling may require restrictions on the time step due to stability issues of the time discretization scheme, these can be offset by the larger computational costs associated instead to a fully implicit approach; in practice, our numerical experience indicates that stable solutions for the semi-implicit BDF scheme are obtained also for relatively ‘‘large’’ time steps, conversely to explicit schemes for which limitations on their size are generally more severe. We remark that, in literature, VMS-LES formulations of the Navier–Stokes equations are often discretized in time by means
+of implicit schemes [2,20,28] as the generalized-a method ([21]),
+low order semi-implicit schemes as the backward Euler method with Picard ‘‘linearization’’ [13], or explicit schemes as done in [25] with a Runge–Kutta scheme. In this respect, we remark that the main contribution of this work consists in deﬁning a semi-implicit BDF scheme for the approximation of the Navier– Stokes equations with turbulence VMS-LES modeling, which allows efﬁcient and accurate numerical solutions of the problem, without incurring in severe restrictions of the time step.
+Since we aim at solving large scale problems at high Reynolds number, the use of parallel architectures is necessary [22]. In such parallel framework, in addition to suitable choices of the spatial and time discretization schemes, we stress the fact that the use of an efﬁcient linear solver is often mandatory to make the numerical simulations computationally feasible. Nevertheless, the efﬁcacy of the linear solver and preconditioning strategies for VMS-LES formulations are relatively little explored in literature; in [13] a balancing Neumann–Neumann domain decomposition method is used for preconditioning with the GMRES iterative solver, while in [20] algebraic multigrid ([46]) strategies for VMS-LES modeling are discussed. In this work, we combine our semi-implicit BDF time discretization scheme for the Navier–Stokes equations with VMS-LES modeling together with a parallel multigrid right preconditioner based on the package ML of Trilinos [17] applied to the GMRES linear iterative solver. In this manner, we obtain an efﬁcient solver for the High Performance Computing implemented in the open-source Finite Element library LifeV [55].
+The proposed numerical scheme is tested for the vortex shedding benchmark problem of an incompressible ﬂuid ﬂow at high Reynolds number (Re ¼ 22; 000) past a squared cylinder; this benchmark allows us to validate our numerical strategy against the results obtained with other LES models [25,45,50] and also by means of experimental tests [5,36]. In our study, we present and discuss the numerical results obtained by considering both ﬁrst and second degree Lagrange polynomials for the Finite Element representation of the ﬂuid velocity and pressure ﬁelds, ﬁrst and second order semi-implicit BDF scheme, and different time steps. Furthermore, we analyze the energy spectra obtained for the spatial discretizations under consideration. Then, regarding the efﬁciency of the linear parallel solver, we investigate its strong scalability properties by solving the benchmark problem at hand on supercomputer machines. Finally, we discuss the choice of the stabilization parameters appearing in the VMS-LES formulation and their role in obtaining numerical simulations which feature affordable computational costs. In particular, we consider in this work stabilization parameters which involve the time step in the
+
+quasi-static approximation of the ﬁne scale differential operator, similarly to [2]. In this respect, we compare, for the vortex shedding benchmark problem, the spatial distribution of stabilization parameters, chosen both as dependent and independent of the time step, and we highlight their impact on the efﬁciency of the GMRES solver with multigrid preconditioner.
+The paper is organized as follows. In Section 2, after recalling the Navier–Stokes equations with VMS-LES modeling of turbulence, we introduce the spatial discretization of the coarse scale velocity and pressure ﬁelds by means of the Finite Element method. In Section 3, we focus on the semi-implicit time discretization of the problem by means of BDF formulas. Then, in Section 4, we describe the parallel solver developed for the fully discrete problem, as well as the multigrid preconditioner used. In Section 5, we report and discuss the numerical results on the squared cylinder benchmark problem and we analyze the choice of the stabilization parameters associated to the VMS-LES formulation. Conclusions follow in Section 6.
+
+2. Variational Multiscale LES modeling for the Navier–Stokes equations
+
+In this section we start by recalling the strong formulation of the incompressible Navier–Stokes, the VMS-LES modeling and the spatial approximation based on the Finite Element method.
+
+2.1. The incompressible Navier–Stokes equations
+
+Let X & Rd be the spatial ﬂuid domain with piecewise smooth boundary C  @X, for which we consider the dimension d ¼ 3; we denote with CD the subset of C where the essential (Dirichlet) boundary conditions are applied, while natural (Neumann) boundary conditions will be considered on CN ¼ C n CD. The Navier–Stokes equations for an incompressible ﬂuid read:
+
+q
+
+@u @t
+
+þ
+
+qu
+
+Á
+
+ru
+
+À
+
+r
+
+Á
+
+rðu;
+
+pÞ
+
+¼
+
+f
+
+in X Â ð0; TÞ;
+
+ð1Þ
+
+r Á u ¼ 0 in X Â ð0; TÞ;
+
+ð2Þ
+
+u ¼ g on CD Â ð0; TÞ;
+
+ð3Þ
+
+rðu; pÞn^ ¼ h on CN Â ð0; TÞ;
+
+ð4Þ
+
+uð0Þ ¼ u0 in X Â f0g;
+
+ð5Þ
+
+where the dependent variables u and p indicate the velocity and the
+pressure of the ﬂuid, respectively, q is the density, f is the vector of external forces, n^ is the outward directed unit normal vector to CN, and r is the stress tensor deﬁned, for a Newtonian ﬂuid, as:
+
+rðu; pÞ ¼ ÀpI þ 2lðuÞ;
+
+ð6Þ
+
+we denoted by l the dynamic viscosity of the ﬂuid and by I the
+
+second order identity tensor, while ðuÞ is the strain tensor:
+
+ðuÞ
+
+¼
+
+1 2
+
+ ru
+
+þ
+
+ðruÞT
+
+ :
+
+ð7Þ
+
+The functions g and h indicate the Dirichlet and Neumann data,
+
+respectively, while u0 the initial data. We recall that Eqs. (1)–(5) represent the balance of momentum in convective form, the mass
+
+conservation, the essential and natural boundary conditions, and
+
+the initial condition on the velocity, respectively.
+
+In view of the spatial approximation of the Navier–Stokes equa-
+
+tions, we introduce the inﬁnite dimensional function spaces
+
+Vg
+
+:¼
+
+fu
+
+2
+
+h H1
+
+id ðXÞ
+
+:
+
+ujCD
+
+¼
+
+gg; V 0
+
+:¼
+
+fu
+
+2
+
+h H1
+
+id ðXÞ
+
+:
+
+ujCD ¼ 0g,
+
+and Q :¼ L2ðXÞ; in addition, we deﬁne the function spaces
+
+Vg :¼ V g Â Q and V0 :¼ V 0 Â Q. Then, the weak formulation of
+
+the Navier–Stokes equations reads, for all t 2 ð0; TÞ ([43]):
+
+170
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+Γin
+
+Lin
+
+y
+
+D
+
+Lout
+
+Γout 2H
+
+z
+
+x Ls
+
+Fig. 1. Computational domain X considered for the squared cylinder benchmark problem.
+
+Fig. 2. Computational mesh used for the numerical simulation of the ﬂow past a squared cylinder.
+
+Table 1 Number of degrees of freedom used in our simulations for the mesh of Fig. 2.
+
+FE discretization
+
+Number of dofs
+
+P1–P1 P2–P2
+
+1,323,056 9,209,040
+
+find
+
+U
+
+¼ UðtÞ 
+
+¼
+
+fu; 
+
+pg
+
+2
+
+Vg
+
+:
+
+w;
+
+q
+
+@u @t
+
+þ ðw; qu
+
+Á
+
+ruÞ
+
+þ
+
+ rw;
+
+
+l ru
+
+þ
+
+ ðruÞT
+
+À ðr Á w; pÞ þ ðq; r Á uÞ
+
+¼ ðw; f Þ þ ðw; hÞCN for all W ¼ fw; qg 2 V0;
+
+ð8Þ
+
+where uð0Þ ¼ u0; ðÁ; ÁÞ denotes the standard L2 inner product with respect to the spatial domain X and ðÁ; ÁÞCN the one on CN.
+
+2.2. Spatial approximation: Finite Element method and VMS-LES modeling
+
+We consider the Variational Multiscale (VMS) [2,34] method applied to the standard weak form of the Navier–Stokes equations (8). The VMS method introduces a priori a decomposition of the solution into coarse and ﬁne scales. Accordingly, the weak formulation of the Navier–Stokes equations (8) is split into coarse and ﬁne scale subproblems. The coarse scale solution is identiﬁed with the numerical approximation given by the Finite Element method, while the ﬁne scale component needs to be modeled. We remark
+
+that the ﬁne scale component of the solution is often modeled
+
+analytically (in closed form), written in terms depending both on
+
+the data of the problem and the coarse scale solution, and ﬁnally
+
+substituted in the coarse scale subproblem. In virtue of a projection
+
+of the ﬁne scale solution into the coarse one, a ﬁnite dimensional
+
+system for the coarse scale component of the solution is obtained.
+
+Let us introduce at this point a suitable Finite Element dis-
+
+cretization, speciﬁcally with piecewise Lagrange polynomials of
+
+degree r P 1 over the computational domain X that is triangulated
+
+with a mesh T h comnprised of tetrahedrons; in this respeoct, we
+
+indicate
+
+with
+
+X
+
+h r
+
+:¼
+
+vh 2 C0ðXÞ : vhjK 2 Pr; for all K 2 T h
+
+the
+
+function space of Finite Element and with hK the diameter of the mesh element K 2 T h.
+We consider a multiscale direct-sum decomposition of a
+
+general function space V, which can be interpreted either as Vg or V0, into the coarse and ﬁne scales subspaces as:
+
+V ¼ Vh È V0;
+
+ð9Þ
+
+where Vh is the coarse scale function space associated to the Finite Element discretization and V0 is an inﬁnite dimensional function
+
+space representing the ﬁne scales not directly represented in the
+
+discretization;
+
+Vh
+
+¼
+
+V
+
+h 0
+
+Â
+
+Qh,
+
+more with
+
+speciﬁcally,
+
+V
+
+h g
+
+:¼
+
+V
+
+g
+
+\
+
+we have
+
+h X
+
+h r
+
+id
+
+;
+
+V
+
+h 0
+
+:¼
+
+Vh V0
+
+¼V h
+\X
+
+hrhgiÂd ,
+
+Qh
+
+or and
+
+Qh :¼ Q \ Xhr . We remark that we use the same Finite Element space
+
+X
+
+h r
+
+of
+
+degree
+
+r
+
+to
+
+deﬁne
+
+the
+
+spatial
+
+discretization
+
+for
+
+both
+
+the
+
+veloc-
+
+ity and pressure variables. Then, we have from Eq. (9) the following
+
+decompositions:
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+171
+
+Fig. 3. Post-processing of the results at time t ¼ 10 s. Solution obtained using P2–P2 Finite Element, BDF2, and Dt ¼ 0:0025 s.
+
+w ¼ wh þ w0; q ¼ qh þ q0; u ¼ uh þ u0; p ¼ ph þ p0:
+
+ð10Þ ð11Þ ð12Þ ð13Þ
+
+Without entering into the details of the derivation, we follow the approach proposed in [2], for which we decompose Eq. (8) into coarse and ﬁne scale equations, we integrate by parts the ﬁne scale terms appearing into the coarse scale equations, and ﬁnally we model the ﬁne scale velocity and pressure variables as ([2]):
+
+u0 ’ ÀsMðuhÞrMðuh; phÞ; p0 ’ ÀsCðuhÞrCðuhÞ;
+
+ð14Þ ð15Þ
+
+where rMðuh; phÞ and rCðuhÞ indicate the strong residuals of the momentum and continuity equations:
+
+rM ðuh ;
+
+ph Þ
+
+¼
+
+q
+
+@uh @t
+
+þ
+
+quh
+
+Á
+
+ruh
+
+þ
+
+rph
+
+À
+
+lDuh
+
+À
+
+f
+
+;
+
+rC ðuhÞ ¼ r Á uh;
+
+ð16Þ ð17Þ
+
+respectively. Moreover, sM and sC are the stabilization parameters,
+
+which we choose similarly to [2] as:
+
+sM ¼ sMðuhÞ ¼
+
+r2q2
+Dt2
+
+þ
+
+q2
+h2K
+
+juh j2
+
+þ
+
+l2
+h4K
+
+!À1=2
+
+Cr
+
+;
+
+ð18Þ
+
+sC
+
+¼
+
+sC ðuh Þ
+
+¼
+
+h2K
+sM ðuh Þ
+
+;
+
+ð19Þ
+
+where Cr ¼ 60 Á 2rÀ2 is a constant obtained by an inverse inequality
+relation, r is a constant equal to the order of the time discretization
+chosen and Dt is the time step that will be chosen for the time discretization. We remark that the expression chosen for the stabilization
+parameter sM does not account for the projection of the advective
+and diffusive terms onto the characteristic sizes of the mesh element along the Cartesian components as e.g. in [2,28,48,51], but rather it is ‘‘averaged’’ for simplicity over the mesh element.
+Finally, the semi-discrete variational multiscale formulation (VMS-LES) of the Navier–Stokes equations written in terms of the weak residual reads, for all t 2 ð0; TÞ:
+
+find
+
+Uh
+
+¼
+
+UhðtÞ
+
+¼
+
+fuh; phg
+
+2
+
+V
+
+h g
+
+:
+
+AðWh; UhÞ
+
+À
+
+F ðW h Þ
+
+¼
+
+0
+
+for all Wh ¼ fwh; qhg 2 Vh0;
+
+ð20Þ
+
+with uhð0Þ ¼ u0, where: AðWh; UhÞ :¼ ANSðWh; UhÞ þ AVMSðWh; UhÞ;
+
+ð21Þ
+
+FðWhÞ :¼ ðwh; f Þ þ ðwh; hÞCN ;
+
+with:
+
+ANSðW h;
+
+UhÞ
+
+:¼
+
+ wh;
+
+q
+
+@uh @t
+
+þ
+
+Àwh;
+
+quh
+
+Á
+
+ruhÁ
+
+þ
+
+ rwh;
+
+
+l ruh
+
+þ
+
+ ðruhÞT
+
+À
+
+À r
+
+Á
+
+wh ;
+
+ph Á
+
+þ
+
+Àqh
+
+;
+
+r
+
+Á
+
+uh
+
+Á ;
+
+ð22Þ ð23Þ
+
+172
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+3 2
+2.8
+1 2.6
+0 2.4
+
+2.2
+
+−1
+
+2
+
+−2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+3 2
+2.8
+1 2.6
+0 2.4
+
+2.2
+
+−1
+
+2
+
+−2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+3
+2 2.8
+1 2.6
+
+0 2.4
+
+2.2
+
+−1
+
+2
+
+−2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+Fig. 4. Results obtained by P1–P1 Finite Element and the BDF1 scheme; CD (left) and CL (right) vs. time t [s] for Dt ¼ 0:005 s (top), 0.0025 s (mid), and 0.00125 s (bottom).
+
+AVMS ðW h ;
+
+UhÞ
+
+:¼ Àquh
+À Àr
+
+
+ÁÁwrhw; shCþðurhÞqrhC;ðsuMhÞðÁuh
+
+ÞrM
+
+ðuh;
+
+ph
+
+Á Þ
+
+
+
+þ quh Á ðruhÞT ; sMðuhÞrMðuh; phÞ
+
+À Àrwh; sMðuhÞrMðuh; phÞ  sMðuhÞrMðuh; phÞÁ:
+
+ð24Þ
+
+We remark that Eq. (23) deﬁnes the standard terms of the Navier– Stokes equations in weak formulation, while Eq. (24) contains the terms obtained from the application of the VMS-LES method. In this respect, the ﬁrst row of Eq. (24) represents the classical Streamline-Upwind Petrov–Galerkin (SUPG) stabilization terms, while the second and third rows contain terms peculiar of the VMS stabilization; speciﬁcally, the second row indicates an additional stabilization term complementing the SUPG ones and ﬁnally the third row models the Reynolds cross-stress, which realizes the LES modeling of turbulence [2].
+
+3. Time discretization: semi-implicit BDF schemes
+We consider the time discretization of problem (20) by means of the Backward Differentiation Formulas (BDF) [7,16,41], a family of linear multistep methods for which the ﬁrst order derivative is replaced by a one-sided, high order incremental ratio; such BDF schemes are often used in computational ﬂuid dynamics, as for example in [19].
+
+3.1. Fully implicit BDF schemes
+
+Let us partition the time interval ½0; T into Nt subintervals of
+
+equal
+
+size
+
+Dt
+
+¼
+
+T Nt
+
+for
+
+which
+
+the
+
+discrete
+
+time
+
+instances
+
+are
+
+tn ¼ nDt for n ¼ 0; . . . ; Nt. Furthermore, let us denote with uhn and
+
+phn the approximations of the velocity uh and pressure ph ﬁelds at
+
+the time tn. According to the order r of the BDF scheme, the
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+173
+
+approximation of the time derivative of the velocity appearing in the Navier–Stokes equations reads:
+
+@uh @t
+
+%
+
+aruhnþ1 À uhn;BDFr
+Dt
+
+;
+
+ð25Þ
+
+where for BDF schemes of orders r ¼ 1; 2; 3 we have:
+
+8 >< uhn
+
+uhn;BDFr
+
+¼
+
+>:
+
+2uhn 3uhn
+
+À À
+
+1 2
+
+uhnÀ1
+
+3 2
+
+uhnÀ1
+
+þ
+
+1 3
+
+uhnÀ2
+
+if n P 0; if n P 1; if n P 2;
+
+forr ¼ 1 ðBDF1Þ; forr ¼ 2 ðBDF2Þ; forr ¼ 3 ðBDF3Þ;
+ð26Þ
+
+and
+
+8 >< 1;
+
+for r ¼ 1 ðBDF1Þ;
+
+ar
+
+¼
+
+>:
+
+3 2
+
+;
+
+11 6
+
+;
+
+for r ¼ 2 ðBDF2Þ; for r ¼ 3 ðBDF3Þ:
+
+ð27Þ
+
+According to the approximation of the time derivative, Eq. (25) is replaced in Eq. (20), while the other time dependent terms are evaluated at the general discrete time instance tnþ1. In this way, after the spatial and time discretizations, the fully discrete formulation of problem (20) reads at time tnþ1 and for a given BDF scheme of
+order r:
+
+find
+
+uhnþ1
+
+2
+
+V
+
+h g
+
+and
+
+phnþ1
+
+2
+
+Qh
+
+!
+
+:
+
+wh; q aruhnþ1 À uhn;BDFr
+Dt
+
+þ Àwh; quhnþ1 Á ruhnþ1Á
+
+þ
+
+ rwh;
+
+
+l ruhnþ1
+
+þ
+
+ ðruhnþ1 ÞT
+
+À
+
+À r
+
+Á
+
+wh;
+
+phnþ1 Á
+
+þ þ À
+
+ÀÀÀqrqhu;Áhnrwþ1hÁÁ;urshnCþwð1uÁhhnþþ1
+
+ÞrrCqðhu; shnþM1ðÞuÁhnþ1ÞrM
+
+ðuhnþ1
+
+;
+
+phnþ1 
+
+Á Þ
+
+þ quhnþ1 Á ðrwhÞT ; sMðuhnþ1ÞrMðuhnþ1; phnþ1Þ
+
+¼ÀÀwÀrh;wf nhþ; 1sÁMþðuÀhnwþ1hÞ;rhMnðþu1hnÁþC1N;;pfhnoþr1
+
+Þ all
+
+sM
+wh
+
+ðuhnþ1 ÞrM ðuhnþ1
+
+2
+
+V
+
+h 0
+
+and
+
+qh
+
+;
+
+phnþ1
+
+Á Þ
+
+2 Qh; for all n P r À 1;
+
+ð28Þ
+
+given uhn;. . . ; uhnþ1Àr, with f nþ1 ¼ f ðtnþ1Þ, hnþ1 ¼ hðtnþ1Þ rMðuhnþ1;
+
+q q l phnþ1Þ :¼
+
+ar uhnþ1 Àuhn;BDFr Dt
+
+þ
+
+uhnþ1 Á ruhnþ1 þ rphnþ1 À
+
+Duhnþ1 À f nþ1:
+
+We notice that the BDF1 scheme coincides with the Backward Euler method. In this work, we consider a ﬁxed time step Dt; nevertheless, it is possible to use a time varying or adaptive time step compatible with the BDF schemes, as done e.g. in [9,53].
+At each discrete time tn, the BDF scheme yields a nonlinear problem to be solved, since (28) is nonlinear in the variables uhnþ1 and phnþ1. An approximation of this nonlinear problem can be obtained for example with the Newton method [41]. This requires, at each Newton iterate, the assembly of the Jacobian matrix and the solution of a linear system. A fully implicit approach, although obtained for different time discretizations, has been widely used for the study of incompressible ﬂuid ﬂows in turbulent regimes as e.g. in [2,25,37]. However, while a fully implicit approach is generally yielding a stable time discretization scheme, the associated computational costs may be signiﬁcantly high due to the repeated assembly of the residual vector and Jacobian matrix and the solution of the associated linear system.
+
+3.2. Semi-implicit BDF schemes
+
+In this paper, in order to contain the computational burden
+
+associated to the use of a fully implicit BDF approach (28), we con-
+
+sider instead a semi-implicit BDF scheme derived from problem
+
+(28), for which the nonlinear terms in uhnþ1 and phnþ1 are extrapolated by means of the Newton–Gregory backward polynomials
+
+[10,44]. Without entering into the details of the derivation, for
+
+which we refer the reader to e.g. [10,44], we consider the following
+
+extrapolations of orders r ¼ 1; 2; 3 for the velocity and pressure
+
+variables at the discrete time tnþ1:
+
+8 >>>< uhn
+
+if n P 0;
+
+uhnþ1;r
+
+¼
+
+>>>:
+
+2uhn 3uhn
+
+À À
+
+uhnÀ1 3uhnÀ1
+
+þ uhnÀ2
+
+if n P 1; if n P 2;
+
+for r ¼ 1 ðBDF1Þ; for r ¼ 2 ðBDF2Þ; for r ¼ 3 ðBDF3Þ;
+
+ð29Þ
+
+and similarly:
+
+8 >>>< phn
+
+phnþ1;r
+
+¼
+
+>>>:
+
+2phn 3phn
+
+À À
+
+phnÀ1 3phnÀ1
+
+þ
+
+phnÀ2
+
+if n P 0; if n P 1; if n P 2;
+
+for r ¼ 1 ðBDF1Þ; for r ¼ 2 ðBDF2Þ; for r ¼ 3 ðBDF3Þ:
+ð30Þ
+
+Starting from the fully implicit formulation (28), we use the above extrapolations by Newton–Gregory backward polynomials. In this
+way, for a given BDF scheme of order r, the fully discrete linearized
+semi-implicit formulation of problem (28) reads:
+
+find
+
+uhnþ1
+
+2 :
+
+V
+
+h g
+
+andphnþ1
+
+2
+
+Qh
+
+!
+
+wh
+
+;
+
+q
+
+ar
+
+uhnþ1 À Dt
+
+uhn;BDFr
+
+þ
+
+
+wh; quhnþ1;r
+
+Á
+
+ ruhnþ1
+
+þ
+
+ rwh;
+
+
+l ruhnþ1
+
+þ
+
+
+
+ðruhnþ1
+
+T
+Þ
+
+À
+
+À r
+
+Á
+
+wh;
+
+phnþ1 Á
+
+þ
+
+Àqh 
+
+;
+
+r
+
+Á
+
+uhnþ1
+
+Á
+
+
+
+s q þ
+
+uhnþ1;r Á rwh þ rqh;
+
+nþ1;r
+M
+
+rnMþ1;r
+
+ðuhnþ1;
+
+phnþ1
+
+Þ
+
+
+
+
+
+À
+
+s r Á wh;
+
+nþ1;r
+C
+
+r
+
+C
+
+ðuhnþ1
+
+Þ
+
+
+
+
+
+q s þ
+
+uhnþ1;r Á ðrwhÞT ;
+
+nþ1;r
+M
+
+rnMþ1;r ðuhnþ1
+
+;
+
+phnþ1
+
+Þ
+
+
+
+
+
+s s À
+
+rwh;
+
+nþ1;r
+M
+
+br nMþ1;r
+
+
+
+nþ1;r
+M
+
+er nMþ1;rðuhnþ1; phnþ1Þ
+
+À
+
+ rwh;
+
+snþ1;r M
+
+br nMþ1;r
+
+
+
+snþ1;r M
+
+qar
+
+uhnþ1  Dt
+
+!
+
+s s q þ
+
+rwh;
+
+nþ1;r
+M
+
+rnMþ1;r
+
+ðuhnþ1
+
+;
+
+phnþ1
+
+Þ
+
+
+
+nþ1;r
+M
+
+uhn;BDFr Dt
+
+¼
+
+Àwh;
+
+f
+
+Á
+nþ1
+
+þ
+
+Àwh;
+
+Á hnþ1 CN
+
+;
+
+for all wh
+
+2
+
+V
+
+h 0
+
+and
+
+qh 2 Qh;
+
+for all n P r À 1;
+
+ð31Þ
+
+given uhn; . . . ; uhnþ1Àr, where the stabilization parameters are deﬁned as follows:
+
+snþ1;r M
+
+:¼
+
+r2q2
+Dt2
+
+þ
+
+q2
+h2K
+
+uhnþ1;r2
+
+þ
+
+l2
+h4K
+
+!À1=2
+
+Cr
+
+;
+
+ð32Þ
+
+nþ1;r
+s s C
+
+¼
+
+h2K
+nþ1;r
+
+;
+
+M
+
+ð33Þ
+
+and the residuals read:
+
+174
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+3 2
+2.8
+1 2.6
+0 2.4
+
+2.2
+
+−1
+
+2
+
+−2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+3 2
+2.8
+1 2.6
+0 2.4
+
+2.2
+
+−1
+
+2
+
+−2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+3
+2 2.8
+1 2.6
+
+0 2.4
+
+2.2
+
+−1
+
+2
+
+−2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+Fig. 5. Results obtained by P1–P1 Finite Element and the BDF2 scheme; CD (left) and CL (right) vs. time t [s] for Dt ¼ 0:005 s (top), 0.0025 s (mid), and 0.00125 s (bottom).
+
+rnMþ1;rðuhnþ1; phnþ1Þ :¼ q
+
+!
+aruhnþ1 À uhn;BDFr
+Dt
+
+l þ quhnþ1;r Á ruhnþ1 þ rphnþ1 À Duhnþ1 À f nþ1;
+br nMþ1;r :¼ rnMþ1;rðuhnþ1;r; phnþ1;rÞ;
+l er nMþ1;rðuhnþ1; phnþ1Þ :¼ quhnþ1;r Á ruhnþ1 þ rphnþ1 À Duhnþ1 À f nþ1:
+ð34Þ
+
+Thanks to the time discretization proposed, the fully discrete semi-implicit formulation (31) yields a linear problem in the variables uhnþ1 and phnþ1 to be solved only once at each time tn. We remark that the Newton–Gregory extrapolation of the pressure variable in Eq. (30) is required by the terms of the formulation which carry the LES modeling. In this respect, we notice that a
+
+linearization of Eq. (28) by means of ﬁrst order Frechét differentiation would have led to a semi-implicit formulation with a larger number of terms than in Eq. (31), thus resulting in a larger assembly cost than in the proposed semi-implicit BDF formulation.
+Finally, we remark that semi-implicit BDF methods with Newton–Gregory extrapolation yield stable time discretization schemes if the velocity ﬁeld is divergence free a.e. in the computational domain. However, this requirement is not guaranteed for the spatially approximated velocity ﬁeld uhn obtained by solving the Navier–Stokes equations in the VMS-LES formulation, which in principle would require restrictions on the choice of the time step. Nevertheless, our numerical experience indicates that the use of relatively ‘‘large’’ time steps still yields stable solutions for the proposed semi-implicit VMS-LES method with BDF time discretization.
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+175
+
+4. Linear parallel solver: GMRES with multigrid preconditioner
+We implement the semi-implicit VMS-LES method with BDF time discretization in the open-source Finite Element library LifeV [55] for the High Performance Computing of problems described by PDEs. In our numerical tests, the linear system arising from Eq. (31) is solved in a parallel setting using the GMRES method preconditioned by an algebraic three levels multigrid preconditioner based on the ML package of Trilinos [17]; see e.g. [42,52]. For the application of the multigrid (ML) right preconditioner to the matrix we perform three sweeps of the Gauss–Seidel algorithm for pre- and post-smoothing, while the solution on the coarsest level is based on a LU factorization [41]. In our computations, we consider the relative residual as stopping criterion for the GMRES method with tolerance equal to 10À6.
+
+5. Numerical results
+In this section we validate the semi-implicit BDF VMS-LES scheme towards the benchmark problem of the vortex shedding induced by the ﬂuid ﬂow past a squared cylinder at high Reynolds number [25]. The simulations have been carried out for different orders of both the time and spatial discretizations and for different time steps with the aim of studying their inﬂuence on the accuracy of the numerical solution. We discuss the numerical performance of the solver and analyze the inﬂuence of the stabilization parameters on the numerical results.
+5.1. The benchmark problem: ﬂow past a squared cylinder
+As a validation test, we numerically simulate the ﬂow past a squared cylinder at Reynolds number Re ¼ 22; 000. This problem
+
+3.2 2
+3
+
+2.8
+
+1
+
+2.6 0
+2.4
+
+2.2
+
+−1
+
+2 −2
+1.8
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+3.2 2
+3
+
+2.8
+
+1
+
+2.6 0
+2.4
+
+2.2
+
+−1
+
+2 −2
+1.8
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+3.2 2
+3
+
+2.8
+
+1
+
+2.6 0
+2.4
+
+2.2
+
+−1
+
+2 −2
+1.8
+
+2
+
+4
+
+6
+
+8
+
+10
+
+2
+
+4
+
+6
+
+8
+
+10
+
+Fig. 6. Results obtained by P2–P2 Finite Element and the BDF2 scheme; CD (left) and CL (right) vs. time t [s] for Dt ¼ 0:005 s (top), 0.0025 s (mid), and 0.00125 s (bottom).
+
+176
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+Table 2 Results obtained by the semi-implicit BDF VMS-LES method by considering different time step s Dt and orders for the spatial and time discretizations.
+
+FE discretization P1–P1
+
+Time step
+Dt ¼ 0:01 s Dt ¼ 0:005 s Dt ¼ 0:0025 s Dt ¼ 0:00125 s
+Dt ¼ 0:01 s Dt ¼ 0:005 s Dt ¼ 0:0025 s Dt ¼ 0:00125 s
+
+BDF order
+1 1 1 1
+2 2 2 2
+
+CD
+2.51 2.49 2.35 2.24
+2.33 2.27 2.16 2.05
+
+rmsðC D Þ
+0.250 0.226 0.112 0.0785
+0.204 0.0896 0.0622 0.0420
+
+rmsðC L Þ
+1.59 1.49 1.18 0.895
+1.11 0.897 0.658 0.576
+
+P2–P2
+
+Dt ¼ 0:005 s
+
+2
+
+Dt ¼ 0:0025 s
+
+2
+
+Dt ¼ 0:00125 s
+
+2
+
+1.98 2.24 2.71
+
+0.102 0.121 0.153
+
+0.580 0.986 1.49
+
+Strouhal
+0.127 0.133 0.138 0.142
+0.142 0.144 0.146 0.146
+0.142 0.141 0.129
+
+Table 3 Results obtained by different numerical simulations based on LES models (results between brackets indicate a range of values).
+
+LES method
+Finite volumes VMS (Koobus et al. [25]) Smagorinsky (Rodi et al. [45]) Dynamic LES (Sohankar et al. [50])
+
+CD
+2.10 [1.66–2.77] [2.00–2.32]
+
+rms(C D )
+0.18 [0.1–0.27] [0.16–0.20]
+
+rms(C L )
+1.08 [0.38–1.79] [1.23–1.54]
+
+Strouhal
+0.136 [0.07–0.15] [0.127–0.135]
+
+has been already investigated both experimentally [5,36] and
+
+numerically by using Smagorinsky and dynamic LES models
+
+[45,50], as well as with a VMS formulation for the compressible
+
+Euler equations approximated by the Finite Volumes method
+
+[25] (see also [26]).
+
+The geometrical setting considered for this benchmark problem
+
+is schematically illustrated in Fig. 1, for which D ¼ 1 m is the side
+
+length of the squared cylinder, Lin ¼ 4:5 D and Lout ¼ 15:5 D are the distances between the cylinder and the inﬂow and outﬂow surface
+
+boundaries, respectively, Ls ¼ 4 D is the width of the domain and H ¼ 6:5 D is the distance between the cylinder and the bottom
+
+and top walls.
+
+Regarding the boundary conditions, at the surfaces on the top
+
+and bottom of the domain we set a null normal component of
+
+the velocity vector u Á n^ ¼ 0; similarly, at the lateral boundaries
+
+we set the normal velocity component u Á n^ ¼ 0. At the inﬂow of
+
+the domain Cin, we prescribe a velocity proﬁle uinðtÞ that is uniform along the inﬂow section and it is dependent only on the time
+
+independent variable as:
+
+(
+
+ 
+
+uinðtÞ ¼
+
+p V 1
+2
+
+1 À cos
+
+t Tr
+
+V1
+
+if 0 6 t < Tr; if t P Tr;
+
+where, in the numerical tests, we have consider Tr ¼ 0:3 s and the reference inﬂow velocity V1 ¼ 22 m/s At the outﬂow boundary Cout, we consider the following natural boundary condition [3]:
+
+Àpn^ þ 2lðru þ ðruÞT Þ Á n^ À qðfu Á n^gÀÞu ¼ 0 on Cout;
+
+ð35Þ
+
+where n^ is the outward directed unit vector normal to Cout and
+
+fu Á n^gÀ denotes the negative part of u Á n^:
+
+fu
+
+Á
+
+n^ gÀ
+
+¼
+
+&
+
+u 0
+
+Á
+
+n^
+
+if u Á n^ < 0; if u Á n^ P 0:
+
+The above boundary condition is introduced to weakly penalize the reverse ﬂow induced by the vortexes at Cout, which may render unstable the discrete formulation of the problem. Indeed, we observe that only if u Á n^ < 0 on Cout, the last term in the left hand side of Eq. (35) is active; if u Á n^ P 0 Cout, the outﬂow boundary condition considered coincides with the well known stress-free condition. On the squared cylinder surface we impose a no slip boundary
+
+condition (u ¼ 0). We consider the ﬂuid to have density
+
+q ¼ 1000 kg=m3 and a dynamic viscosity l ¼ 1 Pa s. In this way
+
+the
+
+Reynolds
+
+number
+
+is
+
+Re
+
+¼
+
+qV 1 D l
+
+¼
+
+22;
+
+000.
+
+We discretize the computational domain X by a mesh com-
+
+prised of 330; 764 vertices and 1; 853; 500 tetrahedral elements.
+
+In Fig. 2, two images of the computational mesh T h are presented: on the left we show a vertical cut plane of the mesh and on the
+
+right an horizontal cut through the squared cylinder. Along the side
+
+length of the cylinder we considered about 20 mesh elements, cor-
+
+responding to a length hbl ¼ 0:05 m. We remark that the mesh size is not uniform in X and the ratio between the largest and the
+
+smallest local mesh sizes is about 10–15.
+
+We solve the benchmark problem using the semi-implicit
+
+VMS-LES method based on the BDF formulas. We analyze the per-
+
+formances of the method with respect to the use of ﬁrst (r ¼ 1)
+
+and second (r ¼ 2) order BDF schemes for different time steps
+
+(Dt ¼ 0:005s; Dt ¼ 0:0025 s, and Dt ¼ 0:00125 s) and different
+
+degrees of polynomials used for the Finite Element approximation,
+
+speciﬁcally P1–P1 for r ¼ 1 and P2–P2 for r ¼ 2. The time interval
+
+considered for the simulations is such that t 2 ð0; 14Þ s. In Table 1
+
+we report the number of degrees of freedom associated to the
+
+discretized problem for the numerical simulations performed.
+
+In Fig. 3 we show a post-processing of the solution obtained by
+
+using P2–P2 Finite Element and BDF2 scheme at time t ¼ 10 s for
+
+Dt ¼ 0:0025 s, i.e. when the turbulent ﬂow is fully developed.
+
+Fig. 3(a) shows the coherent vortex structures characterizing
+
+the wake (we identiﬁed the structures by means of the k2 criterion [23]); in Fig. 3(b), we highlight the considerable
+
+three-dimensional features of the turbulent ﬂow occurring in the
+
+wake region adjacent to the cylinder by means of a representation
+
+of the streamlines colored by the vorticity ﬁeld. Fig. 3(c) illustrates
+
+the pressure ﬁeld at a plane located at z ¼ 0, as well as some signif-
+
+icant isosurfaces; we showed only negative values of the pressure
+
+ﬁeld in order to highlight the low pressure zones characterizing the
+
+center of the vortexes in the wake region. In Fig. 3(d) we illustrate
+
+the vorticity ﬁeld, both on the squared cylinder and on a cut plane
+
+at z ¼ 0, on which we also show, by means of a surface LIC, the
+
+recirculation of the ﬂow detaching from the cylinder.
+
+In order to compare the results with those available in literature
+
+obtained by other LES methods, we compute the drag and lift
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+177
+
+coefﬁcients
+
+on
+
+the
+
+cylinder.
+
+Let
+
+us
+
+introduce
+
+v^ 1
+
+¼
+
+v1
+kV 1
+
+k,
+
+that
+
+is
+
+a
+
+unit vector directed as the incoming ﬂow, and n^1, a unit vector
+
+orthogonal to the direction v^1 of the incoming ﬂow. The aerody-
+
+namic drag and lift coefﬁcients for the cylinder are deﬁned as:
+
+I
+
+1 CDðu; pÞ ¼ À q1jCBODYIj
+
+ðrðu; pÞn^Þ Á v^1dC;
+CBODY
+
+1 CLðu; pÞ ¼ q1jCBODY j
+
+ðrðu; pÞn^Þ Á n^1dC;
+CBODY
+
+ð36Þ ð37Þ
+
+where
+
+q1
+
+¼
+
+1 2
+
+qV
+
+2 1
+
+is
+
+the
+
+dynamic
+
+pressure,
+
+and
+
+jCBODY j
+
+is
+
+the
+
+surface
+
+area of the cylinder; in Eq. (36) the minus sign takes into account
+
+that, by convention, the force is positive if acting on the ﬂuid. In
+
+practice, we compute the aerodynamic drag and lift coefﬁcients
+
+by means of the weak residual form ([6,14,27]) which ensures
+
+higher accuracy than the direct use of Eqs. (36) and (37); with this
+
+aim,
+
+we
+
+use
+
+the
+
+test
+
+functions
+
+v d1
+
+2
+
+f½H1
+
+d
+ðXÞ
+
+:
+
+d1 jCBODY
+
+¼
+
+^1;
+
+d1 j@ XnCBODY
+
+¼ 0g
+
+and
+
+l1
+
+2
+
+f½H1
+
+d
+ðXÞ
+
+: l1jCBODY
+
+¼ n^ 1; l1j@XnCBODY
+
+¼ 0g
+
+in
+
+Eq. (28). In Fig. 4 we illustrate, for the different time steps consid-
+
+ered, the evolution of the drag (left-hand side) and lift (right-hand
+
+side) coefﬁcients when using a ﬁrst order scheme for both the spa-
+
+tial and the time discretizations. In the same way, Figs. 5 and 6
+
+show the evolution of the coefﬁcients using a second order BDF
+
+scheme in time and a ﬁrst and second order approximations in
+
+space, respectively. By a comparison of the numerical results
+
+obtained using P1–P1 Finite Element (Figs. 4 and 5) we highlight
+
+the effects of the time discretization. In detail, we can observe that
+
+the amplitude of the oscillations of the lift and drag coefﬁcients are
+
+substantially reduced when using a second order time discretiza-
+
+tion with respect to BDF1. In the same way, the results of Figs. 5
+
+and 6 (both obtained using the BDF2) allows to analyze the effects
+
+of spatial discretization on the solution. More speciﬁcally, it is inter-
+
+esting to analyze the interplay between the choice of the time
+
+stepDt and the order of the spatial discretization. When using
+
+P1–P1 Finite Element, the smaller Dt reduces both the amplitudes
+
+of the oscillations of lift and drag coefﬁcients, as well as the mean
+
+drag coefﬁcients CD. On the contrary, when a second order spatial discretization is adopted, smaller time steps lead to wider oscillations of the coefﬁcients and to higher mean values of the mean of the drag.
+In order to compare the numerical results with those available
+
+in literature, we evaluate the mean drag coefﬁcient CD, the root mean square of the lift and of the drag coefﬁcients, say rmsðCDÞ and rmsðCLÞ, and the Strouhal number obtained from a Fourier analysis of the lift coefﬁcient. In Table 2 we report the results predicted by the semi-implicit BDF VMS-LES method, whereas Table 3 contains the values obtained by other LES methods: in particular, we consider the results obtained with the VMS-Finite Volumes method of Koobus et al. [25], LES models of Rodi et al. [45], and Smagorinsky models of Sohankar et al. [50].
+The choice of the time step Dt for the simulations has an important effect on the aerodynamic coefﬁcients independently from the order of the spatial and time discretizations. Indeed, from Table 2
+
+we observe that the estimation of the mean drag coefﬁcient CD obtained with Dt ¼ 0:005 s and Dt ¼ 0:00125 s varies of approximately Æ5% with respect to the value obtained with Dt ¼ 0:0025 s. We notice that the use of P1–P1 Finite Element
+
+yields a mean drag coefﬁcient CD that decreases as the time step gets smaller; on the contrary, by using P2–P2 Finite Element to
+
+approximate the velocity and pressure ﬁelds, the value of CD increases as Dt decreases. The same consideration follows from the analysis of the root mean square values of both the lift and drag coefﬁcients. The results obtained using a ﬁrst order spatial-time discretizations (P1–P1 and BDF1) are in line with those available
+
+100
+
+Ekin(k)/Ekin,0 [−]
+
+10−2
+
+10−4
+
+10−6
+
+FEM P1 FEM P2
+
+(k, k−5/3)
+
+100
+
+101
+
+102
+
+k [1/m]
+
+Fig. 7. Relative energy spectra (energy vs. wave number) obtained using a ﬁrst and second order spatial discretization for BDF2 and Dt ¼ 0:0025 s; logarithmic scales on both axes. The analysis is performed at time t ¼ 10 s, when turbulence is fully developed, and has been carried out by using the software AnaFlame [54].
+
+in literature: although the largest time step under consideration leads already to an accurate prediction of the Strouhal number, the smallest one, i.e. Dt ¼ 0:00125 s, yields good estimation of all the coefﬁcients. We notice that the use of a ﬁrst order discretization in space and second in time (P1–P1 and BDF2) leads to an underestimation of the root mean square of the lift and drag coefﬁcients with respect to the results available in literature for
+LES models, although the prediction of CD is sufﬁciently accurate. Finally, by employing a second order spatial-time discretization (P2–P2 and BDF2) we notice that the rms(CL) and rms(CD) are in line with those obtained with other LES methods, although the smallest time step yields an overestimation of the mean drag
+coefﬁcient CD.
+
+5.2. Energy spectra
+
+It is well known [40] that turbulence features a wide range of spatial and time scales. Fluctuation of the energy is produced at the level of large eddies (with low wave numbers). Vortex stretching mechanisms then generate smaller and smaller eddies and energy ‘‘drifts’’ down the spectrum to higher wave numbers. The slope of the energy spectrum vs. the wave number in this range remains constant, as Kolmogorov showed that this slope is À5=3, based on dimensional arguments. We denote by EkinðkÞ the energy spectrum, where k is the wave number (inversely proportional to the wavelength). In order to compute the energy spectrum, the numerical solution (velocity ﬁeld) obtained on the squared cylinder benchmark problem is evaluated on a lattice of 106 equally spaced points. The points are located within a cube in the wake, centered in 5 m downstream the cylinder. The side length of the cube is L ¼ 3 m and 102 points are equally spaced along each direction; the results displayed in Fig. 7 show the energy spectra obtained. The slope of the energy spectra,1 for both the spatial discretizations considered, is in line with the one of the theoretical curve (k; kÀ5=3).
+
+5.3. Parallel performances of the solver
+
+In Fig. 8 we report a strong scalability study of the solver performed using the P2–P2 and BDF2 discretizations of the benchmark problem for Dt ¼ 0:0025 s. We recall that in this settings
+
+1 The sharp drop of Ekin beyond k ’ 401=m is due to the fact that the local size hK of the computational mesh is larger than the distance of the points used for the sampling of the velocity ﬁeld, for which the associated energy is negligible.
+
+178
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+the total number of degrees of freedom is equal to 9; 209; 040. In our investigation, we consider a varying number of CPUs ranging from 64 to 4096 and we monitor the time to build the preconditioner (Fig. 8(a)), to solve the linear system by the preconditioned GMRES method (Fig. 8(b)), and to perform a time step, i.e. the sum of the time spent to update the convective and the VMS-LES terms in the assembly phase, to build the preconditioner, and to solve the linear system (Fig. 8(c)). Furthermore, in Fig. 8(d) we show the mean number of GMRES iterations employed to solve the linear system with the prescribed tolerance. All the computations are carried out using Piz Dora, a Cray XC40 supercomputer installed at the Swiss National Supercomputing Center (CSCS) whose main technical speciﬁcations are reported in Table 4.
+The results reported in Fig. 8 show the excellent scalability properties of the solver up to 2048 CPUs: in fact, all the indicators scale almost perfectly and the number of iterations of the GMRES solver remains constant. More speciﬁcally, only when using 2048 CPUs we start to observe an initial deterioration in the scalability of the time to build the preconditioner and to solve the linear system. Nevertheless, in terms of time to perform a time step, remarkably only with 4096 CPUs we start to notice a slight deterioration of the performance. This is due to the fact that, within the overall count of the operations required to perform a time step, the assembly phase necessary to update the convective and VMS-LES stabilization terms is the most expensive, taking around the 85% of the total time spent for a time step, although perfectly scalable. This follows from the fact that the VMS-LES formulation (31) requires the assembly of several terms, in particular those associated to the second order Laplace operator; as consequence, this
+
+results in an increased computational cost with respect to formulations of the Navier–Stokes equations without the LES modeling terms.
+Regarding the GMRES solver, in order to asses the suitability of the tolerance 10À6 for the stopping criterion based on the relative residual, we solve the problem also with the tolerance 10À4; with this aim, we use the ﬁrst order discretization in space and second in time (P1–P1 and BDF2) for Dt ¼ 0:0025 s. In this case, the computational cost associated to the GMRES solver is greatly reduced with respect to the tolerance 10À6, as the number of iterations is about halved. At the same time, the numerical results are in line with those obtained previously, with a discrepancy of the mean
+drag coefﬁcient CD of about 1%. Conversely, reducing the tolerance under 10À6 would lead to an unnecessary increase of the computational cost associated to the GMRES solver without any noticeable improvement of the numerical results.
+
+Table 4 Piz Dora Cray XC40 technical data.
+Number of compute nodes Processor
+Memory
+Memory bandwidth Network
+
+1256 Dual-socket Intel Xeon processor E5-2690v3, 2.5 GHz 64 GB per node in 1192 nodes 128 GB per node in 64 nodes Up to 137 GB/s per node Dragonﬂy interconnect
+
+102
+
+102
+
+101 101
+100
+
+10−1
+
+100
+
+101
+
+102
+
+103
+
+104
+
+101
+
+102
+
+103
+
+104
+
+103
+
+25
+
+24
+
+23 102
+22
+
+21
+
+101
+
+20
+
+101
+
+102
+
+103
+
+104
+
+101
+
+102
+
+103
+
+104
+
+Fig. 8. Scalability analysis of the solver. Simulations performed using P2—P2 Finite Element, BDF2 and Dt ¼ 0:0025 s.
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+179
+
+5.4. Stabilization parameters
+
+We address, for the benchmark problem at hand, the depen-
+
+dency
+
+of
+
+the
+
+stabilization
+
+parameters
+
+snþ1;r M
+
+and
+
+snþ1;r C
+
+of
+
+Eqs.
+
+(32)
+
+and (33) on the choice of the time step Dt. With this aim, we
+
+visualize
+
+the
+
+spatial
+
+distributions
+
+of
+
+snþ1;r M
+
+and
+
+snþ1;r C
+
+on
+
+the
+
+mid
+
+plane of the computational domain starting from the velocity ﬁeld
+
+computed at the time t ¼ 10:0 s by means of P1–P1 Finite Element
+
+and the BDF2 scheme for Dt ¼ 0:0025 s; the corresponding com-
+
+puted velocity and pressure ﬁelds are reported in Fig. 9, while
+
+Fig. 9. Reference velocity (a) and pressure (b) ﬁelds computed at time t ¼ 10:0 s using P1–P1 Finite Element and the BDF2 scheme with Dt ¼ 0:0025 s; the velocity ﬁeld is
+
+used
+
+to
+
+evaluate
+
+the
+
+stabilization
+
+parameters
+
+snþ1;r M
+
+and
+
+snþ1;r C
+
+.
+
+Fig. 10.
+
+Spatial distribution (on
+
+the mid
+
+plane of
+
+X)
+
+of
+
+the
+
+stabilization
+
+parameter
+
+snþ1;r M
+
+computed from
+
+the reference
+
+velocity
+
+ﬁeld of
+
+Fig. 9(a) using P1–P1 Finite Element
+
+and the BDF2 scheme for different time steps Dt ¼ 0:01; 0:005; 0:0025, and 0.00125 s.
+
+180
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+Fig.
+
+11.
+
+Spatial
+
+distribution
+
+(on
+
+the
+
+mid
+
+plane
+
+of
+
+X)
+
+of
+
+the
+
+stabilization
+
+parameter
+
+snþ1;r C
+
+computed
+
+from
+
+the
+
+reference
+
+velocity
+
+ﬁeld
+
+of
+
+Fig.
+
+9(a)
+
+and
+
+the
+
+parameters
+
+snþ1;r M
+
+of
+
+Fig. 10 using P1–P1 Finite Element and the BDF2 scheme for different time steps Dt ¼ 0:01; 0:005; 0:0025, and 0.00125 s.
+
+the
+
+values
+
+of
+
+snþ1;r M
+
+and
+
+snþ1;r C
+
+for
+
+the
+
+time
+
+steps
+
+Dt
+
+¼ 0:01; 0:005;
+
+0:0025, and 0:00125 s are reported in Figs. 10 and 11. From
+
+Fig. 10(a) we observe that the largest time step under considera-
+
+tion,
+
+Dt
+
+¼ 0:01 s,
+
+leads
+
+to
+
+a
+
+distribution
+
+of
+
+snþ1;r M
+
+that
+
+reﬂects
+
+the
+
+value of the local mesh size hK and velocity ﬁeld uhnþ1;r. However,
+
+as the time step Dt diminishes, the magnitude of the stabilization
+
+parameter
+
+snþ1;r M
+
+diminishes
+
+and
+
+its
+
+spatial
+
+distribution
+
+only
+
+mildly
+
+depends on the local mesh size and the velocity magnitude. In fact,
+
+from
+
+the
+
+deﬁnition
+
+of
+
+snþ1;r M
+
+in
+
+Eq.
+
+(32),
+
+we
+
+remark
+
+that
+
+the
+
+use
+
+of
+
+small time steps tends to annihilate the dependence on hK and
+
+uhnþ1;r ,
+
+as
+
+it
+
+is
+
+possible
+
+to
+
+observe
+
+in
+
+Fig.
+
+10(d)
+
+where
+
+snþ1;r M
+
+mostly
+
+behaves
+
+as
+
+Dt q
+
+for
+
+Dt
+
+!
+
+0.
+
+We
+
+report
+
+in
+
+Fig.
+
+11
+
+the
+
+behavior
+
+of
+
+the
+
+stabilization
+
+parameter
+
+snþ1;r C
+
+computed
+
+as
+
+in
+
+Eq.
+
+(33).
+
+We
+
+notice
+
+that,
+
+since
+
+mild
+
+dependencies
+
+of
+
+snþ1;r M
+
+on
+
+hK
+
+and
+
+uhnþ1;r
+
+are
+
+observed for the values of the Dt under considerations, the param-
+
+eter
+
+snþ1;r C
+
+mostly
+
+depends
+
+on
+
+the
+
+local
+
+mesh
+
+size
+
+hk;
+
+indeed,
+
+we
+
+have considered a variable mesh size as highlighted in Fig. 2. As
+
+consequence, the ratio between the largest and smallest local
+
+values
+
+of
+
+snþ1;r C
+
+in
+
+X
+
+is
+
+approximatively
+
+150
+
+regardless
+
+of
+
+the
+
+time
+
+step Dt under consideration.
+
+While it is well known that the stabilization parameters chosen
+
+as in Eqs. (32) and (33) degenerate as the time step decreases (see
+
+e.g.
+
+[13,28]),
+
+i.e
+
+snþ1;r M
+
+$
+
+Dt
+
+!
+
+0
+
+and
+
+snþ1;r C
+
+$
+
+1 Dt
+
+!
+
+1
+
+for
+
+Dt
+
+!
+
+0,
+
+and
+
+hence the stabilization and turbulence LES modeling may be
+
+ineffective for relatively small values of Dt ([13]), we stress the fact
+
+that we did not encounter any stabilization issue in our numerical
+
+simulations for the time steps under consideration. However, our
+
+experience based on numerical tests indicates that for very ‘‘small’’
+
+values
+
+of
+
+Dt,
+
+i.e.
+
+when
+
+the
+
+term
+
+related
+
+to
+
+Dt
+
+in
+
+snþ1;r M
+
+is
+
+not
+
+cor-
+
+rectly balanced with respect to the other ones, the degeneration
+
+of
+
+the
+
+parameters
+
+snþ1;r M
+
+and
+
+snþ1;r C
+
+is
+
+reﬂected
+
+at
+
+the
+
+numerical
+
+level by convergence issues of the linear solver and eventually by
+
+the inability of assembling a suitable preconditioner.
+
+An alternative formulation of the stabilization parameters of
+
+Eqs. (32) and (33) can be used by completely neglecting the effect
+
+of time dependency of the ﬁne scale velocity u0 in the ﬁne scale
+
+momentum
+
+equation,
+
+where
+
+one
+
+assumes
+
+that
+
+@u0 @t
+
+’
+
+0.
+
+This
+
+leads
+
+to
+
+consider
+
+stabilization
+
+parameters
+
+se
+
+nþ1;r
+M
+
+and
+
+se
+
+nþ1;r
+C
+
+in
+
+Eqs.
+
+(14)
+
+and (15) independent of the time step Dt, which read:
+
+senMþ1;r :¼
+
+q2
+h2K
+
+uhnþ1;r2
+
+þ
+
+l2
+h4K
+
+!À1=2
+
+Cr
+
+;
+
+s s enCþ1;r
+
+¼
+
+h2K enMþ1;r
+
+:
+
+However, we remark that we were unable to successfully perform numerical simulations by using the previous deﬁnitions of the stabilization parameters, even for different choices of Dt; speciﬁcally, we experienced convergence issues using the GMRES solver with
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+181
+
+Fig. 12. Spatial distribution (on the mid plane of X) of the stabilization parameters senMþ1;r and senCþ1;r computed from the reference velocity ﬁeld of Fig. 9(a) using P1–P1 Finite
+Element.
+
+the ML preconditioner, which prevented the simulations to signiﬁ-
+
+cantly advance beyond the time Tv ¼ 0:3 s. Our interpretation of this outcome is that a suitable multigrid preconditioner can not
+
+be
+
+‘‘easily’’
+
+assembled
+
+when
+
+the
+
+stabilization
+
+parameters
+
+se
+
+nþ1;r
+M
+
+and senCþ1;r are signiﬁcantly varying in the computational domain
+
+X. Following the procedure described before, we plot in Fig. 12
+
+the
+
+spatial
+
+distributions
+
+of
+
+the
+
+parameters
+
+se
+
+nþ1;r
+M
+
+and
+
+se
+
+nþ1;r
+C
+
+;
+
+in
+
+par-
+
+ticular, we highlight that senMþ1;r varies of approximately two orders
+
+of magnitude in X, while the ratio between the largest and smallest
+
+local values of senCþ1;r is approximatively 3000, a value much larger
+
+than
+
+the
+
+one
+
+obtained
+
+with
+
+snþ1;r C
+
+,
+
+which
+
+was
+
+about
+
+150.
+
+We
+
+notice
+
+that senMþ1;r is relatively ‘‘large’’ where the velocity magnitude is
+
+nearly zero, as it occurs in the boundary layers and some regions
+
+in the vortexes wake. This, in combination with the ‘‘small’’ mesh
+
+size hK in the boundary layers and wake regions, renders the param-
+eter senCþ1;r relatively ‘‘small’’ locally in X; conversely, this becomes
+‘‘large’’ far from the cylinder, where the mesh is locally coarse and
+
+the velocity magnitude nearly equal to V1. We ﬁnally remark that the choice of the stabilization parame-
+
+ters may have a signiﬁcant impact on the numerical results, espe-
+
+cially if, as in this work, we take into account only in an
+
+approximate manner for the time dependencies of the ﬁne scales
+
+using
+
+the
+
+parameters
+
+snþ1;r M
+
+and
+
+snþ1;r C
+
+of
+
+Eqs.
+
+(32)
+
+and
+
+(33).
+
+While this can be improved by using dynamic subscales models
+
+[11–13], the latter require to solve systems of ordinary differential
+
+equations to determine the ﬁne scale solutions u0 and p0, which
+
+may increase the accuracy of the results, but also the computa-
+
+tional cost of the simulations. Since in this work we focus on the
+
+efﬁciency aspects of the numerical solver, we decided to consider
+
+the stabilization parameters as in Eqs. (32) and (33), which never-
+
+theless represent a common choice in literature [2,3,15,20,51].
+
+6. Conclusions
+In this work we proposed a semi-implicit time discretization of the Navier–Stokes equations with Variational Multiscale-Large Eddy Simulation (VMS-LES) modeling of turbulence. We used Backward Differentiation Formulas (BDF) for the time discretization and the Finite Element method for the spatial approximation, considering the same space of Lagrange polynomials to represent the ﬂuid velocity and pressure ﬁelds. We ‘‘linearized’’ the fully discrete nonlinear problem by extrapolation based on Newton–
+
+Gregory backward polynomials, thus obtaining a semi-implicit scheme for turbulence LES modeling. In this way, we limit the computational costs of the simulation since only a linear system has to be assembled and solved at each time step. In order to cope with the computational complexity of the problem, we developed a parallel solver based on the GMRES method preconditioned by a multigrid (ML) preconditioner.
+We validated the proposed numerical scheme by solving the benchmark problem of the ﬂow past a squared cylinder at high Reynolds number. We investigated how the accuracy of the solution is inﬂuenced by the choice of the time step and of the orders of the spatial and time discretizations and, in this respect, we discussed the role of the stabilization parameters. Furthermore, we studied the performance of the solver implemented in a parallel setting, showing the good scalability properties up to thousands of CPUs. All the numerical experiments performed yielded results that were in line with those available in literature obtained by other LES models. This highlights that the proposed semi-implicit BDF time discretization scheme for the Navier–Stokes equations with VMS-LES modeling is not only efﬁcient, but also robust and accurate for the simulation of turbulent ﬂows.
+Acknowledgements
+The research of D. Forti was supported by the Swiss National Foundation (SNF), project No. 140184. The authors gratefully acknowledge the Swiss National Supercomputing Center (CSCS) for providing the CPU resources for the numerical simulations under project ID s475. Finally, the authors acknowledge Prof. R. Codina, Dr. S. Deparis, Dr. T. Lassila, and Prof. A. Quarteroni for the fruitful discussions, suggestions, and advice.
+References
+[1] Akkerman I, Bazilevs Y, Calo VM, Hughes TJR, Hulshoff S. The role of continuity in residual-based variational multiscale modeling of turbulence. Comput Mech 2008;41(3):371–8.
+[2] Bazilevs Y, Calo VM, Cottrell JA, Hughes TJR, Reali A, Scovazzi G. Variational multiscale residual-based turbulence modeling for large eddy simulation of incompressible ﬂows. Comput Meth Appl Mech Eng 2007;197(1–4):173–201.
+[3] Bazilevs Y, Gohean JR, Hughes TJR, Moser RD, Zhang Y. Patient-speciﬁc isogeometric ﬂuid-structure interaction analysis of thoracic aortic blood ﬂow due to implantation of the Jarvik 2000 left ventricular assist device. Comput Meth Appl Mech Eng 2009;198(45–46):3534–50.
+[4] Bazilevs Y, Takizawa K, Tezduyar TE. Computational ﬂuid–structure interaction: methods and applications. Chirchester, UK: Wiley & Sons; 2013.
+
+182
+
+D. Forti, L. Dedè / Computers & Fluids 117 (2015) 168–182
+
+[5] Bearman P, Obasaju E. An experimental study of pressure ﬂuctuations on ﬁxed and oscillating square-section cylinders. J Fluid Mech 1981;119:297–321.
+[6] Becker R, Rannacher R. An optimal control approach to a posteriori error estimation in ﬁnite element methods. Acta Numer 2001;10:1–102.
+[7] Brenan KE, Campbell SLV, Petzold LR. Numerical solution of initial-value problems in differential-algebraic equations. New York: North-Holland Publishing Co.; 1989.
+[8] Calo VM, Bazilevs Y, Hughes TJR, Moser R. Turbulence modeling for large eddy simulations. Comput Meth Appl Mech Eng 2010;199(13–16):779.
+[9] Calvo M, Grigorieff RD. Time discretisation of parabolic problems with the variable 3-step BDF. BIT Numer Math 2002;42(4):689–701.
+[10] Cellier FE, Kofmanl E. Continuous system simulation. New York: Springer– Verlag; 2006.
+[11] Codina R. Stabilized ﬁnite element approximation of transient incompressible ﬂows using orthogonal subscales. Comput Meth Appl Mech Eng 2002;191: 4295–321.
+[12] Codina R, Principe J, Guasch O, Badia S. Time dependent subscales in the stabilized ﬁnite element approximation of incompressible ﬂow problems. Comput Meth Appl Mech Eng 2007;196:2413–30.
+[13] Colomés O, Badia S, Codina R, Principe J. Assessment of variational multiscale models for the large eddy simulation of turbulent incompressible ﬂows. Comput Meth Appl Mech Eng 2015;285:32–63.
+[14] Dedè L. Optimal ﬂow control for Navier–Stokes equations: drag minimization. Int J Numer Meth Fluids 2007;55:347–66.
+[15] Gamnitzer P, Gravemeier V, Wall WA. Time-dependent subgrid scales in residual-based large eddy simulation of turbulent channel ﬂow. Comput Meth Appl Mech Eng 2010;199:819–27.
+[16] Gear CW. Simultaneous numerical solution of differential-algebraic equations. IEEE Trans Circ Theory 1971;18(1):89–95.
+[17] Gee MW, Siefer CM, Hu JJ, Tuminaro RS. ML 5.0 smoothed aggregation user’s guide. Sandia National Laboratories; 2006.
+[18] Germano M, Piomelli U, Moin P, Cabot WH. A dynamic subgrid-scale eddy viscosity model. Phys Fluids A 1991;3(7):1760–5.
+[19] Gervasio P, Saleri F, Veneziani A. Algebraic fractional-step schemes with spectral methods for the incompressible Navier–Stokes equations. J Comput Phys 2006;214(1):347–65.
+[20] Gravemeier V, Gee MW, Kronbichler M, Wall WA. An algebraic variational multiscale-multigrid method for large eddy simulation of turbulent ﬂow. Comput Meth Appl Mech Eng 2010;199:853–64.
+[21] Jansen KE, Whiting CH, Hulbert GM. A generalized-a method for integrating
+the ﬁltered Navier–Stokes equations with a stabilized ﬁnite element method. Comput Meth Appl Mech Eng 1999;190:305–19. [22] Jansson N, Hoffman J, Jansson J. Framework for massively parallel adaptive ﬁnite element computational ﬂuid dynamics on tetrahedral meshes. SIAM J Sci Comput 2012;34:C24–41. [23] Jeong J, Hussain F. On the identiﬁcation of a vortex. J Fluid Mech 1995;285: 69–94. [24] Kim J, Moin P, Moser R. Turbulence statistics in fully developed channel ﬂow at low Reynolds number. J Fluid Mech 1987;177:133–66. [25] Koobus B, Farhat C. A variational multiscale method for the large eddy simulation of compressible turbulent ﬂows on unstructured meshes— application to vortex shedding. Comput Meth Appl Mech Eng 2003;193(15–16): 1367–83. [26] Koobus B, Tran H, Farhat C. Computation of unsteady viscous ﬂows around
+moving bodies using the k- turbulence model on unstructured dynamic grids.
+Comput Meth Appl Mech Eng 2000;190:1441–66. [27] Hoffman J. Computation of mean drag for bluff body problems using adaptive
+DNS/LES. SIAM J Sci Comput 2006;27:184–207. [28] Hsu MC, Bazilevs Y, Calo VM, Tezduyar TE, Hughes TJR. Improving stability of
+stabilized and multiscale formulations in ﬂow simulations at small time steps. Comput Meth Appl Mech Eng 2010;199:828–40.
+
+[29] Hughes TJR. Multiscale phenomena: Greens functions, the Dirichlet-toNeumann formulation, subgrid scale models, bubbles, and the origins of stabilized methods. Comput Meth Appl Mech Eng 1995;127:387–401.
+[30] Hughes TJR, Calo VM, Scovazzi G. Variational and multiscale methods in turbulence. In: Gutkowski W, Kowalewski TA, editors. Mechanics of the 21st century. Amsterdam: Springer; 2005. p. 153–63.
+[31] Hughes TJR, Mazzei L, Jansen KE. Large-eddy simulation and the variational multiscale method. Comput Vis Sci 2000;3:47–59.
+[32] Hughes TJR, Mazzei L, Oberai AA, Wray AA. The multiscale formulation of large eddy simulation: Decay of homogeneous isotropic turbulence. Phys Fluids 2001;13(2):505–12.
+[33] Hughes TJR, Oberai AA, Mazzei L. Large eddy simulation of turbulent channel ﬂows by the variational multiscale method. Phys Fluids 2001;13(6): 1784–99.
+[34] Hughes TJR, Scovazzi G, Franca LP. Multiscale and stabilized methods. In: Stein E, de Borst R, Hughes TJR, editors. Encyclopedia of computational mechanics. John Wiley & Sons; 2004.
+[35] Lilly DK. A proposed modiﬁcation of the Germano subgridscale closure method. Phys Fluids A 1992;4(3):633–5.
+[36] Lyn D, Einav S, Rodi W, Park J. A laser-doppler velocimeter study of ensembleaveraged characteristics of the turbulent near wake of a square cylinder. J Fluid Mech 1995;304:285–319.
+[37] Masud A, Calderer R. A variational multiscale stabilized formulation for the incompressible Navier–Stokes equations. Comput Mech 2009;44(2): 145–60.
+[38] Moser RD, Kim J, Mansour NN. Direct numerical simulations of turbulent channel ﬂow up to Res ¼ 590. Phys Fluids 1999;11:943–5.
+[39] Nicoud F, Ducros F. Subgrid-scale modelling based on the square of the velocity gradient tensor. Flow Turbul Combust 1999;62:183–200.
+[40] Pope SB. Turbulent ﬂows. Cambridge University Press; 2000. [41] Quarteroni A, Saleri F, Sacco R. Numerical mathematics. Berlin: Springer; 2007. [42] Quarteroni A, Valli A. Domain decomposition methods for partial differential
+equations. New York: Oxford University Press; 1999. [43] Quarteroni A, Valli A. Numerical approximation of partial differential
+equations. Berlin and He idelberg: Springer-Verlag; 1994. [44] Rao GS. Numerical analysis. New Delhi: New Age International Publishers;
+2009. [45] Rodi W, Ferziger J, Breuer M, Pourquié M. Status of large eddy simulations:
+results of a workshop. J Fluids Eng 1997;119:248–62. [46] Ruge J, Stüben K. Algebraic multigrid (AMG). In: McCormick SF, editor.
+Multigrid methods frontiers in applied mathematics, vol. 3. Philadelphia, PA: SIAM; 1987. p. 73–130. [47] Sagaut P. Large eddy simulation for incompressible ﬂows. 3rd ed. Berlin: Springer-Verlag; 2006. [48] Shakib F, Hughes TJR, Johan Z. A new ﬁnite element formulation for computational ﬂuid dynamics: X. The compressible Euler and Navier–Stokes equations. Comput Meth Appl Mech Eng 1991;89(1–3):141–219. [49] Smagorinsky JS. General circulation experiments with the primitive equations. Mon Weather Rev 1963;91:99–164. [50] Sohankar A, Davidson L, Norberg C. Large eddy simulation of ﬂow past a square cylinder: comparison of different subgrid scale models. J Fluids Eng 2000;122:39–47. [51] Tezduyar TE, Sathe S. Stabilization parameters in SUPG and PSPG formulations. J Comput Appl Mech 2003;4(1):71–88. [52] Toselli A, Widlund O. Domain decomposition methods – algorithms and theory. Berlin: Springer-Verlag; 2005. [53] Villa U. Scalable efﬁcient methods for incompressible ﬂuid-dynamics in engineering problems. PhD thesis, Emory University; 2012. [54] Zistl C, Hilbert R, Janiga G, Thévenin D. Increasing the efﬁciency of postprocessing for turbulent reacting ﬂows. Comput Vis Sci 2009;12(8):383–95. [55] LifeV website: <www.lifev.org>.
+

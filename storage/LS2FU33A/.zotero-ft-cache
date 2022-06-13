@@ -1,0 +1,1259 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/278035203
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+Conference Paper · May 2013
+DOI: 10.13140/RG.2.1.3579.5044
+
+CITATIONS
+5
+
+READS
+130
+
+4 authors, including:
+Harijono Djojodihardjo The Institute for the Advancement of Aerospac… 164 PUBLICATIONS 283 CITATIONS
+SEE PROFILE
+
+Alif Syamim Syazwan Ramli Universiti Putra Malaysia 12 PUBLICATIONS 20 CITATIONS
+SEE PROFILE
+
+Some of the authors of this publication are also working on these related projects: Flapping Wing Micro-Air-Vehicle View project Analytical Study and CFD Simuation of Coanda MAV View project
+
+All content following this page was uploaded by Harijono Djojodihardjo on 12 June 2015.
+The user has requested enhancement of the downloaded file. All in-text references underlined in blue are added to the original document and are linked to publications on ResearchGate, letting you access and read them immediately.
+
+International Conference on Engineering Materials and Processes (ICEMAP – 2013)
+Chennai, 23rd and 24th May, 2013 Keynote Paper
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+Harijono Djojodihardjoa*, Alif Syamim Syazwan Ramlib, Mohd Sharizal Abdul Azizc and Kamarul Arifin Ahmadd
+aProfessor, bGraduate Student, cGraduate Student, dAssociate Professor a, b, dDepartment of Aerospace Engineering, Faculty of Engineering, Universiti Putra Malaysia
+43400 UPM SERDANG, Selangor, Malaysia cSchool of Aerospace Engineering, Universiti Sains Malaysia, Engineering Campus, Seri Ampangan, 14300 Nibong Tebal, Seberang Perai Selatan,
+Pulau Pinang, Malaysia. 43400 UPM SERDANG, Selangor, Malaysia *Corresponding Author, email-address: harijono@djojodihardjo.com; Telephone: +6017 416 9045; +628159301745
+ABSTRACT The state of the art of flapping wing ornithopter MAV is reviewed to provide a comprehensive insight into the geometrical, ki nematic and aerodynamic characteristics of flapping biosystems. Then a generic approach is carried out to model the kinematics and aerodynamics of ornithopter to mimic flapping wing to produce lift and thrust for hovering and forward flight, by considering the motion of a three-dimensional rigid thin wing in flapping and pitching motion, using simple approach, applied to a two- and quad-wing flapping ornithopter, which are modeled and analyzed to mimic flapping wing biosystem to produce lift and thrust for forward flight. Considering bird’s scale ornithopter, basic unsteady aerodynamic approach incorporating salient features of viscous effect and leadingedge suction are utilized. Parametric study is carried out to reveal the aerodynamic characteristics of flapping quad-wing ornithopter flight characteristics and for comparative analysis with various selected simple models in the literature, in an effort to de velop a flapping wing ornithopter model. Further, numerical and flow visualization studies are carried out to simulate the aerodynamics of generic rigid and flexible flapping ornithopter wings. Two different solvers are utilized; FLUENT for fluid flow analysis and ABAQUS for structural analysis. The resulting coupled procedure retains second order temporal accuracy. The simulation of phenomena of aeroelasticity is performed with a FSI method.
+Keywords: Flapping Wing Aerodynamics; Flapping Wing Ornithopter; Flapping Wing Air Vehicle; Micro Air Vehicle; Ornithopter; Unsteady Aerodynamics;
+1. Introduction –From Myth to MAV
+Human desire to mimic flying biosystems such as insects and birds through engineering to meet human needs has existed for hundreds of years and motivated mankind creativity. The Sanskrit epic Ramayana (4th Century BC) describes an ornithopter, the Pushpaka Vimana. The ancient Greek legend of Daedalus (Greek demigod engineer) and Icarus (Daedalus's son) and The Chinese Book of Han (19 AD) both describe the use of feathers to make wings for a person but these are not actually aircraft. History has recorded various efforts in this direction, from ideas to anthropogenic efforts, such as the 9th century poet Abbas Ibn Firnas (recorded in the 17th century), the 11th century monk Eilmer of Malmesbury (recorded in the 12th century) and writing of Roger Bacon, in 1260, were among the first to consider a technological means of flight. In 1485, Leonardo da Vinci began to study the flight of birds. Understanding that humans are too heavy and do not have sufficient strength to fly just using wings simply attached to the arms, he conceived a device to assist a human to lying down on a plank equipped with two large, membranous wings using hand levers, foot pedals, and a system of pulleys, depicted in Figure 1a. Edward Frost of Cambridgeshire, England, who was later president of the Royal Aeronautical Society, constructed an ornithopter of willow, silk, and feathers in 1902. His ornithopter is depicted in Figure 1b. Around 1894, Otto Lilienthal, a well known German aviation pioneer, studied bird flight and conducted some related experiments, as well as developed and performed successful glider flights. Lilienthal also constructed an ornithopter, although its complete development was prevented by his untimely death on the 9th of August 1896 in a glider accident. Figure 1c depicted one of his flight efforts. One of the first modern development and successful attempts to develop bird-like flapping flight was made by DeLaurier (1993) team at the University of Toronto Institute for Aerospace Studies; Professor James DeLaurier, who worked for several years on an engine-powered, piloted ornithopter, at the Bombardier Airfield at Downsview Park in Toronto, Professor DeLaurier's machine, the UTIAS Ornithopter No.1 made a jet-assisted takeoff and 14-second flight in July 2006. According to DeLaurier, the jet was necessary for sustained flight, but the flapping wings did most of the work. DeLaurier’s ornithopter is depicted in Figure 1d. These are among the remarkable anthropogenic flapping flight efforts recorded in history.
+
+2
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+Figure 1: A selection of ornothopters conceived throughout the history of mankind. a. Leonardo da Vinci’s; b. Frost’s; c. Otto Lilienthal’s; d. DeLaurier.
+In the abstract and introduction to his book, Dhawan (1991) acknowledged that “ Avian flight has fascinated man from ancient times but it is only in recent years that the efforts of scientists from diverse fields have been able, to some extent, to understand and explain the dynamics of animal flight. Observation show an incredible diversity of flight techniques and maneuvers. Since time immemorial man has been fascinated and intrigued by the beauty, grace and intricacies of bird flight. There is perfect harmony of form and function. It is equally exhilarating to attempt to understand how the physiology and performance of birds are related through scientific principles.”
+Though various anthropogenic flying machines may differ in form, they are usually built on the same scale as these flying biosystems. Some of the manned ornithopters been built have been successful. These machines can be differentiated into two general types: those with engines, and those powered by the muscles of the aviator.
+An ornithopter (from Greek ornithos "bird" and pteron "wing") is an aircraft that flies by flapping its wings, mimicking the flapping-wing flight of insects, bats, and birds. Each of the flapping flights reveals different flight characteristics and capabilities. Mandatory elements for flapping biosystem and Micro-Air Vehicles (MAV) flights are wings, kinematics, aerodynamics, control and sensory systems.
+Micro Air Vehicle (MAV) research and development works are progressing very fast and have become one of the most exciting research areas in aeronautics. Most of the researchers are looking at the application of the flying mammalians on MAV due to its inherent flexibility and light weight. Membrane wings are used to mimics the characteristics of the flying mammalians besides the flapping motion of the wings. A thorough understanding of the unsteady aerodynamics created by the flexible membrane surface is non-trivial as to ensure the success of the development of MAV. This is a delicate task since due to the low Reynolds number of MAV coupled with FluidStructure Interaction (FSI), the flow created is a mixture of laminar, transition, and turbulent ones. Some of the successful flapping wing ornithopter MAVs are exhibited in Figure 2.
+Figure 2: Some of the successful ornithopter MAV’s. a. The MicroBat, developed by Aerovironment and Caltech (2000), was the first micro-sized ornithopter. It had three-channel radio control and used one of the lithium-polymer batteries which had just become available; b. The MIT Phoenix Ornithopter (2009); c. Hovering freeflight ornithopters built by Mentor at University of Toronto (2002); it was the first hovering ornithopter with radio control and is important for maneuvering in tight spaces; d. Delfly, developed at the Technical University of Delft and Wageningen University (2006), is able to transition between hovering and forward flight. These ornithopters also carry a small video camera. The live images are analysed by a computer
+on the ground, giving Delfly the capacity for autonomous navigation. (source: www.ornithopter.org/history.mav.shtml and Tedrake et al , 2009)
+Perhaps the most comprehensive account of insect flight or entomopter to date is given by Ellington (1984a, 1984b, 1999), (1999), Weis-Fogh (1973), Dickinson(1999), Shyy(1999, 2010) and Ansari, Zbikowski and Knowles (2006). Ellington (1999) reminds us that small anthropogenic flying machines are still in their infancy, and there is a need to identify general purpose designs that have survived the testbed of insect evolution. Furthermore, these designs should be reduced to their simplest features, such as only one pair of wings. The experimental and numerical tools that are used to study the flow need to be cost effective but yet accurate enough so that more flow and model parameters can be investigated. Biomimicry of membrane wings have been studied and developed by keyplayers like Gordnier (2009), Kumar (2010), Persson (2007), Shyy (2007), Song (2008), and Rojratsirikul (2008). A comprehensive review has been carried out by Shyy (2004) on research related to the membrane wings, which includes the underlying fundamentals of the flow structure involved and the advantages of the membrane wings over the corresponding rigid wings.
+
+3
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+Biosystem’s flapping flights are characterized by relatively low Reynolds number, flexible wing, highly unsteady flow, laminar separation bubble, non-symmetrical upstroke and downstroke and for entomopters, the presence and significant role of leading edge vortex, and wake vortices capture, among others. It has also been observed that the flapping frequency tends to decrease with body mass increase (Shyy e al, 1999).
+
+Figure 3: Visualization of flow fields around a hovering hawkmoth. Iso-vorticity-magnitude surfaces around a hovering hawkmoth during (A) the downstroke, (B) the supination, (C) the upstroke, and (D) the pronation, respectively. The color of iso-vorticity-magnitude surfaces indicates the normalized helicity density which is defined as the projection of a fluid’s spin vector in the direction of its momentum vector, being positive (red) if these two vectors point in the same direction and negative (blue) if they point in the opposite direction. (Shyy et al, 2010)
+
+Gordnier (2009) performed numerical and experimental works on the membrane wings. In his numerical work, he used a sixth-order NavierStokes solver coupled to a finite element solution of a two degree of freedom nonlinear string model. The flow and the structural responds were assumed to be two-dimensional. He found that the parameters that have significant impact on the aerodynamics characteristics of the membrane wings are Strouhal number, reduced frequencies and the static angle of attack. Song (2008) also performed experimental work to study the aerodynamics performance of membrane compliancy. He found that the compliant wing when compared to the static wing has higher lift slope, maximum lift coefficients, and a delayed stall to higher angles of attack. In addition, they exhibit a strong hysteresis both around a zero angle of attack as well as around the stall angle.
+
+Figure 4: I. Simplified diagram of normal hovering flight. (A) The instantaneous forces. (B) The animal seen horizontally from the side, and (C) vertically from above ; II. Typical body and wing postures in some hovering animals, as drawn from flash photographs of (a) the hummingbird ArchUochuz colubru (Greenewalt, 1960), (6) the sphingid moth Deilephila elpenor (Nachtigall, 1969), (c) the sphingid moth Manduca sexta during normal hovering (present study), (d) a bumble-bee Bombus sp. before landing on a flower (Schmidt, i960), (e) Manduca sexta during a quick maneuver (present study), and (J) the cockchafer Melolontha vulgaru during vertical take-off (Lane, 1955).( adapted from Weis-Fogh, 1973); III. A humming bird
+during hovering. Lift is produced during both up- and downstroke (Shyy et al, 1999)
+
+4
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+Figure 5: a. Normal hovering of the sphingid moth Mcmduca sexta as traced from every 10th frame in a slow-motion film taken vertically from above at 3000 (start) to 3900 (end of stroke) frames/sec. The undersides of the wings are drawn in black (adapted from Weis-Fogh, 1973) ; b. A study of the egret take-off. The horizontal distance from the starting point (in cm) is plotted against the height above ground level. The number within the circle indicates milliseconds after start. The number below the circle indicates the level. Note that between levels 4 and 6 the bird drops about 10cm as its flight has not fully stabilised. At level 12 the bird’s speed is approximately 10m/s and its climbing rate is about 0.33 m/s. (adapted from S Dhawan , 199, and Simha, 2003)
+Lian (2007) investigated the effect of laminar-turbulent transition on the aerodynamic performance of MAVs by coupling a Navier-Stokes solver, eN transition model and a Reynolds-averaged two-equation closure. The performance of a rigid airfoil and flexible airfoil mounted with a flexible membrane structure on the upper surface were tested. Observations showed that the self-excited flexible surface vibration affected the separation and transition positions whereas the time-averaged lift and drag coefficients were close to those of the rigid airfoil. Visbal et al. (2009) analyzed low-Reynolds-number transitional flows over moving and flexible canonical configurations motivated by small natural and man-made flyers. Laminar separation and transition over a stationary airfoil, transition effects on the dynamic stall vortex generated by a plunging airfoil and the effect of flexibility on the flow structure above a membrane airfoil were addressed by the authors.
+The effect of compliance on the generation of thrust and lift forces was measured by Müller et al. (2009) using a new test stand design which used a 250 g load cell along with a rigid linear air bearing. The influence of excessive compliance on drag forces during high frequency operation was found to be detrimental as the compliance could generate extra drag at the beginning and end of upstrokes and downstrokes of the flapping motion.
+Apart from focusing on insect flight aerodynamics, Zhao et al. (2009) demonstrated that the aerodynamic force production generally decreases as the flexibility increases. More rigid wings resulted in greater lift and drag coefficients of wings. However, at very high angles of attack, flexible wings generated greater lift than a rigidwing. They also proved that the wing veins could substantially increase the functional rigidity of the wings, thereby enhancing its aerodynamic performance. Molki and Breuer (2010) focused on oscillatory motion of a membrane under aerodynamic loading.Observations showed mostly asymmetric deflection with the point of maximum camber located nearly at 40% of the chord length from the leading edge. The oscillations were caused by the oscillatory nature of the flow due to fluidmembrane interaction and the formation of the leading edge and trailing edge vortices. Hu et al. (2009) studied the aerodynamic benefits of flexible membrane wings for the development of flapping wing MAV. The time-averaged lift and drag generation of flexible nylon wing and a more flexible latex wing were compared with those of a rigid wing. The rigid wing exhibited better lift while the latex wing showed best drag generation and the nylon wing was found to be the worst.
+2. Learning from nature – observation and characterization
+In view of these findings, the classification tabulated in Table 1 could summarize some of the relevant features of flapping biosystems that may give us an overview in developing flapping ornithopter MAV. Whereas crane-flies, mosquitoes and other Nematocera as well as many large Brachycera and Cyclorrhapha undoubtedly use normal hovering in most cases.
+Birds habitually perform aerial maneuvers that exceed the capabilities of best anthropogenic / man-made aircraft control systems (Tedrake et al, 2009). The complexity and variability of the aerodynamics during these maneuvers are difficult, with dominant flow structures (e.g., vortices) that are difficult to predict robustly from first-principles (or
+
+5
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+Navier-Stokes) models. In this conjunction, machine learning will play an important role in the control design process for responsive flight by building data-driven approximate models of the aerodynamics and by synthesizing high-performance nonlinear feedback policies based on these approximate models and trial-and-error experience.
+
+Items
+1. Types
+2. Weight Typical (gf) 1
+3. Wing Semi-span (cm) 1
+Wing-Loading (g/cm2)
+4. Typical Power (gf cm sec-1 per gf)
+5. Dominant Wing Movement
+6. Flight Speed (m/s)
+
+Table 1: Overview of some relevant characteristics of flapping biosystems
+
+Insects
+
+Humming Bird
+
+Bat
+
+Small Birds Large Birds
+
+Beetles, Bumblebees, Butterflies, Dragonflies,
+
+Amazilia
+
+Plecotus Auritus
+
+Sparrows, Swifts, Robins
+
+Eagle, Hawk, Vulture, Falcon, Skua Gull
+
+25 × 10-5 - 12.8
+
+5.1
+
+9.0
+
+35 - 82
+
+952-4300
+
+Flapping
+
+Small Low
+
+MAV
+
+Speed Airplanes
+
+DARPA DRO
+
+Cessna 210
+
+≤ 50
+
+1045000
+
+0.062 – 7.7
+
+5.9
+
+11.5
+
+20 - 48
+
+58-102
+
+< 7.5
+
+5600
+
+10-3 – 10-1
+
+0.4
+
+0.072
+
+0.029-0.152
+
+0.35 – 0.67
+
+10-2 - 1
+
+11.18
+
+5.3 - 238 Hover 1.05 - 9
+
+130
+Hover and Fly
+15
+
+83 Fly 10 - 14
+
+93 - 110 Fly
+6 - 10
+
+42 - 57 Fly
+10 - 20
+
+39
+
+1.3×104
+
+Hover and Fly
+3-10
+
+Fly
+99m/s (cruise at 6100 m altitude)
+
+7. Reynolds No.
+
+10-1000
+
+7500
+
+14000
+
+103 – 104
+
+104 - 105
+
+104 - 105
+
+10,000,000
+
+8. Leading Edge Vortex/LEV
+
+LEV by swept wing at Re = 5 × 103
+
+yes
+
+yes
+
+yes
+
+yes
+
+yes
+
+no
+
+10. Entering its own TEV/ Wake Capture
+
+yes
+
+9. Laminar
+
+Separation
+
+yes
+
+Bubble/LSB
+
+10. Leading Edge Flap
+
+-
+
+yes
+
+no
+
+no
+
+no
+
+no
+
+no
+
+yes
+
+yes
+
+yes
+
+yes
+
+yes
+
+no
+
+Has been
+
+e.g. Mallard, at Re = 6 × 104(Jones,
+2008)
+
+-
+
+observed on
+
+-
+
+-
+
+-
+
+bats
+
+11. Self-activated flaps at TE
+
+e.g. Skua Gull
+
+1 Power functions of wing dimensions and flight parameters against body mass m, following Shyy (1999),Rayner( ), Greenwalt ( ) and Norberg ( ). The exponent of correlation is for (Mass)exponent
+
+Tedrake et al highlights some of the more remarkable characteristics of nature’s flyers, and describes the challenges involved in replicating this performance in our machines. Tedrake et al conclude by describing their two-meter wingspan autonomous robotic bird and some initial results using machine learning to design control systems for bird-scale, supermaneuverable flight.
+
+Birds are incredibly maneuverable. The roll rate of a barn swallow is in excess of 5000 deg/sec (Shyy et al., 1999). Bats can be flying at full-speed in one direction, then be flying at full-speed in the opposite direction, using a turning maneuver that is accomplished in just over 2 wing-beats and in a distance less than half the wingspan. Although quantitative flow visualization data from maneuvering flight is scarce, a dominant theory is that the ability of these animals to produce sudden, large forces for maneuverability can be attributed to unsteady aerodynamics, e.g., the animal creates a large suction vortex to rapidly change direction (Tian et al., 2006). These astonishing capabilities are called upon
+
+6
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+routinely in maneuvers like flared perching, prey-catching, and high speed flying through forests and caves. Even at high speeds and high turn rates, these animals are capable of incredible agility - bats sometimes capture prey on their wings,
+
+The synthesis of a comprehensive theory of force production in insect flight is hindered in part by the lack of precise knowledge of unsteady forces produced by wings. Data are especially sparse in the intermediate Reynolds number regime (10<Re<1000) appropriate for the flight of small insects. Dickinson and Götz (1993, 1999) attempted to fill this deficit by quantifying the time-dependence of aerodynamic forces for a simple yet important motion, rapid acceleration from rest to a constant velocity at a fixed angle of attack. The study couples the measurement of lift and drag on a two-dimensional model with simultaneous flow visualization. Dickinson and Götz (1999) results can be used to determine the importance of unsteady processes for the generation of flight forces in these small insects. Some highlights of the results are shown below
+At angles of attack below 13.5°, no evidence of a delay in the generation of lift was exhibited, in contrast to similar situation at higher Reynolds numbers. At angles of attack above 13.5°, impulsive movement resulted in the production of a leading edge vortex that stayed attached to the wing for the first 2 chord lengths of travel, resulting in an 80% increase in lift compared to the performance measured 5 chord lengths later, which could be attributed to the process of detached vortex lift analogous to aircraft delta-wing case. As the initial leading edge vortex is shed from the wing, a second vortex of opposite vorticity appears from the trailing edge of the wing accompanied by a decrease in lift. This alternating leading and trailing edge vortices generates a von Karman street, which is stable for at least 7.5 chord lengths of travel (Dickinson and Götz , 1999). These results may indicate contribution of the unsteady process of vortex generation at large angles of attack to the production of aerodynamic forces in insect flight. Such complex dynamic behavior of impulsively started wing profiles will be more appropriate to model insect flight than the steady-state approximations.
+
+Studies on bumblebees offer one of the most complete kinematic descriptions of free flight (Dudley and Ellington, 1990a,b; Ellington, 1999; Cooper, 1993) and can be used to illustrate various characteristics of insect flights. Bumblebees vary considerably in size; typically a bumblebee can have a mass of 0.175 g, a wing length R of 13.2 mm, a wingbeat
+
+frequency n of 149 Hz and a wingbeat amplitude  of 114 °(Ellington, 1999) Ellington define the Advance Ratio of bumblebee’s flight as
+
+J V
+
+(1)
+
+2nR
+
+The aerodynamics of insect flight is affected by the scaling of the Reynolds number Re, which is the ratio of inertial to viscous forces in a fluid. Re is defined as the product of a characteristic length and velocity divided by the kinematic viscosity n of the fluid. For comparative purposes, we can conveniently ignore the forward velocity and define a mean Re
+
+for hovering flight based on the mean chord
+
+c  2R AR
+
+( c =2R/AR) and the mean wingtip velocity
+
+Utip . These are defined
+
+as
+
+Re  cUtip 
+
+ 4nR2  AR
+
+, where
+
+Utip
+
+ 2nR
+
+(2)
+
+where AR is the aspect ratio, n is the wingbeat frequency, R is the wing length and  is the wingbeat angular amplitude (peak-to-peak, in rad). Given geometric similarity and the scaling of frequency, Re increases as m0.42. For large insects, Re
+lies between 5000 and 10 000, but it approaches 10 for the smallest ones. In all cases, the airflow is in the laminar regime,
+but viscous effects become progressively more important as size decreases.
+
+As advance ratio increases, the downstroke increasingly dominates the force balance; the downstroke path becomes relatively longer, indicating a higher velocity and thus larger forces. At high J, the asymmetry is very pronounced, with the powerful downstroke responsible for weight support and some thrust, but the direction of the feeble upstroke force is suitable for thrust only. The required thrust is never very large for insect flight, and even at high speeds it is only some 10–20 % of the weight. The net aerodynamic force is therefore nearly vertical, tilted forwards by less than approximately 10 °. Between hovering and fast flight, the stroke plane tilts by almost 40 ° for the bumblebee, but the net force vector tilts by only 8 °.
+
+Geometric, Kinematic and Aerodynamic Design Guidelines of Flapping MAV
+
+Insect wings are elegant, impressive and instructve in small-scale engineering. They are deformable aerofoils whose shape is actively controlled by the wingbase articulation while the wing area is subject to inertial, elastic and aerodynamic forces. For the first conceptual design of flapping MAV, a simple sail-like construction may be sufficient (such as illustrated in Figure 5): a stiff leading edge supporting a membrane, further braced by a boom at the base. Movement of the boom will control the angle of attack at the wing base, and billowing of the sail will provide the
+
+7
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+necessary twist along the span. The fan-like hindwings of some insects, such as locusts, provide a more sophisticated variant on the sail design that might prove useful (Wootton, 1995; George et al, 2012; Lentink, 2012; Tobalski et al, 2007). An impression of the structure of various biosystem wings is illustrated in Figure 6, accompanied by some samples of artificial membrane wing design.
+
+a.
+
+b.
+
+c.
+
+d.
+
+e.
+
+Figure 6: a. Schematics of a bird wing, a human arm, and a bat wing. The upper arm, i.e.humerus'', is proportionately shorter, the wrist and palm bones are fused together for greater strength in supporting the primary flight feathers (Shyy, 1999). The bat wing features leading edge flap (Jain et al, 2012; Rhea von Busse et al, 2012). b. Low Reynolds number airfoil studied by Shyy et al (1999). The low Reynolds number airfoil, S1223, is of substantial camber and modest solidity. c. Schematic of ladybug wing and outline used for acrylic wing fabrication (George et al, 2012); d. Leading edge flap on a Mallard (Jones et al, 2008). e. The flexible covert feathers acting like self-activated flaps on the upper wing surface of a Skua Gull (Shyy et al, 1999). Together, these schematics illustrate different aspects of wing/airfoil shapes and structural components from nature and man-made devices (adapted from Shyy et al, 1999).
+
+In a numerical study of insect flight, Liu and Kawachi (1998) utilizes Time-Accurate Solution to the Navier– Stokes Equations. The governing equations are the threedimensional, incompressible, unsteady Navier–Stokes equations written in strong conservation form for mass and momentum. The artificial compressibility method developed by Chorin (1968) is used by adding a pseudotime derivative of pressure to the continuity equation. This relaxes the elliptic nature of the equations and results in a hyperbolic–parabolic system.
+
+3. Kinematics of Flapping Wing Motion
+
+The flapping wing motion of ornithopters and
+
+entomopters can be generally grouped in three classes,
+
+based on the kinematics of the wing motion and mechanism
+
+Figure 7: The wingbeat of the long-eared bat Plecotus auritus, illustrating an inclined stroke plane during hovering flight (Norberg,
+1970).
+
+of forces generation; the horizontal stroke plane, inclined stroke plane and vertical stroke plane (Ellington, 1984). The most distinctive characteristic in insect flight is the wing kinematics (Ansari, 2006). Due to smaller scale by nature,
+
+insects differ fundamentally from birds in which all actuations are carried out at the wing root. Unlike insect, birds have
+
+internal skeletons to which muscles are attached, enabling more localized actuation along the wing, for example, wing
+
+warping, although commonly, bird wing deflection may be passive. As a result from these kinematics, the aerodynamics
+
+8
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+associated with insect flight are also very different from those met in conventional fixed- and rotary-wing or even bird flight (Ansari, 2006). Based on Ellington’s study (Ellington, 1984, 1999), the kinematic of flight produced by the generic wing (semi-elliptical wing) can be classified into the inclined stroke plane, where the resultant force produced by the wing can be separated into vertical and horizontal components, which are lift, thrust and drag, respectively throughout the upstroke and down-stroke cycle; the inclined stroke plane, where a large horizontal thrust component will be produced (see Figure 7); and the vertical stroke plane, which is often seen during take off and hovering of butterflies and in which the wing motion is perpendicular to the chord. During flapping, the magnitude of the vertical induced flow is maximum near the wing tips and decreases as it approaches the root. Thus for constant forward speed, the relative angle of attack (AOA) also decreases from tip towards root. Figure 7 illustrates an inclined stroke plane during hovering flight prevailing during the wingbeat of the long-eared bat Plecotus Auritus (Norberg, 1970).
+
+To maintain low Angle of Attack (AOA) at the tip to meet attached flow situation, the wing must pitch in the direction of the flapping. During the down-stroke the total aerodynamic force is tilted forward and has two components, lift and thrust. During the up-stroke, the AOA is always positive near the root but at the tip it can be positive or negative depending on the amount of pitching up of wing. Therefore, during up stroke the inner part of wing produces aerodynamic force which is upward but tilted backwards producing lift and negative thrust. The outer region of the wings would produce positive lift and drag if the AOA is positive. But if AOA is negative then it will produce negative lift but positive thrust (Harmon, 2008). In the kinematic modelling adopted in the present study of the flapping wing flight of pterosaur, only periodic flapping and pitching motions will be considered, and without losing generalities, the flapping axis is assumed to be very close to the body longitudinal axis and pitching motion axis at the leading edge of the wing. This kinematic modelling is implied in Figure 5.
+
+In the present development, some observations obtained by Pennycuick (1990) will be considered. Using a combination of multiple regressions and a dimensional analysis, flight parameter for flapping flight can be correlated by geometrical characteristics of the flying birds and insects. Pennycuick experimentally derived the correlation of the wingbeat frequency for flapping flight to the body mass, wingspan, wing area and the wing moment of inertia. For birds with the body mass ranging from 20g to nearly 5kg the wingbeat frequency is correlated by the following formula:
+
+1.08 m g
+
+f
+
+3
+
+(3)
+
+b S
+
+where m is the bird’s body mass in kg, g is the gravitational acceleration, b is the wingspan, S is the wing area and  is the
+
+air density, which has been observed by Bunget (2010) to give a good fit when applied to small birds, bats and insects. In
+
+addition, the flight velocity can also be correlated to the mass of the bird or flying insect by (adapted from Pennycuick
+
+(1990), Ho et al (2003)):
+
+1
+
+U  1.508m6
+
+(4)
+
+3. Conceptual Modeling for reasonably simple bioinspired ornithopter MAV - Excerpts from Current Work
+In the present work, a generic approach is followed to understand and mimic the unsteady aerodynamics of bioinspired bird- or pterosaur-like flapping wing to produce lift and thrust for hovering and forward flight in an attempt to develop a simple and workable Micro-Air-Vehicle (MAV) ornithopter flight model, since such model does not need to generate more involved leading edge vortex and wake penetration exhibited by insect flight (Ellington, 1984, 1999). The use of a flexible membrane allows the wing to passively change its relative angle of attack (AOA) and camber during the stroke cycle. This is the mechanism that has been utilized by operational commercially-available ornithopters.
+The generic train of thought in modelling and developing up and down flapping motion configuration with flexible membrane wing skins can be summarized in Figure 8, to mimic the flapping wing mechanism of a real bird or pterosaur, exhibited in Figure 8(a) and (b), respectively. Following earlier work (Djojodihardjo & Ramli, 2012), Aerodynamic Strip theory and Theodorsen-Jones (Theodorsen, 1949; Jones, 1940) unsteady aerodynamics will be utilized. Garrick leadingedge suction formulation (Garrick, 1936; Scherer, 1968; Harmon, 2008) will also be utilized to investigate its influence. Reynolds number is a significant dimensionless aerodynamic parameter that characterizes ornithopter’s flight as compared to high speed aircraft flights. For an airfoil with a 0.25 m chord length, an average size for the fixed wing UAV with a one meter span, the airfoil Reynolds numbers will be between 75,000 and 200,000 at cruise speeds of 10 to 30 km/hr. This Reynolds number range is a transition region with increasingly poor lift-to-drag ratios for smooth fixed wing airfoils (Harmon, 2008). Considerations will be given to oscillatory motion of the idealized wing in pitching and flapping
+
+9
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+with phase lag. By carrying out parametric study, the lift, drag, and thrust characteristics within a cycle for various configurations and operational parameters can be obtained, which could be considered for synthesizing proof-of-concept Flapping Wing MAV model with simplified mechanism. Computational code for the modelling of ornithopter unsteady aerodynamic is developed which can be further enriched with additional motion elements and control elements, and to synthesize a laboratory model.
+
+Figure 8: Comparison of flying biosystems and their modelling as Flapping Wing Ornithopter and Quad-Wing Air Vehicle (QWAV); (a) Pterosaur (Strang, 2009); (b) Soaring eagle exhibiting its wing geometry and structural detail, (c) A humming bird, which is the only bird species that ehhibit
+unique flapping wing characteristic reminiscent of insect; (d) a dragonfly and (e) A model of quad-wing air vehicle (Prosser, 2011).
+
+Figure 9: Flight motion of dragonfly (Adapted from Wang & Russell, 2007).
+Within such backdrop, in the present work, a generic approach is followed to understand and mimic the unsteady aerodynamics of biosystem that can be adopted in the present QWAV, following our previous attempt to develop pterosaur-like ornithopter to produce lift and thrust for forward flight and hence develop a simple and workable QuadWing-Micro-Air-Vehicle (QVMAV) ornithopter flight model. At the present stage, such model will not take into account the more involved leading edge vortex and wake penetration exhibited by insect flight (Ho et al, 2003; Ellington, 1984, 1999).
+Theoretical Development Of The Generic Aerodynamics Of Flapping Wings
+
+Harmon (2008) wing model
+
+Byl’s (2010) blade-element model
+
+Altshuler et al (2004) wing model
+
+Wing of Dragonfly (Nicholson et al, 2007)
+
+Kesel’s (2000) dragonfly wing
+
+A generic semi-elliptical wing planform (Djojodihardjo & Ramli, 2012)
+
+Figure 10: A generic semi-elliptical ornithopter’s wing planform with the backdrop of various wing-planform geometries
+Following the frame of thought elaborated in the previous section, several generic wing planforms are chosen in the
+
+10
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+present work as baseline geometries for the ornithopter wing Biomimicry Flapping Mechanism, among others the semi elliptical wing (shown in Figure 10) with the backdrop of various wing-planform geometries utilized by various researchers.
+
+The present work resorts to analytical approach to the flapping wing aerodynamic problem, which can be separated into quasi-steady and unsteady models. The quasi-steady model assumes that flapping frequencies are slow enough that shed wake effects are negligible, as in pterosaur and medium- to large-sized birds while the unsteady approach attempts to model the wake like hummingbird and insects. The present aerodynamic approach is synthesized using basic foundations that may exhibit the generic contributions of the motion elements of the bio-inspired quad-wing air vehicle characteristics. These are the strip theory and thin wing aerodynamic approach (Kuethe & Chow, 1986), Jones modified Theodorsen unsteady aerodynamics (Theodorsen, 1949; Jones, 1940), incorporation of leading edge suction (Garrick, 1936; Polhamus, 1945). Jones’ modified Theodorsen approach which incorporates Garrick’s leading edge suction without spanwise twist and post-stall behavior was adopted following DeLaurier’s approach, and the computation of lift, drag and thrust generated by pitching and flapping motion of three-dimensional rigid wing in a structured method using strip theory and Jones’ modified Theodorsen approach without camber, leading edge suction and post-stall behavior. Other improvement of the computational model may later on be added based on other observations and work of various researchers. Lifting-surface theory (Ashley et al, 1965; Smith et al, 1996) may be later incorporated.
+
+Blade element theory has been utilized for flapping wing analysis by many researchers (Ellington, 1984; DeLaurier, 1993; Byl, 2010; Shyy et al, 2008). In the present work, unsteady aerodynamics of a flapping wing using a modified strip theory approach as a simplification of DeLaurier’s and Harmon’s approach for pterosaur flapping-wing aerodynamics is carried out without post-stall behavior. Byl and Malik and Ahmad (2010) have applied blade element and DeLaurier’s approach in their work, respectively.
+
+A novel initiative has been introduced by Djojodihardjo and Ramli (2012) for separating the wing flapping motion element and carrying out a parametric study on the contribution of each of these elements in the aerodynamic forces generated. These are motivated by the objective to gain insight into the mechanism of lift and thrust generation by itching, flapping and coupled motions, as well as the influence of pitch-flap phase lag for optimization purposes, by also looking into the influence of the variation of the forward speed, flapping frequency and pitch-flap phase lag. The computational logic in the present work is summarized in the Flow-Chart exhibited in Figure 11. The results of DeLaurier’s, Byl’s, Malik and Ahmad’s and Zakaria et al’s are used for validation.
+
+Figure 11: Ornithopter Flapping Wing Aerodynamics Computational Scheme
+The flapping wing can have three distinct motions with respect to three axes as: a) Flapping, which is up and down stroke motion of the wing, which produces the majority of the bird’s power and has the largest degree of freedom. b)
+
+11
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+Feathering is the pitching motion of wing and can vary along the span. c) Lead-lag, which is in-plane lateral movement of wing.
+Flapping angle β varies as a sinusoidal function. β and its rate are given by following equations. The degree of freedom of the motion is depicted in Figure 5. Flapping angle β varies as a sinusoidal function. The angle β and its rate and pitching angle θ are given by
+
+ (t)  max cos 2 ft ; (t)  2 f max sin 2 ft ;
+
+ (t)
+
+
+
+y B
+
+0
+
+cos(2
+
+ft
+
+ )
+
+(5)
+
+where θ0 is the maximum pitch angle,  is the lag between pitching and flapping angle and y is the distance along the
+span of the wing under consideration.
+
+(a)
+
+(b)
+
+Figure 12: Angular movement of wing, adapted from Harmon (2008); stroke plane is indicated in (a), an adaptation of Ellington’s (1984) configuration (where βp is stroke plane angle).
+
+The vertical and horizontal components of relative wind velocity, as depicted in Figure 13, can be expressed as
+
+Vx  U cos  (0.75csin )
+
+(6)
+
+VZ  U sin  (y cos  )  (0.75ccos  )
+
+(7)
+
+For horizontal flight, the flight path angle γ is zero. Also, 0.75 c  is the relative air effect of pitching rate  which
+is manifested at 75% of the chord length (DeLaurier, 1993). The relative velocity, relative angle between two velocity components ψ and the relative angle of attack can be expressed as
+
+V
+
+Vx2  Vz2
+
+; 
+
+
+
+tan1
+
+  
+
+Vz Vx
+
+ ; 
+
+and
+
+  
+
+(8)
+
+The section lift coefficient due to circulation (Kutta-Joukowski condition, flat plate) is given by (DeLaurier, 1993)
+
+Clc  2C(k)sin 
+
+(9)
+
+The sectional lift dLc can then be calculated by
+
+dLc
+
+
+
+1 2
+
+ V
+
+2Clc cdy
+
+(10)
+
+which should be integrated along the span to obtain the flapping-wing lift. Here c and dy are the chord length and spanwise strip width of the element of wing under consideration, respectively. The apparent mass effect (momentum transferred by accelerating air to the wing) for the section, is perpendicular to the wing, and acts at mid chord, and can be calculated as (Harmon, 2008; Scherer, 1968)
+
+12
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+dNnc
+
+
+
+c2 
+4
+
+( U
+
+
+
+ycos   0.5)dy
+
+(11)
+
+Figure 13: Forces on section of the wing.
+
+The drag force has two components, profile drag and induced drag where the values for the drag coefficients are assumed to be similar to those associated with basic geometrical cases (such as flat plate, airfoil with tabulated data and the like). To account for profile drag, a factor K is introduced (Harmon, 2008; Scherer, 1968). A maximum value of K of 4.4 as given by Scherer (1968) will be used. Cdi is induced drag coefficient, and e is the efficiency factor of the wing and is 0.8 for elliptical wing. Total section drag is thus given by
+
+dDd  dDp  dDi
+
+(12)
+
+The circulatory lift dLc, non-circulatory force dNnc and drag dDd for each section of the wing changes its direction at every instant during flapping. These forces in the vertical and horizontal directions will be resolved into those perpendicular and parallel to the forward velocity, respectively. The resulting vertical and horizontal components of the forces are given by
+
+dL  dLc cos cos   dNnc cos() coscos   dDd sin  cos
+
+(13)
+
+dT  dLc sin  cos   dNnc sin() coscos   dDd cos cos 
+
+(14)
+
+and are calculated within one complete cycle, and averaged to get the total average lift and thrust of the ornithopter. C’(k), F’(k) and G’(k) relate to the well known Theodorsen function (Theodorsen, 1949) which are functions of reduced frequency k. More sophisticated procedure (which later on will be added and introduced as second method in result and analysis subchapter) can be done by adding Garrick’s (1936) expression for the leading edge suction of two dimensional airfoil to be applied on present strip theory model, and also the effect of downwash, w0/U which causes a local induced angle of attack, where it reduces lift (Kuethe & Chow, 1986).
+
+Results And Analysis For Two-Wing Flapping Ornithopter
+
+The results below are obtained using the following wing geometry and parameters: the wingspan 40cm, aspect ratio 6.2, flapping frequency 7Hz, total flapping angle 60º, forward speed 6m/s, maximum pitching angle 20º, and incidence angle 6º. The computational scheme developed has been validated satisfactorily. Two methods (procedures); first method and second method are shown for observance purpose on force production tolerance.
+
+A sample of such validation is shown in Figures 14, which was obtained using aerodynamic strip theory and Theodorsen-Jones modified formulations, where the geometry is similar to Harmon’s (2008) and the parameters are relatively close to his. The following assumptions were made: the pitching and flapping motions are in sinusoidal motion, and the upstroke and downstroke phases have equal time duration. There is incidence angle, which is 6º and there is no flight path angle.
+
+13
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+The phase lag was assumed to be fixed at 90º. Harmon’s (2008) example did not incorporate the leading edge suction, wake capture and dynamic stall. As Figure 14 indicates, the computational results using the present second generic Computational Procedure have comparable agreement to the measured results by Byl (2010). The Average values for lift per flapping cycle calculated using the first and second Computational Procedure are comparable, both for rectangular and semi-elliptical planform. Agreement with Byl’s (2010) value of Lift per flapping cycle for modified elliptical planform is only qualitative, which could be understood for the simplicity of our models. The Average lift per flapping cycle computed using the second Computational Procedure for DeLaurier’s pterosaur wing are in excellent agreement with those obtained by both DeLaurier (1993) and Zakaria et al (2009), while for the thrust, our second Computational Procedure result agrees with Zakaria et al’s. The average thrust per flapping cycle calculated using the first Computational Procedure is close to that obtained by Malik et al (2010).
+
+Figure 14: Lift, Thrust and Drag Forces obtained using the Computational Procedure outlined in Figure 4 for Semi-Elliptical Planform Wing
+Another study is carried out to investigate the influence of individual contributions of the pitching-flapping motion and their phase lag on the flight performance. The calculation is performed on rectangular wing. Results obtained as exhibited in Figure 15 show that for the lift, the pitching angle dominates the force, while for the thrust, the flapping angle. The drag is also dominated by flapping effect.
+Parametric Study Of Two-Wing Flapping Ornithopter
+A parametric study is carried out to assess the influence of some flapping wing motion parameters to the flight performance desired. The study considers the following parameters: the Effect of Forward speed, the Effect of Flapping Frequency, the Effect of Lag Angle, the Effect of Angle of Incidence and the Effect of Total Flapping Angle. The results are exhibited in Figure 16. An interesting result is exhibited by Figure 16 (b) and (c), where the wingbeat frequency has been varied and the thrust is consistently increased with the increase of the wingbeat frequency, while the lift increases only slightly. If reference is made to Pennycuick’s (1990) formula (1) and Tucker’s (1987) formula to correlate wing-span and wing area of birds, the present ornithopter model operating frequencies as anticipated in Figure 16 are close to the operating flapping frequency values of selected birds shown in Table 3.
+Quad Flapping Wing Micro Air Vehicle
+Following similar kinematic and aerodynamic model and aerodynamic computational scheme as elaborated in previous sections, a computational study is carried out for a quad-wing flapping ornithopter, using similar dimensions as the two-wing flapping ornithopter. The wing dimensions are such that performance comparison between the two-wing and quad-wing ornithopter can be made, such as the total wing area should be similar for both.
+The influence of individual contributions of the pitching-flapping motion and their phase lag on the flight performance is carefully modelled and investigated. Without loss of generality, for simplicity the calculation is also performed on rectangular wing. Results obtained as exhibited in Figure 17 show the lift produced for various scenarios involving phase combinations between flapping and pitching motions of individual fore- and hind-wings. Table 2 summarizes the average forces per cycle for the selected scenarios.
+General Observation
+The computational results for simplified modelling of both two-wing and quad-wing ornithopters are meant for better understanding of the key elements that produce Lift and Thrust Forces for these ornithopters, as well as a guideline for developing a simple experimental model that can easily be built.
+
+14
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+More sophisticated computational and experimental model can be built in a progressive fashion, by superposing other key features. To gain better insight into the kinematic and aerodynamic modelling of two-wing and quad-wing ornithopters, comparison will be made on the basic characteristics and performance of selected ornithopter models with those of selected real birds and insects. The most noticeable of these changes is the phase difference between forewing and hind wings, defined as the phase angle by which hindwing leads the forewing. When hovering, dragonflies employ a 180° phase difference (out of phase), while 54-100° is used for forward flight. When accelerating or performing aggressive maneuvers, there is no phase difference between the two wings (0° in phase) (Deng & Hu, 2008).
+
+Wingbeat of 7Hz. corresponding to the particular worked out example
+Wingbeat of 3.14Hz. corresponding to Pennycuick formula Figure 15: The influence of individual contributions of the pitching-flapping motion and their phase lag on the flight performance. The influence
+of the flapping frequency is consistent as illustrated in Figure 7.
+
+Figure 16: Parametric Study on the influence of forward speed (a), flapping frequency (b, c), flapping-pitching phase lag (d), angle of incidence (e) and total flapping angle (f) on cyclic lift, drag and thrust (for a wing of rectangular planform).
+Table 2 also shows the influence of fore and hind wings phase difference to the production of lift, drag and thrust, computed using the present generic and simplified scheme. The lift produced for 180o phase difference between the foreand hind-wings is the highest among other flight cases. However, the thrust produced for 90o phase difference between the fore- and hind-wings is the highest among other flight cases, giving the best performance attitude for forward flight mode.
+
+15
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+Wang and Russel (2007) reported that the vorticity field simulated using CFD computation for double wing is complex and not readily related to the computational results for lift and thrust, although on the average, the wing motion creates a downward flow and thus an upward net force on the wings (Wang & Russel, 2007). Figure 18 shows the comparison of lift force generated using the present generic simplified model to the result of Wang and Russell (2007). Although quantitatively the comparison shows some discrepancies, qualitatively both results show similar behaviour. Such result could lend support to the present kinematic and aerodynamic modeleing of quad-wing ornithopter with nondeforming wing, which can progressively be refined to approach the real biosystem flight characteritics, such as those of dragonfly and other related entomopters.
+
+____ Wang & Russell
+
+(a)
+
+Figure 18: Lift computed using the present simplified and generic model, for 180o phase angle between fore- and hind-wings,
+compared to Wang calculation (Wang & Russell, 2007) using more elaborate model, which is very qualitative, for proof of concept
+considerations.
+
+For this purpose, Table 3 has been prepared as
+
+an extension of the earlier Table presented in work
+
+(b)
+
+by Djojodihardjo and Ramli (2012) to obtain an
+
+insight of the flight characteristics and basic
+
+performance of ornithopter and entomopter models,
+
+and birds and insect. Table 3 exhibits the ratio of the
+
+lift per cycle calculated using the present simplified
+
+computational model and those obtained by other
+
+investigators; for comparison, the weight per wing-
+
+span of a selected sample of birds are also exhibited.
+
+(c) Figure 17: Lift, thrust and drag forces for selected combination of flapping and pitching motion phase lag as well as fore- and hind-wing motion phase
+lag.
+
+Although the comparison is by no means rigorous, it may shed some light on how the geometrical modelling and the flapping motion considered in the computational model may contribute to the total lift produced and how further refinement could be synthesized.
+
+Average Force
+Lift (N) Drag (N)
+
+Double-Wing (Baseline, Computational Procedure) 0.2108 0.0961
+
+Quad-Wing (Fore and Hind wings simultaneous)
+0.3503 0.1629
+
+Quad-Wing, Flapping 90° phase difference
+0.4391 0.4270
+
+Table 2: Average forces for all specifications.
+
+Quad-Wing,
+
+Quad-Wing,
+
+Quad-Wing,
+
+Pitching 90° Flapping
+
+& Flapping 180°
+
+phase difference Pitching 90° phase difference
+
+phase difference
+
+0.4378
+
+0.4096
+
+0.4613
+
+0.2817
+
+0.1928
+
+0.4882
+
+16 Thrust (N)
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+0.2768
+
+0.7902
+
+0.8770
+
+0.4793
+
+0.5580
+
+0.7753
+
+Table 3: Comparison of basic performance of ornithopter & entomopter models, and birds & insect.
+
+CFD Simulation Studies for flexible wing biomimicry
+Two different solvers are utilized; FLUENT for fluid flow analysis and ABAQUS for structural analysis. The real time coupling of these two solvers is facilitated by MpCCI. When solving the fluid structure interaction problems, the mesh must be allowed to move in accordance with the motion of the grid structural surface. The MpCCI software enables the exchange of data between meshes of simulation codes (FLUENT and ABAQUS) in the coupling region, as illustrated in Figure 19. It keeps track of the distribution of the domains, allows the exchange of material properties data and updates the FLUENT meshes. The resulting coupled procedure retains second order temporal accuracy. The simulation of phenomena of aeroelasticity necessitates the appropriate combination of different numerical disciplines, which is done with a FSI method (Wuchner et al., 2007).
+For CFD simulations, the computational domain was modeled and meshed using Gambit software. The grid independence study is also carried out for airflow over the membrane in order to select the best meshing element and thereby improve simulation results. Spalart-/Allmarasviscous model was selected for lift and drag and stress/ displacement studies owing to its suitability for aerospace applications involving wall-bounded flows such as boundary layers with adverse pressure gradients. Moreover, the combination of fine mesh around the wall (airfoil) and low Re of air flow are perfect conditions for this viscous model, and the accuracy is good especially throughout the viscous-affected region. The two dimensional computational domain of NACA 643- 218 airfoil in FLUENT is shown in Figure 20a, and that for ABAQUS is shown in Figure 20b.
+
+17
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+Figure 19: Overview of FSI-MpCCI simulation process (MpCCI 3.1, 2009)
+a) The FLUENT meshed model showing boundary conditions
+b) Meshed model in ABAQUS Figure 20: Simulation models
+The origin of the coordinate system is at the leading edge of the airfoil. The fully structured mesh was selected and each region was meshed uniformly with 28983 nodes. The y + value wasmaintained to nearly equal to 1. This was also the practice with respect to a similar study by Ahmad et al., (2010). The second order upwind scheme was used to discretize the Navier Stokes equations. The leading edge and trailing edge of the airfoil was considered as solid. With this arrangement, the simulations were run for various values of Re, where Re = Uc/υ, U is the free stream velocity, c is the chord length (0.1m), and υ is the air kinematic viscosity (υ=µ/ρ, ρ = 1.225 kg/m3 and µ= 1.7894x10-5 kg/ms). The range of Re for CFD simulations was 2738≦Re≦10269 and that for lift and drag study was 70512≦Re≦101319.
+The Pressure-Velocity coupling for all Re is performed using SIMPLE algorithm. The relaxation factors for modified turbulent viscosity, momentum and pressure are 0.8, 0.7, and 0.3 respectively. The transient/ unsteady simulations are
+
+18
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+carried out at angle of attack, α = 0o, 10o, 20o, and 30o; with 0.001s time step up to 40s of iteration. The membrane thickness, t = 0.1317 mm, Modulus of elasticity E= 0.77, Mpa, Poisson ratio=0.5, and membrane density ρm = 1g/ cm3
+were set as the membrane properties in ABAQUS. The Young’s Modulus for the airfoil frame is 70 Gpa with the Poisson ratio = 0.35 and density ρal = 2800 kg/m3.
+
+Membrane Airfoil frame
+
+Table 4: Material properties
+Material : Latex* Thickness: 0.1317mm, 0.1483mm, 0.3833mm and 0.4667mm Modulus of elasticity E= 0.77 Mpa Poisson ratio=0.5 density ρm = 1g/ cm3 Material: Aluminium Young’s Modulus = 70 Gpa Poisson ratio = 0.35 density ρal = 2800 kg/m3
+
+In the ABAQUS model, the leading and trailing edges are considered as fixed boundaries. The upper and lower airfoils are defined as deformable structure, which are meshed (total of 612 elements) with hexahedral sweep method. The material properties are summarized in Table 4. Mesh and time step independence studies have been performed and the best mesh and time step setup have been chosen for the subsequent FSI simulations.
+Results and Discussion
+
+1.5
+
+1.0
+
+Lift Coefficient, CL
+
+0.5
+
+0.0
+
+-0.5
+
+-1.0
+
+-10
+
+-5
+
+(Abbott et al.,1945) CFD U =71.89 m/s
+
+0
+
+5
+
+10
+
+15
+
+20
+
+Angle of attack (degree)
+
+Figure 21: Lift coefficient vs. Angle of attack for the test airfoils compared with the NACA 643-218 airfoil
+
+Validation of NACA 643-218 airfoil standard CFD model
+The CFD results are compared with the published data from Abbot et al. (1945) in order to validate the current work. However, the comparison is only limited to the steady and standard NACA 643-218 airfoil as provided by Abbot et al. (1945).The data for NACA 643-218 airfoil published by the authors include: free stream velocity, U = 71.89 m/s; chord length, c= 24 inches and kinematic viscosity, υ = 1.4604×10-5 m2/s.
+
+Comparison of Rigid and Membrane Type of Airfoil
+As shown in Figure 22, the plots of CL vs. α, CD vs. α, lift to drag ratio (L/D) vs. α and CL vs. CD were obtained from simulations. Figure 23 shows the instantaneous streamline pattern of the rigid and membrane airfoils at various angles of attack. At the lowest angle of attack, α = 0o, the flow started to detached from the airfoil surface at the beginning of the
+
+19
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+trailing edge for both rigid and membrane airfoil cases. At α = 10o, a distinct shape of vortex appears in the membrane
+airfoil case (on the upper surface) while that is not the case for the rigid airfoil. The size of the vortex increases as the
+angle of attack is increased. The vortex started to separate from the upper surface of the airfoil at the angle of attack of 20o. The vortex appeared to be swept downstream by the main airfoil flow as the angle of attack increases.
+
+L/D Lift Coefficient, CL
+
+1.0
+
+0.5
+
+0.0
+
+-0.5
+
+-1.0
+
+-10
+
+-5
+
+(a)
+
+0.30
+Rigid Membrane 0.25
+
+Drag Coefficient, CD
+
+0.20
+
+0.15
+
+0.10
+
+0.05 Rigid Membrane
+
+0.00
+
+0
+
+5
+
+10
+
+15
+
+20
+
+-10
+
+-5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+Angle of attack (degree)
+
+(b)
+
+Angle of attack (degree)
+
+30
+
+20
+
+10
+
+0
+
+-10
+
+-20
+
+-10
+
+-5
+
+(c)
+
+0
+
+5
+
+10
+
+Angle of attack (degree)
+
+1.5
+
+1.0
+
+Lift Coefficient, CL
+
+0.5
+
+0.0
+
+Rigid Membrane
+
+15
+
+20
+
+-0.5
+Rigid Membrane
+
+-1.0
+
+0.00
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+0.25
+
+0.30
+
+(d)
+
+Drag Coefficient, CD
+
+Figure 22: Comparison of time averaged aerodynamics characteristics between rigid and membrane airfoils: (a) CL vs. α, (b) CD vs. α, (c) L/D vs. α, (d) CL vs. CD
+5. Conclusions
+The present work has been performed to assess the effect of flapping-pitching motion with pitch-flap phase lag in the flight of ornithopter. In this conjunction, a computational model has been considered, and a generic computational method has been adopted. Two-dimensional unsteady theory of Theodorsen with modifications to account for three-dimensional and viscous effects, leading edge suction and post-stall behaviour. The study is carried out on rectangular and semielliptical wing planforms. The results have been compared and validated with others within similar unsteady aerodynamic approach and general physical data, and within the physical assumptions limitations, have encouraging qualitative agreement or better. Judging from lift per unit span, the present flapping-wing model performance is comparable to those studied by Byl (2010) and Malik and Ahmad (2010), while DeLaurier’s pterosaur model (1993) is order of magnitude larger and comparable to Bald Eagle.
+The analysis and simulation by splitting the flapping and pitching motion shows that: (a) The lift is dominantly produced by the pitching motion, since the relative airflow effect prevailed along 75% of the chord length. (b) The thrust is dominated by flapping motion. The vertical component of relative velocity increases significantly as compared to the horizontal components, which causes the force vector produced by the flapping-pitching motion to be directed towards the horizontal axis (thrust axis). (c) The drag is dominated by the flapping motion, due to higher relative velocity as well as higher induced drag due to circulation.
+
+20 α 0o 10o
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+Rigid Airfoil
+
+Membrane Airfoil
+
+20o
+
+30o
+Figure 23: Comparison of the instantaneous streamline pattern between rigid and membrane airfoils at various angle of attacks
+For the quad-wing ornithopter, at the present stage, the simplified computational model adopted verified the gain in lift obtained as compared to two-wing flapping ornithopter, in particular by the possibility of varying the phase lag between the flapping and pitching motion of individual wing as well as between the fore- and hind-wings.
+A structured approach has been followed to assess the effect of different design parameters on lift, thrust, and drag of an ornithopter, as well as the individual contribution of the component of motion. These results lend support to the utilization of the generic modelling adopted in the synthesis of a flight model, although more refined approach should be developed. Various physical elements could be considered to develop ornithopter kinematic and aerodynamic modelling, as well as using more refined aerodynamic computation, such as CFD or lifting surface methods. In retrospect, a generic physical and computational model based on simple kinematics and basic aerodynamics of a flapping-wing ornithopter has been demonstrated to be capable of revealing its basic characteristics and can be utilized for further development of a flapping-wing MAV. Application of the present kinematic, aerodynamic and computational approaches shed some light on some of the salient aerodynamic performance of the quad-wing ornithopter.
+
+21
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+In the second part of the work that deals with CF simulation, the Mesh based parallel Code Coupling Interface (MpCCI) is effectively utilized to facilitate real time coupling of flow and structural solvers in order to study the effect of membrane thickness and Reynolds number on the aerodynamic performance of NACA 643- 218 airfoil for low Reynolds number applications. Results showed that the aerodynamic lift increases while drag decreases with the decrease of membrane thickness.
+Acknowledgement
+The authors would like to thank Universiti Putra Malaysia (UPM) for granting Research University Grant Scheme (RUGS) Project Code: 9378200, under which the present research is carried out.
+Nomenclature
+
+AR
+
+aspect ratio
+
+t
+
+time
+
+U
+
+flight velocity
+
+b
+
+wingspan
+
+Vx
+
+velocity component along x-axis
+
+c
+
+chord
+
+Vz
+
+velocity component along z-axis
+
+C(k)
+
+Theodorsen function
+
+VT
+
+tangential velocity to the section
+
+Cd(f)
+
+drag coefficient due to skin friction
+
+V
+
+relative velocity
+
+Cdp
+
+profile drag coefficient
+
+w0
+
+downwash velocity at ¾-chord location
+
+Cdi
+
+induced drag coefficient
+
+ρ
+
+air density
+
+Cl-c
+
+lift coefficient for flat plate
+
+β
+
+flapping angle
+
+Cl
+
+lift coefficient
+
+βmax
+
+maximum flapping angle
+
+Cn
+
+normal force coefficient
+
+dDd
+
+sectional total drag
+
+dDf
+
+sectional friction drag
+
+β p
+
+stroke plane angle flapping rate
+
+
+
+flapping acceleration
+
+dDp
+
+sectional profile drag
+
+dDi
+
+sectional induced drag
+
+dFx
+
+sectional chordwise force
+
+θ
+
+pitching angle
+
+
+
+pitching rate
+
+
+
+pitching acceleration
+
+dL
+
+sectional instantaneous lift
+
+θ0
+
+maximum pitch angle
+
+dLc
+
+sectional lift
+
+ a
+
+angle of flapping axis with respect to
+
+dr
+
+dr
+
+width of sectional strip under consideration
+
+stream velocity
+
+dN
+
+sectional total attached flow normal
+
+ w
+
+mean angle of chord with respect to
+
+force
+
+flapping axis
+
+dNc
+
+sectional circulatory normal force
+
+dNnc
+
+sectional apparent mass effect
+
+
+
+mean pitch angle
+
+
+
+lag between pitching and flapping
+
+dT
+
+sectional instantaneous thrust
+
+angle
+
+f
+
+wingbeat frequency
+
+δ
+
+incidence angle
+
+FSI
+
+Fluid Structure Interaction
+
+γ
+
+flight path angle
+
+g
+
+gravitational acceleration
+
+h
+
+plunging rate
+
+LEV
+
+leading edge vortex
+
+ψ
+
+relative angle between two velocity
+
+components
+
+α
+
+relative angle of attack
+
+PIV
+
+Particle Image Velocimetry
+
+r
+
+distance along the span of ith strip
+
+α0
+
+zero-lift angle
+
+ηs
+
+efficiency coefficient
+
+S
+
+wing area
+
+References
+Abbott, I.H. Von Doenhoff A.E., Stivers Jr. L.S. 1945. Summary of Airfoil data, National Advisory Committee For Aeronautics, Report No. 824, Washington 25, D.C, p. 193.
+Ahmad, K. A., Abdullah, M. Z. and Watterson, J. K. 2010. Numerical Modelling of a Pitching Airfoil, Jurnal Mekanikal, 30, 37-47. Altshuler, D.L., Dudley, R. and Ellington, C.P. 2004. Aerodynamic Forces of Revolving Hummingbird Wings and Wing Models, J. Zool, Land. 264:
+327-332.
+
+22
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+Ansari, S.A., Zbikowski, R. and Knowles, K. 2006. Aerodynamic Modelling of Insect-like Flapping Flight for Micro Air Vehicles, Progress in Aerospace Sciences 42: 129–172.
+Ashley, H., Landahl, M.T., and Widnall, S.E. 1965. New Directions in Lifting Surface Theory, AIAA Journal, 3, No.1. Attar, P. J., Gordnier, G. E. 2009. High-fidelity Computational Aeroelastic Analysis of a Plunging Membrane Airfoil, AIAA 2009-2472, California, p.p.
+1-30. Bunget, G. 2010. BATMAV – A Bio-Inspired Micro-Aerial Vehicle for Flapping Flight PhD, North Carolina. Byl, K. 2010. A Passive Dynamic Approach for Flapping Wing Micro Aerial Vehicle Control, ASME Dynamic Systems and Controls Conference,
+http://www.ece.ucsb.edu/~katiebyl/papers/Byl10 _DSCC.pdf, accessed 8 May 2012. Capraro, E. 2001. A Micro-Sized Ornithopter Design, Course Project, MIT. Carruthers, A.A.C., Walker, S.M., Thomas, A.L.R. and Taylor, G.K. 2010. Aerodynamics of Aerofoil Sections Measured on a Free-flying Bird,
+J.Aerosp.Eng. Chorin, A.J. 1968. Numerical solution of the Navier–Stokes equations, Math. Comput. 22, 745. Conn, A.T., Burgess, S.C. and Ling, C.S. 2006. Design of a Parallel Crank-rocker Flapping Mechanism for Insect-inspired Micro Air Vehicles, DOI:
+10.1243/09544062JMES517. DeLaurier, J.D. 1993. An Aerodynamic Model for Flapping Wing Flight. The Aeronautical Journal of the Royal Aeronautical Society, 125-130. Deng, X., Hu, Z. 2008. Wing-wing Interactions in Dragonfly Flight, A Publication of Ine-Web.Org, 10.2417/1200811.1269, Institute of Neuromorphic
+Engineering. Djojodihardjo, H., Ramli, A.S.S. (2012A), Generic and Parametric Study of the Aerodynamic Characteristics of Flapping Wing Micro-Air-Vehicle,
+Applied Mech. And Materials, Trans Tech Publications, Switzerland,Vol.225, pp 18-25. Djojodihardjo, H. and Ramli, A.S.S. (2012B), Kinematic and Aerodynamic Modeling of Flapping Wing Ornithopter, Procedia Engineering (Elsevier),
+Vol. 50, pp 848-863. Dickinson, M.H., Lehmann, F.O. and Sane, S.P. 1999. Wing Rotation and the Aerodynamic Basis of Insect Flight, Science 284, 1954. Ellington, C.P. 1984. The Aerodynamics of Hovering Insect Flight, I, Quasi-Steady Analysis, Phil.Trans.of Roy.Soc.London, B, Bio.Sci., Vol 35, No
+1122. Ellington, C.P. 1984. The Aerodynamics of Hovering Insect Flight, III. Kinematics – 1984, Phil. Trans. R. Soc. Lond. B 305, 41-78,
+rstb.royalsocietypublishing.org/content/305/1122/41.short Ellington, C.P. 1985. Power And Efficiency Of Insect Flight Muscle, J. exp. Biol. 115, 293-304. Ellington, C.P. 1999. The Novel Aerodynamics of Insect Flight: Applications to Micro-Air Vehicles, The Journal of Experimental Biology 202: 3439–
+3448. Ellington, C. P. 2006. Insects versus birds: the great divide, 44th AIAA Aerospace Sciences Meeting and Exhibit, Reno, Nevada, 9-12 January 2006. Friedmann, P., Shyy, W. 2008. A Fundamental Study Of Nonlinear Aeroelastic Phenomena In Flapping Wing MAV, AFRL -SR-AR-TR-09-0136. Galvao, R., Israeli, E., Song, A., Tian, X., Bishop, K., Swartz, S., Breuer, K. 2006. The aerodynamics of compliant membrane wings modeled on
+mammalian flight mechanics, 36th AIAA Fluid Dynamics Conference and Exhibit, 5 - 8 June 2006, San Francisco, California, AIAA 2006-2866. Garrick, I.E. 1936. Propulsion of a Flapping and Oscillating Aerofoil, NACA Report No.567. George, R.B., Colton, M.B., Mattson, C.A. and Thomson, S.L. 2012. A Differentially Driven Flapping Wing Mechanism for Force Analysis &
+Trajectory Optimization, IJMAV. Gordnier, R.E. 2009. High Fidelity Computational Simulation of a Membrane Wing Airfoil, Journal of Fluids and Structures, 25:897–917. Gordnier, R.E., Attar, P.J. 2009. Implicit LES Simulations of a Low Reynolds Number Flexible Membrane Wing Airfoil. 47th AIAA Aerospace
+Sciences Meeting Including The New Horizons Forum and Aerospace Exposition. Orlando, Florida. Harmon, R.L. 2008. Aerodynamic Modelling of a Flapping Membrane Wing Using Motion Tracking Experiments. MSc. Thesis, University of
+Maryland. Ho, S., Nassef, H., Pornsinsirirak, N., Tai, Y-C., Ho, C-M. 2003. Unsteady aerodynamics and flow control for flapping wing flyers, Progress in
+Aerospace Sciences 39: 635–681. Hou,T.Y., Stredie,V.G., Wu, T.Y. 2007. Mathematical Modeling and Simulation of Aquatic and Aerial Animal Locomotion, Journal of Computational
+Physics 225, 1603–1631. Hou,T.T., Stredie,V.G., Wu, T.Y. 2006. A 3D Numerical Method for Studying Vortex Formation Behind a Moving Plate, Commun. Comput. Phys.,
+Vol. 1, No. 2, pp. 207-228. Hubel, T.Y. and Tropea, C. 2010. The Importance of Leading Edge Vortices under Simplified Flapping Flight Conditions at the Size Scale of Birds,
+Jour.Exp.Bio 213, 1930-1939. http://www.picsearch.com.vn/pictures/.com-EN/Vehicles/Aircrafts/xxx/pictures/.com-EN/Vehicles/Aircrafts/Aircrafts/20D/
+deLaurier/202001/20Ornithopter.html Hu. H., Kumar, A. G., Abate, G., Albertani, R. 2009. An Experimental Study of Flexible Membrane Wings in Flapping Flight, 46th AIAA Aerospace
+Sciences Meeting and Exhibit AIAA-2009-0876. Hu, H., Tamai, M. & J.T., Murphy, J. T. 2008. Flexible-Membrane Airfoils at Low Reynolds Numbers. Journal of Aircraft, 45, 1767-1778. H. Yusoff , M. Z. Abdullah, M. Abdul Mujeebu and K. A. Ahmad, “Development of Flexible Wings and Flapping Mechanism with Integrated
+Electronic Control System, for MAV Research”, Experimental Techniques. Ifju, P.G., Jenkins, D.A., Ettinger, S., Lian, Y., Shyy, W., Waszak, W. 2002. Flexible-Wing-Based Micro Air Vehicles, AIAA 2002-0705. Jackowski, Z.J. 2009. Design & Construction of an Autonomous Ornithopter, SB Thesis, Massachusetts Institute of Technology. Jones, R.T. 1940. The Unsteady Lift of a Wing of Finite Aspect Ratio, NACA Report 681. Jones, A.R, Bakhtian, N.A. and Babinsky, H., (2008) Low Reynolds Number Aerodynamics of Leading-edge Flaps. J Aircraft, 45. pp. 342-345. ISSN
+0021-8669 Kesel, A.B. 2000. Aerodynamic Characteristics of Dragonfly Wing Sections Compared with Technical Aerofoils, J. Exp. Biol. 203: 3125-3135. Kumar, H. H., Abate, A. G., Albertani, G. 2010. An Experimental Investigation on the Aerodynamic Performances of Flexible Membrane Wings in
+Flapping Flight, Aerospace Science and Technology,14 (8):575-586. Kuethe, A.M., Schetzer, J.D. and Chow, C.Y., 1986, Foundations of Aerodynamics, 4th ed, John Wiley, New York, pp145-164. Kuethe, A. 1939. Circulation Measurements about the Tip of an Airfoil During Flight through Gust, NACA TN -685. Lentink, D., Jongerius, S.R. and Bradshaw, N.L. 2007. The Scalable Design of Flapping Micro-Air Vehicles Inspired by Insect Flight, Chap.14,
+www.delfly.nl. Lian, Y. and Shyy. W. 2007. Laminar-turbulent Transition of a Low Reynolds Number Rigid or Flexible Airfoil, AIAA Journal, 45(7):1501-1513. Lissaman, P. B. S. 1983. Low-reynolds-number Airfoils. Annual Review of Fluid Mechanics 15, 223–239. Liu, H., Kawachi, K. 1998. A Numerical Study of Insect Flight, Journal Of Computational Physics 146, 124–156. Lyon, C. A., Broeren, A. P., Giguere, P., Gopalarathnam, A. and Selig, M. S. 1997. Summary of Low-Speed Airfoil Data vol. 3. SoarTech Publications,
+Virginia Beach, Virginia.
+
+23
+
+Numerical Modelling, Simulation and Visualization of Flapping Wing Ornithopter
+
+Maybury, W.J., Lehmann, F-O. 2004. The Fluid Dynamics of Flight Control by Kinematic Phase Lag Variation Between Two Robotic Insect Wings, Journal of Experimental Biology, Vol. 207: 4707-4726.
+Maxworthy, T. 1979. Experiments on the Weis-Fogh Mechanism of Lift Generation by Insects in Hovering Flight. Part1: Dynamics of the Fling. Journal of Fluid Mechanics 93, 1, 7–63.
+Minotti F.O. 2002. Unsteady two-dimensional theory of a flapping wing, U.Buenos Aires. Martinez-Val, R., Perez, E., Puertas, J. and Roa, J. 2010. Optimization of Planform and Cruise Conditions of a Transport Flying Wing, Journal of
+Aerospace Engineering , 224: 1243-1251. McArthur, J. 2008. Aerodynamics Of Wings At Low Reynolds Numbers: Boundary Layer Separation And Reattachment, PhD., USC. McCune, J.E., Lam, C-M.G., Scott, M.T. Nonlinear Aerodynamics of Two-Dimensional Airfoils in Severe Maneuver, AIAA Journal, vol. 28, issue 3,
+pp.393. Molki, M., Breuer, K.. 2010. Oscillatory Motions of a Prestrained Compliant Membrane Caused by Fluid-membrane Interaction. Journal of Fluids and
+Structures, 26(3) pp. 339-358. Mueller, T.J. 2001. Fixed and Flapping Wing Aerodynamics for Micro Air Vehicle Applications. Reston, VA: AIAA. Müller, D., Bruck, H. A., Gupta, S. K.. 2009. Measurement of Thrust and Lift Forces Associated with Drag of Compliant Flappin g Wing for Micro Air
+Vehicles using a New Test Stand Design, Experimental Mechanics 50:725–735. Nicholson, B., Page, S., Dong, H., Slater, J. 2007. Design of a Flapping Quad-Winged Micro Air Vehicle, AIAA-4337. Norberg, U.M. 1970. Hovering Flight of Plecotus Auritus, L. Bijdr. Dierk 40, 62-66 (Proc.2nd int. Bat.Res, Conf.). Pennycuick C.J. 1990. Predicting Wingbeat Frequency and Wavelength of Birds, The Journal of Experimental Biology 150: 171 – 85. Persson, P.-O., Peraire, J., Bonet, J. 2007. A high order discontinuous Galerkin method for fluid–structure interaction, AIAA-2007-4327. Phan, H.V., Nguyen, Q.V., Truong, Q.T., Truong, T.V., Park, H.C., Goo et al. 2012. Stable Vertical Takeoff of an Insect -Mimicking Flapping-Wing
+System Without Guide Implementing Inherent Pitching Stability, Journal of Bionic Engineering 9, 391-401. Polhamus, E.C. 1966. A Concept Of The Vortex Lift Of Sharp-Edge Delta Wings Based On A Leading-Edge-Suction Analogy, NASA TN D-3767. Prosser, D., Basrai, T., Dickert, J., Ratti, J., Crassidis, A., Vachtsevanos, G. 2011. Wing Kinematics and Aerodynamics of a Hovering Flapping Micro
+Air Vehicle, IEEE Aerospace Conference. Prosser, D.T. 2011. Flapping Wing Design for a Dragon-fly like MAV, MSc Thesis, Rochester Institute of Technology. Ramli, A.S.S. 2011. Aerodynamic Study and Conceptual Design of Flapping Wing Ornithopter, Bachelor Thesis, supervised by Harijono Djojodihardjo,
+Universiti Putra Malaysia. Ratti, J. 2011. QV-The Quad Winged, Energy Efﬁcient, Six degree of Freedom Capable Micro Air Vehicle, PhD thesis, Georgia Institute of
+Technology. Rojratsirikul, P., Wang, Z., Gursul, I. 2008. Unsteady aerodynamics of membrane airfoils. AIAA-2008-0613. Rosenfeld, N.C. 2011, An Analytical Investigation of Flapping Wing Structures for MAV, PhD Thesis, U Maryland. Sane, S.P. 2006. Induced Airﬂow in Flying Insects - I. A Theoretical Model of the Induced Flow, The Journal of Experimental Biology 209. Scherer, J.O. 1968. Experimental and Theoretical Investigation of Large Amplitude Oscillating Foil Propulsion Systems, Hydronautics, Laurel, Md. Schwartz, S.M., Iriarte-Diaz, J., Riskin, D.K., Breuer, K.S. 2012. A bird? A plane? No, it's a bat: An introduction to the Biomechanics of Bat Flight,
+Book Chapter 9, in Sharon Schwarz et al, Cambridge Studies in Morphology and Molecules: New Paradigms in Evolutionary Bio., Cambride University Press. Shekhovtsov, A.V. 1998. Inertial-Vortical Principle Of Animal Flight, Institute of Hydromechanics of National Academy of Sciences of Ukraine, acretcija.narod2.ru Shigeoka, K. 2007. Velocity And Altitude Control Of An Ornithopter Micro Aerial Vehicle, MSc, U.Utah. Smith, M.J.C., Wilkin P.J., Williams, M.H. 1996. The Advantages of an Unsteady Panel Method in Modelling the Aerodynamic Forces on Rigid Flapping Wings,” The Journal of Experimental Biology, Vol. 199: 1073-1083. Song, A.,Tian, X., Israeli, E., Galvao, R., Bishop, K., Swartz, S., Breuer, K. 2008. Aeromechanics of membrane wings with implications for animal flight, AIAA Journal, 46(8): 2096-2106. Shyy, W., Berg, M., Ljungqvist, D. 1999. Flapping and Flexible Wings for Biological and Micro Air Vehicles, Progress in Aerospace Sciences, Vol. 35: 455-505. Shyy, W., Lian, Y., Tang, J., Viieru, D., Liu, H. 2008. Aerodynamics of Low Reynolds Number Flyers. Cambridge University Press, New York. Shyy,W and Kamakoti, R. 2004. Fluid-structure interaction for aeroelastic applications, Progress in aerospace sciences, 40(8):535-558. Shyy, W., Ifju, P., Viieru, D. 2005. Membrane wing-based micro air vehicles Applied Mechanics Reviews, 58, pp. 283–301 Shyy, W., Aono, H., Chimakurthi, S.K., Trizila, P., Kang, C-K., Cesnik, C.E.S., Li, H. 2010. Recent Progress in Flapping Wing Aerodynamics and Aeroelasticity, Progress in Aerospace Science. Strang, K.A. 2009. Efficient Flapping Flight of Pterosaurs, PhD, Stanford. Stredie, V.G. 2004. Mathematical Modeling and Simulation of Aquatic and Aerial Animal Locomotion, PhD Thesis, CalTech. Swartz SM, Bishop KL, Ismael-Aguirre M-F. 2005. Dynamic complexity of wing form in bats: implications for flight performance. In: Akbar Z, McCracken G, Kunz TH, editors. Functional and evolutionary ecology of bats. Oxford: Oxford University Press; pp. 110–130. Talay, T.A. 1975. Introduction To The Aerodynamics Of Flight, NASA SP-367. Theodorsen, T. 1949. General Theory of Aerodynamic Instability and the Mechanism of Flutter, NACA Report No. 496. Tian, X., Iriarte-Diaz, J., Middleton, K., Galvao, R., Israeli, E., Roemer, A., Sullivan, A., Song, A., Swartz, S. and Breuer, K. 2006. Direct measurements of the kinematics and dynamics of bat flight. Bioinspiration &Biomimetics, 1:S10–S18. Tobalske, B.W., Warrick, D.R., Clark, C.J., Powers, D.R., Hedrick, T.L., Hyder, G.A. and Biewener, A.A. 2007. Three-dimensional kinematics of hummingbird flight, The Journal of Experimental Biology 210, 2368-2382. Tucker, V.A. 1987. Gliding Birds: The Effect Of Variable Wing Span, J.Exp.Biology, 133. Visbal, M. R., Gordnier, R. E., Galbraith. M. C. 2009. High-fidelity simulations of moving and flexible airfoils at low Reynolds numbers, Experiments in Fluids, 46: 903-922. Walker, W.P. 2009. Unsteady Aerodynamics of Deformable Thin Airfoils, MSc, VPISU
+von Busse, R., Hedenström, A., Winter, Y. and Johansson, L.C., Kinematics and wing shape across flight speed in the bat Leptonycteris
+yerbabuenae, Posted Online October 11, 2012 doi : 10.1242 - bio.20122964 Wang, Z.J. and Russell, D. 2007. Effect of Forewing and Hindwing Interactions on Aerodynamic Forces and Power in Hovering Dragonfly Flight,
+Physical Review Letters 99, 148101. Warkentin, J., DeLaurier, J. 2007. Experimental aerodynamic study of tandem flapping membrane wings, Journal of Aircraft, 44(5):1653-1661. Warrick, D.R., Tobalske, B.W., Powers, D.R. and Dickinson, M.H. 2007. The Aerodynamics of Hummingbird Flight, www.dpowerslab.com, accessed
+15 May, 2013.
+
+24
+
+H.Djojodihardjo, A.S.S. Ramli, M.S.A.Aziz and K.A.Ahmad, ICEMAP 2013, Chennai
+
+Weis-Fogh, T. 1973. Quick Estimates of Flight Fitness in Hovering Animals, Including Novel Mechanisms for Lift Production. Journal of Experimental Biology 59, 169–230.
+Wu, T.Y. A Nonlinear Theory for Unsteady Flexible Wing, California Institute of Technology, Pasadena, Dedicated to Dr. J. Nicholas Newman in honor of his Seventieth Anniversary, http://web.mit.edu/flowlab/NewmanBook/Wu.pdf, accessed 28 December 2012.
+Wuchner, R., Kupzok, A. & Bletzinger, K.-U. 2007. A framework for stabilized partitioned analysis of thin membrane–wind interaction, International Journal for Numerical Methods in Fluids, 54, 945-963.
+Zakaria, M. Y., Elshabka, A. M., Bayoumy, A. M., Abd Elhamid, O. E. 2009. Numerical Aerodynamic Characteristics of Flapping Wings, 13th International Conference on Aerospace Sciences & Aviation Technology, ASAT- 13.
+Zhao, L., Huang, Q., Deng, X., Sane, S. 2009. The effect of chord-wise flexibility on the aerodynamic force generation of flapping wings: experimental studies. IEEE International Conference on Robotics and Automation, Kobe, Japan.
+

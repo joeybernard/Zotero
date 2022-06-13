@@ -1,0 +1,573 @@
+Dedalus: An Open-Source Spectral Magnetohydrodynamics Code
+
+Keaton Burns University of California Berkeley
+Jeﬀ Oishi SLAC National Accelerator Laboratory
+
+Received
+
+; accepted
+
+ABSTRACT
+We developed the magnetohydrodynamic (MHD) capabilities of Dedalus, an open-source Python-based hydrodynamics simulation, to explore and compare the properties of the standard and helical magnetorotational instabilities. Dedalus is a spectral code that uses external FFT libraries and parallelization with the goal of achieving speeds competitive with codes implemented in lowerlevel languages. This paper will outline the MHD equations as implemented in Dedalus, the methods taken to improve the performance of the code, and the initial results of our simulations.
+
+Contents
+
+1 Introduction
+
+3
+
+2 Dedalus Development
+
+3
+
+2.1 MHD Equations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+
+2.2 Spectral Implementation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+
+2.3 Temporal Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+
+2.4 Shearing Box . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+
+2.5 FFTs and Parallelization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+
+3 Magnetorotational Instability Results
+
+9
+
+4 Conclusion
+
+10
+
+2
+
+5 References
+
+10
+
+1. Introduction
+The magnetorotational instability (MRI) is a ﬂuid instability that causes the onset of turbulence in magnetized disks and transports angular momentum outwards. It is believed to be an important mechanism in the physics of accretion disks. While not believed to exist in astrophysical disks, a second instability caused by a helical magnetic ﬁeld has also been discovered. This helical magnetorotational instability (HRMI) may be easier to produce in ongoing laboratory experiments using liquid sodium. The applicability of such experiments to the processes in astrophysical disks is the subject of our investigation.
+
+2. Dedalus Development
+Dedalus is an open-source spectral hydrodynamics code, written in Python 2.7. It was designed to be ﬂexible and easy to use, with the FFTs handled by external libraries and/or parallelization to abate the performance penalties of using a high-level language. The code makes extensive use of object-oriented programming, facilitating the modular implementation of diﬀerent domain representations and physics. In addition to the magnetohydrodynamics (MHD) physics described below, Dedalus is also currently being used to study linear cosmology and baryon acoustic oscillations -NEED REFERENCE-. Dedalus is currently hosted on a public bitbucket repository.
+
+2.1. MHD Equations We begin with the equations governing incompressible MHD: the incompressible Navier-Stokes equation with the Lorentz force and viscosity, the induction equation with
+3
+
+magnetic diﬀusivity, mass continuity, and Gauss’s law for magnetism (in Gaussian units,
+
+and
+
+with
+
+∂t
+
+indicating
+
+∂ ∂t
+
+):
+
+∂tu
+
++
+
+u
+
+·
+
+∇u
+
+=
+
+∇p −
+ρ0
+
++
+
+FL ρ0
+
++
+
+ν∇2u,
+
+(1)
+
+∂tB = ∇ × (u × B) + η∇2B,
+
+(2)
+
+∇ · u = 0,
+
+(3)
+
+∇ · B = 0,
+
+(4)
+
+Expanding the Lorentz force as
+
+(∇ × B) × B B · ∇B ∇B2
+
+FL =
+
+4π
+
+=
+
+−,
+
+4π
+
+8π
+
+(5)
+
+Eq. (1) becomes
+
+∂tu
+
++
+
+u
+
+·
+
+∇u
+
+=
+
+− ∇Ptot ρ0
+
++
+
+B · ∇B 4πρ0
+
++
+
+ν∇2u,
+
+(6)
+
+B2
+
+Ptot
+
+=
+
+p
+
++
+
+. 8π
+
+(7)
+
+2.2. Spectral Implementation
+
+In a periodic domain, any suﬃciently smooth ﬁeld variable can be represented by its discrete Fourier decomposition on the grid. That is, for some function f , we can write
+
+f (x, t) = fˆ(k, t)eixiki,
+
+(8)
+
+k
+
+fˆ(k, t) = f (x, t)e−ixiki.
+
+(9)
+
+x
+
+In Fourier space, the spatial derivatives in the governing equations transform to trivial
+
+multiplications: ∇ −F→T ik. Pseudospectral codes, such as Dedalus, use Fast Fourier
+
+Transforms (FFTs) to compute these spatial derivatives and transform the problem into a
+
+system of ordinary diﬀerential equations, which are then temporally integrated in Fourier
+
+space.
+
+4
+
+Taking the Fourier transforms of Eqs. (5), (3), and (4) yields
+
+∂tuˆ
+
+=
+
+−u
+
+·
+
+∇u
+
+−
+
+ikPˆtot ρ0
+
++
+
+B · ∇B 4πρ0
+
+−
+
+ν k2 uˆ ,
+
+(10)
+
+ik · uˆ = 0,
+
+(11)
+
+ik · Bˆ = 0.
+
+(12)
+
+We then take the scalar product of ik with Eq. (10) to arrive at an expression for the total
+
+pressure:
+
+Pˆtot
+
+=
+
+ik · u · ∇u
+
+−
+
+ik · B · ∇B .
+
+(13)
+
+ρ0
+
+k2
+
+4πρ0k2
+
+Using the identity ∇ × (A × B) = A(∇ · B) − B(∇ · A) + (B · ∇)A − (A · ∇)B along with Eqs. (2), (3), and (4), we see
+
+∂tB = B · ∇u − u · ∇B + η∇2B.
+
+(14)
+
+Taking the Fourier transform of Eq. (14), we arrive at the time-evolution equation for Bˆ :
+
+∂tBˆ = B · ∇u − u · ∇B − ηk2B.
+
+(15)
+
+The nonlinear terms (u · ∇u, u · ∇B, B · ∇u, and B · ∇B) in Eqs. (10) and (15) are computed in real space. To eliminate aliasing eﬀects, we employ the Orszag 2/3 rule, zeroing any mode with a k component greater than or equal to 2/3 of the Nyquist wavenumber in that direction. This zeroing is done before every reverse Fourier transform, after every forward Fourier transform, and at each temporal evolution.
+
+2.3. Temporal Integration The ODEs produced by the physics modules, along with the initial conditions speciﬁed at the start of the simulation, form an initial value problem that is integrated using explicit
+5
+
+Runge-Kutta methods, speciﬁcally the second-order midpoint method. For simulations with viscosity and/or magnetic diﬀusivity, an integrating factor is used to evaluate the linear steps used to construct the Runge-Kutta stages. Consider Eq. (10) for a speciﬁed mode k, with the non-viscous terms considered to be constant during an integration step:
+
+∂tuˆ(t) + νk2uˆ(t) = RHS.
+
+(16)
+
+This is an equation of the form y (x) + P (x)y = Q(x), which has the exact solution
+
+Q(x)M (x)dx
+
+y(x) =
+
+,
+
+(17)
+
+M (x)
+
+where M (x) = e P (x)dx is called the integrating factor. Hence we ﬁnd the solution of
+
+Eq. (16) at time t + dt to be
+
+uˆ(t + dt) = uˆ(t) + RHS (eνk2dt − 1) e−νk2dt.
+
+(18)
+
+νk2
+
+2.4. Shearing Box
+
+To study the eﬀect of the MRI, we perform local simulations where our domain
+
+represents a small part of an astrophysical disk. The domain is taken to be a co-rotating
+
+box, whose left edge is a distance r0 from the axis of rotation, and whose length in each dimension is much less than this ﬁducial radius. In the co-rotating frame, we take the unit
+
+vector ex in the outward radial direction, and the unit vector ez along the axis of rotation. The box is rotating with an angular velocity Ω0 = Ω0ez = Ω(r0)ez.
+√ The radial dependence of angular velocity in a Keplerian disk, Ω(r) = GM r−3/2,
+
+gives rise to a background linear shear ﬂow in this domain: with the domain moving at
+
+the angular velocity of the left (inner) edge, the box will shear in the x direction with a
+
+velocity
+
+of
+
+−
+
+3 2
+
+Ω0xey
+
+,
+
+as
+
+shown
+
+in
+
+Fig.
+
+1.
+
+This
+
+shear
+
+motivates
+
+the
+
+construction
+
+of
+
+a
+
+domain
+
+representation and a corresponding physics implementation to handle MHD in a box with
+
+an arbitrary local linear shear.
+
+6
+
+Fig. 1.— Co-rotating local domain as viewed from an inertial frame. Lower angular velocity at larger radii results in a local linear shear across the x direction of the local domain. The size of the box relative to r0 is exaggerated for clarity.
+
+Consider an arbitrary power-law shearing proﬁle, Ω(r) = CrS (which arises from an
+attractive force of magnitude ρ0C2r2S+1 and gives rise to a linear background shear in the √
+local frame with velocity SΩ0xey. Hence C = GM and S = −3/2 for Keplerian rotation). In this case, the centrifugal (−Ω0 × (Ω0 × r) = Ω02rex) and attractive (−C2r2S+1ex)
+accelerations partially cancel (via approximations utilizing x, y, z r0):
+
+arad = (Ω02 − C2r2S)rex ≈ −2SΩ02xex.
+
+(19)
+
+With this radial acceleration and the Coriolis acceleration (−2Ω0 × v), Eq. (1) for the velocity ﬁeld in the rotating frame, v, becomes
+
+∂tv
+
++
+
+v
+
+·
+
+∇v
+
+=
+
+∇p −
+ρ0
+
++
+
+FL ρ0
+
++
+
+ν∇2v
+
+−
+
+2SΩ02xex
+
+−
+
+2Ω0
+
+×
+
+v.
+
+(20)
+
+Decomposing v into the background shear ﬂow and velocity perturbations (v = SΩ0xey +u), Eq. (20) becomes
+
+∂tu
+
++
+
+u
+
+·
+
+∇u
+
+=
+
+∇p −
+ρ0
+
++
+
+FL ρ0
+
++
+
+ν∇2u
+
++
+
+2Ω0 uy ex
+
+−
+
+(2
+
++
+
+S)Ω0uxey
+
+−
+
+S Ω0 x∂y u.
+
+(21)
+
+7
+
+Due to the shear of our frame, the forward and reverse Fourier transforms become:
+
+fˆ(k, t) = f (x, t)e−i(xiki−SΩ0xtky),
+x
+
+(22)
+
+f (x, t) = fˆ(k, t)ei(xiki−SΩ0xtky),
+
+(23)
+
+k
+
+to maintain periodicity along the shearing direction.
+
+Hence, we deﬁne the ﬁxed-grid wavevector K as a function of the Lagrangian (shearing) wavevector k and time, K(k, t) = (kx − SΩ0tky, ky, kz), and when transforming to Fourier space, the derivative operators become
+
+∂x → i(kx − SΩ0tky) = iKx,
+
+(24)
+
+∂y → iky = iKy,
+
+(25)
+
+∂z → ikz = iKz,
+
+(26)
+
+∂t → ∂t − iSΩ0xky.
+
+(27)
+
+The analogs of Eqs. (10) and (13) are then
+
+∂tuˆ
+
+=
+
+−u
+
+·
+
+∇u
+
+−
+
+iKPˆtot ρ0
+
++
+
+B · ∇B 4πρ0
+
+−
+
+ν K 2 uˆ
+
++
+
+2Ω0 uˆy exˆ
+
+−
+
+(2
+
++
+
+S)Ω0uˆxeyˆ,
+
+(28)
+
+Pˆtot ρ0
+
+=
+
+iK · Mˆ K2
+
+−
+
+iK · Lˆ 4π ρ0 K 2
+
+−
+
+2iΩ0 uˆy Kx K2
+
++
+
+(1
+
++
+
+S)2iΩ0 K2
+
+uˆxKy
+
+.
+
+(29)
+
+Eq. (14) becomes, in velocity perturbations,
+
+∂tB = B · ∇u − u · ∇B + η∇2B + SΩ0Bxey − SΩ0x∂yB,
+
+(30)
+
+and the analog of Eq. (15) becomes
+
+∂tBˆ = B · ∇u − u · ∇B − ηK2B + SΩ0Bˆxeyˆ.
+
+(31)
+
+8
+
+2.5. FFTs and Parallelization
+Although Dedalus is written in Python, the FFTs dominate the computational cost of a simulation, meaning that optimizing the FFTs largely negates the performance penalties of using a high-level language, while maintaining ease of use and speed of development.
+Outsourcing the FFTs from Python to FFTW, a C-based library that optimizes FFT routines based on local hardware, results in a substantial speed improvement over Python’s (i.e. numpy’s) built-in FFT algorithms. Much greater gains can be made on a GPU using Nvidia’s CUDA architecture to compute the FFTs and other calculations.
+Finally, MPI-based parallelization was implemented, allowing a single simulation to simultaneously run as many separate tasks. To achieve this, the computational domain is evenly divided among the N tasks along the kz direction in Fourier space. The reverse Fourier transform is then accomplished in a series of steps, as depicted in Fig. 2. First, each task performs a 2D IFFT in the kx and ky directions on its dataset, and the shearing phase shift as applied as in Eq. (23), if necessary. Second, an MPI All-To-All call is issued, in which each task evenly divides its data N times in the y direction, and sends the N th slab to the N th task. Each task then stacks the N slabs it has received, and performs a 1D IFFT in the kz direction. The resulting datasets have gone through a full 3D IFFT, and the data is evenly divided among the tasks along the y direction in real space. The parallelized forward transform is the reverse of this process.
+3. Magnetorotational Instability Results
+Note: simulations in progress. I hope to have results by the end of the week.
+9
+
+Fig. 2.— Task cuts along kz in Fourier space, MPI All-To-All call, task cuts along y in real space.
+4. Conclusion Dedalus is among the ﬁrst entirely open-source spectral MHD codes. The Python development environment facilitate ease of use and code development, and our emphasis on object-oriented techniques have helped make Dedalus a very modular code which can be easily adapted to study a variety of problems. The parallelized FFT algorithms, the use of external libraries, and the incorporation of GPU-based calculations using CUDA all contribute substantially to the performance of the code. With shearing-box MHD simulations underway, we hope to use Dedalus to help identify points of comparison and departure between current lab-based HMRI experiments and the standard MRI operating in astrophysical accretion disks.
+5. References
+10
+

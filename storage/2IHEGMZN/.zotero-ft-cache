@@ -1,0 +1,2478 @@
+Physica Scripta
+
+Soliton Evolution in the Presence of Perturbation
+To cite this article: V I Karpman 1979 Phys. Scr. 20 462
+View the article online for updates and enhancements.
+
+Related content
+- Soliton Evolution in the Presence of Perturbation for the MNLS Equation* Zong-Yun Chen, Jing-Yu Qin and BingQuan Wang
+- Nonlinear-evolution equations without magic: I. The Korteweg-de Vries equation B Leroy
+- Coupled Modified Korteweg-de Vries Lattice in(2+1) Dimensions and Soliton Solutions Yang Hong-Xiang, Li Xiu-Zhen, Xu XiXiang et al.
+
+Recent citations
+- Dynamical behaviour of non-linear quantum ion acoustic wave in weakly magnetized electron-positron-ion plasma Debasish Roy and Biswajit Sahu
+- Theodoros P. Horikis and Dimitrios J. Frantzeskakis
+- Dynamics of Internal Envelope Solitons in a Rotating Fluid of a Variable Depth Yury Stepanyants
+
+This content was downloaded from IP address 131.202.65.42 on 19/02/2020 at 18:18
+
+Physica Scripta. Vol. 20,462-478, 1979
+Soliton Evolution in the Presence of Perturbation
+V. I. Karpman
+Institute for Terrestrial Magnetism, Ionosphere and Radiowave Propagation (IZMIRAN), Moscow Region, 142092, USSR Received June 7, I 9 78
+
+Abstract
+
++ ut 6u2u, +U,,, = 0
+
+(1.8)
+
+Soliton evolution in the presence ofperturbation. V. I. Karpman (Institute for Terrestrial Magnetism, Ionosphere and Radiowave Propagation (IZMIRAN), Moscow Region, 142092, USSR). Physica Scripta (Sweden) 20, 462478,1979.
+A perturbation theory for nonlinear waves based on the inverse scattering method is presented. The theory is applied to the description of soliton evolution in the presence of permanent perturbation. It is shown that small perturbation leads to three main effects: (i) a slow change of soliton parameters; (ii) a deformation of its shape ( 5 ) formation of a soliton “tail” which is a small amplitude wave packet with growing length. All these effects are investigated in detail for the Korteweg-de Vries, modified Korteweg-de Vries and nonlinear Schrodinger equations to which perturbation terms of general form are added. It is shown, in particular, that for the last equation, in contrast to the previous two, the tails do not appear for perturbations of a very broad type.
+
+which appears in the theories of resonant cones in plasma [ 5 ] ,
+
+Rossby waves in the atmosphere [7], etc. To these equations
+
+the non-Hermitian operators &U) and A ( u ) are attached. It is
+
+remarkable that they are of the same type for both equations
+
+i = iPalax + Q(u)
+
+(1.9)
+
+where
+
+(1.10)
+
+and
+
+(1.11)
+
+1. Introduction
+
+For eq. (1.7)
+
+We consider a perturbation theory for nonlinear waves governed by the evolution equations of the form
+
+ml = -m2
+
+= 1,
+
+D = a21ax2
+
+(1.12)
+
++ U t = S[u] & [ U ]
+
+and for eq. (1.8) (1.1)
+
+where S and R are operators acting on u(x, t), E is a small m l = m 2 = U , D = -iia3/ax3
+
+(1.13)
+
+parameter, &[U] is a perturbation term and it is supposed We do not write here the explicit expressions for operator
+
+that the unperturbed equation
+
+C(u) because we shall not use them. It is important to note,
+
+only, that for both equations’
+
+U t = S[u]
+
+(1.2)
+
+can be solved by the inverse scattering method (ISM) [ l ] . t ( U ) -f 0 (U -+ 0)
+
+(1.14)
+
+Accordingly, we suppose eq. (1.2) may be written in the operator The solution of the NSE by the ISM was found by Zakharov
+
+form [2]
+
+and Shabat [4], and then the similar method was applied to
+
+solution of MKdVE in [8, 111.
+
+As was mentioned, NSE and MKdVE are associated with
+
+the same operator e ( u ) . It appears that some other nonlinear
+
+a(,) where L(u) and
+
+are linear operators depending on u(x, t ) evolution equations are associated with the operator (1.9).
+
+and acting on $-functions. A well known example is the Among them one should distinguish the Sine-Gordon equation
+
+Kortweg-de Vries-.equation (KdVE) which is written here in
+
+the form
+
++ Ut - ~ U U , U,,, = 0
+
+(1.4)
+
+uk = sinu
+
+(1.15)
+
+which describes, e.g., induced transparency phenomena, etc. (see, e.g., [6, 9, 101). The ISM for the last equation have been
+
+In this case S [ u ] = 6uu, - U,,,,
+
+developed in [ 10- 121 . A general investigation of different
+
++ L(u) = - a2/ax2 U ( X , t )
+
+evolution equations associated with the operator (1.9), (1.10) (15 ) was performed in [111.
+
++ A ( u ) = -- 4ia3/ax3 + 3i(a/ax)u 3iua/ax
+
+(1.6) The perturbation theory described in the present paper is
+
+also based on the ISM’. Due to that we begin with a short
+
+The operators (1.5) and (1.6) are Hermitian, as far as U is real. account of the ISM (Section 2) and some important variational This restriction is not compulsory, however. As important
+
+- examples we mention the nonlinear Schrodinger equation (NSE)
+
+iu, + (l)u,, + lul’u = o
+
+(1.7)
+
+It is supposed everywhere in this work that u(x, f) vanishes sufficiently fast if 1x1 + ~9 a n d R [ u ] --9 O i f u -f 0.
+
+describing the self-modulation and self-focusing of the plane wave (e.g., [31), and the modified Korteweg-de Vries equation (MKdVE)
+
+Our treatmentis based mainly on the papers [ 13-20]. Other approaches, also connected with ISM and giving some of results described here, where developed by Kaup [ 211 and Keener and McLaughlin [ 221.
+
+Physica Scripta 20
+
+Soliton Evolution in the Presence of Perturbation 463
+
+relations connected with it (Section 3). In Section 4 the basic equations of the perturbation theory are derived. These equations govern the time evolution of spectrum and scattering coefficients in the presence of Perturbation. In the next sections we derive their solutions in the first approximation and then restore the solution in the first approximation and then restore the solution of eq. (1.1). For definiteness we consider only three equations - the KdVE, MKdVE and NSE, to which perturbation terms are added (eqs. (5.1), (7.1) and (7.2)). The general equations of perturbation theory are applied to the simplest and the most basic problem, the investigation of the evolution of a soliton-like pulse, which is supposed to be a soliton at the initial moment. The motivation of that stating of the problem is the following. A weak perturbation has small influence on the formation of solitons and their running off. Therefore one can treat solitons as noninteracting, and so consider, as a first step, the action of perturbation on a single soliton (the case of formation of solitons with equal velocities, which may happen for NSE [ 4 ] ,MKdVE, and some others, will be considered elsewhere). Accordingly. there are two time scales in the theory. The first is the soliton time t, which is, by the order of magnitude, the duration of soliton passage of a distance equal to the soliton length. The
+- second time is the perturbation time t, corresponding to a signifi-
+cant change of soliton amplitude. It appears that t s / t p e, i.e., this ratio is the main dimensionless parameter of the perturbation theory.
+One of the important results of the perturbation is the generation of a “tail”: a wave packet of small amplitude following behind, or. in some cases, in front of the soliton. It is important that the tail length increases approximately proportional to the time [17]. A description of the tail structure for the perturbed KdVE is given in Sections 5 and 6. In these sections the soliton deformation is also investigated. In Section 7 these questions are considered for the MKdVE and NSE. It is interesting that for the KdVE and MKdVE the tail formation is a general phenomenon: the tails d o not appear only for special types of perturbations (satisfying the conditions ( 5 . 5 1) and
+(7.35). for the KdVE and MKdVE, respectively). On the con-
+trary. for the perturbed NSE the tails d o not appear for a very broad class of perturbations (the sufficient condition for that is (7.9)).
+In Section 8 we consider the conservation laws in the presence of perturbation. It is known, that nonlinear evolution equations. solvable by the ISM. have infinite number of invariants conserving in time. In the presence of perturbation, however, they are not conserved and we derive equations describing their evolutions
+[ 161 . These equations are called the “modified conservation
+laws” (MCL). It appears that in the first order of perturbation theory the infinite number of MCL degenerates into rather few independent equations. From the analysis performed in this section, it is clear what information can be obtained from the MCL without solving the initial eq. (1.1).
+
+(2.2)
+
+5 Consider now the conjugated eigenvector satisfying the
+
+equation
+
+L+$ = A*$
+
+(2.3)
+
+where L’ is the operator conjugated to i.Multiplying (2.2)
+5 by one has
+
+dhldt = 0
+
+(2.4)
+
+i.e., the spectrum of &U) does not change in time if i ( u ) obeys the eq. (1.3), i.e.. if the wave field u(x, t ) satisfies the eq. (1.2)
+
+[ I , 21. To consider the eigenfunctions of eq. (2.1), we first suppose
+that e ( u ) is the Schrodinger operator (1.5) which is associated with the KdVE (1.4). In this case it is convenient to put h = k 2 and so eq. (2.1) takes the form
+
+a 2 + ~ax
+
+[k2 - u ( x ) ] LJ = 0
+
+(2.5)
+
+(the dependence on time is not written here and in the follow-
+ing, unless it is important). As far as u(x) -+ 0 at / xI + m the
+continuous spectrum consists of real values of k . Now we introduce the Jost functions f ( x , k ) and g(x, k ) for
+the eq. (2.5), defining them as eigenfunctions of i ( u ) satisfying the boundary conditions
+
+(3.6)
+
+The main properties of the Jost’s functions are following
+
+(proofs and more details are given, e.g.. in [ 2 3 ]).
+
+Both functions can be presented in the form
+
++s, ;a
+
+f(x,k ) = eikx
+
+K(x,1’)e i h y djr
+
+(2.7)
+
+where K , K - are real kernels, and
+
+u(x) = -2 d K k X I
+
+(2.8)
+
+dx
+
+(the corresponding relations for K - are not written here if they are not used).
+Parallel with f ( x , k ) and g(x, k ) , eq. (2.5) has the conjugated eigen f u n ct i o n s
+
+f * ( X , k ) = f ( x , - k). g*(x,k ) = g(x, -k )
+
+(2.9)
+
+For k # 0. f*(x, k ) and g*(x,k ) are linearly independent of f(x,k ) ,g(x, k). Therefore
+
+2. The inverse scatteringmethod (ISM)
+
+dx,k ) = a(k)f*(x,k ) + b ( k ) f ( x ,k )
+
+(2.IO)
+
+We begin with the eigenvalue problem for the operator i ( u ) It is important that f ( x , k ) connected with d x , k ) by means
+
+associated with the eq. (1 2 )
+
+of the same coefficients a(k)and b(k)
+
+m x , t))$(x, t) = h(t)$(x, t>
+
+(2.1) f ( x , k ) = a(k)g*(x,k ) - b * ( k l d x ,k )
+
+(2.1 1)
+
+Here t is considered as a parameter and the time dependence The quantities a(k) and b(k) are called here as Jost’s coefficients.
+
+of i ( u ) is defined by eq. (1.3). After differentiating (2.1) over They play an important role in the following and below we
+
+the time and taking into account (1.3) one has
+
+discuss their properties in detail. From (2.9). (2.10) it follows
+
+Physica Scripta 20
+
+464 V. I. Karpman
+
+a*@) = a(-k), b*(k) = b(-k)
+
+(2.12)
+
+From (2.10) and (2.1 1) one obtains
++ g(x, k ) -+a(k)e-ikx b(k) eikx x -+ 00
+
+f(x, k ) -+ a(k)eikx - b*(k)e-ikx
+
+x - -+
+
+00
+
+(2.13)
+
+These relations are complementary to (2.6). By substituting (2.1 1) into (2.10) one gets
+
+la1’ - Ibl’ = 1
+
+(2.14)
+
+The Jost’s function f(x, k ) describes the wave incident from x - = 00 and partly reflected by the potential u(x, t). According to (2.13) and (2.6) the reflection and transition coefficients are
+b*(k)/a(k)and l/a(k), and the conservation of the flux gives
+lb*/aI2 + ll/aI2= 1 , which is equivalent to (2.14). Similarly,
+another Jost function, g(x, k ) , corresponds to the wave incident from x = m with the transition and reflection coefficients l / a and b/a, respectively. The unitary matrix
+
+(2.15)
+
+(2.21)
+
+This relation shows that ab # 0, i.e., all the roots k, are simple.
+The inverse scattering method permits to restore the “potential” of the equation (2.5) if the scattering data (i.e., the Jost coefficients a(k) and b(k)),and, also, discrete spectrum is known. To do that one have to find the kernel K(x, s) from the Gel’fand-Levitan-Marchenko (GLM) equation [23-251
+
+jxm + + K(x,y ) + F(x y ) + K(x, s)F(s y ) ds = 0,
+
+(2.22)
+
+where x <y , and
+
+(2.23)
+
+Then, by using (2.8), one finds the potential u(x). Up to now we have not considered the dependence of time.
+Let us discuss this question now by supposing that u(x, t) satisfies the unperturbed equation (1.4). Substituting $ = f(x, k; t ) into (2.2) and taking into account (2.4) one has
+
+may be called scattering matrix for the one-dimensional potential
+4x1. Consider now the Wronskian
+
+W K 81 = f w a x -g aflax
+
+By taking into account W [ f ,g] = const. and using (2.6) and (2.10) one has
+
+i
+Q(k)= - 2k WIf(x, k),g(x, k)l
+
+(2.16)
+
+Up to now we have considered f(x, k ) and g(x, k ) for the real k . Relations (2.7) permit us to continue these functions into the upper half-plane, where they have no singularities. One can see, also, that
+
+(2.17)
+
+Then eq. (2.16) defines the analytical continuation of a(k) and it is evident that a(k) has no singularities in the upper half-plane of k . It follows, also, from (2.17) and (2.16) that
+
+> a ( k )+. 1 (lkl -+ 00, Im k 0)
+
+(2.1 8)
+
+As for the function b(k),it cannot be continued in the complex
+plane, in general. From (2.18) it follows that a(k) has only a finite number of
+roots in the upper half-plane of k , and it is seen from (2.14) that there are no roots at the real axis. Denote the roots of a(k) in
+the upper half-plane as k, (r = 1 , 2 , . . . ,N). Then from (2.16)
+it follows that g(x, k,) andf(x, k,) are linearly dependent, i.e.
+
+g(x, kr) = Prf(X9 kr)(a(kr) = 0)
+
+(2.19)
+
+where p r are some numerical coefficients. From (2.6) and (2.19) one can see that f(x, k,) (and, so, g(x, k,)) vanish at x +. f 00, i.e., they are eigenfunctions of discrete spectrum. Hence, X = k: constitute the discrete spectrum and, evidently
+
+k, = iK,, K , > O , r = 1 , 2, . . . ,N
+From (2.5) and (2.16) one can also deduce that
+
+(2.20)
+
+-af+ d f = c1f+czf*
+at
+
+(2.24)
+
+where c1 and c 2 are constants of integration. Assuming here x += and taking into account (1.6) and (2.6), one has
+
+c1 = -4k3i, c2 = 0
+
+(2.25)
+
+Then, substituting (2.25) and (2.13) into (2.24), one obtains 111
+
+a(k, t ) = a(k, 0); b(k, t ) = b(k, 0) exp (8ik3t)
+
+(2.26)
+
+The same procedure for eigenfunctions of discrete spectrum f(x, ik,, t) gives
+
+P r ( t > = Pi-(o) ~ X (P8 ~ :t )
+
+(2.27)
+
+The obtained relations permit to solve eq. (1.4) for the given initial condition u(x, 0) in the following way.
+(i) Calculate the discrete spectrum and Jost coefficients for u(x, 0).
+(ii) By using eqs. (2.26) and (2.27) define the spectrum and scattering data for arbitrary t.
+(iii) Construct the function F ( s ) (2.23) and find K(x, s) from the GLM equation (2.22).
+(iv) Restore u(x, t )by using (2.8). The simplest and most important solution of the KdVE describes the soliton
+
+U,(X, t ) = - 2~’sech’z, Z = K [X - { ( t ) ]
+where K is constant and
++ <(t)= 4K3t
+
+(2.28) (2.29)
+
+If one takes (2.28) as a potential for the Schrodinger eq. (2.5), one can solve the latter analytically and the result is (e.g., [26])
+
++ + f = f,(x, k ) eikx ( k Ki tanh z)(k iK)-l + g = g,(x, k ) e-ikx ( k -Ki tanh z)(k iK1-l
+
+(2.30)
+
+From here it follows that
+
+k -Ki
+
++ a = a&)%k
+
+iK’
+
+b(k) = 0,
+
+(2.31)
+
+Physica Scripta 20
+
+Soliton Evolution in the Presence o f Perturbation 465
+
+i.e., the potential (2.28) is “reflectless”. The equation a(k) = 0 has only one root k = iK, which defines the only eigenvalue of discrete spectrum k 2 = - K’. By substituting k = iK into (2.30), one obtains the Jost’s functions of the bound state
+4 +fs(x,i K ) = e-KEsechz, gs(x,iK) = pf(x, iK)
+
+For the real X they are connected by the relations
+
+p = exp ( 2 ~ 0
+
+(2.32)
+
+One sees that the time-dependence of p(t), which follows from (2.29) and ( 2 . 3 2 ) , is in agreement with (2.27).
+One might act inversely by looking for the Schrodinger equation solution with b(k)= 0 and a(k) having only one root in the upper half-plane of k . Then, from (2.14) one has la(k)l = 1 , and taking into account (2.18) one concludes that a(k) can be written in the form (2.31). Then one defines the function F(s) according to (2.23), (2.26), and (2.27) with arbitrary positive p ( 0 ) according t o (2.21)). By solving the GLM equation (2.22) one obtains the single soliton solution (2.28).
+The solution of the Schrodinger eq. (2.5) for arbitrary u(x, 0) gives b(k) $0 and
+
+These formulas are slightly different from the written above for the Schrodinger equation.
+The Jost vector-functionf ( x , A) may be represented as
+
+and, instead of (2.8), the following relation exists u(x) = - 2iK?(x, x).
+
+(2.43)
+
+=
+
+N k- -iKr
+k + iKr
+
+(2.33)
+
+where $ ( k ) is an analytical function in the upper half-plane without roots there, and $ ( k ) + 1 for Ikl +m, Im k > 0 . For sufficiently large t this solution decays into a finite number of solitons having the amplitudes 2 ~ a: nd velocities 4 ~ ; .Besides the solitons a wave packet is formed, which is associated with the second term in ( 2 . 2 2 ) , i.e., with the continuous spectrum. and its development is defined by the reflection coefficient
+
+From (2.42) and similar representation for g(x, A) it follows that f ( x , A) and g(x, A) may be continued analytically into the
+upper half-plane of A. and they have no singularities if Im X > 0.
+Then, using (2.41) one can continue the Jost coefficient a(X).
+which also have no singularities in the upper half-plane of X.
+From (2.41) and (2.37). (2.38) one sees that if a(A) = 0 then f ( x , A) and g(x. A) are linearly dependent. and each root of a@) in the upper half-plane is the eigenvalue of a bound state. i.e.. if
+a(hr) = 0, r = I . 2 . . . .
+
+r(k,
+
+t)
+
+=
+
+b(k, t)
+-
+
+a(k, r)
+
+(2.34)
+
+This wave packet is called “tail”3. Though the tail spreads with
+
+then .dx, A r ) = Prf(xs X r )
+
+time. it may contain the “energy” and “momentum” comparable, and even greater. than those of solitons.
+
+j_ m
+= - i ~ , ?*<x,Ar)f(xp A r ) dx m
+
+(2.44)
+
+For Other types the ‘-Operators the ISM is
+
+to that
+
+stated above. However, in the case of non-Hermitian and matrix
+
+;operators there may appear some peculiarities which one has to
+
+bear in mind. As typical and very important examples we con-
+
+sider here the NSE and MKdVE. The basic equations are the
+same now. i.e.. (2.1). (2.2). and (2.4), with i having the form
+
+(1.9) and $ ( x ) being a two-dimensional eigenvector. Again? we
+
+omit some proofs and details, referring to [4] where those kinds
+
+of operators were first introduced. The eigenvalues are not
+necessary real now, because i is non-Hermitian. For each eigen-
+
+vector $ = $ 2 ) of the operator (1.9), one defines two
+
+The last equation is similar to (2.21). From (2.36) it follows
+
+that for each A, there exists the eigenvalue A,*. One can deduce
+
+that A; are the roots of the analytical continuation of the
+
+function a’@) in the lower half-plane. According t o [4]. the
+
+GLM equation. corresponding to the opel-ator defined by
+
+(1.9) and (l.lO), has the form (2.221, where K(x, s) and F(s)
+
+ji‘ “‘I, [ are now matrices: =
+
+E(s) =
+
+] - @*(S)
+
+(2.45)
+
+R(xj
+
+-KT K2
+
+@(SI 0
+
+adjoint vectors
+lJ= (I$;..)?)I
+
+$- = (I);.- $?).
+
+and
+
+(2.35)
+
+2- = - iPr eihrs +
+
+(2.46)
+
+The first of them satisfies the equation (2.3) and the second one is an eigenvector of the problem
+
+L $ = A”.
+
+(2.36)
+
+r af(hr)
+By substituting (2.45) into (2.22) one can express K ~ ( x.V,I
+through K 1(x, y ) and then obtain equation for K1 (x,V )
+
+m
+
+m
+
+From the following relations it will be clear that the con- K , ( x , y ) = @*(x+ y ) -Jx K i ( x ,J”’) Jx @*(Y +I)’>
+
+tinuous spectrum consists of the real A and the eigenvalues of bound states are complex. The Jost functions are the eigen-
+
+x @(y’+ y ” )dy’ dq’”,
+
+(2.47)
+
+functions of L satisfying the boundary conditions
+-’ For the assumed equation (1.4) the tail moves behind the slowest
+soliton. For the opposite sign of the dispersive term, it propagates in front of the solitons (e.g., [ 3 ] ) .
+
+(2.48)
+The time-dependence of the Jost’s coefficients is again obtained from eq. (2.24) which follows from (2.2) and (2.4).
+
+Physica Scripta 20
+
+466 V.I. Karpman
+
+Similar to the case of KdVE one obtains now a(A, t) = a@, 01, b(A, t) = b(A, 0) exp [ i h ( A ) t ] ,
+
+(2.49)
+
+In these equations one assumes that Im A 2 0. Substituting A = A, into (2.59) one gets the eigenfunctions for the bound state f,(x, A,). By calculating its asymptotics for x -+ - m, one sees again that f,(x, As) = p-’g,(x, A), with p defined in (2.52).
+
+pr(t) = where
+
+~ X P[ih(Ar)tl>
+
+3. Scattering coefficients as functionals of u(x, t )
+
+-2A’ h(A) =
+8A3
+
+(NSE) (MKdVE)
+
+The eq. (2.1) defines the eigenvalues and eigenfunctions as some (2.50) functionals of the potential u(x, t). Variational derivatives of
+these functionals, which are of significant importance for the
+
+Now one can simply derive a general soliton expression in a form valid for all evolution equations associated with the L-operator under consideration. To do that we put in (2.46) b(A) = 0, a(A) =as@),
+
+following, may be computed directly from that equation. Consider, first, the Schrodinger equation (2.5) where
+)I = f ( x , k ) (the time t is not written explicitly, as before). By computing the variational derivatives of the both sides of (2.5), one has
+
+[$ 1 (2.5 1)
+
++ - u(x)
+
+k2
+
+6 f{U; x, k} 6u(x’)
+
+p = i exp (i6 - 2iA,t)
+
+(2.52)
+
+where p , U, 6 and t are arbitrary real parameters (and u > O ) .
+Evidently, A = h, is the only bound state eigenvalue in the upper half-plane. From (2.4) it follows that p and U are time independent and from the last equation of (2.49) and (2.52) one has
+
++-6k2{ U }
+= 6(x -x’)f(u;x, k} 6u(x’) f (U; x, k }
+Let k be real, at first. Then it belongs to the continuous spectrum, and so the second term in the r.h.s. of (3.1) vanishes, and ‘Sf(U;x,k}/bu(x’) becomes a Green function of the inhomogeneous equation correspondingto (2.5). It satisfies the boundary
+
+-d t -- _ _1 Imh(A,) =
+
+WE)
+
+conditions (2.53)
+
+dt
+
+21,
+
+(24(pu2 - 3p’) (MKdVE)
+
+6 f (U; x, k } - + o
+
++ + - d6 = - -I* Im h(X,) Re h(&) = 201’ U’)
+
+(NSE)
+
+6u(x’)
+
++ dt
+
+U
+
+- 16p(p2 U’) (MKdVE)
+
+x-f-
+
+(2.54)
+
+By substituting (2.51) and (2.52) into (2.46) one obtains the which follow from (2.6) and (2.13). By solving eq. (3.1) for
+
+soliton generating function
+
+Im k = 0 with the condition (3.2), we have
+
+$,(x) = 2up exp (iA,x) The solution of eq. (2.47), with $ = $, is
+
+(2.55) 6f (.;x , k } -- @(XI -x )f ( x ; k )
+
+6u(x‘)
+
+2ika(k)
+
+exp i [- ~ z ( +x y ) + 2A;t - 6 I
+
+x [ f ( x ’ ;k)&, k ) -g(x’; k ) f(4 k)l
+
+(3 54)
+
++ Kl,(x, y ) = - 2iu 1 exp [- 4u(x - E ) ]
+
+(2.56) where
+
+By substituting (2.56) into (2.48) one has
++ K,,(x, y ) = - U exp [i(&x- Azy) 2ut] sech 2 4 x - t )
+
+i1 z > o
+@(z) = 0 z<o
+
+(3.5)
+
+(2.57) Assumingx +--in (3.4) and using (3.3), (2.13), one obtains
+
+And, finally, from (2.43) one derives a general form of soliton solution for all evolution equations associated with the i-operator defined by (1.9) and (1.10)
+
+u,(x, t) = 2usechz exp i
+
+z = 2u(x - t )
+
+(2.58)
+
+Peculiarities of the particular equations have influence only on the function h(A) which defines the time dependence of 6 and
+t (e.g., (2.53), (2.54)).
+Now it is easy to calculate the eigenfunctions of the operator i ( u , ) . To do that one substitutes (2.56) and (2.57) into (2.42) and obtains after integration
+
+(3.7)
+For discrete spectrum, k = iK, (r = 1 , 2 , . . .), the second term
+in the rh.s. of (3.1) does not vanish, and the r.h.s. must be orthogonal to the solution of the homogeneous equation, i.e., to f (U; x , kr}.This gives
+(3.8)
+Now we find Sf {u;x, iK,}/6u(x’) from the relation
+
+(3.9)
+
+Soliton Evolution in the Presence of Perturbation 467
+
+and substitute (3.4) with k = k,. After simple calculations one
+
+obtains the following result
+
+G f { ~ ; xiK, ,} -- O ( X ' - X ) ~ @ ; XiK,.,} - d
+
+6u(x')
+
+~K+z'(~K,)
+
+dk
+
+X [ f ( u ; x ,k}g{u;X',k ) - g { u ; x , k } f { u ; x ' ,k } ] ,= i K r
+
+(3.10)
+
+Assuming here x - + 00 and taking into account (2.19) one obtains
+-6 l-og P r - _i _ -a 6u(x) 2K,.ak ak
+(3.1 1) X [ g { U ; X , i K r ) f { U ; X , k } - f @ ; x , iK,)g{u;X, ~ ) ] , = I K , .
+where a; is defined in (2.21).
+e(,) For other operators L ( u ) one may proceed in a similar way.
+For instance, taking the variational derivative of (2.1) with defined by (1.9) and (1.10). one has
+
+- +6-
+h(x)
+
+6
+i+-i,
+SU*(X) *
+
+1 2 2 , b+-b.
+
+(3.17)
+
+4. Evolution of the spectrum and Jost's coefficients in the presence of perturbations
+
+In the perturbation method under consideration, the perturbed
+
+equation (1.1) is associated with the same linear operator i ( u )
+
+which is attached to the unperturbed equation (1,2). Evidently.
+
+the spectrum, Jost coefficients, etc., as functionals of U are
+
+irrespective of the perturbation. However, their time evolution
+
+in the presence of perturbation differs from that one obtained in
+
+Section 2. In this section we derive equations describing this
+
+evolution by using the approach described in [151 ,
+
+Let F{u) be a functional outcoming from the eigenvalue pro-
+
+blem for the operator &U). Its time derivative may be written
+
+[-- +-I as4 1
+- - d t = c m--
+
+SF au 6u(x)at
+
+6F au* dx
+6 u * ( x ) at
+
+(if U is a real function, the variational derivatives over U * are absent). By taking &/at and au*/at from eq. (1 . I ) one has
+
+If A belongs to the continuous spectrum, the second term in the r.h.s. of (3.12) vanishes and the solution, similar to (3.4), has the form
+
+Sf'{u;x, A} - -@(x'-x)J; (x', h)
+
+6u(x')
+
+ia(h)
+
+- [ 6F ---[U]
+One may write
+
++ 76FR * [ u ]
+6 U (XI
+
+(4.2) (4.3)
+
+x [gi { i ; ~h}f('U;,-y, h}-f, &;XI, X}g@;x,A } ] (3.13)
+(One can easily check this by substituting (3.13) into (3.12) and taking into account (2.41)). Expression (3.13) vanishes at x = 03, in accordance with (2.37). By assuming x + - m in (3.13) and taking into account (2.38) and (2.39) one has
+
+where (dF/dt), (aF/at),=, is the functional depending on U
+and U * in the same way as d F / d t at E = 0. For instance. according to (2.26), (2.27) one has
+
+6-a-(u; X} - - i f 1 {U; x , A)g, (U; x , A), 611(x)
+
+6_b_ {u_ : A-} 611(x)
+
+=
+
+if:
+
+{U; x , A)gl (U; x , A}.
+
+(3.14)
+
+For discrete spectrum, X = A,., the r.h.s. of (3.12) must be
+
+(4.4) In a similar way. proceeding from the eqs. (2.49), one has
+[T-)~ &(U, X) = 0. (---d-&b)o(u, h } = ih(X)b{u;h),
+
+orthogonal to the solution of the conjugated homogeneous equation, which is (2.3). Therefore this solution i s 7 = (f;, f : ) .
+
+(4.5)
+
+The orthogonality condition gives
+
+fi @;x, A r V l @ ; x j A r t
+
+(3.15)
+
+Substituting (3.15) into the equation similar t o (3.9) one obtains after some transformations
+6 P r ipr a
+
+The general idea expressed by the equation (4.3) appears to be very fruitful in many cases because it permits us to avoid rather cumbersome algebra.
+Let us apply eqs. (4.2)-(4.4) to the eigenvalues and scattering coefficients defined by the Schrodinger operator and perturbed KdVE. Then. taking into account (3.6)-(3.8) and (3.1 1) one has [13, 141
+
+The operator (1.9) has, in general, a complex potential. Therefore one should also know the variational derivatives over
+U * . They are obtained from (3.14), (3.15) and (3.16) by substitution
+
+-
+4 For simplicity we do not write t in the variational derivatives ~ F / 6 u ( x )et,c.
+
+Physica Scripta 20
+
+468 V. I. Kalpman
+
+ab(k)= 8ik3b(k,t)-%iPe*(-k,k)
+at
+
+(4.7) R [ U ] =
+
+(4.21)
+
+where
+j @’,k ) = -Om0 f*(X, k’)R [u(x)l f(x, k ) dw j = P(k’, k) = g*(x, k’)R [+)I f(x9 k) dx
+-w
+
+The equations derived above might also be obtained in a different way [ 13, 2 11 by using the equation
+
+ai
+i - t [i,A] = id? at
+
+(4.22)
+
+which is the generalization of the eq. (1.3) for e # 0. From (2.1)
+
+and (4.22) one deduces
+
++ (i-A)(& ia$) = -e& t At$
+
+(4.23)
+
+(4.10) which is the generalization of (2.2). All the above results follow from (4.23). For example, multiplying both sides of it by $ and
+using (2.3) one has
+
+The matrix elements a(k’, k ) and P(k’,k ) are some functionals
+
+depending on U(X,t ) and, therefore, they depend on time.
+
+--. .-- c
+
+By using (2.9) and (2.10) one has
+
+p(k’,k ) = a*@’)&(- k’, k ) + b*(k‘)a(k’, k )
+
+(4.1 1)
+
+This permits us t o rewrite eqs. (4.6) and (4.7) in the form
+
+--
+at
+
+t)
+-
+
+ie
+- 2k [a(k
+
+t)a(k,
+
+k;
+
+t ) + b(k,
+
+t)a(-
+
+k,
+
+k; t)]
+
+(4.12)
+
+-ab-(k; t) - 8ik3b(k, t)- -ie [a(k, t)Q(k, -k; t )+ b(k, t)a(k, k; t)]
+
+at
+
+2k
+
+(4.13)
+
+Similar equations can be written for other cases. In particular, for the NSE and MKdVE one derives from (4.2), (4.3), (4.5) and (3.14g(3.17) [13, 15,20,21]
+
+- - aa(Ap t, - ie[a(A, t)fi(h,A; t ) t b ( ~t>,a(A, A; t)] at
+
+(4.14)
+
+- - 7’(” t, - ih(A)b(A, t)t ie [a(A, t)a*(A, A; t )-b(h t>&(A, A; t>l
+at (4.15)
+
+which gives (4.8) and (4.16). By substituting the Jost functions into (4.23) one can get also equations for a, b and‘p:. It seems, however, that the first method is somewhat simpler.
+The obtained evolution equations for the eigenvalues and scattering coefficients, being exact, constitute a basis for the perturbation theory. They permit us, in principle, to find all the parameters appearing in the GLM equation (2.22) in the
+required approximation by using matrix elements LY and p com-
+puted in the lower approximation. Then, by finding the kernel k ( x , y ) from the GLM equation one can restore the solution U(X,t).The generality and effectiveness of this approach will be demonstrated in the next sections.
+5. Solution of the perturbed KdVE in the first approximation (initial stage of the action of perturbation)
+5.1 . General relations
+Consider the perturbed KdVE
+
++ (4.16) U t - ~ U U , U, = ER[U]
+
+(5.1)
+
+where the following matrix elements are introduced
+j- LY(h’,A) = T(X, A’yi[u]f(x, A) dx -w
+J - &(A’, A) = P ( x , A ’ y i [U]f(X, A) dx -m
+
+(4.18) (4.19)
+
+In the last equations we assume
+
+2
+
+c SP, q(X>$(x) dx =
+
+i_ m
+
+i= 1
+
+qi(x>$i(x) dx
+
+and the matrix operator R [ u ] , acting on f,is connected with the scalar R [U], appearing in (1. l ) , by
+
+In the unperturbed case (E = 0) the initial pulse U(X,0) decays into a sequence of solitons and a tail. Now suppose that perturbation is so small that it has a negligible influence on the soliton formation. Therefore, the perturbation will manifest itself in affecting the solitons only after rather long time since their appearance. The mutual interaction between the solitons becomes to be unimportant after a time of the order of
+
+t, = (2K)-3
+
+(5.2)
+
+Here ts is the time of soliton movement along the distance of the order of its length (according to (2.28), (2.29)). Evidently, at t 3 t, the soliton may be considered as isolated and if perturbation becomes to be important only for t 3 t,, one may consider the action of perturbation on the single soliton. In what follows we consider this problem in the first approximation.
+It appears that some of perturbation effects are accumulated with time. Therefore they cannot be considered as small at sufficiently large t. It will be seen below that one of those effects is the tail formation. It is convenient to consider first the perturbation effects for sufficiently small t (but t S t,). This will be the main object of this section.
+Proceeding from this argument we look for the solution of
+
+Physica Scripta 20
+
+Soliton Evolution in the Presence of Perturbation 469
+
+eq. (5.1) of the form U ( X , t ) = U,(,?, K ) -k 6U(Z, t) Us(Z, K ) = - 2 K ’ ( t ) sech2z; Z = K(t)[X - [(t)]
+
+Substituting (5.3) and (5.4) in (5.15) and taking into account (5.9) one obtains in the first order
+
+(5.3) d = ;K J-=w(z, t ) dz = - 2 . q ~ ~
+
+(5.16)
+
+6U(Z, t) = - 2K2(t)W(Z, t ) with the initial conditions
+
+(5.4) Now, consider the second conservation law which is obtained from (5.1) if one multiplies both sides of it by U and integrate
+
+w(z, 0) = 0, $(O) = 0
+
+(5.5)
+
+The first term in (5.3)?u,(z, k ) , is a soliton pulse described by the expression (2.28). However*it is assumed that and dg/dt are not constants but slowly varying functions. The quantities dK/dt. d’[/dt’ and w(z, t ) are considered as small ones of the first order of E . To find them we consider eqs. (4.8). (4.9). (4.12) and (4.13) with matrix elements calculated in the zero approximation.
+Evidently, one can write
+
++ a(k, t) = a,(k, ti) Sa(k, t),
+- - 6a(k, t) 6 , b(k, t) e.
+
+(5.6) (5.7)
+
+1 d 1
+--
+dt 2
+
+m
+u’(x,
+
+t) dx
+
+=
+
+e
+
+J” C a
+
+U(X,
+
+t)R[u(x,
+
+t)]
+
+dx
+
+-m
+
+-m
+
+(5.17)
+
+Substituting here (5.3k(5.4) and using (5.9). (5.5) one obtains in the first order
+
+I-: ~ ( zt), sech’z dz = 0
+
+(5.18)
+
+Hence, the function w(z, t ) is “orthogonal” to the soliton. It this section we restrict ourself by these two conservation laws. (It appears that there exists an infinite sequence of conservation equations. A complete treatment of that question will be given in the eighth section.)
+From eq. (5.16) it follows
+
+where it is assumed that a,, f, and g, are defined by (2.30) and
+(2.3 1 ) with K = ti(t). By bearing that in mind one comes t o the following main equations in the first order of ;[13, 141
+
+d_K -- - -4EK J’pIR[u,(z)] sech’z dz
+-3 - dt
+d p -- 8 K 3 p EP [-J[u,(z)]
+dt
+
+(5.9) dz (5’10)
+
+- - / /-w(z, t ) d z = 2 E tq ( t ’ ) ~ ~ ( t ’ ) d t ‘ - - 2 6 q t i ~ t (5.19)
+
+-m
+
+KO
+
+i.e., area restricted by w(z, t ) increases as t , by the order of magnitude. From the following it will become evident that this is connected with the formation of a tail with a length growing proportionally to time.
+From (5.13) one sees that 6a also increases as t. Therefore 6a can be considered as m a l l only for sufficiently small t , more
+precisely. at t < t,. where6
+
+J’-: _aa
+at
+
+- -
+
+ie
+2kK(k + iK)’
+
++ R[u,(z)] (k’ K’ tanh’z) dz
+
+tp = /EqK3/-’.
+
+(5.1 1)
+
+By coniparing (5.13) and (5.16) one obtains
+
+(5.20)
+
+ab
+
+iE exp (- 2ik$)
+
+- = 8ik3b -
+
+at
+
+1kK(k2 f ti’)
+
+(- 2) /
+
+\
+
+R [u,(z)] ( k -iK tanh 2)’ exp 2i dz
+
+(5.12)
+
+Introducing the quantity
+
+(5.21)
+
+(eq. (5.9) was first obtained in [29]). Substituting (5.6) into
+
+tio(t) = ti(t) /mw(z, t)dz
+-m
+
+(5.1 1) and using (5.9) one has
+
+and substituting (5.21) into (5.6). one obtains
+
+(5.22)
+
+(5.13)
+
+-where we have introduced an important parameter
+
+1-
+
+2 R[u,(z)] tanh’z dz
+
+q =
+
+-m
+
+(5.14)
+
+which is defined in such a way that the quantity Eq is dimensionless’.
+Before solving these equations. it is reasonable t o investigate some consequences following from the simplest con-
+servation laws. By integrating (5.1) over x one gets the first
+conservation law corresponding to eq. (5.1)
+
+-Ca
+
+a -
+J a t
+
+- =u(x, t ) dx = E
+
+R [u(x, t)] dx
+-m
+
+(5.15)
+
+k + iK
+
+(5.23)
+
+In the following it will be shown that applicability of (5.23)
+
+is restricted by the condition
+
+t < (t,/t,)”* t,
+
+(5.14)
+
+where t, is the soliton time defined in (5 2 ) .As far as
+- t,/t, eq < 1,
+
+(5.25)
+
+the condition (5.24) is more restricted then t < t,. However.
+(5.24) holds, in particular, for t % t,, which means that the tail length may be much larger than that of the soliton. The time interval restricted by (5.24) corresponds to the initial period of the action of perturbation. In this section we find the function 6u of (5.4) for this time interval.
+
+It is worth mentioning that eq. (5.1) is written in the units where U and, consequently, K~ have dimension of velocity, K - ~has dimension of time, and E R [ u ]of K ‘ .
+
+-
+According to (5.9), tp is the time of change of the soliton amplitude.
+Consequently, rp may be considered as the perturbation time-scale.
+
+Physica Scripta 20
+
+470 V. I. Kurpman
+
+According to the ISM we start with the solution of the GLM equation (2.22). Taking into consideration (2.23) we write the generating function F(x) in the form
+
+F(x) = F,(x) + 6F(x)
+
+(5.26)
+
+where
+
+To calculate r(k) we find from (5.12)
+
+E exp (8ik3t) t A(k, K(i))
+
+b(k, t ) =
+
+2ik
+
+JoK(f)[k’ 4- K’(t’)]
+
+where
+
+dt‘ e - 8 i k ~ i - 2 i k c ( i )
+(5.37)
+
+F,(x) = 2~ exp [(2t -x)K]
+
+t = -1log [e]
+
+2K
+
+2iKU’(iK)
+
+I- + SF(x) = - 1 r(k) eikx dk - @(KO)POe-KoX
+
+2n --
+
+la (1Ko)
+
+J (5.27) A(k, K ) = R [u,(z)] (k -i K tanh 2)’ e-’ikZ/Kdz -m
+
+(5.38)
+
+(5.28) After integration by parts in (5.37) and taking into account
++ d[/dt = 4 ~ ’ O(E) and (5.23), one has
+
+(5.29)
+
+E exp (- 2ikg)A(k, K )
+
++ r(k, t ) = 16~(k--i~)’(k’ K’)(k--KO)
+
+and u(k) is defined in (5.23). The first term in (5.26) being substituted in the GLM equation leads finally to the main term, u,(z), in (5.3). The first order term 6F(x) corresponds to
+
++ I - exp (8ik3t 2ikt;)
+
+X
+
+k
+
+(5.39)
+
+perturbation; r(k) is the reflection coefficient (2.34) connected with w. The last term in (5.29), containing the @-function(3.5), originates due to the additional small root k = i K o of a(k). If this root is located in the upper half-plane ( K >~ O ) , it corre-
+
+The terms of the order of t/tp may be neglected, according to (5.24)’. Substituting (5.39) into (5.36), introducing the dimensionless time
+
+sponds to the appearance of an additional bound state in the 7 = 8K3t = tit,
+
+(5.40)
+
+eq. (2.5). It is easy to see that this eigenvalue originates due to the tail. From the following it will be seen that, under the con-
+
+and using (5.30) one has
+
+dition (5.24)
+Po = 1
+
+W(Z,t ) = - E av 2e(Ko) K-~ -tanhz
+
+(5.30)
+
+32nK5 a Z
+
+K cosh’z
+
+(5.41)
+
+and, so, 6F(x) is a small quantity. Hence, we look for the solution of GLM equation having the form
+
+K(x, Y ) = K,(x, v >+ v)
+
+(5.3 1)
+
+Here K,(x, y ) corresponds to the pure soliton
+
+(5.32)
+
++ 1 - exp i(rp3
+X
+
+- 2 p ~ t e) 2 im dP
+
+P
+
+/-: A @ ) = R [u,(z)] @ -i tanh 2)’ exp (- Zipz) dz
+
+(5.42) (5.43)
+
+and
+
+From (5.41)-(5.43) it follows
+
+U, = - dKS(X, x ) = - 2K’ sech’K(x - ()
+ax
+
+1-1 (5.32a)
+
+w(z,
+
+f)
+
+dz
+
+=
+
+-
+
+y
+
+E [V
+
+(
+
+W
+
+,
+
+t)-V(-=,
+
+32n~
+
+(it is easy to obtain (5.32) by solving the GLM equation with F = F,). From (2.8) and (5.32a) it follows
+
+a)‘? < o
+
+t ulx,t)
+
+~ u ( x )=
+
+- 2
+
+d - 6K(x,
+
+X)
+
+dx
+
+(5.33)
+
+Substituting (5.26) and (5.31) into (2.22) one has
+6% V I + 6K(x, Y‘KXY+’ v)dy’ = Wx, Y ) ,
+
+(5.34)
+
+I
+6) E $ > O I
+
+t ) ] = --4EKt(r), 2 (5.44)
+
+where
+
+-Ix- + \k(x, y ) = -6F(x y )
+
+K,(x, y’)6F(’y’+U)dy’ (5.34a)
+
+It is easy to check that the solution of eq. (5.34) is
+
+v Fig. 1. A sketch of the soliton deformation caused bv a oerturbation at
+
+Substituting this into (5.33) and using (5.4) one has
+
+/ i 1’ w(z,
+
+t)
+
+=
+
+ia
+---
+
+r(k) + iK tanh
+
+27iKaZ --
+
+k+iK
+
+eZik(t+Z/K)dk
+
+K~ tanh z + WKOIPO cosh’z
+
+Physica Scripta 20
+
+- - ’ If 4 = 0, then t p = and one may take instead of it, e.g.,
+
+Soliton Evolution in the Presence ofPerturbation 471
+
+which is in agreement with the conservation law (5.16). u p to the first order. Besides one can check that eqs. (5.41&(5.43) satisfy the eq. (5.18).
+
+5.2. The structure of soliton tail
+Now we apply the relations (5.41)-(5.43) t o investigation of
+the tail. The latter is located behind the soliton, i.e., at z < 0,
+and the tail region corresponds t o IzI S 1. Apart of that we assume that T S 1, i.e., the tail is rather long.
+With these assumptions, integration in (5.42) gives the following results [ 191
+(1) For lyi”’ < ( 3 ~ ) :” ~
+
+W(X.
+
+t)
+
+=
+
+Eq
+- -
+
+J‘ Y
+
+Ai@’) dq”
+
+2 -m
+
+(5.45)
+
+where Ai@) is the Airy function and
+
+(5.46)
+
+The validity condition for (5.45) may be also written as
+
+(5.47)
+
+stricts validity of calculations described above. However, in the next section we show that the most important of obtained results are valid for much longer time interval. Postponing further discussion till the next section, we only note here that
+- with the increasing of the well length (its depth remains t o be
+of the same order of magnitude: 6u E ~ K ’ )n, ew bound levels
+(with ~f <- € 4 ~ ’ ) appear. This leads to formation of small
+solitons with amplitudes of the order of I E ~ / K ’ at sufficiently
+large time. However, as follows from the results of the next section, the part of the tail adjoining the soliton kern remains to be a plateau of the order of leql~’/2.
+And, finally, it should be noted that by using the perturbation theory of quantum mechanics one can also compute the factor p o . For that one has to calculate the eigenfunction corresponding to k = iKo, After some calculations under the condition (5.24), one comes to (5.30).
+Consider now the case q = 0, i.e..
+
+J-: R[u,(z)] tanh’z dz = 0
+
+(5.51)
+
+In this case the plateau part of the tail is absent and it follows from (5.41)-(5.43) that in the region (5.47)
+
+( 2 ) In the region of large negative x where (-y)’/’ 2( 3 ~ ) ” ~ .
+
++ d ( s ) exp [- i ( 2 . r ~ ~n/4)]
+
++ \tJ z -
+
+C.C.
+
++ 1 6 ~ ~ ( 3 n r ) ” ~ s ~ / ~l)( ss2’ t i)’
+
+Here
+
+(5.48) This expression describes a wave packet rapidly vanishing at
+y % 1, i.e., ~ K 9X ( 3 ~ ) ” ~A.t large negative x one may use an
+asymptotics (5.48) which also gives a fast decrease. It is seen
+
+that the wave packet spreads out with time and its area vanishes (5.49) at t + w . Evidently, this packet has originated because of the
+
+assumed initial condition ( 5 . 5 ) and at large time it has no
+A general view of the tail is shown in the figure. At x > 0. connection with the soliton (see. also. the next section).
+1 <<v’’~< ( 3 ~ ) ” ~t,he expression (5.45) describes almost a
+
+< straight horizontal line w = - ~ q / 2 ’ .
+
+5.3. Evolution of the soliton kern
+
+At smaller x, 2 ~ 1 x 1<(37)’13 (i.e., /yI 1), there is a tran- As have been shown the main part of the soliton kern has a
+
+sition region which length Ax increases as ( 3 ~ ) ” ~A.t large soliton form described by u,(z, K ) with the amplitude 2 ~ ’ ( t )
+
+negative x there are oscillations which are described by (5.48). and the center [(t). The perturbation changes the amplitude
+
+At 12~x/3~1’’9’ 1they die down because A ( s ) rapidly vanishes according to (5.9). In this subsection we find the kern equation
+
+at s + W. This picture is more detailed than that one described of motion and investigate a difference between the kern and
+
+by the simple averaged expression obtained in [ 171. However, soliton shapes.
+- two main characteristics of the tail, its length 4 ~ ’ tand area Let us consider, first, the kern velocity. Substituting (5.23) - 1 _ ~ q ~are~ th,e same for the averaged [17] and present [19] into (5.28) and taking into account (5.22) and (5.19), we have
+
+theories of the tail.
+
+By looking at the figure one can easily understand the reason of appearance of the additional bound state correspond-
+
+ing to the root k = i K o of a(k) in (5.23).
+I t corresponds to the energy level in a shallow but rather long
+potential well formed by the tail if €4 < 0. If this level is much
+less than the depth of the well. i.e..
+
+K i < (E4)K2,
+
+(5.50)
+
+then its magnitude can be calculated by means of the usual quantum mechanical perturbation theory (e.g., [ 2 6 ], section 45). In that calculation the soliton kern may be neglected because its width is much less than that of the wave function
+( K <~k ) . The computation gives exactly (5.22). From (5.50),
+(5.22) and (5.19) one obtains the condition (5.24) which re-
+
+The last term in the parenthesis appears because of the tail recoil [19]. It gives no contribution to the integral of (5.53) if the tail is not produced, according to eq. ( 5 . 5 1).
+Let us now investigate the difference between the shape of
+< the kern and that of the soliton. This is described by expressions
+(5.41)-(5.43) at ( z I 1. By using the calculations performed in [19] one has for the region IzI < K E
+1 iW v(z, E ) = R [u,(z’)] I(z, z’) dz‘ + 4n * z R [u,(z‘)] ”-a
+
+s It is useful to bear in mind that
+
++ x [tanh z’ tanh*z - tanh z tanh’z‘ ( z - z’)
+x tanh’z tanh’z‘] dz’+ 1 6 n O ( ~ ~ ) t~an~h’qz.g
+
+(5.53)
+
+J-1AiO;)d.y = 1
+
+where
+
+Physica Scripta 20
+
+472 V. I. Karpman
+
+(J(z, z’), z >z’
+Z(z, 2 ’ ) = J(z’, z), z < z ’
+J ( ~z,’) = --77 sech’z sech’z‘ [2(cosh2z e-’’ 8
++ + 4 cosh z cosh z’ e(”-’) cosh’z‘ e’”) + - 14(cosh z e-’ cosh z’ ezz’)pl(z -z‘)
+
++ 1 % (z -z’)I ,
+
+Pl(Z) = 1 + 4 z , pz(z) = 1 + # Z + & Z ’
+
+The expression for w can be obtained now in a straightforward way, but we shall not write this rather long expression here. However, it is important to note some significant features of it. First, it is easy to check that in the region
+
+IZI Q K E
+
+(5.54)
+
+w does not depend on E because the last terms in (5.53) and
+(5.41) cancel out. Hence, w = w(z, K). Secondly, let us consider the expression of w(z, K) in the region
+
+< 1 - Z
+
+K(
+
+(5.54a)
+
+From (5.53) and (5.41) one has
+
+(5.53) and (5.41) satisfies eq. (6.2) [19]. To see that, it is
+
+convenient t o use instead of (5 -53) its integral representation
+
+in the form
+
++ A @ ) @ i tanh 2)’ 1 - exp ( 2 i p ~ t ) .
+
+@ -iK 0 / K )
+
+P
+
+dp (~ 6.,4)
+
+One can check by straightforward integration that (6.4) and
+
+(5.53) are equivalent. It should be also mentioned that (6.4)
+
+may be obtained from (5.42) if one put under the integral of
+
+the last expression exp (i7p3) = 1, which is possible because
+
+of the condition (5.54).
+
+Substituting (6.4) together with (5.41) and (5.43) into (6.2)
+
+and using the identity
+
+A-d [@ +itanhz)’ eziPz] = - 8ip(l + p ’ ) @ t i t a n h z ) ’ elip’
+dz (6.5)
+
+and, also, (5.9) and (5.52), one sees that expression (5.41) with (6.4) (i.e. (5.53)) gives the solution of the eq. (6.2). An estimation of an accuracy of this solution follows from the observation that the neglected terms in the r.h.s. of eq. (6.2) may,
+- generally, grow with time to become of the order of other
+terms at t tp(tp/ts). Hence, the solution represented by the expressions (5.53) and (5.41) is valid for the time interval’
+
+jzm w(z, K ) = -7E tanh’z R[u,(z‘)] tanh’z’ dz‘ 8K
+
++ + ’82K’ e’’ J_,~[u,(z’)j sech’z’ dz’ EO(Ze’’) (5.55)
+
+If we put in (5.55) z +--, it gives exactly the expression for
+the tail in the plateau region, i.e., w = - q / 2 .
+And, finally, it is easy to obtain the kern asymptotics at
+large positive z , i.e., in the front of the soliton. From (5.53) at z S 1 one has
+
+j-: + w = --E z’ e-“
+
+R [us(~’)]sech’z’ dz’ E O ( e~-2z)
+
+8K
+
+(5.56)
+
+r, < t Q tp(tp/ts)
+
+(6.6)
+
+- However, if ER[ U ] describes a dissipation, the soliton dissipates
+significantly at t t, and, then, U, ceases to be the main term in (5.2). Therefore the validity of obtained solution is restricted in this case by
+
+r, Q t 5 r,
+
+(6.6a)
+
+As was already mentioned, the expressions (5.53) and (5.41)
+lead to the soliton disturbance 6u = - 2 ~ w’ depending only on
+z and K with the asymptotics (5.55), (5.56). Hence this disturbance moves with the kern velocity d(/dt and its back side turns smoothly to the flat part of the tail
+
+W( -) = - ~ 4 ( t ) / 2
+
+(6.7)
+
+6 . Soliton evolution at the large time
+
+The expressions of the previous section defining 6u were derived
+under the restriction (5.24). However, the fact that w does not
+explicitly depend on t: in the region (5.54), suggests that the
+same expressions for w might be valid in a much larger time interval. To show this rigorously, we substitute the expression
+
++ U = - 2~’(t)[sech’z w(z)]
+
+(6.1)
+
+into (5.1), supposing that K(t) satisfies the eq. (5.9) and w(z)
+(now unknown) has an order of E, and w(z) + 0 at z + -.
+Then, after linearization we come to the equation
+
+iz + -z sech’z) + E
+
+m
+R [u,(z‘)] dz’ O(E’)]
+
+(6.2)
+
+where E t = dUdt, etc., and
+
+A = -d+’ 12sech’z-4
+dz
+
+(6‘3)
+
+Now one can show that the expression for w(z) defined by
+
+The length Ax of the flat part of the tail is the same as for the
+
+- - solution obtained in the previous section at the end if its appli-
+cability, i.e., Ax E(t*) with t* (ts/tp)1’2tp. Taking into
+
+account (5.2) and (5.52) one has
+
+- K-l (t,/f,)”’
+
+(6.8)
+
+The more remote part of the tail is modulated. If €4 < 0 these
+
+modulations finally transform into small solitons with ampli-
+
+tudes of the order of E ~ K ’T. herefore, a general view of the
+
+- disturbance in the time interval (6.6) is, still, the same as shown
+in the figure, however, now BC Ax Q ((t)and the oscilating
+part of the tail occupies a part of the region x > 0.
+
+If perturbation is such that the condition (5.51) holds, the
+
+tail damps with time and the asymptotics of the disturbance,
+
+according to (5.55) and (5.56), is
+
+’ w(z> = - gE z e-’* !”-:R[us(z’)] dz’ z + w
+
+8K
+
+-
+
+(6.9)
+
+’ - Strictly speaking, at f tp one should substitute into us@, K ) the
+
+- - quantity K defined in the approximation next t o (5.9), because, in
+general, S K E at t t,. However, this will n o t bring any change in
+
+the physical picture given above and, therefore, we do not consider
+
+this correction here.
+
+Physica Scripta 20
+
+Soliton Evolution in the Presence of Perturbation 413
+
+z+-m
+
+(6.21)
+
+Evidently, if q = 0, the r.h.s. of eq. (6.2) vanishes not only at z + m but also at z - + 00. As shown in [ 181 in this case eq.
+(5.9) ensures the orthogonality condition
+
+J F(z)d0)(z) dz = 0 -m
+
+(6. loa)
+
+6u =
+
++ E (1 2z2eZZ) (-z 9 1)
+
+3K(t)
+
+(6.22)
+
+Expressions (6.14) and (6.19) were obtained previously in
+
+[29,30] by different approaches.
+
+where F(z) is the r.h.s. of eq, (6.2) and w(O)(z) is the finite solution of homogeneous equation Aw‘O)(z) = 0,
+
+w(O)(z) = tanh’z sech’z
+
+(6.10b)
+
+If, besides (5.5 l ) , the perturbation satisfies the additional condition
+
+7 . Soliton evolution described by the perturbed MKdV and NS equations
+1.1. General equations Consider the equations
++ + u t 611’11, U,,, = ER[u]
+
+and
+4 (6.1 1) iu, + U,, + lulzu = i ~ R [ u ]
+
+(7.2)
+
+the soliton parameters do not change with time and perturbation results only in some stationary variations of the soliton
+shape w(z) and soliton velocity 6 t t = tt - 4 ~ ’ . The simul-
+taneous fulfilment of the conditions (5.51) and (6.1 1) takes place. in particular, for the dressed solitons considered in [33].
+A general theory which we have considered can be applied to many particular problems. As typical examples consider the equations
+
++ - ~ U U , U,,, = EU,,
+
+(6.12)
+
++ - ~ U U , U,,,
+
+= FU
+
+(6.13)
+
+The first of them is the well known Korteweg-de Vries-Burgers
+
+equation describing the waves in dispersive media with viscosity
+
+and heat conduction (e.g., [3]). The second one is a simple
+model of an instability (E> 0) or damping ( E <0) of waves.
+
+For U , = 0 it gives an expoential growth with the increment E . In the case (6.12), taking R = a2/ax2.one obtains
+
++ K(t) = K(0)(1 t/to)-”’
+
+(6.14)
+
+For simplicity we assume that there are real u(x, t) and R [U]
+
+in eq. (7.1)”. As in the previous sections we consider solutions.
+
+of these equations of the form
+
++ U = u,(z, t ) ~ u ( z ,t ) , 6u(z, 0) = 0
+
+(7.3)
+
+where u,(z) is the soliton solution which has the same form
+-(2.58) for. both, MKdVE and NSE. It is also supposed that
+6u E and parameters 7,p , S and d t / d t appearing in (2.58). are slow functions of time. Their evolution may be defined from the eqs. (4.14t(4.3,1). In the first approximation we neglect the terms of the order of E’ in the r.h.s. of these equations. Therefore. the matrix elements in (4.18)-(4.19) may be computed in
+the lowest order by substitution f +fs, g + g S . where I,,g, are
+given in (2.59), (2.60). As a result of these approximations one has the following basic first order equations [ 13, 15, 17, 2 11
+
+1- + -aa - --
+
+ie
+
+at
+
+( A- p iu)’ Re
+
+A-p-iivtanhz cosh z
+
+15 to =
+~
+1~ E K(0)
+
++ a b
+
+iEA(h, p , U) exp (i6 - 2i6t)
+
+- = ih(A)b at
+
++ 2v[(h - p ) 2 U Z ]
+
+We do not write here the rather cumbersome full expression
+
+/-, for 6u(z), which might be straightforwardly calculated from
+(5.53). Its asymptotics is very simple, however,
+
+- du = -E dt 2 Re
+
+m
+sech z R [u,(‘z)] e-iwziu-16dz
+
+(7.7)
+
+6u = _ 8fK_(OZZ e-2z ( z S l j
+15
+
+8EK(t)
+
+25’-
+
+( I + z 2 e’‘)
+
+15
+
+(-zs 1)
+
+(6.16) (6.17)
+
+where we introduced the notation
+m
+- A(A,p , = e [ l ( ~ - ~ ) ) i v{(lAz - p - iu tanh 2)’ -w
+x R[u,(z)] e-ipLtlu-i6- iv2 sech2zR*[us(z)] e i w l u + i 6
+
+By taking in the last equation z + - m, one obtains the plateau part of the tail
+
+&U(-) = - 8 ~ ~ ( t ) / 1 5
+
+(6.18)
+
+Expressions (6.16) and (6.17) give, in particular, a steepened profile of the kern.
+For the eq. (6.13) one has
+
+K(t) = K(0) eXp ( 2 ~ t / 3 )
+
+(6.19)
+
+(7.8)
+Concerning the perturbation operator we assume that if cy is an arbitrary phase factor (i.e., Io11 = 1), independent of x (but it may be a function of time), then
+
+-
+l o Our method is also applicable for the complex perturbed MKdVE
+
++ ~IuI’u,
+
+U,,, = E R [ U ]
+
+(7.la)
+
+(6.20)
+
+However formulas are more cumbersome in this case. Some results for eq. (7.la) were derived in [13, 171.
+
+Physica Scripta 20
+
+474 V. I.Karpman
+
+And, finally, it is convenient to introduce a dimensionless function w defined by
+
++ S@*@ +y’)@,@’+y”)]dy’ dy”
+
+(7.20)
+
+Su(z, t ) = 2uw(z, t )exp
+
+The solution of eq. (7.19) is (7.10)
+
+m
+
+6Kl(x,y) = \k(x,y)--pei“sXKl,(x,y)Sx\k(x,y’)eiby’dy’
+
+It is easy to check that eq. (7.4) is satisfied with a =a,, where
+
+(7.21)
+
+Using (7.21) and (2.43) one gets [13, 1 7 , 2 1 , 2 2 ]
+
+a,(k
+
+t> =
+
+A- Ut) h -<(t) ’
+
+h, = ,U + iu
+
+(7.1 1)
+
+Therefore, the soliton deformation does not lead, in the first
+approximation, to deviation of a@, t ) from the adiabatic
+expression (7.11), i.e., 6a = a -a, = 0 , in spite of 6u # 0
+
+w(z, t) =
+
+2mu
+
+A-p +iv
+
+[ (: I] x exp iX -+2t
+
+dh-
+
+v exp fi[6 + ( P Z / V ) l }
+2nicosh’z
+
+(contrary to the KdVE, as is seen from (5.23)). Consider now the solution of the GLM equation in the form
+(2.47), (2.48). We put
+
+c- exp iV(ZlV>+ 2t11 dh
+
+j-- x r*(W m
+
+( h-,U - iu)’
+
+(7.22)
+
++ @(x) = @,(x) S @ ( X )
+
+(7.12) Substituting the solution of eq. (7.5) into (7.15) one has
+
+where, according to (2.46) and (7.1 l),
+
+@&) = 2w(t) exp ( i k J )
+
+j 1 -
+
+6@(x) = 2n
+
+--r(X, t)eihr dh
+
+with
+
+(7.15)
+
+The substitution @ = @,(x) into eq. (2.47) leads to the solution of GLM equation having the form (2.56) where and 6 are defined formally in (2.52). As the expression (2.56) corresponds to the pure soliton (2.58), one comes to the following
+meanings of t and 6 ; t(t)is the center of soliton and 6 ( t ) its
+phase. Substituting (2.52) into (4.17) one yields the following first order equations
+
++ j = --1 Im h($)
+
+7 E Re
+
+m
+z sechzR[us(z)] e-iw’y-is dz
+
+dt
+
+2u
+
+4u
+
+-w
+
+(7.16)
+
+- d6 = 2p - 4 + Re h($)
+
+dt
+
+dt
+
+- e
+I-- +%Im
+
+1 -z tanhz coshz R [u,(z)]
+
+dz (7.17)
+
+Now we use the same approach as for the KdVE, considering
+
+first a sufficiently small time t t p where t, is a perturbation
+
+=I & ( ir time which may be defined as the time-scale of the eq. (7.7), i.e.,
+
+ti’
+
+Re /ymsech zR [u,(z)] exp - --- is) d3/ (7.24)
+
+- After finding w we shall discuss the solution for t t,. Inte-
+grating in (7.23) by parts one obtains for t < t p
+
++ ~A(x,,u,u){I-exp [ih(h)t 2iht-i6] }eis-’i*f
+r(h,t) = 2u[h(h)+2htt-6,](h-~-iu)*
+
++ at/t,>
+
+(7.25)
+
+Up to this moment our expressions have been valid for all evolution equations associated with the operator (1.9). Now we consider particular cases.
+
+7.2. A perturbed MKdVE-soliton Considering the real eq. (7.1) one can put
+
+These equations together with (7.6) and (7.7) constitute a
+complete system defining evolution of all soliton parameters in the presence of perturbation.
+Let us discuss now the soliton deformation. It is described by the second term in (7.3) which can be defined by solving eq. (2.47). We look for solution of that equation having a form
+
+K i (x, U ) = Ki,(x, V ) + 6Ki (x,V )
+
+(7.18)
+
+where 6K1(x, y ) E. Substituting (7.18) into (2.47) and
+
+neglecting terms of the order of E’ one has
+
+12 = = o j h(h) = 8h33 ‘*(-’=Ir(X), R [ u l
+
+Introducing the dimensionless time
+
+r = t / t s , t, = 8u3
+
+and inserting in (7.22) X = up,one gets
+
++ w(z, t) = - ie A ( p ) [ ( p+ i tanhz)’ sech’z]
+
+j-: 3 2 d
+
+PO2 +
+
+(1 - , i ~ ~ ~ + z i p y t ) ~ idpPz
+
+= R*[u] (7.26) (7.27)
+(7.28)
+
+M l ( X , Y ) + J x - 6 K l ( x , ~ f ’ )@J ~X Y +U’> x @,(y+y”)dy’ dy” = \k(x, y )
+
+where
+j1 (7.19) A @ ) = - R[u,(z)](pZ-2iptanhz-1)exp(-ip)
+
+dz (7.29)
+
+where we have denoted
+Physica Scripta 20
+
+Integration of both sides of (7.28) over z gives
+
+Soliton Evolution in the Presence of Perturbation 475
+
+(7.30)
+
++ - 2P, (z -z‘) 3 tanh zP, (z - z’)]
+
+- Pl(Z) = 1 + z , P2(z) = 1 + z + z 2 / 3
+As g(t) r (see (7.16)), the area restricted by the profile of 6u From (7.38) one deduce the following asymptotics
+
+’ J-1 increases as f (if the integral in the r.h.s. of (7.30) does not
+
+vanish). This result, similar to that one for the KdVE indicates that perturbation acting on the MKdVE-soliton generates a tail.
+
+w(2)
+
+=
+
+EZ
+3- 2v4 e-’
+
+R [u,(z’)l sec! 2’ dz‘
+
+As far as the linear dispersion law is the same for KdVE and MKdVE. the MKdVE tail propagates behind the soliton, i.e., it
+is again in the region z < 0. Integration in (7.28) for the region
+z < 0 , IzI 3 1 gives the following asymptotic form of the tail
+
++ EO(Ze-“) ( z % 1)
+
+’ w(z) = E
+
+€Z
+fmR[u,(z‘)] dz‘--e”
+
+~
+
+16v4 r - “
+
+32v4
+
+at 1 < r <tp/ts[19]
+
+1 = Eq 2 ~ x ( 3 7 ) - ” ~
+
+w -
+
+Aib) dy,
+
+16 -=
+
+1 2 ~ x 1 ”<~ (37)”’
+
+(7.31)
+
+j-: x ~[u,(z’)lsech z! dz‘
++ EO(Ze*) (Izl % 1 . z < 0)
+
+(7.39) (7.40)
+
+and
++ d ( s ) exp [-i(2rs3 t n/4)]
+w = 3 2 ~ ~ ( 3 . r r r ) ~ ~ ~ts ~l)’(s~ +( si’)? C.C.
+
+The first term in (7.40) describes the plateau part of the tail (c.f. with (7.34a)), while the second one vanishes at z -+ - m.
+- Now we can show that the expression (7.38) is valid not
+only under condition (7.36) but, also, at t t,. To do that we
+
+substitute into (7.1) the expression
+
+(7.33)
+
++ u(z) = 2v[sech z w(z)]
+
+(7.41)
+
+- where is supposed W(Z) E and w(m) = 0. Then after lineariza-
+
+tion one obtains
+
+Hence, the qualitative picture of the tail formation for the MKdVE-soliton is the same as for KdVE-soliton. One can see a plateau part of the tail following from (7.31)
+
+w(-) = ~ q / 1 6
+
+(7.34a)
+
+i + 6 sech’z - 1 w(z)
+
+-4 - 1 4v2(t;,-4v2)-2vtz
+
+- 16v4
+
+cosh z
+
+(7.42)
+
+which is located in the region
+(37)’!3 2 2vx < 37
+
+(7.34b)
+
+On the left of the plateau there is a transition region located
+at 2~1x1< ( 3 ~ ) ” ’in~ which oscillations begin; their wavelength decreases from right to left. At x < 0, 2~1x13 3r, the oscillations
+become to be very rapid and exponentially damping. The condition of absence of the growing tail looks now as
+
+(7.35)
+
+Consider now the soliton-like kern, supposing, at first. that
+
+1 < < tp/ts
+
+(7.36)
+
+Substituting (7.28) with (7.37) into the 1.h.s. of (7.42) and using the identity
+
+,&{[Cp + 1 tanh z)’ + sech’z] eipz} + + = -(1 p 2 ) [ ( p i tanh z ) -~ sech2z] eipz
+
+(7.43)
+
+and also. eqs. (7.7) and (7.16), one sees that the expression (7.38) really satisfies the equation (7.42). From the above
+given considerations it is clear that this solution, being settled
+at t << t,,, continues t o be valid in the region adjoining the
+soliton up to the time when the neglected terms in (7.42)
+become significant. i.e.. t < t;/t,. Therefore, expression (7.38)
+- describes the soliton deformation and plateau-like part of the
+tail at least up to t t, [20].
+
+Evidently, one may assume that ( z / 2vg. Due to those con-
+
+ditions one may put under the integral in (7.28)
+
+exp (i7p3 + 2ipvt) = exp 2ipvg
+
+(7.37)
+
+After that integration over p is performed without difficulties and the result is
+
+7.3. A perturbed !ZiS-soliton
+
+Consider now the perturbed NSE (7.2). Substituting (7.25)
++ with h(h) = - 2X2, Ct = 2 p O(E), 6 t = 2(v2 + p 2 ) + O(E)
+into (7.22), one has after some transformations [ 19. 201
+
++ w(z, t ) = W(z) q z , t )
+
+(7.44)
+
+where I(z, z’) =
+
+z >z’
+
++ J(z, z ’ ) = sechz sechz’[tanhz(sinhze-’ sinhz’e’’)
+
+w- = - E exp [- i(6 +pz/v)]
+8niv’
+~ e - 2 i 1 2 t + i ~ ( z + 2 u g y v d h + E ~ X P[i(’ + ~ / v ) l 8ni cosh’z
+Phvsica Scripta 20
+
+476 V,I. Kalpman
+
+For MKdVE [171
+
+It is seen from these general expressions that m(z) changes in v = v o e x p ( 2 ~ f ) ,
+
+vi
+= -Y[ e x p ( 4 y t ) - l ]
+
++to
+
+(7.51)
+
+time adiabatically (the time enters in it only through p(r), y(t))
+
+and #(z) + 0 at IzI -+ W. On the otherhand, G(z, t) is an oscillat- 8. Conservation laws in the presence of perturbations ing function. It will be seen from the following that the asymp-
+
+totics of 6u at large r is described by W(z).
+
+As is known, if the evolution equation (1.2) is solvable by the
+
+The integration over X in (7.45) leads to rather long ex- ISM, there exists an infinite number of invariants
+
+pression for W(z) of the same type as (7.38). This expression
+j--OD
+is written in [17] for P = 0 (eq. (5.14) of [171). The expression I,+] = q,[u,u*] d ~ ,n = 1 , 2 , 3 , . . .
++ W(z) for p # 0 can be obtained by substituting 6 6 -+ w’/v
+
+(8.1)
+
+into the formula (5.14) of [17]. We do not write here this bulky where “densities” qn[u, U * ] are polynomials of U,U * ,and their
+
+general expression, restricting ourselves by most important space derivatives. If u is a solution of the eq. (1.2), the densities
+
+limit cases.
+
+satisfy the equations
+
+The asymptotic behaviour of W ( z ) at large IzI is
+
+2”
+
+where pn[u,U*] are corresponding “fluxes” which are also
+
+polynomials. Equation (8.la) assures the conservation of
+
+(7.47) In{u). For KdVE, NSE and MKdVE the densities qn and in-
+
+variants I , were found in [4, 321 .
+
+In the presence of perturbation the invariants I , are no
+
+more conserved. In this section equations governing the time
+
+evolution of I,{u(x, t)] in the presence of perturbation are
+
+derived [ 161 .
+
+As far as W(z)vanishes as z + ?r =, it gives no tail.
+
+Assuming in the general equation (4.1) F = I,, one has
+
+The second, oscillating part of the solution i.e., G(z, t),
+
+also vanishes at Iz/ +=, This is seen from its asymptotics at
+
+IzI 3- 1 , %~1, derived by the stationary phase method [19]
+
+- ui(vs,P,v ) exp {i[m2-cuZ/v> -6 + (n/4)1}
+wx 8 1 ~ ~ ( n ~ ) ~ ’ ~ [ ( s - p11/ [vs)-~( p+/ ~ ) T i ] ~
+
+( Z + k CO)
+(7.48)
+
+(we remind once more that if U is real, the second term under the integral in (8.2) is absent). Substituting ut and U: from (1.1) into (8.2), one has
+
+Here s is denoted s = CX/T and A(X, p, U) is defined in (7.8). From (7.48) it follows that G(z, t) has originated from the
+initial conditions assumed above, and w = W at T % 1. As before,
+- one can see that the expression (7.45) for @(z) is valid for
+rather a long time t < tP(tP/rsa)nd, at least for t tp.
+Thus, the perturbation (under condition (7.9)), acting on the NS soliton, does not lead to the tail formation and soliton changes adiabatically according to eqs. (7.6), (7.7), (7.16) and (7.17). The perturbation also results in some deformation of the soliton shape described asymptotically by W(z). The adiabatic evolution of the soliton was obtained also in [31] for the case where R [ u ] describes the instability or dissipation, and it is in agreement with our general theory.
+In conclusion we present, as a simple but important illustration, the case when the perturbation term in (7.1) and (7.2) is &[U] = yu, which corresponds to the simplest case of instability or damping with the growth rate y independent on k. Then for NSE [17]
+
+The expression under the first integral should be the divergence. This can be verified directly in each of the considered particular cases by means of rather cumbersome calculations. There is, however, much more simple and general argumentation. If E = 0, the derivative dl,/dt is an integral of a divergence. As S[u] and Zn{u} do not depend on E , the expression under the
+first integral in (8.3) remains to be the divergence at E # 0.
+Hence, for our boundary conditions (U + O at ixI -+ m) one has
+
+p = p o , v = vo exp(2yt), E = 2p0t+Eo
+6 = -v6 [exp (4yt) - 11 + &it + 6 o
+2Y
+
+(7.49)
+
+.
+
+I
+
+An asymptotic expression describing the soliton deformation is very simple here.
+
+y(4zZ + 2 / 3 )
+W(Z) =
+16iv’ cosh z
+
+(7.50)
+
+Equations (8.4) permit us to calculate dl,/dt for E # 0 if the
+invariants In{U) for the unperturbed equation (1.2) are known. We call eqs. (8.4) the modified conservation laws (MCL) bearing in mind that they are modifications of the conservation
+laws for the E # 0.
+The variational derivatives appearing in (8.4) can be written explicitly if one knows the densities q,[u, U * ] . From (8.1) it follows, in particular,
+
+Physica Scripta 20
+
+- 61, - aqn 6u(x) au
+
+1 a (a- qn) + -a-2 (aqn
+ax au, ax2 au,,
+
+-...
+
+Soliton Evolution in the Presence of Perturbation 477
+By taking variation of (8.13) and using (3.14) and (3.17) one (8'5) obtains
+
+and similarly for SZ,/Su*(x). Often, however, it is convenient to proceed from relations connecting Z, with the Jost coefficients as it is described below.
+Let us apply (8.4) t o the problem of a single soliton evolution.
+In the first order of E one may substitute into the r.h.s. of (8.4)
+
+-fl1s(x,
+Qdh)
+i
+a- f,2(&X)
+
+x)gl,(x, A)
+t:30
+h)g?-s(xh, ) = -
+
+(8.15)
+
+Now we substitute here expressions (2.59) and (2.60) where,
+
+6U
+
+--
+
+(8*6)
+
+where, as before, we denote by the subscript s quantities computed for u(x, t ) = u,(z). On the other hand, one can present
+
+for simplicity, p = 0".
+re] [ have = S",-i]
+
+After expansion in powers of A-' * = (2v)2m- sech e-id
+
+we
+
+(8.16)
+
+the 1.h.s. of (8.4) as
+
+6U*(X) s
+
+-dZ n ( u , + 6 u } dt
+
+= d- zn'&sj+ dt dt
+
+dx (8'7)
+To show how to calculate the variational derivatives now, we take, as the first example. the KdVE. In this case [4,28]
+
+Here m = 1, 2 . 3 , . , . .
+After substituting (8.7), (8.14). (8.16) and (8.17) into (8.4) we come to the following results.
+All MCL (8.4) with even n , in the first order ofperturbation parameter E . give only one equation
+
+By calculating the variation of (8.8) and using (3.6), one has
+
+and with Odd
+
+lead to
+
+(8.18)
+
+Substituting (2.30) into (8.9) and expanding the 1.h.s. of it in the inverse powers of k , we obtain
+
+[611/6U(X)l, = 1
+
+[6zn/6u(x)] = ( 2 ~ ) ? - "s-e~ch2z ( n > 1)
+
+Besides that one should bear in mind
+
+In@s>
+
+=
+
+qi 2 n K 2 n - 1
+- 2n -
+
+,
+
+n=1,2, ...
+
+(8.10a) (8.10b)
+('"
+
+This relations can be obtained, e.g., from (8.8), if one substitues in its 1h.s. the expressions (2.31) and then expand it in the powers of k-' . Substitute, now, the relations (8.7), (8.10) and (8.1 1) into (8.4). The derivative d K l d t appearing in the 1.h.s. of (8.4) is to be taken from (5.9). Then, up to the first order of
+E , the first of the eqs. (8.4) gives exactly the eq. (5.16) and the other ones ( n Z 2) come to the only equation
+
+As far as these results are derived for p ( t ) 0, one should con-
+
+sider in (8.18) and (8.19) only perturbations R[u] which give
+
+dpldt = 0. From (7.6) it follows that it is ensured if the pertur-
+
+bation satisfies the condition
+
+- tanhz
+
+lm
+
+R[us(z)] e-i6 dz = 0
+
+~
+
+1- cosh z
+
+(8.20)
+
+Therefore. in this case the r.h.s. of (8.19) vanishes. One can
+
+check that eqs. (8.18) and (8.19) actually satisfied by the
+
+solution 11.' derived in Section 7 [ 171. One should note. also,
+
+that for the real MKdVE (7.1), in addition to the invariants
+
+defined by the eq, (8.13), there exists one m 0 r e ~ 2
+
+__
+
+I ' For eq. (7.1) p ( r ) = o , because of reality conditions R[uI = R * [ ~ I . For eq. (7.2) under condition (7.9) the transformation
+
+w(z, t ) sech2z dz = 0
+
+(8.12)
+
+Therefore. the infinite set of MCL (8.4) gives, in the first order of perturbation theory, only two equations, (5.16) and (8.12). The first of them is satisfied by our solution, as was already shown in Section 5. Equation (8.12) is also satisfied owing to
+(5.18). Consider now MKdVE and NSE. In these cases instead of
+(8.8) and (8.1 1) we have [4]
+
+c m
+log@) = -
+n=l
+
+(8.13)
+
+(8.14)
+
+transforms a moving soliton with p ( t ) # 0 into the soliton with, ~ ' ( t )0. The function ~ ' ( xt,) satisfies the equation
+
+au' i-+
+
+-1-+a 2 u '
+
+I U ' I ~ U '= i e R ' [ u ' ]
+
+where
+
+&'[U'] = &[U'
+
+dg - 2 5 -11
+
+dt
+
+I'rom (7.6) it follows that dp'ldt = 0.
+
+Therefore, the assumption p = 0 gives no restrictions on the generality
+
+of results.
+
+l 2 In (8.13) only invariants related to the complex MKdVE (7.la) appear. It is easy t o see that eq. (7.la) at E = 0 does not lead to the conservation of I , , Therefore, I , is not contained in (8.13).
+
+Physica Scripta 20
+
+478 V. I. Karpman
+
+j- I o $ } = u(x, t ) dx -ca
+
+(8.21)
+
+The change rate of Z,(U(x, t ) ]can be obtained directly from (7.1) after integration over x
+
+j-- d l 0
+- d t = E m R[u(x, t)] dx
+
+(8.22)
+
+Substituting (7.3) and (7.10) into (8.22) one gets eqs. (7.30) which is, as was already shown, also satisfied by the solution derived in Section 7.
+And, finally, it should be noted that the change rate of soliton amplitude in the presence of perturbation was calculated in some papers (e.g., [34]) from one of the conservation laws. However, the question arises whether the remaining infinite set of MCL may be satisfied by that. From the results given above one can see that in the first order of E only two or three independent equations for the soliton parameters follow from the MCL, and to avoid contradictions it is necessary, in general, to take the tail into consideration. However, for the perturbed NSE, under condition (7.9), the problems associated with the tail disappear because in this case it is not produced.
+In conclusion I deeply appreciate E. M. Maslov for helpful co-operation in elaborating many of problems discussed above.
+
+References
+1. Gardner, C. S., Green, J. M., Kruskal, M. D. and Miura, R. M., Phys. Rev. Lett. 19, 1095 (1967).
+2. Lax, P. D., Comm. Pure Apll. Math. 21,467 (1968). 3. Karpman, V. I., Nonlinear Waves in Dispersive Media, Pergamon,
+Oxford, 1975. 4. Zakharov, V. E. and Shabat, A. B., Zh. Eksp. Teor. Fiz. 61, 118
+(1971) (Sov. Phys. JETP). 5. Morales, G. J. and Lee, Y . C., F’hys. Rev. Lett. 35, 930 (1975). 6. Scott, A. C., Chu, F. Y. F. and McLaughlin, D. W., Proc. IEEE 61,
+1443 (1973). 7. Redekopp, L. G., J. Fluid Mech. 82, 725 (1977). 8. Wadati, M., J. Phys. Soc. Japan 34,1289 (1973). 9. Lamb, G. L., Jr., Rev. Mod. Phys. 43, 99 (1971). 10. Lamb, G. L., Jr., Phys. Rev. 9A, 422 (1974). 11. Ablowitz, M. J., Kaup, D. J., Newell, A. C., and Segur, H., Phys.
+Rev. Lett. 31, 125 (1973). 12. Takhtajan, L. A., Zh. Eksp. Teor. Fiz. 66, 476 (1974) (Sov. Phys.
+JETP). 13. Karpman, V. I. and Maslov, E. M., Preprint IZMIRAN No. 1 (175)
+1977. 14. Karpman, V. I. and Maslov, E. M., Phys. Lett. 60A, 307 (1977);
+61A, 493 (1977). 15. Karpman, V. I. and Maslov, E. M., Phys. Lett. 61A, 355 (1977). 16. Karpman, V. I., ZhETF Pis’ma 25, 296 (1978) (JETP Lett.). 17. Karpman, V. 1. and Maslov, E. M., Zh. Eksp. Teor. Fiz. 73, 537
+(1977) (Sov. Phys. JETP). 18. Karpman, V. I., Phys. Lett. 66A, 13 (1978). 19. Karpman,V. I. and Maslov, E. M., Zh. Eksp. Teor. Fiz. 75, 504
+(1978) (Sov. Phys. JETP). 20. Karpman, V. I. and Maslov, E. M., Preprint IZMIRAN No. 12
+(211), 1978; Doklady, A. N., S . S. S. R. 242, No. 3 (1978). 21. Kaup, D.J., SIAM J. Appl. Math. 31,121 (1976). 22. Keener, J. P. and McLaughlin, D.W., Phys. Rev. A16, 777 (1977). 23. (a) Faddeev, L. D., Trudy MIAN (Pros. of the Steklov Math. Inst.),
+73, 314 (1964); (b) Kato, Y., Suppl. Prog. Theor. Phys. 55, 247 (1974). 24. Gel’fand, I. M. and Levitan, B. M., Izv. A. N. SSSR, Ser. Math. 15, 309 (1951).
+
+25. Marchenko, V. A., Doklady A. N. SSSR, 104,695 (1955). 26. Landau, L. D. and Lifshitz, E. M., Quantum Mechanics; Nonrelativ-
+istic Theory, Addison-Wesley, 1965. 27. Hirota, R., Phys. Rev. Lett. 27, 1192 (1971). 28. Zakharov,V.E.andFaddeev,L.D., Funct. Anal. Appl. 5 , 280
+(1972). 29. Ott, E. and Sudan, R. N., Phys. Fluids 13,1432 (1970). 30. Pelinovsky, E. N., Prikl. Mekh. Tekhn. Fiz. 2 , 6 8 (1971). 31. Pereira, N. R. and Stenflo,, L., Phys. Fluids 20,1733 (1977). 32. Kruskal, M. D., Miura, R. M., Gardner, C. S . and Zabusky, N. J., J.
+Math. Phys. 11, 952 (1970). 33. Konno, K., Matsuhashi, T. and Ichikawa, Y. H., J. Phys. Soc. Japan
+43,669 (1977). 34. Nicholson, D.R. and Goldman, M. V., Phys. Fluids 19,1621 (1976).
+Note added in the proof
+After this work had been submitted, there appeared several papers relevant to the problems discussed here. The paper [ 1*] describes the numerical solutions of eq. (6.12) which are in correspondence with the above theory given. In particular, the authors give the same tail amplitude in a vicinity of soliton as (6.18). The numerical results show that the length of the unmodulated part of the tail is even larger than K - ~(tp/t,)”2, indicated in Fig. 1 (which is the minimum unmodulated length of the tail guaranteed by the validity of our theory). It should be noted that in such long tails, as were observed numerically, one can no more neglect the change of the tail height. Since, according to eq. ( 5 . 5 9 , the tail originates from the small vicinity of the soliton kern (of the order of several K - ’ ) , the height of the tail at a given point x in the unmodulated region approximately corresponds to the soliton parameter K(t) where t = t ( x ) , and it has very slow further change because of small gradients. This has also been observed in the numerical experiments,
+Many of the problems discussed here were considered also by Kaup and Newell [2*] with similar results. In particular, they give a detailed treatment of eq. (6.13) and derive the “shelf’ very similar to our “tail”.
+The authors of [3*] have considered an example of perturbed NSE which did not satisfy the condition (7.9) and compared their approximate solution obtained in the limit case of small soliton amplitude with the results following from eqs. (7.6), (7.7), (7.16) and (7.17) (these equations are valid, approximately, even without condition (7.9)). The authors claimed some discrepancy in results obtained by their and our approaches. However, it could be seen that the disagreement lies outside the region of validity of the both methods.
+Acknowledgement
+I am indebted to Dr. G. Reinisch for interesting discussion of the numerical results of [ I * ] .
+References
+l*. Fernandez, J. C., Reinisch, G., Bondeson, A. and Weiland, J., Phys. Lett. 66A, 175 (1978).
+2*. Kaup, D. J. and Newell, A. C., Proc. Roy. Soc. A361,413 (1978). 3*. Makhankov, V. G. and Fedyanin, V. K., Preprint P17-11429 (1978);
+Phys. Lett. (in press).
+
+Physica Scripta 20
+

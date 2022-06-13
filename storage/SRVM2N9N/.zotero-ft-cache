@@ -1,0 +1,1337 @@
+Adaptive Mesh Reﬁnement for Global Magnetohydrodynamic Simulation
+Tamas I. Gombosi, Darren L. De Zeeuw, Kenneth G. Powell, Aaron J. Ridley, Igor V. Sokolov, Quentin F. Stout, and Ga´bor To´th
+Center for Space Environment Modeling, The University of Michigan, Ann Arbor, Michigan, USA
+Abstract. The ﬁrst part of this paper reviews some physics issues representing major computational challenges for global MHD models of the space environment. These issues include: (i) mathematical formulation and discretization of the governing equations that ensure the proper jump conditions and propagation speeds, (ii) regions of relativistic Alfv´en speed, (iii) regions dominated by strong intrinsic planetary magnetic ﬁeld with strong gradients, and (iv) the religiously debated issue of controling the divergence of the magnetic ﬁeld. The second part of the paper concentrates to modern solution methods that have been developed by the aerodynamics, applied mathematics and DoE communities. Such methods have recently begun to be implemented in space-physics codes, which solve the governing equations for a compressible magnetized plasma. These techniques include high-resolution upwind schemes, block-based solution-adaptive grids and domain decomposition for parallelization. While some of these techniques carry over relatively straightforwardly to space physics, space physics simulations pose some new challenges. We give a brief review of the state-of-the-art in modern space-physics codes. Finally, we describe the space physics MHD code developed at the University of Michigan and its recent coupling to a thermosphere-ionosphere and inner magnetosphere model.
+1 Introduction
+Global computational models based on ﬁrst principles represent a very important component of eﬀorts to understand the intricate processes coupling the Sun to the geospace environment. The hope for such models is that they will eventually ﬁll the gaps left by measurements, extending the spatially and temporarily limited observational database into a self-consistent global understanding of our space environment.
+Presently, and in the foreseeable future, magnetohydrodynamic (MHD) models are the only models that can span the enormous distances present in the magnetosphere. However, it should not be forgotten that even generalized MHD equations are only a relatively low-order approximation to more complete physics; they provide only a simpliﬁed description of natural phenomena in space plasmas.
+also at Department of Atomic Physics, Lor´and E¨otv¨os University, Budapest, Hungary
+J. Bu¨chner, C.T. Dum, M. Scholer (Eds.): LNP 615, pp. 247–274, 2003. c Springer-Verlag Berlin Heidelberg 2003
+
+248 Tamas I. Gombosi et al.
+2 Non-relativistic Magnetohydrodynamics
+The governing equations for an ideal, non-relativistic, compressible plasma may be written in a number of diﬀerent forms. While the diﬀerent forms of the MHD equations describe the same physics at the diﬀerential equation level, there are important practical diﬀerences when one solves discretized forms of the various formulations.
+According to the Lax-Wendroﬀ theorem [37] only conservative schemes can be expected to get the correct jump conditions and propagation speed for a discontinuous solution. This fact is much less emphasized in the global magnetosphere simulation literature than the more controversial divergence of B issue. In some test problems the non-conservative discretization of the MHD equations can lead to signiﬁcant errors, which do not diminish with increased grid resolution.
+
+2.1 Primitive Variable Form
+
+In primitive variables, the governing equations of ideal magnetohydrodynamics, which represent a combination of the Euler equations of gasdynamics and the Maxwell equations of electromagnetics, may be written as:
+
+∂ρ ∂t
+
++
+
+u
+
+·
+
+∇ρ
+
++
+
+ρ∇
+
+·
+
+u
+
+=
+
+0
+
+(1a)
+
+ρ
+
+∂u ∂t
+
++
+
+ρu
+
+·
+
+∇u
+
++
+
+∇p
+
+−
+
+1 µ0
+
+j
+
+×
+
+B
+
+=
+
+0
+
+(1b)
+
+∂B ∂t
+
++
+
+∇
+
+×
+
+E
+
+=
+
+0
+
+(1c)
+
+∂p ∂t
+
++
+
+u
+
+·
+
+∇p
+
++
+
+γp∇
+
+·
+
+u
+
+=
+
+0
+
+(1d)
+
+where µ0 and γ represent the magnetic permeability of vacuum and the speciﬁc heat ratio of the gas. In addition, the current density, j, and the electric ﬁeld vector, E, are related to the magnetic ﬁeld B by Amp`ere’s law and Ohm’s law:
+
+j
+
+=
+
+1 µ0
+
+∇
+
+×
+
+B
+
+(2a)
+
+E = −u × B
+
+(2b)
+
+2.2 Gasdynamic Conservation Form
+
+For one popular class of schemes, the equations are written in a form in which the gasdynamic terms are put in divergence form, and the electromagnetic terms in the momentum and energy equations are treated as source terms. This gives:
+
+∂ρ ∂t
+
++
+
+∇
+
+·
+
+(ρu)
+
+=
+
+0
+
+(3a)
+
+∂(ρu) ∂t
+
++
+
+∇
+
+·
+
+(ρuu
+
++
+
+pI)
+
+=
+
+1 µ0
+
+j
+
+×
+
+B
+
+(3b)
+
+∂B ∂t
+
++
+
+∇
+
+×
+
+E
+
+=
+
+0
+
+(3c)
+
+∂ Egd ∂t
+
++ ∇ · [u (Egd
+
++ p)]
+
+=
+
+1 µ0
+
+j
+
+·
+
+E
+
+(3d)
+
+AMR for Global MHD Simulations 249
+
+where I is the identity matrix and Egd is the gasdynamic total energy, given by
+
+Egd
+
+=
+
+1 2
+
+ρ
+
+u2
+
++
+
+γ
+
+1 −
+
+1
+
+p
+
+(4)
+
+This formulation is used in several popular magnetosphere codes [20,49], as well as in the publicly available Zeus code [63].
+
+2.3 Fully Conservative Form
+
+The fully conservative form of the equations is
+
+∂U + (∇ · F)T = 0 ,
+
+(5)
+
+∂t
+
+where U is the vector of conserved quantities and F is a ﬂux diad,
+
+
+
+
+
+ρ
+
+U = 
+
+ρu B
+
+
+
+(6a)
+
+Emhd
+
+
+F =  u
+
+ρu
+
+T
+
+ρuu +
+
+p
+
++
+
+1 2µ0
+
+B
+
+2
+
+I
+
+−
+
+1 µ0
+
+BB
+
+uB − Bu
+
+
+
+Emhd
+
++
+
+p
+
++
+
+1 2µ0
+
+B
+
+2
+
+−
+
+1 µ0
+
+(u
+
+·
+
+B) B
+
+(6b)
+
+where Emhd is the magnetohydrodynamic energy, given by
+
+Emhd
+
+=
+
+Egd
+
++
+
+1 2µ0
+
+B2
+
+(7)
+
+2.4 Symmetrizable Formulation
+
+Symmetrizable systems of conservation laws have been studied by Godunov [21] and Harten [30], among others. One property of the symmetrizable form of a system of conservation laws is that an added conservation law
+
+∂ (ρs) + ∂ (ρ s ux) + ∂ (ρ s uy) + ∂ (ρ s uz) = 0
+
+∂t
+
+∂x
+
+∂y
+
+∂z
+
+for the entropy s can be derived by a linear combintion of the system of equations.
+For the ideal MHD equations, as for the gasdynamic equations, the entropy is s = log(p/ργ). Another property is that the system is Galilean invariant; all
+waves in the system propagate at speeds u ± cw (for MHD, the possible values of cw are the Alfv´en, magnetofast and magentoslow speeds). Neither of these properties holds for the fully conservative form of the MHD equations.
+
+250 Tamas I. Gombosi et al.
+
+Godunov showed that the fully conservative form of the MHD equations (eq. 5) is not symmetrizable [21]. The symmetrizable form may be written as
+
+∂U ∂t
+
++
+
+(∇
+
+·
+
+F)T
+
+=
+
+Q
+
+,
+
+(8)
+
+where
+
+0
+
+Q = −∇ · B 
+
+1 µ0
+
+B
+
+u
+
+
+
+(9)
+
+1 µ0
+
+u
+
+·
+
+B
+
+Vinokur separately showed that eq. (8) can be derived starting from the primitive
+
+form, if no stipulation is made about ∇ · B in the derivation. Powell showed that
+
+this symmetrizable form can be used to derive a Roe-type approximate Riemann
+
+solver for solving the MHD equations in multiple dimensions [45].
+
+The MHD eigensystem arising from eq. (5) or eq. (8) leads to eight eigen-
+
+value/eigenvector pairs. The eigenvalues and associated eigenvectors correspond
+
+to an entropy wave, two Alfv´en waves, two magnetofast waves, two magne-
+
+toslow waves, and an eighth eigenvalue/eigenvector pair that depends on which
+
+form of the equations is being solved. This last wave (which describes the jump
+
+in the normal component of the magnetic ﬁeld at discontinuities) has a zero
+
+eigenvalue in the fully conservative case, and an eigenvalue equal to the normal
+
+component of the velocity, un, in the symmetrizable case. The expressions for the eigenvectors, and the scaling of the eigenvectors, are more intricate than in
+
+gasdynamics [59].
+
+We note that while eq.(5) is fully conservative, the symmetrizable formulation
+
+(given by eq. 8) is formally not fully conservative. Terms of order ∇ · B are
+
+added to what would otherwise be a divergence form. The danger of this is
+
+that shock jump conditions may not be correctly met, unless the added terms
+
+are small, and/or they alternate in sign in such a way that the errors are local,
+
+and in a global sense cancel in some way with neighboring terms. This downside,
+
+however, has to be weighed against the alternative; a system (i.e., the one without
+
+the source term) that, while conservative, is not Gallilean invariant, has a zero
+
+eigenvalue in the Jacobian matrix, and is not symmetrizable.
+
+3 Semi-relativistic Plasmas
+
+While the solar-wind speed remains non-relativistic in the solar system, the intrinsic magnetic ﬁelds of several planets in the solar system are high enough, and the density of the solar wind low enough, that the Alfv´en speed,
+
+B2
+
+VA = µ0ρ
+
+(10)
+
+can reach appreciable fractions of the speed of light. In the case of Jupiter, the Alfv´en speed in the vicinity of the poles is of order ten! Even Earth has a strong
+
+AMR for Global MHD Simulations 251
+enough intrinsic magnetic ﬁeld that the Alfv´en speed reaches twice the speed of light in Earth’s near-auroral regions.
+
+3.1 Limiting the Alfv´en Speed
+
+For these regions, solving the non-relativistic ideal MHD equations does not make sense. Having waves in the system propagating faster than the speed of light, besides being non-physical, causes a number of numerical diﬃculties. However, solving the fully relativistic MHD equations is overkill. What is called for is a semi-relativistic form of the equations, in which the ﬂow speed and acoustic speed are non-relativistic, but the Alfv´en speed can be relativistic. A derivation of these semi-relativistic equations from the fully relativistic equations is given in [25]; the ﬁnal result is presented here.
+The semi-relativistic ideal MHD equations are of the form
+
+∂Usr ∂t
+
++
+
+(∇
+
+·
+
+Fsr )T
+
+=
+
+0
+
+where the state vector, Usr, and the ﬂux diad, Fsr, are
+
+
+
+
+
+ρ
+
+Usr = 
+
+ρu
+
++
+
+1 c2
+
+SA
+
+B
+
+
+
+1 2
+
+ρu2
+
++
+
+1 γ−1
+
+p
+
++
+
+eA
+
+ Fsr = 
+
+ρu
+
+T
+
+ρuu + pI + PA uB−Bu
+
+
+
+1 2
+
+ρu2
+
++
+
+γ
+
+γ −1
+
+p
+
+u + SA
+
+(11) (12a) (12b)
+
+In the above,
+
+SA
+
+=
+
+1 µ0
+
+(E
+
+×
+
+B)
+
+(13a)
+
+eA
+
+=
+
+1 2µ0
+
+B2
+
++
+
+1 c2
+
+E
+
+2
+
+(13b)
+
+PA
+
+=
+
+eAI
+
+−
+
+1 µ0
+
+B
+
+B
+
+−
+
+1 µ0 c2
+
+E
+
+E
+
+(13c)
+
+are the Poynting vector, the electromagnetic energy density, and the electromagnetic pressure tensor, respectively. The electric ﬁeld E is related to the magnetic ﬁeld B by Ohm’s law, (eq. 2b).
+
+3.2 Lowering the Speed of Light
+This new system of equations has wave speeds that are limited by the speed of light; for strong magnetic ﬁelds, the modiﬁed Alfv´en speed (and the modiﬁed magnetofast speed) asymptote to c. The modiﬁed magnetoslow speed asymptotes
+
+252 Tamas I. Gombosi et al.
+
+to a, the acoustic speed. This property oﬀers the possibility of a rather tricky convergence-acceleration technique for explicit time-stepping schemes, ﬁrst suggested by Boris [11]; the wave speeds can be lowered, and the stable time-step thereby raised, by artiﬁcially lowering the value taken for the speed of light. This method is known as the “Boris correction.”
+The equations in Sect. 3.1 are valid in physical situations in which VA > c. A slight modiﬁcation yields a set of equations, the steady-state solutions of which are independent of the value taken for the speed of light. Deﬁning the true value of the speed of light to be c0, to distinguish it from the artiﬁcially lowered speed of light, c, the equations are:
+
+∂Usr ∂t
+
++ (∇ · Fsr)T
+
+=
+
+Qc0
+
+(14)
+
+where the state vector, Usr, and the ﬂux diad, Fsr, are as deﬁned above, and the new source term in the momentum equation is
+
+11 1
+
+Qc0 = µ0 c20 − c2 E∇ · E
+
+(15)
+
+An implementation of the semi-relativistic equations has been made in the
+
+BATSRUS code developed at the University of Michigan [46,25].
+
+4 Splitting the Magnetic Field
+
+For problems in which strong externally imposed magnetic ﬁelds are present, accuracy can be increased by solving for the deviation of the magnetic ﬁeld from this prescribed component. For instance, in magnetosphere-type simulations a strong dipole-like magnetic ﬁeld dominates the solution near the body. Solving for the deviation B1 from the embedded ﬁeld B0 is inherently more accurate than solving for the full magnetic ﬁeld vector B = B0 + B1. This approach was ﬁrst suggested by Ogino and Walker [42], applied to Godunov-type schemes by Tanaka [64] and later employed by our group [46]. Recently we generalized it to semi-relativistic MHD [25].
+The full magnetic ﬁeld vector B can be written as
+
+B = B0 + B1
+
+(16)
+
+where B0 is given analytically and thus ∇ · B0 = 0, while B1 is calculated by the numerical scheme. Note that B1 is not necessarily small relative to B0. We also introduce the non-relativistic current density j0 = (1/µ0)∇ × B0. The splitting is most important when the equations are solved in a (near) conservation form,
+since the total energy density can be completely dominated by the magnetic energy B20 /(2µ0). When the pressure is calculated from the total energy density, it can easily become negative, as we take diﬀerences of two huge numbers to
+obtain a small one. This problem can be mitigated by rewriting the energy
+equation in terms of the modiﬁed total energy density
+
+e1
+
+=
+
+Egd
+
++
+
+1 2µ0
+
+B12
+
++
+
+1 c2
+
+E2
+
+(17)
+
+AMR for Global MHD Simulations 253
+
+Note that the electric energy still contains contribution from B0, but that is reduced by the factor (1/c2). With these deﬁnitions the conservation form of the
+semi-relativistic MHD equations (eq. 11) can be rewritten as
+
+∂ρ ∂t
+
++
+
+∇
+
+·
+
+(ρu)
+
+=
+
+0
+
+(18a)
+
+∂ ∂t
+
+ρu
+
++
+
+1 c2
+
+SA
+
++ ∇ · [ρuu + Ip + PA,1] = j0 × B0
+
+(18b)
+
+∂B1 ∂t
+
++ ∇ · [uB − Bu]
+
+=
+
+−
+
+∂B0 ∂t
+
+(18c)
+
+∂e1 ∂t
+
++∇·
+
+u
+
+1 2
+
+ρu2
+
++
+
+γp γ−1
+
++
+
+1 µ0
+
+E
+
+×
+
+B1
+
+=
+
+−B1
+
+·
+
+∂B0 ∂t
+
++ E · j0
+
+(18d)
+
+where
+
+PA,1
+
+=
+
+1 µ0
+
+I
+
+1 2
+
+B21
+
++
+
+B1
+
+·
+
+B0
+
++
+
+1 2c2
+
+E2
+
+− B1B1 − B1B0 − B0B1
+
+(19)
+
+The splitting did not modify the continuity equation. In the momentum equation the dominant B02I and B0B0 terms are moved into the source term j0 ×B0, which can be calculated analytically, and it is identically zero if B0 is a force free ﬁeld. The induction equation is modiﬁed in a trivial way, by moving the time derivative
+of B0 to the right hand side. Again, this term can be calculated analytically, and in the case of a stationary B0 ﬁeld, it vanishes. The split energy equation is obtained after quite some algebra. Most of the dominant B02 and E × B0 terms are eliminated, but the remaining source terms B1 · ∂B0/∂t and E · j0 contain the numerically calculated B1 and u quantities. In case of a potential (j0 = 0) and/or stationary B0 ﬁeld one or both energy source terms can be eliminated.
+One may add the source terms involving ∇ · B to the split momentum, in-
+duction and/or energy equations (18b)−(18d) if the numerical scheme does not
+keep ∇ · B exactly zero. Of course, ∇ · B = ∇ · B1, since the analytic B0 ﬁeld must be divergence free by deﬁnition.
+
+5 Solution Techniques
+
+5.1 Finite-Volume Scheme
+
+The MHD equations are well suited for ﬁnite volume methods when the governing equations are integrated over a computational cell i, yielding
+
+dUi dt
+
+=
+
+−
+
+1 Vi
+
+F · nˆA −
+faces
+
+Qi Vi
+
+B · nˆA ,
+faces
+
+(20)
+
+where Vi is the volume of cell i, A is the surface area of the faces forming the
+
+computational cell, nˆ is the unit vector normal to the cell faces, Ui is the cell-
+
+averaged conserved solution vector, and Qi is given by
+
+0
+
+Qi = − 
+
+1 µ0
+
+Bi
+
+ui
+
+ .
+
+(21)
+
+1 µ0
+
+ui
+
+·
+
+Bi
+
+254 Tamas I. Gombosi et al.
+
+The numerical face ﬂuxes, F·nˆ, are deﬁned in terms of the left and right interface solution states, UL and UR, as follows
+
+F · nˆ = F (UL, UR, nˆ) ,
+
+(22)
+
+where UL and UR are the state vectors at the left and right sides of the interface.
+
+5.2 TVD-MUSCL
+Because the MHD equations are a system of hyperbolic conservation laws, many of the techniques that have been developed for the Euler equations can be applied relatively straightforwardly. In particular, the high-resolution ﬁnite-volume approach of van Leer [69] (i.e. approximate Riemann solver + limited interpolation scheme + multi-stage time-stepping scheme) is perfectly valid. The Rusanov/Lax-Friedrichs approximate Riemann solver can be applied directly; no knowledge of the eigensystem of the MHD equations is required other than the fastest wave speed in the system. A Roe-type scheme [58] can be constructed for non-relativistic MHD, but requires more work, because of the complexity of the eigensystem. In addition, an HLLE-type Riemann solver has been derived by Linde [39]; it is less dissipative than the Rusanov/Lax-Friedrichs scheme, but less computationally intensive than the Roe scheme. Whichever approximate Riemann solver is chosen to serve as the ﬂux function, standard interpolation schemes and limiters can be used to construct a ﬁnite-volume scheme.
+
+5.3 Pressure Positivity
+One added diﬃculty in solving the MHD equations is that the MHD energy has three components: internal, magnetic and kinetic. Thus, as in gasdynamics, ﬂows with substantially more kinetic energy than internal energy can lead to positivity problems when computing the pressure. Also, in contrast to gasdynamics, regions in which the magnetic ﬁeld is large can yield similar problems. Conservative and positive HLLE-type schemes for MHD have been described by Janhunen [32]. Another alternative, due to Balsara and Spicer [2], is to use a hybrid scheme: both the conservative energy equation and the entropy equations are solved. Close to shock waves the energy equation is used to obtain the correct weak solution, at other places the more robust and positive entropy equation can be used. A variant of this technique has been implemented in our code.
+
+6 Controlling ∇ · B
+Another way in which the numerical solution of the MHD equations diﬀers from that of the gasdynamic equations is the constraint that ∇ · B = 0. Enforcing this constraint numerically, particularly in shock-capturing codes, can be done in a number of ways, but each way has its particular strengths and weaknesses. Only a brief overview is given below; each of the schemes discussed below is explained more fully in the references cited, and To´th has published a numerical comparison of many of the approaches for a suite of test cases [66].
+
+AMR for Global MHD Simulations 255
+
+6.1 Projection Scheme
+
+Brackbill and Barnes [12] proposed using a Hodge-type projection to the magnetic ﬁeld. This approach leads to a Poisson equation that must be solved each time the projection takes place:
+
+∇2φ = ∇ · B Bprojected = B − ∇φ
+
+(23a) (23b)
+
+The resulting projected magnetic ﬁeld is divergence-free on a particular numerical stencil, to the level of error of the solution of the Poisson equation. While it is not immediately obvious that the use of the projection scheme in conjunction with the fully conservative form of the MHD equations gives the correct weak solutions, To´th has proven this to be the case [66]. The projection scheme has several advantages, including the ability to use standard software libraries for the Poisson solution, its relatively straightforward extension to general unstructured grids, and its robustness. It does, however, require solution of an elliptic equation at each projection step; this can be expensive, particularly on distributed-memory machines.
+
+6.2 8-Wave Scheme
+Powell [45,46] ﬁrst proposed an approach based on the symmetrizable form of the MHD equations (eq. 8). In this approach, the source term on the righthand side of eq. (8) is computed at each time step, and included in the update scheme. Discretizing this form of the equations leads to enhanced stability and accuracy, however, there is no stencil on which the divergence is identically zero. In most regions of the ﬂow, the divergence source term is small. However, near discontinuities, it is not guaranteed to be small. In essence, the inclusion of the source term changes what would be a zero eigenvalue of the system to one whose value is un, the component of velocity normal to the interface through which the ﬂux is computed. The scheme is typically referred to as the eight-wave scheme; the eighth wave corresponds to propagation of jumps in the normal component of the magnetic ﬁeld.
+The eight-wave scheme can be thought of as a hyperbolic or advective approach to controlling ∇ · B; symmetrizable form of the equations, eq. (8), are consistent with the passive advection of ∇ · B/ρ. The eight-wave scheme is computationally inexpensive, easy to add to an existing code, and quite robust. However, if there are regions in the ﬂow in which the ∇ · B source term (eq. 9) is large, the conservation errors can create problems.
+
+6.3 Constrained Transport
+Several approaches have been developed that have combined a Riemann-solverbased scheme with constrained-transport approach. The constrained-transport
+
+256 Tamas I. Gombosi et al.
+approach of Evans and Hawley [19] treated the MHD equations in the gasdynamics/electromagnetic-split form of eq. (3a) through (3d). The grid used was a staggered one, and the ∇ · B = 0 constraint was met identically, on a particular numerical stencil.
+Dai and Woodward [13] and Balsara and Spicer [1] modiﬁed the constrainedtransport approach by coupling a Riemann-solver-based scheme for the conservative form of the MHD equations (eq. 5), with a constrained-transport approach for the representation of the magnetic ﬁeld. In their formulations, this required two representations of the magnetic ﬁeld: a cell-centered one for the Godunov scheme, and a face-centered one to enforce the ∇ · B = 0 condition. To´th [66] subsequently showed that these formulations could be recast in terms of a single cell-centered representation for the magnetic ﬁeld, through a modiﬁcation to the ﬂux function used.
+Advantages of the conservative constrained-transport schemes include the fact that they are strictly conservative and that they meet the ∇ · B = 0 constraint to machine accuracy, on a particular stencil. The primary disadvantage of the constrained transport technique is the diﬃculty in extending them to general grids. To´th and Roe [67] and Balsara [3] made some progress on this front; they developed divergence-preserving prolongation and restriction operators, allowing the use of conservative constrained-transport schemes on h-reﬁned meshes. De Sterck generalized the constrained transport method to unstructured grids [15].
+However, it can also be shown that the conservative constrained-transport techniques lose their ∇ · B-preserving properties if diﬀerent cells are advanced at diﬀerent physical time rates [68]. This rules out the use of local time-stepping (see Sect. 9.1). Thus, while for unsteady calculations the cost of the conservative constrained-transport approach is comparable to the eight-wave scheme, for steady-state calculations (where one would typically use local time-stepping), the cost can be prohibitive.
+6.4 Diﬀusive Control
+Some of the most recent work on the ∇ · B = 0 constraint has been related to modifying the eight-wave approach by adding a source term proportional to the gradient of ∇ · B so that the the divergence satisﬁes an advection-diﬀusion equation, rather than a pure advection equation. Similar schemes have been used for the Maxwell equations [41]. This technique, referred to as diﬀusive control of ∇ · B, has the same advantages and disadvantages as the eight-wave approach. It is not strictly conservative, but appears to keep the level of ∇ · B lower than the eight-wave approach does. In other recent work by Dedner et al. [14], a generalized Lagrange-multiplier method has been proposed, incorporating the projection approach, the eight-wave approach, and the diﬀusive-control approach into a single framework. In addition, they also introduced a hyperbolic correction of ∇ · B errors.
+
+AMR for Global MHD Simulations 257
+7 Block-Based AMR on Cartesian Grids
+Adaptive mesh reﬁnement techniques that automatically adapt the computational grid to the solution of the governing PDEs can be very eﬀective in treating problems with disparate length scales. Methods of this type avoid underresolving the solution in regions deemed of interest (e.g., high-gradient regions) and, conversely, avoid overresolving the solution in other less interesting regions (lowgradient regions), thereby saving orders of magnitude in computing resources for many problems. For typical solar wind ﬂows, length scales can range from tens of kilometers in the near Earth region to the Earth-Sun distance (1.5 × 1011 m), and timescales can range from a few seconds near the Sun to the expansion time of the solar wind from the Sun to the Earth (∼105 s). The use of AMR is extremely beneﬁcial and almost a virtual necessity for solving problems with such disparate spatial and temporal scales.
+7.1 Adaptive Blocks
+Borrowing from previous work by Berger and coworkers [5,6,8,9,10] and Quirk [47,48], and keeping in mind the desire for high performance on massively parallel computer architectures, a relatively simple yet eﬀective block-based AMR technique has been developed and is used in conjunction with the ﬁnite-volume scheme described above. The method has some similarities with the block-based approaches described by Quirk and Hanebutte [48] and Berger and Saltzman [10]. Here the governing equations are integrated to obtain volume-averaged solution quantities within rectangular Cartesian computational cells. The computational cells are embedded in regular structured blocks of equal sized cells. The blocks are geometrically self-similar with dimensions ˜x × ˜y × ˜z and consist of Nx × Ny × Nz cells, where ˜x, ˜y, and ˜z are the nondimensional lengths of the sides of the rectangular blocks and Nx, Ny, and Nz are even, but not necessarily all equal, integers. Typically, blocks consisting of anywhere between 4 × 4 × 4 = 64 and 12 × 12 × 12 = 1728 cells are used (see Fig. 1). Solution data associated with each block are stored in standard indexed array data structures. It is therefore straightforward to obtain solution information from neighboring cells within a block.
+Computational grids are composed of many self-similar blocks. Although each block within a grid has the same data storage requirements, blocks may be of diﬀerent sizes in terms of the volume of physical space that they occupy. Starting with an initial mesh consisting of blocks of equal size (i.e., equal resolution), adaptation is accomplished by the dividing and coarsening of appropriate solution blocks. In regions requiring increased cell resolution, a “parent” block is reﬁned by dividing itself into eight “children” or “oﬀspring.” Each of the eight octants of a parent block becomes a new block having the same number of cells as the parent and thereby doubling the cell resolution in the region of interest. Conversely, in regions that are deemed overresolved, the reﬁnement process is reversed, and eight children are coarsened and coalesced into a single parent block.
+
+258 Tamas I. Gombosi et al.
+Fig. 1. (left) Self-similar blocks used in parallel block-based AMR scheme. (right) Selfsimilar blocks illustrating the double layer of ghost cells for both coarse and ﬁne blocks.
+In this way, the cell resolution is reduced by a factor of 2. Standard multigridtype restriction and prolongation operators are used to evaluate the solution on all blocks created by the coarsening and division processes, respectively.
+Two neighboring blocks, one of which has been reﬁned and one of which has not, are shown in Fig. 1. Any of the blocks shown in Fig. 1 can in turn be reﬁned, and so on, leading to successively ﬁner blocks. In the present method, mesh reﬁnement is constrained such that the cell resolution changes by only a factor of 2 between adjacent blocks and such that the minimum resolution is not less than that of the initial mesh.
+In order that the update scheme for a given iteration or time step can be applied directly to all blocks in an independent manner, some additional solution information is shared between adjacent blocks having common interfaces. This information is stored in an additional two layers of overlapping “ghost” cells associated with each block as shown in Fig. 1. At interfaces between blocks of equal resolution, these ghost cells are simply assigned the solution values associated with the appropriate interior cells of the adjacent blocks. At resolution changes, restriction and prolongation operators, similar to those used in block coarsening and division, are employed to evaluate the ghost cell solution values. After each stage of the multistage time-stepping algorithm, ghost cell values are reevaluated to reﬂect the updated solution values of neighboring blocks. With the AMR approach, additional interblock communication is also required at interfaces with resolution changes to strictly enforce the ﬂux conservation properties of the ﬁnite-volume scheme [5,6,8]. In particular, the interface ﬂuxes computed on more reﬁned blocks are used to correct the interface ﬂuxes computed on coarser neighboring blocks so as to ensure that the ﬂuxes are conserved across block interfaces.
+
+AMR for Global MHD Simulations 259
+7.2 Data Structure
+A hierarchical tree-like data structure with multiple “roots,” multiple “trees,” and additional interconnects between the “leaves” of the trees is used to keep track of mesh reﬁnement and the connectivity between solution blocks. This interconnected “forest” data structure is depicted in Fig. 2. The blocks of the initial mesh are the roots of the forest, which are stored in an indexed array data structure. Associated with each root is a separate “octree” data structure that contains all of the blocks making up the leaves of the tree which were created from the original parent blocks during mesh reﬁnement. Each grid block corresponds to a node of the tree. Traversal of the multitree structure by recursively visiting the parents and children of solution blocks can be used to determine block connectivity. However, in order to reduce overhead associated with accessing solution information from adjacent blocks, the neighbors of each block are computed and stored directly, providing interconnects between blocks in the hierarchical data structure that are neighbors in physical space.
+One of the advantages of the preceding hierarchical data structure is that it is relatively easy to carry out local mesh reﬁnement at anytime during a calculation. If, at some point in a computation, a particular region of the ﬂow is
+
+A
+
+D
+
+B
+
+C
+
+Refinement Level 3
+2
+B 1
+A 0
+
+Octree
+
+D
+
+C
+
+Multiple Roots
+Fig. 2. Solution blocks of a computational mesh with three reﬁnement levels originating from two initial blocks and the associated hierarchical multiroot octree data structure. Interconnects to neighbors are not shown.
+
+260 Tamas I. Gombosi et al.
+deemed to be suﬃciently interesting, better resolution of that region can be attained by reﬁning the solution blocks in that region, without aﬀecting the grid structure in other regions of the ﬂow. Reducing the grid resolution in a region is equally easy. There is no need for completely remeshing the entire grid and recalculating block connectivity every time a mesh reﬁnement is performed. Although other approaches are possible, in BATSRUS the coarsening and division of blocks are directed using multiple physics-based reﬁnement criteria [43,44,46]. In particular, decisions as to when to reﬁne or coarsen blocks are made based on comparisons of the maximum values of various local ﬂow quantities determined in each block to speciﬁed reﬁnement threshold values. Note that the reﬁnement thresholds are dynamically adjusted so as to exercise some control over the total numbers of blocks, and hence cells, used in a calculation. We also note that other reﬁnement criteria can also be used, such as a combination of estimated numerical errors.
+An example illustrating the adaptation of the block-based Cartesian mesh to an evolving solution is shown in Fig. 3, which shows the grid at four diﬀerent instances in time for an unsteady calculation and depicts both the solution blocks (thick lines) and computational cells (thin lines) of the evolving grid. As noted
+
+20
+
+20
+
+15
+
+15
+
+10
+
+10
+
+5
+
+5
+
+z / Rs
+
+z / Rs
+
+0
+
+0
+
+-5
+
+-5
+
+-10
+
+-10
+
+-15
+
+-15
+
+-20
+
+-20
+
+-10
+
+0
+
+10 x / Rs 20
+
+30
+
+40
+
+-10
+
+0
+
+10 x / Rs 20
+
+30
+
+40
+
+20
+
+20
+
+15
+
+15
+
+10
+
+10
+
+5
+
+5
+
+z / Rs
+
+z / Rs
+
+0
+
+0
+
+-5
+
+-5
+
+-10
+
+-10
+
+-15
+
+-15
+
+-20
+
+-20
+
+-10
+
+0
+
+10 x / Rs 20
+
+30
+
+40
+
+-10
+
+0
+
+10 x / Rs 20
+
+30
+
+40
+
+Fig. 3. Evolution of a computational mesh illustrating grid adaptation in response to changes in the numerical solution. Cross sectional cuts through a 3-D grid are shown for a solar wind calculation at four diﬀerent instances in time. The computational cells are not shown for the smaller blocks.
+
+AMR for Global MHD Simulations 261
+above, each level of reﬁnement in the grid introduces cells that are smaller by a factor of 2 in each dimension from those one level higher in the grid. Typically, calculations may have 10-15 levels of reﬁnement; some calculations may have more than 20 levels of reﬁnement. In the case of 20 levels of reﬁnement, the ﬁnest cells on the mesh are more than one million times (220) smaller in each dimension than the coarsest cells. The block-based AMR approach described above has many similarities to the cell-based method proposed by De Zeeuw and Powell [16]. Although the block-based approach is somewhat less ﬂexible and incurs some ineﬃciencies in solution resolution as compared to a cell-based approach, the block-based method oﬀers many advantages over a cell-based technique when parallel implementations of the algorithms are considered and performance issues are taken into account. As will be discussed below, the block adaptation readily enables domain decomposition and eﬀective load balancing and leads to low communication overhead between solution cells within the same block.
+8 Parallel Implementation
+The parallel block-based AMR solver was designed from the ground up with a view to achieving very high performance on massively parallel architectures. The underlying upwind ﬁnite-volume solution algorithm, with explicit time stepping, has a very compact stencil and is therefore highly local in nature. The hierarchical data structure and self-similar blocks make domain decomposition of the problem almost trivial and readily enable good load-balancing, a crucial element for truly scalable computing. A natural load balancing is accomplished by simply distributing the blocks equally amongst the processors. Additional optimization is achieved by ordering the blocks using the Peano-Hilbert space ﬁlling curve to minimize inter-processor communication. The self-similar nature of the solution blocks also means that serial performance enhancements apply to all blocks and that ﬁne grain parallelization of the algorithm is possible. The parallel implementation of the algorithm has been carried out to such an extent, that even the grid adaptation is performed in parallel.
+Other features of the parallel implementation include the use of FORTRAN 90 as the programming language and the message passing interface (MPI) library for performing the interprocessor communication. Use of these standards greatly enhances the portability of the code and leads to very good serial and parallel performance. The message passing is performed in an asynchronous fashion with gathered wait states and message consolidation.
+Implementation of the algorithm has been carried out on Cray T3E supercomputers, SGI and Sun workstations, on Beowulf type PC clusters, on SGI shared-memory machines, on a Cray T3D, and on several IBM SP2s. BATSRUS nearly perfectly scales to 1,500 processors and a sustained speed of 342 GFlops has been attained on a Cray T3E-1200 using 1,490 PEs. For each target architecture, simple single-processor measurements are used to set the size of the adaptive blocks. The scaling of BATSRUS on various architectures is shown in Fig. 4.
+
+262 Tamas I. Gombosi et al.
+BATS-R-US Code Speedup on Different Architectures
+
+SGI Origin2000 (300 MHz R12k)
+
+300
+
+Cray T3E-1200 (600MHz)
+
+200
+
+100
+
+Cray T3E-600 (300MHz)
+
+0
+
+256
+
+512
+
+768
+
+1024
+
+1280
+
+1536
+
+50
+
+Parallel Performance (GFLOPS)
+
+SGI Origin2000 (300 MHz R12k)
+
+40
+
+30 20 10
+
+IBM
+
+SGI Origin2000 (250MHz SP2 (166 MHz)
+
+R10k) CCraryayT3TE3-E1-260000(6(30000MMHHzz) )
+
+Pentium Pro (200MHz)
+
+0
+
+32
+
+64
+
+96
+
+128
+
+Number of Processors
+
+Fig. 4. Parallel speedup of BATSRUS on various architectures. Black dashed lines represent perfect scaling from single node performance.
+
+9 Time to Solution
+Since a major goal of global space plasma simulations is the creation of a predictive space weather tool, wallclock time to solution is a paramount issue. In particular, a predictive model must run substantially faster than real time. From the starting point – the observation of a solar event, to the ending point – postprocessing the data from a simulation based on the initial conditions derived from the observations, a simulation must be accomplished rapidly to be of use.
+The main limitation of the present generation of global space plasma codes is the explicit time stepping algorithm. Explicit time steps are limited by the Courant-Friedrichs-Lewy (CFL) condition, which essentially ensures that no information travels more than a cell size during a time step. This condition rep-
+
+AMR for Global MHD Simulations 263
+resents a non-linear penalty for highly resolved calculations, since ﬁner grid resolution not only results in more computational cells, but also in smaller time steps.
+In global MHD simulations of space plasmas the CFL condition is controlled by two factors: (1) the smallest cell size in the simulation, and (2) the fast magnetosonic speed in high magnetic ﬁeld, low plasma density regions. In a typical magnetosphere simulation with a smallest cell size of about 0.25 RE the CFL condition limits the time step to about 10−2 s. This small step is primarily controlled by the high fast magnetosonic speed (due to the high Alfv´en speed) in the near-Earth region.
+
+9.1 Local Time Stepping
+
+In the local time stepping approach the time step in each cell of the computational domain is determined by the local stability condition. The ﬂow variables in cell i are advanced from time step n to time step n + 1 as
+
+Uin+1 = Uin + ∆tni (−∇ · F + Q)i
+
+(24)
+
+where the local time step is determined from the stability condition. Here U represents the conservative state vector, F is the ﬂux diad and Q is the source term. In case of ideal MHD, the time step is determined by the CFL condition
+
+∆tni
+
+=
+
+C
+
+∆xi cfi ast + |ui|
+
+(25)
+
+where C < 1 is the Courant number and cfi ast is the fast speed in cell i. In more than 1D the sum of the speeds in all directions should be taken in the denominator.
+Note that this technique is diﬀerent from “sub-cycling” when cells are advanced at the same physical time rate, but the number of time-steps taken by individual cells varies. For example, in adaptive grids it is customary to set the time-step to be inversely proportional to the size of the cell, so that a ﬁner cell typically makes two half time-steps while the coarser cell makes only one full time-step. In this method the time-steps are still determined by a global stability condition as opposed to local time-stepping where time-steps are set on a cell-by-cell basis.
+It is easy to see from (24) that the steady state solution, if it exists, satisﬁes
+
+0 = (−∇ · F + Q)i
+
+(26)
+
+since in steady state Uin+1 = Uin and we can simplify with the time step ∆tni which is always a positive number. Consequently the steady state solution is independent of the time step, and it does not matter if it is local or global.
+The above proof assumes that the steady state is fully determined by the boundary conditions. This is a non-trivial assumption, because the MHD equations are non-linear, and there is no mathematical theorem that would guarantee
+
+264 Tamas I. Gombosi et al.
+the existance and uniquness of the steady state solution. In practice, magnetosphere simulations seem to converge to the same solution independent of the initial conditions or the time integration scheme.
+The applicability of the local time-stepping technique in a given scheme primarily depends on the evolution of ∇ · B. In some methods even if ∇ · B = 0 initially, the numerical transients towards steady state will destroy this property if the local time stepping is applied. For instance, it can be shown that the constrained transport scheme cannot be combined with local time stepping.
+9.2 Implicit Time-Stepping
+In BATSRUS we have a number of time stepping algorithms implemented. The simplest and least expensive scheme is a multistage explicit time stepping, for which the time step is limited by the CFL stability condition. We have also implemented an unconditionally stable fully implicit time stepping scheme [65,36]. The second order implicit time discretization (BDF2) requires the solution of a non-linear system of equations for all the ﬂow variables. This can be achived by the Newton-Krylov-Schwarz approach: a Newton iteration is applied to the nonlinear equations; a parallel Krylov type iterative scheme is used to solve the linear systems; the convergence of the Krylov solver is accelerated with a Schwarz type preconditioning. In our implementation the Krylov solver is BiCGSTAB, and a modiﬁed block incomplete LU (MBILU) preconditioner is applied on a block by block basis. Since every block has a simple Cartesian geometry, the preconditioner can be implemented very eﬃciently. The resulting implicit scheme requires about 20-30 times more CPU time per time step than the explicit method, but the physical time step can be 1,000 to 10,000 times larger. This implicit algorithm has a very good parallel scaling due to the Krylov scheme and the block by block application of the preconditioner.
+In BATSRUS, we can combine explicit and implicit time stepping. Magnetosphere simulations include large volumes where the Alfv´en speed is quite low (tens of km/s) and the local CFL number allows large explicit time steps (tens of seconds to several minutes). In these regions implicit time stepping is a waste of computational resources. Since the parallel implicit technique we use is fundamentally block based we only treat those blocks implicitly where the CFL condition would limit the explicit time step to less than the selected time step (typically ∼ 10 s). Needless to say, this combined explicit-implicit time stepping represents more computational challenges (such as separate load balancing of explicit and implicit blocks). Overall, this solution seems to be a very promising option, but other potential avenues need to explored before one makes a ﬁnal decision about the most eﬃcient time-stepping algorithm for space MHD simulations. These questions will be discussed in an upcoming paper [68].
+10 Ionosphere–Magnetosphere Coupling
+The state of the magnetosphere is controlled by conditions in the solar wind and in the ionosphere. Solar wind conditions are imposed as boundary conditions at
+
+AMR for Global MHD Simulations 265
+the outer boundaries of the simulation domain. Even though the numerical procedures used to impose these boundary conditions can be quite sophisticated, the distant solar wind (in all directions) is assumed to be unaﬀected by the presence of the magnetosphere. This assumption makes the outer boundary conditions relatively simple (at least in principle).
+The ionosphere–magnetosphere (I-M) coupling, on the other hand, is a highly non-linear two-way interaction which strongly aﬀects the large-scale behavior of both domains. Self-consistent global magnetosphere models include some kind of dynamic ionosphere model which interacts with the magnetosphere and provides ionospheric boundary conditions actively responding to changing magnetospheric conditions.
+While mass exchange between the ionosphere and the magnetosphere is undoubtedly of major importance, the dominant component of I-M coupling is a system of ﬁeld-aligned currents (FACs) connecting the magnetosphere and the high-latitude ionosphere. These FACs carry momentum (electromagnetic stress) and energy (Poynting ﬂux) along stretched magnetic ﬁeld lines connecting the ionosphere and the magnetosphere. Self-consistent global magnetosphere models need to describe the generation and closure of these FACs through appropriate boundary conditions and embedded non-MHD models.
+The most important current systems coupling the ionosphere and the magnetosphere are the so called Region 1 and Region 2 currents. Region 1 FACs, ﬂowing near the open-closed magnetic ﬁeld boundary, connect the magnetopause current to the ionosphere where they close through ionospheric Pedersen currents. Region 2 FACs ﬂow along closed magnetic ﬁeld lines and they connect to the ionosphere at lower magnetic latitudes than the Region 1 current. Region 2 currents are generated in the inner part of the plasma sheet and in the ring current region.
+The generation of Region 2 currents can not be adequately described by an MHD model alone. The main physical process leading to the generation of these currents is the gradient and curvature drifts of hot magnetospheric particles. Since single-ﬂuid MHD represents all particles with a single bulk velocity (obtained as a mass weighted average), it provides an inaccurate representation of the important drift processes (in reality electrons and ions drift in opposite directions, and ions with diﬀerent energy and equatorial pitch-angle have very diﬀerent drift velocities). As a result of this limitation of the single-ﬂuid treatment, one needs to embed an accurate drift model into the global MHD code in order to get physically consistent Region 2 currents.
+BATSRUS has been coupled to two ionosphere models to provide ionospheric current closure (the user can choose from the two available models) and a drift model to account for the generation and closure of FACs.
+10.1 Electrostatic Ionosphere
+The simplest I-M coupling procedure involves a height integrated electrostatic ionosphere model. In this case the MHD code has an inner boundary at a radius of RB (for explicit time-stepping we typically use RB = 2.5 RE). At this inner
+
+266 Tamas I. Gombosi et al.
+
+boundary, the plasma density, temperature, and velocity are speciﬁed. In addition, the magnetic ﬁeld is allowed to ﬂoat (zero gradient of the normal component), so currents can ﬂow along the boundary. The velocities which are imposed on the boundary are calculated in the ionosphere in a three step process:
+1. ﬁeld aligned currents are calculated from the curl of the magnetic ﬁeld at RB + 1 RE, and these are mapped down to the ionosphere,
+2. a height-integrated ionospheric conductance pattern is generated and the ionospheric potential is calculated from the equation:
+
+jR (RE) = [∇⊥ · (Σ · ∇ψ)⊥]R=RE
+
+(27)
+
+which describes the relationship between the height integrated conductance tensor, Σ, the ionospheric potential, ψ, and the radial component of the current, jR; and ﬁnally 3. the electric potential is mapped out along ﬁeld lines to the inner boundary at RB where electric ﬁelds and velocities are generated. The corotation velocity ﬁeld is added to the ionosphere generated velocity ﬁeld.
+
+The details of our conductance model as well as some simulations results using this method are given in [52,53,55].
+
+10.2 BATSRUS–TIEGCM Coupling [54]
+
+As our physical understanding of the magnetosphere – ionosphere system in-
+
+creases, our need to have more accurate models of the coupled system also grows.
+
+Recently we developed a coupled model of the magnetosphere – ionosphere –
+
+thermosphere system. The model is based on BATSRUS [46] and the thermo-
+
+sphere – ionosphere – electrodynamics general circulation model (TIEGCM) [50]
+
+which has been used in numerous studies of the ionosphere - thermosphere sys-
+
+tem.
+
+The TIEGCM solves for the thermospheric and ionospheric composition,
+
+temperature, and winds. It solves for mass mixing ratios of the neutral major
+
+species O2, N2, and O using full transport and chemistry, while the minor species
+
+N(2D), N(4S), NO, He, and Ar are obtained by assuming that they are in local
+
+equalibrium with the ered, while the species
+
+major species. For the ions, the N+2 , NO+, and N are considered
+
+O+2 dynamics are considto be in local equalibrium
+
+with O+2 . The TIEGCM is a full 3-dimensional code with 5◦ latitude by 5◦ longi-
+
+tude by 0.5 scale height altitude cells. There are 29 pressure levels in the model
+
+such that the simulation spans from ∼ 95 km to 650 km in altitude.
+
+The electrodynamics within the TIEGCM focuses on the middle and lower
+
+latitudes, with a self consistent calculation of the interaction between the neutral
+
+winds, currents, and electric ﬁelds. At the high latitudes, an external electric ﬁeld
+
+is assumed, and the neutral winds do not aﬀect this ﬁeld (i.e. there is no ion
+
+drag). At all latitudes, the neutral winds are coupled with ion ﬂow through ion
+
+drag terms. A transition region exists where the model linearly scales the electric
+
+ﬁeld between the high and middle latitude regions. The electrodynamics of the
+
+AMR for Global MHD Simulations 267
+TIEGCM are solved on a magnetic apex grid based on the 1985 International Geomagnetic Reference Field (IGRF) [51].
+The main auroral electron precipitation is speciﬁed at high latitudes using an external model [57]. In addition to the main oval, a polar cap precipitation is speciﬁed as well as a spatially limited cusp precipitation. These precipitation patterns are used to generate 3-d ionization rates, and therefore strongly control the electron density at high latitudes.
+The ionosphere is coupled to the MHD code in a similar manner as in the case of an electrostatic ionosphere (see section 10.1). The ﬁeld aligned currents at 3.5 RE are derived from ∇ × B. These currents are mapped down to the ionosphere using the intrinsic magnetic ﬁeld within the code, and the currents are scaled by the ratio of the magnetic ﬁeld in the ionosphere to that in the magnetosphere. The currents are combined with a conductance pattern to produce a potential pattern, which is mapped up to the magnetospheric inner boundary at 2.5 RE. Corotation velocities are determined and added to the convection velocities derived from the potential pattern. These velocities are applied as the inner boundary condition on the MHD solution.
+BATSRUS provides the ionospheric potential pattern and electron precipitation pattern for TIEGCM. The electon precipitation is used to determine the nightside ionization in calculating the electron density. The electron density, combined with the densities of diﬀerent neutral consituents, is subsequently used to determine the densities of diﬀerent ion species. Collision rates between ions and neutrals are then calculated. These collision rates specify the acceleration of the neutral wind and the diﬀerent conductivities.
+In the low- and mid-latitude region, the neutral winds drive the dynamo calculation. This is done by taking a ﬁeld-line integral of the neutral wind velocity multiplied by the conductivity. The divergence of this quantity is considered to be a quasi-neutral wind ﬁeld aligned current, and is used for the calculation of the low- and mid-latitude dynamo in the TIEGCM. This quantity is also fed back into the MHD potential solver, where it is subtracted from the magnetospheric FACs. The neutral wind driven ﬁeld aligned currents above 60◦ are considered in the calculation of the MHD potential, while those below are ignored.
+The conductances are not completely consistent between the two models. The reasoning for not using the TIEGCM calculated conductances in the MHD model is that the grid size in the TIEGCM (5◦ latitude by 5◦ longitude) is too large. The auroral zone is ill represented by the TIEGCM. Because the particle precipitation is calculated by the MHD model, and the conductances derived from the Robinson formula [56] closely match those derived by models such as the TIEGCM, it was decided that it is better to use the high resolution conductances from the MHD model than the low resolution conductances from the TIEGCM. Once the resolution of the TIEGCM is increased, a more self-consitent coupling can occur.
+The BATSRUS–TIEGCM coupling has been fully implemented and tested the ﬁrst results obtained with the coupled model have also been reported [54].
+
+268 Tamas I. Gombosi et al.
+10.3 BATSRUS–RCM Coupling [17]
+The Rice Convection Model (RCM) calculates the dynamic behavior of the particles and the electric ﬁelds and currents in the Earth’s inner magnetosphere (the region of closed magnetic lines). The physics of this region is complicated, because it contains overlapping particle distributions with a wide range of energies and characteristics. These diﬀerent coexisting particle populations cannot be treated as a single ﬂuid, because they all move diﬀerently. The RCM represents the particles in terms of 30-200 separate ﬂuids. Its equations and numerical methods have been speciﬁcally designed for accurate treatment of the inner magnetosphere [31,29,71,18], including the ﬂow of electric currents along magnetic ﬁeld lines to and from the conducting ionosphere. The RCM does its primary calculations on a 2D grid on a spherical shell in the ionosphere. Values in the magnetosphere are computed by mapping out along magnetic ﬁeld lines. The ionospheric grid is ﬁne, typically about 0.5 degrees latitude in the auroral zone. The RCM computes these currents and the associated electric ﬁelds self-consistently.
+The essential limitation of the RCM is that it only describes the inner magnetosphere: one needs to specify its connections to the outer magnetosphere and to the ionosphere and thermosphere through externally speciﬁed magnetic ﬁeld models and particle source/sink boundary conditions. This can be done by coupling RCM to a global MHD code which dynamically provides these inputs and uses the results of the drift physics represented by RCM to improve the MHD solution.
+RCM calculates the Region 2 ﬁeld-aligned currents using the Vasyliunas formula [70]. This formula (which is also valid in the MHD limit) relates the ﬁeld aligned current in slow ﬂow regions to the cross product of the pressure gradient and the gradient of the magnetic ﬂux tube volume. The pressure is calculated as a sum of partial pressures of the large number of “species,” while the ﬂux tube volume is calculated by integrating the ﬂux tube cross secton (∝ 1/B) along magnetic ﬁeld lines. In dynamic calculations (when the magnetic ﬁeld is changing with time) the ﬂux tube volume calculation is the most time consuming component of the entire simulation.
+As a ﬁrst step in coupling BATSRUS and RCM the Rice Convection Model was reformulated and a modern advection module was incorporated. Speciﬁcally the following changes were made:
+1. Make the RCM code and its data structure compatible with BATSRUS. 2. Introduce MPI parallelization into RCM. 3. Introduce a new numerical scheme for solving the advection equations to
+achieve second-order accuracy and to handle time-dependent moving boundary conditions. 4. Improve other numerical algorithms (e.g., Birkeland current calculation.)
+These changes in RCM already resulted in new physics, since the updated RCM code has more powerful capabilities than the original [60].
+
+AMR for Global MHD Simulations 269
+In the second step we introduced full, two-way coupling between BATSRUS and RCM. BATSRUS provides to RCM the full near-earth magnetic ﬁeld (all closed ﬁeld lines) as well as the ﬂux-tube volume for the magnetic ﬁeld line originating at each RCM grid point in the ionosphere. In addition, BATSRUS also provides the high-latitude ionospheric electric potential distribution and the particle sources at the outer boundaries at RCM. In return, RCM provides the hot plasma pressure averywhere in the closed ﬁeld line region, which is used to to “nudge” the MHD pressure towards the RCM pressure (this is done through a source term).
+The most computationally challenging aspect of this two-way coupling procedure is mapping between the 2D RCM and 3D MHD grids and the related calculation of the ﬂux-tube volume for the RCM grid. This calculation is extremely time consuming if one uses standard ﬁeld-line tracing routines and methods (in case of a reasonably reﬁned grid this step might take hours of CPU time). We developed a block-based parallel ray-tracing algorithm which is about 104 times faster than the “brute force” method using a modest number of processors (about 32) [17]. This new algorithm makes the frequent two-way information exchange possible between BATSRUS and RCM.
+The self-consistently coupled BATSRUS–RCM code has been recently tested and the results are being published [17]. The coupled code is capable describing the I-M coupling in a self-consistent manner, including the Region 1 and Region 2 FAC systems.
+11 Applications
+BATSRUS has been extensively applied to global numerical simulations of the inner heliosphere including CME propagation [24,26], the coupled terrestrial magnetosphere-ionosphere [23,61,62], and the interaction of the heliosphere with the interstellar medium [38]. In addition, it has also been successfully applied to a host of planetary problems ranging from comets [22,27], to Mercury [34], Venus [4], Mars [40], Saturn [28], to planetary satellites [33,35].
+In this section we brieﬂy summarize our most ambitious space weather simulation so far, in which we used BATSRUS to simulate an entire space weather event, from its generation at the Sun through the formation and evolution of a CME, to its interaction with the magnetosphere-ionosphere system [24,26]. In this simulation we resolved multiple spatial and temporal scales and took advantage of frequent grid reﬁnements and coarsening to follow the CME through interplanetary space. The total number of cells varied between 800,000 and 2 million as the solution evolved. The simulation used 13 levels of grid reﬁnement. The simulation ran faster than real time on a 512 node Cray T3E-600 supercomputer. This simulation demonstrates that we have the necessary experience to undertake the research outlined in this proposal.
+Here we only show a few highlights of this simulation. The detailed results have been published in JGR-Space Physics [26].
+
+270 Tamas I. Gombosi et al.
+Fig. 5. 3D representation of the steady-state solar wind solution. The shading represents log |B| in the (x, z)- and (x, y)-planes. The thin black lines are the computational mesh and the thick solid lines are magnetic ﬁeld lines: grey denotes the last closed ﬁeld lines, black is open ﬁeld lines expanding to the interplanetary medium just above the heliospheric current sheet, and ﬁnally, white lines show open magnetic ﬁeld lines in the (y, z)-plane.
+A steady state solar wind was obtained in the corotating frame for a tilted rotating Sun. The intrinsic magnetic ﬁeld was approximated by the superposition of a tilted (with respect to the rotation axis) octupole and dipole. Figure 5 depicts a three-dimensional representation of the predicted pre-event steady-state solar wind solution in the vicinity of the Sun. The narrow dark region shown in Fig. 5, which also coincides with regions of higher mesh reﬁnement, corresponds to the beginning of the heliospheric current sheet. Due to the combined eﬀects of magnetic tilt and solar rotation, the current sheet is tilted with respect to the rotation axis, and deformed, and resembles a “ballerina skirt.”
+Figure 6 shows a 3D representation of the magnetic ﬁeld conﬁguration 9 hours after the initiation of the CME. The density enhancement ﬁrst leads to the “ﬁlling” of the closed magnetic ﬁeld lines with additional plasma and subsequent expansion of the closed ﬁeld line region. One can see that the closed ﬁeld lines become greatly stretched by the outward moving plasma. This is due to the fact that the plasma β (the ratio of the kinetic and magnetic pressures) is quite large and the magnetic ﬁeld is “carried” by the outward moving plasma. We also note the decrease of magnetic ﬁeld strength behind the leading edge of the outward moving disturbance.
+The dynamic response of the global magnetosphere to the changing solar wind conditions produced by the density-driven CME was also computed as part of this simulation. The global magnetospheric conﬁguration for quiet-time southward IMF conditions is shown in Fig. 7. During the event the solar wind velocity remained nearly radial with the speed gradually decreasing from about
+
+AMR for Global MHD Simulations 271
+Fig. 6. 3D representation of magnetic ﬁeld lines 9 hours after the initiation of a CME. Grayscale represents log(B), white lines are open magnetic ﬁeld lines, grey lines represent magnetic ﬁeld lines with both ends connected to the Sun. 550 km/s to about 450 km/s. The solar wind dynamic pressure increased from its pre-CME value of 2.25 nP (at t = 72 hrs) to 4.6 nP at the peak of the event.
+The ionospheric potential and convection patterns also change during the CME event. The ionospheric convection shows the two-cell pattern of ionospheric convection typical for southward-type IMF conditions. The convection pattern is also “twisted” due to the presence of a non-zero IMF By component. The most important change in the ionosphere is the doubling of the cross-cap potential drop from 30 kV at 70.5h to 60 kV some 27 hours later.
+Fig. 7. 3D representation of the last closed terrestrial ﬁeld lines for southward IMF conditions. White ﬁeld lines form the dayside magnetopause, while black ones map to the magnetotail. The greyscale represents normalized thermal pressure.
+
+272 Tamas I. Gombosi et al.
+Overall, this simulated space weather event was not very geoeﬀective. It is expected that we will be able to generate more geoeﬀective CMEs with the help of more realistic explosive event generation modules. This simulation, however, demonstrates the present capabilities of BATSRUS.
+Acknowledgements
+This work was supported by DoD MURI grant F49620-01-1-0359, NSF KDI grant NSF ATM-9980078, NSF CISE grant ACI-9876943, and NASA AISRP grant NAG5-9406. G. To´th is partially supported by the Education Ministry of Hungary (grant No. FKFP-0242-2000). We also acknowledge the contributions of the developers of TIEGCM and RCM to the coupled magnetosphere model. In particular, the contributions of Ray Roble, Stanislav Sazykin and Richard Wolf are acknowledged and appreciated.
+References
+1. D. S. Balsara and D. S. Spicer: J. Comput. Phys., 149, 270 (1999) 2. D. S. Balsara and D. S. Spicer: J. Comput. Phys., 148, 133 (1999) 3. D. Balsara: J. Comput. Phys., 174, 614 (2001) 4. R. Bauske, A. F. Nagy, T. I. Gombosi, D. L. De Zeeuw, K. G. Powell and J. G.
+Luhmann: J. Geophys. Res., 103, 23,625 (1998) 5. M. J. Berger: ’Adaptive Mesh Reﬁnement for Hyperbolic Partial Diﬀerential Equa-
+tions’. Interanl report at Stanford Univ., Stanford, Calif., 1982 6. M. J. Berger: J. Comput. Phys., 53, 484 (1984) 7. M. J. Berger and A. Jameson: AIAA Journal, 32, 561 (1985) 8. M. J. Berger and P. Colella: J. Comput. Phys., 82, 67 (1989) 9. M. J. Berger and R. J. LeVeque: ’An adaptive Cartesian mesh algorithm for the
+Euler equations in arbitrary geometries’. In Proc. 9th AIAA Computational Fluid Dynamics Conference (AIAA Paper No. 89-1930, Buﬀalo, NY 1989) 10. M. J. Berger and S. Saltzman: “Appl. Numer. Math.”, 14, 239 (1994) 11. Boris, J. P.: ’A physically motivated solution of the Alfv´en problem’. Internal report at Naval Research Laboratory, NRL Memorandum Report 2167, Washington, D.C., 1970 12. J.U. Brackbill and D.C. Barnes: J. Comput. Phys., 35, 426 (1980) 13. W. Dai and P. R. Woodward: J. Comput. Phys., 142, 331 (1998) 14. Dedner, A., F. Kemm, D. Kr¨oner, C.-D. Munz, T. Schnitzer and M. Wesenberg: J. Comput. Phys., 175, 645 (2002) 15. H. De Sterck: ’Multi-Dimensional Upwind Constrained Transport on Unstructured Grids for ’Shallow Water’ Magnetohydrodynamics’. In Proceedings of AIAA 15th Computational Dynamics Conference, (AIAA-2001-2623, 2001) 16. D. L. De Zeeuw and K. G. Powell: J. Comput. Phys., 104, 55 (1993) 17. D. L. De Zeeuw, S. Sazykin, A. J. Ridley, G. T´oth, T. I. Gombosi, K. G. Powell and R. A. Wolf: J. Geophys. Res., (2002) “in preparation”, 18. Erickson, G. M., R. W. Spiro and R. A. Wolf: J. Geophys. Res., 96, 1633 (1991) 19. C. R. Evans and J. F. Hawley: Astrophys. Journ., 332, 659 (1988) 20. Fedder, J. A., S. P. Slinker, J. G. Lyon and R. D. Elphinstone: J. Geophys. Res., 100, 19,083 (1995)
+
+AMR for Global MHD Simulations 273
+21. S. K. Godunov: ’Symmetric form of the equations of magnetohydrodynamics’ (in Russian). In: Numerical Methods for Mechanics of Continuum Medium, “Siberian Branch of USSR Acad. of Sci.”, 1, 26, Novosibirsk, 1972
+22. T. I. Gombosi, D. L. De Zeeuw, R. M. H¨aberli and K. G. Powell: J. Geophys. Res., 101, 15233 (1996)
+23. T. I. Gombosi, D. L. De Zeeuw, C. P. T. Groth, K. G. Powell and P. Song: The length of the magnetotail for northward IMF: Results of 3D MHD simulations, In Physics of Space Plasmas ed. by T. Chang and J. R. Jasperse, (MIT Press, Cambridge, Mass., 1998) pp. 121-128
+24. T. I. Gombosi, D. L. De Zeeuw, C. P. T. Groth, K. G. Powell and Q. F. Stout: J. Atmos. Solar-Terr. Phys., 62, 1515 (2000)
+25. T. I. Gombosi, G. T´oth, D. L. De Zeeuw, K. C. Hansen, K. Kabin and K. G. Powell: J. Comput. Phys., 177, 176 (2002)
+26. C. P. T. Groth, D. L. De Zeeuw, T. I. Gombosi and K. G. Powell: J. Geophys. Res., 105, 25,053 (2000)
+27. R. M. H¨aberli, T. I. Gombosi, D. L. DeZeuuw, M. R. Combi and K. G. Powell: Science, 276, 939 (1997)
+28. K. C. Hansen, T. I. Gombosi, D. L. DeZeeuw, C. P. T. Groth and K. G. Powell: Adv. Space Res., 26, 1681 (2000)
+29. Harel, M., R. A. Wolf, P. H. Reiﬀ, R. W. Spiro, W. J. Burke, F. J. Rich and M. Smiddy: J. Geophys. Res., 86, 2217 (1981)
+30. A. Harten: J. Comput. Phys., 49, 357 (1983) 31. R. K. Jaggi and R. A. Wolf: J. Geophys. Res., 78, 2842 (1973) 32. P. Janhunen: J. Comput. Phys., 160, 649 (2000) 33. K. Kabin, T. I. Gombosi, D. L. DeZeeuw, K. G. Powell and P. L. Israelevich: J.
+Geophys. Res., 104, 2451 (1999) 34. K. Kabin, T. I. Gombosi, D. L. De Zeeuw and K. G. Powell: “Icarus”, 143, 397
+(2000) 35. K. Kabin, M. R. Combi, T. I. Gombosi, D. L. De Zeeuw, K. C. Hansen and K. G.
+Powell: Planet. Space Sci., 49, 337 (2001) 36. R. Keppens, G. T´oth, M. A. Botchev and A. van der Ploeg: “Int. J. for Num.
+Meth. in Fluids”, 30, 335 (1999) 37. P. D. Lax and B. Wendroﬀ: Systems of Conservation Laws, “Communications on
+Pure and Applied Mathematics”, 13, 217–237 (1960) 38. T. J. Linde, T. I. Gombosi, P. L Roe, K. G. Powell and D. L. De Zeeuw: J. Geophys.
+Res., 103, 1889 (1998) 39. T. J. Linde: A Three-Dimensional Adaptive Multiﬂuid MHD Model of the Helio-
+sphere”, school = “Univ. of Mich.”, Ann Arbor, month = may, 1998 40. Y. Liu, A. F. Nagy, C. P. T. Groth, D. L. De Zeeuw, T. I. Gombosi and K. G.
+Powell: Geophys. Res. Lett., 26, 2689 (1999) 41. B. Marder: J. Comput. Phys., 68, 48 (1987) 42. T. Ogino and R. J. Walker: Geophys. Res. Lett., 11, 1018 (1984) 43. H. Paill`ere, K. G. Powell and D. L. De Zeeuw: ’A wave-model based reﬁnement
+criterion for adaptive-grid computation of compressible ﬂows’. In: 30th AIAA Aerospace Sciences Meeting (AIAA-92-0322, Reno, Nevada, 1992) 44. K. G. Powell, P. L. Roe and J. Quirk: ’Adaptive-mesh algorithms for computational ﬂuid dynamics’. In: Algorithmic Trends in Computational Fluid Dynmaics ed. by M. Y. Hussaini, A. Kumar and M. D. Salas (SPRINGER-VERLAG, New York, 1993) pp. 303-337
+
+274 Tamas I. Gombosi et al.
+45. K. G. Powell: ’An approximate Riemann solver for magnetohydrodynamics (that works in more than one dimension)’. Internal report at Inst. for Comput. Appl. in Sci. and Eng., NASA Langley Space Flight Center, Hampton, Va., 94-24, 1994
+46. K. G. Powell, P. L. Roe, T. J. Linde, T. I. Gombosi and D. L. De Zeeuw: J. Comput. Phys., 154, 284 (1999)
+47. J. J. Quirk: ’An Adaptive Grid Algorithm for Computational Shock Hydrodynamics’. Internal report at Cranﬁeld Inst. of Technol., Cranﬁeld, England”, 1991
+48. J. J. Quirk and U. R. Hanebutte: ’A parallel adaptive mesh reﬁnement algorithm’. Interanl; report at ICASE, 93-63, 1993
+49. J. Raeder, R. J. Walker and M. Ashour-Abdalla: Geophys. Res. Lett., 22, 349 (1995)
+50. Richmond, A. D., E. C. Ridley and R. G. Roble: Geophys. Res. Lett., 19, 601 (1992)
+51. Richmond, A. D.: J. Geomagn. Geoelectr., 47, 191 (1995) 52. A. J. Ridley, D. L. De Zeeuw, T. I. Gombosi and K. G. Powell: J. Geophys. Res.,
+106, 30,067 (2001) 53. A. J. Ridley, K. C. Hansen, G. T´oth, D. L. De Zueew, T. I. Gombosi and K. G.
+Powell: J. Geophys. Res., 107 (2002) “in press”, 54. A. J. Ridley, T. I. Gombosi, D. L. De Zeeuw, C. R. Clauer and A. D. Richmond:
+J. Geophys. Res., 107 (2002) “in preparation” 55. A. J. Ridley, T. I. Gombosi and D. L. De Zeeuw: J. Geophys. Res. 107 (2002) “in
+preparation”, 56. R.M. Robinson, R.R. Vondrak, K. Miller, T. Dabbs and D.A. Hardy: J. Geophys.
+Res., 92, 2565 (1987) 57. R. G. Roble and E. C. Ridley: Ann. Geophys., 5A, 369 (1987) 58. P. L. Roe: J. Comput. Phys., 43, 357 (1981) 59. P. L. Roe and D. S. Balsara: SOCIETY FOR INDUSTRIAL AND APPLIED
+MATHEMATICS J. APPL. MATH., 56, 57 (1996) 60. S. Sazykin and R. A. Wolf and R. W. Spiro and T. I. Gombosi and D. L. De Zeeuw
+and M. F. Thomsen: Geophys. Res. Lett., (2002) “in preparation” 61. P. Song, T.I. Gombosi, D.L. De Zeeuw, K.G. Powell and C. P. T. Groth: Planet.
+Space Sci., 48, 29 (2000) 62. P. Song, D. L. De Zeeuw, T. I. Gombosi, C. P. T. Groth and K. G. Powell: J.
+Geophys. Res., 104, 28,361 (1999) 63. J. M. Stone and M. L. Norman: Astrophys. J. Suppl., 80, 791 (1992) 64. T. Tanaka: J. Comput. Phys., 111, 381 (1994) 65. G. T´oth, R. Keppens and M. A. Botchev: Astron. Astrophys., 332, 1159 (1998) 66. G. T´oth: J. Comput. Phys., 161, 605 (2000) 67. G. T´oth and P. L. Roe: J. Comput. Phys., (2001) “submitted” 68. G. T´oth, D. L. De Zeeuw, T. I. Gombosi, K. C. Hansen, K. G. Powell, A. J. Ridley,
+P. L. Roe and I. V. Sokolov: J. Geophys. Res., 107 (2002) “in preparation” 69. B. van Leer: J. Comput. Phys., 32, 101, (1979) 70. V. M. Vasyliunas: ’Mathematical models of magnetospheric convection and its
+coupling to the ionosphere’. In: Particles and ﬁelds in the magnetosphere ed. by B. M. McCormack (D. Reidel Publishing, Dordrecht, Holland 1970) pp. 60-71 71. R. A. Wolf: ’The quasi-static (slow-ﬂow) region of the magnetosphere’. In: Solar Terrestrial Physics, ed. by R. L. Carovillano and J. M. Forbes, (D. Reidel Publishing, Hingham, MA 1983) pp. 303-368
+

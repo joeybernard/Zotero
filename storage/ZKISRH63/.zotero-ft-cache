@@ -1,0 +1,2058 @@
+arXiv:0802.3474v1 [gr-qc] 24 Feb 2008
+
+Classiﬁcation of electromagnetic ﬁelds in general relativity and its physical applications
+Nikolai V. Mitskievich∗†
+Abstract
+The simplest electromagnetic ﬁelds’ (general- as well as special-relativistic) classiﬁcation is formulated which is based on physically motivated ideas. According to this classiﬁcation these ﬁelds can belong to three types (electric, magnetic and null), each of them being split in pure and impure subtypes. Only pure null type ﬁeld propagates with the fundamental velocity c, all other ﬁelds have the propagation velocity less than that of light. The reference-frame-based methods of elimination of alternative three-ﬁelds (e.g., magnetic in the electric type case) are given for pure subtypes; for pure null type the generalized Doppler eﬀect takes place instead. All three types of impure ﬁelds are shown to be E-B-parallelizable. Thus such an elimination in pure non-null and parallelization in all impure cases mean transformation to the reference frame co-moving with the electromagnetic ﬁeld in which the Poynting vector vanishes. The methods we propose modernizing the Rainich–Misner–Wheeler approach, also permit to construct new exact Einstein–Maxwell solutions from already known seed solutions. As examples, the Kerr–Newman and Li´enard–Wiechert solutions are considered, three “new” types of rotating charged black holes (with the same Kerr-Newman geometry) are presented, and new physical eﬀects are evaluated. PACS 2008 Numbers: 04.20-q, 04.20.Ex, 04.40.Nr, 04.70.Bw
+∗Physics Department, CUCEI, University of Guadalajara, Guadalajara, Jal., Mexico. †Postal address: Apartado Postal 1-2011, C.P. 44100, Guadalajara, Jalisco, M´exico. E-mail: mitskievich03@yahoo.com.mx
+1
+
+1 Introduction
+The main idea of this paper is to present an elementary practical classiﬁcation of electromagnetic ﬁelds (see also [12]) equally applicable in both relativities and having deep physical roots. In fact, there already exist classiﬁcations of stress-energy tensors (essentially, those of Segr`e and Pleban´ski, [14, 15, 17]) and, speciﬁcally, of electromagnetic ﬁelds [18]. However, one does not encounter there a direct relation to such ﬁeld properties as the Poynting vector and the velocities of propagation of concrete conﬁgurations of these ﬁelds (in particular, with respect to the reference frames co-moving with the corresponding ﬁelds when these velocities are < c = 1 in the natural units used here; for a detailed discussion of the Li´enard–Wiechert example see our recent article [12] and a preprint with complete simple deduction of that solution [10]). Now, our aim is also to give here natural and simple prescriptions for calculation of such physical characteristics of every concrete electromagnetic ﬁeld (cf. [8, 16, 23]).
+We consider electromagnetic ﬁelds in a vacuum (but electric currents may be present, not the media with dielectric and magnetic properties), this theory being treated here on the classical (not quantum theoretical) basis. The state of motion (in general, inhomogeneous) of the electromagnetic ﬁeld, which we call its propagation, is that of a concrete (preferably, exact) solution of the system of dynamical equations (of Maxwell in special theory and Einstein–Maxwell in general theory of relativity), but not the propagation of perturbations on the background of these solutions, and not the propagation of discontinuities, which belong to other problems of the ﬁeld theory not considered in this paper (their treatment is already well developed and does not need immediate revision). Any motion is, naturally, relative (that occurring with the velocity of light is also relative, at least in the sense of its direction: the light aberration eﬀect), while motions with under-luminal velocities always permit to introduce co-moving reference frames with respect to which the ﬁelds are “at rest” everywhere in the four-dimensional region of the frame determination, which includes the requirement that redistributions of the ﬁeld (“deformations”) should be “caused” by deformation, acceleration and rotation of the respective co-moving reference frame, and vice versa. In this connection, we remind that the physical reference frame is an idealized image of a changing with time (let us not to put this concept here more precisely) distribution and motion of observers together with their observational and measuring devices, idealized primarily in the sense to be test objects,
+2
+
+i.e. they should not practically perturb the characteristics of the objects (including ﬁelds and spacetime) in the classical (non-quantum) theory. We do not touch here upon the problem of quantum theoretical description of reference frames: this question still seems not to be adequately considered in physics, although the ﬁrst step in this direction was already made by Bohr and Rosenfeld [1].
+1.1 A preview of the paper’s structure
+The reader will notice that in this paper the original conclusions are enlarged with a modernized review of already known facts to make the exposition more self-suﬃcient. In the next section the notations and deﬁnitions used in this paper are given. In section 3 we present a condensed information on description of reference frames and its application to electromagnetic ﬁelds. The short section 4 is dedicated to the classiﬁcation of these ﬁelds in terms of their two invariants, I1 and I2. In section 5 we introduce the concept of propagation velocity of electromagnetic ﬁelds in a vacuum, and it is shown that absolute value the three-velocity of all pure null ﬁelds is equal to unity. The pure electromagnetic ﬁelds (when I2 = 0) are considered in section 6 yielding for the pure electric and magnetic types a simple elimination of magnetic or electric ﬁeld, respectively, by the corresponding choices of reference frame (subsection 6.1), and a speciﬁc rˆole of the Doppler eﬀect (with its inevitable generalization) for the pure null type in subsection 6.2. An approach to constructing exact Einstein–Maxwell solutions in the same 4geometry as that of any exact seed Einstein–Maxwell solution one arbitrarily would choose (with the exception of pure null ﬁelds), is developed in sections 7 and 8. Section 9 is dedicated to the treatment of impure subtype (I2 = 0) of all three types of ﬁelds leading to parallelization of electric and magnetic vectors in the adequate (canonical) reference frames. In sections 10 and 11 we consider application of the methods developed in the preceding sections to some exact solutions of the Einstein–Maxwell equations in general relativity and Maxwell’s equations in special relativity: in subsection 10.1 of the well-known Kerr–Newman (KN) solution (involving, as we show, in diﬀerent regions diﬀerent types of electromagnetic ﬁeld whose electric and magnetic vectors are always collinear and radially-directed), and in subsection 11.1, the Li´enard–Wiechert solution (we show that it belongs to the pure electric type and there always exists a global co-moving with this electromagnetic ﬁeld non-degenerate reference frame, so that the velocity of
+3
+
+propagation of this ﬁeld in a vacuum is everywhere less than that of light, with the exception of the future null inﬁnity). In subsection 10.2 “new” exact solutions with pure electric and pure magnetic ﬁelds in the standard KerrNewman black hole geometry are presented, together with a similar black hole with impure-null-type electromagnetic ﬁeld. In subsection 11.2, it is shown that a superposition of plane harmonic electromagnetic wave and homogeneous magnetic ﬁeld has strictly sub-luminal velocity of its propagation in a vacuum. In the ﬁnal section 12 the obtained results are summed up and concluding remarks are given.
+
+2 Mathematical preliminaries
+
+Everything will be considered in four spacetime dimensions. We use the
+
+spacetime signature +, −, −, −, Greek indices being four-dimensional (run-
+
+ning from 0 to 3), and Latin ones, three-dimensional, with the Einstein con-
+
+vention of summation over dummy indices. However, in the reference frame
+
+formalism, all indices usually are Greek, and the splitting into physical space-
+
+like and timelike objects only means that the former ones are in all free in-
+
+dices orthogonal to the timelike monad vector (projected onto the physical
+
+three-space of the reference frame), while the physical timelike parts repre-
+
+sent contractions with the monad in the indices which hence become absent
+
+(a change of the root-letter notation is then advisable). The indices put into
+
+individual parentheses belong to tetrad components.
+
+For the sake of convenience and writing and reading economy, the Cartan
+
+exterior forms formalism is frequently used. In it, the coordinated basis is
+
+the set of four covectors (1-forms) dx0, . . . , dx3, and the orthonormal tetrad
+
+basis similarly is θ(0), . . . , θ(3). Every such basis 1-form, (e.g., dx2, θ(3)), itself
+
+represents an individual four-dimensional covector. The exterior (wedge)
+
+product simply is a skew-symmetrized tensorial product (antisymmetrization
+
+is also denoted by Bach’s square brackets which embrace the indices, while
+
+factor
+
+1 (their number)!
+
+is supposed
+
+to be included in this deﬁnition).
+
+It is clear
+
+that the rank of a form can be from 0 (a scalar) to 4, inclusively; all forms
+
+of higher ranks vanish identically (in D = 4). The scalar product of four-
+
+vectors or covectors is denoted by a central dot, if these vectors are written
+
+without indices (A · B), but with such indices this has a wider meaning, for
+
+example, dxµ · dxν = gµν: literally, this means that the scalar product of two
+
+coordinated-basis covectors equals a contravariant component of the metric
+
+4
+
+tensor with the same indices as those of these factors. The dual conjugation in the sense of components (their indices) is denoted
+by an asterisk over the corresponding subindices, or under upper indices; the Hodge star stands for dual conjugation of a form written more abstractly, and is denoted by an asterisk before the form; it is convenient to have in mind that, after all, it applies to the form’s basis, though this is equivalent to a similar dual conjugation of the form’s components (not both at once!). An application of a pair of Hodge stars does not change an odd-rank form and results in the change of the sign of an even-rank form (for example, the electromagnetic ﬁeld 2-form F ). By this deﬁnition,
+
+∗
+
+(dxα1
+
+∧
+
+···
+
+∧
+
+dxαk )
+
+:=
+
+(4
+
+1 −
+
+p)! Eα1...αk β1...βl (dxβ1
+
+∧
+
+···
+
+∧
+
+dxβl )
+
+(2.1)
+
+where
+
+√ Eκλµν := −gǫκλµν ,
+
+Eκλµν := − √1−g ǫκλµν
+
+(2.2)
+
+are covariant and contravariant components of the axial Levi-Civit`a tensor, and the usual Levi-Civit`a symbol is deﬁned as
+
+ǫκλµν = ǫ[κλµν], ǫ0123 = +1
+
+(2.3)
+
+(always with the sub indices: this is a symbol, though simultaneously representing components of a contravariant axial tensor density of the weight −1 and a covariant axial tensor density of the weight +1). See some details in the beginning of the introductive chapter in [11]. Finally, coming back to a formula in the end of the second paragraph of this section, we have ∗(dxµ ∧ ∗dxν) = −dxµ · dxν = −gµν. Of course, the rˆole of metric properties of spacetime is somewhat hidden in the Hodge notations, as one can see from the formulae (2.1) and (2.2).
+
+3 Algebra of reference frames; applications to the electromagnetic ﬁeld
+The central point of our paper is the use of algebraic considerations, other applications being here only of auxiliary signiﬁcance, for example, the exterior diﬀerentiation operator d = θ(α)∇X(α)∧ ≡ dxα∇∂α∧.
+
+5
+
+In the physical sense, a concrete reference frame (see [11]) has only to do with a state of motion (a timelike world lines’ congruence, or, equivalently, its unitary tangent vector ﬁeld, the monad τ ) of a swarm of test observers together with their test measuring devices. Moreover, one additional ingredient, the metric tensor g, is needed to construct the projector b := g − τ ⊗ τ which at the same time serves as the (formally, four-dimensional) metric tensor on the three-dimensional local subspace orthogonal to the monad ﬁeld τ ; bµντ ν ≡ 0, det b ≡ 0. b has the signature 0, −, −, −, so that the “threedimensional” scalar product of two vectors is
+
+A • B := −bαβAαBβ ≡ ∗[(τ ∧ A) ∧ ∗(τ ∧ B)]
+
+(3.1)
+
+where these vectors are also automatically projected onto the local subspace
+mentioned above. If such vectors did already belong to the subspace, they usually are boldfaced: Aµ = bµν Aν. The “three-dimensional” axial vector product of two vectors now reads
+
+A × B := ∗(A ∧ τ ∧ B).
+
+(3.2)
+
+These algebraic operations are locally equivalent to the usual three-dimensional scalar and vector products, so we denote them by essentially the same symbols. In fact, in the complete reference frame theory we similarly use the operations of gradient, divergence and curl, but, being diﬀerential operators, they are more profoundly generalized, explicitly taking into account the characteristics of inhomogeneities of general reference frames, such as acceleration, rotation and deformation (expansion and shear) which naturally cannot be present in the algebraic treatment of geometry. The uniformity of general and old traditional notations radically simpliﬁes the physical interpretation of general- and (in non-inertial frames) special-relativistic expressions as well as of theoretically predicted eﬀects.
+Electromagnetic ﬁelds are described with the use of the covector potential A = Aαdxα and the 2-form (the ﬁeld tensor)
+
+F
+
+=
+
+dA
+
+=
+
+1 2
+
+Fαβ
+
+dxα
+
+∧ dxβ.
+
+(3.3)
+
+With respect to a given reference frame τ (see [11]), the ﬁeld tensor splits into two four-dimensional (co)vectors, electric
+
+Eµ = Fµν τ ν ⇐⇒ E = ∗(τ ∧ ∗F )
+
+(3.4)
+
+6
+
+and magnetic both ⊥ τ , thus
+
+Bµ
+
+=
+
+−F
+
+∗
+µν
+
+τν
+
+⇐⇒
+
+B = ∗(τ ∧ F ),
+
+F = E ∧ τ + ∗(B ∧ τ ).
+
+(3.5) (3.6)
+
+It is obvious that E is a polar four-vector and B, an axial four-vector, both
+
+restricted to the local physical three-subspace of the τ -reference frame. (In
+
+Cartesian coordinates and with the corresponding inertial monad, conse-
+
+quently, in the Minkowskian spacetime, we have the same relations as for
+
+usual contravariant three-vectors: Ei = Fi0 = −F i0,
+
+−
+
+1 2
+
+ǫijk
+
+F
+
+jk.)
+
+The
+
+splitting
+
+(3.4),
+
+(3.5),
+
+(3.6)
+
+follows
+
+from
+
+Bi the
+
+=
+
+−
+
+1 2
+
+ǫij
+
+k Fj k
+
+=
+
+observation that
+
+the Lorentz force can be expressed as
+
+(E + v × B)α = Fµν (τ ν + vν) bµα.
+
+(3.7)
+
+Here the three-velocity of the charged particle on which acts the Lorentz force, follows from the general deﬁnition
+
+u =(uτ) (τ + v)
+
+⇒
+
+v
+
+=
+
+b(
+
+dx dt
+
+,
+
+·)
+
+(3.8)
+
+where
+
+(uτ )=
+
+u·τ
+
+=
+
+dt ds
+
+=
+
+(1 − v2)−1/2,
+
+while
+
+dt
+
+=
+
+τµdxµ
+
+(τ
+
+· dx,
+
+that
+
+is
+
+non-
+
+total diﬀerential of the physical time along an inﬁnitesimal displacement of
+
+the particle in spacetime), and u is its four-velocity. We have to add here
+
+important comments related to the basic concepts of both relativities, and
+
+these comments could be more transparent just with the three-velocity as an
+
+intuitively clear example. The “physical” objects (such as v, E, etc.) be-
+
+long to the section orthogonal to τ using which these objects are introduced.
+
+Thus, already in special relativity, the velocities considered in their compo-
+
+sition law, may exist even in three distinct sections of spacetime, while three
+
+frames are participating in the composition, and it is absolutely obvious that
+
+one cannot simply add vectors from two subspaces obtaining the third one
+
+automatically lying in the third subspace, all of them having necessary prop-
+
+erties with respect to these respective frames. And in the composition law
+
+the three-vectors being added together, frequently are “collinear” (an absurd
+
+if they belong to non-parallel sections of spacetime). This is, of course, un-
+
+derstandable, since Einstein himself did not realize the fact of uniﬁcation of
+
+space and time into the four-dimensional manifold before the famous discov-
+
+ery of Minkowski in 1908 (and even during several years after this discovery).
+
+7
+
+The only two electromagnetic invariants being important in the Einstein– Maxwell theory can be easily introduced:
+
+I1 = −2 ∗ (F ∧ ∗F ) = Fµν F µν = 2 B2 − E2 ,
+
+(3.9)
+
+I2
+
+=
+
+2
+
+∗
+
+(F
+
+∧
+
+F)
+
+=
+
+F
+
+∗
+µν
+
+F µν
+
+=
+
+4E
+
+•
+
+B.
+
+These invariants enter the following important identities:
+
+(3.10)
+
+Fµν F λν
+
+−
+
+F
+
+∗
+µν
+
+F
+
+λ∗ν=
+
+1 2
+
+I1
+
+δµλ,
+
+F
+
+∗
+µν
+
+F λν
+
+=
+
+1 4
+
+I2
+
+δµλ.
+
+(3.11)
+
+In fact, I2 is an axial (pseudo-) invariant whose square behaves as a usual scalar.
+The electromagnetic stress-energy tensor is [9, 11]
+
+Tµν
+
+=
+
+1 4π
+
+1 4
+
+FκλF
+
+κλδµν
+
+−
+
+FµλF
+
+νλ
+
+=
+
+−
+
+1 8π
+
+FµλF
+
+νλ
+
++
+
+F
+
+∗
+µλ
+
+F
+
+ν∗λ
+
+(3.12)
+
+(in Gaussian units). Its (single) contraction with arbitrary monad includes the electromagnetic energy density and Poynting vector in that frame,
+
+Tµν τν
+
+=
+
+1 8π
+
+E2 + B2 τµ + 2(E × B)µ ,
+
+(3.13)
+
+and the squared expression is (see (3.11) and cf. [23, 16])
+
+Tµν Tξµτν τ ξ
+
+=
+
+1 (8π)2
+
+≡
+
+1 (8π)2
+
+E2 + B2 2 − 4(E × B)2
+
+B2 − E2 2 + 4(E • B)2
+
+=
+
+1 (16π)2
+
+I12 + I22
+
+.
+
+(3.14)
+
+It is interesting that these constructions are not only scalars under transformations of coordinates, but they are also independent of the reference frame choice: the right-hand side does not involve any mention of the monad at all.
+
+4 A classiﬁcation of electromagnetic ﬁelds
+The simple and exhaustive classiﬁcation of electromagnetic ﬁelds is based on existence of only two invariants, (3.9) and (3.10), built with the ﬁeld tensor Fµν, while all other invariants are merely algebraic functions of these two
+8
+
+invariants (if not vanish identically). Since I2 itself is a pseudo-invariant (axial scalar) which acquires the factor sign(J) := J/|J| under a general transformation of coordinates, J being its Jacobian, the concrete sign of I2 does not matter in our classiﬁcation.
+In terms of I1 the invariant classiﬁcation suggests three types of ﬁelds: I1 < 0 is the electric type (the electric ﬁeld dominates), I1 > 0 gives the magnetic type, and to I1 = 0, the null type corresponds. The pseudo-invariant I2 permits to work out the classiﬁcation in more detail: we get additional subtypes, impure (I2 = 0) and pure (I2 = 0).
+Below we shall see how this classiﬁcation enables us to ﬁnd reference frames most adequately suitable for description of concrete electromagnetic ﬁelds and even to construct new exact solutions of Einstein–Maxwell’s equations. It also gives a natural base for straightforward physical interpretation of these ﬁelds.
+
+5 Propagation of electromagnetic ﬁelds
+
+Considering the propagation of electromagnetic ﬁeld, we do not include the high-frequency limits related to ﬁeld discontinuities (bicharacteristics). The Poynting vector plays an important rˆole in electrodynamics having two distinct meanings: of the energy density ﬂow and of the linear momentum density due to symmetry of the electromagnetic energy-momentum tensor (in natural units velocity is dimensionless and that of light in a vacuum is c = 1). It is worth giving more comments on physical interpretation of the Poynting vector. It does not always describe propagation of extractable energy of the ﬁeld and even a real motion (see also [19]); the exclusion is here related to the special case of static and stationary ﬁelds (whose frequency is equal to zero). Thus the Poynting vector, together with the electromagnetic energy density, determines (sometimes formally) the propagation three-velocity of electromagnetic ﬁeld with respect to the reference frame in which the expression (3.13) is given. We take this velocity according to Landau and Lifshitz [7] (see the problem in p. 69) as
+
+1
+
+v + v2
+
+=
+
+E E2
+
+× +
+
+B B2
+
+(5.1)
+
+(an alternative deﬁnition see in [13], p. 115, formula (312),
+
+v
+
+=
+
+2
+
+E E2
+
+× +
+
+B B2
+
+,
+
+(5.2)
+
+9
+
+but this deﬁnition is false as it can be seen from subsection 11.2 below). In the preceding pages in [7], an interesting discussion of electromagnetic invariants is worth being noted. From (3.14) and (5.1) we see that
+
+0
+
+≤
+
+1
+
+|v| + v2
+
+=
+
+1 2
+
+1−
+
+I12 + I22 4(E2 + B2)2
+
+=
+
+|E||B| E2 + B2
+
+|
+
+sin
+
+ψ|
+
+≤
+
+1 2
+
+,
+
+(5.3)
+
+ψ being the angle between E and B in the strict local Euclidean sense; moreover, the function |v|/(1 + v2) is everywhere monotonic. In particular, this means that the propagation of all pure null ﬁelds (|E| = |B|, ψ = π/2) occurs with the unit absolute value of the three-velocity, the velocity of light, and all other electromagnetic ﬁelds propagate with sub-luminal velocities which can always be made equal to zero in corresponding co-moving reference frames. This is the general-relativistic conclusion, only expressed in threedimensional notations characteristic to the general reference frame theory.
+
+6 Dealing with pure electromagnetic ﬁelds
+Pure electromagnetic ﬁelds represent the simplest cases, especially in the nonnull types when there always exist reference frames in which either magnetic or electric ﬁeld can be easily eliminated. The pure null type requires more thorough examination involving a consideration of the Doppler eﬀect (here, its generalized counterpart) which we have to discuss below in more detail.
+
+6.1 Pure electric and magnetic type ﬁelds
+
+Vanishing of the second invariant, I2, means that the electromagnetic ﬁeld tensor, or its dual conjugate, is a simple bivector in all reference frames (the second of two necessary and suﬃcient conditions is four-dimensionality of the manifold under consideration), thus
+
+F = U ∧ V or ∗ F = P ∧ Q,
+
+(6.1)
+
+U, V , P , and Q being four-(co)vectors. In the ﬁrst case,
+
+I1 = 2 (U · U )(V · V ) − (U · V )2
+
+(6.2)
+
+obviously is negative if one of these vectors is timelike (say, U) and another, spacelike (V ), thus F will pertain to the pure electric type (or, similarly, for
+
+10
+
+∗F , to the pure magnetic type; see also an alternative case considered in subsection 11.1 when vector U = R is null). Normalizing timelike U to unity (the extra coeﬃcient may be included in V ), we can take the normalized U as a new monad in the choice of reference frame and immediately see that in this frame the magnetic vector automatically vanishes. It remains only to show that our supposition (timelike U and spacelike V ) is suﬃciently general; this can be easily proven using the substitution V =⇒ V + aU which does not change F . Similarly we treat the problem of eliminating the electric ﬁeld in the pure magnetic case using ∗F in (6.1).
+
+6.2 Pure null type ﬁelds and the Doppler eﬀect
+
+Pure null type ﬁelds have both invariants equal to zero, but the very ﬁelds remain non-trivial in any non-degenerate system of coordinates as well as in any realistic reference frame (here, in the sense of E and B, simultaneously), although these three-vectors do transform under changes of reference frames, and their components transform under transformations of coordinates. The monad τ under these transformation should remain always timelike, and the Jacobian of the transformation of coordinates has to be non-zero and non-∞.
+As an example we consider in this subsection a special-relativistic plane electromagnetic wave in a vacuum (k = ω) written in Cartesian coordinates,
+
+E = {0, E cos[ω(x − t)], 0}, B = {0, 0, E cos[ω(x − t)]}, (6.3)
+
+and apply to it the Lorentz transformation t, r ⇒ t′, r′ with the three-velocity ±v in the positive/negative direction of the x axis using the well-known change of E and B under this transformation. The resulting electromagnetic ﬁeld then is
+
+E′ = {0, E′ cos[ω′(x′ − t′)], 0}, B′ = {0, 0, E′ cos[ω′(x′ − t′)]} (6.4)
+
+where
+
+E′ =
+
+1 1
+
+∓ ±
+
+v v
+
+E,
+
+ω′ =
+
+1 1
+
+∓ ±
+
+v v
+
+ω.
+
+(6.5)
+
+It is clear that the expression of ω′ in (6.5) describes the longitudinal Doppler eﬀect while E′ gives the accompanying change of the wave intensity. Since
+
+the latter is an integral part of the longitudinal Doppler eﬀect, we consider
+
+the complete expression (6.5) as its natural generalization; the description of
+
+transversal Doppler eﬀect has to be generalized in the similar way.
+
+11
+
+It seems that this generalization of the Doppler eﬀect is not encountered in physics textbooks. Nevertheless, it is generally used as an important hint in the interpretation of the well-known astrophysical phenomenon of ultrarelativistic particles’ jet pairs emitted by cores of some galaxies (the jet moving away from the observer not only has lower frequency, but also correspondingly lower intensity, thus this jet sometimes escapes to be observed). There is also a static (ω = 0) particular case of pure null electromagnetic ﬁelds involving mutually orthogonal constant vectors E and B (let us call it “Cartesian case” whose cylindrically symmetric analogue is used in some experiments involving electromagnetic ﬁelds with non-zero angular momentum without a genuine rotation). Such Cartesian pure null ﬁelds manifest only intensity part of the Doppler eﬀect since in this case ω = 0 = ω′ in (6.5). Thus the pure null electromagnetic ﬁelds can be adjusted to any non-zero and non-∞ values of their intensity and frequency (only the relation of frequency to intensity remaining constant, and if the frequency had not been equal to zero from the very beginning). A complete transformation away of initially non-trivial pure null ﬁelds is however impossible in any non-degenerate frame, representing only asymptotic and not real possibility. We considered above the case of a plane-polarized wave, but similar approach works in the circular polarization case as well.
+
+7 Duality rotation and electromagnetic ﬁelds with the same spacetime geometry
+
+Let us introduce a new electromagnetic ﬁeld tensor (2-form)
+
+F = (k + l∗)F, ∗ F = (k ∗ −l)F
+
+(7.1)
+
+(∗ is the Hodge star), where F is the electromagnetic ﬁeld tensor belonging to some given exact self-consistent Einstein–Maxwell solution, k and l being some scalar functions to be further determined. We now set the condition that the new ﬁeld F has to produce the same energy-momentum tensor which follows from the old ﬁeld F . Since geometry is well determined by the energy-momentum tensor, from the Bianchi identities it then follows that the standard general relativistic Maxwell equations for both ﬁelds, old and new, will be equally satisﬁed if the old ﬁeld has no electromagnetic sources, or the sources are localized at the singularity of the old and new ﬁelds where the standard classical theory is not applicable.
+
+12
+
+The calligraphic letters will be used for all concomitants of the new electromagnetic ﬁeld. Thus
+
+Fµν = kFµν + lFµ∗ν,
+
+∗
+
+F
+
+=
+
+kF
+
+∗
+µν
+
+−lFµν ,
+
+(7.2)
+
+E = kE − lB, B = kB + lE,
+
+(7.3)
+
+I1 = FµνF µν = (k2 − l2)I1 + 2klI2, I2 = Fµ∗ν F µν = (k2 − l2)I2 − 2klI1.
+
+A
+
+simple
+
+calculation
+
+yields
+
+Tνµ
+
+=
+
+k2+l2 4π
+
+1 4
+
+I1δνµ
+
+−
+
+F
+
+αµFαν
+
+= (k2 + l2)Tνµ (the
+
+terms with I2 cancel automatically for arbitrary I2). Hence the coincidence
+
+of geometries created by the two ﬁelds is guaranteed iﬀ
+
+k = cos α, l = sin α,
+
+(7.4)
+
+so that
+
+I1 = cos 2α I1 + sin 2α I2, I2 = cos 2α I2 − sin 2α I1.
+
+(7.5)
+
+Duality rotation, how the “transformation” (7.1) with (7.4) is now interpreted (see [8]), does not change the 4-geometry compatible with the new electromagnetic ﬁeld. This geometry remains the same as that created by the old ﬁeld (see also [16, 8, 23]). The “angle” (complexion) α of the duality rotation is, of course, an axial scalar function of coordinates which we shall now concretely determine.
+
+8 Construction of new Einstein–Maxwell solutions via duality rotation
+
+First, let us see how restrictive is the duality rotation. The relations (7.5) lead to a general conclusion
+
+I12 + I22 = I12 + I22
+
+(8.1)
+
+from where it follows that the pure null property is invariant under the duality
+
+rotation and it is impossible to obtain from any other type a pure null solution
+
+using this method. Together with the considerations of subsection 6.2, this
+
+means that pure null ﬁelds sharply diﬀer from all other electromagnetic ﬁelds. Now, let us see if pure subtypes (I2 = 0 ⇒ I12 = I12 + I22) can be
+obtained from the impure ﬁelds (I2 = 0). The second relation in (7.5) then
+
+yields
+
+cot 2α = I1/I2
+
+(8.2)
+
+13
+
+which with the ﬁrst relation gives
+
+I1
+
+=
+
+I2 sin 2α
+
+=
+
+I1 cos 2α
+
+=
+
+cos
+
+2α
+
+I1
+
+2
+
++ I1
+
+I22
+
+=
+
+sin
+
+2α
+
+I12
+
++ I2
+
+I22
+
+.
+
+(8.3)
+
+(In fact, we have to perform straightforward calculations for every concrete
+solution F and see if I2 would be sign-deﬁnitive or not in the desired region. Though the last possibility seems to be excluded by our initial supposition,
+it could be, naturally, softened: the duality rotation should reduce to the
+identity transformation at loci where I2 becomes equal to zero.) From (8.2) and (8.3) we come to the following conclusions: if the new ﬁeld has to be
+pure electric (I1 < 0), while I1 < 0 and I2 > 0, the “angle” α has to be such that sin 2α < 0 and cos 2α > 0; for I1 < 0 and I2 < 0, α has to give sin 2α > 0 and cos 2α > 0; for I1 > 0 and I2 > 0, there has to be sin 2α < 0 and cos 2α < 0; for I1 > 0 and I2 < 0, sin 2α > 0 and cos 2α < 0. Similarly, we determine the position of α for the pure magnetic new ﬁeld.
+For the null (now impure) type of the new ﬁeld (I1 = 0 ⇒ I22 = I12+I22) we have to use the ﬁrst relation in (7.5) yielding
+
+tan 2α = −I1/I2.
+
+(8.4)
+
+The second relation gives
+
+I2
+
+=
+
+I2 cos 2α
+
+=
+
+I1 sin 2α
+
+,
+
+etc;
+
+(8.5)
+
+the procedure of determination of the position of α is the same as above, here only I2 = 0, and both signs of I2 are equally admissible. It is clear that we can perform the inverse duality rotation in all these cases (in particular, coming from the impure null to pure electric or magnetic type ﬁelds).
+Thus the pure and impure electric and magnetic types form together with the impure null type a mutually “transformable” (via duality rotation) group of electromagnetic ﬁelds disconnected from the pure null type.
+
+9 Impure electromagnetic ﬁelds: parallelizing of E and B
+In this section we again use the classiﬁcation of electromagnetic ﬁelds in two senses: in the proper one, i.e. with respect to F , and, simultaneously, in the
+14
+
+sense of the new ﬁeld F introduced in (7.1), but we now look for information
+
+received from F about the old ﬁeld F . It is already clear that when F
+
+is impure (electric, magnetic, or null), the ﬁeld F can be chosen as pure
+
+(electric or magnetic in everyone of these cases). An interesting feature here
+
+is that the reference frame in which only one ﬁeld (electric or magnetic in
+
+the sense of F ) survives, is precisely that in which E and B following from F
+
+are mutually parallel, and the parallelization procedure becomes completely
+
+reduced just to determination of this canonical frame (say, τ ′). Thus, while
+
+the relations
+
+E • B ≡ E′ • B′ = 0
+
+(9.1)
+
+are frame-invariant (the ﬁeld F is chosen as belonging to the pure subtype), the property E′ B′ is realized only in the canonical frame where either E′ or B′ vanishes.
+The ﬁeld F may be considered as a merely auxiliary one (essentially, in special relativity where its rˆole in generation of gravitational ﬁeld is neglected), so that the parallelization procedure then may be managed even without the use of the strict duality rotation with the “angle” α and the relation (8.1), but when we simply take, e.g.,
+
+F = (1 + k∗)F.
+
+(9.2)
+
+The calculations following from this ansatz are simple, but somewhat cumbersome, and we omit them, especially since they will not be used in this paper.
+
+10 Examples in general relativity
+In this section we consider two particular electromagnetic ﬁelds self-consistently sharing one and the same four-dimensional geometry: in the ﬁrst subsection, the standard Kerr–Newman (KN) rotating charged black hole, and in the subsection 10.2, its generalizations to the black holes created by speciﬁc mixtures of electric charge and magnetic monopole distributions rotating as the KN singular ring. The ﬁrst example corresponds to an impure electromagnetic ﬁeld, while the next three ones belong to the pure electric, pure magnetic and impure null types, thus representing new black-hole exact solutions of Einstein–Maxwell equations. The ﬁrst two new solutions admit reference frames in which there is no magnetic or no electric ﬁelds in the whole spacetime.
+15
+
+10.1 The Kerr–Newman solution
+
+The KN metric tensor is taken in the Boyer–Lindquist (BL) coordinates as
+
+ds2
+
+=
+
+∆ ρ2
+
+dt − a sin2 ϑ dϕ 2 − ρ2 dr2 − ρ2dϑ2 ∆
+
+−
+
+sin2 ρ2
+
+ϑ
+
+(r2 + a2)dϕ − adt 2
+
+(10.1)
+
+where ρ2 = r2 + a2 cos2 ϑ, ∆ = r2 − 2M r + Q2 + a2. Thus the orthonormal
+
+1-form basis outside the singularity ρ = 0 reads
+
+√ θ(0) = ∆ dt − a sin2 ϑ dϕ ,
+ρ θ(2) = ρdϑ,
+
+θ(1) = √ρ dr, ∆
+
+
+  
+
+θ(3)
+
+=
+
+sin ϑ ρ
+
+(r2 + a2)dϕ − adt
+
+,
+
+ 
+
+
+(10.2)
+
+so that
+
+dϕ =
+
+√a ρ∆
+
+θ(0)
+
++
+
+ρ
+
+1 sin
+
+ϑ
+
+θ(3).
+
+Further,
+
+the electromagnetic
+
+1-form four-
+
+potential (cf. the usual Coulomb potential) and the ﬁeld tensor (2-form)
+
+are
+
+A
+
+≡
+
+A(α) θ(α)
+
+=
+
+Q√r θ(0) ρ∆
+
+and
+
+
+    
+
+
+
+
+
+F
+
+≡ =
+
+ρ12QF4 (α()r(β2)−θ(αa)2∧coθs(2β)ϑ=)θ(d0)A∧ θ(1)
+
+−
+
+2ar cos ϑ θ(2)
+
+∧ θ(3)
+
+
+
+
+
+
+
+,
+
+  
+
+
+
+(10.3)
+
+respectively (see for some details [2, 3, 4, 5, 6, 17, 20, 22]). Since
+
+4a2r2 cos2 ϑ + r2 − a2 cos2 ϑ 2 = ρ4
+
+(10.4)
+
+(this conﬁrms the presence in F of the factor r2 − a2 cos2 ϑ which ﬁrst could seem to be somewhat unnatural), we can now introduce an “angle” β as
+
+sin β
+
+=
+
+2ar cos ρ2
+
+ϑ
+
+,
+
+cos β
+
+=
+
+r2
+
+−
+
+a2 cos2 ρ2
+
+ϑ.
+
+(10.5)
+
+Then the electromagnetic ﬁeld F reads
+
+F
+
+=
+
+Q ρ2
+
+(cos
+
+β
+
++
+
+sin β∗)
+
+θ(0) ∧ θ(1)
+
+,
+
+(10.6)
+
+16
+
+obviously involving a duality rotation, and the electromagnetic invariants
+
+read
+
+I1
+
+=
+
+−
+
+2Q2 ρ4
+
+cos
+
+2β,
+
+I2
+
+=
+
+2Q2 ρ4
+
+sin 2β,
+
+(10.7)
+
+so that the construction invariant under duality rotation (8.1) in the KN
+
+solution case is (cf. the Coulomb and Reissner–Nordstr¨om ﬁelds where, of
+
+course, a = 0)
+
+I12
+
++
+
+I22
+
+=
+
+4Q4 ρ8
+
+.
+
+(10.8)
+
+From (10.7) and (10.5) we immediately ﬁnd that on the “plane” cos ϑ = 0 and the “sphere” r = 0 (it is well known that the “negative region of space” with r < 0 makes a certain sense in this spacetime) the invariants take values
+
+I1
+
+=
+
+−
+
+2Q2 r4
+
+,
+
+I2 = 0
+
+and
+
+I1
+
+=
+
+−
+
+a4
+
+2Q2 cos4
+
+ϑ,
+
+I2 = 0,
+
+respectively, thus the ﬁeld F belongs there to the pure electric type (in the
+
+BL frame, the magnetic ﬁeld is already eliminated in this region). The in-
+
+tersection of these 2-surfaces is the well-known singular rotating Kerr ring
+
+where I2 vanishes when we approach to the ring from these mutually orthogonal directions. This would be in conformity with the usual interpretation
+
+of the ring as rotating with the velocity of light if that I1 also tended there to zero, though this is not quite the case. The vanishing√of I1 occurs only in the limits in four directions along which r = ǫ(3 ± 2 2)a2 cos2 ϑ where
+
+ǫ = ±1 (without admission to simultaneously take only both similar signs
+
+in the whole formula). Further, when r2 = a2 cos2 ϑ, we have the pure mag-
+
+netic type ﬁeld (with already eliminated electric ﬁeld in the BL frame) with
+
+I1
+
+=
+
+3Q2 4a4 cos4 ϑ
+
+=
+
+, 3Q2
+4r4
+
+thus,
+
+if
+
+we
+
+come
+
+to
+
+the
+
+ring
+
+from
+
+the
+
+corresponding
+
+di-
+
+rections, the ﬁeld will be purely magnetic. The electromagnetic ﬁeld around
+
+the Kerr ring in KN solution is in fact very diverse, like a patchwork quilt.
+
+To ﬁnd how behaves the propagation velocity v of this ﬁeld, we have to
+
+calculate its energy density and Poynting vector, but let us begin with E
+
+and B in the BL frame τ = θ(0), see (10.2). Already before any calculations,
+
+only looking at the deﬁnitions (3.4) and (3.5), one understands that these
+
+two vectors and θ(1) are everywhere collinear, so that the Poynting vector
+
+identically vanishes, as well as v does (this is natural, since both metric
+
+coeﬃcients and the ﬁeld tensor components do not depend on t and ϕ, and
+
+we already are in the KN-ﬁeld’s co-moving frame). The pure subtype can be
+
+17
+
+realized (if we suppress duality rotations) only due to local vanishing of E or B in the BL frame. In this co-moving frame the electromagnetic energy density is everywhere equal to
+
+Tµν τ µτν
+
+=
+
+1 8π
+
+(E2
+
++
+
+B2)
+
+=
+
+1 16π
+
+I12
+
++
+
+I22
+
+=
+
+Q2 8πρ4
+
+,
+
+(10.9)
+
+see (5.3). We have found here that the KN solution is “anisotropic” and “inho-
+mogeneous” in the sense of distribution of electric and magnetic types of the F ﬁeld, although three-vector ﬁelds E and B are always collinear in the spacetime of KN black hole in the BL frame, but there are surfaces on which either magnetic or electric ﬁeld vanishes. In order to better understand if this structure of electromagnetic ﬁeld belonging to the KN solution is inevitable (however, see also [3]), we shall further apply to the KN solution the method developed in sections 7 and 8 (as a broadening and modernization of the Rainich–Misner–Wheeler duality rotation approach). We shall ﬁnd that it is easy to radically modify the KN solution obtaining rotating black holes with electromagnetic ﬁelds of everywhere pure electric or pure magnetic, or impure null type.
+
+10.2 “New” rotating black hole solutions with pure electric, pure magnetic, and impure null ﬁelds F in KN geometry
+
+Here we apply duality rotation
+
+F = (cos α + sin α∗)F, or ∗ F = (cos α ∗ − sin α)F
+
+(10.10)
+
+[the combination of (7.1) and (7.4)] to the KN electromagnetic ﬁeld (10.3).
+
+Since our aim is to construct a pure subtype ﬁeld (I2 = 0), we already have from (8.1) I12 = I12 + I22 while the sign of I1 is determined by the choice of position of α in the angle diagram and (8.2). Taking the expression (10.6)
+
+and using the obvious algebra of duality rotation, we rewrite the expression
+
+(10.10) as
+
+F
+
+=
+
+Q ρ2
+
+[cos(α
+
++
+
+β)
+
++
+
+sin(α
+
++
+
+β)∗]
+
+θ(0) ∧ θ(1)
+
+.
+
+(10.11)
+
+Now, putting α + β = 0, we immediately come to the pure electric ﬁeld Fel
+
+Fel
+
+=
+
+Q ρ2
+
+θ(0)
+
+∧ θ(1)
+
+(10.12)
+
+18
+
+generating the same KN geometry which everybody associates with the KN “patchwork” electromagnetic ﬁeld F (10.3). The pure magnetic ﬁeld
+
+Fmag
+
+=
+
+Q ρ2
+
+θ(2)
+
+∧
+
+θ(3)
+
+(10.13)
+
+is similarly obtained with the use of α + β = −π/2.
+
+Finally, we have to add the third new case of KN-like black holes, those
+
+with null type electromagnetic ﬁeld when in (10.11) α + β = π/4 + nπ/2 is
+
+taken (naturally, this ﬁeld now belongs to the impure subtype). With n = 0,
+
+it reads
+
+Fnull
+
+=
+
+√Q 2ρ2
+
+θ(0) ∧ θ(1) − θ(2) ∧ θ(3)
+
+.
+
+(10.14)
+
+The (contracted) Bianchi identities guarantee satisfaction of Maxwell’s equations outside the ring singularity for the new ﬁeld F in this geometry, while the presence of magnetic monopole distribution existing here only on the singular Kerr ring should not create any problem since at the singularity the classical laws of physics obviously fail to work. One may say that the magnetic monopole distribution (as well as that of the electric charge) can, as this is shown above, exactly compensate the magnetic (electric) ﬁeld created by a rotating charge (rotating monopole) distribution, but this is not precisely the case. In fact, we encounter in this situation a more complicated superposition of dynamical and kinematic eﬀects, since the (τ = θ(0))-reference frame is not an inertial one: it involves both acceleration and rotation (the latter is present due to θ(0) ∧ dθ(0) = 0, see the deﬁnitions in [11]). In the same ref. 11 (chapter 4, pp. 86, 87, 90, and 91) it is shown that in the classical Maxwell equations and in laws of motion of electric charges, both written in non-inertial reference frames, there appear kinematic terms of the monopole nature. In equations of motion they bear the name of kinematic forces (forces of inertia), thus in the ﬁeld equations let us speak of kinematic sources. While dynamical force and source are originated by the same interaction term in the action integral (only the variational procedure is performed with respect to particle’s world line and to ﬁeld’s potential, correspondingly), their kinematic counterparts automatically appear in the respective dynamical equations written (and experimentally investigable) in non-inertial frames. It is interesting that kinematic and dynamical counterparts of forces, as well as of sources, have rather similar structure, despite their diﬀerent origin, thus making them recognizable.
+
+19
+
+11 Examples in special relativity
+
+11.1 Li´enard–Wiechert’s ﬁeld: the pure electric type
+
+The Li´enard–Wiechert (LW) ﬁeld is special relativistic electromagnetic ﬁeld generated by an arbitrarily moving electric charge Q (we restrict our consideration to an arbitrary timelike world line of the charge). See the details of deduction of this ﬁeld in [10] where we used the future light cone (the case of retarded ﬁeld, precisely like in the present paper); an arbitrary mixture of retarded and advanced ﬁelds can be found in [18]. Thus the retarded point on the charge world line x′µ is connected with the four-dimensional point xµ (where the ﬁeld is determined) by the null vector Rµ = xµ − x′µ (we choose for simplicity the Cartesian coordinates in this special relativistic treatment). The four-potential then reads
+
+Aµ
+
+=
+
+Qu′µ D
+
+(11.1)
+
+where u′µ = dx′µ/ds′ (u′·u′ = 1) is the retarded four-velocity of the charge and D = u′·R ≡ −DµDµ, while Dµ = Rνbµν , b = g−u′⊗u′ simultaneously being the projector on local retarded three-dimensional subspace orthogonal to u′
+and the spatial three-metric on this subspace (with the signature 0, −, −, −). The retarded four-acceleration of the charge is a′µ = du′µ/ds′ (naturally, a′ · u′ ≡ 0). A simple calculation yields the LW ﬁeld tensor
+
+F = R ∧ V,
+
+V
+
+=
+
+Q D2
+
+a′
+
++
+
+u′
+
+1
+
+− a′ D
+
+·
+
+R
+
+(11.2)
+
+(the second ﬁeld invariant I2 automatically vanishes). The ﬁrst invariant is
+
+I1
+
+=
+
+−
+
+2Q2 D4
+
+<
+
+0
+
+(11.3)
+
+(remarkably, its structure is exactly Coulombian). Thus the LW ﬁeld pertains
+
+to the pure electric type everywhere outside the point charge’s world line.
+
+Combining R with V in (11.2), one can change the null vector R to a
+
+timelike one, U, and thus reduce the problem to that discussed in subsec-
+
+tion 6.1. However it is much simpler to (algebraically) regauge the vector
+
+V
+
+→
+
+W
+
+=V
+
++
+
+Q D2
+
+lR
+
+(the
+
+fractional
+
+coeﬃcient
+
+is
+
+put
+
+only
+
+for
+
+convenience,
+
+and l is a scalar function still to be determined); this does neither change
+
+20
+
+the ﬁeld tensor, F = R ∧ W , nor produce any l2-term in further calculations. Applying now the 1-form deﬁnition of the magnetic vector in a τ -frame (3.5) and taking the monad as τ = NW where the scalar normalization factor is N = (W · W )−1/2, we come to B = 0 in this frame. The problem is thus reduced to a proper choice of l such that W will be a suitable real timelike vector. We see that
+
+W
+
+=
+
+Q D2
+
+a′
+
++
+
+1
+
+− a′ ·R D
+
+u′
+
++
+
+lR
+
+.
+
+(11.4)
+
+Then its square takes an unexpectedly simple form
+
+W ·W =
+
+Q D2
+
+2
+
+a′ ·a′
+
++
+
+(1
+
+− a′ ·R)2 D2
+
++
+
+2l
+
+.
+
+(11.5)
+
+In fact, l still remains arbitrary (this means that there is a continuum of such diﬀerent co-moving frames). Let it be
+
+l
+
+=
+
+1 2
+
+1 D2
+
+−
+
+a′ ·a′
+
+−
+
+(1
+
+− a′ ·R)2 D2
+
+(11.6)
+
+(the ﬁrst term in the square brackets, 1/D2, got its denominator to ﬁt the
+
+dimensional considerations). Finally, W · W =
+
+Q D3
+
+2 > 0 and
+
+τ
+
+=
+
+Da′
+
++
+
+(1
+
+−
+
+a′ ·R) u′
+
++
+
+1 2D
+
+1 − D2a′ ·a′ − (1 − a′ ·R)2
+
+R
+
+(11.7)
+
+(it is clear that τ · τ = +1). By its deﬁnition, the monad τ describes the
+
+reference frame co-moving with the LW electromagnetic ﬁeld: in this frame
+
+the Poynting vector of the ﬁeld vanishes, the electromagnetic energy ﬂux τ
+ceases to exist due to the absence of magnetic part B of the ﬁeld in this
+
+frame (applicable at any ﬁnite distance D, not asymptotically), and F can
+
+be
+
+rewritten
+
+as
+
+F
+
+=
+
+Q D3
+
+R
+
+∧
+
+τ
+
+.
+
+The
+
+expression
+
+(3.4)
+
+now
+
+yields
+
+τ
+E
+
+=
+
+∗(τ
+
+∧
+
+∗F )
+
+=
+
+Q D3
+
+∗
+
+[τ
+
+∧
+
+∗(R
+
+∧
+
+τ )]
+
+=
+
+Qτ D2 n
+
+(11.8)
+
+which is, up to an understandable reinterpretation of notations, exactly the
+
+form
+
+known
+
+as
+
+the
+
+Coulomb
+
+ﬁeld
+
+vector.
+
+Here
+
+the
+
+unitary
+
+vector
+
+τ
+n
+
+=
+
+τ
+D/D
+
+u′
+
+τ
+
+is normal to the τ -congruence, while R · u′ = D = D = D = R · τ and
+
+21
+
+τµ
+D = bµν Rν with bµν = δνµ − τ µτν, hence in the frame co-moving with the LW ﬁeld (the reader may choose other co-moving reference frames taking
+diﬀerent ls, but our choice seems to be one of the simplest ones)
+
+τ
+D
+
+=
+
+−D2a′
+
+−
+
+D
+
+(1
+
+−
+
+a′ ·R)
+
+u′
+
++
+
+1
+
+1 + D2a′ ·a′ + (1 − a′ ·R)2
+
+R,
+
+(11.9)
+
+2
+
+τ
+
+u′
+
+so that this D = D in fact given after the formula (11.1) as D and pertaining
+
+to another frame (co-moving with the retarded charge, not with its ﬁeld, see
+
+for details [10]).
+
+The situation discovered in this subsection can be formulated in a short
+
+and exact form as existence in all spacetime outside the world line of the
+
+charge generating LW’s ﬁeld, of a reference frame co-moving with this ﬁeld,
+
+i.e., a frame in which the Poynting vector vanishes in all this region (with the
+
+exception of the future null inﬁnity which can be described only asymptoti-
+
+cally, using more topological1 than geometrical methods), thus in this frame
+
+there is no ﬂow of electromagnetic energy anywhere. Of course, this frame is
+
+in general a rotating one (see in [10] the expression (4.27) and appendix A),
+
+thus the three-dimensional space is non-holonom (it does not form a global —
+
+at least, ﬁnite — three-dimensional subspace of the four-dimensional world;
+
+at most, in the presence of rotation there exist only strictly local (inﬁnitesi-
+
+mal) elements of such a subspace which do not merge into a ﬁnite hypersur-
+
+face, like scales of a sick ﬁsh in aquarium. Note that this occurs here even
+
+in the special relativity, not only in general theory. Moreover, the presence
+
+of the frame’s rotation does not permit synchronization of clocks being at
+
+rest in such a frame. (In the same spacetime there always exist also an in-
+
+ﬁnite number of non-rotating frames in which you are welcomed to perform
+
+a synchronization, but in any rotating frame this very procedure is strictly
+
+forbidden. It is curious that while we live all our lives in our terrestrial ro-
+
+tating frame, its rotation remains suﬃciently slow not to condition us to this
+
+non-holonom psychology.)
+
+1It was a gibe of the fate with respect to the authors who deliberately disregarded topology and nevertheless claimed that the LW ﬁeld contains electromagnetic radiation, though in this ﬁeld the Poynting vector can be easily transformed away by means of a proper choice of the reference frame in every ﬁnite region around the charge’s world line. About the attitude of L.D. Landau and E.M. Lifshitz toward topology see [21], pp. 470471, — and see also [7], p. 173 ﬀ. However, Misner and Wheeler did take topology into account in their general-relativistic considerations [8, 23].
+
+22
+
+Since everywhere outside the LW source (the pointlike charge world line on which the ﬁeld singularity occurs) there is no magnetic ﬁeld in this frame, and any redistribution of electromagnetic ﬁeld cannot take place there, the LW ﬁeld does not propagate in this frame, it only can be compressed or rareﬁed remaining at rest with respect to the frame in its contraction or expansion, similar to eﬀects known in relativistic cosmology. This could seem to be in contradiction with the traditional decomposition of LW ﬁeld into the near (induction) and distant (radiation) zones. The reason for this “contradiction” should be seen in the fact that, although the very Maxwell equations are linear, the physical characteristics of electromagnetic ﬁelds such as their energy density, Poynting vector (describing, up to a constant factor, either the energy ﬂow density or linear momentum density of the ﬁeld), and stress, are quadratic (or bilinear) in the ﬁeld tensor sense. Thus we have not to overlook the “interaction” terms between the induction and radiation counterparts in these characteristics. Note that the elimination of the magnetic part of LW’s ﬁeld is directly related to its pure electric type,— consequently, to the quadratic (bilinear) invariants of this ﬁeld. Therefore the “contradiction” exists only in a wrong customary application of the linearity concept to the strictly nonlinear characteristics even of the electrovacuum electromagnetic ﬁelds. In a certain sense, there should be a way to reconcile this contradiction considering the asymptotic behaviour of the ﬁeld; in any case, this has to correspond to merely technical details of the problem. Similarly, in his ironic paper [19], Synge with his great wit criticized the existing style of introduction of these same characteristics in the most widely used textbooks on ﬁeld theory. Though his criticism was there somewhat superﬁcial, we ﬁnd Synge’s paper quite provocative in more profound determination of the quotidian concepts in our theory using their physical sense.
+11.2 Propagation of a plane electromagnetic wave on the background of homogeneous magnetic ﬁeld in a vacuum
+Finally, let us consider a simple, but not yet discussed in literature problem of electromagnetic waves’ propagation in a time-independent sourceless Maxwell ﬁeld in a vacuum. For simplicity, we take the same wave as in subsection 6.2, and the additional Maxwell ﬁeld is chosen merely as a magnetic one in the direction of propagation of the wave, with the constant three-
+23
+
+vector B. Obviously, this superposition is an exact solution of Maxwell’s equations, and there cannot be any real interaction between these two ﬁelds since the equations are linear. We have however already noted that the velocity of propagation of electromagnetic ﬁeld is non-linear in terms of this ﬁeld’s tensor F , so that there should, naturally, exist an observable physical eﬀect in the case of a superposition of such free Maxwell’s ﬁelds. There is, of course, an eﬀect which was already considered and observed in the early history of optics, that of the standing electromagnetic waves, but nobody still worried about the seemingly absurd problem formulated above.
+Thus we take in Cartesian coordinates t, x, y, z the superposition of the ﬁelds (6.3) and BH = Hdx, i.e.
+
+E = E cos[ω(x − t)]dy, B = Hdx + E cos[ω(x − t)]dz.
+
+(11.10)
+
+Obviously, I2 = 0 due to the orthogonality of E and B, and the ﬁrst invariant is I1 = 2H2 > 0: this is the pure magnetic type ﬁeld. The result of superposition (11.10) is in fact a speciﬁc not precisely monochromatic wave
+whose behaviour can be best understood in the reference frame co-moving with it, and one can ﬁnd such a frame using the pure-magnetic property of
+this wave’s ﬁeld, see subsection 6.1. First, we write the ﬁeld ∗F [through (11.10) in the initial frame τin = dt] as a simple bivector:
+
+∗F = ∗(E ∧ dt) − B ∧ dt
+
+= − E cos[ω(x − t)]dx ∧ dz + H dx ∧ dt + E cos[ω(x − t)]dz ∧ dt
+
+= − Hdx + E cos[ω(x − t)]dz ∧ (dt − dx) = −P ∧ Q.
+
+(11.11)
+
+If to P we add lQ (l being an arbitrary function) and use this sum P ′ instead
+
+of the former P , ∗F does not change. It is obvious that P ·P < 0, but P ′·P ′ =
+
+2lH
+
+− H2 − E2 cos2[ω(t − x)].
+
+Thus
+
+if
+
+we
+
+choose
+
+l
+
+=
+
+H
+
++
+
+E2 2H
+
+cos2[ω(t − x)],
+
+the vector P ′ will be timelike, P ′ · P ′ = H2 > 0, and we can take P ′/H as a
+
+properly normalized monad,
+
+τ=
+
+1
+
++
+
+E2 H2
+
+cos2[ω(t
+
+−
+
+x)]
+
+(dt
+
+−
+
+dx)
+
++
+
+dx
+
++
+
+E H
+
+cos[ω(t
+
+−
+
+x)]dz.
+
+(11.12)
+
+Now the dually conjugated ﬁeld tensor reads ∗F = −Hτ ∧ (dt − dx), thus in the frame τ the electric ﬁeld (3.4) vanishes, and this is the ﬁeld’s co-moving frame. In all these calculations one has to remember that when only one (here, magnetic) ﬁeld survives after the reference frame is transformed, there
+
+24
+
+are other possible transformations which do not change this situation (in fact, all those which involve an additional motion in the direction of this ﬁeld, even when this motion occurs to be with a non-constant magnitude of the threevelocity described by strictly local Lorentz transformations working in noninertial frames). Thus there appears a continuum of such one-ﬁeld frames (cf. [7], but working in general as well as in special relativity), and the search for more elegant ones depends on the individual taste of the researcher.
+Let us now calculate the three-velocity of the frame τ from the viewpoint of τin using our general deﬁnition (3.8) and substitute the result into the lefthand side of (5.1), then putting into the right-hand side the expressions of E and B from (11.10) in the frame τin to check if the Landau–Lifshitz deﬁnition (5.1) really works. Obviously, this way will not represent a vicious circle since these parts of (5.1) were initially deduced in [7] from a very diﬀerent standpoint than ours (moreover, in this way the left-hand side of (5.2) will be automatically checked: both deﬁnitions of v cannot simultaneously work well). First, we rewrite (3.8) in these notations for frames and ﬁnd v (⊥ τin):
+
+τ
+
+= (τ ·τin)(τin+v)
+
+⇒
+
+v=
+
+E H
+
+cos[ω(t
+
+−
+
+x)]
+
+1
+
++
+
+E2 H2
+
+cos2[ω(t
+
+−
+
+x)]
+
+dz
+
+−
+
+E H
+
+cos[ω(t
+
+−
+
+x)]dx
+
+.
+
+This means that
+
+|v| 1 + v2
+
+=
+
+E H
+
+cos[ω(t − x)]
+
+1
+
++
+
+2
+
+E2 H2
+
+1
+
++
+
+E2 H2
+
+cos2[ω(t
+
+−
+
+x)] .
+
+cos2[ω(t − x)]
+
+Precisely
+
+the
+
+same
+
+is
+
+the
+
+result
+
+of
+
+calculating
+
+|E×B| E2 +B2
+
+—
+
+Landau
+
+and
+
+Lifshitz’s
+
+deﬁnition wins. (Pauli’s deﬁnition (5.2) cannot contain on its left-hand side
+
+the
+
+construction
+
+1
+
++
+
+2
+
+E2 H2
+
+cos2[ω(t − x)]
+
+which
+
+inevitably
+
+appears
+
+on
+
+the
+
+right-
+
+hand
+
+side
+
+2
+
+|E×B| E2+B2
+
+,
+
+like
+
+in
+
+the
+
+Landau–Lifshitz
+
+case.)
+
+The
+
+mean
+
+value
+
+of
+
+|v|
+
+is
+
+simply
+
+2 π
+
+arcsin
+
+√E E 2 +H 2
+
+.
+
+When H → 0, the mean propagation velocity
+
+approaches that of light, while if E ≪ H, the mean velocity can become as
+
+low as one wishes: to this end, it is necessary to use as strong magnetic ﬁeld
+
+H as possible and/or choose a low-intensity wave in the superposition.
+
+12 Concluding remarks
+The results obtained in this paper are based on three simple observations: that the physical classiﬁcation of electromagnetic ﬁelds should be formulated
+25
+
+using the properties of only two well known invariants of these ﬁelds, the complete description of reference frame is related only to the state of motion of a continuous multitude of test observers, and that the duality rotation (in the vein of Rainich–Misner–Wheeler, but in a more modern and general form) applied to a seed solution of Maxwell’s equations, yields a new solution in the same four-geometry which was generated by the seed solution via Einstein’s equations. We have proven that these suppositions really work together, and the duality rotation permits to construct qualitatively new solutions, belonging also to other desired types of electromagnetic ﬁelds in accordance with our classiﬁcation. There is only one restriction separating the pure null type ﬁelds from those of other ﬁve types. The pure null type does not change under the duality rotation, becoming in fact the same solution of this pure type, though corresponding to another reference frame and displaying the Doppler eﬀect in its generalized form also considered in this paper. As illustrations of application of our approach we discuss concrete examples of the Kerr–Newman (KN) solution and the Li´enard–Wiechert (LW) ﬁeld (to show the eﬃciency of our method also in special relativity). Moreover, we deduce three qualitatively new types of electromagnetic ﬁeld creating the same four-geometry as the seed KN solution, thus describing other kinds of KN-like black holes. Studying the LW ﬁeld, we come upon a new conclusion that the linearity of Maxwell’s equations does not automatically mean that diﬀerent constituent parts of this ﬁeld can be properly interpreted separately. Other characteristics of the ﬁeld (such as the energy density and Poynting vector) have non-linear nature, thus a study of these characteristics constructed only of one or another parts of the LW solution, with omission of the combination (“interaction”) of these parts, means a disregard of important physical properties of the ﬁeld, in particular, of its true propagation velocity. We have explicitly shown that this velocity of the complete LW solution is less than that of light, and we have given the physically full-ﬂedged frame co-moving with LW ﬁeld in which its Poynting vector exactly vanishes everywhere outside the world line of the source of this ﬁeld (strangely, this fact was never noticed before). The last, but not least example is related to a simple superposition of two exact solutions of special-relativistic Maxwell’s equations, plane electromagnetic wave and homogeneous magnetic ﬁeld in a vacuum. We show that this superposition, being itself an exact solution, always propagates with the velocity lesser than that of light, and we show that the elementary expression for this velocity is properly deﬁned in [7], but not in [13]. (I must admit that at ﬁrst I liked the deﬁnition given in Pauli’s
+26
+
+book much more than Landau–Lifshitz’s one: see, e.g., [12].) Finally, may I express my hope (to a certain extent, against hope), that
+the given here examples should lead our community of physicists to a more profound consideration of the non-trivial concept of reference frame and to its better understanding as a more physical than purely mathematical subject and an important ingredient in the description of physical reality. To console those who cannot accept the representation of reference frames through monads and Cartan’s forms, I would add that they can take instead any system of coordinates whose t-coordinate lines coincide with those of the τ -congruence (the choice of spatial coordinates does not matter). In such a system, there will be realized precisely the same picture, though mathematics will feel awkward, while reference frames will seem to be silenced.
+References
+[1] N. Bohr and L. Rosenfeld (1933) Kgl. Danske Videnskab. Selskab., Mat.fys. Medd. 12, 8.
+[2] G.C. Debney, R.P. Kerr, and A. Schild, (1969) J. Math. Phys. 10, 1842.
+[3] M.P. Hobson, G.P. Estathiou, and A.N. Lasenby (2006) General Relativity. An Introduction to Physicists (Cambridge, U.K.: CUP).
+[4] G. ’t Hooft (1998) Introduction to General Relativity (Institute for Theoretical Physics, Utrecht University, Princetonplein 5, 3584 CC Utrecht, the Netherlands).
+[5] R.P. Kerr (2008) Discovering the Kerr and Kerr–Schild metrics arXiv: 0706.1109v2 [gr-qc].
+[6] D. Kramer, H. Stephani, M. MacCallum, and E. Herlt (1980) Exact Solutions of Einstein’s Field Equations (Berlin: VEB Deutscher Verlag der Wissenschaften; Cambridge, U.K.: CUP).
+[7] L.D. Landau and E.M. Lifshitz (2006) The Classical Theory of Fields, Fourth Revised English Edition (Amsterdam: Elsevier).
+[8] C.W. Misner and J.A. Wheeler (1957) Ann. Phys. (USA) 2, 525.
+27
+
+[9] N.V. Mitskievich (Mizkjewitsch) (1958) Ann. Phys. (Leipzig) 1, 319. In German. (The Noether theorem in general relativity, see also [11].)
+[10] N.V. Mitskievich (2005) Li´enard–Wiechert solution revisited arXiv: physics/0506144.
+[11] N.V. Mitskievich (2006) Relativistic Physics in Arbitrary Reference Frames (New York: Nova Science Publishers). See also a less detailed early book preprint: arXiv gr-qc/9606051 (without the Noether theorem [9]).
+[12] N.V. Mitskievich (2006) Electromagnetic Phenomena 6, no. 2, 124.
+[13] W. Pauli (1981) Theory of Relativity (New York: Dover).
+[14] J.F. Pleban´ski (1964) Acta Phys. Polon. 26, 963.
+[15] F.M. Paiva, M.J. Rebouc¸as, G.S. Hall, and M.A.H. MacCallum (1998) Class. Quantum Grav. 15, 1031.
+[16] G.Y. Rainich (1925) Trans. Am. Math. Soc. 27, 106.
+[17] H. Stephani, D. Kramer, M. MacCallum, C. Hoenselaers, and E. Herlt (2003) Exact Solutions of Einstein’s Field Equations, Second Edition (Cambridge, U.K.: CUP).
+[18] J.L. Synge (1965) Relativity: The Special Theory (Amsterdam: NorthHolland).
+[19] J.L. Synge (1974) Hermathena (a Dublin University review) No. cxvii.
+[20] S.A. Teukolsky (1973) Astrophys. J. 185, 635.
+[21] K.S. Thorne (1994) Black Holes & Time Warps: Einstein’s Outrageous Legacy (New York: W.W. Norton and Co.).
+[22] P.K. Townsend (without date) Black Holes. Lecture notes (DAMTP, Univ. of Cambridge, Silver St., Cambridge, U.K.).
+[23] J.A. Wheeler (1962) Geometrodynamics (New York: Academic Press).
+28
+

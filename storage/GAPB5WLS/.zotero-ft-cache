@@ -1,0 +1,289 @@
+Measuring Ionospheric Scintillation Effects from GPS Signals
+Dr. A. J. Van Dierendonck and Dr. Quyen Hua, GPS Silicon Valley (GSV)
+
+ABSTRACT GPS signals provide an excellent means for measuring ionospheric scintillation effects on a global basis because the signals are continuously available and can be measured through many points of the ionosphere simultaneously. GPS signals are themselves affected. However, tracking through disturbances with a GPS receiver is usually possible with reasonably wide bandwidth tracking loops. Because of this, ionospheric scintillation can be monitored, and is currently being monitored around the world. This was not widely possible during the last solar activity peak. The importance of the wide bandwidth is that scintillation parameters, such as spectral content, can be computed, not just the effects of the scintillation on GPS receiver performance.
+The majority of the current wide bandwidth monitoring is being done using a commercially off-the-shelf GPS receiver implemented with special software -- the GSV4000 GPS Ionospheric Scintillation Monitor (GISM) and predecessor prototype units. Now, GPS Silicon Valley is pleased to offer the new GSV4004 GPS Ionospheric Scintillation and TEC Monitor (GISTM) receiver. This receiver, a NovAtel EURO4 dualfrequency receiver with special firmware, comprises the major component of a GPS signal monitor, specifically configured to measure amplitude and phase scintillation from the L1 frequency GPS signals, and the ionosphere’s TEC from the L1 and L2 frequency GPS signals. This scintillation and TEC monitoring receiver is housed in a NovAtel GPStation4E housing with a low phase noise oscillator, and provides true amplitude, single frequency carrier phase measurements and TEC measurements of up to 11 GPS satellites in view. It will also track one SBAS (WAAS, EGNOS or MSAS) satellite, providing L1 measurements and data, as the 12th satellite. The unit comes with complete software that allows the automatic measurement and computation of all the major scintillation parameters and TEC. A variety of antennae,
+
+with or without choke rings and cables, are offered as options.
+In this paper, the wide bandwidth monitoring capabilities of these receivers are described. This is followed by the presentation of data collected from a selection of recorded scintillation events and TEC calibration results.
+INTRODUCTION GPS signals provide an excellent means for measuring ionospheric scintillation effects on a global basis. The signals are continuously available and can be measured through many points of the ionosphere simultaneously. GPS signals are themselves affected, but tracking through disturbances with a GPS receiver is usually possible with reasonably wide bandwidth tracking loops.
+In the past, specially designed satellites have been launched for monitoring ionospheric scintillation using satellite-radiated signals. In more recent years, the signals radiated from the GPS satellites have been used with success, but, again, mostly experimental, and they have been done on a limited scale. This is because off-the-shelf GPS receivers do not provide the phase and amplitude information required for scintillation parameter extraction. Specially modified receivers have to be used to obtain accurate values of the scintillation parameters. In these past experiments, dual frequency P(Y) code receivers were used, measuring the difference between L1/L2 phase measurements. These differences cancel all systematic effects such as satellite motion, clocks, selective availability (SA) and the troposphere. Unfortunately, the cost of these receivers and the Anti-Spoof (A-S) cover on the P code has prevented this exploitation on an operational basis. Codeless cross-correlation receivers that will operate with A-S on are available, but their L2 measurements are either far too noisy or are too bandwidth limited to be of use for ionospheric scintillation monitoring [1].
+
+ION 57th Annual Meeting/CIGTF 20th Biennial Guidance Test Symposium, 11-13 June 2001, Albuquerque, NM
+
+391
+
+The solution can be based upon the latest commercial GPS receiver technology without relying on military receivers with their special P(Y) code demodulation requirements. In the following, the description of GPS Ionospheric Scintillation and TEC Monitor (GISTM), the GSV4004, based upon that technology, is presented.
+The GISTM is a dual frequency GPS receiver based upon semi-codeless technology [1]. Although scintillation effects are not measured at the L2 frequency, pseudorange and carrier phase are measured at L2 (as well as at L1) from which Total Electron Content (TEC) can be calculated.
+First, the measurements made by these units and the measurement processing are described. Then, recorded scintillation events and TEC calibration results are presented, followed by a summary description of the GSV4004.
+MEASURING PHASE SCINTILLATION Phase scintillation monitoring is accomplished by monitoring the standard deviation, σ∆φ, of detrended carrier phase from signals received from the GPS satellites. The σ∆φs are computed over 1, 3, 10, 30 and 60-second intervals every 60 seconds. These five values are averaged over a minute and displayed and/or stored. Also displayed and/or stored is information for computing the Ionospheric Penetration Point (IPP) at a mean ionospheric height where the irregularities that produce the scintillation effects are maximum, providing a map of a "poor man's" phase spectral density. As an option, it is possible to record raw or detrended phase data for off-line analysis. The raw phase data has a noise bandwidth of 15 Hz, which means that the carrier phase is tracked with a 15-Hz bandwidth phase-lock-loop (PLL). A 50-Hz sample rate of the phase data is used for the computations described above and stored as such if the raw data collection option is selected.
+The key to using a single frequency GPS receiver with sufficient carrier phase bandwidth is the ability to remove the low frequency systematic effects -- the troposphere and satellite and receiver oscillator effects. Of course, slow ionospheric delay variations are also removed. In most off-the-shelf commercial receivers, the receiver oscillator's phase noise by far dominates what would be expected of phase scintillation variations. This is because those receivers normally use a low-cost temperaturecompensated-crystal-oscillator (TCXO) as a reference oscillator. All other systematic effects are easily removed. In the GSV4004, the TCXO is locked to the output of a high-quality oven-controlled SC-cut crystal oscillator (OCXO), and, fortunately, this dominant effect is reduced to desired levels.
+
+The method best used for detrending passes the phase measurements through a high-pass filter, which removes all low frequency effects below its frequency cut-off (on the order of 0.1 Hz or less). This means that the oscillator effects should also be filtered-out, except for high frequency phase noise. The quality of the oscillator must be such that this unfiltered phase noise is low relative to the desired scintillation monitoring performance.
+A sixth-order Butterworth filter with a selectable 0.01 to 1 Hz 3-dB cutoff frequency is used to filter out the low frequency data, similar to that used in [2]. In [2], the input data was sampled at 100 samples-per-second (sps), but sampling at 50 sps is sufficient for the 15-Hz noise bandwidth. This filter is implemented digitally in the time domain using the equations presented in [3].
+The phase 1-sigma values are typical at a level well below 0.1 radians. This is measured at L1. When translated to the frequency of the oscillator, it agrees very well with the specified phase noise of the oscillator at a level of about 95 dB/Hz. At the beginning and at the end of the satellite pass, the thermal noise background will dominate.
+MEASURING AMPLITUDE SCINTILLATION Traditionally, amplitude scintillation is monitored by computing the index S4. The S4 index is derived from detrended signal intensity of signals received from satellites. Signal intensity is actually received signal power, which is measured in a way that its value doesn't fluctuate with noise power. Since the S4 index is normalized, the receiver's absolute gain is not important, as long as it is relatively constant during the de-trending period. It is also important that the intensity measurement be linear with respect to the signal power over its entire range, including deep scintillation fades.
+S4 measured at L-band needs to have the effects due to ambient noise removed, since the ambient noise at the L1 frequency translates to a relatively high S4 at lower frequency VHF and UHF frequencies. It is desired that the resulting S4 value be less than 0.05 for all received signal levels above -139 dBm.
+The S4 values are normally computed over 60 second intervals. In the GISTM, values are stored on a file and can be displayed for each satellite along with the display of the phase data described earlier. As noted below, the standard deviation of the code/carrier divergence is also computed over the same 60-second interval, and it is stored and displayed as an indicator of multipath activity. The raw or detrended intensity data, at a 50 Hz rate, can be recorded if selected by the operator. The raw intensity data has a single-sided noise bandwidth of 25 Hz.
+
+ION 57th Annual Meeting/CIGTF 20th Biennial Guidance Test Symposium, 11-13 June 2001, Albuquerque, NM
+
+392
+
+The raw intensity measurement having the characteristics stated above is the difference between Narrow Band and Wide Band Power (NBP and WBP), measured over the same interval every 20 milliseconds, where
+
+20
+
+∑ WBP =
+
+I
+
+2 i
+
++
+
+Qi2
+
+1)
+
+i =1
+
+and
+
+∑ ∑ NBP
+
+=
+
+ 
+
+20 i =1
+
+Ii
+
+2 
+
++
+
+ 
+
+20 i =1
+
+Qi
+
+2 
+
+2)
+
+where Ii and Qi are the 1-kHz in-phase and quadraphase
+samples. If the receiver's gain is constant, this difference is proportional to received signal power S, or signal intensity SI. Then, the total S4, including the effects of ambient noise, is defined as follows:
+
+SI 2 − SI 2
+
+S 4T =
+
+SI 2
+
+3)
+
+where • represents the expected (or average) value over the interval of interest (60 seconds).
+
+As with the phase measurements, the intensity measurements must be detrended. The received signal power varies due to changing range, antenna patterns and multipath. As in [2], this is done by first passing the intensity measurements through a low-pass filter. This filter is similar to the high-pass filter described above. The differences are as follows:
+
+1) The detrending is accomplished by dividing the input by the output of the low-pass filter as
+
+SIk
+
+=
+
+( NBP −WBP)k ( NBP −WBP)lpf ,k
+
+4)
+
+which fluctuates around a value of 1, and
+
+2) The cutoff frequency is not necessarily the same as for phase detrending. The capability of entering a different value of the cutoff value for intensity detrending is included.
+
+Unfortunately, the total S4 defined in Equation 3 can have significant values simply due to ambient noise. Since this index could be used in practice by scaling to predict amplitude scintillation at lower frequencies, such as VHF and UHF, any value due to noise at L1 will tend to swamp out low amplitude scintillation that scale to significant levels at VHF and UHF. Thus, it is desirable to remove, as well as one can, the effects of ambient noise. The
+
+average signal-to-noise density is first estimated over the entire evaluation interval (60 seconds). This estimate is then used to determine the expected S4 due to ambient noise. This is legitimate since the amplitude scintillation fades do not significantly alter the average signal-to-noise density over a 60-second time interval. In fact, over 60 seconds, there always enhancements that counter the fades.
+Note from Equation 3 that S4 is simply the square root of the normalized variance of signal power. If the signal-to-
+noise density (S N0 ) is known, the predicted S4 due to
+ambient noise is [3]
+
+S4N0 =
+
+100 S N0
+
+1 + 
+
+500 19 S N0
+
+  
+
+5)
+
+Thus, by replacing the S N0 with the 60 second
+estimate, S N0 , an estimate of signal-to-noise density, we obtain an estimate of the S4 due to noise, S 4N0 . Subtracting the square of this value from the square of Equation 3 yields the revised value of S4
+
+S4 =
+
+SI 2 − SI
+
+SI
+2
+
+2
+
+100 −
+S N0
+
+1 
+
++
+
+500 19S N0
+
+  
+
+6)
+
+When there is no scintillation, the value under the radical may go slightly negative. If it does, we are truly removing the effects of ambient noise. Simply setting S4 to zero if the value is negative eliminates this problem.
+
+The S4 values are normally computed over 60-second intervals. Raw or detrended intensity data with a singlesided noise bandwidth of 25 Hz can also be collected for off-line analysis. This intensity data is sampled at a 50-Hz rate.
+
+MEASURING TEC Total Electron Content (TEC) is computed from smoothed L1 and L2 pseudorange differences and multiplied by the appropriate constant to convert the values to TEC Units (TECU). These differences are smoothed against the L1 and L2 carrier phase measurements, again converted to TECU. They are then corrected for the satellite biases obtained from the GPS Navigation Message, the biases known as Tau_GDs [4]. Four of these TEC values are output every 60 seconds representing 15-second values.
+Four ∆TECs, carrier phase derived TEC values integrated over 15 seconds, are also output every 60 seconds, representing very accurate, contiguous, but ambiguous TEC.
+
+393
+
+Sigma_Phi_60 - Radians Corrected S4
+
+As part of the raw 50-Hz scintillation data records, TEC and ∆TEC are output once per second.
+
+SCINTILLATION MONITORING RESULTS The following figures show scintillation measured from Calgary, Alberta, Canada on 22 March 2001 during a period of an active ionosphere accompanied with a fantastic display of Northern Lights. Figure 1 shows 60second phase scintillation 1-sigma values for 11 satellites observed over a period of 17 hours. (The gap at about 8 AM is because none of those 11 SVs was visible during that gap period.) Figure 2 shows corrected S4 measured and computed over the same period. Note that most of the phase scintillation occurred between 9:30 PM and 3:30 AM, local time, with some lower level scintillation occurring later in the morning. Most of the phase scintillation is moderate, but the 60-second 1-sigma value did peak between 1.4 to 1.6 radians early in the period.
+1.8
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+-8
+
+-4
+
+0
+
+4
+
+8
+
+12
+
+Local Time of Day - Hours
+
+Figure 1. Phase Scintillation Viewed from Calgary on 22 March 2001
+All of the amplitude scintillation is moderate to low during the same period, without a great deal correlation with the phase scintillation. This seems to be typical of scintillation at higher latitudes. Some of the low level values of amplitude scintillation (below S4 of 0.25) are not due to scintillation at all, but amplitude variations due to signal multipath. A good measure of multipath is the faster divergence of code and carrier phase, faster than divergence due to the ionosphere. One-sigma values of code/carrier divergence, measured over 60 seconds, are plotted against the uncorrected S4 values in Figure 3. Note that the true amplitude scintillation is associated with low one-sigma values, while variations due to multipath are associated with higher one-sigma values. This is a good way to distinguish between the effects of multipath and amplitude scintillation. The dividing-line separator shows that a linear relationship can be used for detecting the difference between amplitude scintillation and signal multipath, even in real-time.
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+0
+
+-10
+
+-5
+
+0
+
+5
+
+10
+
+15
+
+Local Time of Day - Hours
+
+Figure 2. Amplitude Scintillation Viewed from Calgary on 22 March 2001
+
+Figure 3. Separating Multipath and Amplitude Scintillation
+TEC CALIBRATION Because the GISTM has different L1 and L2 hardware paths, calibration of absolute TEC is necessary. Since there is no convenient hardware mechanism to do calibration in the field, the best calibration procedure is to compare collected measurement data with a “truth” source, such as the IGS or an SBAS system (WAAS, EGNOS or MSAS). As an example, this was done from a location in Los Altos, CA. TEC and ∆TEC measurements were collected and differenced with IGS model data defined at the same times. The ionosphere was rather active that day, so only the nighttime values were used in the calibration. Even then, values computed for one of the SVs were discarded. Figure 4 shows a plot of the residual values for 12 SVs visible during that period (except for the discarded SV). The receiver bias was computed to be 16.33 TECU (about 5.7 nanoseconds differential delay). The one-sigma value over those 12 SVs was 2.43 TECU (0.85 nanoseconds differential delay). These calibration values are not the best. This is because the ionosphere was rather active that day, and the IGS model did not fit very well at the Los Altos locatin. It is expected that an SBAS (such as WAAS) model would provide much better calibration values. This is being explored further.
+
+394
+
+40.00
+
+JPL Data vs.
+
+30.00
+
+Measured
+
+25 Degree Cutoff, 12 SVs
+
+20.00
+Bias = 16.33 TECU, Sigma Bias = 2.43 TECU
+10.00
+
+TEC Difference - TECU
+
+0.00 -10.000
+-10.00
+
+-5.000
+
+0.000
+
+5.000
+
+10.000
+
+15.000
+
+20.000
+
+-20.00
+
+Local Standard TOD - Hours
+
+Figure 4. Receiver Calibration Residuals
+
+GSV4004 CHARACTERISTICS The GSV4004 GPS Ionospheric Scintillation and TEC Monitor (GISTM) consists of a NovAtel EURO4 card and an OCXO/Power Supply card packaged in NovAtel’s GPStation housing (GPStation4E). The unit is shown in Figure 5 along with an optional antenna. The unit comes with complete software that allows the automatic measurement and computation of all the major scintillation parameters described earlier. It outputs the data via up to two high-speed serial ports and operates on DC power (+10 to +36 VDC). The connector panel is
+
+also shown in Figure 5. A portable AC-to-DC regulated power supply that operates on all international voltages is also provided.
+As an option, one of three antennae is available – a standard NovAtel Model 502 L1/L2 antenna, the Model 502 antenna with a choke ring ground plane to minimize multipath effects and a radome for protection from snow, ice and birds (NovAtel Model 503), and the NovAtel GPS-600 Pinwheel antenna (shown in Figure 5). The latter antenna has the multipath rejection capability similar to using a choke ring, but is somewhat smaller and less expensive. If it is possible to control the multipath environment, the standard antenna is recommended because of better coverage of SVs at low elevation angles.
+Utility software is also provided with the GSV4004. This software includes a NovAtel user-friendly receiver control and data-logging program (SLOG) that operates using script commands. This program also allows the display of critical scintillation and TEC parameters for real-time operator monitoring. Another program (ISTMView) postprocesses logged-files to view selected scintillation and TEC parameters. Data parsing programs are also provided.
+
+Figure 5. GSV4004 GISTM and Optional GPS-600 Antenna
+
+SUMMARY A properly designed civilian GPS receiver can measure amplitude and phase scintillation. The GSV4004 GPS Ionospheric Scintillation and TEC Monitor is such a receiver. The key to successful single frequency phase scintillation measurements using these units is that they have a suitable, phase stable, ovenized crystal oscillator against which the satellite carrier phase measurements are made. The phase scintillation bandwidth is up to 15 Hertz and has a 50 Hz sampling rate. Amplitude scintillation measurements use a well-calibrated, linear power response of the receiver with a single-sided noise bandwidth of approximately 25 Hz with a 50 Hz sampling rate. Both
+
+code-phase and carrier-phase TEC values are also measured. Scintillation and TEC parameters are computed for all satellites in view and reported once per minute. Raw 50-Hz scintillation data and 1-Hz TEC data can also be logged for off-line analysis. The GSV4004 is a powerful tool for real-time observations of ionospheric irregularities that produce significant scintillation effects on GPS signals. These observations can be used to project the effects of the ionosphere on any satellite signals operating at frequencies from UHF to X-band, by suitable scaling to the frequency desired.
+
+395
+
+REFERENCES 1. Van Dierendonck, A. J., “Understanding GPS Receiver Terminology: A Tutorial”, GPS World, vol. 6, no. 1, Jan. 1995, p. 34 - 44. 2. E. J. Fremouw, R. L. Leadabrand, R. C. Livingston, M. D. Cousins, C. L. Rino, B. C. Fair and R. A. Long, "Early Results from the DNA WideBand Satellite Experiment -Complex-Signal Scintillation," Radio Science, Vol. 13, No. 1, January-February 1978, pp. 167 - 187. 3. A. J. Van Dierendonck, John Klobuchar and Quyen Hua, “Ionospheric Scintillation Monitoring Using Commercial Single Frequency C/A Code Receivers,” Proceedings of ION GPS-93, Salt Lake City, UT, September 1993, pp. 1333 - 1342. 4. NAVSTAR GPS Space Segment/Navigation User Interfaces, ICD-GPS-200C, Revisions 1 through 4, El Segundo, CA, April 2000.
+396
+

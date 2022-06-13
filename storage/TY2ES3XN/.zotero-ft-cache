@@ -1,0 +1,1200 @@
+arXiv:1708.04569v1 [gr-qc] 15 Aug 2017
+
+Is Teleparallel Gravity really equivalent to General Relativity?
+Luciano Combi,a Gustavo E. Romeroa,b aInstituto Argentino de Radioastronomía (CCT-La Plata, CONICET; CICPBA), C.C. No. 5, 1894, Villa Elisa, Argentina bFacultad de Ciencias Astronómicas y Geofísicas, Universidad Nacional de La Plata, Paseo del Bosque s/n, 1900 La Plata, Buenos Aires, Argentina. E-mail: lcomb@iar.unlp.edu.ar
+Abstract: An axiomatization of the so-called Teleparallel Equivalent to General Relativity is presented. A set of formal and semantic postulates are elaborated from where the physical meaning of various key concepts of the theory are clariﬁed. These concepts include those of inertia, Lorentz and diﬀeomorphism invariance, and reference frame. It is shown that Teleparallel Gravity admits a wider representation of space-time than General Relativty, allowing to deﬁne properties of the gravitational ﬁeld such as energy and momentum that are usually considered problematic. In this sense, although the dynamical equations of both theories are equivalent, their inequivalence from a physical point of view is demonstrated. Finally, the axiomatic formulation is used to compare Teleparallel Gravity with other theories of gravity based on absolute parallelism such as non-local and f(T) gravity.
+
+Contents
+
+1 Introduction
+
+1
+
+2 Teleparallel Gravity
+
+2
+
+2.1 Geometrical background
+
+2
+
+2.2 Dynamics
+
+4
+
+3 Axiomatics
+
+6
+
+3.1 GR|| axiomatized
+
+6
+
+4 Discussion
+
+8
+
+4.1 Reference class
+
+9
+
+4.2 Recovering General Relativity
+
+9
+
+4.3 Change and geometry
+
+10
+
+4.4 Locality of the energy-momentum tensor for gravity
+
+12
+
+4.5 Inequivalence between GR and GR||
+
+14
+
+5 On other teleparallel theories
+
+15
+
+6 Conclusions
+
+17
+
+A Axiomatization of General Relativity
+
+17
+
+B Energy-momentum tensor for a LIRF and a PIRF
+
+19
+
+1 Introduction
+In 1928, Einstein attempted to formulate a uniﬁed theory of gravity and electromagnetism [1] using the geometrical notion of teleparallelism (called Fernaparallelismus, in German), a concept developed independently by Cartan a few years before. In this new theory, the metric is replaced by the tetrad ﬁeld eaµ, a 16-component object which would encode the 10 degrees of freedom of the metric and the 6 degrees of freedom of the electromagnetic ﬁeld. Even though Einstein was not able to ﬁnd consistent ﬁelds equation for his theory, the idea of an alternative representation for the gravitational interaction using torsion instead of curvature was introduced. This theory, with ﬁeld equations equivalent to those of General Relativity (GR) and a diﬀerent geometrical background, is now called the Teleparallel Equivalent to General Relativity or the Teleparallel Framework of General Relativity (GR||).
+GR|| admits a well-behaved (though gauge dependent) enhhergy-momentum tensor for gravity [2]. Adopting the usual interpretation of tetrad ﬁelds as reference frames, Maluf and collaborators have shown that the concept of gravitational energy in GR|| is consistent
+–1–
+
+in many physical situations (see Ref. [3], [4] and [5]). Moreover, this approach has been used by Mashhoon to formulate a non-local gravity theory [6]. Despite all these interesting developments, a thorough comparison of GR and GR|| has not been made. In this paper, we have constructed an axiomatization for GR|| with the aim of implementing a rigorous comparison between both theories. We have analyzed and compared all key physical concepts in GR and GR|| in a rigorous and systematic way. We have then analyzed the physical interpretation of alternative teleparallel theories, such as f (T) gravity, that are currently under investigation. We have restricted ourselves to the so-called pure tetrad approach to GR|| where we assume a preferred frame to construct the teleparallel geometry. However, there is an alternative approach based in the translation gauge interpretation [7], where the local Lorentz invariance in maintained. A thorough discussion of the diﬀerences between both approaches is outside the scope of this paper and will be treated elsewhere
+Our paper is organized as follows. Firstly we present GR|| in a heuristic way in Section 2. Then we proceed to develop the axiomatization of the theory in Section 3. Section 4 includes a detailed comparison of both theories. We also include an exhaustive characterization of the teleparallel energy-momentum tensor and a comparison between GR|| and other teleparallel theories. Finally, we present our conclusions in Section 5.
+
+2 Teleparallel Gravity
+
+We begin this section revising the geometrical framework of GR||: the aﬃne Weitzenböck geometry. Then, we move to describe the main features of the ﬁeld formulation of the theory. From all these elements, we will construct a rigorous axiomatization.
+
+2.1 Geometrical background
+The dynamical object of GR|| is the tetrad, or vierbein. Given a pseudo-Riemannian manifold M, a tetrad is an orthonormal basis ﬁeld ea = eµa ∂µ (a = 0, .., 3) of the tangent bundle T M. The co-frame is denoted as ea, holding
+
+eaµeµb = δba.
+
+(2.1)
+
+The tetrad encodes the metric structure of the manifold as
+
+gµν = eaµebν ηab,
+
+(2.2)
+
+where ηab = diag(−1, 1, 1, 1) is the Minkowski metric in Cartesian coordinates. We adopt the distinction between Greek letters µ, ν, .. for space-time coordinate indices, and Latin letters a, b, .. for Lorentzian tangent-space indices.
+If the manifold admits a global smooth frame, then it is called parallelizable. The transformation group of the tetrad that preserves orthonormality is SO(1, 3). In general, these transformations Λab (x) are point-dependent:
+
+eb (x) = Λb a(x)ea(x).
+
+(2.3)
+
+–2–
+
+A useful characterization of the tetrad ﬁeld is given by the Lie bracket:
+
+[ea, eb] = Ωcabec,
+
+(2.4)
+
+where Ωcab ≡ eµa eνb ∂[νecµ] are the structural or anholonomy coeﬃcients. The importance of these coeﬃcients lays on the Frobenius theorem [8]: iﬀ these coeﬃcients are null for a smooth tetrad eaµ, there exists a coordinate system {xµ} such that
+
+eaµ = δµa.
+
+(2.5)
+
+In order to formulate the dynamics of the theory we need to introduce an aﬃne structure in the manifold. For instance, GR is formulated with the only connection that is uniquely ﬁx by the metric, the Levi-Civita connection:
+
+Γρµν
+
+:=
+
+1 gρσ 2
+
+∂µgνσ + ∂ν gσ − ∂σgµν
+
+.
+
+(2.6)
+
+As it is well known, this connection is metric-compatible and torsion-free. In this way, the ﬁeld equations for GR are constructed from the Riemann curvature, which represents the presence of gravitational interaction. On the other hand, given a smooth tetrad ﬁeld ea, we can induce on the manifold the Weitzenböck connection:
+
+∗Γρµν := eρa∂ν eaµ.
+
+(2.7)
+
+It can be checked that (2.7) is a metric-compatible and curvature-free connection. The absence of curvature indicates the presence of absolute parallelism on the manifold; this means that two vectors in diﬀerent tangent spaces are parallel if their projections on the tetrad are proportional, regardless the path connecting both spaces. The covariant derivative of a vector can be written as:
+
+∗∇ν V λ := ∂ν V λ +∗ Γλµν V µ = eλa∂ν (eaµV µ) = eλa∂ν V a,
+
+(2.8)
+
+i.e, V λ is parallel transported if V a is constant [9]. From 2.8 we also get that the tetrad is
+
+trivially parallel-transported:
+
+∗∇ν eλa = 0.
+
+(2.9)
+
+The fundamental tensor of the Weitzenböck geometry is the torsion tensor:
+
+T
+
+ρ µν
+
+:=
+
+2
+
+∗Γλ[µν]
+
+≡
+
+eρa
+
+∂ν eaµ − ∂µeaν
+
+= gρσTσµν ,
+
+(2.10)
+
+which is antisymmetric in the last two indices. The Weiztenböck connection is linked with the usual metric Levi-Civita connection by the so-called contorsion tensor
+
+∗Γρµν = Γρµν + Kµρν ,
+
+(2.11)
+
+related to the torsion tensor as:
+
+K
+
+ρ µν
+
+=
+
+1 gρσ 2
+
+Tνσµ + Tµσν − Tσµν
+
+= gρσKσµν ,
+
+(2.12)
+
+–3–
+
+and then
+
+U µ∇µU ρ = 0 → U µ ∗∇µU ρ = Kσρν U σU ν .
+
+(2.13)
+
+Let us note that the aﬃne geometry induced on the manifold is an independent concept
+
+of the metric structure (a fact ﬁrst noted by Cartan [10]). In other words, given a metric
+
+ﬁeld, we can build several connections over it. This is a relevant issue for the proper
+
+representation of what we call space-time (see Section 4).
+
+The teleparallel condition, encoded in 2.9, is established for a certain preferred tetrad ea(p). If we perform a local Lorentz transformation Λab (p) of the frame, we preserve the metric structure but the Weitzenböck parallelism is broken [11]. This leads to non covariant
+
+transformations of all Weitzenböck tensors such as torsion:
+
+Tνµρ[ea] = Tνµρ[eb ] + eµa ebρωνab − ebν eµa ωρab,
+
+(2.14)
+
+where ωνab := Λac ∂νΛcb is known as the ﬂat Lorentz connection. The invariance of the Weitzenböck geometry under global Lorentz transformation —but not under local ones—
+
+entails a precise physical meaning once we assume that the tetrad frame represents a ref-
+
+erence system (see Section 4.2). In the following, we review how to achieve a geometrized
+
+theory of gravity based on a teleparallel geometry.
+
+2.2 Dynamics
+Analogous to curvature in the Riemannian geometry of GR, in teleparallel theories, the Weitzenböck torsion is used to build the Lagrangian and to obtain the ﬁeld equations for the tetrad frame. Let us begin with a general Lagrangian constructed with quadratic Weitzenböck scalars:
+
+L=κ
+
+a1
+
+T
+
+ρ µν
+
+Tρ
+
+µν
+
++
+
+a2T
+
+ρ
+
+µν
+
+T
+
+µν ρ
+
++
+
+a3T
+
+ρ µρ
+
+T
+
+νµ ν
+
+.
+
+(2.15)
+
+being
+
+T
+
+µ σρ
+
+=
+
+gν
+
+σ
+
+T
+
+µν ρ
+
+= gµαgβσgνρTαµν .
+
+This general teleparallel Lagrangian was ﬁrst
+
+studied by Hayashi et al. [12], who explored a set of theories called New General Relativity.
+
+If we choose the constants as a1 = 1/4, a2 = 1/2 and a3 = −1, we obtain the Lagrangian LT of GR||. This Lagrangian can be casted as:
+
+LT ≡ κT = κΣρµν Tρµν ,
+
+(2.16)
+
+where T :=
+
+1 4
+
+T
+
+ρ µν
+
+Tρ
+
+µν
+
++
+
+1 2
+
+T
+
+ρ µν
+
+T
+
+µν ρ
+
+−
+
+T
+
+ρ µρ
+
+T
+
+νµ ν
+
+is the torsion
+
+scalar and
+
+Σρµν := 1 2
+
+K µν ρ
+
+−
+
+gρν T
+
+σµ σ
+
++
+
+gρµ
+
+T
+
+σν σ
+
+,
+
+(2.17)
+
+is the superpotential. This particular choice of coeﬃcients allows the following noteworthy
+
+decomposition[11]:
+
+T
+
+≡
+
+−R
+
+−
+
+2∇µT
+
+ν µν
+
+,
+
+(2.18)
+
+where R is the Riemannian Ricci scalar. Since both scalars diﬀer by a boundary term, the
+
+dynamic equations of GR|| are equivalent to Einstein equations. The complete action of
+
+GR|| is then:
+
+S[ea] = −κ
+
+T
+
+√ −g
+
+d4x
+
++
+
+SM
+
+.
+
+(2.19)
+
+–4–
+
+Whereas the Ricci scalar has second-order derivatives on the metric, the teleparallel Lagrangian has ﬁrst derivatives on the tetrad ﬁeld. This allows to use the Euler-Lagrange equations:
+
+∂L ∂eaρ
+
+−
+
+∂L ∂σ ∂(∂σeaρ)
+
+=
+
+δLM δeaρ
+
+,
+
+from which we get the Yang-Mill type equations
+
+∂ν
+
+√ −g
+
+Σaλν
+
+√ = −g tλa + Θλa ,
+4k
+
+(2.20) (2.21)
+
+where we use
+
+∂L
+
+=
+
+√ −4κ −g
+
+Σaλσ
+
+,
+
+∂ (∂σ eaλ )
+
+(2.22)
+
+√ − −g
+
+tλa
+
+:=
+
+∂L ∂eaλ
+
+=
+
+√ −κ −g
+
+eaµ
+
+4ΣbcλTbcµ − gλµΣbcdTbcd
+
+,
+
+(2.23)
+
+being
+
+δLM /δeaρ
+
+:=
+
+√ −g
+
+eaν Θνρ
+
+the
+
+matter
+
+energy-
+
+momentum
+
+tensor
+
+and
+
+tλµ
+
+=
+
+tλaeµa
+
+the gravity energy-momentum tensor. Because of the local Lorentz invariance of the ﬁeld
+
+equations, there is a six-fold degeneracy in the theory given by the six parameters of the
+
+local Lorentz transformation (rotations and boosts in tangent space). In other words, the
+
+theory only ﬁx the metric structure.
+
+From the teleparallel ﬁeld equations (2.21), considering the asymmetry of the superpo-
+
+tential in the last two indices, we obtain the conservation law:
+
+∂µ
+
+√ −g
+
+tµa + Θµa
+
+= 0.
+
+(2.24)
+
+This is a regular conservation law —not a local covariant one— from which we can deﬁne conserved charges associated with gravity plus matter:
+
+P a = (tλa + Θλa)dDλ ≡ 4κ ΣaλσdSλσ.
+
+D
+
+∂D
+
+(2.25)
+
+Here, D is a 3-dimensional hypersurface and ∂D is its 2 dimensional boundary; we have used Stoke’s theorem in the last step. The a = (0) component, the projection of the energy-momentum onto the time-like component of the tetrad, is the total energy:
+
+E = P (0) = (tλµ + Θλµ) e(µ0) dDλ.
+D
+
+(2.26)
+
+The teleparallel gravitational energy has been much investigated in recent years, being a simpler and more straightforward approach than other geometric quasi-local treatments of the gravitational energy [13]. The physical interpretation of the energy concept in GR|| depends on the role of the tetrad in the theory (see Ref. [5] and Ref. [14] for two diﬀerent approaches). This is also a relevant issue for understanding the alternative theories of gravity that rely on the concept of absolute parallelism, such as f (T) and non-local gravity.
+In the next section, we present an axiomatic formulation of GR||. We will then use this axiomatization for comparing the teleparallel formalism with General Relativity and proving the physical inequivalence between both theories.
+
+–5–
+
+3 Axiomatics
+
+Besides a formal set up, a physical theory is endowed with semantic assumptions that establish its physical content. These assumptions, however, are usually presented in heuristic manner. If we wish to investigate the key concepts of a theory, the axiomatic format is convenient (see Ref. [15]). The dual axiomatic method exactiﬁes and systematizes the physical and formal content in an axiomatic basis [16]. The axiomatic basis can be written as
+A = AF ∧ AS ∧ AP ,
+
+where AF are the formal axioms—of purely mathematical content— AS are the semantic axioms—relating mathematical constructs with factual objects— and AP are the physical axioms— expressing relations among constructs that represent physical entities, e.g. the dynamical equations of the theory. All theories also assume a formal and ontological background on which they are based.
+
+A physical theory T is then a set of statements s closed under logic implication from the axiomatic basis A, i.e,
+
+T = s : A→s .
+
+(3.1)
+
+The referents of the theory should be explicitly stated in the axioms. In this sense, we can build diﬀerent theories, or interpretations of a theory, holding the formal apparatus and changing the semantic postulates.
+In the case of GR||, a diﬀerent formalism from GR is used. Since the dynamical equations are equivalent to Einstein’s equations, it is assumed that both theories are equivalent. However, if the alternative formalism introduces new semantical axioms, novel aspects of the physical system may appear that will only be represented in the new theory. A strict equivalence between two theories would hold iﬀ all axioms in each theory are obtained from the other, i.e. A(GR||) ←→ A(GR). The purpose of the next sections is to verify whether this is true for GR and GR||. Also, we will use our axiomatization to show the scope and relevance of the tetrad formalism in GR|| and other teleparallel theories.
+
+3.1 GR|| axiomatized
+In order to formulate a realistic axiomatization of GR||, we will ﬁrst make explicit the background concepts. Then we will establish the generating basis from which we will construct the axiomatic formulation of the theory.
+
+Background
+The formal background of the theory includes ﬁrst order logic, mathematical analysis, and diﬀerential geometry. Let us note that space-time theories like GR are more fundamental than other ﬁeld theories since all matter ﬁelds ’live’ onto space-time, i.e. most physical theories assume a background space-time in its foundations. In this sense, a dynamical theory of space-time is more closely related to an ontological theory [17].
+
+–6–
+
+Generating basis and deﬁnitions The generating basis of GR|| is constructed with 10 elements
+
+B = {ST , Σ, K, M, {g}, {ea}, {Θ}, {φ}, {Λab }, κ}.
+
+(3.2)
+
+The meaning of these symbols will be given in the axiomatic basis. First, we set out the main deﬁnitions of Weitzenböck tensors used in the theory:
+
+D1 Tµρν := eρa ∂ν eaµ − ∂µeaν is the torsion tensor
+
+D2
+
+K
+
+ρ µν
+
+:=
+
+1 2
+
+gρσ
+
+Tνρµ + Tµσν − Tσµν
+
+is the contorsion tensor.
+
+D3
+
+Σρµν
+
+:=
+
+1 2
+
+K µν ρ
+
+−
+
+gρν T
+
+σµ σ
+
++
+
+gρµT
+
+σν σ
+
+is the superpotencial.
+
+D4 tλµ := κ 4ΣbcλTbc µ − gλµΣbcdTbcd is the energy-momentum tensor of space-time.
+
+Axiomatic Basis
+16
+The axiomatic basis is given by A(GR||) = Ai. We present the axioms divided in four
+i
+groups. The axioms are formal (FA), semantical (SA), or physical (PA)1
+
+Axioms Group I: Space-time
+
+A1 (FA) M is a Hausdorﬀ para-compact, C∞, 4-dimensional, real and pseudo-Riemannian manifold.
+
+A2 (FA) {g} is a family of rank-2 metric tensors, symmetric, and +2 signature. All minor principals of the metric tensor gµν are negative.
+A3 (FA) {φ} is a family of isometries: φ∗g = g.
+A4 (SA) Space-time ST is the physical system represented by the equivalence class of isometric diﬀeomorphism of a given metric, i.e. ST = (M, g) 2
+
+Group II: Matter
+A5 (FA) Σ is a non-empty set of objects σ ∈ Σ.
+A6 (SA) There is an element ∈ Σ which denote the absence of physical system. For all σ ∈ Σ other than , σ denotes a physical system diﬀerent from space-time.
+A7 (FA) For each σ ∈ Σ there is a symmetric 2-rank tensor ﬁeld Θ. In particular, there is a one-to-one correspondance between ∈ Σ and the null tensor ﬁeld Θ = 0
+1For other theories presented in a similar way see Refs. [18], [19], and [20]. 2The symbol =ˆ is used for the relation of representation. See Ref. [21] for details.
+
+–7–
+
+A8 (SA) Θ represents the energy-momentum tensor of the physical system σ.
+
+Gruop III: Reference system
+A9 (FA) The tetrad {ea(x)} is an orthonormal basis of TpM in each point of the manifold: eaµ(x)exν (x)ηab = gµν (x).
+A10 (FA) K ⊂ Σ is a non empty family of objects K ∈ K. We call frames the elements of K.
+A11 (SA) A reference frame K is represented by a time-like congruence C and a tetrad ﬁeld {ea(p), p ∈ C} where eq(0) ≡ Uq is the tangent vector of the curve γq ⊂ C, i.e C, ea = K.
+A12 (FA) {Λba (x)} is a family of point-dependent Lorentz transformations.
+A13 (SA) ∀K, K ∈ K, ∃Λba (x) such that if C , ea =K and C, ea = K then Λba (x)eb = ea, ∀p ∈ C ∩ C .
+A14 (SA) Let x a physical system and Px a given property of x. If Px is represented with a tensor ﬁeld P=ˆ Px, the values of this property in a reference frame K are obtained from the projected tensor on the tetrad ﬁeld, P · e =ˆ Px(K).
+
+Group IV: Dynamics
+
+A15 (SA) κ ∈ R, where [κ] = L M T 2.
+
+A16 (PA) A reference frame K is constrained by the Einstein Teleparallel equations:
+
+√
+
+∂ν
+
+√ −g
+
+Σaλν
+
+=
+
+−g 4k
+
+eaµ
+
+tλµ + Θλµ
+
+.
+
+4 Discussion
+The axiomatic system constructed above for GR|| will allow us to analyze three relevant topics: (i) the physical meaning of the teleparallel structure of the theory and its equivalence to GR, (ii) the role of the tetrad ﬁeld in characterizing a local energy-momentum tensor for gravity, and ﬁnally (iii) the main diﬀerences between GR|| and other teleparallel theories. We begin with the referents of the theory, i.e. what kind of physical systems the theory describes.
+
+–8–
+
+4.1 Reference class
+
+The reference class of an axiomatized theory is closed [? ]. In the case of GR||, the class is formed by space-time and ordinary matter:
+
+15
+
+15
+
+R Ai = R Ai = {Σ, ST }.
+
+i
+
+i
+
+(4.1)
+
+We stress that in our axiomatic formulation, space-time is a physical entity endowed with properties. These properties are associated with the topological character of the manifold (e.g. compactness), with the metric, or with a mix of both (e.g. time-orientability). Space-time is connected with the dynamical object of GR|| in two ways: the tetrad ﬁeld is deﬁned over the manifold M and is related to the metric by the orthonormal relation (A8). The latter implies that the dynamical equations of the theory impose restrictions to the metric properties of space-time, and these restrictions are equivalent to Einstein’s equations. A more elegant way to show the association among frames, the Lorentz group, and the manifold, is through the ﬁbre bundle framework of space-time, a path we will not follow in this work [22].
+Matter enters in the theory represented by the energy-momentum tensor and also in the characterization of the reference frame (A8 and A10). The dynamics of ﬁelds and particles must be supplemented by other theories, while GR|| (and GR) is only concerned with their energy-momentum distribution.
+
+Remark 1 A reference system is not another kind of matter in our axiomatization. Group III of axioms only implies that local properties of physical systems are relative to other physical systems. We followed the approach where the reference frame is represented by an orthonormal basis ﬁeld and not by a coordinate system [23]. What kind of physical objects are convenient to be adopted as a reference frame is a question that requires further analysis.
+
+From axiomatization of GR (see A(GR) in Appendix A), we immediately verify that both GR and GR|| share the same referents. It is then appropriate a thorough comparison of both theories since they have identical domain.
+
+4.2 Recovering General Relativity
+
+While the metric ﬁeld characterizes space-time, the tetrad ﬁeld establishes how local prop-
+
+erties behave. Both are linked by
+
+gµν = eaµebν ηab.
+
+(4.2)
+
+which means that a given space-time allows inﬁnite reference frames related by local Lorentz transformation. Conversely to all other teleparallel theories, GR|| equations are local Lorentz invariant, equivalent to Einstein’s equations.
+
+Theorem 1 GR|| equations for ea are equivalent to GR equations for gµν.
+
+–9–
+
+An sketch of the proof is given in Ref.[11] and also in Ref.[3]. The equivalence of (2.21) to Einstein’s equations gives the following corollary
+Corollary 1 GR|| equations are diﬀeomorﬁc and local Lorentz invariant.
+These two types of invariance have very diﬀerent physical meanings.
+Diﬀeomorﬁsm invariance is associated with the nature of space-time. Conversely to Newtonian theories, space-time should not be regarded as an absolute stage where other physical ﬁelds live. Instead, in GR, space-time is the equivalence class of the pair (M, gµν) under active diﬀeomorphisms. One should be careful to assign physical meaning to points p ∈ M or coordinates, since only their relation to gµν is meaningful3. As a consequence, the ﬁeld equations of the theory are coordinate-invariant.
+Local Lorentz invariance (LLI) becomes apparent only after we introduce the tetrad ﬁeld in our theory. Taking into account axioms A13,A14, and Corollary 1, LLI means that space-time ﬁxes all possible physical frames, i.e. all physical observers ’perceives’ the same underlying space-time. Axioms A13 and A14 and their consistency with the ﬁeld equations via LLI is known as the Hypothesis of Locality. In words of Mashhoon, this hypothesis states that ’an accelerated observer is pointwise inertial’, no matter the history of the observer [25]. If we consider a space-time theory with no LLI ﬁeld equations for ea, then either Group I or Group III of axioms must be revised. We will return to this point in the last section.
+We have shown that a tetrad ﬁeld associated with a reference system that is solution of eqs. (2.21) ﬁxes the metric and therefore space-time. Given the equivalence of A16 to Einstein’s equations, all dynamical features of GR might be derived from GR||
+Theorem 2 GR|| implies GR; A(GR||) ⇒ A(GR).
+Now, we move on to analyze the new features that the tetrad ﬁeld introduces in GR|| and their relation to the teleparallel geometry.
+4.3 Change and geometry The concept of change is intimately associated with the nature of space-time. In order to formulate general relativistic laws describing changes in physical properties we must take into account that (i) the laws must be consistent with the adopted space-time representation and the hypothesis of locality and (ii) these laws should characterize changes over spacetime. The ﬁrst requirement states that the laws of physics should be diﬀeomorﬁc and
+3As Rovelli states in Ref. [24], in the general relativistic point of view we only have ’ﬁelds over ﬁelds’. However, it seems to us that space-time has very distinctive features from other matter ﬁelds. Because of this, we have chosen the term ’space-time’ and not ’gravitational ﬁeld’ to denote ST . We say then ’ﬁelds over space-time’
+– 10 –
+
+local Lorentz invariant. The second condition, related to the ﬁrst one, imposes that these changes ought to be formulated in a metric way (space-time is represented solely by the metric and the manifold in our axiomatization (Group I)); a natural procedure to do this is introducing a metric covariant derivative ∇, i.e. the Levi-Civita connection Γ. Other nonmetrical derivatives could introduce additional degrees of freedom (e.g. Einstein-Cartan connections) or lack suﬃcient structure (e.g. Lie derivatives).
+A reference frame system may be then analyzed by its covariant derivative ∇νeaµ, which characterize how it behaves with respect to space-time. Let us consider the directional derivatives of ea in the direction of another tetrad ec, which can be written as:
+
+eνc ∇ν eaµ = Kbacecµ,
+
+(4.3)
+
+where Kbac are the projected components of the contortion tensor [26]. Thus, the contortion tensor can be identiﬁed with the Ricci rotation coeﬃcients, usually used in the 1 + 3
+orthonormal frame approach to characterize the kinematical properties of the tetrad ﬁeld [23]. The change of the tetrad over its time-like velocity component e(0) ≡ U is
+
+U ν ∇ν eaµ = Kba(0)ebµ = φab ebµ,
+
+(4.4)
+
+being φab := Kab(0) the antisymmetric acceleration tensor. In analogy to Faraday’s electromagnetic tensor, we can decomposed φab in a translational part a(i) := φ(0)(i) and a rotational part φ(i)(j) = ijkΩk. If we take the dynamics of a free particle, say, from a variational principle, it is well known that it would follow the Riemannian geodesic equation
+
+U ν ∇ν Uµ = 0.
+
+(4.5)
+
+This means that if the translational part of the acceleration a(i) tensor vanishes, the reference frame is in free fall: the congruence is composed of geodesics of the Riemann geometry. Furthermore, if the rotational part is null, the reference frame system is not rotating (with respect to a Fermi-Walker transported frame). Thus we adopt the following deﬁnition
+
+Deﬁnition 1 If the acceleration tensor φab is null over the congruence C, the reference system frame is a pseudo inertial reference frame (PIRF).
+
+Remark 2 The acceleration tensor is not covariant under local Lorentz transformations, as it is easily seen from their relation to the non-covariant torsion tensor [5]. Hence, when we perform a general local Lorentz transformation onto a frame, all inertial properties change unless the Lorentz transformation is global. Nevertheless, the relation of a physical quantity from any reference system to another, e.g. from an inertial one to one that is accelerated, is strictly local, consistent with the hypothesis of locality.
+
+The Weitzenböck connection ∗Γ, on the other hand, deﬁnes a covariant derivative that quantiﬁes how a given tensor P changes with respect to a preferred tetrad frame. If this quantity P is ﬁxed on the tetrad, (i.e. if P · ea is constant) then its Weitzenböck derivative is zero no matter the path chosen. This connection also deﬁnes an alternative concept of
+
+– 11 –
+
+acceleration; for instance, a free falling path is, in general, accelerated in the Weitzenböck
+
+geometry (see equation (4.6) below). The teleparallel force equation for a free falling particle with velocity U µ is
+
+U ν ∗∇ν U µ = FTµ, FTµ := KνµρU ν U ρ.
+
+(4.6)
+
+Note that the term FT is a pseudo-force, i.e. frame-dependent. For instance, if we choose a free falling frame comoving with the particle, from (4.4) we obtain U ν ∗∇νU µ = 0; this means that the weak equivalence principle is still satisﬁed in GR||. On the other hand, real interaction terms, such as the Lorentz force FL := F µνUµ, are always frameindependent and imprint an absolute (Levi-Civita’s) acceleration to the system.
+At this point, it is useful to introduce the following deﬁnition
+
+Deﬁnition 2 A tensor ﬁeld P associated with a physical system S is an intrinsic property of S iﬀ P[ea] = P[eb ], for any tetrad ﬁeld.
+
+Note that even if P is an intrinsic property, we can obtain the values of this property in a given frame by projecting the tensor ﬁeld onto the tetrads (A14). However, the relation between frames of an intrinsic property is covariant and local. This is not the case of the Weitzenböck torsion tensor, which is frame-dependent. The Riemann curvature tensor, on the contrary, is an intrinsic property of space-time. For instance, if the curvature tensor is zero in one frame, it is zero for all observers. Torsion, however, might be non zero even in Minkwoski space-time, if we choose an anholonomous tetrad, e.g. one representing an accelerating observer. We conclude that torsion is not a proper quantity to represent the gravitational interaction in GR||; it characterizes kinematic properties of reference frames (see Eq. 2.12) and it is constrained over a congruence by the ﬁeld equations (29), i.e. constrained by the underlying space-time.
+
+4.4 Locality of the energy-momentum tensor for gravity
+We have seen in the previous sections how the tetrad ﬁeld and the teleparallel geometry of GR|| encode a broader representation than the metric ﬁeld. Let us return now to the dynamics of the theory. The essential feature of GR|| ﬁeld equations is the possibility of deriving an energy-momentum conservation law for matter+gravity that is not attainable in GR:
+
+Theorem 3 Giving a tetrad ﬁeld eµa , the teleparallel equations admit a conservation equation for each a component:
+
+∂λ∂ν
+
+√ −g
+
+Σaλν
+
+= 0 → ∇λ(tλa + Θλa) = 0.
+
+In this equation, we associate tλa to the energy-momentum tensor of space-time, consistent with its Lagrangian deﬁnition (23). This teleparallel energy-momentum tensor has been studied by several authors (see Ref. [27]). Our intention here is to characterize tµν under our axiomatic formulation. The usual approach to deﬁne pseudotensors in GR is
+
+– 12 –
+
+similar to the teleparallel case: the Ricci scalar is decomposed in a linear-derivative part L˜
+
+and a total divergence,
+
+R = L˜ + ∇µW˜ µ,
+
+to obtain a superpotential equation similar to (2.21):
+
+√ ∂σ( −g
+
+S µρσ )
+
+=
+
+√ −g
+
+(τ
+
+µρ
+
++
+
+Θµρ).
+
+(4.7)
+
+The main diﬀerence between these approaches and GR|| is that tλa is a well-behaved tensor under coordinate transformations. This is true because GR|| has a ﬁrst-order diﬀeomorphicinvariant Lagrangian. In this sense, GR|| is a better theory to formulate an energymomentum tensor. Even though the teleparallel energy deﬁnition (26) is consistent in many physical scenarios, the local behavior of the teleparallel energy-momentum tensor remains unclear for two reasons: (i) the gauge freedom for choosing a tetrad ﬁeld (noncovariance under LLT) and (ii) its compatibility with the equivalence principle, that is, that gravity does not manifest locally in a free-falling frame, for which local approaches to deﬁne an energy-momentum density are usually discarded.
+In contrast to the matter energy-momentum Θµν, the space-time energy-momentum tensor tµa is not an intrinsic property, in the sense of Deﬁnition 2. This feature is expected, because energy and momentum are frame-dependent properties and frame properties are ultimately determined by space-time itself. The lack of a preferred reference frame in curved space-time makes the energy-momentum tensor extremely degenerated as we will show below. Thus, in the context of GR||, to characterize the tensor4 tµν we must ﬁrst completely characterize the frame (i.e. the tetrad ﬁeld, see Group III).
+It is often stated in the literature that a frame can be ﬁxed if its kinematical properties encoded in the acceleration tensor φab are ﬁxed [3]. However, this is not entirely correct since the full kinematics of a frame is contained in Kbac rather than φab. For example, the contortion tensor contain the expansion θab and vorticity ωab of the congruence,
+
+ωab := K(0)(ab), θab := K(0)[ab],
+
+(4.8)
+
+as well as the spatial motion of the frame K(i)(j)(k). In other words, we should take into account the whole congruence C and not just a path in order to describe properties of extended objects as ﬁelds. In order to illustrate the importance of this observation in the teleparallel framework, it would be useful to introduce the distinction made in Ref. [28] between Local Reference Frame and the Pseudo Inertial Reference Frame of Def. 1:
+
+Deﬁnition 3 Given a congruence C with an associated tetrad ﬁeld ea and a timelike
+
+geodesic γ ⊂ C, the reference frame K is a local inertial reference frame (LIRF), associated
+
+with γ if
+
+ea |γ = ∂µˆ |γ ,
+
+(4.9)
+
+where {xµˆ} are Fermi coordinates,
+
+gµˆνˆ |γ = ηµˆνˆ |γ , ∂ρˆgµˆνˆ |γ = 0.
+
+(4.10)
+
+4Note that tµν is not the pseudotensor obtained writing the ﬁeld equation as equation (4.7). In the notation used in Ref[27], our tµν corresponds the contravariant version of hµa jνa
+
+– 13 –
+
+Thus, the congruence of a LIRF has zero torsion Tνˆµˆρˆ |γ= 0 because the frame is holonomous over the geodesic (this is true in all coordinate system). Outside this path however, torsion is non-zero. We can prove in addition that this LIRF is composed of accelerated curves outside γ, whose acceleration tensor is related directly to the Riemann curvature [29]. Even though a LIRF and a PIRF can contain a same geodesic observer moving over a path γ, we obtain in general:
+
+tµPνIRF |γ = 0, tµLνIRF |γ = 0.
+
+(4.11)
+
+This fact shows that even though the energy-momentum tensors are evaluated on the same non-rotating geodesic path, they depend on the kinematic properties of the whole congruence encoded in the contorsion tensor, and not only in its acceleration. We illustrate this in a concrete example on a Schwarzchild space-time in Appendix B.
+A LIRF is a special kind of frame where all accelerations and kinematical properties of the congruence are related only to the curvature tensor. This frame seems to behave appropriately since (i) it is zero on a given geodesic, according to the equivalence principle, and (ii) is related to the Bel-Robinson tensor at second order (see Ref. [30]). Even though we have used a LIRF to show and compare the local properties of the energy-momentum, this frame is only useful to integrate physical quantities over a small region around the geodesic. If we want to obtain the total energy of space-time over a time slice, we need to use a general frame such as a PIRF. In these type of frames there are inertial contributions to the total energy. These contributions are represented in the contortion tensor, which is ultimately constrained by the underlying space-time—in our example in Ap. B, the frame K has non-null shear components. In short, if we want to study the energy of space-time measured by an observer in some state of inertia, we still have inﬁnite ways to choose this observer in an extended region. This sort of degeneracy of tµν disappears if the theory ﬁxes completely the tetrad ﬁeld or if a physical criterion for choosing the frame is founded.
+
+4.5 Inequivalence between GR and GR|| Now, we summarize the two main points made so far in this work:
+
+GR|| has a dynamical object that encodes a broader representation than the metric, i.e. the tetrad ﬁeld representing a reference frame.
+
+GR|| dynamical equations allow to derive an energy-momentum conservation law for matter plus gravity. The gauge freedom in the election of the energy-momentum tensor for gravity and its non covariant character can be interpreted as the free choice of a reference frame system.
+
+In General Relativity, reference frames are absent from the core of theory and, for this reason, a well-deﬁned conservation of energy-momentum cannot be provided. We conclude:
+
+– 14 –
+
+Theorem 4 Not all the axioms of GR|| can be derived from the axioms of General Relativity, A(GR) A(GR||). Therefore, the theories are physically inequivalent.
+GR and GR|| are both theories of space-time and matter. GR is only concerned with intrinsic properties of space-time, whereas GR|| includes the notion of the reference frame in the basis of the theory.
+Our discussion was centered around the metric formulation of GR. However, there are several fundamental tetrad formulations of GR (that is, with Riemannian geometry and Einstein’s equations), for instance, those of Newman-Penrose (NP), Geroch-Held-Penrose (GHP), and the so-called 1+3 orthonormal approach. A straightforward reconstruction of GR adopting one of these formulations is not directly equivalent to the axiomatic scheme presented in Sect. 3 because in most cases the physical interpretation of the tetrads is diﬀerent. For instance, in the NP and in the GHP formalisms null tetrads are used, and hence they cannot be interpreted as reference frames as we did through Group 3 of axioms. Even though the Einstein’s equations are included in the dynamics of these theories, in all these cases there are more degrees of freedom than ordinary metric GR. The key point for our analysis here is whether the new formalism introduces new physical features in the basis of the theory.
+In the case of GR||, the redundancy of the tetrad ﬁeld is used to interpret these dynamical objects as reference frames. Together with the teleparallel ﬁeld equations, this interpretation is used to account for the conservation of the gravitational energy-momentum tensor, that holds for each frame (in a non covariant way). On the other hand, in the 1+3 approach, the reference frame interpretation of tetrads may hold, but the geometrical set up diﬀers from GR||. In this way, the construction of a gravitational energy-momentum tensor of this sort cannot be achieved in these formulations.
+
+5 On other teleparallel theories
+
+In recent years there has been an increasing interest in teleparallel theories. Two of the theories that have atracted attention are the so-called f (T) [9] and non-local gravity [6].
+In f (T) theories, the teleparallel Lagrangian of GR|| is modiﬁed analogously to f (R) theories. The resulting teleparallel equations are of second order, contrary to the fourth order equations of f (R)
+
+∂σ
+
+√−gΣaλσf (T)
+
+√ −g
+= 4κ
+
+T λa + Θλa ,
+
+(5.1)
+
+where T λµ := κ 4f (T)ΣbcλTbcµ − gλµf (T) is the modiﬁed energy-momentum tensor. This theory has been widely applied to cosmology, where the observed acceleration of the universe is explained without introducing dark energy. Contrary to GR||, the theory lacks local Lorentz invariance[26], which means that diﬀerent tetrads, related by local Lorentz transformations, have diﬀerent motion equations. In this sense, f (T) has more degrees of freedom than GR||.
+
+– 15 –
+
+It is an interesting question whether the tetrad ﬁeld in this theory can represent a reference frame in the same way as it was constructed in our axiomatization of GR||. The main diﬀerence with GR|| is that each kind of observer would ’sense’ a diﬀerent underlying space-time since each tetrad ﬁeld ﬁxes a diﬀerent metric. The transformation laws between frames as well as the representation of space-time should be modiﬁed to encompass this interpretation. In the current state of the theory, the tetrad ﬁeld is only used to obtain solutions of the ﬁeld equations from which a metric ﬁeld is obtained. The notion of the tetrad ﬁeld as denotating a reference frame has not been studied yet.
+On the other hand, non-local gravity is more connected with the GR|| approach[6]. The axioms of GR|| imply that frames are related in a local way, meaning that an accelerated observer is pointwise inertial. Mashhoon has argued (following Bohr and Rosenfeld [31]) that in classical ﬁeld theories, a property of a given ﬁeld, e.g. the Faraday tensor F µν, cannot be measured in a pointwise manner and an averaging procedure over the history of the observer is needed. Hence the laws of physics must be rendered non-local (historydependent).
+Following what was made in non-local electrodynamics, and using the close analogy between GR|| and Maxwell equations, the non-local gravity equations are obtained changing the superpotential:
+
+Σµνρ → Hµνρ := Σµνρ + N µνρ,
+
+(5.2)
+
+where N µνρ is an antisymmetric tensor involving the past history of the ﬁeld. As an interesting consequence of non-local gravity, it is possible to show that observational data associated with dark matter might be explained as a non local eﬀect.
+In the teleparallel framework for gravitational theories, it is not clear whether we should hold the metric representation of space-time ST . Instead, it seems more appropriate a tetrad-only form given by ST T = (M, ea). Recently, it is was argued by Schucking [32] that this tetrad-only representation, together with the elements of teleparallel geometry, imply Einstein ﬁrst equivalence principle: the equivalence between acceleration and gravitation. For Schucking, this is explicit in the relation between the contorsion (i.e. the Ricci coeﬃcients) and torsion (which represents, in this view, the gravitational interaction)
+However, in GR|| a pure tetrad representation of space-time is inadequate. Indeed, a frame-independent (metric-Riemannian) structure is always present in the theory constraining the acceleration ﬁelds Kabc. Nevertheless, it is an interesting subject to explore to what degree we can mimic curvature choosing speciﬁc frames, say, in ﬂat space-time, and what is the role of torsion. It is possible to show that the geodesic deviation equation in a general frame is written as:
+
+ξ¨a = (−R(0)a(0)b + C[ea]ab) ξb
+
+(5.3)
+
+where C[ea]ab is zero for LIRF [23]. Thus, in a general frame over ﬂat space-time we would still measure geodesic deviation for some speciﬁc frames.
+
+– 16 –
+
+6 Conclusions
+Using our axiomatic formulation, we have shown that
+
+(1) GR|| is not fully equivalent to GR. Whereas all features of GR can be obtained from GR||, the opposite is not true. The tetrad formalism is used to introduce the reference frame in the foundations of GR||, allowing a consistent deﬁnition of a gravitational energy-momentum tensor and its conservation that are not attainable in GR. This energymomentum tensor depends on the kinematic properties of the reference frame encoded in the contorsion tensor.
+
+(2) Both theories adopt a metric representation of space-time. In GR, the same metric is the dynamical object of the theory; however, GR|| this part is played by the tetrad ﬁeld. The Levi-Civita connection is the right formal tool to quantify changes over space-time, while the Weitzenboök connection measures how a given tensor changes with respect to a preferred frame. This might not be true in other alternative space-time theories, where the role of the tetrad ﬁeld is diﬀerent. For example, it is not clear whether f (T) gravity shares the same physical interpretation of the tetrad as in GR||. Further developments in such direction are needed.
+
+Our axiomatization allowed us to explore some of the key physical concepts of GR|| and compare them with GR and other teleparallel theories in a systematic way. Summing up, we found that is possible to construct two self-consistent theories describing the same physical entities, with equivalent dynamics, but with a diﬀerent representation power.
+
+Acknowledgments
+This work was supported by grants PICT 2012-00878 (Agencia Nacional de Promoción Cientíﬁca y Tecnológica, Argentina) and AYA 2013-47447-C3-1-P (Ministro de Educación, Cultura y Deporte, Espańa). We would like to thank Federico Lopez Armengol for helpful comments. We also thank the anonymous referees for suggestions and comments that helped improving the manuscript.
+
+A Axiomatization of General Relativity
+Here, we provide an axiomatization of GR to compare with the axiomatic formulation of GR|| in Section 3. Generating basis and deﬁnitions The generating basis of GR is constructed with fewer elements than GR||:
+
+B = {ST , Σ, M, {g}, {Θ}, {φ}, κ}.
+
+(A.1)
+
+The meaning of these symbols will be given in the axiomatic basis. First, we set out the main deﬁnitions of Weitzenböck tensors used in the theory:
+
+– 17 –
+
+D’1 Rµρλν := ∂λΓρµν − ∂ν Γρµλ + ΓρσλΓσµν − Γρσν Γσµλ is the Riemann tensor. D’2 Rµν := Rµρρν is the Ricci tensor. D’3 R := Rµµ is the Ricci scalar.
+
+D’4
+
+Gµν
+
+:=
+
+Rµν
+
+−
+
+1 2
+
+gµν
+
+R
+
+is
+
+the
+
+Einstein
+
+tensor.
+
+Axiomatic Basis
+10
+The axiomatic basis is given by A(GR) = Ai. We present the axioms divided in three
+i
+groups. Note that Group I and II of axioms are exactly the same as in GR|| but the reference
+system axiom group is absent. See Refs. [17], [20], and [15] for similar axiomatizations of
+GR.
+
+Axioms Group I: Space-time
+
+A1 (FA) M is a Hausdorﬀ para-compact, C∞, 4-dimensional, real and pseudo-Riemannian manifold.
+
+A2 (FA) {g} is a family of rank-2 metric tensors, symmetric, and +2 signature. All minor principals of the metric tensor gµν are negative.
+A3 (FA) {φ} is a family of isometries: φ∗g = g.
+A4 (SA) Space-time ST is the physical system represented by the equivalence class of isometric diﬀeomorphism of a given metric, i.e. ST = (M, g).
+
+Grop II: Matter
+A5 (FA) Σ is a non-empty set of objects σ ∈ Σ. A6 (SA) There is an element ∈ Σ which denote the absence of physical system. For all σ ∈ Σ other than , σ denotes a physical system diﬀerent from space-time.
+A7 (FA) For each σ ∈ Σ there is a symmetric 2-rank tensor ﬁeld Θ. In particular, there is a one-to-one correspondance between ∈ Σ and the null tensor ﬁeld Θ = 0
+A8 (SA) Θ represents the energy-momentum tensor of the physical system σ.
+
+Group III: Dynamics A9 (SA) κ ∈ R, where [κ] = L M T 2. A10 (PA) Space-time is constrained by the Einstein’s equations:
+Gµν = 1 Θµν . 2κ
+
+– 18 –
+
+The direct inclusion of axiom Group III in GR|| results in a redundancy given the Riemannian structure Einstein’s equations (see A10) and our previous analysis in Section 4. However, it might be necessary to include them if we want to analyze a quantum ﬁeld theory in curved space-time. A group of axioms introducing tetrad ﬁeld can be non-trivial if we change the axioms in Group III or the space-time representation. As was discussed before, some tetrad formulations are very useful to ﬁnd exact solutions or deal with cosmological problems.
+
+B Energy-momentum tensor for a LIRF and a PIRF
+
+Let us consider a Schwarzchild space-time and an arbitrary radial geodesic γ∗ on it. Over γ∗ we build two frames, a LIRF K, as in Deﬁnition 3, and a PIRF K , which congruence C is composed of radial non-rotating geodesic, φa b (p) = 0 for all p ∈ M. We use an explicit realization of K presented in Ref. [5] as:
+
+ α(r) 
+
+eµ(0)
+
+=
+
+   
+
+−β(r) 0
+
+   
+
+,
+
+0
+
+ α(r)β(r) cos(φ) sin(θ) 
+
+eµ(1)
+
+=
+
+  
+
+
+
+cos(φ) sin(θ) cos(θ) cos(φ)/r
+
+ ,  
+
+−csc(θ) sin(φ)/r
+
+ α(r)β(r) sin(θ) sin(φ) 
+
+eµ(2)
+
+=
+
+  
+
+
+
+sin(θ) sin(φ) cos(θ) sin(φ)/r
+
+ ,  
+
+cos(φ)csc(θ)/r
+
+ α(r)β(r) cos(θ) 
+
+eµ(3)
+
+=
+
+  
+
+
+
+cos(θ) − sin(θ)/r
+
+ ,  
+
+0,
+
+with α(r) := 1/(1 − 2M/r) y β(r) := 2M/r. We can easily check that this free falling frame possess non-zero Weitzenböck torsion. Its kinematical properties are encoded in the contortion tensor, whose non-null components represent the expansion of the congruence:
+
+K(0)(1)(1) =
+
+M
+
+2M
+
+2r3 , K(0)(2)(2) = K(0)(3)(3) = − r3 .
+
+The teleparallel energy-momentum tensor can be calculated from deﬁnition D4. After some straightforward algebraic steps we obtain:
+
+
+
+−
+
+2πr2
+
+M2 (−2M
+
++r)2
+
+−
+
+√
+
+(
+
+M r
+
+)3/2
+
+2 2π(2M −r)r
+
+0
+
+tµPνIRF
+
+=
+
+   
+
+−
+
+√
+
+(
+
+M r
+
+)3/2
+
+2 2π(2M −r)r
+
+−
+
+M 4πr3
+
+0
+
+ 0
+  0 , 
+
+ 
+
+0
+
+0
+
+M 8πr5
+
+0
+
+ 
+
+0
+
+0
+
+0
+
+M 8πr5
+
+The energy-momentum tensor is then symmetric, isotropic, and obviously non-zero
+
+through a radial geodesic γ∗ ⊂ C . On the other hand, in a LIRF K, the energy-momentum tensor is zero on the radial geodesic γ∗
+
+tµLνIRF |γ∗ = 0
+
+(B.1)
+
+– 19 –
+
+since we have zero torsion on γ∗ (note that equation (B.1) is valid in all coordinate system).
+
+We conclude that over the same radial geodesic path γ∗, the energy-momentum of gravity is zero in K but non zero in K .
+
+Since it is always possible to construct a LIRF, on any geodesic path, the ﬁeld equations
+
+of the theory can be written as:
+
+∂ν
+
+√ −g
+
+Σaλν
+
+√
+
+|γ =
+
+−g Θλa 4k
+
+|γ ,
+
+(B.2)
+
+where tλµ |γ= 0. This means that the matter energy-momentum is truly conserved over γ,
+
+∂λΘλa |γ = 0
+
+(B.3)
+
+and there is no interaction between gravity and matter in this frame. The equivalence principle in GR|| can be stated as the following: There is always a reference system KF that contains a geodesic path γ over which the energy-momentum of gravity vanishes.
+
+References
+[1] A. Einstein, “Auf die riemann-metrik und den fern-parallelismus gegründete einheitliche feldtheorie,,” Mathematische Annalen, vol. 102, no. 1, pp. 685–697, 1930.
+[2] C. Møller, “Tetrad ﬁelds and conservation laws in general relativity,” in Evidence for Gravitational Theories, p. 252, 1961.
+[3] J. W. Maluf, “The teleparallel equivalent of general relativity,” Annalen Phys., vol. 525, pp. 339–357, 2013.
+[4] S. C. Ulhoa, J. F. da Rocha Neto, and J. W. Maluf, “The Gravitational Energy Problem for Cosmological Models in Teleparallel Gravity,” Int. J. Mod. Phys., vol. D19, pp. 1925–1935, 2010.
+[5] J. W. Maluf, F. F. Faria, and S. C. Ulhoa, “On reference frames in spacetime and gravitational energy in freely falling frames,” Class. Quant. Grav., vol. 24, pp. 2743–2754, 2007.
+[6] B. Mashhoon, “Nonlocal General Relativity,” Galaxies, vol. 3, no. 1, pp. 1–17, 2015.
+[7] R. Aldrovandi and J. G. Pereira, Teleparallel Gravity, vol. 173 of Fundamental Theories of Physics. Dordrecht: Springer, 2013.
+[8] M. Fecko, Diﬀerential geometry and Lie groups for physicists. Cambridge University Press, 2011.
+[9] R. Ferraro and F. Fiorini, “Non trivial frames for f(T) theories of gravity and beyond,” Phys. Lett., vol. B702, pp. 75–80, 2011.
+[10] T. Sauer, “Field equations in teleparallel spaceâĂŞtime: Einstein’s fernparallelismus approach toward uniﬁed ﬁeld theory,” Historia Mathematica, vol. 33, no. 4, pp. 399 – 439, 2006. Special Issue on Geometry and its Uses in Physics, 1900-1930.
+[11] B. Li, T. P. Sotiriou, and J. D. Barrow, “f (T ) gravity and local Lorentz invariance,” Phys. Rev., vol. D83, p. 064035, 2011.
+[12] K. Hayashi and T. Shirafuji, “New General Relativity,” Phys. Rev., vol. D19, pp. 3524–3553, 1979. [Addendum: Phys. Rev.D24,3312(1982)].
+
+– 20 –
+
+[13] J. W. Maluf, “The Gravitational energy-momentum tensor and the gravitational pressure,” Annalen Phys., vol. 14, pp. 723–732, 2005.
+[14] T. G. Lucas, Y. N. Obukhov, and J. G. Pereira, “Regularizing role of teleparallelism,” Phys. Rev., vol. D80, p. 064043, 2009.
+[15] M. Bunge, Foundations of Physics. Springer Tracts in Natural Philosophy, Springer Heidelberg, 1967.
+[16] M. Bunge, “Why axiomatize?,” Foundations of Science, Springer, pp. 1–13, 2016. [17] G. E. Romero, “On the ontology of spacetime: Substantivalism, relationism, eternalism, and
+emergence,” Foundations of Science,Springer, pp. 1–19, 2016. [18] S. E. Perez Bergliaﬀa, H. Vucetich, and G. E. Romero, “Axiomatic foundations of
+nonrelativistic quantum mechanics: A Realistic approach,” Int. J. Theor. Phys., vol. 32, p. 1507, 1993. [19] S. E. Perez-Bergliaﬀa, G. E. Romero, and H. H. Vucetich, “Axiomatic foundations of quantum mechanics revisited: the case of systems,” Int. J. Theor. Phys., vol. 35, pp. 1805–1820, 1996. [20] G. M. Covarrubias, “An axiomatization of general relativity,” International Journal of Theoretical Physics, vol. 32, no. 11, pp. 2135–2154, 1993. [21] M. Bunge, Philosophy of physics. Springer Heidelberg, 1973. [22] M. Prugovecki, Quantum Geometry: A Framework for Quantum General Relativity. Fundamental Theories of Physics, Springer Netherlands, 2013. [23] F. De Felice and D. Bini, Classical Measurements in Curved Space-Times. Cambridge University Press, 2010. [24] C. Rovelli, Quantum Gravity. Cambridge Monographs on Mathematical Physics, Cambridge University Press, 2004. [25] B. Mashhoon, “Observers in Spacetime and Nonlocality,” Annalen Phys., vol. 525, pp. 235–243, 2013. [26] T. P. Sotiriou, B. Li, and J. D. Barrow, “Generalizations of teleparallel gravity and local Lorentz symmetry,” Phys. Rev., vol. D83, p. 104030, 2011. [27] V. C. de Andrade, L. C. T. Guillen, and J. G. Pereira, “Gravitational energy momentum density in teleparallel gravity,” Phys. Rev. Lett., vol. 84, pp. 4533–4536, 2000. [28] J. F. T. Giglio and W. A. Rodrigues, Jr, “Locally Inertial Reference Frames in Lorentzian and Riemann-Cartan Spacetimes,” Annalen Phys., vol. 524, pp. 302–310, 2012. [29] D. Bini and B. Mashhoon, “WeitzenbÃűckâĂŹs torsion, Fermi coordinates, and adapted frames,” Phys. Rev., vol. D91, p. 084026, 2015. [30] L. L. So and J. M. Nester, “Gravitational energy-momentum in small regions according to the tetrad-teleparallel expressions,” Chin. J. Phys., vol. 47, pp. 10–19, 2009. [31] B. Mashhoon, “The Hypothesis of locality and its limitations,” 2003. [32] E. L. Schucking and E. J. Surowitz, Einstein’s Apple: Homogeneous Einstein Fields. World Scientiﬁc, 2015.
+– 21 –
+

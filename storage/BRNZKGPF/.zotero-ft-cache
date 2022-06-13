@@ -1,0 +1,319 @@
+GEOPHYSICAL RESEARCH LETTERS, VOL. 34, L23104, doi:10.1029/2007GL030997, 2007
+
+Comment on ‘‘Simulation study of the interaction between large-amplitude HF radio waves and the ionosphere’’ by B. Eliasson and B. Thide´
+
+N. A. Gondarenko,1 S. L. Ossakow,2 and G. M. Milikh3
+
+Received 18 June 2007; revised 23 July 2007; accepted 2 November 2007; published 5 December 2007.
+
+Citation: Gondarenko, N. A., S. L. Ossakow, and G. M. Milikh (2007), Comment on ‘‘Simulation study of the interaction between large-amplitude HF radio waves and the ionosphere’’ by B. Eliasson and B. Thide´, Geophys. Res. Lett., 34, L23104, doi:10.1029/2007GL030997.
+
+[1] The following comments apply to the paper ‘‘Simu-
+
+lation study of the interaction between large-amplitude HF
+
+radio waves and the ionosphere’’ by Eliasson and Thide´
+
+[2007]. The main comment is that in their discussion of
+
+simulation results, while referring to linear mode conversion
+
+and nonlinear effects, they do not take into account the
+
+allowance for spatial dispersion. The use of a warm-plasma
+
+dispersion relation would be more justified for their prob-
+
+lem. The allowance for spatial dispersion due to the thermal
+
+motion of the electrons results in a thermal correction to the
+
+refractive index function that has to be considered.
+
+[2] The first remark is about their Figure 6d. In this figure,
+
+the authors have plotted the frequency f as a function of the
+
+wave number k using the Appleton-Hartree dispersion rela-
+
+tion [Stix, 1982]. In their Figure 6d, the second branch of the
+
+extraordinary X mode, which in the ionospheric context is
+
+referred to as the Z mode, is below the reflection points of
+
+the ordinary O mode and the first branch of the extraordinary
+
+X mode. For the propagation of the HF radio wave/pulse
+
+through an inhomogeneous magnetized plasma, this will not
+
+likely happen. In their simulations, the reflection of the R-X
+
+mode occurs at z $ 270.5 km that is below the reflection
+
+point of the L-O mode (z $ 277 km). However, in their
+
+Figure 6d, the reflection of the L-O mode occurs below the
+
+reflection of the R-X mode. The authors use the electron
+
+plasma frequency wpe = 5 MHz as a constant. When plotting
+
+the
+
+refractive
+
+index
+
+function
+
+nO,X
+
+=
+
+kc w
+
+or
+
+kz,
+
+one
+
+should
+
+use
+
+the
+
+electron
+
+plasma
+
+frequency
+
+wp2e(z)
+
+=
+
+4pN ðzÞe2 me
+
+as
+
+a
+
+function
+
+of z, where N(z) is the given density profile. In this case, kz as
+
+a function of z for their density profile would look like the
+
+one shown in Figure 1b of this comment. In Figure 1b, the
+
+label X1 is for the first branch of the extraordinary mode and
+
+X2 is for the second branch or so-called Z mode. One can see
+
+1Institute for Research in Electronics and Applied Physics, University of Maryland at College Park, Maryland, USA.
+2Plasma Physics Division, Naval Research Laboratory, Washington, D. C., USA.
+3Department of Astronomy, University of Maryland at College Park, Maryland, USA.
+Copyright 2007 by the American Geophysical Union. 0094-8276/07/2007GL030997
+
+that dispersion curves they have plotted are for the top side
+
+of the ionosphere. However, for normal incidence, the wave
+
+will not propagate to the top side of the ionosphere.
+
+[3] The next comment is for their discussion of linear
+
+mode conversion and generation of the electrostatic waves
+
+associated with this process. This process takes place near
+
+the reflection point of the O mode at the resonance region
+
+which is omitted in their discussion. In Figure 1c of this
+
+comment, one can see the fragment (from 250 km to 300
+
+km) of the kz funpctiﬃoﬃﬃnﬃﬃ,ﬃﬃﬃﬃsﬃﬃhﬃﬃﬃoﬃﬃwﬃﬃﬃnﬃﬃﬃﬃﬃaﬃﬃbﬃ ove, as a function of frequency f(z) = N ðzÞe2=ðpmeÞ. Here, the reflection
+
+points of the X1, O, and Z modes are shown with labels V = 1 À Y, V = 1, and V = 1 + Y, respectively. V = wp2e/w2 and Y = we/w is the ratio of the gyrofrequency to the propagation
+
+frequency. For oblique propagation, the O mode can be
+
+transformed near the layer V = 1 into the Z mode. The
+
+reflected Z mode propagates towards a plasma resonance
+
+region V1 where it is converted into an electrostatic mode
+
+(or absorbed, according to the cold plasma theory) as shown
+
+in simulations for linear mode conversion in inhomoge-
+
+neous magnetized plasmas during ionospheric modification
+
+by HF radio waves by Gondarenko et al. [2003]. Here, the resonance layer V1 = (1 À U)/(1 À U cos2 a), U = Y2, and
+a is an angle between the magnetic field and the z axis. For
+
+normal incidence, the O wave can be transformed into a
+
+wave of extraordinary polarization when the distance be-
+
+tween the ordinary mode reflection layer (V = 1) and the resonance layer (V1), DR,1 = (U sin2 a)/(1 À U cos2 a) is
+less than about two wavelengths of the heater wave [Gon-
+
+darenko et al., 2003]. In this case, DR,1 $ 100 m. For the finite values a, the polarization depends on V. For V = 1, the
+
+O wave is always linearly polarized. The polarization index
+
+of ~E
+
+the
+
+O
+
+mode
+
+jKOj
+
+=
+
+jExO
+EyO
+
+j
+
+is linearly polarized in
+
+! the
+
+1, xy
+
+i.e. EyO = 0, and the plane. The O wave
+
+vector is also
+
+linearly polarized in the xz plane that follows from equation (7)
+
+[Gondarenko et al., 2003] (with an approximation to 1D)
+
+for the field Ez, the component Ez is in phase with Ex,
+
+VU sin a cos a
+
+Ez ¼ ½U À ð1 À V Þ À UpVﬃﬃﬃﬃcos2 a Ex
+
+sin a U V
+
+À i ½U À ð1 À V Þ À UV cos2 a Ey:
+
+ð1Þ
+
+[4] In their Figure 3b, one can see that the O wave
+changes polarization in the xy plane from elliptical to linear
+near the O wave reflection point. For V = 1, the polarization index of the X-mode jKXj = 0, i.e. Ex = 0. The polarization also behaves in a singular manner at the regions V ! V1. One can see from equation (1) that at the resonance region
+
+L23104
+
+1 of 3
+
+L23104
+
+GONDARENKO ET AL.: COMMENTARY
+
+L23104
+
+Figure 1. (a) The normalized density profile and (b) the refractive index function n (kz) as a function of altitude z for the cold-plasma approximation model with the propagation frequency w = 2p Á 5 MHz, we = 2p Á 1.4 MHz, and a = 13°; and (c) n (kz) as a function of frequency f (for the bottom side of the ionosphere z 2 [250– 300] km).
+
+jEzj ! 1 for finite Ex and Ey in the absence of absorption. The waves are linearly polarized in the direction of the wave vector ~k, i.e. they are longitudinal. The mode conversion due to the presence of small-scale irregularities has been shown in the simulations for the nonlinear evolution of thermal self-focusing instability in ionospheric modifications at high latitudes [Gondarenko et al., 2006].
+[5] Although electrostatic waves are not described in a cold plasma model, the inclusion of the absorption (the effective electron collision frequency neff) into the model can resolve the singularity that occurs when the wave approaches the plasma resonance so that absorption can
+
+be interpreted as conversion into electrostatic waves for the cold plasma approximation model. In their model, neglecting collisions, the singularity can be resolved when the effect of the thermal motion on the propagation of highfrequency waves is taken into account by including the pressure term in the momentum equation. This would be appropriate because for the problem considered the change in the electron density is due to the non-zero divergence of the electric field, and that should also be accounted for in the momentum equation.
+[6] The Appleton-Hartree dispersion relation for the electromagnetic electrons modes, which the authors have
+
+Figure 2. The refractive index function (a) n (kz) and (b) n2 (kz2) as a function of frequency f for the warm-plasma approximation model with the thermal correction bT = 4 Á 10À4.
+2 of 3
+
+L23104
+
+GONDARENKO ET AL.: COMMENTARY
+
+L23104
+
+used, is the solution of the bi-quadratic equation for a coldplasma approximation model:
+
+An4 À Bn2 þ C ¼ 0:
+
+ð2Þ
+
+[7] The refractive index with the thermal correction results from the following dispersion equation for a warmplasma approximation model
+
+waves are strongly damped with eÀwjnjz/c (eÀjkzjz) [Ginzburg, 1970]. The plasma waves are damped even when collisions are neglected. The collisionless absorption is weak if bTn3 cos a ( 1 [Ginzburg, 1970]. The authors may like to decrease their spatial grid size to resolve smaller scales for waves which may occur in their problem.
+[10] We hope that these comments would be useful and taken into account in future publications.
+
+An6 À Bn4 þ Cn2 À D ¼ 0:
+
+ð3Þ
+
+[11] Acknowledgment. This research was supported by the Office of
+Naval Research.
+
+[8] The allowance for the thermal motion (spatial disper-
+
+sion) leads to the appearance of the third root for the squared refractive index n32 near the plasma resonance
+
+region V1. The waves with n = n3 are conventionally called
+
+plasma waves. The thermal motion gives a correction of the
+
+order
+
+bT2
+
+=
+
+kT mc2
+
+(
+
+1.
+
+However,
+
+even
+
+slight
+
+spatial
+
+dispersion
+
+may result in new effects, for example the appearance of
+
+‘‘new waves’’, i.e., the occurrence of plasma waves with
+
+non-zero group velocity [Ginzburg, 1970].
+
+[9] In Figure 2a of this comment, one can see the
+
+refractive index (kz) in log scale as a function of frequency with bT = 4 Á 10À4. The root n3 (red line) is very large everywhere except near the resonance point. The maximal value of n3 is about 250 mÀ1 (2.5 cm wavelength). The occurrence of the third solution is due to the disappearance
+
+of the discontinuity of the function n1. This solution does
+not form an independent branch of the refractive index function. In Figure 2b of this comment, the function n2 (kz2) is shown. For the negative values of n2, the corresponding
+
+References
+Eliasson, B., and B. Thide´ (2007), Simulation study of the interaction between large-amplitude HF radio waves and the ionosphere, Geophys. Res. Lett., 34, L06106, doi:10.1029/2006GL028948.
+Ginzburg, V. L. (1970), The Propagation of Electromagnetic Waves in Plasmas, Pergamon, New York.
+Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt (2003), Linear mode conversion in inhomogeneous magnetized plasmas during ionospheric modification by HF radio waves, J. Geophys. Res., 108(A12), 1470, doi:10.1029/2003JA009985.
+Gondarenko, N. A., S. L. Ossakow, and G. M. Milikh (2006), Nonlinear evolution of thermal self-focusing instability in ionospheric modifications at high latitudes: Aspect angle dependence, Geophys. Res. Lett., 33, L16104, doi:10.1029/2006GL025916.
+Stix, H. (1982), Waves in Plasmas, Springer, New York.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+N. A. Gondarenko, Institute for Research in Electronics and Applied Physics, University of Maryland at College Park, Energy Research Building 223, College Park, MD 20742, USA. (ngondare@umd.edu)
+G. M. Milikh, Department of Astronomy, University of Maryland at College Park, College Park, MD 20742, USA. (milikh@astro.umd.edu)
+S. L. Ossakow, Plasma Physics Division, Naval Research Laboratory, Washington, DC 20375-5346, USA. (ossakow@ccs.nrl.navy.mil)
+
+3 of 3
+

@@ -1,0 +1,581 @@
+JOURNAL OF GEOPHYSICAL RESEARCH, VOL. 108, NO. A12, 1470, doi:10.1029/2003JA009985, 2003
+
+Linear mode conversion in inhomogeneous
+magnetized plasmas during ionospheric
+modification by HF radio waves
+N. A. Gondarenko and P. N. Guzdar
+Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, Maryland, USA
+S. L. Ossakow and P. A. Bernhardt
+Plasma Physics Division, Naval Research Laboratory, Washington, D. C., USA
+Received 12 April 2003; revised 9 October 2003; accepted 23 October 2003; published 31 December 2003.
+[1] The propagation of high-frequency (HF) radio waves in an inhomogeneous magnetoactive plasma and generation of plasma waves at the resonance layer near the reflection layer of the ordinary mode are studied using one-dimensional (1-D) and twodimensional full-wave codes. The characteristics of the mode-conversion process are investigated in linear and parabolic density profiles as the angle of incidence is varied. We present the 1-D results for the wave propagation relevant to the high-latitude heater facility at Tromsø and the midlatitude facility at Arecibo. For the facility at Arecibo, the 2-D wave propagation in a plasma density approximating an overdense sporadic-E patch is investigated to determine the localized regions of amplified intensity, where plasma waves can facilitate acceleration of fast energetic electrons, resulting in observed enhanced airglow. INDEX TERMS: 2487 Ionosphere: Wave propagation (6934); 2471 Ionosphere: Plasma waves
+and instabilities; 6934 Radio Science: Ionospheric propagation (2487); 2411 Ionosphere: Electric fields (2712); 2439 Ionosphere: Ionospheric irregularities; KEYWORDS: radio wave propagation, linear mode conversion
+Citation: Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt, Linear mode conversion in inhomogeneous magnetized plasmas during ionospheric modification by HF radio waves, J. Geophys. Res., 108(A12), 1470, doi:10.1029/2003JA009985, 2003.
+
+1. Introduction
+[2] In ionospheric modification experiments, a powerful HF electromagnetic wave incident on the ionosphere can produce nonlinear effects on time scales ranging from tens of microseconds to minutes and with scale sizes ranging from meters to kilometers. One type of these nonlinearities can result from the electromagnetic wave coupling to a plasma wave that occurs at small-scale (meters to tens of meters) field-aligned density irregularities.
+[3] In recent years, Gurevich et al. [1995, 1998] have developed a comprehensive nonlinear theory of the generation of the small-scale thermal filament (striation). According to this nonlinear theory, a fundamental problem is the nonlinear stationary state of the filament which sets in after full development of the resonant instability [Gurevich et al., 1995]. One of the essential features of this resonant instability is the presence of initial density inhomogeneities in the ionosphere which leads to the thermal self-focusing instability (SFI). Various mechanisms are known, which explain the creation of small-scale density irregularities. These are the thermal-parametric [Grach et al., 1978] and resonant [Vaskov and Gurevich, 1977] instabilities, drift-
+Copyright 2003 by the American Geophysical Union. 0148-0227/03/2003JA009985
+
+dissipative instability [Borisov et al., 1977], super-heating instability [Polyakov and Yakhno, 1980], and self-focusing instability of plasma waves in the reflection region due to parametric instabilities [Gurevich and Karashtin, 1994].
+[4] Another mechanism for exciting small-scale irregularities elongated along the magnetic field is the selffocusing of a plasma wave in the resonance region (near the ordinary mode reflection layer) due to linear mode conversion of the pump wave to the plasma wave [Vaskov et al., 1981]. When a HF electromagnetic wave of ordinary polarization (O wave) is incident obliquely on an inhomogeneous magnetized plasma, the O wave can be transformed in the vicinity of the reflection point into the Z wave, which after the reflection is converted into a plasma wave at the resonance layer. In time, the rapid development of the irregularities results in the extending of these irregularities along the magnetic field upward and downward and may lead to the penetration to the upper hybrid region where the irregularities are amplified by the resonant instability, and the electromagnetic wave can be coupled to the upper hybrid wave.
+[5] In the resonance region, the growth of the density perturbation leads to the SFI when the Ohmic heating expels the plasma from the focused regions that results in amplifying the initial perturbation. The first two-dimensional (2-D) numerical model of the thermal SFI by Bernhardt
+
+SIA 21 - 1
+
+SIA 21 - 2 GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+
+and Duncan [1982, 1987] was for underdense plasmas, where the instability is convective in character. Guzdar et al. [1996] also studied SFI for the underdense case in two dimensions. More recently, Guzdar et al. [1998] and Gondarenko et al. [1999] simulated the propagation of HF radio waves in an inhomogeneous gyrotropic medium near the reflection height, where the thermal SFI is an absolute instability. These studies addressed the full nonlinear selfconsistent development of the absolute SFI instability starting at the critical surface and resulting in field-aligned filamentary structures which extend above and below the critical surface. The self-consistent dynamics of the density profile in a small region around upper-hybrid layer was investigated by Gondarenko et al. [2002]. This study revealed important aspects of heating and transport at the upper-hybrid layer where the ordinary wave can be reflected when it propagates along the magnetic field.
+[6] In the simulations of ionospheric modification experiments, discussed above, the evolution of the electron density affects the propagation of HF radio waves, and therefore it is necessary to find solutions of the electromagnetic fields varying slowly on the time scale of the density evolution. However, in those studies for wave propagation [Guzdar et al., 1998; Gondarenko et al., 1999], a simplified model was used by assuming that the wave was incident normally and propagated vertically along the magnetic field and the direction of inhomogeneity. In the present study for the HF radio wave propagation, we used the full-wave model allowing for propagation of a radio wave in an inhomogeneous magnetized plasma when the wave is incident at an arbitrary angle to the direction of inhomogeneity, and an arbitrary orientation of the geomagnetic field is taken into account. This full-wave model is also discussed by Gondarenko et al. [2003], where the numerical scheme and method of solution are given in detail. Although in simulations presented in this paper the density is not varying with time, the study of the structure and the amplitude of the fields near reflection or resonance regions for the given electron density profile is very important. The coupling of the full-wave model with density and temperature evolution equations is the next consequent step in the studies of full nonlinear self-consistent development of the instabilities which may result in field-aligned filamentary structures, and it is the subject of our future work.
+[7] The modeling of the linear mode conversion process is of practical importance for many ionospheric modification experiments. The accumulation of wave energy occurring in the resonance region due to the linear mode conversion [Mjølhus and Fla˚, 1984; Mjølhus, 1984, 1990] may give rise to nonlinear effects which were discussed above. Also, the importance of linear mode conversion in ionospheric experiments was discussed by Wong et al. [1981]. The linear mode conversion process is one of the mechanisms which can be responsible for the enhancement of the electric field not only at the resonance layer, near the reflection layer of the incident ordinary wave, but also at the upper layer, that is the reflection layer of the Z mode. During HF heating experiments in the polar ionosphere [Isham et al., 1996], the outshifted plasma lines (HFOL), spectra with an unusually large spectral width shifted above the heating frequency, have been observed. Mishin et al. [1997] proposed a theory for the generation of the HFOL.
+
+According to this theory, the origin of this HFOL is close to the reflection layer of the Z mode. The enhancement of the electric field at the Z-mode reflection layer due to linear mode conversion is considered to be responsible for the creation of density depletions, that leads to the generation of Langmuir waves and results in HFOL. Also, during the experiment at the EISCAT facility near Tromsø [Rietveld et al., 2002], in the topside E-region, the instability-enhanced plasma waves were observed. The topside E-region enhancements are likely due to linear mode conversion, Z-mode propagation of the HF pump wave to the topside E-region, and excitation of instabilities by the Z-mode wave [Mishin et al., 1997; Isham et al., 1999].
+[8] The full-wave 1-D and 2-D models are utilized for simulating the propagation of the waves that are totally or partially reflected from the ionosphere and allow one to describe the process of linear conversion of electromagnetic waves into electrostatic waves when the ordinary waves are normally (or obliquely) incident from the lower boundary. The model takes into account absorption (effective collision frequency) of electromagnetic waves by a magnetoactive plasma. Within a ‘‘cold’’ plasma model this is the only mechanism to resolve singularity occurring in the resonance region where the refractive index goes to infinity in the absence of absorption.
+[9] The 1-D results of our simulations demonstrate the influence of the geomagnetic field which strongly affects the wave patterns. We focus on studying the mode conversion process of an obliquely incident ordinary wave into an electrostatic wave that occurs at the so called ‘‘conversion window’’ or the cone of rays around the angle of critical incidence, for which the process of conversion is significant. The extraordinary wave does not normally reach the ordinary mode reflection level. At the conversion window, close to this level, the wave normal for the O wave is parallel to the magnetic field, so that the O wave is not reflected and proceeds further as a second branch of the extraordinary wave. However, after reflection at the higher level the wave can be coupled to the plasma wave at a resonance level, resulting in amplification of the electric fields in localized regions. The width of the ‘‘conversion window’’ is discussed for the linear density profile cases. For oblique incidence in a parabolic density profile, we demonstrate the enhancement of the energy at the upper layers, above the density peak.
+[10] In the 2-D simulations presented in this paper, we use a model with a two-dimensional electron density profile to approximate the electron density patch [Bernhardt, 2002] associated with the sporadic-E layer. In ionospheric modification experiments at Arecibo, it was found that the plasma wave (Langmuir wave) can be excited at lower altitudes in association with a sporadic-E event with a short density scale length (about 500 m) [Djuth et al., 1999]. Also, recently Bernhardt [2002] has developed a theory to explain the generation of structures in the radio-induced fluorescence (RIF) images [Djuth et al., 1999; Kagan et al., 2000] interpreted as modulation in the ion-layer densities in the E region. Numerical computations of the modulation of the ion-layers by the Kelvin-Helmholtz instability in the neutral atmosphere indicate a patchy structure of the sporadic-E layer. The 2-D results focus on determining localized mode-conversion and resonance regions where plasma
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION SIA 21 - 3
+
+waves can be created. An enhancement of the field in these regions can lead to the excitation of Langmuir waves generated by the so called parametric decay instability (PDI) when the threshold for the PDI is exceeded. The Langmuir waves can, if sufficiently intense, lead to secondary nonlinear processes, particularly, strong turbulence, which facilitates generation of fast energetic electrons to produce the observed enhanced airglow [Newman et al., 1998].
+[11] In section 2, the computational models for the simulations of radio wave propagation in ionospheric plasmas are presented. In section 3, the dispersion equation representing the four modes of wave propagation arising when a wave is incident obliquely on a plane layer of a cold magnetoactive plasma, is discussed. In section 4 we present the numerical examples of radio wave propagation for the 1-D inhomogeneous density profiles, linear as well as parabolic, for various angles of incidence. The results for the 2-D case for the sporadic-E patch are described in section 5. Finally, in section 6, our conclusions and the directions for future work are outlined.
+
+2. Basic Wave Propagation Equations
+
+[12] The general equation for wave propagation in an arbitrary medium for oblique incidence of the wave on a layer of magnetoactive plasma is [Ginzburg, 1970]
+
+Àr2~E
+
+þ
+
+r~Àr
+
+Á
+
+~EÁ
+
+¼
+
+w2 c2
+
+ D~
+
+þ
+
+i
+
+ 4p~j ; w
+
+Di
+
+þ
+
+i
+
+4p w
+
+ji
+
+¼
+
+e0ijEj;
+
+ð1Þ
+
+dimensional inhomogeneous plasma (when permittivity
+
+depends only on height, the z coordinate) for oblique
+
+incidence, we can use the eikonal representation
+
+~E ¼ E~0eÀiwtþiwðp0xþyðzÞÞ=c for the wave. The ‘‘local’’ wave
+
+vector in the q), where p0
+
+plane = wckx
+
+of =
+
+the sin
+
+magnetic q0, and q
+
+meridian is ~k ¼ = (dy/dz). Thus
+
+w c
+
+(p0,
+
+0,
+
+for this
+
+case,
+
+ðdy=dzÞ2þp20 ¼ ðn À imÞ2;
+which leads to a quartic equation for q = dy/dz [Budden, 1961; Ginzburg, 1970]:
+
+apq4 þ bpq3 þ gpq2 þ dpq þ dp ¼ 0:
+
+ð4Þ
+
+[16] Finally, for the general case of a two-dimensional problem for which the permittivity is a function of both x and z coordinates, the basic equations for the electromagnetic wave propagating in a ‘‘cold’’ magnetoactive plasma are [Ginzburg, 1970]
+
+À
+
+@2Ex @z2
+
+þ
+
+ @ @x
+
+þ
+
+ ikx0
+
+@Ez @z
+
+À
+
+w2 c2
+
+À exxEx
+
+þ
+
+exyEy
+
+þ
+
+Á exz Ez
+
+¼
+
+0;
+
+ð5Þ
+
+À
+
+@2Ey @z2
+
+À
+
+ @ @x
+
+þ
+
+2 ikx0 Ey
+
+À
+
+w2 c2
+
+À eyxEx
+
+þ
+
+eyyEy
+
+þ
+
+Á eyzEz
+
+¼
+
+0;
+
+ð6Þ
+
+where
+
+ei0j(w)
+
+=
+
+eij(w)
+
++
+
+i
+
+4p w
+
+sij(w)
+
+is
+
+the
+
+complex
+
+permittivity
+
+tensor describing the electromagnetic properties of a plasma
+
+in a magnetic field, and sij is the conductivity tensor. [13] In the coordinate system we choose, the z axis is
+
+along the density gradient, and the external constant geomagnetic field H(0) is in the xz-plane (the plane of magnetic
+
+meridian). The magnetic field makes an angle a with the z
+
+axis, and in the case of normal incidence, the HF radio wave
+
+is launched vertically upward (parallel to the z axis). In the case of oblique incidence, the wave vector ~k is at an angle q0 with the z axis.
+
+[14] Let us consider propagation of a plane wave ~E ¼ ~E0eiðÀwtþ~kÁrÞ. Then the wave equation (1) is
+
+k2~E
+
+À
+
+ ~k ~k
+
+Á
+
+ ~E
+
+¼
+
+w2 c2
+
+ D~
+
+þ
+
+i
+
+ 4p~j : w
+
+ð2Þ
+
+[15] For plane waves in a homogeneous medium, the planes of equal phase and amplitude coincide, and k = w (n À im)/c, where n and m are the indices of refraction and absorption, respectively. Therefore equation (2) becomes
+
+ ~D
+
+þ
+
+i
+
+ 4p~j
+
+¼
+
+ðn
+
+À
+
+imÞ2À~E
+
+À À~s ~s Á
+
+~EÁÁ
+
+w
+
+  
+
+ ðn À imÞ2 ~E À ~k ~k Á ~E =k2 ;
+
+ð3Þ
+
+where ~s ¼ ~k=k is a real unit vector. Equation (3) can be solved to determine the dispersion relation for modes in a homogeneous magnetized plasma. In the case of a one-
+
+À
+
+ @ @x
+
+þ
+
+ikx0
+
+2 Ez
+
+þ
+
+ @ @x
+
+þ
+
+ ikx0
+
+@Ex @z
+
+À
+
+w2 c2
+
+À ezx Ex
+
+þ
+
+ezy Ey
+
+þ
+
+Á ezz Ez
+
+¼
+
+0;
+
+ð7Þ
+
+where kx0 = wp0/c is the x component of the wave vector at the lower boundary on which the incident wave is specified.
+[17] For wave propagation in inhomogeneous media, the function e0(w, x, z) is determined by the given electron density profile. In the general case, the electron density can vary with time, and therefore we shall find the solutions of the electromagnetic fields varying slowly on the time scale of the density evolution. We present the electric field as Ex = E1xeÀiw0t. Since we consider the ‘‘slow’’ wave equations, the very fast time scales associated with the electromagnetic pump wave frequency w are removed, and with this approximation one can write for the amplitude of the electromagnetic field
+
+@2Ex @t2
+
+¼
+
+À2iw0
+
+@E1x @t
+
+À
+
+w20 E1x :
+
+ð8Þ
+
+Thus by substituting w2 = 2 iw0@@t + w02 into equations (5) – (7), the normalized ‘‘slow’’ wave equation becomes
+
+@Ex @t
+
+¼
+
+ @2 i@z2
+
+þi @
+
+L z0
+
+ exx Ex
+@2
+
+þ
+
+ i
+L
+
+L z0
+
+
+exy Ey 
+
+þ kx0 @z À i @x@z þ i z0 exz Ez;
+
+ð9Þ
+
+SIA 21 - 4 GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+
+
+
+@Ey ¼ @t
+
+L
+
+i z0
+
+eyx
+
+Ex þ 
+
+L
+
+þ i z0 eyz Ez;
+
+ @
+
+2
+
+@2
+
+! L
+
+i @x þ ikx0 þ i @z2 þ i z0 eyy Ey
+
+ð10Þ
+
+@Ez @t
+
+¼
+
+ kx0
+
+@ À
+@z @
+
+i
+
+@2 þ
+@x@z2
+
+i
+
+L z0
+
+
+ezx Ex !
+L
+
+þ
+
+ i
+
+L z0
+
+ ezy Ey
+
+þ i @x þ ikx0
+
+þ
+
+i z0
+
+ezz
+
+Ez;
+
+ð11Þ
+
+where spatial variables are normalized to the Airy length, z0 = (c2L/w20)1/3, and time t to t0 = 2w0z02/c2, L is the scale lengthpoﬃﬃfﬃﬃﬃﬃﬃtﬃhﬃ e density inhomogeneity, and normalized kx0 ¼ L=z0p0.
+[18] For the general 2-D case of wave propagation in an inhomogeneous magnetized plasma, when a wave is incident obliquely to the direction of inhomogeneity as well as the direction of the magnetic field, the slow evolution of the electric field is described by a system of three Schro¨dinger type equations for the components of the electric field vector (9) – (11). In the one-dimensional case when the wave is incident normally along the direction of inhomogeneity but oblique to the direction of the magnetic field, the model can be reduced to a system of two second-order equations for the transverse components of the electric field vector.
+[19] The alternating direction implicit (ADI) method was used to solve the time dependent 2-D equations (9) – (11) for the HF wave propagation [Gondarenko et al., 2003]. The model employed the Maxwellian perfectly matched layers (PML) technique for approximating nonreflecting arbitrary boundary conditions for the vector time-dependent equations. The Maxwellian PML technique implemented with the use of unsplit variables [Sacks et al., 1995; Gedney, 1996] is very convenient for realization and can be applied to various numerical models. The implementation of the Maxwellian formulation of the PML technique and the boundary conditions that account for the amplitude and the phase of the upward going wave are discussed by Gondarenko et al. [2003].
+3. Mode Conversion
+[20] The solution of the dispersion equation (4) represents the four modes of wave propagation, namely, the upward and the downward propagating ordinary O mode and the extraordinary X mode. An O mode, launched from the lower boundary, can be reflected at a plasma cutoff at the layer V = 1 (the critical layer) where the wave frequency w is equal to the electron plasma frequency wpe, V = wp2e/w2. For oblique propagation, the O mode can be transformed near the layer V = 1 into the second branch, the extraordinary (X ) mode, which in the ionospheric context is referred to as the Z mode [Mjølhus, 1984, 1990]. The extraordinary Z mode is reflected at another cutoff at the layer V = 1 + Y and then it propagates toward a plasma resonance region V1 where it is converted into an electrostatic mode (or absorbed, according to the cold plasma theory). Here, the resonance layer
+
+Figure 1. The real parts of the refractive index function nO,X (linear density profile) (a) for various angles of incidence q0, Y = 0.375, L = 20 km, and (b) for the critical angle of incidence q0 = 6.9°, Y = 0.398, and L = 5 km.
+V1 = (1 À U)/(1 À Ucos2a ), Y = we/w is the ratio of the gyrofrequency to the heater frequency and U = Y2. Although electrostatic waves are not described in a cold plasma model, the inclusion of the absorption (the effective electron collision frequency neff) into the model can resolve the singularity that occurs when the wave approaches the plasma resonance so that absorption can be interpreted as conversion into electrostatic waves for the cold plasma approximation model. In other words, when ne2ff/w2 ( 1, the ‘‘cold’’ plasma absorbs significantly only near the resonance region where the refractive index function goes to infinity in the absence of the absorption.
+[21] In Figure 1a, we present the real parts of the refractive index function nO,X to demonstrate the reflection of the O mode for various angles of incidence q0. First, we discuss wave propagation in a linear density profile: N(z) = 1 + (z À zc)/L, where the scalelength of the density inhomogeneity L = 20 km and zc is the critical surface where the local plasma frequency matches the given wave frequency w = 2p Á 4 MHz. The magnetic field makes an angle a = 12° with the z axis. The ordinary mode refractive index for the normal incidence q0 = 0 has a zero at V = 1 (horizontal solid line in Figure 1a). For arbitrary angle of incidence, when q0 > qcr, the reflection of the O mode occurs at V ’ cos2 q0. Here, the critical angle is determined by sin
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION SIA
+pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ qcr = Y =ð1 þ Y Þ sin a. The reflection points for the X mode at V = 1 ± Y are not shown. The resonance layer V1 is shown as a dashed horizontal line and the upper hybrid layer V = 1 À U is shown as a horizontal solid line. In order for reflection to occur above the upper hybrid layer, the angle of incidence must satisfy the condition Y > sin q0. One can see that for q0 ’ 22°, the reflection occurs near the upper hybrid layer.
+[22] In Figure 1b we show the refractive index function for the critical angle of incidence, qcr = 6.9° for the parameters w = 2p Á 3.515 MHz, we = 2p Á 1.4 MHz, L = 5 km, and a = 13°. Here, the reflection of Z mode is shown at the layer V = 1 + Y. The effect when the reflection of the ordinary mode can jump from the layer V = 1 to the layer V = 1 + Y is the ‘‘tripling’’ effect occurring in the ionosphere for radio wave propagation when Y2 < 1 [Ginzburg, 1970]. For the critical angle of incidence qcr, the O mode reaches the coupling point V = 1, at which the wave normal for the ordinary wave is parallel to the magnetic field H(0). At an angle q0 = qcr, the ordinary branch becomes the second extraordinary branch at the layer V = 1. At angles close to the qcr, the ordinary mode (Figure 1a) is separated from the extraordinary mode but it is clear that within a certain range of angles, the transition will occur. The results of calculations for this case show that the distance between the ordinary mode reflection layer (V = 1) and the resonance layer (V1), ÁR,1, should not exceed two wavelengths of the heater wave in order for the O mode to be transformed into a wave of extraordinary polarization. This determines the width of the ‘‘conversion window.’’ For this set of parameters, the transformation of the O mode is significant only for 4° < q0 < 9° so that the window is about 5°. For the cases when the O mode is transmitted to the higher layer V = 1 + Y in the Z mode, the reflection of the O mode (at V = 1) can still be seen in an ionograms [Ginzburg, 1970] because of the presence of inhomogeneities leading to scattering of the wave (the O mode is partially returned along the same path).
+
+21 - 5
+
+4. One-Dimensional Simulation Results
+4.1. Linear Density Profile
+[23] Let us now discuss the solutions for the differential equations (9) – (11) for the linear electron density profile model. The sets of parameters chosen for these simulations are for the F region at Arecibo and Tromsø (taken from Table 1 [Lundborg and Thide, 1986]). Lundborg and Thide calculated the standing wave patterns of the vertically propagating HF wave when the O mode was incident. They used analytic formulas to calculate the wave patterns and compare them with the results for the cases when the external constant geomagnetic field is neglected. Their model did not take into account the mode coupling which can occur around the reflection regions. For the cases when the angle a between magnetic field and vertical is large enough to exclude the conversion of the ordinary mode to the Z mode, the mode coupling can be neglected.
+[24] In Figures 2a and 2b, we show the results of our simulations for the case a = 42° that is typical for the F region at Arecibo. Here w = 2p Á 5.13 MHz, the electron cyclotron frequency we = 2p Á 1.1 MHz, L = 50 km, and n =
+
+Figure 2. The real parts of the refractive index function nO,X and the normalized amplitude of the total electric field jEj (jE0j is for the isotropic case) for the parameters of (a), (b) the F-region at Arecibo; (c), (d) the F-region at Tromsø; (e), (f ) the E-region at Tromsø.
+2.5 Á 103 sÀ1. The real parts of the refractive index function nO,X for the O mode (filled circle curve) and the X mode (open circle curve) are shown in Figure 2a. The total electric field in Figure 2b describes the standing wave pattern around the reflection of an ordinary mode. For the set of parameters above, the distance between the reflection point of the ordinary mode (solid line in Figure 2a at z = 1.955 km) and the pole of an extraordinary mode, ÁR,1, is about 1.05 km, which is outside the computational region. The O mode can not penetrate further than the critical layer V = 1 and does not have an access to the resonance layer. Also, as one can see in Figure 2b, the total electric field jEj
+
+SIA 21 - 6 GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+
+(solid line) varies more rapidly and has a larger amplitude than the electric field jE0j (dashed line) for the isotropic case. Note that in this calculation the ordinary mode with unit amplitude was incident normally at the lower boundary.
+[25] As was shown above, the inclusion of the geomagnetic field into the calculations (that affects the permittivity tensor) changed the pattern of the electric field. This is also demonstrated in the Figures 2c and 2d where the wave frequency w = 2p Á 5.423 MHz and the angle a° = 13 which is typical for the F region at Tromsø. Also, we = 2p Á 1.3 MHz, L = 50 km, and n = 2.5 Á 103 sÀ1. In Figure 2c we present the real parts of the refractive index function nO,X for the O mode (filled circle curve) and X mode (open circle curve). The refractive index of the X mode nX goes to infinity at the resonance layer V1 (dashed horizontal line in Figure 2c). The distance between the reflection point of the ordinary wave (solid line in Figure 2c at z = 1.884 km) and the resonance of the X wave, ÁR,1, is about 152 m (which is about 2.76 wavelengths of the heater wave) and the modes are separated. In Figure 2d we show the amplitude of total electric field jEj (solid line). One can see that the swelling of the first few maxima of the electric field of the HF wave is much larger than that for the isotropic case shown in Figure 2d (dashed line). An increase in field strength at the maximum of the standing wave pattern, or swelling, is due to the effect of the geomagnetic field. It was shown by Lundborg and Thide [1986] that the geomagnetic field affects the wave pattern strongly and leads to a high swelling in the first wave maximum prior the reflection point. As one can see in our Figures 2b and 2d, this effect is more emphasized at the higher latitudes (Figure 2d, Tromsø) than at the lower ones (Figure 2b, Arecibo).
+[26] Now we consider the cases when the transformations of the electromagnetic waves into electrostatic waves occur. The results of our calculations for the set of parameters [Lundborg and Thide, 1986] for the E-region at Tromsø are shown in Figures 2e and 2f. The corresponding parameters for the E layer were we = 2p Á 1.4 MHz, L = 5 km, and w = 2p Á 3.515 MHz. The magnetic field is inclined and it makes the angle a = 13° with the z axis. The behavior of the refractive index function nO,X in Figure 2e is similar to the one in Figure 2c. However, in this specific case, the resonance layer V1 is very close to the reflection height of the ordinary mode V = 1 at z ’ 1.17 km (ÁR,1 ’ 47 m that is less than the wavelength of the heater wave). The ordinary wave has direct access to the resonance layer. Therefore, even at normal incidence in the magnetic field, the plasma wave can be excited in the neighborhood of the V1. This is demonstrated in Figure 2f, where there is a sharp increase in the amplitude of the total electric field (solid line) prior to the reflection of the O mode. However, as was mentioned above, electrostatic waves are not described within a cold plasma model. In this case, the inclusion of electron collisions is the only mechanism to resolve the singularity that occurs when the wave approaches the plasma resonance. Here we used the effective collision frequency n = 103 sÀ1. Also, one can see, that the swelling in the electric field in Figure 2f is very high compare to the electric field for the isotropic case.
+[27] Next we investigate wave propagation for various angles of incidence. First, for linear density profile, we shall show the results of calculations, which demonstrate the
+
+wave patterns of a HF radio wave when the electromagnetic wave is totally or partially transmitted at the layer V = 1.
+[28] The results of our calculations for the set of parameters for the E-region at Tromsø given above are shown in Figures 3a – 3p. Shown in Figures 3a –3d are the amplitudes of the total electric field jEj = (jExj2 + jEyj2 + jEzj2)1/2, the jEzj, jExj, and jEyj components of the electric field, respectively, for the case when the ordinary wave with the unit amplitude was incident normally (q0 = 0°) at the lower boundary. In this case, as was discussed above, the O wave has direct access to the resonance layer. This is demonstrated in Figure 3b, where there is a sharp increase in the amplitude of the jEzj component of the electric field at z ’ 1 km, prior to the reflection layer of the ordinary mode. Here we used the effective collision frequency n = 104 sÀ1 (Figure 3). As expected, the amplitude of the electric field at the resonance layer in Figures 3a and 3b decreases when electron collisions are increased.
+[29] In Figures 3e – 3h the components of the electric field are shown for oblique incidence q0 < qcr (q0 = 5°). One can see that the wave is partly transmitted as a second branch of the extraordinary wave, the Z mode. It proceeds further and at a higher level, V = 1 + Y at about z = 2.9 km, the Z mode is reflected (this is the ‘‘tripling effect’’). The reflection at the higher level is clearly seen in Figures 3g and 3h for the jExj and jEyj components of the electric field. However, after Z-mode reflection, the wave cannot turn back in regular propagation, the wave normal does not become parallel to the magnetic field, and, finally, the wave propagates toward the resonance V1 where it is converted into the electrostatic wave.
+[30] For the critical angle of incidence (q0 = qcr = 6.9°) shown in Figures 3i – 3l, the electromagnetic wave is completely transmitted at the coupling point V = 1. For V < 1 (from the lower boundary up to the reflection layer of the ordinary mode), the total field amplitude jEj is unity. Note, that the O wave with unit amplitude was incident at the lower boundary. The jExj and jEyj components of the electric field demonstrate the strong reflection at the upper level V = 1 + Y (Figures 3k and 3l). For V > 1, the amplitude of the field component jExj (Figure 3l) coincides with the amplitude of the field component jEyj (Figure 3k) since the corresponding value of the polarization K = Ey/Ex = Ài (circular polarization). The polarization is almost circular for the case shown in Figures 3m – 3p, for which the angle of incidence q0 > qcr (q0 = 8°). Although the largest part of the electromagnetic wave is transmitted, there is a partial reflection at the coupling point of the waves. For this case, the distance between the ordinary wave reflection layer and the resonance layer (V1), ÁR,1 (about 20 m), is less than the heater wavelength allowing for the O-wave transmission. This distance ÁR,1 is almost the same as for the q0 = 5° case, although for the cases when q0 > qcr, the reflection of the O mode occurs at the height prior the resonance layer height.
+[31] The total electric field amplitude jEj is shown in Figures 4a and 4b for q0 = 9° and 10°. In Figures 4c and 4d are shown the amplitudes jEj for the cases when q0 = 12° and q0 = 14°. One can see how the ratio between the transmitted and the reflected parts of the incident energy flux is changed because of oblique incidence of the wave. For the cases when q0 > qcr, the ratio is decreased as the
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION SIA 21 - 7
+
+Figure 3. The normalized amplitude of the total electric field jEj, field components jEzj, jEyj, and jExj for the parameters of the E-region at Tromsø (a) – (d) for normal incidence q0 = 0°; (e) – (h) for oblique incidence q0 < qcr (q0 = 5°); (i) – (l) for the critical angle of incidence (q0 = qcr = 6.9°); and (m) – (p) for q0 > qcr (q0 = 8°).
+
+distance ÁR,1 is increased. Obviously, for critical incidence, ÁR,1 ! 0, 100% of the electromagnetic energy is transferred through the layer V = 1. To demonstrate this we simulate the wave propagation at q0 = 6.9° in the reduced propagation interval to exclude the reflection point of the Z mode at the higher level V = 1 + Y. Also in this case, the absorbing boundary condition approximated with a PML layer (with the length of about two wavelengths) was applied at the upper boundary to prevent the reflection from the boundary. Figure 5a demonstrates that the O wave with the unit amplitude penetrates further than the reflection layer V = 1, at z = 1 km, and then the wave is absorbed in the PML
+
+absorbing layer without being converted into the plasma wave. In contrast, in Figure 5b, the reflecting boundary is used at the upper boundary of the reduced interval. Also, for the cases in Figures 4a –4d, the reflecting boundaries were used to approximate the reflection of the Z mode. For q0 = 10° case (Figure 4b), the distance ÁR,1 is about 50 m, for q0 = 12° case (Figure 4c), the distance ÁR,1 is about the wavelength (85 m), and is almost doubled for q0 = 14° (Figure 4d). The ratio between the transmitted and the reflected parts of the incoming energy flux goes to zero. Finally, for this Tromsø case, the range of angles for which the O mode has an access to the resonance layer and transmission is significant is about 12°.
+
+SIA 21 - 8 GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+
+Figure 5. The normalized amplitude of the total electric field jEj for critical incidence q0 = 6.9° (a) absorbing PML layer at the upper boundary and (b) reflecting upper
+boundary.
+
+Figure 4. The normalized amplitude of the total electric field jEj for (a) q0 = 9°, (b) q0 = 10°, (c) q0 = 12°, and (d) q0 = 14°.
+
+[32] The conversion window decreases with an increase in the gradient density scale length. So that for the heater frequency w = 2p Á 4 MHz and the density inhomogeneity L = 10 km, the range of angles where transmission is significant is about 8° (2°– 10°), and for L = 20 km it is 5° (4° – 9°). In the case when the frequency is increased w = 2p Á 6 MHz, the range becomes (3° – 8°).
+
+4.2. Parabolic Density Profile
+[33] Let us now consider the parabolic model for the electron density: N(z) = w2cr /w2[1 À (z À zc)2/L2], where L is the half-thickness of the layer, zc is the height of the density peak, the critical frequency wcr is the maximum plasma frequency of the profile, and wcr = w. The peak density is about Nmax = 1.126 Á 105 cmÀ3. The corresponding parameters for a model approximating a sporadic E layer at the Tromsø site are we = 2p Á 1.4 MHz, L = 1 km, w = 2p Á 3 MHz, n = 104 sÀ1, and a = 13°.
+[34] For various values of q0 = 0°, 5°, 10°, the real part of refractive index function nO,X2, is shown in Figures 6a, 6c, and 6e. The influence of the geomagnetic field shows up as
+a discontinuous behavior of the X mode to compare with a
+smooth variation of the index function for the O mode. There are two poles of the X mode, at z ’ 0.62 km and z ’ 0.9 km, (dashed horizontal lines) and two reflection points V = 1 below and above the density peak height, at z ’ 0.68 km and z ’ 0.84 km (solid horizontal lines in Figure 6a), which are near the density peak height. Since
+the second branch of the X mode is relatively close to the O-mode reflection layer, ÁR,1 ’ 60 m (that is less than a wavelength of the incident wave), there is only partial
+reflection for the O mode directly converted into the
+
+Figure 6. The real part of refractive index function nO2,X and normalized amplitude of the total electric field jEj for a
+sporadic E layer at Tromsø (parabolic density profile) for the
+normal incidence (a), (b) q0 = 0°; for oblique incidence (c), (d) q0 = 5°; and (e), (f ) q0 = 10°.
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION SIA 21 - 9
+
+electrostatic mode. The O mode penetrates further than the layer V = 1 at z ’ 0.68 km and continues in Z mode. However, the peak density is too low for the Z mode to be reflected at the layer V = 1 + Y (the Z-mode critical density is about 1.64 Á 105 cmÀ3). There is no cut-off point for the Z mode (second branch of the X mode in Figure 6a) in the region from about 0.62 km to 0.9 km. Thus the Z wave penetrates through the layer, that results in the reflection above the density peak height at z ’ 0.84 km and the resonance at z ’ 0.9 km (the second spike in Figure 6b). In this case of normal incidence, the swelling in the jEj is quite considerable (Figure 6b).
+[35] For q0 < qcr (q0 = 5°, qcr = 7.29°) (Figures 6c and 6d), the distance between the reflection point and the pole is decreased, allowing for the wave to penetrate further than the critical layer V = 1 and for more efficient conversion of the incident O wave into a Z mode. The total amplitude jEj (Figure 6d) is reduced because the ratio between transmitted and reflected parts of the incident energy flux is increased. One can see that a part of the incident energy is transmitted through the layer and, finally, it is absorbed in the PML layer. An increase in the electric field in the region between two reflection heights (V ’ 1) is due to the wave penetrating through the layer. Similar results are obtained for the q0 > qcr (Figures 6e and 6f). Here the reflection height of the O mode incident with q0 = 10° at the lower boundary is at z ’ 0.61 km that is below the resonance height. However, because of the distance between the reflection and resonance layer is only about 10 m, the larger part of the incident energy is transmitted through the layer that results in the enhancements of the fields at the upper layers, above the density peak height. The topside E-region enhancements observed in the experiment at the EISCAT facility near Tromsø [Rietveld et al., 2002], are likely due to linear mode conversion, Z-mode propagation through the E-region peak, and excitation of instabilities by the Z-mode wave [Mishin et al., 1997; Isham et al., 1999].
+[36] For the cases shown in Figures 7a – 7f, we used parameters typical for the sporadic-E layer at Arecibo. The electron density profile is approximated with the function N(z) = N0[1 + N˜ maxexp( À (z À zc)2/L2)], where N˜ max is the density at the maximum normalized to N0 = 0.2 Á 105 cmÀ3 so that the peak density Nmax = 1.4 Á 105 cmÀ3, zc is the height of the density peak, and L is the characteristic height. The corresponding parameters were we = 2p Á 1.1 MHz, L = 0.5 km, w = 2p Á 3.175 MHz, n = 2. Á 104 sÀ1, and a = 42°. The real parts of refractive index function for the O mode and the X mode are in Figure 7a for q0 = 0°, Figure 7c for q0 = 15°, and Figure 7e for q0 = 24°. The amplitudes of the total electric field jEj are shown in Figures 7b, 7d, and 7f for the cases in Figures 7a, 7c, and 7e, respectively. In Figure 7a, there are two reflection points V = 1 below and above the density peak height at z ’ 0.84 km and z ’ 1.16 km shown with horizontal solid line and two poles at z ’ 0.8 km and z ’ 1.2 km (dashed horizontal line). In Figure 7b, prior to the maximum there is a standing wave pattern formed by the reflection of the ordinary mode, which is transformed into a Z mode at the critical layer V = 1. The O-mode reflection occurs at the density Nmax = 1.25 Á 105 cmÀ3. In order for the Z mode to be reflected at the layer V = 1 + Y, the peak density Nmax should be larger than NV=1+Y = 1.69 Á 105 cmÀ3. In this case, the peak density
+
+Figure 7. The real part of refractive index function nO,X and the normalized amplitude of the total electric field jEj for a sporadic E layer at Arecibo for normal incidence (a), (b) q0 = 0°; for oblique incidence (c), (d) q0 = 15°; and (e), (f ) q0 = 24°.
+does not reach the value needed for the Z-mode reflection at the level V = 1 + Y so that the Z mode penetrates further, resulting in an increase of the electric field at the higher level z ’ 1.2 km. For oblique incidence (Figures 7d and 7f), the larger part of the incident energy is transmitted through the coupling point at about z ’ 0.8 km, shown as an increase in the fields in the region between two cut-off points (V = 1) with the peak at the upper layer, at z ’ 1.2 km. In these simulations with the parameters for the midlatitude facility at Arecibo, the swelling in the electric field is less marked than that for the high-latitude simulation at Tromsø.
+5. Two-Dimensional Simulation Results
+[37] For the 2-D simulations of the wave propagation in a density with the overdense blobs in the E layer at Arecibo, we use a model of a two-dimensional electron density profile to approximate the electron density patch associated with the sporadic-E layer. Our investigations focus on
+
+SIA 21 - 10 GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+
+Figure 8. The 2-D density profiles for a sporadic E region patch at Arecibo (a = 42°) (a) with a peak density of 1.8 Á 105 cmÀ3, (b) 2.2 Á 105 cmÀ3, and (c) 1.4 Á 105 cmÀ3.
+
+determining localized mode-conversion and resonance regions where plasma waves can be created. The linear mode conversion process, which involves the production of electrostatic waves, has been discussed using the 1-D simulation results of radio wave propagation with linear and parabolic electron density profiles. Due to the sharp density gradient in the E region, a coupling of the O mode to a Z mode occurs at a normal incidence. Finally, after reflection a Z wave can be converted into the plasma wave near the region V = 1. In this region, due to the enhancement of the field, the threshold for the PDI instability can be exceeded, which leads to the generation of the Langmuir wave and strong Langmuir turbulence. Langmuir turbulence is considered to play an important role in the creation of fast energetic electrons and the production of regions of observed enhanced airglow [Bernhardt et al., 1989; Newman et al., 1998].
+[38] The generation of observed structures in the ion layer over Arecibo (at an altitude of 120 km) has been explained by Bernhardt [2002] as a Kelvin-Helmholtz modulation in the ion-layer densities. To approximate these structures, we consider the 2-D density profiles (shown in Figures 8a – 8c) N(x, z) = N0[1 + N˜ maxexp( À (x À xc)2/Lx2 À (z À zc)2/L2z)] with the characteristic height in the z direction Lz = 0.25 km and characteristic width in the x direction Lx = 2 km. zc and xc are the height and the width of the center of the patch. Here N0 = 0.2 Á 105 cmÀ3 and a peak density is 1.8 Á 105 cmÀ3 (Figure 8a) and 2.2 Á 105 cmÀ3 (Figure 8b). In Figure 8c the characteristic height of the patch is increased to Lz = 0.5 km and the peak density is 1.4 Á 105 cmÀ3. The parameter values used in these calculations are typical for the E region at Arecibo [Bernhardt, 2002]. They are the wave frequency w = 2p Á 3.175 MHz, a = 42°, the effective electron collision frequency n = 2 Á 104 sÀ1, and the electron cyclotron frequency we = 2p Á 1.1 MHz. The calculation domain of 516 nodes in the x and 1024 nodes in the z directions was considered. The grid sizes are Áx = 11.3 m and Áz = 1.95 m so that there are about 8 and 48 points per wavelength in the x and z directions, respectively. For the simulations in Figures 9g –9i Áx = 15 m.
+[39] In Figures 9a – 9i we display the contours of the 2-D standing wave patterns of the total electric field amplitude
+
+jEj (Figures 9a, 9d, and 9g), the components of the electric field jEzj (Figures 9b, 9e, and 9h), and jExj (Figures 9c, 9f, and 9i) for the 2-D density profiles shown in Figures 8a –8c, respectively. The wave with the amplitude normalized to unity was incident at the lower boundary of the domain, and the top boundary was approximated with about 1.4 wavelengths PML layer to absorb the outgoing energy. One would expect some reflection from the right and left boundaries because of the 2-D electron density profile, if absorbing boundaries would not be applied for the side boundaries. In order to avoid reflections, the PML layers with a 10-point length that is less than two wavelengths are applied at the right and left sides of the domain. Thus there are no visible reflections from the top boundary and from the right and left side boundaries as well. One can see that in the regions of about 1.4 km from both sides (Figures 9a and 9d) and about 2 km (Figure 9g), the waves propagate vertically, and the amplitude of the total electric field is unity. Usually, the wave passes through the E region because the densities are too low and the local plasma frequency cannot match the incident wave frequency. However, because of the presence of the overdense patch represented by the two-dimensional density profile, the wave is reflected. The total electric field contour plots in Figures 9a, 9d, and 9g demonstrate the Airy pattern formed by the reflection of the O mode; also it is clearly seen on contour plots of the amplitude of the jExj field component (Figures 9c, 9f, and 9i). The curved region of the enhanced field amplitudes shown at the altitude near the resonance layer V1 (about 0.5 km in Figures 9a and 9d and about 0.7 km in Figure 9g) corresponds to the region of electrostatic wave generation. In Figures 9d and 9e, the magnified fragments reveal the details of the field enhancements in the selected narrow regions. In Figures 9a and 9g, the regions with the largest peaks of the electric field are shifted to the left side in the x direction. These regions are asymmetric due to the inclination of the magnetic field (see also the field component jEzj in Figures 9b and 9h).
+[40] In Figures 9a and 9b, there are traces of the reflection at the higher altitude (about 0.9 km) which corresponds to the reflection point V = 1 above the density peak. In this case, the peak density is larger than the density at which the
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION SIA 21 - 11
+Figure 9. The contours for the 2-D standing wave patterns of the total electric field amplitude jEj, jEzj, and jExj for the 2-D density profile (a) – (c) Figure 8a, (d) –(f ) Figure 8b, and (g)– (i) Figure 8c. See color version of this figure at back of this issue.
+
+SIA 21 - 12 GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+
+Z mode can be reflected at the layer V = 1 + Y. However, the Z-mode reflection height is near the height of the density peak so that the Z mode can penetrate through the layer and is reflected at the layer V = 1 above the density peak. Note that the peak of the density profile (Figure 8b) for the simulation in Figures 9d– 9f is larger than that (Figure 8a) for the simulations in Figures 9a – 9c. In this case (Figures 9d– 9f), the Z-mode reflection height is at a larger distance from the density peak height than that for the case in Figures 9a – 9c. Thus the Z mode is completely reflected at the layer V = 1 + Y at about z ’ 0.64 km and there are no traces of reflection at the higher level z ’ 0.9 km. However, the patch is more narrow at the edges and the reflection at the altitudes higher than the layer V = 1 + Y can occur.
+[41] For the simulations in Figures 9g – 9i, the characteristic height Lz (Figure 8c) is two times larger than that in Figures 8a and 8b. Also, note that the peak density is smaller than that for the simulations in Figures 9a – 9f. In this case (Figures 9g– 9i), the O-mode reflection occurs at the height near the density peak height and the peak density is too low for the Z mode to be reflected at the layer V = 1 + Y. Thus the wave can penetrate through the layer and then evanesce in the absorbing layer at the top boundary. Similar results were obtained for the 1-D cases considered above (Figures 7a – 7f) with the 1-D density profile which coincides with the 2-D density profile at x = Lx/2.
+6. Conclusions
+[42] We have presented the full-wave 1-D and 2-D numerical models of propagation of HF radio waves in inhomogeneous magnetized plasmas. The models are utilized for simulating the propagation of waves that are totally or partially reflected from the ionosphere. The simulations allow one to describe the process of linear conversion of electromagnetic waves into electrostatic waves. The wave patterns for the components of the full three-dimensional wave at the reflection and resonance regions are calculated for the linear and parabolic density profiles.
+[43] The inclusion of the geomagnetic field and electron collisions into the model is essential in calculating the electric field patterns. It was demonstrated that the effect of the geomagnetic field results in an increase of the electric field which is much larger than that for the isotropic case. We have shown that the swelling of the electric field is more marked at the higher latitudes (Tromsø) than that for the lower latitudes (Arecibo). The swelling calculated for the Tromsø and Arecibo cases are consistent with the results obtained by Lundborg and Thide [1986].
+[44] In the case of wave propagation in magnetized plasmas when the geomagnetic field is at an angle to the density inhomogeneity or the wave is incident obliquely, the electric field parallel to the density gradient is finite and it is larger than the transverse electric field. The maximum of the electric field corresponds to the point where the wave approaches the resonance layer V1, at which the plasma wave can be excited. It was demonstrated for the 1-D oblique incidence cases that the O mode has an access to the resonance region at a certain range of angles that determines the width of the ‘‘conversion window’’ [Mjølhus, 1990], which depends on density inhomogeneity. The O wave, transmitted through the ‘‘conversion window,’’ can be reflected at the upper layer and this leads to
+
+the ‘‘tripling’’ effect occurring in propagation of short radio waves (U < 1) [Ginzburg, 1970]. Also, the outshifted plasma lines (HFOL) observed during the experiments [Isham et al., 1996], as considered by Mishin et al. [1997], are originated at the Z-mode reflection layer. For oblique incidence in a parabolic density profile, the enhancement of the energy at the upper layers above the density peak has been demonstrated. The topside E-region enhancements observed in the experiment at the EISCAT facility near Tromsø [Rietveld et al., 2002] are considered likely to occur due to linear mode conversion, Z-mode propagation through the E-region peak, and excitation of instabilities by the Z-mode wave [Mishin et al., 1997; Isham et al., 1999].
+[45] We have investigated the 2-D wave propagation in a density with the overdense patches observed in the RIF images [Djuth et al., 1999; Kagan et al., 2000] of a sporadic-E layer. These patches, created as a result of the ion-layer modulation by the Kelvin-Helmholtz instability in the neutral atmosphere [Bernhardt, 2002], were approximated with two-dimensional electron density profiles. The results of our 2-D simulations demonstrate the generation of the localized mode-conversion and resonance regions. The amplified intensity in these regions may exceed the threshold for the parametric decay instability leading to the excitation of Langmuir waves and generation of strong turbulence. These nonlinear processes can facilitate acceleration of fast energetic electrons resulting in the enhanced airglow observed in the experiments [Bernhardt et al., 1989; Newman et al., 1998].
+[46] We note finally, that the localized enhancement of the electric field due to linear mode conversion is likely to initiate various plasma phenomena [Wong et al., 1981]. One such phenomenon is excitation of density irregularities by radio wave heating, which has been attributed to the SFI. The modification of the density will affect wave propagation; thus, in this case, the wave equations must be solved self-consistently with the density and temperature evolution equations. The investigations of the full nonlinear 2-D evolution of the SFI for arbitrary geometry of the HF radio wave propagation and determining the effect of the mode conversion process on the nonlinear evolution are subjects of our future studies.
+[47] Acknowledgments. This research was supported by the Office
+of Naval Research.
+[48] Arthur Richmond thanks David L. Newman and Michael T.
+Rietveld for their assistance in evaluating this paper.
+References
+Bernhardt, P. A., The modulation of sporadic-E layers by Kelvin-Helmholtz billows in the neutral atmosphere, Atmos. Sol. Terr. Phys., 64, 1487 – 1504, 2002.
+Bernhardt, P. A., and L. M. Duncan, The feedback-diffraction theory of ionospheric heating, J. Atmos. Terr. Phys., 4, 1061, 1982.
+Bernhardt, P. A., and L. M. Duncan, The theory of ionospheric focused heating, J. Atmos. Terr. Phys., 49, 1107, 1987.
+Bernhardt, P. A., C. A. Tepley, and L. M. Duncan, Airglow enhancements associated with plasma cavities formed during ionospheric heating experiments, J. Geophys. Res., 94, 9071, 1989.
+Borisov, N. D., V. V. Vaskov, and A. V. Gurevich, Shortwave drift-dissipative instability, Fiz, Plasmy, 3(1), 168 – 170, 1977.
+Budden, K. G., Radio Waves in the Ionosphere, Cambridge Univ. Press, New York, 1961.
+Djuth, F. T., et al., Production of large airglow enhancement via waveplasma interaction in Sporadic-E, Geophys. Res. Lett., 26, 1557, 1999.
+Gedney, S. D., An anisotropic PML absorbing media for the FDTD simula-
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION SIA 21 - 13
+
+tion of fields in lossy and dispersive media, Electromagnetics, 16, 399, 1996. Ginzburg, V. L., The Propagation of Electromagnetic Waves in Plasmas, Pergamon, New York, 1970. Gondarenko, N. A., P. N. Guzdar, G. M. Milikh, A. S. Sharma, K. Papadopoulos, and S. L. Ossakow, Spatio-temporal development of filaments due to the thermal self-focusing instability near the critical surface in ionospheric plasmas, Izv. Vyssh. Uchebn. Zaved Radiofiz., 7, 670, 1999. Gondarenko, N. A., P. N. Guzdar, G. M. Milikh, and S. L. Ossakow, Modification of the electron density profile near the upper hybrid layer during radio wave heating of the ionosphere, Geophys. Res. Lett., 29(11), 1510, doi:10.1029/2002GL014934, 2002. Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt, Perfectly matched layers for radio wave propagation in inhomogeneous magnetized plasmas, J. Comput. Phys., in press, 2003. Grach, S. M., A. N. Karashtin, N. A. Mityakov, V. O. Rapoport, and V. Y. Trakhtengerts, Fiz. Plasmy, 4, 1321 – 1330, 1978. Gurevich, A. V., and A. N. Karashtin, Self-focusing instability of plasma waves excited by powerful HF radiation, Phys. Lett. A, 195, 362 – 368, 1994. Gurevich, A. V., A. V. Lukyanov, and K. P. Zybin, Stationary state of isolated striations developed during ionospheric modification, Phys. Lett. A, 206, 247, 1995. Gurevich, A. V., T. Hagfors, H. Carlson, A. N. Karashtin, and K. Zybin, Self-oscillations and bunching of sriations in ionospheric modifications, Phys. Lett. A, 239, 385 – 392, 1998. Guzdar, P. N., P. K. Chaturvedi, K. Papadopolous, M. Keskenin, and S. L. Ossakow, The self-focusing instability in the presence of density irregularities in the ionosphere, J. Geophys. Res., 101, 2453, 1996. Guzdar, P. N., P. K. Chaturvedi, K. Papadopoulos, and S. L. Ossakow, The thermal self-focusing instability near the critical surface in the high-latitude ionosphere, J. Geophys. Res., 103, 2231, 1998. Isham, B., C. LaHoz, H. Kohl, T. Hagfors, T. Leyser, and M. Rietveld, Recent EISCAT heating results using chirped ISR, J. Atmos. Terr. Phys., 58, 369, 1996. Isham, B., M. T. Rietveld, T. Hagfors, C. La Hoz, E. Mishin, W. Kofman, T. B. Leyser, and A. P. Van Eyken, Aspect angle dependence of HF enhanced incoherent backscatter, Adv. Space Res., 24, 1003, 1999. Kagan, L. M., M. C. Kelley, F. Garcia, P. A. Bernhardt, F. T. Djuth, M. P. Sulzer, and C. A. Tepley, The structure of electromagnetic wave-induced 557.7-nm emission associated with a sporadic-E event over Arecibo, Phys. Rev. Lett., 85, 218 – 221, 2000.
+
+Lundborg, B., and B. Thide, Standing wave pattern of HF radio wave in the ionospheric reflection region: 2. Applications, Radio Sci., 21, 486, 1986.
+Mishin, E., T. Hagfors, and W. Kofman, On origin of outshifted plasma lines during HF modification experiments, J. Geophys. Res., 102, 27,265, 1997.
+Mjølhus, E., Coupling to Z mode near critical angle, J. Plasma Phys., 31, 7 – 28, 1984.
+Mjølhus, E., On linear conversion in a magnetized plasma, Radio Sci., 25, 1321, 1990.
+Mjølhus, E., and T. Fla˚, Direct access to plasma resonance in ionospheric radio experiments, J. Geophys. Res., 89, 3921, 1984.
+Newman, D. L., M. V. Goldman, F. T. Djuth, and P. A. Bernhardt, Langmuir turbulence associated with ionospheric modification: Challenges associated with recent observations during a sporadic-E event, in Physics of Space Plasmas, vol. 15, edited by T. Chang and J. R. Jasperse, pp. 259 – 264, Mass. Inst. of Technol., Cambridge, 1998.
+Polyakov, S. V., and V. G. Yakhno, Thermodiffsion mechanism for the appearance of inhomogeneities in the electron density in the ionospheric F layer, Fiz. Plasmy, 6(2), 383 – 387, 1980.
+Rietveld, M. T., B. Isham, T. Grydeland, C. La Hoz, T. B. Leyser, F. Honary, H. Ueda, M. Kosch, and T. Hagfors, HF-pump-induced parametric instabilities in the auroral E-region, Adv. Space Res., 29, 1363, 2002.
+Sacks, Z. S., D. M. Kingsland, R. Lee, and J. F. Lee, A perfectly matched anisotropic absorber for use as an absorbing boundary condition, IEEE Trans. Antennas Propag., 43, 1460, 1995.
+Vaskov, V. V., and A. V. Gurevich, Resonance instability of small scale plasma perturbations, Sov. Phys. JETP, Engl. Transl., 46, 487, 1977.
+Vaskov, V. V., A. V. Gurevich, and A. N. Karashtin, Thermal self-focusing instability of plasma waves near resonance, Geomagn. Aeron., 21, 724, 1981.
+Wong, A. Y., J. Santoru, and G. G. Sivjee, Active stimulation of the auroral plasma, J. Geophys. Res., 86, 7718, 1981.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+P. A. Bernhardt and S. L. Ossakow, Plasma Physics Division, Naval Research Laboratory, Washington, DC 20375-5346, USA. (bern@ppd.nrl. navy.mil; ossakow@ccs.nrl.navy.mil)
+N. A. Gondarenko and P. N. Guzdar, IREAP, University of Maryland, College Park, MD 20742, USA. (ngondare@umd.edu; guzdar@glue.umd. edu)
+
+GONDARENKO ET AL.: MODE CONVERSION IN RADIO WAVE PROPAGATION
+Figure 9. The contours for the 2-D standing wave patterns of the total electric field amplitude jEj, jEzj, and jExj for the 2-D density profile (a)– (c) Figure 8a, (d) –(f ) Figure 8b, and (g) – (i) Figure 8c.
+SIA 21 - 11
+

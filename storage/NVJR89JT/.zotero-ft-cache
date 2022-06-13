@@ -1,0 +1,2046 @@
+An empirical model of ionospheric scintillation at high latitudes
+by Hichem Mezaoui MSc, University of Provence, 2009
+
+A DISSERTATION SUBMITTED IN PARTIAL FULFILLMENT OF THE REQUIREMENTS FOR THE DEGREE OF
+
+Doctor of Philosophy In the Graduate Academic Unit of Physics
+
+Supervisors: Examining Board:
+External Examiner:
+
+Abdelhaq M. Hamza, PhD, Dept. of Physics P. Thayyil Jayachandran, PhD, Dept. of Physics B. Newling, PhD, Dept. of Physics D. Tokaryk, PhD, Dept. of Physics R. B. Langley, PhD, Dept. of Geodesy and Geomatics Engineering A. V. Koustov, PhD, Dept. of Physics, University of Saskatchewan
+
+This dissertation is accepted
+Dean of Graduate Studies THE UNIVERSITY OF NEW BRUNSWICK
+May, 2017 c Hichem Mezaoui, 2017
+
+Abstract
+Trans-ionospheric radio signals experience both amplitude and phase variations as they propagate through a turbulent ionosphere, this phenomenon is known as scintillation. As a result of these ﬂuctuations, GPS receivers lose track of signals and consequently induce positioning and navigational errors. Therefore, there is a need to study scintillation and their causes in order to not only resolve the navigational problem but in addition develop analytical and numerical radio propagation models. This thesis presents the work that has been done to develop an empirical model of ionospheric scintillation at high latitudes. In this study, GPS L1 signals were recorded and characterized using the Canadian High Arctic Ionospheric Network (CHAIN). We developed new indices to quantify scintillation and the chaoticity of the turbulent ionosphere. More particularly, we used the multi-fractal aspect of the scintillating GPS signal to compute the corresponding wavelet-based entropy and fractal dimension. These indices were used to construct scintillation maps in the geomagnetic domain. It has been found that the chaoticity of the scintillating signal exhibits a dependence on
+ii
+
+geomagnetic conditions and a seasonal cycle, suggesting the possibility to quantify the ionospheric turbulence using the proposed indices. In the second part of the thesis, a simulator of the trans-ionospheric channel was developed. The model takes into account the case of strong scintillation, where the amplitude ﬂuctuations start to build up inside the ionospheric slab. The features of the power spectra of the observed scintillation events were reproduced: it has been found that the amplitude ﬂuctuations are characterized by a power spectral density that obeys a power law with a break down at the Fresnel scale. The phase, on the other hand, does not exhibit a breakdown of the power law, which is in agreement with the observations.
+iii
+
+Dedication
+To my family
+iv
+
+Table of Contents
+
+Abstract
+
+ii
+
+Dedication
+
+iv
+
+Table of Contents
+
+xi
+
+List of Tables
+
+xii
+
+List of Figures
+
+xix
+
+Abbreviations
+
+xx
+
+1 Introduction and Thesis Outline
+
+1
+
+1.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+1.2 Dissertation Outline . . . . . . . . . . . . . . . . . . . . . . . 5
+
+2 The Earth’s ionosphere
+
+7
+
+2.1 Solar atmosphere . . . . . . . . . . . . . . . . . . . . . . . . . 7
+
+2.1.1 The internal and atmospheric structure . . . . . . . . . 7
+
+2.1.2 Solar cycle . . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+v
+
+2.2 Solar Activity . . . . . . . . . . . . . . . . . . . . . . . . . . . 11 2.2.1 Co-rotating Interaction Region . . . . . . . . . . . . . 11 2.2.2 Coronal Mass Ejections (CMEs) . . . . . . . . . . . . . 12 2.2.3 Flares . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+2.3 Magnetosphere . . . . . . . . . . . . . . . . . . . . . . . . . . 13 2.4 Morphology of the ionosphere . . . . . . . . . . . . . . . . . . 18
+2.4.1 D layer . . . . . . . . . . . . . . . . . . . . . . . . . . 20 2.4.2 E Layer . . . . . . . . . . . . . . . . . . . . . . . . . . 20 2.4.3 F Layer . . . . . . . . . . . . . . . . . . . . . . . . . . 20 2.4.4 Transport . . . . . . . . . . . . . . . . . . . . . . . . . 21 2.4.5 Ambipolar Diﬀusion . . . . . . . . . . . . . . . . . . . 24 2.5 Radio Waves in the Ionospheric Plasma . . . . . . . . . . . . . 25 2.6 The High Latitude Ionosphere . . . . . . . . . . . . . . . . . 29 2.6.1 The characteristics of the ionospheric conductivity . . . 32 2.6.2 Sources of the ionospheric irregularities at high latitudes 35
+2.6.2.1 Particle Precipitation . . . . . . . . . . . . . . 36 2.6.2.2 Gradient drift instability . . . . . . . . . . . . 36 2.6.2.3 Kelvin-Helmholtz Instability . . . . . . . . . . 37 2.6.2.4 Farley Buneman instability . . . . . . . . . . 38 2.7 Monitoring the ionosphere . . . . . . . . . . . . . . . . . . . . 39 2.7.1 Sporadic E-layers . . . . . . . . . . . . . . . . . . . . . 43 2.7.2 Spread-F . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+vi
+
+3 Global Positioning System
+
+45
+
+3.1 Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+
+3.1.1 GPS signal characteristics . . . . . . . . . . . . . . . . 46
+
+3.1.2 Positioning techniques . . . . . . . . . . . . . . . . . . 47
+
+3.2 Derived observables for ionospheric studies . . . . . . . . . . . 53
+
+3.2.1 Total electron content . . . . . . . . . . . . . . . . . . 53
+
+3.2.2 Vertical projection . . . . . . . . . . . . . . . . . . . . 56
+
+3.3 Canadian High Arctic Ionospheric Network (CHAIN) . . . . . 59
+
+3.3.1 GPS receivers . . . . . . . . . . . . . . . . . . . . . . . 59
+
+3.3.2 Canadian Advanced Digital Ionosonde (CADI) . . . . . 60
+
+4 Overview of ionospheric scintillation
+
+65
+
+4.1 Describing the dielectric function . . . . . . . . . . . . . . . . 66
+
+4.1.1 Multi-scale aspect of the dielectric function . . . . . . . 66
+
+4.1.2 Stationarity . . . . . . . . . . . . . . . . . . . . . . . . 67
+
+4.1.3 Probability density function . . . . . . . . . . . . . . . 68
+
+4.1.4 Spatial covariance . . . . . . . . . . . . . . . . . . . . . 70
+
+4.1.5 Power spectra . . . . . . . . . . . . . . . . . . . . . . . 72
+
+4.2 Geometric optics . . . . . . . . . . . . . . . . . . . . . . . . . 77
+
+4.2.1 Optical path . . . . . . . . . . . . . . . . . . . . . . . . 77
+
+4.2.2 Taylor hypothesis: frozen ﬁelds . . . . . . . . . . . . . 79
+
+4.2.3 Case of non-frozen ﬁelds . . . . . . . . . . . . . . . . . 81
+
+4.3 Maxwell’s equations in a random medium . . . . . . . . . . . 83
+
+vii
+
+4.4 General solutions . . . . . . . . . . . . . . . . . . . . . . . . . 92 4.5 Rytov’s approximation . . . . . . . . . . . . . . . . . . . . . . 93
+4.5.1 The Rytov transformation . . . . . . . . . . . . . . . . 93 4.5.2 The Basic Rytov Solution . . . . . . . . . . . . . . . . 97
+
+5 Application of the maximum entropy principle in the de-
+
+termination of the scintillation components
+
+100
+
+5.1 Wavelet transform . . . . . . . . . . . . . . . . . . . . . . . . 101
+
+5.1.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . 101
+
+5.1.2 Deﬁnition . . . . . . . . . . . . . . . . . . . . . . . . . 102
+
+5.1.3 Wavelet transform of a discrete signal . . . . . . . . . . 104
+
+5.1.4 Basis wavelet . . . . . . . . . . . . . . . . . . . . . . . 106
+
+5.1.5 Morlet wavelet . . . . . . . . . . . . . . . . . . . . . . 107
+
+5.1.6 Signal reconstruction . . . . . . . . . . . . . . . . . . . 109
+
+5.1.7 Multifractal nature of the ionospheric scintillation . . 110
+
+5.2 Entropy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 112
+
+5.2.1 Wavelet-based general Tsallis entropy . . . . . . . . . . 114
+
+5.2.2 Optimization of the detrending scale . . . . . . . . . . 115
+
+5.2.3 Gaussian statistics . . . . . . . . . . . . . . . . . . . . 120
+
+5.3 Summary and conclusion . . . . . . . . . . . . . . . . . . . . . 124
+
+6 Intermittent scintillation
+
+126
+
+6.1 A simple intermittency model . . . . . . . . . . . . . . . . . . 127
+
+6.1.1 Higher order moments . . . . . . . . . . . . . . . . . . 127
+
+viii
+
+6.1.2 Castaing distribution . . . . . . . . . . . . . . . . . . . 130 6.2 Discussion and conclusion . . . . . . . . . . . . . . . . . . . . 133
+
+7 Statistical characteristics of ionospheric scintillations
+
+138
+
+7.1 Phase space reconstruction . . . . . . . . . . . . . . . . . . . . 139
+
+7.1.1 Information Dimension . . . . . . . . . . . . . . . . . . 139
+
+7.1.2 Attractor dimension reconstruction . . . . . . . . . . . 141
+
+7.1.3 Wavelet-based fractal dimension . . . . . . . . . . . . . 143
+
+7.2 Climatology . . . . . . . . . . . . . . . . . . . . . . . . . . . . 144
+
+7.2.1 Optimum scale . . . . . . . . . . . . . . . . . . . . . . 148
+
+7.2.1.1 Analysis of the optimum scale using the en-
+
+tropy maximization technique . . . . . . . . . 149
+
+7.2.1.2 Variation of the optimum scale with the ele-
+
+vation angle . . . . . . . . . . . . . . . . . . . 154
+
+7.2.2 Variation of the fractal dimension . . . . . . . . . . . . 156
+
+7.2.3 Variation of the entropy . . . . . . . . . . . . . . . . . 162
+
+7.3 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 167
+
+8 Simulator of the trans-ionospheric channel
+
+168
+
+8.1 Spectral model . . . . . . . . . . . . . . . . . . . . . . . . . . 169
+
+8.2 Numerical results . . . . . . . . . . . . . . . . . . . . . . . . . 174
+
+8.2.1 Time series generation . . . . . . . . . . . . . . . . . . 174
+
+8.2.2 Eﬀect of the spectral index on the ﬁeld . . . . . . . . . 176
+
+8.3 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 182
+
+ix
+
+9 Conclusion
+
+183
+
+Vita
+
+x
+
+List of Tables
+3.1 GPS observables and the corresponding wavelengths and precisions. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+7.1 The CHAIN stations and the corresponding geographic and corrected geo-magnetic coordinates. . . . . . . . . . . . . . . . 147
+xi
+
+List of Figures
+2.1 Temperature proﬁle at the surface of the sun. Courtesy: National Center for Atmospheric Research (NCAR). . . . . . . . 9
+2.2 Structure of the Sun [http://solarsystem.nasa.gov]. . . . . . . 9 2.3 Illustration of the Co-rotating Interaction Regions (CIRs). Cour-
+tesy: National Center for Atmospheric Research (NCAR). . . 12 2.4 Diagram showing the basic structure and electric current sys-
+tems of the magnetosphere for an observer situated a) at dusk in the Sun-Earth plane [Hunsucker and Hargreaves, 2003] and b) in the afternoon sector above the Sun-Earth plane [De Keyser, 2005]. . . . . . . . . . . . . . . . . . . . . . . . . . . . 15 2.5 Typical ionospheric proﬁle and its neutral elements composition, where dashed and solid lines represent the proﬁle during day and night, respectively [Kelley, 2009]. . . . . . . . . . . . . 19 2.6 Illustrations of thermospheric heating and the ionization processes for diﬀerent elements of the ionosphere. Photon ﬂux enters the atmosphere and ionization processes convert photon energy to chemical potential energy. . . . . . . . . . . . . 22
+xii
+
+2.7 Orthogonal coordinate system for a propagating radio-wave. The geomagnetic ﬁeld lies in the x-y plane [Mushini, 2013]. . . 26
+2.8 Statistical locations of auroral activity during periods of quiet, moderate and high geomagnetic activity. Data are from allsky camera images [Kivelson and Russell, 1995] . . . . . . . . 31
+2.9 Example of the ionospheric conductivity proﬁle: illustration of the variation of the diﬀerent components of conductivity with height in mid-latitude ionosphere during day time. Courtesy: National Center for Atmospheric Research (NCAR) . . . . . . 34
+2.10 Gradient drift instability mechanism in the E and F regions of the ionosphere [Tsunoda, 1988]. . . . . . . . . . . . . . . . 38
+2.11 Illustration of an ionogram obtained using an ionsonde. The X-axis represents the frequency and the Y-axis represents the virtual height. Critical frequencies of ionospheric layers and corresponding heights are also seen, for both ordinary and extraordinary modes. . . . . . . . . . . . . . . . . . . . . . . . 41
+3.1 Sketch of hypothesized diﬀraction of multipath ray around the ground plane for a high elevation satellite and an elevated GPS antenna [Mushini, 2013]. . . . . . . . . . . . . . . . . . . . . . 54
+xiii
+
+3.2 Color coded examples of phase and code derived TEC, phase leveled TEC, vertical TEC, and satellite elevation. A satellite elevation cutoﬀ of 20◦ is indicated by vertical dotted lines [Watson, 2011]. . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+3.3 Diagram representing the thin shell assumption and also the ionospheric pierce point (IPP), slant-TEC (STEC), verticalTEC (VTEC) are shown. Courtesy: Royal Observatory of Belgium. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+3.4 The distribution of the GPS receivers and Canadian Advanced Digital Ionosondes (CADIs) in the Canadian High Arctic Ionospheric Network. . . . . . . . . . . . . . . . . . . . . . . . . . 60
+3.5 CHAIN GPS antenna (a) and NovAtel Receiver (b) located in Cambridge Bay, NU (http://chain.physics.unb.ca/chain/). . . 61
+3.6 CHAIN CADI transmitting and receiving antennas (a) and box containing CADI receivers (b) located in Hall Beach, NU. 62
+3.7 Ionogram from the Eureka CADI from signal broadcast at 03:00 UT on 1 November 2011. Received signal power as a function of reﬂected virtual height and broadcast frequency is indicated for ordinary and extraordinary modes. . . . . . . . . 63
+xiv
+
+3.8 Measurements of the Eureka CADI for 24 hours on 1 November 2011. 4.2 MHz group range (top panel), azimuthal ionospheric drift direction (2nd panel), horizontal ionospheric drift speed (3rd panel), and vertical ionospheric drift speed (bottom panel). Drift velocity was calculated from the 4.2 MHz broadcast, while the color bar is the power of the reﬂected 4.2 MHz signal. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 64
+4.1 A conceptual description of the process of turbulence decay as it proceeeds through an energy cascade in which eddies subdivide into progressively smaller eddies until they ﬁnally dessipate . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 75
+5.1 An illustration of shifting and scaling of a mother wavelet in order to calculate the wavelet transform [Mushini, 2013]. . . . 104
+5.2 Illustration of four diﬀerent mother wavelets: (a) Morlet, (b) Paul, (c) Mexican hat, and (d) DOG. The parameter m represents the number of vanishing moments and the solid line shows the real part, while dashed line shows the imaginary part of the signal [Mushini, 2013]. . . . . . . . . . . . . . . . 107
+5.3 Costruction of the Morlet wavelet is illustrated. (a) representation of a Morlet wavelet and (b) construction of a Morlet wavelet by convolving a Gaussian curve with a sine wave [Mushini, 2013]. . . . . . . . . . . . . . . . . . . . . . . . . . . 108
+xv
+
+5.4 Example of a scalogram of the power (left pannel) and the
+
+phase (right panel) components of the GPS L1 signal, during
+
+the scintillation event at Cambridge Bay, 7th of March, 2008,
+
+PRN 31. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 112
+
+5.5 The ﬁt of the probability density function during the event at
+
+Qikiqtarjuaq, 2011/02/14, PRN 15, dotted points and solid
+
+line represent the data and the ﬁt, respectively. . . . . . . . . 119
+
+5.6
+
+The
+
+ﬁt
+
+of
+
+p(si)
+
+for
+
+the
+
+phase,
+
+solid
+
+line,
+
+β
+
+=
+
+1 σ2
+
+= 0.37.
+
+The
+
+distribution presents quasi-Gaussian statistics, with a kurtosis,
+
+k=3.03, and a skewness, s=0.08. . . . . . . . . . . . . . . . . . 122
+
+6.1 Diﬀerential power signal recorded at Qikiqtarjuaq during scintillation on the 14th of February 2011 for a time lag of 0.15 second, PRN 15. . . . . . . . . . . . . . . . . . . . . . . . . . 133
+6.2 Diﬀerential power signal recorded at Resolute Bay during scintillation (21 October 2010) for a time lag of 0.2 second, PRN 19 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 134
+6.3 Diﬀerential power signal recorded at Iqaluit during scintillation on the 22nd of February 2011 for a time lag of 0.02 second, PRN 31 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 135
+
+xvi
+
+6.4 Example of Kurtosis vs temporal lag for the event at Qik-
+
+iqtarjuaq during scintillation on the 14th of February 2011.
+
+Starting from a lag value of 0.02s a fast decrease in the kurto-
+
+sis is observed for larger time lags. The ﬁt is performed using
+
+the relation. K = 4 sinh2
+
+1 τi 2τ
+
++ 4, with τi = 1.75s
+
+. . . . . . 136
+
+7.1 Illustration of mutual information against time delay obtained from the detrended power (a) and phase (b) components during the event at Qikiqtarjuaq, 2011/02/14, PRN 15. . . . . . 142
+7.2 Example of a scintillation event at Qikiqtarjuaq, 2011/02/14, PRN 15. The phase space reconstruction is presented for two temporal delays (τ = 0.02 s, 0.03 s), for the phase and the power components of the GPS L1 signal. . . . . . . . . . . . 143
+7.3 Illustration of the variation of the fractal dimension with the occurrence of the power scintillation (left panel) and phase scintillation (right panel) on 01 March 2009 on PRN 20 between 03:00 and 04:00 UTC at Cambridge Bay (69.10◦ N 254.88◦ E ). . . . . . . . . . . . . . . . . . . . . . . . . . . . . 145
+7.4 Probability density function of the optimum scale associated with the phase component of the signal. . . . . . . . . . . . . 150
+7.5 Probability density function of the optimum scale associated with the power component of the signal. . . . . . . . . . . . . 152
+
+xvii
+
+7.6 Joint probability density function constructed for the power and phase components for the winter, summer and solstices. . 153
+7.7 Variation of the optimum scale with the elevation angle of the GPS satellite for the power and the phase components of the signal. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 155
+7.8 Variation of the value of the PDF at the most probable optimum scale for the power (left) and the phase (right) components.156
+7.9 PDF associated with the variation of the wavelet-based fractal dimension for the phase and the power components. . . . . . . 158
+7.10 Normalized joint probability density function of power scintillation events characterized by D > 0.4 for fall (a), winter (b), spring (c), and summer (d). . . . . . . . . . . . . . . . . . . . 160
+7.11 Normalized joint probability density function of phase scintillation events characterized by D > 0.2 for fall (a), winter (b), spring (c), and summer (d). . . . . . . . . . . . . . . . . . . . 161
+7.12 PDF associated with the entropy variation of the phase (top panel) and the power (bottom panel) components. . . . . . . 163
+7.13 Normalized joint probability density function of power scintillation events characterized by an entropy S > 5.3 for fall (a), winter (b), spring (c), and summer (d). . . . . . . . . . . . . . 165
+7.14 Normalized joint probability density function of phase scintillation events characterized by an entropy S > 4.3 for fall (a), winter (b), spring (c), and summer (d). . . . . . . . . . . . . . 166
+xviii
+
+8.1 Illustration of diﬀerent parameters of the model [Deshpande et al., 2014]. . . . . . . . . . . . . . . . . . . . . . . . . . . . 171
+8.2 The geometry of the GPS signal propagation from the satellite to the ground , for the north hemisphere (a) and the south hemisphere (b) [Deshpande et al., 2014]. . . . . . . . . . . . . 172
+8.3 Example of the power and phase time series on the ground (top and bottom panels, respectively). . . . . . . . . . . . . . 176
+8.4 Illustration of the phase contour on the ground for diﬀerent values of the spectral index pH. . . . . . . . . . . . . . . . . . 178
+8.5 Corresponding phase (black) and amplitude (blue) scintillation spectra observed a scintillation event. Fresnel ﬁltering is clearly observed in the amplitude spectra while there is no Fresnel ﬁltering in the phase spectra [Mushini, 2013]. . . . . . 180
+8.6 Illustration for the power spectra for the phase (top panel) and the power (bottom panel) components of the signal for PH = 4. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 181
+xix
+
+List of Symbols, Nomenclature or Abbreviations
+GPS Global Positioning System CADI Canadian Advanced Digital Ionosonde IPP Ionospheric Pierce Point TEC Total Electron Content CHAIN Canadian High Arctic Ionospheric Network PDF Probability density function
+xx
+
+Chapter 1
+Introduction and Thesis Outline
+This chapter is a general introduction to ionospheric scintillation. Objectives and motivations behind the present work and a brief outline of the thesis are also provided.
+1.1 Introduction
+The Global Positioning System (GPS) was originally engineered by the American Department of Defence (DoD). The ﬁrst satellites were launched in 1978 and declared operational for civil use in 1995. It consists of 31 satellites orbiting on a medium-Earth orbit (an altitude of 20000 km). GPS allows the user to obtain information about the time and the geographic location with
+1
+
+a high level of accuracy. From civilian use in navigation during commercial ﬂights to military applications, the GPS has become one of the most important technologies in the modern era and is worth billions of dollars. A GPS satellite emits a radio wave from an altitude of 20000 km. Hence, the signal propagates through the ionized part of the upper atmosphere (the ionosphere), which extends from approximately 90 to 1000 km. This medium presents a non-homogeneous distribution of charge and a highly dynamic aspect. Therefore, due to diﬀractive and refractive eﬀects, the interaction between the trans-ionospheric radio wave and the ionospheric plasma may result in perturbations in the power and the phase components of the GPS signal and a degradation of the ranging accuracy. These disturbances can be severe enough to cause the loss of lock of the ground-based GPS receivers on the satellite signal. This phenomenon is commonly known as the ionospheric scintillation. As the ionosphere is inﬂuenced by the radiations and the plasma outﬂow originating from the sun, the ionospheric scintillation can present a highly variable aspect. The fact that the state of the ionosphere depends on the solar activity detracts from the reliability of the GPS capabilities. Therefore, understanding the ionospheric scintillation is essential in mitigating the eﬀect of the ionosphere on the GPS performances. Further, an optimum characterization of the ionospheric scintillation serves a twofold purpose, not only does it facilitate the attenuation of the scintillation eﬀects, but also it permits an understanding of the dynamics and the morphology of the iono-
+2
+
+spheric plasma. At high latitudes the ionosphere is strongly coupled to the interplanetary magnetic ﬁeld via the open magnetic ﬁeld lines, a fact that makes the high latitude ionosphere very sensitive to the solar activity. It is important to stress that the sun’s magnetic activity presents a cycle characterized by an 11-year period. This can be reﬂected in the long term variation of the ionospheric plasma turbulence level. In addition, seasonal variations have also been observed [Prikryl et al., 2011]. In early studies, VHF and UHF communication systems were extensively used in the investigation of the ionospheric scintillation at mid and low latitudes. The multi-scale aspect of the ionospheric scintillation become evident. More particularly, it has been shown that the ionospheric electron irregularities producing scintillation presented a power law structure [Jones, 1960; Rufenach, 1971]. With the dawn of GPS it has been possible to have an important enhancement in terms of the spatial and the temporal coverage. Ionospheric scintillation has been extensively investigated using the GPS signal. However, for a period of time, there has been a lack of monitoring stations, equipped with ground based receivers, at high latitude regions. Given the importance of understanding the high latitude ionospheric plasma dynamics, due to the fact of its direct coupling with the IMF via the magnetic ﬁeld lines, infrastructures for monitoring the ionospheric plasma have been built. Among these structures is the Canadian High Arctic Ionospheric Network (CHAIN).
+3
+
+In order to optimally characterize the ionospheric scintillation, the process of ﬁltering out the non-scintillation components from the trans-ionospheric GPS signal is of primary necessity. Such unwanted components are the contributions from the diurnal variation of the electron density background and the Doppler shift induced by the relative motion of the ionospheric plasma bulk. Traditionally, the default setting of a 0.1 Hz cut-oﬀ frequency is adopted in the ionospheric scintillation studies [Forte and Radicella, 2002, 2005]. However, given the multi-fractal and the stochastic aspects of the ionospheric plasma dynamic, the adoption of a universal cut-oﬀ frequency is not a reasonable approach. There is a need to investigate the criteria for deﬁning the optimum scale/frequency delimiting the small scale contribution, responsible for the scintillation occurrences, from the diurnal variations and the Doppler eﬀects. This constitutes one of the objectives of the present dissertation. The wavelet transform is revealed to be a very fruitful mathematical tool in the context of investigating the statistical properties of the ionospheric scintillation. In the present work, a wavelet based entropy is proposed and used in the statistical characterization of the ionospheric scintillation. In addition, based on the statistical behaviour of the GPS signal components during ionospheric scintillation, criteria for the delimitation of the optimum cut oﬀ frequency are deﬁned. The dimensionality of the ionospheric scintillation is quantiﬁed using a newly introduced wavelet based fractal dimension. The constructed scintillation observables are used in a climatology study
+4
+
+of the ionospheric scintillation. Data of two years’ worth of scintillation events are investigated. The corresponding scintillation maps are constructed and characterized. Conclusions are drawn about the stochasticity and the chaoticity of the ionospheric scintillation and the behaviour of the optimum cut-oﬀ scale. Finally, a simulator of the trans-ionospheric channel is constructed. The spectral features of the observed ionospheric scintillation are reproduced.
+1.2 Dissertation Outline
+Chapter 2 is a general introduction to the characteristics of the sun’s environment, the magnetosphere and the ionosphere. More emphasis is given to the high latitude ionospheric plasma, where diﬀerent properties of its dynamics and morphology are introduced. The propagation of the radio waves in the ionosphere is also discussed. Chapter 3 presents an introduction to the GPS and corresponding measurements. The Canadian High Arctic Ionospheric Network is also introduced. Chapter 4 gives a general overview of the ionospheric scintillation. Diﬀerent scintillation theories are discussed. Chapter 5 introduces a new technique for the determination of the optimum cut-oﬀ scale, delimiting the ionospheric scintillation components. Chapter 6 introduces a new model describing the intermittency of the ionospheric scintillation.
+5
+
+Chapter 7 presents a climatology study of the ionospheric scintillation. The stochasticity and chaoticity of the system are described. Also, the statistical behavior of the cut-oﬀ frequency is discussed. Chapter 8 introduces a simulator of the ionospheric scintillation. Spectral properties of the observed ionospheric scintillation events are reproduced. Chapter 9 stresses the important results of the present dissertation and provides ideas for future work.
+6
+
+Chapter 2
+The Earth’s ionosphere
+The terrestrial ionosphere is sustained by the sun’s activity. Indeed, the creation of free electrons in the atmosphere is mainly due to the interaction of the neutral molecules with the photons (X-rays, Extreme Ultra Violet) radiated by the sun. Superposed upon the background electron density are irregularities, ranging from diﬀerent scales, created by diﬀerent physical mechanisms (introduced in the following text).
+2.1 Solar atmosphere
+2.1.1 The internal and atmospheric structure
+The sun’s structure comprises of two major parts: the internal structure and the atmosphere. The ﬁrst part is divided into three layers: the core, the radiative and the convective zones.
+7
+
+All thermonuclear reactions take place in the core, producing gamma rays and raising the temperature up to 15 · 106 K. This part extends to approximately the third of the solar radius, where begins the transition zone called the radiative zone. At the top of the internal structure is the convective zone which extends from about 70% of solar radius to the surface of the sun.
+The solar atmosphere is divided into three layers: the photosphere, the chromosphere and the corona, presenting a particular temperature proﬁle, ﬁgure 2.1. The photosphere constitutes the coldest region of the sun (about 6000 K) and is situated at the lowest height. It is the source of the light in the visible spectrum. This region comprises convection cells of ionized matter called granules, where intense magnetic ﬁelds are conﬁned. Also, the photosphere comprises cold regions, characterized by intense unipolar magnetic ﬁelds, called sunspots. These are the coldest regions in the sun (4000 K). The chromosphere is the region situated just above the photosphere and presents a temperature proﬁle directly proportional to the altitude. It is characterized by monochromatic emissions of the electromagnetic radiation corresponding to speciﬁc emission lines, such as the red line of hydrogen (H), ultraviolet line of calcium (CAIIH) and the Lyman- ultraviolet line, among others. One of the interesting features of this layer are the prominences, which are basically bright regions surrounding sunspots, corresponding to dense and cooler regions which follow the magnetic loops emerging from the photosphere.
+8
+
+Figure 2.1: Temperature proﬁle at the surface of the sun. Courtesy: National Center for Atmospheric Research (NCAR).
+Figure 2.2: Structure of the Sun [http://solarsystem.nasa.gov]. 9
+
+The corona is the outermost layer of the solar atmosphere and the least dense. It presents a temperature proﬁle similar to the chromosphere’s, with temperature reaching several millions of degrees. As a result, the electrons and the protons escape from the gravitational ﬁeld of the sun to constitute a continuous stream of plasma, the solar wind.
+2.1.2 Solar cycle
+The solar dynamo (the turbulent plasma located in the core of the sun) induces an activity cycle called the solar cycle, which on average presents a period of 11 years. Diﬀerent indices have been constructed in order to monitor the solar activity; for example, we cite the International Sunspot Number, which gives an estimate of sunspots and groups of sunspots observed on the photosphere. Another index is F10.7, the radio ﬂux at wavelength 10.7 cm, observed daily at the radio station of Penticton, Ottawa (Canada) since 1950. Other indices have been deﬁned to quantify the activity of the sun, such as the Total Solar Irradiance [de Toma et al., 2001] and MgII [de Toma et al., 1997]. The period of rotation of the Sun on its axis is approximately 25 days at the equator and about 35 at the poles. This results from a diﬀerential aspect of the solar rotation. The synodic rotation period, which is the rotation period of the sun from the earth’s point of view, lasts 27.3 days.
+10
+
+The solar wind is an outﬂow of plasma originating from the expansion of the solar corona up to the limits of the interstellar space. This medium is characterized by a very large conductivity. Therefore, the Interplanetary Magnetic Field (IMF), which corresponds to the extension of the solar magnetic ﬁeld in the interplanetary medium, is highly coupled to the plasma. This property can be visualized in the “frozen” in aspect, where we can describe the system as magnetic ﬁeld lines frozen in the plasma ﬂow. The solar wind has a typical density of the order of few electrons per cubic centimeter, and a ﬂow velocity, v, of approximately 400 km · s−1.
+2.2 Solar Activity
+2.2.1 Co-rotating Interaction Region
+Typically, during solar minimum, the coronal holes are located at the high latitude regions of the sun. The equatorial region, on the other hand, presents a “quiet” state, where low speed solar wind is blown outward from the sun. When the solar activity is high, coronal holes migrate towards the equator and, subjected to the rotation of the sun, produce solar wind emissions that present an intermittent aspect in terms of slow and fast wind emissions. Thus, it is possible to have an interaction between a fast and a slow wind producing a shock region called the Co-rotating Interaction Region (CIR), Figure 2.3. The latter is bounded by a forward shock and a reverse shock. As the occurrence of CIRs is dependent on the solar activity, it can be foreseen
+11
+
+Figure 2.3: Illustration of the Co-rotating Interaction Regions (CIRs). Courtesy: National Center for Atmospheric Research (NCAR).
+by monitoring IMF and solar wind parameters.
+2.2.2 Coronal Mass Ejections (CMEs)
+These are caused by a mechanism called magnetic reconnection, where magnetic energy is released and transformed into kinetic energy. Indeed, closed magnetic loops on the surface of the sun, conﬁning a plasma, are stressed via motion of their photospheric footprints; this induces a tear of the ﬁeld lines connecting to the sun. The plasma is then released, and magnetic buoyancy forces the plasma blob to accelerate quickly away from the Sun. The propagation speed of CMEs lies anywhere from near zero to 2000 km/s. Fast CMEs plow into the solar wind and can form shock waves, while slow CMEs
+12
+
+ﬂow with the solar wind.
+2.2.3 Flares
+A solar ﬂare consists of a burst of electromagnetic radiation from the chromosphere near a sunspot, lasting for a period ranging from minutes to hours. The emission can be in diﬀerent ranges of the spectrum, including hard X-rays and γ-rays (bremsstrahlung), soft (thermal) X-rays and EUV (multimillion degree K gas) and radio bursts (energetic electrons in magnetic ﬁelds). During a solar ﬂare, a large quantity of energy is released from a small volume in a short period of time. This requires either a large amount of energy stored in that small volume that can be quickly transformed and released as energetic electrons and photons or very eﬃcient transport of energy into that volume where it is then converted into the observed forms. In the solar environment, an important amount of energy is available in the form of magnetic energy. In order to convert the stored energy into particle energy and heat, a rapid mechanism of conversion is needed. This is where the magnetic reconnection comes into play.
+2.3 Magnetosphere
+The earth’s magnetic ﬁeld can be, to a ﬁrst approximation, considered as a dipole with the pole tilted, with respect to the axis of rotation of the earth,
+13
+
+with an angle of 11◦. Put in a more illustrative way, the magnetic pole is tilted toward North America in the northern hemisphere. The ﬁeld at the surface of the earth varies between 0.25 Gauss at the magnetic equator to 0.6 Gauss near the magnetic poles. This picture of the earth’s magnetic ﬁeld represented by a magnetic dipole is rather a simplistic illustration. Indeed, the earth is immersed in a hot bath constituted of a collisionless plasma outﬂowing from the sun (the solar wind). Additionally, the solar wind is supersonic, as it is subject to heating by the sun, and, due to the sun’s gravitational ﬁeld, compression and subsequent expansion. This results in a complex interaction region in the interface between the magnetic ﬁeld of the earth (magnetosphere) and the solar wind, as illustrated in Figure 2.4. A considerable amount of the energy carried by the IMF ﬁnds its way into the ionosphere, especially, via the magnetic ﬁeld lines, where it triggers aurora displays; also, it energizes the plasma on the magnetic ﬁeld lines, creating a vast circulating current of hot plasma in the upper atmosphere. In order to have a picture of how the inﬂowing stream of plasma interacts with the shielding magnetic ﬁeld of the earth, let us suppose that the solar wind is sub-sonic and write the equation describing the motion of a charged particle in the presence of a magnetic ﬁeld. A particle of charge q (element of the solar wind) immersed in a magnetic ﬁeld (earth’s magnetic ﬁeld) is
+14
+
+Figure 2.4: Diagram showing the basic structure and electric current systems of the magnetosphere for an observer situated a) at dusk in the Sun-Earth plane [Hunsucker and Hargreaves, 2003] and b) in the afternoon sector above the Sun-Earth plane [De Keyser, 2005].
+15
+
+subject to the Lorentz force:
+
+F = qv × B
+
+(2.1)
+
+Due to the polarity of the earth’s magnetic ﬁeld, the ions are deﬂected towards dusk and the electrons towards dawn. This creates a net dawn to dusk current, inducing a magnetic ﬁeld parallel to the earth’s ﬁeld in the region between the current sheet and the earth and an anti-parallel ﬁeld in the region of the solar wind. Therefore, the magnetic ﬁeld is strengthened in between the current sheet and the earth and cancels out in the region of the solar wind. Let us now consider a more realistic conﬁguration. As the solar wind is supersonic, a bow shock forms upstream of earth, and the solar wind plasma and magnetic ﬁeld are slowed and compressed between the current sheet (magnetopause) and the solar wind, the so-called magnetosheet region; the ion and electron temperature rises to ≈ 50 eV and ≈ 200 eV, respectively. Therefore, the plasma in the magnetosheet region ﬂows around the Earth’s magnetic ﬁeld, compressing the dayside and extending the magnetosphere on the nightside. When the interplanetary magnetic ﬁeld has a southward component, the process known as magnetic reconnection takes place: the southward component of the interplanetary magnetic ﬁeld cancels out with the northward component of the Earth’s magnetic ﬁeld, opening the dayside of the magnetopause. The solar wind plasma ﬂows around the magnetosphere and drives convec-
+
+16
+
+tion patterns.
+
+A magnetized plasma is characterized by the parameter β, which is deﬁned
+
+as the ratio of the plasma pressure, p = nKBT , to the magnetic pressure,
+
+deﬁned
+
+as
+
+, B2
+2µ0
+
+i.e.,
+
+β
+
+=
+
+. 2µ0p
+B2
+
+Based on the value of β and the magnetic ﬁeld topology, one can deﬁne
+
+diﬀerent plasma regions in the Earth’s magnetosphere; the tail lobes are
+
+characterized by a low β value (< 0.01). This region is threaded by mag-
+
+netic ﬁeld lines extending from the polar cap to hundreds of RE (RE being
+
+the Earth radius, 1RE = 6370 km) tailward. Having an opposite magnetic ﬁeld direction, the tail lobes contains a high density (0.1 − 1 cm−3), high
+
+temperature (Ti ≈ 2-20 keV, Te ≈ 0.4 − 4 keV) plasma, originating from the
+
+solar wind and the ionosphere. The plasma carries a current sheet, termed
+
+the neutral sheet, because the magnetic ﬁeld reverses and the magnitude be-
+
+comes very small (< 5 nT). A thin layer of plasma, termed the plasma sheet
+
+boundary layer, is observed between the lobes and the plasma sheet. This
+
+region comprises ﬁeld aligned ion and electron populations. The mapping of
+
+these plasma regions constitute the main part of the nightside auroral oval
+
+(introduced in the following sections of the text).
+
+17
+
+2.4 Morphology of the ionosphere
+
+The ionosphere is the ionized component of the atmosphere, extending from the altitude of 60 km to approximately 1000 km. Due to the eﬀect of gravity, the ionosphere is horizontally stratiﬁed and can be characterized by an electron density proﬁle. A typical density proﬁle of the high-latitude ionosphere is given in Figure 2.5. The ionosphere is considered to be a weakly ionized plasma because the electron and ion densities are estimated to be a thousand times smaller than the neutral ﬂuid density. The electron density for a certain volume of the ionosphere is a result of diﬀerent processes: production, loss and transport, as illustrated by the continuity equation,
+
+∂Ne ∂t
+
+=
+
+q
+
+−
+
+L
+
+−
+
+∇ · (Nev)
+
+(2.2)
+
+where Ne is the electron concentration while q and L represent the production and the loss rates, respectively. The term v is the mean plasma velocity. The production is the result of ionization of diﬀerent neutral components of the atmosphere by solar radiation. The loss is the result of the recombination of electrons with positive ions.The vertical structure of the ionosphere can be characterized by three diﬀerent layers. In each of these layers, speciﬁc chemical reactions, describing the process of loss and production, take place. This results in a local peak in the plasma density. In the following we describe the three main layers of the ionosphere.
+
+18
+
+Figure 2.5: Typical ionospheric proﬁle and its neutral elements composition, where dashed and solid lines represent the proﬁle during day and night, respectively [Kelley, 2009].
+19
+
+2.4.1 D layer
+The D layer is the lowest layer of the ionosphere (60-90 km) composed mainly of molecular ions, such as O2+ and N2+. These ions are the product of direct ionization of neutral molecules, such as O2 and N2, by cosmic rays or solar X-rays ( between 1 and 10 ˚A). Above 70 km, N O+ is produced by Lyman-α radiation at 1216 ˚A which leads to the D peak. The electron concentration in the D-layer ranges between 107 and 1010 e−/m3. Due to a high recombination rate of O2+ and N2+ ions, this layer exists only during day time.
+2.4.2 E Layer
+The E layer is produced at heights ranging from 90 km to 130 km. Due to its reﬂective properties at low radio frequencies, this layer was the ﬁrst to be discovered 1. The majority of the neutrals at these altitudes are the N2 and O2 molecules. Direct ionization of these molecules, in addition to charge exchange, produces N O+ and O+. The electron concentration in the E layer lies between 1010 and 1011 e−/m3.
+2.4.3 F Layer
+This layer is the only one that is permanent. It extends from 130 km to 1000 km. The neutral constituents at these altitudes are N2 and the atomic oxy-
+1The reﬂective properties of the ionosphere will be introduced in section 2.5
+20
+
+gen O. Ion production in this region is due to ionization of the atomic oxygen by the Far Ultraviolet (FUV) and Extreme Ultraviolet (EUV) radiations. The F layer can be characterized by two sub-layers, F1 and F2, that exhibit speciﬁc photochemical reactions.
+• The F1 layer is deﬁned in the range 130 km-200 km. It usually merges with the F2 layer during night periods when production is not sustained by the solar radiation.
+• The F2 region is characterized by the highest electron density in the ionosphere. It extends from the F1 layer to the approximate height of 1000 km. The main neutral constituent at these heights is the atomic oxygen, O, which is transformed to atomic ions by photo-ionization. The rate of recombination being still proportional to N2 and O2,
+O++N2 → N O+ + N N O++ e− → N+ O the loss of O+ by recombination is lower than that found at the F1 layer heights. Diﬀerent ionization processes are summarized in Figure 2.6.
+2.4.4 Transport
+In the D, E, and F1 layers, the concentration of neutral molecules is high and so are the collision cross sections between the neutral elements and the ions
+21
+
+Figure 2.6: Illustrations of thermospheric heating and the ionization processes for diﬀerent elements of the ionosphere. Photon ﬂux enters the atmosphere and ionization processes convert photon energy to chemical potential energy.
+as well as the recombination rates. Therefore, the motion of the electrons and ions is primarily driven by the background neutral wind. In this case the last term in equation 2.2 can be neglected, and the continuity equation can be expressed solely by the production and the loss terms. The layers are
+22
+
+said to be in the so-called state of photochemical equilibrium. On the other hand, at the F2 layer, the concentration is low, constraining the electron and the ions to the geomagnetic topology, except for the E × B drift, where the electrons are free to move across the magnetic ﬁeld lines. In this case, the transport term, in equation 2.2, cannot be neglected. Let us give a simple illustration of the inﬂuence of electric and magnetic ﬁelds on the motion of charged particles. In the presence of magnetic and electric ﬁelds, E and B, a particle with charge q is subject to the Lorentz force, given by:
+
+F = q(E + v × B)
+
+(2.3)
+
+where v is the velocity of the particle. In the absence of an electric ﬁeld, the
+
+motion of the particle is helicoidal, as a result of two motions: the parallel
+
+translation along B due to the particle’s velocity v and, even if the particle
+
+does not have an initial velocity component along the magnetic ﬁeld, the
+
+rotation of the particle about the magnetic ﬁeld B.
+
+The Larmor radius, describing the circular motion in the plane perpendicu-
+
+lar to the magnetic ﬁeld B, can be easily computed, considering a circular
+
+motion:
+
+FL
+
+=
+
+ma
+
+=
+
+m v⊥2 rL
+
+=
+
+|q|v⊥B
+
+=⇒
+
+rL
+
+=
+
+mv⊥ qB
+
+(2.4)
+
+where m is the mass of the particle and v⊥ its velocity, perpendicular to the magnetic ﬁeld. The acceleration of the particle is represented by a.
+
+23
+
+The corresponding angular velocity is given by ωL =
+
+q m
+
+B.
+
+The so-called
+
+gyrofrequency is deﬁned as:
+
+fL
+
+=
+
+ωL 2π
+
+=
+
+|q|B 2πm
+
+(2.5)
+
+From equation 2.5 it is clear that the gyrofrequency depends on the mass of the charged particle. In the presence of an electric ﬁeld the guiding center of the helix drifts at a velocity:
+
+E×B v = B2
+
+(2.6)
+
+From equation 2.6, it is clear that the drift velocity is independent of both the sign and magnitude of the particle’s charge. Therefore, the electrons and the positive ions drift at the same speed in the presence of an electric ﬁeld, in the case where the collisions can be neglected 2.
+
+2.4.5 Ambipolar Diﬀusion
+Another mechanism, contributing to the dynamics of the polar ionospheric plasma, is worth mentioning here. As a result of the equilibrium between the pressure gradients and the gravitational forces, the ions and electrons
+2This condition is met when the electron-ion, electron-neutral and ion-neutral collision cross sections are small. This is typically the case in the ionosphere at heights above 130 km.
+24
+
+are subject to diﬀusion. However, in order to maintain the total chargeneutrality of the ionospheric plasma, they need to diﬀuse at the same rate. This mechanism is called ambipolar diﬀusion. At the F2 layer, where the concentration is weak, the charged particles follow the magnetic ﬁeld lines. The fact that these lines are quasi perpendicular to the horizontal in the polar and high latitude regions, makes the ambipolar diﬀusion a maximum at these regions, playing an important role in the dynamics of the ionospheric plasma.
+2.5 Radio Waves in the Ionospheric Plasma
+In the context of the propagation of radio waves in the ionosphere, it is of fundamental importance to understand the characteristics of the ionospheric plasma. The latter, being magnetized, presents peculiar optical properties. In fact, the electrons and ions, primary constrained by Earth’s magnetic ﬁeld due to the Lorentz force, move along the magnetic ﬁeld lines. This asymmetric geometry induces a spatial asymmetry in the dielectric function, (x, y, z), which in turn leads to birefringence. Figure 2.7 illustrates the propagation of the radio-wave in the geomagnetic ﬁeld.
+Sir Edward Appleton was one of the ﬁrst pioneers to work on the derivation of the refractive index formula for a medium with a complex charge density distribution, such as the ionosphere.
+25
+
+Figure 2.7: Orthogonal coordinate system for a propagating radio-wave. The geomagnetic ﬁeld lies in the x-y plane [Mushini, 2013].
+
+Let us cite Appleton formula, giving the refractive index [Davies, 1990]:
+
+n2 = 1 −
+
+X
+
+1
+
+−
+
+iZ
+
+−
+
+YT2 2(1−X )
+
+±
+
+YT4 4(1−X −iZ )2
+
++
+
+YL2
+
+(2.7)
+
+where the following changes of variables have been performed: X =
+
+, N e2
+0 mω 2
+
+YT
+
+=
+
+eBT mω
+
+,
+
+YL
+
+=
+
+eBL mω
+
+,
+
+Z
+
+=
+
+ν ω
+
+.
+
+26
+
+The parameter ν is the electron-neutral frequency and Ne is the electron number density. The parameters ω and m represent the wave frequency and the mass of the electron, respectively. The two projections of the magnetic ﬁeld B along the x and y axis are given respectively by BT and BL. In the case where we ignore the magnetic ﬁeld and the collisions, the refractive index, also referred to as the phase refractive index, can be given as:
+
+n2ph
+
+≈
+
+1
+
+−
+
+1 X
+2
+
+(2.8)
+
+Substituting the value of X:
+
+n2ph
+
+≈
+
+1
+
+−
+
+40.3N f2
+
+From 2.9, we can write the phase velocity as follow:
+
+(2.9)
+
+Vph
+
+=
+
+c n
+
+=
+
+c[1
+
+−
+
+N e2
+
+]−
+
+1 2
+
+m 0ω2
+
+(2.10)
+
+From inspection of 2.10, it is clear that the phase velocity is dependent on
+
+the frequency of the propagating wave. Therefore, the ionospheric medium
+
+is said to be dispersive. This means that if two waves, presenting slightly
+
+diﬀerent frequencies, propagate in the ionospheric plasma, they will have dif-
+
+ferent propagation velocities. The interference pattern of these two waves
+
+will determine the characteristics of propagation of the composite wave, i.e.,
+
+the velocity of propagation of the energy (group velocity) and its direction of
+
+27
+
+propagation. Practically, we can obtain such characteristics by modulating the wave. We talk then about the propagation of the modulation envelope. In order to give a classical illustrative example, let us consider the superposition of two diﬀerent traveling harmonic waves, ψ1 and ψ2, presenting a slight diﬀerence in frequency and wavenumber, denoted by δω and δk, respectively.
+
+ψ1 = cos(kx1 − ωt) (2.11)
+
+ψ2 = cos((k + δk)x1 − (ω + δω)t) (2.12)
+
+1
+
+δk
+
+δω
+
+ψ = ψ1 + ψ2 = 2 cos( 2 (x1δk − tδω))cos[(k +
+
+2 )x1 + (ω +
+
+)t] 2
+
+(2.13)
+
+The result is referred to as the “beat” signal, and its envelope is given by:
+
+1 E = 2cos 2 (x1δk − tδω)
+
+(2.14)
+
+The velocity of propagation of the envelope is given by the group velocity as
+
+follows:
+
+δω Vg = δk
+
+(2.15)
+
+In our context, it is convenient to deﬁne a group refractive index:
+
+ng
+
+=
+
+c Vg
+
+=
+
+δk c
+δω
+
+=
+
+d 2π c ()
+dω λ
+
+=
+
+d dω (nphω)
+
+=
+
+nph
+
++ ω δnph δω
+
+(2.16)
+
+28
+
+Substituting in 2.9, one gets the expression for the group refractive index:
+
+40.3N ng ≈ 1 + f 2
+
+(2.17)
+
+This discrepancy between the phase and the group refractive indices, is the building block of the techniques used in the present thesis.
+
+2.6 The High Latitude Ionosphere
+The high latitude ionosphere is characterized by its coupling with the magnetosphere and the interplanetary magnetic ﬁeld (IMF) via the “open” magnetic ﬁeld lines. These lines are connected to the magnetosheet and the solar wind, which means that they are connected to the Earth’s surface on one end and to the IMF on the other, as opposed to the closed magnetic ﬁeld lines, that have both footpoints on the earth. This property, in addition to the topology of the magnetic ﬁeld lines at these latitudes, which are quasi perpendicular to the surface, makes the polar ionosphere very peculiar and diﬀerent from its low latitude counterpart. In particular, for example, the precipitation of the energetic particles from the solar wind along the magnetic ﬁeld lines plays a crucial role in the dynamics and the morphology of the polar ionospheric plasma. On the other hand, due to the fact that the magnetic ﬁeld lines are parallel to the gravitational ﬁeld, the role played by the gravitational forces is not the same as for the case of the low latitude
+
+29
+
+regions, where the gravitational ﬁeld is perpendicular to the magnetic ﬁeld. Indeed, the eﬀect of the gravitational ﬁeld can be ignored for the charged particles, as the electromagnetic forces dominate; only gravitational forces acting on the neutrals are taken into consideration.
+The high latitude ionosphere is characterized by two main regions, namely, the polar cap and the auroral oval regions. The auroral oval is deﬁned as the transition region between the so-called closed and open magnetic ﬁeld lines. In this region, energetic particle precipitation, originating from the magnetospheric ﬁeld lines, is predominant. These particles are thought to be originating from the reconnection of the IMF at the magnetotail. Diﬀerent observable phenomena result from these energy injections, such as, the luminous auroral Borealis/Australis, geomagnetic ﬁeld disturbances and X-ray radiation. Boundaries of the auroral oval vary with the geomagnetic activity as illustrated in Figure 2.8, where the most intense auroral emissions are represented by the dotted regions. In general, the auroral zone is deﬁned as being centered approximately 23◦ from the geomagnetic poles with a width of approximately 10◦. The auroral oval consists of a continuous band centered at approximately 67◦ magnetic latitude at magnetic midnight and about 77◦ at magnetic noon during quiet and moderate geomagnetic activity. The polar cap, enclosed by the auroral oval, is characterized by open magnetic ﬁeld lines that are directly connected to the IMF; the polar cap is therefore directly coupled to the solar wind and the solar activity. In the case of a
+30
+
+Figure 2.8: Statistical locations of auroral activity during periods of quiet, moderate and high geomagnetic activity. Data are from all-sky camera images [Kivelson and Russell, 1995]
+31
+
+southward IMF, the solar wind will induce an electric ﬁeld Esw = −Vsw ×Bsw where the plasma is collisionless, characterized by a high conductivity. The electric ﬁeld is then mapped down the equipotential magnetic ﬁeld lines to the ionosphere and generates an E × B drift of the plasma at a velocity V = E × B/B2, with values ranging from 200 m/s to 300 m/s during quiet geomagnetic activity and reaching as much as 1500 m/s on a day of high geomagnetic activity.
+
+2.6.1 The characteristics of the ionospheric conductivity
+
+Two mechanisms come into play in the control of the ions’ motion, namely, the collision and the magnetic force. In the E layer and below, the medium is resistive and the collisions between the ions and the neutrals predominate; while above, in the F layer, the plasma is non-resistive and the motion of the ions is dictated by the magnetic ﬁeld. As a result of all these physical mechanisms, the conductivity has diﬀerent components in the diﬀerent layers of the ionospheric plasma. In general, the ionospheric current density J is written as [Kelley, 2009]:
+
+
+
+ 
+
+σ1 σ2 0 Ex
+
+
+
+ 
+
+J
+
+=
+
+ −σ2
+
+σ1
+
+  0  Ey
+
+
+
+ 
+
+
+
+ 
+
+0 0 σ0 Ez
+
+32
+
+where the diﬀerent components of the conductivity are given by:
+
+σ1
+
+=
+
+[ 1 ( νe2n meνen νe2n + Ω2e
+
+)
+
++
+
+1 miνin
+
+(
+
+νi2n νi2n +
+
+Ω2i
+
+)]Nee2
+
+(2.18)
+
+σ2
+
+=
+
+[
+
+1 meνen
+
+(
+
+νenΩe νe2n + Ω2e
+
+)
+
++
+
+1 miνin
+
+(
+
+νinΩi νi2n + Ω2i
+
+)]Nee2
+
+σ0
+
+=
+
+1 [ meνen
+
++
+
+1 miνin
+
+]Ne
+
+e2
+
+(2.19) (2.20)
+
+with
+
+me and mi representing the electron and ion masses, respectively; νen and νin the electron-neutral and ion-neutral collision frequencies, respectively; Ωe and Ωi the gyrofrequencies of the electron and the ion,respectively. The quantity σ1 is called the Peterson conductivity, and is deﬁned as the conductivity along the applied electric ﬁeld. The component σ2 is the conductivity perpendicular to the direction of the applied electric ﬁeld, and is
+
+called the Hall conductivity. Finally, the quantity σ0 is the longitudinal conductivity and is deﬁned in the case of an applied electric ﬁeld parallel to the
+
+magnetic ﬁeld. In this case, the conductivity depends only on the collision
+
+frequencies. In Figure 2.9, the variation of the ionospheric conductivity with
+
+height is illustrated.
+
+33
+
+Figure 2.9: Example of the ionospheric conductivity proﬁle: illustration of the variation of the diﬀerent components of conductivity with height in midlatitude ionosphere during day time. Courtesy: National Center for Atmospheric Research (NCAR)
+34
+
+2.6.2 Sources of the ionospheric irregularities at high latitudes
+Diﬀerent mechanisms contribute to the conﬁguration and morphology of the electron density distribution in the high latitude region of the ionosphere. The electron density irregularities can be formed via plasma processes, plasma instabilities, particle precipitation and neutral ﬂuid turbulence. Particle precipitation is very important in the high latitude region, due to the open magnetic ﬁeld lines characterizing it, and the possibility for charged particles from the solar wind to map down the magnetic ﬁeld lines and penetrate the ionosphere. Plasma instabilities can be a source of irregularities in the E and F regions of the ionosphere. Indeed, various sources of free energy are available at these altitudes; for example, the diﬀerence in the ion-neutral and electron-neutral collision cross sections leads to non-zero currents, which are a source of free energy. Also, velocity shears and density gradients can constitute sources of free energy. We talk about a micro-instability when the wavelength, characterizing the ﬂuctuations of the electron density, is of a size λ < rL, where rL is the Larmor radius, deﬁned by 2.4. Else, the mechanism is considered as macro-instability. In the following, we discuss various instability mechanisms occurring in diﬀerent layers of the ionosphere.
+35
+
+2.6.2.1 Particle Precipitation
+This mechanism plays a major role in the formation of the electron density irregularities in the polar region. Electrons of energies ranging from 102 to 103 eV deposit all their energy at the F layer. This results in the formation of spatial and temporal variations in the electron ﬂuxes in the ionospheric plasma. Dyson [1974] showed a good correlation between the low energy electrons ﬂuxes and the electron densities in the cusp region [Dyson and Winningham, 1974]. Kelley [1982] correlated low energy electron precipitation and the formation of large scale (λ > 10 km) irregularities at the high latitude F layer and found that the power spectra of the electron density ﬂuctuation could be described by a power law of the form k−1.89 [Kelley et al., 1982]. Large scale magnetic ﬁeld aligned convecting structures have been observed in the auroral F region and have been associated with diﬀuse aurora particle precipitation and the corresponding ﬁeld aligned currents [Vickrey et al., 1980]. Also, it has been found that the scale of the plasma enhancements, observed along the north south axis, are comparable to the outer scale of the electron irregularities structures associated with the auroral F region particle precipitation [Kelley et al., 1982].
+2.6.2.2 Gradient drift instability
+This instability, also known as cross ﬁeld instability, occurs whenever there is an enhancement of the plasma density due to a driving mechanism, such as
+36
+
+electric ﬁelds or neutral winds; a disturbance can take place via separation of charges. The induced polarization electric ﬁeld, δE, and the presence of the ambient magnetic ﬁeld lead to a δE × B0 drift, which disturbs the plasma density, creating an unstable conﬁguration. The mechanism of the gradient drift instability, in the F and E regions, is illustrated in Figure 2.10. In the F region, the ions drift parallel to the electric ﬁeld, due to the Pederson conductivity, and the electrons in the opposite direction. This will create a separation of charge, and the resulting alternating polarization electric ﬁeld will induce drifts of the plasma, creating an unstable conﬁguration when the density gradient is perpendicular to the electric ﬁeld E. In the E region, when the electric ﬁeld E is parallel to the plasma density gradient, ∇n, the condition for the gradient drift instability is met. The electrons will drift perpendicularly to the electric ﬁeld (due to the Hall conductivity), while the ions will move along the direction of the electric ﬁeld (due to the Pederson conductivity). This will create a space charge and a polarization electric ﬁeld, which will induce δE × B drifts increasing the amplitude of the disturbance into an instability.
+2.6.2.3 Kelvin-Helmholtz Instability
+This instability occurs at the interface of two adjacent ﬂows characterized by diﬀerent velocity proﬁles. To give an example of such a mechanism, let us consider the case where a jet of ﬂuid is injected into a stationary ﬂuid; the instability will induce a conversion of the kinetic energy of its directed
+37
+
+Figure 2.10: Gradient drift instability mechanism in the E and F regions of the ionosphere [Tsunoda, 1988].
+motion into a turbulent state characterized by vortex formation.
+
+2.6.2.4 Farley Buneman instability
+This instability occurs in the case where the diﬀerential current due to the relative velocity between ions and electrons exceeds a threshold determined by the ion acoustic speed, given by:
+
+Cs =
+
+kB(Ti + Te) mi
+
+(2.21)
+
+where Ti, Te are the ion and electron temperatures, respectively. the parameter mi is the ion mass. This instability is also called the two stream instability. This latter produces waves that propagate nearly perpendicular to the magnetic ﬁeld. The cone of angle within which the propagation occurs
+
+38
+
+is given by
+
+cosθ = Cs (1 + Ψ) Vd
+
+(2.22)
+
+where
+
+Ψ
+
+=
+
+νeνi (sin2α ωeωi
+
++
+
+ωe2 νe2
+
+cos2α)
+
+(2.23)
+
+Vd represents the relative drift speed between electrons and ions, α is the angle between the propagation direction of the wave and the magnetic ﬁeld.
+
+The parameters νe, νi and ωe, ωi represent the collision and gyro-frequencies for the electrons and the ions, respectively.
+
+In the E region, due to the fact that the cross section of ion-neutral collision
+
+is large, the ions are unmagnetized and experience a Pedersen drift parallel
+
+to E. On the other hand, the electrons are magnetized and experience a
+
+Hall drift perpendicular to the electric ﬁeld E. It results in a ﬁnite relative
+
+speed between the ions and the electrons and a high probability for the
+
+instability to be triggered. However, in the F region, both electrons and ions
+
+are magnetized with no relative velocity, and consequently the conditions for
+
+the instability are not met.
+
+2.7 Monitoring the ionosphere
+High Frequency (HF) and Ultra High Frequency (UHF) electromagnetic waves are usually used in sounding the ionosphere (except for in-situ measurements made by orbiting satellites). The main key to this process is the
+39
+
+interaction of the radio wave with the plasma. Before going any further into the discussion, it is necessary to recall some basic concepts of plasma physics. The plasma frequency describes the response of the charged particle α, of charge q and mass m, to an imposed electric ﬁeld and is described as follow:
+
+fpα =
+
+Neq2 4π2 0m
+
+(2.24)
+
+with 0 being the permitivity of free space and Ne the electron density. In the case of a propagating electromagnetic wave in a plasma, the wave is transmitted through the plasma if the frequency of the wave satisﬁes f > fpα. The wave is reﬂected if f ≤ fpα. Probing the ionosphere from the ground is possible by sending electromagnetic waves at diﬀerent frequencies. For example, if the desired layer to probe has a density N, then the adequate frequency to use for the probe is the corresponding plasma frequency given by equation 2.24. Usually, a radar, referred to as ionosonde, is used to send vertically an electromagnetic wave at a frequency in the range of 1-30 MHz, corresponding to plasma frequency values associated to diﬀerent local electron density maxima at diﬀerent heights. The reﬂected signal is then recorded by the same antenna. Based on this procedure, the travel time is computed and associated with a corresponding height. The values of the heights are presented in a graph, depicting the ionospheric structure, called the ionogram, as illustrated in Figure 2.11. Let
+
+40
+
+Figure 2.11: Illustration of an ionogram obtained using an ionsonde. The X-axis represents the frequency and the Y-axis represents the virtual height. Critical frequencies of ionospheric layers and corresponding heights are also seen, for both ordinary and extraordinary modes.
+
+us situate two important critical frequencies corresponding to the E and F2
+
+region: f0E and f0F2. It is important to note that above the f0F2 frequency
+
+it is not possible to get reﬂections, since it is the highest frequency in the
+
+ionospheric proﬁle. Therefore, the proﬁle obtained using an ionosonde is
+
+called ’bottom-side’ proﬁle.
+
+An ionogram gives the density proﬁle in the form of a graphical representa-
+
+tion of the variation of the electron density with the so-called virtual height,
+
+deﬁned as:
+
+1
+
+hv dh
+
+hv
+
+hv
+
+=
+
+ct 2
+
+=
+
+c
+
+0
+
+=
+
+Vg
+
+0
+
+ng dh
+
+(2.25)
+
+41
+
+where c is the speed of light, Vg and ng represents the group velocity and the group index of refraction, respectively. The time taken to receive the reﬂected signal is given by t. Another powerful technique of ground monitoring the ionosphere is the incoherent scatter; a radar is used to send an electromagnetic wave at a frequency higher than the f0F2 in a small region of the ionosphere. Most of the wave will be transmitted through the ionosphere into the outer space. However, a small portion of the wave gets reﬂected and diﬀerent observables can be derived from the power spectrum of the reﬂected wave, such as the drift velocity, the temperature of the electrons and the ions and the density, as well as the neutral wind speed and temperature. However, the cost of this technique is extremely high and the facilities providing such measurements are limited in number. To cite a few, the ﬁrst station is Jicamarca (Peru), Arecibo (Puerto Rico), Millstone Hill (Massachusetts, USA), the European project EISCAT (Norway/Finland/Sweden). The advent of the Global Navigation Satellite Systems has provided the opportunity to probe the ionosphere from very high altitude (20000 km) via trans-ionospheric radio wave at (f >> f0F2). More speciﬁcally, using the Global Positioning System (GPS) satellites, transmitting at frequencies f ≈ 1.5 GHz, it is possible to make trans-ionospheric observations and deduce diﬀerent observables. Among others, the Total Electron Content (TEC) is deﬁned as the total number of electron integrated along a propagation path and is generally given in TEC units (TECU), with 1T ECU = 1016e−/m2.
+42
+
+Also, the power and the phase of the GPS signal can be recorded and, given a proper characterization of these components, interesting features of the ionospheric plasma can be deduced, which is the basic idea of the present thesis.
+2.7.1 Sporadic E-layers
+Sporadic E-Layers, also referred to as Es-layers, are short time scale ionospheric plasma enhancement due to shear ﬂows in the E region. At these altitudes the ions are dominated by collisions. The ions are then subject to the zonal neutral winds, which accumulate the available ions at the node between the eastward wind above and the westward wind below. The ions that are trapped in between the two shearing layers are metallic ions, such as F e+, with a signiﬁcant life time against recombination. Moreover, there is some evidence that these layers can be ionized by meteors. The density of a sporadic E-layer can be much greater than the density of a normal E layer. Hence, it possesses a higher plasma frequency (the characteristic frequency at which waves with lower frequency will get reﬂected). When it is the case, the E-layer will blanket the upper layers. However, there are cases where the upper layers can be seen through the E-layers, and this would be an indication of the patch aspect of the sporadic E-layer.
+43
+
+2.7.2 Spread-F
+Spread-F is the term used to describe ionospheric irregularities, observed in ionogram traces, that present a spreading aspect in height at high latitude. These irregularities are mapped along the magnetic ﬁeld lines, they are also known as Field-Aligned Irregularities (FAI). They can present a patchy aspect with a width of hundreds of kilometers along the magnetic ﬁeld lines and down to several meters perpendicularly. In the polar region, the signature of spread-F is a frequency spreading and broadening of the ionogram trace around the critical frequency. Some mechanisms have been proposed to explain the generation of spread-F in the mid and high latitudes. Among them, Haldoupis [2003], after observations of simultaneous Es-layers and spread-F occurrences, suggested that the unstable E layers play a role in the generation of spread-F via upward mapping of the polarization electric ﬁeld in the E region, formed by the neutral wind that creates a diﬀerential current between the electrons and the ions due to the discrepancy in the neutral-ion and neutral-electron collision cross section in the E layer [Haldoupis et al., 2003].
+44
+
+Chapter 3
+Global Positioning System
+Prior to 1970s, the U.S. Navy and the Air Force had been intensively studying the possibility to improve navigation from space. These studies have led to the design of the Global Positioning System (GPS). Nowadays, the system is composed of about 30 satellites, orbiting at an altitude of 20200 km in six orbital planes of approximately 55◦ inclination (relative to the equator). The satellites move in nearly circular medium Earth orbits (MEOs) with a revolution period of about 12 hours. With this orbital conﬁguration, the system provides a global coverage with four to eight simultaneously observable satellites above 15◦ elevation at any time of the day. GPS satellites are equipped with on-board atomic clocks to allow the user to accurately measure the speed, time and position.
+45
+
+3.1 Overview
+3.1.1 GPS signal characteristics
+The main carrier frequencies1 transmitted by the GPS are the L1 (at 1.5 GHz) and L2 (at 1.2 GHz) signals. The GPS carriers are modulated using a sequence of code called the Coarse/Acquisition (C/A) pseudo random noise code (PRN), enabling precise ranging and simultaneous acquisition of the GPS signal from diﬀerent satellites at the same frequency. This code has a length of 1.023 chips a transmission rate of 1.023M chips/sec. All satellites are identiﬁable by their own PRN codes that are uncorrelated with each other. This permits the simultaneous acquisition of the GPS signal from diﬀerent satellites with a minimum interference [Simon et al., 1994]. The second modulation applied to the carrier signal is the precision P-code, which presents a transmission rate of 10.23 Mbits/sec and a length of 6.1871 × 1012 chips, which makes it more precise than the C/A PRN code. The C/A code is only modulated on the L1 signal, while the P-code is modulated on both carriers, L1 and L2. These two codes are also referred to as the ranging codes, for reasons that will be given in the following text.
+1Other frequencies are used in the transmission of the GPS signal such as the L5 (at 1.176 GHz). However, in the context of this thesis, we are only interested in the L1 and L2 signals.
+46
+
+3.1.2 Positioning techniques
+PRN codes are used to measure the range (distance between the satellite and the receiver) via the estimation of the travel time of the GPS signal from the satellite to the receiver. This distance can be computed as follows:
+
+Pi = c(tr − ts)
+
+(3.1)
+
+where tr is the reading of the receiver clock at signal reception time and ts the reading of the satellite clock at emission time, and c is the speed of light.
+
+The phase measurement is performed using the carrier signal. The phase is considered as the phase diﬀerence of the incoming signal and a replica generated by the receiver. However, this estimation is ambiguous, since only a fraction of the phase can be initially measured. One has to estimate an unknown number of cycles, called ambiguity, to compute the distance between the receiver and the satellite. This is performed by multiplying the wavelength by the phase diﬀerence:
+
+φ = λ(φ(tr) − φ(ts) + Nrs)
+
+(3.2)
+
+where λ is the wavelength of the carrier, φ(tr) is the phase of the replica at tr; φ(ts) is the phase of the transmitted signal at the satellite and Nrs is the ambiguity.
+
+47
+
+The convention is to consider the precision of GPS observables as being the inversely proportional to its wavelength. The general consensus is to assume that the precision is the hundredth of the wavelength, see Table 3.1. The
+
+C/A-code P-code L1/L2 phase Wavelength 300 m 30 m 0.19-0.24 m
+
+Precision
+
+3 m 0.3 m 2-2.5 mm
+
+Table 3.1: GPS observables and the corresponding wavelengths and precisions.
+
+GPS system is operational in three main positioning modes:
+1. Absolute positioning: This is based on stand-alone measurements with a minimum of four satellites. Phase and code-based observables could be used in this technique.
+2. Diﬀerential positioning: In this technique, the receiver makes the absolute stand-alone measurement. In addition, a correction is brought via comparison with a receiver or a network of receivers or reference station(s). This is called diﬀerential correction. This technique is more accurate than the absolute positioning technique.
+3. Relative positioning: This is the most precise positioning technique. It uses another receiver, for which the position is known accurately, as a reference. The measurements (code and/or phase measurements) obtained by the ﬁrst receiver are compared with those obtained by the
+
+48
+
+reference. Thus, this technique consists in computing the vector linking the two stations, which is also called the baseline.
+In practice, four satellite observations are needed; three by which the position (latitude, longitude and height) is determined via trilateration. The rest of the observables are used to ﬁnd the oﬀset receiver clock with respect to the GPS time. As seen before, the ranging codes and the carrier phase can be used in order to estimate the distance from the satellite to the receiver. In the following, we give the models, including the sources of errors. The pseudo-range estimated from the code signals and the phase measurement obtained from L1 and L2 signals can be expressed respectively as follows:
+
+Pi = ρ + c(dts − dtr) + ∆ρ + Ii + T + Mi + c(Dis + Dr,i) + ei
+
+(3.3)
+
+φi = ρ+∆ρ−Ii +T +mi +c(dts −dtr)+c(dsi +dr,i)+P CVis +P CVr,i +λiNi + i (3.4)
+with: Pi the code measurement, in meters, on frequency fi; φi the phase measurement, in meters, on frequency fi fi the GPS frequency, with f1 = 1575.42 MHz and f2 = 1227.60 MHz; ρ the geometric distance between the satellite and the antenna;
+49
+
+∆ρ the error on rho due to the orbit error; Ii the ionospheric delay on frequency fi; T the tropospheric delay; Mi the code multipath error on frequency fi; mi the phase multipath error on frequency fi; c the speed of light in vacuum; ∆ts and ∆tr the clock errors related to satellite sand receiver r respectively; Dis and Dr,i the code hardware delays on the ith frequency, respectively for the satellite s and the receiver r; dsi and dr,i the phase hardware delays on the ith frequency, respectively for the satellite s and the receiver r; P CVis and P CVr,i the phase center variations and oﬀsets on the ith frequency, for the satellite s and the receiver r respectively; λi the wavelength related to fi; Ni the initial ambiguity on frequency fi; ei the code measurement noise on fi; i the carrier phase measurement noise on fi;
+The main errors in range measurements are described as follows:
+1. Orbit error. This error is the diﬀerence between the real distance satellite-receiver and the computed one. The term ∆ρ represents the projection of this error on the satellite-to-receiver path.
+50
+
+2. Ionospheric delay. As seen in the previous chapter, the ionospheric medium is a dispersive medium due to its plasma characteristics. The signal experiences group delay and phase advance, inducing an error in the range estimation.
+
+3. Tropospheric delay. This delay is due to the refractive nature of the troposphere. This latter extends from the surface of the Earth to the tropospause, located between the altitude of 10 to 15 km. The delay induced by the troposphere is deﬁned as:
+
+rec
+T = nds − ds = (n − 1)ds
+sat
+
+(3.5)
+
+where n is the refractive index (n > 1, corresponding to the lengthening of the optical path) and ds the inﬁnitesimal element of the path. The troposphere is nondispersive for frequencies up to 15 GHz, and the contribution to the delay is the same for all available frequencies in the GPS system. The refractive index depends on the temperature, pressure and the relative humidity. The range equivalent of this delay is about 2.4 m for a satellite at the zenith and 25 m for a satellite at an elevation of approximately 5◦.
+4. Multipath. This consists of reﬂection and diﬀraction of the GPS signal from the surrounding environment, Figure 3.1. It contributes to the delay of the signal. When the reﬂecting objects are not close, the
+
+51
+
+delay is large and it is easier to single out the corresponding component. However, in the case of diﬀraction from nearby objects, the task of ﬁltering out the unwanted components is more diﬃcult. Indeed, due to the shortness of the delay, which can be of the order of tens of nanoseconds, the correlation function between the received signal and the replica (generated by the receiver) is distorted, inducing an error in the range estimation. The eﬀect of multipath depends on the type of measurement. The amplitude of the induced error on the range estimation can reach a maximum of 15 m for P-code measurements, 150 m for C/A measurements, and about 5 cm for phase measurements.
+
+5. Clock errors. As discussed previously, each satellite of the GPS constellation is equipped with an active atomic clock on board, which is synchronized with the GPS time. However, this synchronization is not optimum all the time due to the drift experienced by the atomic reference. As a result, an error is induced in the range measurements. The clock error, ∆ts, can be ﬁt to a polynomial as follows:
+
+∆ts = a0 + a1(ts − t0c) + a2(ts − t0c)2
+
+(3.6)
+
+with a0, a1, a2 being some numerical coeﬃcients, ts and t0c are the current and the reference time for the clock model, respectively.
+52
+
+This model, however, is not well suited for precise positioning. 6. Hardware-induced Delay. Electric circuits in the satellite and
+receiver induce this delay. The latter can vary from one frequency to another, and depend on whether it is a code or a phase measurement; however, it is assumed to be stationary (stable with time). This characteristic dependence on the frequency can be used to calibrate the receiver in order to compute the total electron content (TEC), whose accuracy is dependent on the code hardware delays. In the case where their absolute value is diﬃcult to estimate, the inter-frequency delays, inter-frequency biases (IFB), can be computed by constructing observable diﬀerences. The IFB have a value of about 3 ns (1 m) for satellites and 10 ns (3 m) for receivers [Spits, 2012].
+3.2 Derived observables for ionospheric studies
+3.2.1 Total electron content
+As discussed in Chapter 2, the refractive index in the ionosphere, given by Equation 2.7, depends on the frequency of the incoming wave: the ionosphere is said to be dispersive. For the sake of clarity, let us rewrite both equations
+53
+
+Figure 3.1: Sketch of hypothesized diﬀraction of multipath ray around the ground plane for a high elevation satellite and an elevated GPS antenna [Mushini, 2013].
+
+2.17 and 2.9 giving the group and phase refractive index, respectively:
+
+ni,gr
+
+≈
+
+1
+
++
+
+40.3Ne fi2
+
+(3.7)
+
+ni,ph
+
+≈
+
+1
+
+−
+
+40.3Ne fi2
+
+(3.8)
+
+where ni,gr represents the refractive group index and ni,ph the refractive phase index for the ith frequency (L1 or L2), Ne is the electron density and fi the carrier frequency.
+
+From equations 3.7 and 3.8 we can calculate the frequency-dependent group
+
+velocity
+
+vi,gr
+
+=
+
+, c
+ni,gr
+
+depending
+
+on
+
+the
+
+frequency
+
+at
+
+play
+
+of
+
+the
+
+C/A
+
+and
+
+P GPS codes.
+
+The
+
+Li
+
+carrier
+
+will
+
+have
+
+a
+
+phase
+
+velocity
+
+vi,ph
+
+=
+
+; c
+ni,ph
+
+the
+
+54
+
+ionosphere will induce a group delay for codes and a phase advance for carrier. Let us write the delay induced by the ionosphere in the form of a length, translating the diﬀerence between a real optical path (considering ionospheric refraction) and a free propagation:
+
+I = nds − ds = (n − 1)ds
+
+(3.9)
+
+where n can represent either the group index ngr or the phase index nph. It is important to emphasize that we have neglected the bending of the ray2. Using 3.7 and 3.8, we can rewrite the delay as3:
+
+Ii,gr =
+
+(40.3
+
+Ne fi2
+
+)ds
+
+Ii,ph = −
+
+(40.3
+
+Ne fi2
+
+)ds
+
+Rewriting expression 3.11 for two diﬀerent frequencies leads to:
+
+(3.10) (3.11)
+
+IL1
+
+=
+
+f22 f12
+
+IL2
+
+(3.12)
+
+Using 3.3 and 3.4, one can deduce the total electron content integrated along
+2Generally, the bending eﬀect on the ray path is negligible for UHF, since the plasma frequency of the ionosphere is much smaller, of the order of 12 MHz
+3The inﬂuence of terms of order higher than fi−2 can be neglected for frequencies larger than 1 GHz [Seeber, 2003]. However, we have to stress that higher order terms have to be taken into account for precise geodetic measurements.
+
+55
+
+the ray path, using the P code and carrier phase, respectively as:
+
+T ECP = 9.52(P2 − P1)
+
+(3.13)
+
+T ECΦ = 9.52(Φ1 − Φ2)
+
+(3.14)
+
+The two quantities diﬀer in nature: T ECP is computed using the P-code and, therefore, presents a higher error compared to the phase-derived total
+
+electron content, T ECΦ; this latter is more precise but, at the same time, presents an ambiguity.
+
+In order to enhance the precision, the above two observables can be combined
+
+as follows:
+
+T EClev = T ECΦ + |T ECP − T ECΦ|
+
+(3.15)
+
+This operation is referred to as phase leveling: the phase-derived TEC is brought to the level of the code-derived TEC, Figure 3.2.
+
+3.2.2 Vertical projection
+The projection of the measured TEC (also termed the slant TEC) to the vertical is usually made assuming a homogeneous ionosphere with no horizontal gradient (which is a rather simplistic assumption). The ionosphere is modeled as a spherical shell with an inﬁnitesimal thickness, containing all the free electrons. The intersection of the ray path with the shell, at a certain assumed height, is called the ionospheric pierce point (IPP), as illustrated in
+
+56
+
+Figure 3.2: Color coded examples of phase and code derived TEC, phase leveled TEC, vertical TEC, and satellite elevation. A satellite elevation cutoﬀ of 20◦ is indicated by vertical dotted lines [Watson, 2011].
+57
+
+Figure 3.3. The vertical TEC is obtained from the slant TEC via a mapping
+
+function:
+
+1
+
+M (e)
+
+=
+
+cos[ar
+
+csin(cos(e)
+
+Re (Re+h)
+
+)]
+
+(3.16)
+
+where e is the elevation angle, Re the radius of the earth and H the shell
+
+height.
+
+Figure 3.3: Diagram representing the thin shell assumption and also the ionospheric pierce point (IPP), slant-TEC (STEC), vertical-TEC (VTEC) are shown. Courtesy: Royal Observatory of Belgium.
+58
+
+3.3 Canadian High Arctic Ionospheric Network (CHAIN)
+CHAIN comprises a cluster of ground-based instruments, used to monitor the ionosphere. It is situated in the Canadian arctic, distributed in diﬀerent sites, as illustrated in Figure 3.4. The following is a description of these instruments.
+3.3.1 GPS receivers
+These are GPS Ionospheric Scintillation and TEC Monitors (GISTMs) model GSV4000B [Van Dierendonck and Arbesser-Rastburg, 2004]. Each one consists of a NovAtel OEM4 dual frequency receiver conﬁgured to record the phase and amplitude components of the GPS L1 signal. Also, the instrument can provide the TEC derived from the L1 and L2 GPS signals, by the diﬀerent methods described in the previous section. This receiver enables one to track and record GPS L1 and L2 signals and TEC measurements from up to ten GPS satellites in view. The GPS signal components, phase and amplitude, are recorded at a rate of 50 Hz4.
+4In the present thesis, we only use GPS L1 signals sampled at 50 Hz. However, CHAIN is equipped with another model of GPS receiver, Septentrio PolaRxS, which can record the GPS signal at a sampling rate of 100 Hz.
+59
+
+Figure 3.4: The distribution of the GPS receivers and Canadian Advanced Digital Ionosondes (CADIs) in the Canadian High Arctic Ionospheric Network.
+3.3.2 Canadian Advanced Digital Ionosonde (CADI)
+The Canadian Advanced Digital Ionosonde (CADI) consists of a transmitter antenna and four receiving antennas, arranged in a square geometry in order to perform Doppler interferometry, see Figure 3.6. The frequency range of operation is 0.1-30 MHz and the transmitted pulse power is 600 W. The main CADI output is interpreted in terms of the ionospheric electron density proﬁle up to the maximum ionospheric plasma frequency, see bottomside proﬁle 5 (Figure 3.7). The second output of CADI is the drift velocity of the ionospheric plasma bulk, which is obtained via Doppler interferometry; the two components of the velocity, along with the azimuth angle, are
+5In section 2.7 we have given the physical principle behind the construction of the ionospheric proﬁle using an ionosonde.
+60
+
+Figure 3.5: CHAIN GPS antenna (a) and NovAtel Receiver (b) located in Cambridge Bay, NU (http://chain.physics.unb.ca/chain/). obtained: the horizontal component and the vertical component, see Figure 3.8.
+61
+
+Figure 3.6: CHAIN CADI transmitting and receiving antennas (a) and box containing CADI receivers (b) located in Hall Beach, NU.
+62
+
+Figure 3.7: Ionogram from the Eureka CADI from signal broadcast at 03:00 UT on 1 November 2011. Received signal power as a function of reﬂected virtual height and broadcast frequency is indicated for ordinary and extraordinary modes.
+63
+
+Figure 3.8: Measurements of the Eureka CADI for 24 hours on 1 November 2011. 4.2 MHz group range (top panel), azimuthal ionospheric drift direction (2nd panel), horizontal ionospheric drift speed (3rd panel), and vertical ionospheric drift speed (bottom panel). Drift velocity was calculated from the 4.2 MHz broadcast, while the color bar is the power of the reﬂected 4.2 MHz signal.
+64
+
+Chapter 4
+Overview of ionospheric scintillation
+Scintillation is the term given to the phenomenon of ﬂuctuation of the components of an electromagnetic wave propagating in a medium characterized by a dielectric function. The ionospheric plasma is such a medium that is characterized by a highly ﬂuctuating electron density. Therefore, trans-ionospheric radio signals experience perturbations in their phase and the amplitude components. At high latitude, the irregularities in the plasma density are the product of plasma instabilities and energetic particles’ precipitation from the solar wind. In this speciﬁc context, we are dealing with high latitude ionospheric scintillations.
+65
+
+4.1 Describing the dielectric function
+4.1.1 Multi-scale aspect of the dielectric function
+At this point, we want to describe the statistical behavior of the dielectric function, ∆ , in the ionospheric medium. The time series of the dielectric function can be written under the following form:
+
+∆ (t) = ( (t) − 0) + δ (t)
+
+(4.1)
+
+The ﬁrst term describes the slow change in the background permittivity. This slow change can be attributed to diurnal and seasonal variations of diﬀerent ionospheric parameters, such as the temperature and the ionospheric electron density. It can also be the result of a sudden change in the values of the ionospheric parameters, caused by sudden enhancements in solar activity. The last term, δ (t), describes the stochastic component of the dielectric function; compared to the ﬁrst term, it is characterized by its rapid ﬂuctuations, which are associated with ionospheric scintillation. A fundamental question can be posed here: what are the criteria to decide which are the scales corresponding to diurnal variations and the ones associated to the high-frequency stochastic component of the dielectric function? This is one of the objectives of the present thesis.
+
+66
+
+4.1.2 Stationarity
+
+The objective of the exercise presented in this section is to separate out the stochastic component of the dielectric function from the slow component. We particularly seek a stationary solution characterized by a stochastic dielectric component that satisﬁes the following condition:
+
+1T dtδ (t) = 0
+T0
+
+(4.2)
+
+Theoretically, the integral has to be estimated over an inﬁnite time interval. However, in practice, it is obvious that this is not possible. Usually, the integration is performed over a large set of data in order to incorporate the low-frequency modes associated with the stochastic term δ . A stochastic process can be characterized by its temporal covariance: considering two measurements, made at two diﬀerent times, t1 and t2, the temporal covariance is deﬁned as
+
+B (t1, t2) = δ (t1)δ (t2)
+
+(4.3)
+
+The condition for stationarity is satisﬁed if the covariance depends only on the time increment, δt = t2 − t1, and not on the time at which the measurements were made. In this case, the covariance is deﬁned as:
+
+1T
+
+δ (t)δ (t + τ ) =
+
+dtδ (t)δ (t + τ ) = B (τ )
+
+T0
+
+(4.4)
+
+67
+
+A possible alternative approach is to estimate the autocorrelation function
+
+C(τ ), deﬁned as
+
+δ (t)δ (t + τ ) C(τ ) =
+δ2
+
+(4.5)
+
+It is often the case that the ionospheric dielectric function is described by
+
+the Fourier transform:
+
+1∞
+
+B (τ ) =
+
+dωW (ω)exp(iωτ )
+
+2π −∞
+
+(4.6)
+
+The term W (ω) is called the power spectrum, that can be thought of as the relative energy distribution in a ﬁnite frequency range.
+
+4.1.3 Probability density function
+The probability density function describes the probability for a given stochastic variable to take a speciﬁc value. For instance, let x be a stochastic variable and F(x) its associated probability density function, then the quantity F (x)dx = p is the probability of having a realisation of an event with a value between x and x + dx. In the ionosphere, if the system is in thermodynamic equilibrium, and follows Boltzmann-Gibbs statistics, then the probability density function is described
+
+68
+
+by a Gaussian distribution, deﬁned as:
+
+1
+
+−x2
+
+F (x) = √ exp( )
+
+2πσ
+
+σ2
+
+(4.7)
+
+where σ represents the variance:
+
++∞
+
+σ2 =
+
+(x − µ)2F (x)dx
+
+−∞
+
+(4.8)
+
+with µ the ﬁrst moment of the distribution, given by:
+
++∞
+µ = (x)F (x)dx
+−∞
+
+(4.9)
+
+In general the nth order moment of the distribution is deﬁned as:
+
++∞
+
+µn =
+
+(x − µ)nF (x)dx
+
+−∞
+
+(4.10)
+
+The ionospheric scintillation is described by the moments of the stochastic part of the dielectric function, δ , with a vanishing ﬁrst moment:
+
++∞
+< δ >= (δ )F (δ )d(δ ) = 0
+−∞
+
+(4.11)
+
+This is equivalent to the stationarity condition, Equation 4.2, where the temporal average vanishes. This duality between moments of the probability density function and temporal averages is described by the ergodic theorem. The theorem states that for long integration periods, the moments and the
+69
+
+temporal averages converge. As a justiﬁcation, one could argue that if we were to wait long enough, all possible realizations would materialize. As an analytical illustration, let us consider the ﬁnite second order moment of the probability density function of δ :
+
++∞
+(δ
+
+− µ)2F (δ )d(δ ) ≈ 1
+
+T
+dt(δ )2
+
+−∞
+
+T0
+
+(4.12)
+
+It is important to emphasize that for short temporal scales, this approximation is not valid, and there could be an important discrepancy between the two quantities.
+
+4.1.4 Spatial covariance
+
+The spatial covariance is a quantity used to describe the distribution of a
+
+stochastic variable in space. In our context, the stochastic variable in ques-
+
+tion could be the stochastic part of the dielectric function δ 1. If we consider
+
+two positions, r1 and r2, the corresponding covariance quantiﬁes the similar-
+
+ity of the values taken by the function of interest at the two locations and is
+
+deﬁned as:
+
+B (r1, r2) =< δ (r1, t)δ (r2, t) >
+
+(4.13)
+
+1It is important to note that in this thesis we are interested in structures of a size in the range of small (0.1-10 km) and intermediate (10-100 km) scales, producing scintillation of the GPS L1 signal at 1.5 GHz. However, we do not have the spatial resolution to completely describe the spatial structure and, therefore, consider the temporal domain, assuming the Taylor hypothesis on the drifting ionospheric plasma layer.
+
+70
+
+where the brackets represent the ensemble average. The covariance is used in almost every analytical description of an electromagnetic wave propagating in a random medium. We note that, in practice, it is usual to replace the ensemble average by a time average:
+
+1T B (r1, r2) = T 0 dtδ (r1, t)δ (r2, t)
+
+(4.14)
+
+Two aspects of the ionospheric plasma can simplify the spatial covariance,
+
+namely, homogeneity and isotropy. In the case of homogeneity, the dielectric
+
+function measured at two diﬀerent points, r1 and r2, will not depend on the position at which the two points are translated to, but only on the separation
+
+vector r1 − r2:
+
+B (r1 − r2) =< δ (r1, t)δ (r2, t) >
+
+(4.15)
+
+To a certain extent, this can represent a spatial analogy of the stationarity of δ , speciﬁcally when the Taylor hypothesis, introduced in the next sections, is assumed. In the case of an isotropic medium, the covariance function depends on the magnitude of the separation, |r1 − r2|, and not on the orientation:
+
+B (|r1 − r2|) =< δ (r1, t)δ (r2, t) >
+
+(4.16)
+
+71
+
+4.1.5 Power spectra
+
+As discussed before, the complexity of the ionospheric plasma is mainly due
+
+to the stochastic part of the dielectric function or, equivalently, the stochastic
+
+electron density. Let us turn our attention to the behaviour of the electron
+
+density distribution; more speciﬁcally, the ﬂuctuations of the electron number
+
+density from the background N0: ∆N (r) = N (r) − N0(z) , and let the
+
+fractional ﬂuctuation be the quantity ξ =
+
+∆N (r) N0(z)
+
+.
+
+In addition, let us make
+
+the assumption that ξ is a homogeneous ﬁeld with zero mean and standard
+
+deviation σξ. In this case, the autocorrelation function is deﬁned by 2
+
+Bξ(r1 − r2) =< ξ(r1)ξ(r2) >
+
+(4.17)
+
+The so-called Wiener-Khinchin theorem states that the correlation function and the spectrum form a Fourier pair. Hence, we can recover the spectrum of the electron number density via Fourier transform of the correlation function:
+
+1 Φ(k) =
+(2π)3
+
++∞
+Bξ(r)exp(−ik · r)d3r
+−∞
+
+(4.18)
+
+Note that since the correlation and the spectrum form a Fourier pair, one can also recover back the correlation function by inverse Fourier transform:
+
+Bξ(r) =
+
++∞
+Φξ(k)exp(ik · r)d3k
+−∞
+
+(4.19)
+
+2The temporal argument has been omitted for convenience. However, we will recover the time variable when we will assume the Taylor hypothesis.
+
+72
+
+Since ξ is purely real, symmetry conditions must be met:
+
+Bξ(−r) = Bξ(r)
+
+(4.20)
+
+Φξ(−k) = Φξ(k)
+
+(4.21)
+
+Further, we assume isotropy—the correlation function depends only on |r1 − r2|, and the three-dimensional Fourier transform can be simpliﬁed:
+
+1
+
+∞
+
+Φξ(k) = 2π2k 0 Bξ(r)rsin(kr)dr
+
+(4.22)
+
+4π ∞ Bξ(r) = r 0 Φξ(k)ksin(kr)dk
+
+(4.23)
+
+Also, one can deﬁne one-dimensional and two-dimensional spectra, respec-
+
+tively, as:
+
+1∞
+
+Vξ(kx, y, z) = 2π
+
+Bξ (r)exp(−ikx x)dx
+−∞
+
+1 Fξ(kx, ky, z) = 2π
+
++∞
+Bξ(r)exp(−i(kxx + kyy))dxdy
+−∞
+
+(4.24) (4.25)
+
+In the case of an isotropic medium the three-dimensional spectrum and the
+
+one-dimensional spectrum are related as follows:
+
+Φξ (k)
+
+=
+
+1 −
+2πk
+
+dVξ,0,0 dkξ
+
+|kx=k
+
+(4.26)
+
+We have to emphasise that the relation 4.26 can only be derived in the case of an isotropic medium. In the general case, when the medium is anisotropic, it
+73
+
+is not possible to deduce a relation between the three-dimensional spectrum and the one-dimensional spectrum. Diﬀerent experiments, carried out using sounding rockets and sensors onboard satellites, have shown evidence for a power law spectrum of the form Vξ ∝ kx−m with m close to 2, for spatial scales ranging from tens of meters to tens of kilometres. If we assume an anisotropic irregularity distribution, the three-dimensional spectrum could be then deduced:
+
+Φξ(k) ∝ k−p
+
+(4.27)
+
+with the spectral index p close to 4 for m close to 2. Usually, the power spectrum is compared to the spectrum obtained from the turbulence theory, where the eddies in the ﬂow are assumed to be cascading down from scale to scale with a certain energy transfer rate . The input of the energy occurs at the largest scale and the dissipation at smallest scales. In between is the inertial range, where the cascade takes place. The three regions are delimited by the inner scale and the outer scale. The inner scale is deﬁned as the largest scale in the dissipation region, and the outer scale, on the other hand, is deﬁned as the smallest scale in the energy injection region. A schematic illustration is given in Figure 4.1. Shkarofsky, [Shkarofsky, 1968], generalized the powerlaw irregularity spec-
+
+74
+
+Figure 4.1: A conceptual description of the process of turbulence decay as it proceeeds through an energy cascade in which eddies subdivide into progressively smaller eddies until they ﬁnally dessipate
+75
+
+trum and the corresponding correlation function:
+
+Φξ (k)
+
+=
+
+σN2 (k0r0)(p−3)/2r03 (2π3/2)K(p−3)/2(k0r0)
+
+(r0
+
+k2 + k02)−p/2 · Kp/2(r0
+
+k2 + k02) (4.28)
+
+Bξ (r)
+
+=
+
+σN2 (k0r0)(p−3)/2K(p−3)/2
+
+(k0r0)
+
+(k0
+
+r2 + r02)(p−3)/2 · K(p−3)/2(k0
+
+r2 + r02) (4.29)
+
+where
+
+r0
+
+is the inner
+
+scale and l0
+
+≡
+
+2π k0
+
+is
+
+the
+
+outer
+
+scale.
+
+For wavenumber
+
+values that lie in the inertial range, deﬁned as the range of k for which
+
+k0
+
+<<
+
+k
+
+<<
+
+2π r0
+
+,
+
+the
+
+spectrum
+
+deﬁned
+
+in
+
+4.28
+
+simpliﬁes
+
+to:
+
+Φξ (k)
+
+=
+
+σN2 Γ(p/2)k0p−3
+
+π3/2Γ(
+
+p−3 2
+
+)
+
+(k2
+
+1 − k02)p/2
+
+∝
+
+1 kp
+
+(4.30)
+
+which has the same form as in 4.27. In the dissipation range, where kr0 >> 1, 4.28 reduces to:
+
+Φξ
+
+=
+
+σN2 (k0r0)p−3r03
+
+2(p−1)/2
+
+πΓ(
+
+p−3 2
+
+)
+
+1 (kr0)(p+1)/2
+
+exp(−kr0)
+
+(4.31)
+
+where it can be veriﬁed that this function converge for k → ∞. The correla-
+
+tion function presents a maximum value with a vanishing ﬁrst derivative and
+
+a negative second derivative at r = 0, which is what one would expect, for
+
+there the correlation of the ﬁeld with itself should be maximum [Shkarofsky,
+
+1968] .
+
+76
+
+4.2 Geometric optics
+
+4.2.1 Optical path
+
+Let us consider a ray path in the ionospheric medium, characterized by a homogeneous background of the electron number density. The ray is assumed to be pointing parallel to the z-axis. In this case, one can express the ﬂuctuation in the optical path as follows:
+
+zl
+∆φ(ρ) = ∆n(ρ, z)dz
+z0
+
+(4.32)
+
+where ρ = (x, y) is the transverse coordinate and the integral is carried out
+
+from some initial point, z0, to a ﬁnal point, zl. The index of refraction is represented by n. The standard deviation of the optical path can be expressed
+
+as follows:
+
+−e2
+
+−λ2
+
+∆φ(ρ) = 2m 0ω2 ∆NT (ρ) = 2π re∆NT (ρ)
+
+(4.33)
+
+with e the electronic charge and m the mass of the electron, 0 is the free space permittivity, ω = 2πf is the radio frequency, and re represents the classical electron radius. The deviation in the electron content, ∆NT , is deﬁned as:
+
+∆NT (ρ) = ∆N (ρ, z)dz
+
+(4.34)
+
+The correlation between two optical paths separated by a distance ρ is given
+
+77
+
+by:
+
+B∆φ(ρ) =< ∆φ(ρ )∆φ(ρ + ρ ) >= C2B∆NT (ρ)
+
+(4.35)
+
+where C = 2πλ2re. Using Equation 4.34, one can rewrite the correlation of the optical path as follows:
+
++∞
+
+B∆NT (ρ) = z
+
+B∆N (ρ, z)dz = 2πz
+
+−∞
+
++∞
+Φ∆N (k⊥, 0)eik⊥·ρd2k⊥
+−∞
+(4.36)
+
+with k⊥ = (kx, ky). By inserting 4.36 into 4.35, one can directly relate the
+
+correlation of the optical path to the correlation of the ionospheric irregular-
+
+ities.
+
+The wave propagation in a random media is described by the integrated
+
+correlation function:
+
+A∆N (ρ)
+
+=
+
+σ∆2 N (2/π)1/2 k0(k0r0)(p−3)/2K(p−3)/2
+
+(k0
+
+ρ2 + r02)(p−2)/2K(p−2)/2(k0
+
+ρ2 + r02) (4.37)
+
+The corresponding one-dimensional spectrum is given by:
+
+W∆N (kx)
+
+=
+
+σ∆2 N (k0r0)(p−3)/2 K(p−3)/2(k0r0)
+
+r02
+
+(r0
+
+k02 + kx2)−(p−1)/2 · K(p−1)/2(r0
+
+k02 + kx2) (4.38)
+
+Similarly to the stationarity of the dielectric function discussed earlier, the
+
+electron number density can possess a homogeneous aspect locally but exhibit
+
+a trend at long scales. Therefore, it is more convenient to deal with the
+
+78
+
+structure function, deﬁned as follows:
+
+D∆N (r) =< [∆N (r + r ) − ∆N (r )]2 > .
+
+(4.39)
+
+For the optical path, the structure function is deﬁned as the mean square value of the optical path diﬀerence between two points separated by a distance ρ on a constant plane denoted z:
+
+∞
+D∆φ(ρ) = C2D∆NT (ρ) = C2z [D∆N (ρ, z) − D∆N (0, z)]dz.
+−∞
+
+(4.40)
+
+One can notice the direct proportionality between the optical path structure
+
+function and the electron content structure function.
+
+4.2.2 Taylor hypothesis: frozen ﬁelds
+The Taylor hypothesis (also, referred to as the frozen ﬁeld approximation), applied to the ionospheric plasma, assumes that the ionospheric medium is frozen during the measurement interval. Additionally, the velocity component of the eddies, v(r, t), is considered to be constant. As a result, the assumption implies that the whole bulk is transported horizontally at a constant velocity without being deformed. In our context, the ionospheric plasma bulk motion is equivalent to moving the ray path parallel to itself through a stationary ionosphere. The phase covariance measured at t and t + τ is identical to the spatial correlation between parallel rays separated by
+
+79
+
+a vector:
+
+ρ = vτ
+
+(4.41)
+
+The ionospheric plasma dynamic is characterized by spatial and temporal variations. Hence, in general, the ﬁelds are written as a function of time and space. More speciﬁcally, the electron number density is described by a space time correlation function:
+
+Bξ(r, t) =< ξ(r + r , t + t )ξ(r, t) >
+
+(4.42)
+
+The four-dimensional Fourier transform is given by:
+
+1 Sξ(k, ω) = ((2π)−4)
+
+Bξ(r, t)e−i(k·r+ωt)d3rdt
+
+(4.43)
+
+In practice, when a satellite signal emits a radio signal through the ionospheric layer, the received signal exhibits a Doppler shift due to the ionospheric convection and satellite motion, and will also exhibit a Doppler broadening due to the temporal variation of the irregularities. Frozen ﬁelds are generally described by the following space-time spectrum:
+
+Sξ(k, ω) = Φξ(k)δ(ω + k · v0)
+
+(4.44)
+
+80
+

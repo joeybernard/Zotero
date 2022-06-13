@@ -1,0 +1,906 @@
+arXiv:gr-qc/0011087v1 24 Nov 2000
+
+TELEPARALLEL GRAVITY: AN OVERVIEW
+V. C. DE ANDRADE
+D´epartement d’Astrophysique Relativiste et de Cosmologie Centre National de la Recherche Scientiﬁc (UMR 8629)
+Observatoire de Paris, 92195 Meudon Cedex, France
+L. C. T. GUILLEN AND J. G. PEREIRA
+Instituto de F´ısica Te´orica, Universidade Estadual Paulista Rua Pamplona 145, 01405-900 S˜ao Paulo, Brazil
+The fundamentals of the teleparallel equivalent of general relativity are presented, and its main properties described. In particular, the ﬁeld equations, the deﬁnition of an energy–momentum density for the gravitational ﬁeld, the teleparallel version of the equivalence principle, and the dynamical role played by torsion as compared to the corresponding role played by curvature in general relativity, are discussed in some details.
+1 Introduction
+Teleparallel gravity1−9 corresponds to a gauge theory for the translation group.10,11 Due to the peculiar character of translations, any gauge theory including these transformations will diﬀer from the usual internal gauge models in many ways, the most signiﬁcant being the presence of a tetrad ﬁeld. On the other hand, a tetrad ﬁeld can naturally be used to deﬁne a linear Weitzenbo¨ck connection, which is a connection presenting torsion, but no curvature. A tetrad ﬁeld can also naturally be used to deﬁne a riemannian metric, in terms of which a Levi–Civita connection can be constructed. As is well known, it is a connection presenting curvature, but no torsion. Now, torsion and curvature are properties of a connection,12 and many diﬀerent connections can be deﬁned on the same space.13 Therefore one can say that the presence of a nontrivial tetrad ﬁeld in a gauge theory induces both a teleparallel and a riemannian structures in spacetime. The ﬁrst is related to the Weitzenbo¨ck,14 and the second to the Levi–Civita connection. Owing to the universality of the gravitational interaction, it turns out to be possible to link these geometrical structures to gravitation.
+In the context of teleparallel gravity, curvature and torsion are able to provide each one equivalent descriptions of the gravitational interaction. Conceptual differences, however, show up. According to general relativity, curvature is used to geometrize spacetime, and in this way successfully describe the gravitational interaction. Teleparallelism, on the other hand, attributes gravitation to torsion, but in this case torsion accounts for gravitation not by geometrizing the interaction, but by acting as a force. This means that, in the teleparallel equivalent of general relativity, there are no geodesics, but force equations quite analogous to the Lorentz force equation of electrodynamics.10 Thus, we can say that the gravitational interaction can be described alternatively in terms of curvature, as is usually done in general relativity, or in terms of torsion, in which case we have the so called teleparallel gravity. Whether gravitation requires a curved or a torsioned spacetime, therefore,
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+1
+
+turns out to be a matter of convention. In this paper, we are going to review the main features of teleparallel gravity. We
+start in Sec. 2 where we introduce the fundamentals of the teleparallel equivalent of general relativity, and discuss some of its main features. A detailed discussion of the energy-momentum current for the gravitational ﬁeld is made in Sec. 3. In Sec. 4 the second Bianchi identity of a gauge theory for the translation group is obtained, from which we get the conservation law of the energy-momentum tensor for a general matter (source) ﬁeld. In Sec. 5 we study the motion of a spinless particle in a gravitational ﬁeld, and the gravitational analog of the Lorentz force equation is obtained. Then, a discussion on the riemannian and teleparallel versions of the equivalence principle is made. Finally in Sec. 6 we draw the main conclusions of the paper.
+
+2 Teleparallel Equivalent of General Relativity
+
+We use the Greek alphabet (µ, ν, ρ, . . . = 0, 1, 2, 3) to denote indices related to spacetime (base space), and the Latin alphabet (a, b, c, . . . = 0, 1, 2, 3) to denote indices related to the tangent space (ﬁber), assumed to be a Minkowski space with the metric ηab = diag(+1, −1, −1, −1). A gauge transformation is deﬁned as a local translation of the tangent-space coordinates,
+
+δxa = δαbPbxa ,
+
+(1)
+
+with Pa = ∂/∂xa the translation generators, and δαa the corresponding inﬁnitesimal parameters. Denoting the gauge potentials by Aaµ, the gauge covariant derivative of a general matter ﬁeld Ψ is10
+
+DµΨ = haµ ∂aΨ ,
+
+(2)
+
+where
+
+haµ = ∂µxa + c−2Aaµ
+
+(3)
+
+is a nontrivial tetrad ﬁeld, with c the speed of light. From the covariance of DµΨ, we obtain the transformation of the gauge potentials:
+
+Aa′ µ = Aaµ − c2∂µδαa .
+
+(4)
+
+As usual in abelian gauge theories, the ﬁeld strength is given by
+
+F
+
+a µν
+
+=
+
+∂µAaν
+
+− ∂ν Aaµ
+
+,
+
+(5)
+
+which satisﬁes the relation
+
+[Dµ,
+
+Dν
+
+]Ψ
+
+=
+
+c−2F
+
+a µν
+
+Pa
+
+Ψ
+
+.
+
+(6)
+
+It is important to remark that, whereas the tangent space indices are raised and lowered with the metric ηab, the spacetime indices are raised and lowered with the riemannian metric
+
+gµν = ηabhaµ hbν .
+
+(7)
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+2
+
+A nontrivial tetrad ﬁeld induces on spacetime a teleparallel structure which is directly related to the presence of the gravitational ﬁeld. In fact, given a nontrivial tetrad, it is possible to deﬁne the so called Weitzenbo¨ck connection
+
+Γρµν = haρ∂ν haµ ,
+
+(8)
+
+which is a connection presenting torsion, but no curvature.12 As a natural consequence of this deﬁnition, the Weitzenbo¨ck covariant derivative of the tetrad ﬁeld vanishes identically:
+
+∇ν haµ ≡ ∂ν haµ − Γθµν haθ = 0 .
+
+(9)
+
+This is the absolute parallelism condition. The torsion of the Weitzenbo¨ck connection is
+
+T ρµν = Γρνµ − Γρµν ,
+
+(10)
+
+from which we see that the gravitational ﬁeld strength is nothing but torsion written in the tetrad basis:
+
+F
+
+a µν
+
+=
+
+c2
+
+haρT
+
+ρ µν
+
+.
+
+(11)
+
+A nontrivial tetrad ﬁeld can also be used to deﬁne a torsionless linear connection, the Levi-Civita connection of the metric (7):
+
+Γ◦ σ µν
+
+=
+
+1 2
+
+gσρ
+
+[∂µgρν
+
++ ∂ν gρµ − ∂ρgµν ]
+
+.
+
+(12)
+
+The Weitzenbo¨ck and the Levi–Civita connections are related by
+
+Γρµν = Γ◦ ρµν + Kρµν ,
+
+(13)
+
+where
+
+K
+
+ρ µν
+
+=
+
+1 2
+
+(Tµρν
+
++
+
+Tν
+
+ρ µ
+
+− T ρµν )
+
+(14)
+
+is the contorsion tensor. As already remarked, the curvature of the Weitzenbo¨ck connection vanishes
+identically:
+
+Rρθµν = ∂µΓρθν + Γρσµ Γσθν − (µ ↔ ν) ≡ 0 .
+
+(15)
+
+Substituting Γρµν as given by Eq.(13), we get
+
+Rρθµν = R◦ ρθµν + Qρθµν ≡ 0 ,
+
+(16)
+
+where R◦ θρµν is the curvature of the Levi–Civita connection, and
+
+Qρθµν
+
+=
+
+Dµ
+
+K
+
+ρ θν
+
+−
+
+Dν
+
+K
+
+ρ θµ
+
++ Kσθν
+
+K
+
+ρ σµ
+
+− Kσθµ
+
+K
+
+ρ σν
+
+(17)
+
+is a tensor written in terms of the Weitzenbo¨ck connection only. Here, Dµ is
+the teleparallel covariant derivative, which is nothing but the Levi-Civita covariant derivative of general relativity rephrased in terms of the Weitzenbo¨ck connection. 15 Acting on a spacetime vector V µ, for example, its explicit form is
+
+Dρ
+
+V
+
+µ
+
+≡
+
+∂ρV
+
+µ
+
++
+
+(Γµλρ
+
+−
+
+K
+
+µ λρ
+
+)
+
+V
+
+λ
+
+.
+
+(18)
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+3
+
+Equation (16) has an interesting interpretation: the contribution R◦ ρθµν coming from the Levi–Civita connection compensates exactly the contribution Qρθµν coming from the Weitzenbo¨ck connection, yielding an identically zero curvature tensor Rρθµν. This is a constraint satisﬁed by the Levi–Civita and Weitzenbo¨ck connections, and is the fulcrum of the equivalence between the riemannian and the
+teleparallel descriptions of gravitation. The gauge gravitational ﬁeld Lagrangian is given by10
+
+LG
+
+=
+
+hc4 16πG
+
+S ρµν
+
+Tρµν
+
+,
+
+where h = det(haµ), and
+
+S ρµν
+
+=
+
+−S ρν µ
+
+≡
+
+1 2
+
+K µνρ
+
+−
+
+gρν
+
+T
+
+θµ θ
+
++
+
+gρµ
+
+T θνθ
+
+(19)
+
+is a tensor written in terms of the Weitzenbo¨ck connection only. As usual in gauge theories, it is quadratic in the ﬁeld strength. By using relation (13), this lagrangian can be rewritten in terms of the Levi-Civita connection only. Up to a total divergence, the result is the Hilbert–Einstein Lagrangian of general relativity
+
+L
+
+=
+
+−
+
+c4 16πG
+
+√◦ −g R
+
+,
+
+(20)
+
+√
+
+where the identiﬁcation h = −g has been made.
+
+By performing variations in relation to the gauge ﬁeld Aaρ, we obtain from the
+
+gauge lagrangian LG the teleparallel version of the gravitational ﬁeld equation,
+
+∂σ (hSa σρ )
+
+−
+
+4πG c4
+
+(hjaρ)
+
+=
+
+0
+
+,
+
+(21)
+
+where Saσρ ≡ haλSλσρ. Analogously to the Yang-Mills theories,
+
+hjaρ
+
+≡
+
+∂LG ∂haρ
+
+=
+
+−
+
+c4 4πG
+
+hhaλSµνρT
+
+µ νλ
+
++
+
+haρLG
+
+(22)
+
+stands for the gauge current, which in this case represents the energy and momen-
+tum of the gravitational ﬁeld.16 The term (hSaσρ) is called superpotential in the sense that its derivative yields the gauge current (hjaρ). Due to the anti-symmetry of Saσρ in the last two indices, (hjaρ) is conserved as a consequence of the ﬁeld
+equation:
+
+∂ρ(hjaρ) = 0 .
+
+(23)
+
+Making use of the identity
+
+∂ρh ≡ hΓν νρ = h (Γν ρν − Kν ρν ) ,
+
+(24)
+
+this conservation law can alternatively be written in the form
+
+Dρ
+
+jaρ
+
+≡
+
+∂ρ ja ρ
+
++
+
+(Γρλρ
+
+−
+
+K
+
+ρ λρ
+
+)
+
+jaλ
+
+=
+
+0
+
+,
+
+(25)
+
+with Dρ denoting the teleparallel version of the covariant derivative, which is nothing but the Levi-Civita covariant derivative of general relativity rephrased in terms of the Weitzenbo¨ck connection.15
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+4
+
+3 Gravitational Energy-Momentum Current
+
+Now comes an important point. As can be easily checked, the current jaρ transforms covariantly under a general spacetime coordinate transformation, is invariant
+under local (gauge) translation of the tangent-space coordinates, and transforms
+covariantly under a global tangent–space Lorentz transformation. This means that jaρ, despite not covariant under a local Lorentz transformation, is a true spacetime and gauge tensor.16
+Let us now proceed further and ﬁnd out the relation between the above gauge approach and general relativity. By using Eq. (8) to express ∂ρhaλ, the ﬁeld equation (21) can be rewritten in a purely spacetime form,
+
+∂σ (hSλ σρ )
+
+−
+
+4πG c4
+
+(htλρ)
+
+=
+
+0
+
+,
+
+(26)
+
+where now
+
+htλρ
+
+=
+
+c4h 4πG
+
+ΓµνλSµνρ
+
++
+
+δλρLG
+
+(27)
+
+stands for the canonical energy-momentum pseudotensor of the gravitational ﬁeld.17
+
+Despite not apparent, Eq. (26) is symmetric in (λρ). Furthermore, by using
+
+Eq. (13), it can be rewritten in terms of the Levi-Civita connection only. As ex-
+
+pected, due to the equivalence between the corresponding Lagrangians, it is the
+
+same as Einstein’s equation:
+
+h 2
+
+◦
+Rµν
+
+−
+
+1 2
+
+◦
+gµν R
+
+=0.
+
+(28)
+
+It is important to notice that the canonical energy-momentum pseudotensor tλρ is not simply the gauge current jaρ with the algebraic index “a” changed to the spacetime index “λ”. It incorporates also an extra term coming from the derivative
+term of Eq. (21):
+
+tλρ
+
+=
+
+haλ
+
+jaρ
+
++
+
+c4 4πG
+
+Γµλν Sµνρ
+
+.
+
+(29)
+
+We see thus clearly the origin of the connection-term which transforms the gauge current jaρ into the energy-momentum pseudotensor tλρ. Through the same mech-
+anism, it is possible to appropriately exchange further terms between the derivative
+
+and the current terms of the ﬁeld equation (26), giving rise to diﬀerent deﬁnitions
+
+for the energy-momentum pseudotensor, each one connected to a diﬀerent superpotential (hSλρσ).
+Like the gauge current (hjaρ), the pseudotensor (htλρ) is conserved as a conse-
+quence of the ﬁeld equation:
+
+∂ρ(htλρ) = 0 .
+
+(30)
+
+However, in contrast to what occurs with jaρ, due to the pseudotensor character of tλρ, this conservation law can not be rewritten with a covariant derivative.
+Because of its simplicity and transparency, the teleparallel approach to gravi-
+tation seems to be much more appropriate than general relativity to deal with the
+energy problem of the gravitational ﬁeld. In fact, Møller already noticed a long
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+5
+
+time ago that a satisfactory solution to the problem of the energy distribution in
+a gravitational ﬁeld could be obtained in the framework of a tetrad theory. In our notation, his expression for the gravitational energy-momentum density is1
+
+htλρ
+
+=
+
+∂L ∂∂ρhaµ
+
+∂λhaµ + δλρ L ,
+
+(31)
+
+which is nothing but the usual canonical energy-momentum density yielded by
+Noether’s theorem. Using for L the gauge Lagrangian (19), it is an easy task
+to verify that Møller’s expression coincides exactly with the teleparallel energymomentum density appearing in the ﬁeld equation (26-27). Since jaρ is a true spacetime tensor, whereas tλρ is not, we can say that the gauge current jaρ is an improved version of the Møller’s energy-momentum density tλρ. Mathematically, they can be obtained from each other by using the relation (29). It should
+be remarked, however, that both of them transform covariantly only under global
+tangent-space Lorentz transformations. The lack of a local Lorentz covariance can
+be considered as the teleparallel manifestation of the pseudotensor character of the gravitational energy-momentum density in general relativity.16
+
+4 Bianchi Identity and Matter Energy-Momentum Conservation
+
+As is well known, the second Bianchi identity of general relativity is
+
+◦◦
+
+◦◦
+
+◦◦
+
+∇σRλρµν + ∇ν Rλρσµ + ∇µRλρνσ = 0 ,
+
+(32)
+
+◦
+where ∇µ is the usual Levi-Civita covariant derivative. Its contracted form is
+
+◦
+∇µ
+
+R◦ µν
+
+−
+
+1 2
+
+δµν
+
+◦
+R
+
+=0.
+
+(33)
+
+By using Eq.(16), after a tedious but straightforward calculation, it is possible to rewrite it in terms of the Weitzenbo¨ck connection only. The result is
+
+Dρ
+
+∂σ (hSλ σρ )
+
+−
+
+4πG c4
+
+(htλρ)
+
+=0,
+
+(34)
+
+where Dρ is the teleparallel covariant derivative, deﬁned in Eq.(25). This is the second Bianchi identity of the teleparallel equivalent of general relativity. It says that
+
+the teleparallel covariant derivative of the sourceless ﬁeld equation (26) vanishes
+
+identically.
+
+In the presence of a general matter ﬁeld, the teleparallel ﬁeld equation (26)
+
+becomes
+
+∂σ (hSλ σρ )
+
+−
+
+4πG c4
+
+(htλρ)
+
+=
+
+4πG c4
+
+(hTλρ)
+
+,
+
+(35)
+
+with Tλρ the matter energy-momentum tensor. As a consequence of the Bianchi identity (34), and using (24), we obtain
+
+DρTλρ = 0 .
+
+(36)
+
+This is the conservation law of matter energy-momentum tensor. Therefore, we see that in teleparallel gravity, it is not the Weitzenbo¨ck covariant derivative ∇µ, but
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+6
+
+the teleparallel covariant derivative (25) that yields the correct conservation law for the energy-momentum tensors of matter ﬁelds. It should be remarked that (36) is the unique law compatible with the corresponding conservation law of general relativity,
+
+◦
+∇µT
+
+µ ρ
+
+≡
+
+∂µT
+
+µ ρ
+
++
+
+Γ◦ µλµT
+
+λ ρ
+
+−
+
+Γ◦ λρµT
+
+µ λ
+
+=
+
+0
+
+.
+
+(37)
+
+as can easily be veriﬁed by using Eq.(13).
+
+5 Geodesics Versus Force Equation
+
+In the framework of the teleparallel description of gravitation, the action describing a particle of mass m submitted to a gravitational (Aaµ) ﬁeld is10
+
+S=
+
+b a
+
+−m
+
+c
+
+dσ
+
+−
+
+m c
+
+Aaµ
+
+ua
+
+dxµ
+
+,
+
+(38)
+
+where dσ = (ηabdxadxb)1/2 is the invariant tangent-space interval, and ua = dxa/dσ is the tangent-space four-velocity. The corresponding equation of motion is
+
+c2
+
+ha
+
+ρ
+
+dua ds
+
+= F aρµuauµ
+
+,
+
+(39)
+
+where ds = (gµν dxµdxν )1/2 is the invariant spacetime interval, and uµ = dxµ/ds is the spacetime four velocity. It is important to remark that, by using the relations
+
+haµuauµ = 1 ,
+
+and
+
+∂xµ ∂xa
+
+ua uµ
+
+=
+
+ds dσ
+
+,
+
+the action (38) reduces to its general relativity version
+
+b
+S = − mcds .
+a
+In this case, the interaction of the particle with the gravitational ﬁeld is generated by the presence of the metric tensor gµν in ds, or alternatively in the constraint u2 = gµνuµ uν = 1 if one opts for using a lagrangian formalism.
+Now, by transforming algebra into spacetime indices, the equation of motion (39) can be rewritten alternatively in terms of magnitudes related to the Weitzenbo¨ck14 or to the Riemann spacetime, giving rise respectively to the teleparallel and the metric equations of motion. In fact, by using the relation
+
+haµ
+
+dua ds
+
+=
+
+ωµ
+
+≡
+
+duµ ds
+
+− Γθµν uθ uν
+
+,
+
+(40)
+
+where ωµ is the spacetime particle four–acceleration, it reduces to
+
+duµ ds
+
+− Γθµν
+
+uθ
+
+uν
+
+=
+
+Tθµν
+
+uθ
+
+uν
+
+.
+
+(41)
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+7
+
+The left–hand side of this equation is the Weitzenbo¨ck covariant derivative of uµ along the world line of the particle. The presence of the torsion tensor on its right– hand side shows that it plays the role of an external force. Substituting Eq.(10), it becomes
+
+duµ ds
+
+− Γθνµ
+
+uθ
+
+uν
+
+=
+
+0
+
+.
+
+(42)
+
+It is important to remark that, as Γθνµ is not symmetric in the last two indices, this is not a geodesic equation. This means that the trajectories followed by spinless particles are not geodesics of the induced Weitzenbo¨ck spacetime. In a locally inertial coordinate system, ∂µgθν = 0, and the Weitzenbo¨ck connection Γθνµ becomes skew–symmetric in the ﬁrst two indices. In this coordinate system, therefore, owing to the symmetry of uθ uν, the force equation (42) becomes the equation of motion of a free particle. This is the teleparallel version of the (weak) equivalence principle.
+We transform again algebra into spacetime indices, but now in such a way to get the force equation (39) written in terms of the Levi–Civita connection only. Following the same steps used earlier, we get
+
+duµ ds
+
+− Γθµν
+
+uθ
+
+uν
+
+=
+
+Tθµν
+
+uθ
+
+uν
+
+.
+
+(43)
+
+Then, by taking into account the symmetry of uθ uν under the exchange (θ ↔ ν), we can rewrite it as
+
+duµ ds
+
+− Γθµν
+
+uθ
+
+uν
+
+=
+
+Kµθν
+
+uθ
+
+uν
+
+.
+
+(44)
+
+Noticing that Kµθν is skew–symmetric in the ﬁrst two indices, and using Eq.(13) to express (Kθµν − Γθµν), Eq.(44) becomes
+
+duµ ds
+
+◦
+− Γθµν
+
+uθ
+
+uν
+
+=
+
+0
+
+.
+
+(45)
+
+This is precisely the geodesic equation of general relativity, which means that the trajectories followed by spinless particles are geodesics of the induced Riemann spacetime. According to this description, therefore, the only eﬀect of the gravitational ﬁeld is to induce a curvature in spacetime, which will then be the responsible for determining the trajectory of the particle. In a locally inertial coordinate system, the ﬁrst derivative of the metric tensor vanishes, the Levi–Civita connection vanishes as well, and the geodesic equation (45) becomes the equation of motion of a free particle. This is the usual version of the (weak) equivalence principle as formulated in general relativity.18
+Notice the diﬀerence in the index contractions between the connections and the four–velocities in equations (42) and (45). This diﬀerence is the responsible for the diﬀerent characters of these equations: the ﬁrst is a force equation written in the underlying Weitzenbo¨ck spacetime, and the second is a true geodesic equation written in the induced Riemann spacetime. Now, as both equations are deduced from the same force equation (39), they must be equivalent ways of describing the same physical trajectory. In fact, it is easy to see that any one of them can be obtained from the other by using the relation (13).
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+8
+
+6 Conclusions
+In general relativity, the presence of a gravitational ﬁeld is expressed by the torsionless Levi–Civita metric–connection, whose curvature determines the intensity of the gravitational ﬁeld. On the other hand, in the teleparallel description of gravitation, the presence of a gravitational ﬁeld is expressed by the ﬂat Weitzenbo¨ck connection, whose torsion is now the entity responsible for determining the intensity of the gravitational ﬁeld. The gravitational interaction, therefore, can be described either, in terms of curvature, or in terms of torsion. Whether gravitation requires a curved or a torsioned spacetime, therefore, is a matter of convention.
+An important point of the teleparallel equivalent of general relativity is that it allows for the deﬁnition of an energy-momentum gauge current jaρ for the gravitational ﬁeld which is covariant under a spacetime general coordinate transformation, and transforms covariantly under a global tangent-space Lorentz transformation. This means essentially that jaρ is a true spacetime tensor, but not a tangent–space tensor. Then, by rewriting the gauge ﬁeld equation in a purely spacetime form, it becomes Einstein’s equation, and the gauge current jaρ reduces to the canonical energy-momentum pseudotensor of the gravitational ﬁeld. Teleparallel gravity, therefore, seems to provide a more appropriate environment to deal with the energy problem since in the ordinary context of general relativity, the energy-momentum density for the gravitational ﬁeld will always be represented by a pseudotensor.
+Like in general relativity, the conservation law of the energy-momentum tensor of matter (source) ﬁelds can be obtained from the Bianchi identities. In the case of teleparallel gravity, the energy-momentum tensor turns out to be conserved with the teleparallel covariant derivative, which is the Levi-Civita covariant derivative of general relativity rephrased in terms of the Weitzenbo¨ck connection.15
+Finally, we have succeeded in obtaining a gravitational analog of the Lorentz force equation, which is an equation written in the underlying Weitzenbo¨ck spacetime. According to this approach, the trajectory of the particle is described in the very same way the Lorentz force describes the trajectory of a charged particle in the presence of an electromagnetic ﬁeld, with torsion playing the role of force. When rewritten in terms of magnitudes related to the metric structure, it becomes the geodesic equation of general relativity, which is an equation written in the underlying Riemann spacetime. As both equations are deduced from the same force equation, they must be equivalent ways of describing the same physical trajectory.
+Acknowledgments
+The authors would like to thank R. Aldrovandi for useful discussions. They would like also to thank FAPESP-Brazil, CAPES-Brazil and CNPq–Brazil for ﬁnancial support.
+References
+1. C. Møller, K. Dan. Vidensk. Selsk. Mat. Fys. Skr.1, No. 10 (1961).
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+9
+
+2. C. Pellegrini and J. Plebanski, K. Dan. Vidensk. Selsk. Mat. Fys. Skr. 2, No. 2 (1962).
+3. K. Hayashi and T. Nakano, Prog. Theor. Phys. 38, 491 (1967). 4. K. Hayashi and T. Shirafuji, Phys. Rev. D 19, 3524 (1979). 5. F. W. Hehl, in Cosmology and Gravitation, ed. by P. G. Bergmann and V. de
+Sabbata (Plenum, New York, 1980). 6. W. Kopczyn´ski, J. Phys. A 15, 493 (1982). 7. R. de Azeredo Campos and C. G. Oliveira, Nuovo Cimento B 74, 83 (1983). 8. F. Mu¨ller–Hoissen and J. Nitsch, Gen. Rel. Grav. 17, 747 (1985). 9. E. W. Mielke, Ann. Phys. (NY) 219, 78 (1992). 10. V. C. de Andrade and J. G. Pereira, Phys. Rev D 56, 4689 (1997). 11. For a general review on the gauge approach to gravity, see F. W. Hehl, J. D.
+McCrea, E. W. Mielke and Y. Ne’eman, Phys. Rep. 258, 1 (1995). 12. R. Aldrovandi and J. G. Pereira, An Introduction to Geometrical Physics
+(World Scientiﬁc, Singapore, 1995). 13. S. Kobayashi, and K. Nomizu, Foundations of Diﬀerential Geometry (Inter-
+sciense, New YorkK, 1963). 14. R. Weitzenbo¨ck, Invariantentheorie (Noordhoﬀ, Gronningen, 1923). 15. V. C. de Andrade and J. G. Pereira, Int. J. Mod. Phys. D 8, 141 (1999). 16. V. C. de Andrade, L. C. T. Guillen and J. G. Pereira, Phys. Rev. Lett. 84,
+4533 (2000). 17. T. Shirafuji, G. L. Nashed and Y. Kobayashi, Prog. Theor. Phys. 96, 933
+(1996); 18. See, for example, S. Weinberg, Gravitation and Cosmology (Wiley, New York,
+1972).
+
+pereira: submitted to World Scientiﬁc on February 7, 2008
+
+10
+

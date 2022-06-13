@@ -1,0 +1,1867 @@
+arXiv:2004.03714v1 [cond-mat.mes-hall] 5 Apr 2020
+
+Scattering of charged fermion to two-dimensional wormhole with constant axial magnetic ﬂux
+Kulapant Pimsamarn∗ Department of Physics, Faculty of Science, Kasetsart University, Bangkok 10900, Thailand
+Piyabut Burikham† and Trithos Rojjanason‡ High Energy Physics Theory Group, Department of Physics, Faculty of Science, Chulalongkorn University, Bangkok 10330, Thailand
+Scattering of charged fermion with (1 + 2)-dimensional wormhole in the presence of constant axial magnetic ﬂux is explored. By extending the class of fermionic solutions of the Dirac equation in the curved space of wormhole surface to include normal modes with real energy and momentum, we found a quantum selection rule for the scattering of fermion waves to the wormhole. The newly found momentum-angular momentum relation implies that only fermion with the quantized momentum k = m /a√q can be transmitted through the hole. The allowed momentum is proportional to an eﬀective angular momentum quantum number m and inversely proportional to the radius of the throat of the wormhole a. Flux dependence of the eﬀective angular momentum quantum number permits us to select fermions that can pass through according to their momenta. A conservation law is also naturally enforced in terms of the unitarity condition among the incident, reﬂected, and transmitted waves. The scattering involving quasinormal modes (QNMs) of fermionic states in the wormhole is subsequently explored. It is found that the transmitted waves through the wormhole for all scenarios involving QNMs are mostly suppressed and decaying in time. In the case of QNMs scattering, the unitarity condition is violated but a more generic relation of the scattering coeﬃcients is established. When the magnetic ﬂux φ = mhc/e, i.e., quantized in units of the magnetic ﬂux quantum hc/e, the fermion will tunnel through the wormhole with zero reﬂection.
+I. INTRODUCTION
+The physics of fermion on 2-dimensional surface has been one of the major research topics in recent years. Interesting boundary phenomena that have no bulk analogs emerge, e.g. quantum (spin) hall eﬀects, topological matters, and more recently graphene physics [1]. Two dimensional surface can be manipulated in the laboratory so that it can be curved, strained, and twisted. A cage structure of graphene wormholes, the schwarzite, can even be produced with promising properties [2, 3]. The gauge ﬁelds such as electric [4] and magnetic ﬁelds [5] can be applied to the system, leading to unique intriguing 2D phenomena, notably the well-known Landau quantization of fermionic states on a plane. It has been shown that eﬀects of strain and gauge ﬁelds could be similar in 2D [6, 7]. Behaviour of quantum particle on the curved surface in the presence of gauge ﬁelds can be considerably diﬀerent from the ﬂat situation [8, 9]. Similar to the strain, curvature eﬀects [10–12] can mimic gauge ﬁelds [13, 14], speciﬁcally curvature and gauge connection appears in the equation of motion with equal role. For example, fermions on 2-dimensional sphere and wormhole experience spin-orbit coupling induced from the surface curvature [15–18] even in the absence of the gauge ﬁelds. Addition of axial magnetic ﬁeld generates Landau quantization distinctive from the planar case. For
+∗Electronic address: fsciklpp@ku.ac.th †Electronic address: piyabut@gmail.com ‡Electronic address: trithot@hotmail.com
+
+2
+the wormhole, the fermionic states can be in quasinormal modes with complex energies, its quantum statistics can be altered by the magnetic ﬂux through the hole [18, 19].
+Dirac fermion in graphene wormhole without gauge ﬁeld has been discussed in Ref. [20, 21]. In Ref. [18], we investigate the eﬀects of axial magnetic ﬁeld on a charged fermion in a (1 + 2)-dimensional wormhole. This 2-dimensional wormhole is fundamentally diﬀerent from the (1 + 3)-dimensional wormhole in General Relativity (see e.g. [22]), there is no time dilation in the 2-dimensional wormhole under consideration. For the constant magnetic ﬂux scenario, the system can be solved analytically and exact solutions are found to contain “normal” (real energy but complex momentum) and quasinormal modes (QNMs).
+In this work the scattering of fermions to the wormhole is explored. The more generic solutions to the equation of motion of the fermion in the magnetized wormhole are constructed in terms of hypergeometric functions. The normal modes are actually found when the (eﬀective) angular quantum number m (see
+m deﬁnition below) is related to the momentum of the fermion by k = a√q ≡ km . Such quantized momentumangular momentum relation is unique to the 2D wormhole under consideration.
+In Section II, the mathematical formulation of the wormhole and fermion in curved space is established. In Section III as a review of the main results of Ref. [18], the Dirac equation in the magnetized wormhole is written and solved analytically, then the general solutions in the upper and lower plane connected to the wormhole is discussed. Matching conditions of the scattering of fermionic waves to the wormhole is considered in Section IV. Section V discusses the use of Wronskian to derive a general relation between scattering coeﬃcients. The scattering scenarios are categorized into normal-modes and QNMs scattering and some of the results are presented in Section VI. Section VII concludes our work.
+II. GEOMETRIC AND GAUGE SETUP OF THE WORMHOLE
+
+FIG. 1: Geometric structure of a wormhole surface where a is a radius at the radius function R(u = u0 = ln q/2). And r is the radius of curvature of the wormhole surface along u direction.
+
+In the (1+2)-dimensional curved spacetime, the line element on the surface of wormhole can be cast in the following form
+
+ds2 = gµυdxµdxυ = −c2dt2 + du2 + R2(u)dv2.
+
+(2.1)
+
+3
+
+The fermion will experience the eﬀective curvature that can be addressed by considering the Dirac equation in curved spacetime
+
+γaeµa
+
+e − ∇µ + i c Aµ
+
+− M c Ψ = 0,
+
+(2.2)
+
+where Ψ = Ψ(t, u, v) represents the Dirac spinor ﬁeld on the wormhole and M represents the rest mass of the particle, c is the speed of light, e is electric charge, and Aµ is the electromagnetic four-potential. The γa are the Dirac matrices given by
+
+γ0 =
+
+i0 0 −i
+
+, γk =
+
+0 iσk −iσk 0
+
+,
+
+where σk are the Pauli matrices deﬁned by
+
+σ1 = 0 1 , σ2 = 0 −i , σ3 = 1 0 .
+
+10
+
+i0
+
+0 −1
+
+They obey the Cliﬀord algebra
+
+{γa, γb} = 2ηab.
+
+(2.3)
+
+The Pauli matrices have a useful identity that we will use later σiσj = δij + i ijkσk,
+where ijk is Levi-Civita symbol. The covariant derivative of the spinor interaction with gauge ﬁeld in the curved space is given by
+
+(2.4)
+
+∇µ ≡ ∂µ − Γµ,
+
+(2.5)
+
+where the spin connection Γµ [23] is
+
+Γµ
+
+=
+
+−
+
+1 4
+
+γaγ
+
+beνa
+
+∂µ
+
+gνβ eβb
+
+− eβb Γβµν ,
+
+where β, µ, ν ∈ {t, u, v} and the Christoﬀel symbols Γβµν are deﬁned by
+
+1 Γβµν = 2 (∂µgβν + ∂ν gβµ − ∂βgµν ) .
+
+Then for the metric (2.1),
+
+(2.6)
+
+− Γuvv
+
+=
+
+Γvuv
+
+=
+
+Γvvu
+
+=
+
+1 2
+
+∂uR2
+
+=
+
+RR
+
+,
+
+(2.7)
+
+and zero otherwise. It is then straightforward to show that the spin connections are
+
+Γt = 0,
+
+Γu = 0,
+
+Γv
+
+=
+
+1 γ1γ2R 2
+
+.
+
+(2.8)
+
+We will apply an external magnetic ﬁeld such that the z-component Bz = B(z) is uniform with respect to the plane (x, y) and the magnetic ﬂux through the circular area enclosed by the wormhole at a ﬁxed z is constant, namely Bz ∼ 1/R2. Due to the axial symmetry, the electromagnetic four-potential can be expressed in the axial gauge as
+
+11
+
+Aµ
+
+(t,
+
+x,
+
+y,
+
+z)
+
+=
+
+(0,
+
+− By, 2
+
+Bx, 2
+
+0),
+
+4
+
+and in the wormhole coordinates as
+
+∂xν Aµ(t, u, v) = ∂xµ Aν (t, x, y, z) =
+
+0, 0, 1 BR2 2
+
+.
+
+(2.9)
+
+The magnetic ﬁeld is then given by
+
+x
+
+y
+
+B = − 2 ∂zB, − 2 ∂zB, B .
+
+(2.10)
+
+We will now consider the Dirac equation of fermion in the wormhole in the presence of constant magnetic ﬂux.
+
+III. THE DIRAC EQUATION IN MAGNETIZED WORMHOLE
+
+Utilizing the results from above equations, the Dirac equation Eq.(2.2) can be written in the form then
+
+(i∂ct + Mc )
+
+iD
+
+−iD (−i∂ct + Mc )
+
+Ψ = 0,
+
+(3.1)
+
+where D is a diﬀerential operator
+
+D ≡ σ1
+
+R ∂u + 2R
+
++ σ2
+
+1
+
+ie
+
+R ∂v − 2
+
+BR c
+
+.
+
+(3.2)
+
+We can deﬁne the pseudo-vector potential as
+
+D = σ1
+
+e ∂u − i c Au˜
+
++ σ2 1 R
+
+e ∂v − i c Av
+
+;
+
+cR
+
+Au˜
+
+≡i
+
+e
+
+, 2R
+
+Au = 0,
+
+Av
+
+=
+
+1 BR2. 2
+
+(3.3)
+
+Note that the eﬀective gauge potential in the u direction, Au˜, is generated by the curvature along the v direction, Γv. In this sense, wormhole “gravity” or curvature connection manifests itself in the form of gauge connection in the perpendicular direction.
+Consider a stationary state of the Dirac spinor needs to be single-valued at every point in spacetime, Ψ(t, u, v) must be a periodic function in v with period v ∈ [0, 2π], in the form
+
+Ψ(t, u, v) = e− i Eteimv χ(u) , ϕ(u)
+
+(3.4)
+
+where the orbital angular momentum quantum number m = 0, ±1, ±2, .... χ(u), ϕ(u) are two-component spinors. Eq.(3.1) can be rewritten in the form of coupled equations for the 2-spinors
+
+E + M c2 χ(u) + iDϕ(u) = 0
+c
+
+(3.5)
+
+E − M c2 ϕ(u) + iDχ(u) = 0
+c
+
+(3.6)
+
+From Eq.(3.2), the ﬁrst term is equivalent to the Dirac operator with the pseudo gauge potential Au˜(u) in the u direction. This term is generated from the change in the radius of the hole. The second term contains gauge potential that generates a spin-orbit coupling. A similar setup has been used to study nanotubes under a sinusoidal potential [20]. Here we consider the dispersion relation for the two-dimensional fermions described by the Dirac equation in the presence of the eﬀective potential arising from the wormhole geometrical structure. In the presence of external magnetic ﬁeld B = × A along the z direction, the charged fermion
+
+5
+
+moving in v direction is expected to form a stationary state with quantized angular momentum and energy, i.e. the Landau levels in the curved space with hole. To show this, we need to solve for the stationary states of the system. We can start by considering −iD×Eq.(3.5)- E + M c2 / c ×Eq.(3.6) to obtain
+
+D2
+
++
+
+E2
+
+− M 2c4 2c2
+
+ϕ(u) = 0.
+
+(3.7)
+
+For constant magnetic ﬂux, the operator D2 in the equation of motion now takes the form
+
+D2
+
+=
+
+∂u2
+
++
+
+R R
+
+∂u
+
+−
+
+R2 R 1 2R + 2R + R2
+
+φ
+
+∂v
+
+−
+
+i φ0
+
+2
+
+−
+
+iσ3
+
+R R2
+
+φ ∂v − i φ0 .
+
+Substitute Eq.(3.8) into Eq.(3.7) to obtain
+
+(3.8)
+
+
+
+2
+
+
+
+R
+
+R
+
+m σR − m 2 −
+
+R 2
+
+0 = ϕ (u) + ϕ (u) +  +
+
+R
+
+ 2R
+
+R2
+
++ k2 ϕ(u), 
+
+(3.9)
+
+φ
+
+where m
+
+=
+
+m
+
+−
+
+, φ0
+
+and
+
+the
+
+magnetic
+
+ﬂux
+
+quantum
+
+φ0
+
+≡
+
+hc/e.
+
+We have used the momentum parameter
+
+k2 ≡ (E2 − M 2c4)/ 2c2 and σ is a spin-state index corresponding to spin up (σ=+1) or down (σ = −1).
+
+To be speciﬁc, we parametrise the shape of wormhole by setting R(u) = a coshq(u/r). They are based on
+
+a q-deformation of the usual hyperbolic functions deﬁned by [24]
+
+ex + qe−x
+
+coshq(x) ≡
+
+, 2
+
+ex − qe−x
+
+sinhq(x) ≡
+
+, 2
+
+tanhq (x)
+
+=
+
+sinhq(x) . coshq (x)
+
+(3.10)
+
+Note the relevant properties cosh2q(x) − sinh2q(x) = q,
+
+d dx sinhq(x) = coshq(x),
+
+d
+
+q
+
+dx tanhq(x) = cosh2q(x) .
+
+(3.11)
+
+The deformed functions reduce to hyperbolic functions when q = 1. For this choice, the wormhole will
+
+possess two Hilbert horizons at up,m = r ln X(u) ≡ rR (u)/a = sinhq(u/r) to obtain
+
+r2 r q + a2 ± a where R (up,m) = ±1. Then deﬁne a variable
+
+0=
+
+2
+
+q + X2 ϕ (X) + 2Xϕ (X) + k2r2ϕ(X) +
+
+q 4
+
++
+
+r a
+
+σm
+
+X
+
+−
+
+r a
+
+m
+
+1 + ϕ(X).
+
+q + X2
+
+4
+
+(3.12)
+
+Deﬁne weighting function solution ϕ(X) = (√q + iX)α(√q − iX)βΦ(X), the equation of motion can be rewritten as
+
+0 = (q + X2)Φ
+
+√ (X) + 2 [(α + β + 1)X + i(α − β) q] Φ (X) +
+
+(α + β + 1 )2 + k2r2
+
+Φ(X ),
+
+2
+
+0 = (q + X2)Φ (X) + A + BX Φ (X) + C + k2r2 Φ(X),
+
+(3.13)
+
+where we assume leading to
+
+2i
+
+α2 − β2
+
+√r q + σm
+
+= 0,
+
+a
+
+−2
+
+α2 + β2
+
+q q+ −
+
+r m
+
+2
+= 0,
+
+4a
+
+1 i σm r α = κ1 4 + √q 2a ,
+
+1 i σm r β = κ2 4 − √q 2a , where κ1, κ2 = ±1.
+
+(3.14)
+
+6
+
+The coeﬃcients are deﬁned as the following
+
+√
+
+1
+
+A = 2i(α − β) q, B = 2(α + β + 1), C = (α + β)(α + β + 1) + .
+
+4
+
+(3.15)
+
+Depending on the will be dependent
+
+sign choices of κ1, or independent of
+
+κ2, the
+
+the resulting equation of spin-orbit coupling term
+
+motion and the ∼ σmr/a√q.
+
+corresponding
+
+energy
+
+levels
+
+√
+
+Deﬁne X = −i qY , the equation then takes the form
+
+0 = (1 − Y 2)Φ (Y ) + 2 (α − β) − (α + β + 1)Y Φ (Y ) − (α + β)(α + β + 1) + k2r2 + 1 Φ(Y ) 4
+Eq.(3.16) is the Jacobi Diﬀerential Equation, the energy levels become
+
+(3.16)
+
+En2,m = M 2c4 +
+
+2c2kn2,m = M 2c4 −
+
+2c2 r2
+
+1
+
+2
+
+n+ +α+β .
+
+2
+
+(3.17)
+
+The solutions to Eq.(3.16) are the Jacobi polynomials [25]
+
+Φn(Y
+
+)
+
+=
+
+Pn(α0,β0)(Y
+
+)
+
+=
+
+(−1)n 2nn! (1
+
+−
+
+Y
+
+)−α0 (1
+
++
+
+Y
+
+)−β0
+
+dn dY n
+
+(1 − Y )α0 (1 + Y )β0 (1 − Y 2)n
+
+for integer n and α0 = 2α, β0 = 2β. Finally, the solutions of Eq.(3.9) is
+
+ϕn,m
+
+,σ
+
+(κ1,
+
+κ2,
+
+u)
+
+=
+
+√ (q
+
++
+
+iX
+
+)α
+
+√ (q
+
+−
+
+iX )β
+
+Pn(2β,2α)
+
+√ (iX/ q)
+
+,
+
+(3.18) (3.19)
+
+where X(u) = sinhq(u/r) and κ1, κ2 = ±1. These are the solutions with QNMs found in Ref. [18]. The momentum k for these solutions is generally a complex quantity, so they are not exactly normal modes even when the energy E is real. As will be shown subsequently in VI A and VI B 2, we can analytically continue the solutions to the general n < 0 cases where the normal modes with real energy and momentum can be found as a special case with n = −1/2. Other quasinormal n < 0 solutions are also relevant in the scattering processes.
+
+κ1 κ2
+
+kn,m r
+
+En2,m
+
+ϕ(u)
+
++ + i (n + 1)
+
+M 2c4 −
+
+2 c2 r2
+
+(n
+
++
+
+1)2
+
+q + X2 1/4
+
+√q + iX √q − iX
+
+P i σ2am√qr
+
+1 2
+
++i
+
+σam√qr
+
+,
+
+1 2
+
+−i
+
+σam√qr
+
+n
+
+√ (iX/ q)
+
+−−
+
+in
+
+M 2c4 −
+
+n 2c2 2
+r2
+
+q + X2 −1/4
+
+√q − iX √q + iX
+
+P i σ2am√qr
+
+−
+
+1 2
+
+−i
+
+σam√qr
+
+,−
+
+1 2
+
++i
+
+σam√qr
+
+n
+
+√ (iX/ q)
+
++
+
+−
+
+i
+
+n
+
++
+
+1 2
+
+− σam√qr
+
+M 2c4 −
+
+2 c2 r2
+
+2
+
+n
+
++
+
+1 2
+
++
+
+i σam√qr
+
+q + X 2 i σ2am√qr
+
+√q + iX √q − iX
+
+P 1/4
+
+1 2
+
++i
+
+σam√qr
+
+,−
+
+1 2
+
++i
+
+σam√qr
+
+n
+
+√ (iX/ q)
+
+−
+
++
+
+i
+
+n
+
++
+
+1 2
+
++ σam√qr
+
+M 2c4 −
+
+2 c2 r2
+
+2
+
+n
+
++
+
+1 2
+
+−
+
+i σam√qr
+
+q + X 2 −i σ2am√qr
+
+√q − iX √q + iX
+
+P 1/4
+
+−
+
+1 2
+
+−i
+
+σam√qr
+
+,
+
+1 2
+
+−i
+
+σam√qr
+
+n
+
+√ (iX/ q)
+
+TABLE I: The wave vector along the u direction kn,m , the energy levels En,m , and the solutions ϕ(u) of the Dirac equation in two dimensional wormhole with constant magnetic ﬂux through the throat of the wormhole.
+
+7
+
+A. Solutions in the Upper and Lower plane
+
+In the ﬂat upper (R (u) = 1) and lower (R (u) = −1) plane region outside the wormhole, the equation of motion, Eq.(3.9), takes the form
+
+1 0 =ϕ (u) ± ϕ (u) +
+R(u)
+
+k2
+
+−
+
+(m ∓ σ/2)2 (R(u))2
+
+ϕ(u),
+
+(3.20)
+
+with
+
+R(u) =
+
+u − up + Rp,
+
+−(u − um) + Rm,
+
+for u > up for u < um,
+
+(3.21)
+
+respectively. Rp,m ≡ R(up,m) is the corresponding radial distance on the upper and lower plane. Wave solutions of Eq.(3.20) are the Hankel function of the ﬁrst and second kind. Generically the solutions can be expressed as
+
+ϕ(+)(u) = Im,σHm(2)−σ/2 (kR(u)) + Rm (+,)σHm(1)−σ/2 (kR(u)) ,
+
+(3.22)
+
+for u ≥ up in the upper plane, and ϕ(−)(u) = Tm,σHm(1)+σ/2 (kR(u)) + Rm (−,)σHm(2)+σ/2 (kR(u)) ,
+
+(3.23)
+
+for u ≤ um in the lower plane. The Hankel function of the ﬁrst (second) kind corresponds to the waves propagating in +(−)uˆ direction respectively.
+
+IV. MATCHING CONDITIONS IN THE SCATTERING
+The matching conditions of the wave functions are the equality of the complex energy (E) and angular momentum (m ), and the smooth continuity (i.e., C1 continuity) of the wave functions between the inner and outer region of the wormhole. The momentum k will also be equal due to the relation (3.17).
+Consider the incoming waves propagating in the upper plane region scatter with the wormhole. At the upper Hilbert horizon up, the waves will be partially reﬂected back and partially transmitted into the inner region of the wormhole. The transmitted waves will be again partially reﬂected and partially transmitted into the lower plane region at the lower Hilbert horizon um. In this scenario, there is no incoming waves at the lower Hilbert horizon, i.e., Rm (−,)σ = 0. We can normalize Im,σ ≡ 1 and Rm (+,)σ ≡ Rm,σ where the Hankel function of the ﬁrst and second kind correspond to outgoing and incoming waves, respectively. In the wormhole region um < u < up, the general solution from Eq.(3.19) can be expressed as
+
+ϕ(in)(u) = ϕm,n,σ(+, −, u) + ϕm,n ,σ (−, +, u)
+
+=Am,n,σ
+
+√ (q
+
++
+
+iX )α0
+
+√ (q
+
+−
+
+iX )−α∗0
+
+Pn(−2α∗0 ,2α0)
+
+√ (iX/ q)
+
++ Bm,n ,σ
+
+√ (q
+
++
+
+iX )−α0
+
+√ (q
+
+−
+
+iX )α0∗
+
+Pn(2α0∗ ,−2α0 )
+
+√ (iX/ q)
+
+,
+
+(4.1)
+
+where X = sinhq(u/r),
+
+α = κ1α0,
+
+β
+
+=
+
+κ2α0∗,
+
+and
+
+α0
+
+≡
+
+1 4
+
++
+
+√iq
+
+σm r 2a
+
+and
+
+the
+
+condition
+
+En,σ
+
+=
+
+En ,σ
+
+is
+
+required. Note that the parameter α0 also depends on m, σ.
+
+8
+
+FIG. 2: A wormhole connected smoothly to two ﬂat planes at Hilbert horizons up and um, the midpoint of wormhole
+
+is
+
+at
+
+u0
+
+=
+
+1 2
+
+ln q
+
+where
+
+R(u)
+
+is
+
+minimum.
+
+The
+
+wormhole
+
+is
+
+symmetric
+
+with
+
+respect
+
+to
+
+u0.
+
+1. The matching condition : At upper surface
+
+The boundary between the inner and outer region of the wormhole is at R(up) ≡ Rp, see Fig. 2. The wave function and the ﬁrst derivative of the wave function must be continuous at the boundary. From conservation law of energy-momentum, E(in) = E(out) and k(in) = k(out). The ﬁrst boundary condition at the upper plane is
+
+ϕ(+)(up) = ϕ(in)(up)
+
+Hm(2)−σ/2
+
+(kRp)
+
++
+
+Rm,σ Hm(1)−σ/2
+
+(kRp)
+
+=
+
+Am,n,σ
+
+√ (q
+
++
+
+iX )α0
+
+√ (q
+
+−
+
+iX )−α∗0
+
+Pn(−2α∗0 ,2α0)
+
+√ (iX/ q)
+
++
+
+Bm,n,σ
+
+√ (q
+
++
+
+iX )−α0
+
+√ (q
+
+−
+
+iX )α∗0
+
+Pn(2α∗0 ,−2α0)
+
+√ (iX/ q)
+
+,
+
+(4.2)
+
+where sinhq (up/r) = r/a, and Rp = qa2 + r2. The derivative of the wave function at the boundary u = up
+
+dϕ(+)(u) du |up = k
+
+Hm(2)−σ/2 (kRp) + Rm,nHm(1)−σ/2 (kRp)
+
+.
+
+(4.3)
+
+2. The matching condition : At lower surface
+
+Even for general q ≥ 0, the wormhole is symmetric with respect to the midpoint u0 = ln q/2. The Hilbert horizon at the lower surface is at um where R(um) ≡ Rm = Rp. The second boundary condition takes the form
+
+ϕ(−)(um) = ϕ(in)(um)
+
+Tm,σ Hm(1)+σ/2
+
+(kRm)
+
+=
+
+Am,n,σ
+
+√ (q
+
+−
+
+iX )α0
+
+√ (q
+
++
+
+iX )−α∗0
+
+Pn(−2α∗0 ,2α0)
+
+√ (−iX/ q)
+
++
+
+Bm,n,σ
+
+√ (q
+
+−
+
+iX )−α0
+
+√ (q
+
++
+
+iX )α∗0
+
+Pn(2α∗0 ,−2α0)
+
+√ (−iX/ q)
+
+.
+
+(4.4)
+
+9
+
+The derivative of the wave function at the second boundary u = um, R = Rm is
+
+dϕ(−)(u) du |um
+
+= −kTm,σHm(1)+σ/2
+
+(kRm) .
+
+(4.5)
+
+From the matching conditions (4.2)-(4.5), the scattering coeﬃcients Am,n,σ, Bm,n,σ, Tm,σ, Rm,n can be solved for which here and henceforth the subscripts will be suppressed.
+
+V. ANALYTIC RELATION BETWEEN REFLECTION AND TRANSMISSION COEFFICIENTS
+
+In this section a very general analytic relation between the reﬂection and transmission coeﬃcients are derived from the equation of motions. The relation can be expressed in terms of Wronskian of the solutions in each region. The resulting relation is then veriﬁed numerically for each scattering scenario.
+The generic form of the equation of motion can be expressed as
+
+0 = ϕ (u) + f (u)ϕ (u) + g(u)ϕ(u),
+
+(5.1)
+
+where
+
+R f (u) = =
+R
+
+1 ∓,
+R(u)
+
+tanhq
+
+u r
+
+,
+
+r
+
+for u < um, u > up for um < u < up,
+
+(5.2)
+
+and
+
+
+
+2
+
+
+
+R
+
+m σR − m 2 −
+
+R 2
+
+g(u) =  +  2R
+
+R2
+
++ k2 = 
+
+∓m
+
+σ−m2 R(u)2
+
+−
+
+1 4
+
++ k2
+
+,
+
+1 2r2 −
+
+m
+
+−
+
+aσ 2r
+
+sinhq
+
+(
+
+u r
+
+)
+
+a2
+
+cosh2q
+
+(
+
+u r
+
+)
+
+2
+
++ k2
+
+,
+
+for u < um, u > up
+for um < u < up, (5.3)
+
+respectively. Note that R(u) in the planes is given by (3.21). For any two solutions ϕ1, ϕ2 satisfying (5.1), by
+
+multiplying the equation of motion of one solution with the other solution then subtracting the two equations
+
+we obtain
+
+ϕ1ϕ2 − ϕ2ϕ1 + f (u)(ϕ1ϕ2 − ϕ2ϕ1) = 0,
+
+(5.4)
+
+or in terms of the Wronskian W12 ≡ ϕ1ϕ2 − ϕ2ϕ1,
+
+W12 + f (u) = 0. W12
+
+(5.5)
+
+By integrating this equation in the region covering the wormhole,
+
+ln
+
+W (up)
+
+=−
+
+up
+f (u) du,
+
+W (um)
+
+um
+
+(5.6)
+
+is the resulting general relation and the subscript of the Wronskian has been omitted since the relation is valid for any pairs of solutions. The RHS of (5.6) can be calculated explicitly,
+
+up
+− f (u) du = ln
+um
+
+coshq
+
+um r
+
+coshq
+
+up r
+
+.
+
+(5.7)
+
+Since the wormhole is symmetric with R(um) = R(up) = r2 + qa2, the Wronskian at the two Hilbert horizons are always equal, W (um) = W (up).
+
+10
+The general relation (5.6) can be applied to the two solutions ϕ and ϕ∗, speciﬁcally at um, up where the wave functions and their ﬁrst derivatives in the two connecting regions are equal. In terms of the solutions in the outer regions, we have the relation (with the subscripts suppressed)
+−|T |2 H(2)(kRm)H(2)∗ (kRm) − cc. = H(2)(kRp)H(2)∗ (kRp) − cc. + |R|2 H(1)(kRp)H(1)∗ (kRp) − cc. +R H(1)(kRp)H(2)∗ (kRp) − H(1) (kRp)H(2)∗(kRp) − cc. (5.8)
+
+VI. SCATTERING FOR NORMAL AND QUASI-NORMAL MODES
+In this section we consider scattering of fermion in 2-dimensional planar surface with (1 + 2)-dimensional wormhole. Even this “wormhole” is not the actual spacetime wormhole as in GR and other gravity theories where time dilatation exists, its scattering still reveals a number of interesting properties. As discussed in details below, scattering of physical fermion with real momentum and energy has quantized behaviour that relates momentum and angular momentum of the scattered fermion. For scattering involving QNMs of the fermion, enhancement (and attenuation) of scattered fermion is a possibility. The wormhole and spin parameters are set to r = a = q = 1 = σ for all of the numerical results in this section.
+
+A. scattering for real momentum k
+
+Naturally, incoming waves from outside region are generated with real momentum and energy. When
+
+scattered with the wormhole, only real momentum and energy states (i.e., normal modes) will be allowed
+
+to propagate through the hole and transmitted to the other outside region. The scattering waves will be
+
+partially reﬂected back and partially transmitted through the hole to the other side. From Eqn. (3.17), the
+
+only possibility for real positive momentum k (in units of
+
+c) is when α = −β∗ = ±
+
+1 iσm r 4 + 2a√q
+
+and
+
+n = −1/2. This is the analytic continuation of the equation of motion (3.16) (with (3.17) substituted) to
+
+n < 0 cases. The momentum then takes the value
+
+m
+
+k
+
+=
+
+√ aq
+
+≡
+
+km
+
+,
+
+(6.1)
+
+notably a momentum-angular momentum relation. Only the waves with quantized momentum km and energy given by E = M 2c4 + 2c2km2 are allowed to pass through the wormhole to the other side. For real k since Hν(2)∗(kR) = Hν(1)(kR), and using the identity Hν(1) (z)Hν(2)(z) − Hν(2) (z)Hν(1)(z) = 4i/πz, the relation between
+transmission and reﬂection coeﬃcients from Eqn. (5.8) is simpliﬁed to
+
+|T |2 + |R|2 = 1,
+
+(6.2)
+
+the unitarity condition. Unitarity is the consequence of reality of momentum in the scattering. Table II shows scattering coeﬃcients for m = 1, 2, 3, 4 cases, all of which the unitarity relation (6.2) is numerically veriﬁed. Wave function proﬁle of the matching is shown in Fig. 6(a).
+The m -dependence of the transmission coeﬃcient T and R are shown in Fig. 3. Interestingly, T (m ) and R(m ) converge to oscillating functions for large m . The unitarity condition (6.2) is always obeyed.
+
+B. Scattering involving QNMs
+Scattering involving QNMs usually violates unitarity since the waves are decaying in time. It will satisfy a more general relation given by (5.8). There are three possible scenarios for such scattering.
+
+11
+
+m
+
+A
+
+B
+
+T
+
+R
+
+1 0.486599 + 0.867254i 0.0131312 + 0.0626096i −0.292892 + 0.699874i 0.600951 + 0.251493i
+
+2 0.434897 + 0.900917i −0.0245842 + 0.0137852i −0.408684 + 0.576578i 0.577195 + 0.409121i
+
+3 0.334517 + 0.942154i −0.0147694 − 0.00833657i −0.516515 + 0.462697i 0.480745 + 0.536663i
+
+4 0.219563 + 0.975395i −0.00110507 − 0.0115601i −0.612787 + 0.328918i 0.339825 + 0.633107i
+
+TABLE II: Scattering coeﬃcients for real momentum scenario.
+
+1.0 0.5
+-0.5
+
+1.0
+Re(T) Im(T) 0.5
+
+m′
+
+10
+
+20
+
+30
+
+40
+
+50
+
+-0.5
+
+-1.0
+
+Re(R)
+
+Im(R)
+
+m′
+
+10
+
+20
+
+30
+
+40
+
+50
+
+FIG. 3: The m -dependence of the transmission coeﬃcient T and reﬂection coeﬃcient R in the scattering with real momentum scenario.
+
+1. scattering with m = 0
+2. scattering with nonzero m
+3. scattering with spin-ﬂip σ ↔ −σ in the inner region
+There are three scenarios for scattering involving QNMs of the wormhole. The matching condition requires the energy and inevitably the momentum k to be the same value for inner and outer regions of the wormhole. Generically since the momentum given by (3.17) is always a complex quantity with an exception of km discussed in Sect. VI A, the momentum of wave functions in the outer regions will also need to be complex as well. Consequently, there are spatial attenuation and enhancement of waves in the outer regions as the waves are concurrently decaying in time. The physical energy to be measured in experiments is the real part of the (complex) energy used in the matching conditions.
+
+1. scattering with m = 0
+The scattering in this scenario corresponds to the states in the wormhole with quantized ﬂux φ = mφ0, m = 1, 2, 3, ... and the orbital angular momentum of the states is m . The quantized magnetic ﬂux is required speciﬁcally for the scattering to occur. In this case the energy could be real for massive fermion and small
+1 n. On the other hand, the momentum becomes k = i n + /r, purely imaginary. The waves in the outer
+2 regions to be matched with the ones inside the wormhole thus need to be attenuating or enhancing along the u direction. Since the source of the fermion can locate at ﬁnite distance from the hole in experimental situation, this scattering scenario is still physically relavant.
+The fermionic states inside the wormhole consist of two waves with n = n , ϕ(+, −, n) and ϕ(−, +, n) where (κ1, κ2) = (+, −), (−, +) represents +uˆ, −uˆ going modes respectively. The scattering coeﬃcients for n = 0, 1, 2, 3 are presented in Table III. The transmission and reﬂection coeﬃcients obey general relation (5.8) but not the unitarity condition (6.2) due to the complexity of momentum k. Remarkably, the waves simply
+
+12
+
+nA
+
+B
+
+TR
+
+0 −1.04147i 1.04147 1.70376i 0
+
+1 −2.04891 −2.04891i 4.94571i 0
+
+2 3.60535i −3.60535 14.3565i 0
+
+3 6.2298 6.2298i 41.6741i 0
+
+TABLE III: Scattering coeﬃcients for m = 0 scenario with r = a = q = 1 = σ.
+
+tunnel through the wormhole with no reﬂection, i.e., R = 0. The scattering coeﬃcients for n = 0, 1, 2, 3 are given in Table III. Wave function proﬁle of the matching is shown in Fig. 6(b).
+
+2. scattering with nonzero m
+
+For m = 0 the waves inside the wormhole consist of ϕ(+, −, n) and ϕ(−, +, n ). According to the energy formula (3.17), the −uˆ-travelling wave ϕ(−, +, n ) must have the wave function associated with n = −n − 1 in order to have the same energy, En = En . Since the Jacobi polynomials Pn are zero for non-positive integer n, we need a more general form of the solutions. From the equation of motion (3.16) with (3.17) substituted,
+
+0 = 1 − Y 2 Φ (Y ) + (−2α + 2β + Y (−(2α + 2β + 2)))Φ (Y ) − n(2α + 2β + n + 1)Φ(Y ),
+
+(6.3)
+
+we can analytically continue the solution to the case where n < 0 by solving this equation as the hypergeometric equation. There are two solutions,
+
+22α(Y − 1)−2α 2F1
+
+1
+
+11
+
+1
+
+1−Y
+
+− α + β − γ, − α + β + γ; 1 − 2α;
+
+2
+
+22
+
+2
+
+2
+
+,
+
+(6.4)
+
+and
+
+1
+
+11
+
+1
+
+1−Y
+
+2F1
+
++ α + β − γ, + α + β + γ; 1 + 2α;
+
+2
+
+22
+
+2
+
+2
+
+,
+
+(6.5)
+
+where
+
+γ = −4n(n + 2α + 2β + 1) + (2α + 2β + 1)2.
+
+(6.6)
+
+The ﬁrst solution has kinks or sharp turns in the inner region of wormhole while the second solution is smooth throughout. Therefore we use only the second solution (6.5) in the scattering analysis.
+The incoming waves are scattered by the wormhole, thus excite the fermionic modes in the process. The reﬂected outcomes occurred at both Hilbert horizons where up and um. At the same time, some of the waves in the inner region leaks out through both horizons into the outer planes. The leaking waves are attenuated or enhanced depending on the sign of Im(k). For the −uˆ (+uˆ) moving Hν(2) (Hν(1)), the wave function is spatially enhanced (attenuated) with respect to the increase of u respectively. Wave function proﬁle of the matching is shown in Fig. 6(c). The scattering coeﬃcients for certain parameters are given in Table IV. The m -dependence of the transmission coeﬃcient T and R are shown in Fig. 4. Remarkably, both T and R show a peak at m = ±6.
+Scattering of waves to the wormhole with QNMs excitation is analogous to interaction of oscillating free springs with damped spring. The springs in all regions will eventually decay to zero due to the imaginary part of QNMs in the factor e−iEt for Im(E) < 0. For QNMs with Im(E) > 0, the system will be unstable, the backreaction to the curve surface from the fermion will be large.
+
+13
+
+n
+
+A
+
+B
+
+T
+
+R
+
+0 −0.955236 + 0.304246i 0.357174 + 0.524487i −0.946488 + 0.27418i 2.178 + 4.25366i
+
+1 −0.517527 − 0.00380051i −0.0447471 + 0.569521i −0.695048 − 4.20998i 20.8443 + 62.0839i
+
+2 −0.436724 − 0.524891i −0.304297 + 0.350316i 67.6094 − 33.8419i 408.353 + 1083.51i
+
+3 0.124303 − 0.795473i −0.382871 + 0.0366021i 409.066 + 930.761i 7201.99 + 18766.6i
+
+TABLE IV: Scattering coeﬃcients for the wormhole states with En = En where n = −n − 1, m = 1.
+
+-10
+
+-8
+
+-10
+
+-8
+
+Im(T)
+
+Re(T)
+
+-6
+
+-4
+
+(a)
+
+Im(R)
+
+Re(R)
+
+-6
+
+-4
+
+8000 100
+6000
+
+4000
+
+50
+
+2000
+
+-2
+
+m′
+
+-2000
+
+-50
+
+-4000
+
+400
+
+Im(T)
+
+Re(T)
+
+2
+
+4
+
+6
+
+8
+
+(b)
+
+1000 200
+
+Im(R) Re(R)
+
+-2
+
+m′
+
+-200
+
+-1000
+
+2
+
+4
+
+6
+
+8
+
+10 m′ 10 m′
+
+-400
+
+-2000
+
+(c)
+
+(d)
+
+FIG. 4: The m -dependence of the transmission coeﬃcient T and reﬂection coeﬃcient R in the scattering with nonzero m scenario.
+
+3. scattering with spin ﬂip σ ↔ −σ in the inner region
+An interesting scenario is the spin-ﬂip scattering while maintaining the same energy. Instead of the reﬂected waves with diﬀerent n’s as in Section VI B 2, the reﬂected waves in the inner region of the wormhole could get spin-ﬂipped σ → −σ with (α, β) → −(α, β) and still have the same energy and momentum. From Eqn. (4.1), this corresponds to n = n, σ = −σ. The scattering coeﬃcients for m = 0, 1 are given in Table V,VI respectively. Note the exact values of the scattering coeﬃcients in m = 0 case to the values in Table III. Wave function proﬁle of the matching is shown in Fig. 6(d). The m -dependence of the transmission and reﬂection coeﬃcients are shown in Fig. 5.
+
+14
+
+nA
+
+B
+
+TR
+
+0 −1.04147i 1.04147 1.70376i 0
+
+1 −2.04891 −2.04891i 4.94571i 0
+
+2 3.60535i −3.60535 14.3565i 0
+
+3 6.2298 6.2298i 41.6741i 0
+
+TABLE V: Scattering coeﬃcients for the spin-ﬂip σ ↔ −σ scenario where m = 0.
+
+n
+
+A
+
+B
+
+T
+
+R
+
+0 0.893023 + 0.432957i −0.618941 + 0.390062i 0.421126 + 0.610085i 0.331071 + 0.331983i
+
+1 0.115499 − 1.60794i 1.11401 + 0.323024i 3.55076 − 1.43318i −0.385585 + 2.55466i
+
+2 −2.98693 + 0.177235i 0.0839698 − 2.34635i −0.757591 + 7.39531i −9.83135 + 17.1882i
+
+3 0.572121 + 5.37043i −4.47751 + 0.239986i 129.784 − 108.923i −120.673 + 140.163i
+
+TABLE VI: Scattering coeﬃcients for σ ↔ −σ scenario where m = 1.
+
+6 4 Re(T)Im(T) 2
+
+-4
+
+-2
+
+2
+
+-2
+
+-4
+
+-6
+
+4
+
+m′
+
+-4
+
+4 Re(R) Im(R)
+2
+
+-2
+
+2
+
+-2
+
+-4
+
+4
+
+m′
+
+FIG. 5: The m -dependence of the transmission coeﬃcient T and reﬂection coeﬃcient R in the scattering with spin-ﬂip scenario.
+
+Another possibility for scattering that results in the outgoing waves in the lower plane is to replace H(1)(kR(u)) with H(2)(−kR(u)) in the lower plane region of Eqn. (4.2) and (4.3). All of the scattering coeﬃcients numerically solved turn out to be the same except the change in the transmission coeﬃcients T → −iT for each corresponding case. The wave function proﬁle in the three regions are also identical in every case.
+
+VII. DISCUSSIONS AND CONCLUSIONS
+The scattering of fermion to the 2-dimensional wormhole is calculated by considering both normal and quasinormal modes of the fermionic states in the wormhole. For incoming waves with real momentum and energy, we found the quantum selection of the states allowed to propagate through the wormhole, i.e., the momentum-spin relation given by Eqn. (6.1). Only the states with the quantized momentum related to its angular momentum can be transmitted through the hole via the normal modes and thus be maintained stationary for a long period of time. The waves will also be partially reﬂected with the same momentum and energy. The unitarity condition (6.2) is valid in this case. Notably, the main result, Eqn. (6.1), is also valid for uncharged or zero-ﬂux fermion scattering with a replacement m → m.
+For scattering involving QNMs of the wormhole, the process will be decaying or growing in time due to the imaginary part of the frequency. For QNMs with zero imaginary part, e.g. when m = 0 (this is not exactly a normal mode since the momentum is not real), the energy can be real for massive fermion and suﬃciently
+
+15
+
+small n. Even in such cases, the momentum will be pure imaginary resulting in spatial attenuation and
+
+enhancement of the wave functions in the upper and lower plane regions. The scattering with QNMs of
+
+the wormhole violates unitarity but satisﬁes more generic relation (5.8). Only the incoming waves with the
+
+right complex energy and momentum E = En,m , k = kn,m will undergo a resonant scattering with the hole resulting in partially transmitted and reﬂected waves. The physical energy of the particle, however, is given
+
+by the real part of E. Remarkably, there will be only transmitted (tunneling) waves with no reﬂection for
+
+m = 0 fermion scattering, i.e., when the magnetic ﬂux is quantized in integer multiples of the magnetic
+
+ﬂux quantum φ = mhc/e. For general nonzero m scenario, the transmission and reﬂection coeﬃcients have
+
+curious peaks at m = ±6
+
+Lastly following the argument in Ref. [18], a few comments on fermion scattering in the graphene wormhole
+
+can be made. With c → vF 106m/s and M = 0 replacement, the normal-modes energy of the fermion in
+
+the graphene wormhole is E =
+
+avF√mq
+
+0.658 nm m = a √q eV. Only quasi-fermion with this quantized energy
+
+can be transmitted through the graphene wormhole as a stationary state, and it will be accompanied by the
+
+reﬂected waves obeying the unitarity condition. The eﬀects of stitching the graphene wormhole to the plane
+
+include the exchange of inequivalent Dirac points that can be taken into account by the eﬀective ﬂux of gauge
+
+ﬁeld [20, 26]. This eﬀective ﬂux can simply be added to the magnetic ﬂux in our work resulting in the change of the eﬀective angular momentum number m = m − φtotal and otherwise the same results.
+φ0
+
+Acknowledgements
+P.B. is supported in part by the Thailand Research Fund (TRF), Oﬃce of Higher Education Commission (OHEC) and Chulalongkorn University under grant RSA6180002.
+
+Appendix A: Wave function proﬁles
+
+References
+[1] K. S. Novoselov, A. K. Geim, S. V. Morozov, D. Jiang, M. I. Katsnelson, I. V. Grigorieva, S. V. Dubonos and A. A. Firsov, Nature 438, 197 (2005) doi:10.1038/nature04233 [cond-mat/0509330 [cond-mat.mes-hall]].
+[2] E. Braun et al., “Generating carbon schwarzites via zeolite-templating”, Proc. Natl. Acad. Sci. U.S.A. 115, E8116-E8124 (2018).
+[3] A. Lherbier, H. Terrones, and J.-C. Charlier, “Three-dimensional massless Dirac fermions in carbon schwarzites”, Phys. Rev. B 90, 125434 (2014).
+[4] K. S. Novoselov et al., “Electric Field Eﬀect in Atomically Thin Carbon Films”, Science 306, 666669 (2004). [5] L. J. Yin, K. K. Bai, W. X. Wang, S. Y. Li, Y. Zhang and L. He, “Landau quantization of Dirac fermions in
+graphene and its multilayers,” Front. Phys. (Beijing) 12, no. 4, 127208 (2017). doi:10.1007/s11467-017-0655-0 [6] F. Guinea, M. I. Katsnelson, and A. K. Geim, “Energy gaps, topological insulator state and zero-ﬁeld quantum
+Hall eﬀect in graphene by strain engineering”, Nature Phys. 6, 30-33 (2010). [7] F. De Juan, J. L. Manes, and M. A. H. Vozmediano, “Gauge ﬁelds from strain in graphene”, Phys. Rev. B 87,
+165131 (2013). [8] Y.-L. Wang, L. Du, C.-T. Xu, X.-J. Liu, and H.-S. Zong, “Pauli equation for a charged spin particle on a curved
+surface in an electric and magnetic ﬁeld”, Phys. Rev. A 90, 042117 (2014).
+
+16
+
+real k
+
+-4
+
+-2
+
+Re(φ)
+
+Im(φ )
+
+0
+
+2
+
+u
+
+m' = 1
+
+(a) real k
+
+Im(φ), n = 1 4
+
+2
+
+Im(φ), n = 0
+
+-1.5
+
+-1.0
+
+-0.5 -2
+
+0.5
+
+1.0
+
+1.5 u
+
+Re(φ), n = 0
+
+-4 -6
+(c) general m
+
+Re(φ), n = 1
+
+m' = 0
+
+-1.5
+
+-1.0
+
+15
+n=2 10 Re(φ)
+5
+
+n=1 n=0
+
+-0.5 -5
+
+0.5
+
+1.0
+
+1.5 u
+
+-10 Im(φ)
+
+-15
+(b) m = 0
+
+spin flip m' = 1
+
+Im(φ), n = 1
+4
+
+2
+
+Im(φ), n = 0
+
+-1.5
+
+-1.0
+
+-0.5
+
+-2
+
+0.5
+
+1.0
+
+1.5 u
+
+Re(φ), n = 0
+
+Re(φ), n = 1
+
+(d) spin ﬂip
+
+FIG. 6: Wave function proﬁles of scattering fermion for (a) real momentum, (b) m = 0, (c) general m , and (d) spin-ﬂip scenario. The real and imaginary parts of the wave functions in the wormhole region um < u < up are depicted in red.
+
+[9] Y.-L. Wang, H. Jiang, and H.-S. Zong, “Geometric inﬂuences of a particle conﬁned to a curved surface embedded in three-dimensional Euclidean space”, Phys. Rev. A 96, 022116 (2017).
+[10] R. C. T. da Costa, “Quantum mechanics of a constrained particle”, Phys Rev A 23, 1892 (1981). [11] R. C. T. da Costa, “Constraints in quantum mechanics”, Phys Rev A 25, 2893 (1982). [12] M. Burgess, and B. Jensen, “Fermions near two-dimensional surfaces”, Phys. Rev. A 48, 1861 (1993). [13] P. Castro-Villarreal, and R. Ruiz-Sa´nchez, “Pseudo-magnetic ﬁeld in curved graphene”, Phys. Rev. B 95, 125432
+(2017). [14] G. H. Liang, Y. L. Wang, M. Y. Lai, H. Liu, H. S. Zong and S. N. Zhu, “Pseudo-magnetic ﬁeld and eﬀective
+spin-orbit interaction for a spin-1/2 particle conﬁned to a curved surface,” Phys. Rev. A 98, no. 6, 062112 (2018) doi:10.1103/PhysRevA.98.062112 [arXiv:1808.09959 [quant-ph]]. [15] M. V. Entin, and L. I. Magarill, “Spin-orbit interaction of electrons on a curved surface”, Phys Rev B 64 085330 (2001). [16] T. Rojjanason, and S. Boonchui, “The Geometrical Parameters Condition for Bound and Unbound State in Graphene Wormhole”, in Siam Physics Congress, Rayong, Thailand, 24-26 May (2017). [17] T. Rojjanason, J. Phys. Conf. Ser. 1380, no. 1, 012165 (2019). doi:10.1088/1742-6596/1380/1/012165 [18] T. Rojjanason, P. Burikham and K. Pimsamarn, Eur. Phys. J. C 79, no. 8, 660 (2019) doi:10.1140/epjc/s10052019-7156-y [arXiv:1810.12668 [hep-th]]. [19] F. Wilczek, “Magnetic Flux, Angular Momentum, and Statistics”, Phys. Rev. Lett. 48, 1144 (1982). [20] J. Gonzalez and J. Herrero, “Graphene wormholes: A condensed matter illustration of Dirac fermions in curved space”, Nucl. Phys. B 825, 426-443 (2010). [21] A. Iorio, and G. Lambiase, “Quantum ﬁeld theory in curved graphene spacetimes, Lobachevsky geometry, Weyl
+
+17
+symmetry, Hawking eﬀect, and all that”, Phy. Rev. D 90, 025006 (2014). [22] R. A. Konoplya and C. Molina, “Ringing wormholes”, Phys. Rev. D 71, 124009 (2005). [23] J. Yepez, “Einsteins vierbein ﬁeld theory of curved space”, arXiv:1106.2037 [gr-qc] (2011). [24] A. Arai, “Exactly solvable supersymmetric quantum mechanics”, J. Math. Anal. Appl. 158, 63 (1991). [25] H. Egrifes, D. Demirhan, and F. Buyukkilic, “Exact solutions of the Schrodinger equation for the deformed
+hyperbolic potential well and the deformed four-parameter exponential type potential”, Phys. A 275, 229-237 (2000). [26] G. Garcia, P. Porfrio, D. Moreira and C. Furtado, Nucl. Phys. B 950, 114853 (2020) doi:10.1016/j.nuclphysb.2019.114853 [arXiv:1906.09195 [hep-th]].
+

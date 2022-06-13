@@ -1,0 +1,3800 @@
+Computer Methods in Applied Mechanics and Engineering 89 (1991) 141-219 North-Holland
+A new finite element formulation for computational fluid dynamics: X. The compressible Euler and Navier-Stokes equations
+Farzin Shakib
+CENTRIC Engineering Systems, Inc., 3801 East Bayshore Road, Palo Alto, CA 94303, lJSA
+Thomas J.R. Hughes and Zdenek Johan
+Division of Applied Mechanics, Durand Building, Stanford University, Stanford, CA 94305. lJSA
+Received 7 November 1990
+A space-time element method is presented for solving the compressible Euler and Navier-Stokes equations. The proposed formulation includes the variational equation, predictor multi-corrector algorithms and boundary conditions. The variational equation is based on the time-discontinuous Galerkin method, in which the physical entropy variables are employed. A least-squares operator and a discontinuity-capturing operator are added, resulting in a high-order accurate and unconditionally stable method. Implicit/explicit predictor multi-corrector algorithms, applicable to steady as well as unsteady problems, are presented; techniques are developed to enhance their efficiency. Implementation of boundary conditions is addressed; in particular, a technique is introduced to satisfy nonlinear essential boundary conditions, and a consistent method is presented to calculate boundary fluxes. Numerical results are presented to demonstrate the performance of the method.
+1. Introduction
+This paper presents a space-time finite element method to solve the compressible Euler and Navier-Stokes equations. Mathematical analyses, feasibility and implementation studies, and numerical experiments have been used to design this method. We have placed a great deal of emphasis on formulating this method in such a manner that its stability, convergence and accuracy could be rigorously established. This is crucial, since a method which cannot be proved stable, convergent, accurate, etc., is very likely not to have these properties. When such a method is faced with the special situations which arise frequently in industrial applications, it may fail. Since our basic method has firm foundations, peripheral techniques, such as domain decomposition and efficient linear solution algorithms, were able to be incorporated simply and effectively. Finally, we have tested this method on a variety of problems, ranging from steady hypersonic flows to transient nearly-incompressible flows.
+00457825/91/$03.50 @ 1991 Elsevier Science Publishers B.V. All rights reserved
+
+142
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+1.1. Overview
+
+We begin, in Section 2, by stating the compressible Euler and Navier-Stokes equations, and reviewing their symmetrization via the (physical) entropy variables as described in [I]. The Galerkin formulation of this symmetric form is dimensionally consistent. This is not only essential for theoretical analyses, such as stability and convergence proofs, but also desirable for implementation, since it eliminates the need for subjective nondimensionalizations and contributes to the efficiency of iterative solution algorithms. More significantly, the discrete solution of the Galerkin formulation based on these variables automatically satisfies the Clausius-Duhem inequality, or the second law of thermodynamics.
+In Section 3, we define our variational formulation based on the symmetric form of the compressible Navier-Stokes equations. We employ the time-discontinuous Galerkin method as the starting point of our formulation. This results in a complete space-time finite element discretization, which eliminates the need for an additional ordinary differential equation solver. Moreover, the mathematical properties of this method, applied to unsteady problems, are completely analogous to those of the Galerkin method, applied to steady problems. This was first observed by Johnson et al. [2]. This is important becausethe construction of a good method based on the Galerkin method for steady problems readily extends to unsteady problems.
+When applied to advection-dominated problems, the Galerkin method, and likewise the discontinuous Galerkin method, lack stability. Unresolved internal and boundary layers give rise to oscillations which pollute the entire solution. To remedy this difficulty, we add a least-squares operator and a discontinuity-capturing operator to our basic Galerkin method. These operators provide the needed stability without sacrificing accuracy. The end result is a high-order accurate and unconditionally stable method. For an overview see [3], and for a similar method applied to second-order hyperbolic equations see [4].
+The predecessors to our Galerkin /least-squares method and discontinuity-capturing operator are the SUPG method and the discontinuity-capturing operator proposed by Hughes and Mallet [5,6]; see also [7]. Earlier references to the SUPG method are [8,9], and a review of the method is presented in [lo]. For the SUPG method, and to a lesser extent for this method with the discontinuity-capturing operator adjoined, a complete set of mathematical analyses has been developed. Hughes et al. [ll] have derived error estimates for linear symmetric advective-diffusive systems, and Johnson et al. [12] have established a convergence proof for nonlinear hyperbolic conservation laws, such as the Euler equations. See [13] for recent results. In the latter part of Section 3, we extend these results, or provide the basis for their extension, to our variational formulation, as applied to the compressible Navier-Stokes equations. To our knowledge, no such mathematical analyses exist for other existing finite element or difference methods in computational fluid dynamics.
+Finite element discretization of the space-time variational equation leads to a system of nonlinear algebraic equations at each time step. In Section 4, we develop classes of implicit/explicit-predictor multi-corrector algorithms to reduce the nonlinear system to sequences of linear systems. In particular, we present two finite element discretizations. The first discretization consists of a constant-in-time approximation, which leads to an inexpensive and highly stable first-order time-accurate algorithm, ideal for steady problems. The performance of this algorithm is further improved by employing a local-time-stepping strategy.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+143
+
+The second discretization consists of a linear-in-time approximation. This leads to a stable, third-order time-accurate algorithm, involving a linear system with twice as many equations and unknowns as the constant-in-time approximation. Employing a preconditioning technique, the size of this system is reduced by half. The end result is a stable third-order time-accurate algorithm, appropriate for capturing transient behavior. A comprehensive stability and accuracy analysis of these algorithms as applied to a time-dependent scalar advective-diffusive model problem is presented in [14].
+In Section 5, we address the implementational aspects of boundary conditions. In particular, we present a consistent technique for satisfying nonlinear essential boundary conditions within the context of the predictor multi-corrector algorithms. This has practical importance since, in our formulation, the equations relating the working variables (i.e., entropy variables) to the variables used in specifying boundary conditions (i.e., primitive variables) are highly nonlinear. This is also true for methods based on the conservative variables, and the technique can be extended to these cases. We go on to study flux-type boundary conditions that arise naturally from our variational formulation, and conclude the section by presenting a consistent method for calculating wall fluxes.
+In addition to numerical tests in Sections 3-5 that are designed to examine particular aspects of our method, in Section 6 we present numerical results to demonstrate overall effectiveness. These.results are for two-dimensional problems ranging from steady high-speed to transient low-speed, nearly-incompressible flows. A multi-element group preconditioned GMRES algorithm for solving the nonsymmetric linear systems arising from the discretization is presented in [15] along with several additional numerical studies. In Section 7, we draw conclusions.
+In Appendix A, we present the flux vectors and coefficient matrices of the compressible Navier-Stokes equations written in terms of entropy variables. In Appendix B, we provide the transformation matrices employed to satisfy essential boundary conditions.
+
+2. Problem statement
+In this section we review the compressible Euler and Navier-Stokes equations. Hereafter, we consider the compressible Euler equations simply as a special case of the compressible Navier-Stokes equations. Classically, these equations have been written in terms of so-called conservative variables; see [16]. The Galerkin formulation of the compressible Navier-Stokes equations based on these variables lacks certain properties which are needed to establish stability proofs and convergence analyses. To obtain the needed properties, Hughes et al. [l] employed physical entropy variables. They symmetrized the compressible Navier-Stokes equations by writing them in terms of these variables. The Galerkin formulation of this symmetric form not only is dimensionally consistent, but also makes physical sensein that the Clausius-Duhem inequality, or the second law of thermodynamics (which is the relevant physical stability condition for the compressible Navier-Stokes equations), is automatically satisfied by the discrete solution. In this section we describe the physical entropy variables along with the symmetric form of the compressible Euler and Navier-Stokes equations. These equations are the starting point of the work herein.
+
+144
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+2.1. The compressible Euler and Navier-Stokes equations
+In conservation form, the compressible Navier-Stokes equations are written as
+
+u,, + Fi i = F$ + s- )
+
+(2.1)
+
+where, in three dimensions,
+
+Ul
+u2 (conservative variables) ,
+u3
+e I
+I-10 ‘Ii
+
+(2.2)
+
+(2.4)
+
+(2.5)
+
+In the above relations: p is the density; u = {u,, u2, u3}* is the velocity vector; e is the total energy density, which is the sum of the internal energy density Land the kinetic energy density 1z412/2p; is the thermodynamic pressure; Sij is the Kronecker delta (i.e., 8, = 1 for i = j, and 6, = 0 for i # j); 7 = [T,] is the viscous-stress tensor; 4 = { ql, q2, q3} * is the heat-flux vector;
+b = {b,, b,, b3}* is the body force vector per unit mass; r is the heat supply per unit mass; and the summation convention is used throughout.
+The five equations in (2.1) represent the conservation of mass, momentum and energy. To
+(2.1) we append the following constitutive relations:
+
+L=cve,
+
+(2.6)
+
+p =.(-Y - l)P > Tij = Au k,k’ij + P(‘i,j
+
++ ‘j,i) Y
+
+(2.7)
+WV
+
+qi=-K8.
+
+91 ’
+
+(2.9)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+145
+
+where c, is the specific heat at constant volume; 0 is the absolute temperature; y is the ratio of specific heats (i.e., y = cB/c,, where cP is the specific heat at constant pressure); A and /.Lare
+the viscosity coefficients; and K is the coefficient of thermal conductivity. Equations (2.6) and (2.7) constitute the perfect gas law; (2.8) defines the viscous stress components; and (2.9) is
+Fourier’s law of heat conduction. It is useful to rewrite (2.1) in quasi-linear form
+
+U,, + A;U,, = (KijU3j),i + 9 ,
+
+(2.10)
+
+where Ai = Fi,? is the ith Euler. Jacobian matrix; and K = [Kij] is the diffusivity matrix, with the K,‘s satisfymg K,U, j = F f.
+We view the compressible Euler equations as the compressible Navier-Stokes equations with zero diffusion and no source terms. Hence, the compressible Euler equations are simply
+
+U,,+A,U,,=O.
+
+(2.11)
+
+Note that the A,‘s are not symmetric. However, all linear combinations of the Ai’s have real eigenvalues and a complete set of eigenvectors; hence, (2.11) constitutes a hyperbolic system of conservation laws; see [16].
+
+2.2. Symmetrization using entropy variables
+Entropy variables have been investigated by Godunov [17], Mock [18], Harten [ 191, Tadmor [20], Hughes et al. [l], Dutt [21], and Johnson et al. [12]. Here we review and adopt the physical entropy variables:
+We define a scalar generalized entropy function as
+
+where
+
+H = H(U) = -p(s - S”) )
+
+(2.12)
+
+s = ln( p/p’)
+
+(2.13)
+
+is the nondimensional entropy, and s0 is its reference value. H is a strictly convex function of U. Consequently, a change of variables U H V can be defined by letting
+
+V’= aH/dU ,
+V is referred to as the vector of (physical) following mapping:
+
+(2.14) entropy variables. Equation (2.14) yields the
+
+(2.15)
+
+146
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+where
+
+s = hl((y - l)plIu:) )
+
+(2.16)
+
+I-)L=uj-(u:+cI:+u:)/2u,.
+
+(2.17)
+
+The inverse mapping, V- U, is given by
+
+-4
+
+v,
+
+u = p1
+
+vv,,
+
+1 - <v; + vi + vi> /2v,
+
+where
+
+PL = ((7 - 1) I(-V5)‘)“y-”
+
+exp((-s + so) l(y - 1)) ,
+
+(2.18) (2.19)
+
+(2.20)
+
+Using the change of variables U = U(V), (2.10) is written as
+
+where
+
+&v,, A-L&v,, = (K,.vi)*, + 9 ) A”” = q, 7
+
+(2.21) (2.22)
+
+iii = A,&,
+
+(2.23)
+
+iii = Kiji, .
+
+(2.24)
+
+Du_eto the structure of H: (i) A,,-,is symmetric positive-definite,
+(ii) A-i is symmetric,
+(iii) K = [K,.] i’s symmetric positive-semidefinite. The explicit definition of the flux vectors and coefficient matrices is presented in terms of
+V-variables in Appendix A. In addition to these arrays, it is useful to expressthe source vector as the product of a coefficient matrix and the vector V. That is, we wish to define C such that
+
+&= -9.
+
+(2.25)
+
+Note that C is not uniquely defined. In Appendix A, we have included one possible definition which is symmetric and well-defined. Similar to (2.22)-(2.24), we define a matrix C such that
+
+c=CA.”,
+
+(2.26)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+147
+
+Note that in general CU#--9.
+
+(2.27)
+
+The symmetry of (2.21) not only is important for mathematical analyses, but it can also be exploited in numerical algorithms, such as iterative solution algorithms (see [15]). In addition, this symmetric system of the compressible Navier-Stokes equations leads to a global statement of stability. A stability result is obtained by taking the dot product of (2.21) with V:
+0= v- (&V,,+ A”;v,-, (Kijv,j),,- 9)
+
+= 1
+
+(-(PTj),,-(PTui),i
+
+0
+
++ c,Vi’(Kijv,,)-(q;IB).i
+
++ Pr/‘)
+
+’
+
+(2.28)
+
+where q = c,s denotes the thermodynamic entropy. Rearranging yields
+
+(PI),,
+
++ (Prl’i),i
+
++ (Si/‘),i
+
+Pr10 -
+
+= ‘uv.i
+
+* CKijv,j>
+
+a’.
+
+(2.29)
+
+This is the Clausius-Duhem inequality, which is the basic nonlinear stability condition for the compressible Navier-Stokes equations. This leads to an important result: The Galerkin
+finite element solution automatically inherits the entropy production property of the compress-
+ible Navier-Stokes equations. (See also Section 3.6.1.) Observe from (2.28) and (2.29) that the Galerkin formulation of the compressible Euler
+equations results in the conservation of entropy. This means that the Galerkin finite element method is inadequate for solving compressible Euler problems where entropy is actually produced, such as problems with shocks. Some additional mechanism is needed to attain the proper entropy production.
+
+REMARK 2.1. Neither the flux vectors nor the coefficient matrices are dependent on the value of s,. Consequently, s0plays no role in the numerical solution, and for implementational convenience it is set to zero. In mathematical analyses, however, s0plays an important role: in assuming s, is greater than s throughout the domain, H becomes strictly positive and can be considered as an entropy-norm measure (see Section 3.6.1).
+
+3. Space-time Galerkin /least-squares variational formulation
+In this section we define our finite element variational equation for the solution of the compressible Euler and Navier-Stokes equations. We employ the time-discontinuous Galerkin method as the basis of our formulation. This method generates a complete space-time finite element discretization which eliminates the need for any additional ordinary differential equation solver to resolve the temporal behavior of the problem. By using discontinuous discretization in time, we are able to march sequentially through time and solve for only a fraction of the total solution at one time. The mathematical properties of the time-discontinuous Galerkin method for unsteady problems are completely analogous to those of the
+
+148
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Galerkin method for the steady case, as observed by Johnson et al. [2]. This is important because the construction of a good method based on the Galerkin method for steady problems readily extends to unsteady problems.
+The Galerkin method, and similarly the discontinuous Galerkin method, lack stability. This is manifested by spurious oscillations generated by unresolved internal and boundary layers. To improve upon the-stability of these methods, while maintaining their order of accuracy, we add a least-squares operator to our basic Galerkin formulation. This operator is similar to the SUPG operator presented by Hughes and Mallet [5]; however, it has a conceptually simpler construction and appears more amenable to mathematical analysis.
+Utilizing the SUPG operator, Johnson et al. [2] obtained error estimates for linear first-order symmetric hyperbolic systems, Hughes et al. [ll] established error estimates for linear symmetric advective-diffusive systems, and Johnson et al. [12] derived a convergence proof for nonlinear hyperbolic conservation laws (see [13] for recent results). Extension of these works to the Navier-Stokes equations is non-trivial. We include in this section some of the main ingredients needed for such an extension.
+The Galerkin/least-squares method is a linear method. It is well known that higher-order linear methods cannot produce non-oscillatory approximations to discontinuities. In practice, we observe overshoots and undershoots in the immediate vicinity of discontinuities and unresolved sharp layers. It is possible, in principle, to construct nonlinear operators to control these oscillations and at the same time maintain higher-order accuracy in smooth regions. Hughes et al. [22] and Hughes and Mallet [6] have proposed nonlinear discontinuity-capturing operators which fit nicely within the framework of the Galerkin/least-squares method.
+Johnson et al. [23] have employed these ideas, and Galego and Dutra do Carmo [24] have proposed an alternate form. We further improve and numerically study two such operators in
+this section.
+
+3.1. Finite element space
+Consider the partition 0 = to < t, < * +* < t, = T of the time interval I = IO, T[. Denote by I,, = It,, tn+* [ the nth time interval. Clearly Z = U rii Z, U {t, , t,, . . . , t,-,}. A space-time ‘slab’ is then defined as
+
+Q,=fbd,,,
+
+(W
+
+with boundary
+
+P, = r x I, )
+
+(3.2)
+
+where a denotes the d-dimensional spatial domain with boundary r; see Fig. 3.1.1. For the nth space-time slab, let the spatial domain be subdivided into (n,,), elements, L?z,
+e=l,... , (n,,),. Then, for the nth slab, we define space-time element domains as
+
+Q; = 0; X I, ) e = 1, . . f f (n,,),
+
+.
+
+(3.3)
+
+Within each space-time element the trial solution and weighting functions are approximated by &h-order interpolation polynomials, pk. These functions are assumed Co continuous within
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+149
+
+Fig. 3.1.1. A space-time slab.
+each space-time slab, but are discontinuous across the interfaces of the slabs, namely at times t,, t,, . * 9, t,-,. The finite element spacesare defined as
+
+trial functions :
+
+yi = V” I Vh E (C”(Q,>>*, VhIQ; E (Pk(Q’,))“,
+weighting functions:
+
+q(P) = g(t) on P,} ;
+
+(3.4)
+
+“crf:= {W” ( Wh E (C”( Q,))m, WhleE E (9J Qz))“, q’(Wh) = 0 on P,} ;
+
+(3.5)
+
+where m is the number of degrees of freedom; q, q’ : 6%mI+ 2”, 0 d i d m, are the nonlinear boundary condition transformation functions and g is the prescribed boundary condition (see Section 5 for detailed treatment of boundary conditions).
+Considering that the finite element functions are discontinuous at the space-time slab interfaces, let
+W(t,‘=) &n$WQ+, e>*
+
+And define the jump in time of W as
+
+(3.7)
+
+1.50
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+3.2. Weighted residual formulation
+The statement of our finite element space-time weighted residual formulation is as follows: Within each Q,, n=O,. . . , N - 1, find Vh E Yi such that for all Wh E Vi the following variational equation is satisfied:
+I8 (-W;.U(Vh)-W+‘i(Vh)+W;.K,V;j+Wh.6Vh)dQ n
++ID(w”K+1)-V”K+, >>- w”<t),’*W”(t, >>d>fl
+
+=Ip Wh e(-Fi(Vh) n
+
++ F,“(Vh))n; dP .
+
+(3.8)
+
+The first, second and last integrals in (3.8) constitute the time-discontinuous Galerkin formulation. The flux terms, including the time flux term, are formulated in the integrated-bypart form, which results in conservation of fluxes under inexact quadrature rules. The non-integrated-by-parts form, in contrast, results in loss of conservation.
+The time boundary integral resulting from the integration-by-parts of the time flux term is added to the jump condition
+
+to give the second integral in (3.8). This jump condition is the mechanism by which the information is propagated from one space-time slab to the next. In other words, the jump condition imposes a weakly enforced initial condition for the space-time slabs. The role the jump condition plays is to add a consistent and higher-order numerical dissipation, which facilitates the stability proof. Strongly enforced initial conditions lead to a less stable method, and only under certain restrictions can stability be readily shown; see [25].
+The boundary integrals resulting from the integration-by-parts of the Euler and diffusive flux terms are written on the right-hand side of (3.8). These terms give rise to a set of natural boundary conditions, which will be examined in Section 5.
+The third integral in (3.8) is the least-squares operator. 9 is defined as the compressible Navier-Stokes differential operator:
+
+2 = fi,&3t + A”,aldx, - (a/ani)(izijalaxj) + E .
+
+(3.10)
+
+Qis an m x m symmetric positive-semidefinite least-squares matrix of intrinsic time scales (see [S]). Definition of this matrix, which will be examined in detail in the next section, greatly influences the behavior of the solution. The least-squares integral is only defined in the interior of the elements. Hence, the integrals on the boundaries of the elements are excluded. The continuity of the diffusive fluxes is weakly enforced by the Galerkin integral in the usual
+way.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+151
+
+The fourth integral in (3.8) is the discoginuity-capturing
+
+operator. (See [6,22] for initial
+
+presentation of ideas of this kind.) Here, V’ is defined as the generalized local coordinates
+
+gradient operator. Depending on the differential terms present in 9, V’ may include up to
+
+second-order local derivatives. (The precise definition will be given in the next section.) yh is a
+
+scalar discontinuity-capturing
+
+factor of dimension one over time, and
+
+(3.11)
+
+Using two different design philosophies, we propose two definitions for yh, namely (1) Linear form:
+(3.12)
+(2) Quadratic form:
+(3.13)
+where IJZVh 1: = J.ZVh . &Th. Note that both definitions of vh are proportional to powers of the residual L?Vh. The detailed derivation of both forms will be presented in Section 3.4.
+The variational equation (3.8) is a consistent formulation in the sense that it is exactly satisfied by the exact solution of the compressible Navier-Stokes equations.
+3.3. Least-squares operator
+The general construction of the least-squares operator is quite simple. Let Z’ be the compressible Navier-Stokes differential operator (3.10). Then the least-squares operator is defined as
+
+= Jo(/ZWh). +‘Vh) dQ .
+r=l ”
+
+(3.14)
+
+The structure of T is the crux of this method. Although the construction of the least-squares operator is simple and straightforward, the construction of r is not. Only under severe restrictions, such as those for one-dimensional and/or diagonalizable systems, can one find optimal definitions ; see [5]. These cases, however, do provide us with general design properties to emulate. Simple model problems show that T cannot be proportional to the identity matrix. Linear error estimates, convergence proofs and dimensional analysis also provide us with design conditions to satisfy, but these analyses are not sufficient to produce a unique definition for T. Hughes and Mallet [5] and Mallet [7] have determined a definition for T for the Navier-Stokes equations by generalizing the definition of T for the restricted cases. The form of this definition will be presented in Section 3.3.2. We endeavor to improve upon this definition herein. Consequently, we will propose a more general definition in Section 3.3.1. In Section 3.6, we will show that the new definition satisfies the properties needed to
+
+152
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+establish linear error estimates and nonlinear convergence proofs. For an overview of the Galerkin / least-squares method we refer to [3,26].
+Before going on, let us look briefly at the predecessorof the least-squaresoperator, namely the SUPG operator; for details we refer to [5,7]. The general form of this operator is
+
+i,W;) - +‘V”) dQ .
+
+(3.15)
+
+The weighting function ‘slot’ consists only of the first-order part of the differential operator. Consequently, in general, this operator is not symmetric. In the presence of diffusion, the stability of the SUPG operator is dependent on the exact structure of the 7 matrix and a so-called inverse error estimate (see [ll]). These limit the generality of T. In contrast, the least-squares operator is stable for any symmetric positive-semidefinite matrix 7.
+3.3.1. A general design for r In this section, we present a general design for 7. Denote by Vt and Vzrthe local gradient in
+element spatial and space-time coordinate systems, respectively. That is,
+
+(3.16)
+
+(d’ - n) x n ,
+
+(3.17)
+
+where I, is the identity matrix of dimension 12,and d’ dzfd + 1. Let Vk be Vc applied i times. For example,
+
+7 (d* - n) x n .
+
+(3.18)
+
+Let the generalized gradient operator in the local element coordinates be defined as
+
+P5ICn,,=((1 + d’ + d*) -n) x n . [ 1v:
+
+(3.19)
+
+The number of terms included in v’ depends on the differential operator 2. The above definition accounts for all the gradient terms in (3.10).
+Let the generalized Jacobian matrix in the local element coordinates be defined as
+
+F. Sh&ib et al., The compressible Euler and Navier-Stokes equations
+
+153
+
+(3.20)
+
+Assuming that A, is locally constant, the differential operator acting on Vh can be written as
+
+9vh = 2: $v” .
+
+(3.21)
+
+Note that the assumption on a, is made only for purposes of designing 7. Moreover, this assumption is only required in the presence of diffusion.
+The least-squares operator for the element Qz can now be written as
+
+where
+
+I,: (Z’W”) . +Vh) q zfAp T&q
+
+dQ = j.QneFW” . K, eV” dQ ,
+
+(3.22) (3.23)
+
+is a (( 1 + d’ + d2) * m) X (( 1 + d’ + d2) +m) symmetric positive-semidefinite matrix, with rank no greater than-the rank of 7 (i.e., em). The m x m blocks of EC are dimensionally proportional to A, and to inverse-powers of the temporal and spatial mesh size.
+For low-order elements, we proceed by designing 7 such that
+
+jq = (&A”;lk‘;)l!Z )
+
+(3.24)
+
+where the square root is taken on the nondegenerate part and with respect to the metric tensor A,. In other words, the square-root inverse is defined based on the m nonzero eigenvalues of the following generalized eigenvalue problem:
+
+((a,a,‘a‘;)-hi[hA~Yl)~~=~,
+
+i=l,...,m,
+
+(3.25)
+
+which yields
+
+>
+
+(3.26)
+
+I.
+
+(3.27)
+
+154
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+As a consequence
+
+4 can b_e-viewedas the ‘absolute value’ of the rectangular matrix A, with respect to the metric tensor A o‘. In the case of one-dimensional pure advection systems, the combination of this operator and the Galerkin integral results in full-upwind differencing on each mode of the system.
+The above diffusivity matrix can be attained by setting
+
+7 =L”-t
+
+(pi;
+
+[-% A”,’
+
+I‘\r &L”-’
+
+1-112 i-1
+
+=A”;1
+
+a;
+
+c A”,’
+
+(
+
+[
+
+y
+
+A,A”;l
+
+I
+
+-112
+) (3.i9)
+
+where
+
+ii’ dGffAl, (symmetric decomposition)
+
+(3.30)
+
+and the square-root inverse is taken on a small matrix of size m. Note that (3.30) represents any symmetric decomposition, e.g., Cholesky decomposition. _
+To verify that the above definition of 7 results in (3.24), let Kc and ? be the nondimensional counterparts of & and 7 defined as
+
++=EGL”.
+Then from (3.24)
+
+(3.32) (3.33)
+
+where we have used the fact that the square root in g6 is taken with respect to A”,. Also, from (3.23) and (3.29)-(3.32)
+
+The above equation and (3.33) are the same. This completes the verification. Substitution of (3.20) and the definition of the Jacobian matrices from (2.23), (2.24) and
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+155
+
+(2.26) into (3.29) leads to
+
+It is obvious from the first equality in (3.29) that 7 is symmetric, and from (3.35) that 7 is positive-definite with rank m. When solving steady problems (i.e., a/at = 0), the second term in the square-root inverse in (3.35) may be set to zero.
+The square-root inverse in (3.35) can be computed either by employing the CayleyHamilton theorem (see [27]), or iteratively by using some form of Newton’s algorithm, or by solving an eigenvalue problem.
+3.3.2. An alternative design for 7
+In this section we briefly describe the definition for T presented by Hughes and Mallet [5]. Their presentation was restricted to the steady case. We generalize it to the unsteady space-time case. In this definition, 7 is first formulated for pure advection, and then adjusted for the presence of diffusion. The advective 7 is defined identically to the one in the previous section, namely
+
+(3.36)
+
+Then radv is decomposed in terms of its eigenvalues and eigenvectors:
+
+(3.37)
+
+Note that the eigenvalues 7Fdvare proportional to mesh spacing and inversely proportional to advective speeds. Since r is symmetric and dimensionally proportional to A”; ’ , @ = def[@, . . . @,] can be scaled such that
+
+ei,@ = I,.
+
+(3.38)
+
+The effect of diffusion is then incorporated into 7 based on the one-dimensional linear scalar advective-diffusive model equation by modifying the eigenvalues of radv as follows: Let
+
+1 d u;=~~,~,,=c ,
+
+@1.t( ~aat,x,Ka,tl, - 1@j>
+
+i=l,...,m,
+
+(3.39)
+
+be the projection of the diffusivity matrix in the local element coordinates onto the modes of 7 adv.In other words, ai is a measure of the diffusivity of the system in the ith eigenmode of 7 adv.The element Peclet numbers can be defined as
+
+a; = 1 /rJdYul , i=l,...,m.
+
+(3.40)
+
+1.56
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Based on this, 7j is formulated as
+
+where Finally
+
+&;) = coth(a,) - 1/ai .
+
+(3.41) (3.42)
+
+7 = 2 Ti@& .
+i=l
+
+(3.43)
+
+This formulation is more complicated than the previous definition of T. In particular, it requires the solution of the eigenvalue problem. Under the assumption that the elements have approximately equal-length sides, Mallet [7] has analytically solved this problem.
+Our current implementation of T is based on a simplified version of the 7 presented above. In two dimensions, let (s, n) be an orthogonal coordinate system with s pointing in the direction of the streamline. Then we rewrite T~~“,(3.36), in (s, n) coordinates as
+
+where
+
+7sadv= A”,’ (@&,/13x,,)~I, + Q;.~A,A,+ q,A,A, + cxn,AnA,+ (Y,,A.A.)-~‘~ , (3.44)
+
+and A, and A,, are Euler Jacobians in the (s, n) coordinate system. To analytically decompose 7,advas in (3.37), we assume the case(Y,,= ay,,= 0. This caseis similar to the one presented in [7] where, in addition, he assumed CZ,=, (Y,, = (2 /!z)~. Once the eigenvectors of the simplified
+7sadvare transformed from (s, n) to the global coordinate system, we proceed by computing r as in (3.39)-(3.43). All the results presented herein are based on this formulation.
+
+3.3.3. One-dimensional model problem
+To gain additional insight into the behavior of the Galerkin/least-squares method, and in particular the effect of the different definitions of 7 on the approximate solution, we analyze the one-dimensional linear scalar advection-diffusion model problem:
+
+au,,= KU,,, for x E IO, l[ ,
+
+(3.46)
+
+where u is the unknown; a is the advective speed; and K is the diffusion coefficient. (The time-dependent case is analyzed in [14]). To the above equation we append the following boundary conditions:
+
+u(O).= 0 )
+
+(3.47)
+
+u(1) = 1 )
+
+(3.48)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+157
+
+The exact solution of (3.46)-(3.48) is
+
+u = (e(n’K)X - 1) /(e”‘”
+
+- 1) .
+
+(3.49)
+
+When the a /K ratio is large the exact solution exhibits a sharp gradient near x = 1. The statement of the Galerkin/least-squares method for (3.46) is: Find uh E ,Yh such that
+for all wh E Vh
+
+It is well documented that, for piecewise linear elements, a T can be determined such that the Z-I’ seminorm of the solution error, uh - U, is minimized. This condition is equivalent to having a nodally exact solution, and is known as a superconvergenceresult. This optimal 7 is
+
+c&,,<a) = coth(a) - 1/a ,
+
+(3.52)
+
+Cy = hlU)/2K ,
+
+(3.53)
+
+where h is the element mesh size and (Yis the local element Peclet number. The difference stencil resulting from Galerkin / least-squares with 70pthas zero local truncation error at the
+nodes, which is equivalent to having a nodally exact solution. The T based only on the advection operator can be written as
+
+7 adv = th/2bl)kdv(a>
+
+,
+
+(3.54)
+
+The local truncation error analysis in this case reveals only first-order accuracy. The T defined from the general design conditions of Section 3.3.1 yields
+
+7gen= ((2u/h)2 + (4K /h2)2)-1’2 = (h/2ju1)5,,,(a) ,
+&“(a) = $qKq .
+
+(3.56) (3.57)
+
+For general systems, this r is considerably simpler than 70pt.However, local truncation error analysis shows only second-order accuracy in this case. The error can be improved to fourth-order by modifying the definition of 7genslightly to
+
+7 ,,,,,d= ((2u/h)2 + 9(4dh2)2)-1’2 = @/2lul)&,,,,(a) ,
+
+(3.58)
+
+s,,,,(a) = ~~.
+
+(3.59)
+
+1.58
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+In al! four cases, T can be written in terms of h/2) a 1multiplied by a diffusion correction
+factor [(a). Thesefa_ctorsare com_paredin Figure 3.3.1. Note that iopr produces the least
+amount of diffusion. lmodmatches tobpvt ery well as (Yapproaches zero and infinity; and in the midrange of LY,tmodis a good approximation to &,,.
+The nodally exact properties of the T,,~~case and the fourth-order accuracy of the T~,,~case do not extend to multi-dimensional problems or general advective-diffusive systems. In contrast, the error estimates in L, and H’ do extend to these situations. Consequently, we proceed by analyzing these error measures, using an example: a = 100 and K = 1. The exact solution of this problem is an exponential function that exhibits a sharp boundary layer. This problem was solved using a series of nested meshes starting with two elements. The L, norm and the H’ seminorm of the solution errors for the four casesplus the Galerkin method are compared in Fig. 3.3.2.
+The Galerkin method (i.e., T = 0) is second-order accurate, as measured in the L, norm, in the entire range of h. This is, however, misleading since for (Y> 1 the solution of the Galerkin method is oscillatory and its absolute error is an order of magnitude worse than the Galerkin/least-squares methods (i.e., T # 0). For (Y> 1, all four nonzero definitions of r lead to first-order accuracy. This is expected, since the measured error comes from the interpolation error, which for sharp gradients is only first-order. The radVmethod remains first-order even as h approaches zero; in contrast, the other three methods are second-order accurate for (Y< 1. The L, errors of the T,,,~~ and 70pt methods are nearly identical. This justifies the interchanging of 70pt with T,,~, even for this simple model problem. The H ’ seminorm of the error for the Galerkin method is first-order, while for non-zero T methods, the errors are zero-order for (Y> 1 and first-order for cy< 1. With the exception of the 7adv method, the H’ errors of all the methods are nearly the same for small (Y.
+To demonstrate that the Galerkin/least-squares method is indeed a higher-order accurate method, the above example was solved using quadratic elements. For this element, no optimal definition of 7 exists. Numerical experiments indicate that T for the quadratic element should be approximately half the T for the linear element. Hence, the problem was solved using quadratic elements with T reduced by one half. The L, norm and H’ seminorm of the solution
+
+0.8 0.6
+
+Element Peclet number, (Y
+Fig. 3.3.1. Diffusion correction factors applied for the one-dimensional advective-diffusive model problem.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+1.59
+
+’ ,001 ; = lE-4
+lE-5
+lE-6
+lE-7I lE-4
+
+.Ol Mesh size, h
+
+Fig. 3.3.2. Advective-diffusive problem (a = 100, K = 1). L, norm and H’ seminorm of solution error. Galerkin and Galerkin least-squares methods with equal-length linear elements.
+
+errors are compared in Fig. 3.3.3. This figure shows that for small h all the methods are third-order accurate in the L, norm, and for large element Peclet numbers the Galerkin/leastsquares methods with any of the T definitions are better that the pure Galerkin method.
+
+3.4. Discontinuity-capturing
+
+operators
+
+Up to the definition of 7, the least-squares operator is in canonical form. This is, however, not true for the discontinuity-capturing operator. The discontinuity-capturing operator needs
+to satisfy only a few design conditions: In order to control the oscillations, this operator should act in the direction of the gradient; for consistency it should be proportional to the residual, 2’Vh; and for accuracy it should vanish quickly in smooth regions of the solution.
+In this section, we present two operators that satisfy the above conditions. The first operator, the so-called linear form, is an extension of Hughes and Mallet [6] to general systems in time and space. The second operator, the quadratic form, has features in common
+
+160
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+I-
+.l -
+.Ol -
+= 3
+,001 -
+4 J
+ZZZ
+lE-4 -
+IE-5 -
+lE-6 -
+
+Tadu -
+
+10 -
+
+Fig. 3.3.3. Advective-diffusive problem (a = 100, K = 1). L, norm and H’ seminorm of solution error. Galerkin and Galerkin/least-squares methods with equal-length quadratic elements.
+
+with the discontinuity-capturing operator proposed by Galezo and Dutra do Carmo [24] for the scalar advective-diffusive equation.
+
+3.4.1. The linear discontinuity-capturing
+
+operator
+
+Consider a ((1 + d’ + d2) * m) x m rank one operator, Et, to be the ‘projection’ of the
+
+residual LL'Vhonto the direction of the generalized local gradient. That is, 5, satisfies the
+
+following two conditions:
+
+(0 DC‘F*V”= 3vh ,
+
+(3.60)
+
+(ii)
+
+E* -2 = 0 for all 2 such that 2 * [?&~]iph=0.
+
+Clearly
+
+5, = ([ - A”, .Jp+%v~)‘/(2;V”.
+
+[% A”, J;Vh) .
+
+(3.61) (3.62)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+The discontinuity-capturing operator for an element is then defined as (~;~cWh) * q,(%‘Vh) dQ ,
+or equivalently as
+
+161
+(3.63) (3.64)
+
+where rD is the discontinuity-capturing matrix.
+7Dis constructed in a similar manner to 7; see Section 3,3.1. To get a desirable form for 7n, we use 7- ’ as a Riemannian metric tensor in the place of A o. This leads to the definition of TV (see (3.29)):
+
+(3.65)
+
+Then rD is obtained via the following eigenvalue problem:
+
+(3.66)
+
+Since d, has rank one, this yields a single eigenvalue and eigenvector
+
+A2,=(Qv”*[L (i,7A”,)u]&vh)(YVh.z5!?Vh)/(FJ*h[ - A””> ]tph)2 )
+
+(3.67)
+
+q) = 71’2zvhl(2?vh *7LzVh)‘~* .
+
+(3.68)
+
+These lead to
+
+Ipphl$ To =
+
+(Tnh)(7.zvh)’ .
+
+1 I h3
+
+--
+
+WV I7 I[
+
+A Ob
+
+?v”,
+
+Substituting the above equation and (3.62) in (3.64) yields the final form
+
+(3.69)
+
+(3.70)
+
+This operator provides control over all the derivatives present in the differential equation. Moreover, it is dimensionally consistent and invariant with respect to rotations of the global coordinate system.
+
+162
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+3.4.2. The quadratic discontinuity-capturing operator The Galerkin/least-squares method produces excellent results in smooth regions of the
+solution. In non-smooth regions oscillations appear in the direction of the gradients. Therefore, it is desirable to increase the diffusion of the least-squares operator in that direction.
+The component of the least-squaresdiffusion majrix, 4, in the direction of the generalized local gradients, with respect to the metric tensor A,), is
+
+(3.71)
+
+Using (3.21) and (3.23), (3.71) can be written as
+
+(3.72)
+
+Clearly, this matrix is rank one. we proceed to define the quadratic form of the discontinuitycapturing operator by replacing Kc in (3.23) by twice the above matrix. This leads to
+(3.73)
+
+Note that the above discontinuity-capturing operator is proportional to the square of the residual Li?Vh,whereas (3.70) is proportional to the first power of the residual.
+3.4.3. Discussion Both forms of the discontinuity-capturing operator are proportional to the residual 9Vh.
+Consequently, in the smooth regions of the solution, where 5f’Vh is small, both operators are small and have little effect on the solution. In the non-smooth regions of the solution, such as near singularities, discontinuities and shocks, these operators become large and provide control over the gradients.
+The idea of the nonlinear discontinuity-capturing operators is to provide strong control in the regions of the flow where there are strong gradients, yet have negligible effect in smooth regions. Presently, we prefer the quadratic form, although this remains a somewhat open issue (see, e.g., [13,24,28]).
+3.5. Inviscid calculations
+In this section, we numerically study the effect of the least-squares and discontinuitycapturing operators on the solution of steady inviscid problems with shocks. In each study, the problem was solved using: (LS) - the Galerkin /least-squares method; (DC-Linear) - (LS) plus the linear form of the discontinuity-capturing operator; (DC-Quad.) - (LS) plus the quadratic form of the discontinuity-capturing operator; (DC-Mallet) - (LS) plus the discontinuity-capturing operator employed by Mallet [7]. For the
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+163
+
+sQT’D, VYWOVh.][VVhdQ. Euler equations this operator is given by
+
+(3.74)
+
+where
+
+7D=max((8VhIAi;I/I~,~VVhlri0 - I~Vhl:lIVVhI,Z,,, 0).
+
+(3.75)
+
+All the problems were solved on a CONVEX-Cl in double precision (64 bits per floating point) using bilinear quadrilaterals, an implicit solver and the 2 x 2 Gaussian quadrature rule.
+
+3.5.1. One-dimensional steady shock problem This problem consists of two flow regions separated by a shock. If the flow properties on the
+two sides of the shock satisfy the normal shock conditions, the shock will be stationary. The following initial conditions satisfy these conditions:
+
+for x <0: M = 2, p = 1, u = 1, p =0.17857 ;
+
+(3.76)
+
+for x >O: M =0.57735, p =2.66667, u =0.37500, p = 0.80357 (3.77)
+
+(y = 1.4 and c, = 716.5). The boundary conditions were set to the above data, and the vertical velocity was set to zero on the entire domain. The mesh consisted of 39 X 1 square elements, covering the domain -19.5 d x d 19.5 and -0.5 d y d 0.5.
+The computed density using the Galerkin / least-squares method is presented in. Fig. 3.5.1. This solution shows that the initial position of the shock is maintained by the method, which indicates that the method is indeed a flux-conservative method.. The solution has small undershoots and overshoots near the shock. These oscillations are, however, very localized and do not corrupt the solution a small distance away from the shock.
+
+3.0
+2.5
+CL .;s 2.0
+8 Q
+1.5
+
+I
+
+I
+
+I
+
+,
+
+I
+
+I
+
+1.0
+
+I
+
+1
+
+1
+
+I
+
+1
+
+I
+
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+4
+
+6
+
+Distance from initial shock, z
+
+Fig. 3.5.1. One-dimensional steady shock problem (A4 = 2). Galerkin / least-squares method
+
+164
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+3.0
+
+I
+
+I
+
+I
+
+1
+
+I
+
+- (DC-Quad.)
+
+2.5 -
+
+Q. .‘s;: 2.0 2 I3
+1.5 -
+
+I
+
+I
+
+I
+
+1
+
+8
+
+3.0 .
+
+.
+
+I
+
+I
+
+I
+
+I
+
+I
+
+. (DC-Linear)
+
+2.5 -
+
+Q
+.‘s;: 2.0 2 d
+1.5 -
+
+1.0
+
+1
+
+1 I
+
+I
+
+I
+
+I
+
+3.0 -
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+2.5 -
+
+(DC-Mallet)
+
+9.
+
+>: .t:
+
+2.0 -
+
+F2
+
+B 1.5 -
+
+1.0
+
+I
+
+1
+
+I
+
+I
+
+I
+
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+4
+
+6
+
+Distance from initial shock, z
+
+Fig. 3.5.2. One-dimensional steady shock problem (M = 2). Galerkin/least-squares with discontinuity-capturing operators.
+
+Computed densities in the vicinity of the shock are compared in Fig. 3.5.2 for the three methods with discontinuity-capturing operators. This figure shows that all three discontinuitycapturing operators are capable of controlling the overshoots and undershoots. Note that for this problem, DC-Mallet results in the sharpest shock.
+
+3.52. Oblique shock problem
+This two-dimensional steady problem consists of a Mach two flow over a wedge at an angle of lo”, resulting in the occurrence of an oblique shock with an angle of 29.3” emanating from the leading edge of the wedge; see the schematics in Fig. 3.5.3.
+Prescribing the following flow data at the inflow (i.e., on the left and top sides of the shock):
+Inflow: A4 = 2 , p = 1 , U, = cos 10” , u2 = -sin lo”, p = 0.17857, (3.78)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+165
+
+line plots t
+
+Fig. 3.5.3. Oblique shock problem.
+
+results in the exact solution with the following flow data past the shock:
+Outflow: M = 1.64052, p = 1.45843, U, = 0.88731, uz = 0 , p = 0.30475 . (3.79)
+In the computations, four inflow conditions were imposed on the left and top boundaries; the slip condition (i.e., u2 = 0) was imposed on the wedge; and no boundary conditions were imposed on the outflow (right) boundary. A 20 x 20 mesh of square elements, covering the domain Oax~l and 0s-y 6 1, was employed. To avoid ambiguity in the boundary conditions, the node on the wedge at the inflow boundary was moved to x = 0 and y = 0.025. (This resulted in a slightly non-square element at that corner.)
+For the three methods with discontinuity-capturing operators, the computed densities along x = 0.9 are plotted in Fig. 3.5.4. These results demonstrate the ability of these methods to properly determine the position of the shock, which is oblique to the mesh, and to satisfy the Rankine-Hugoniot jump conditions. Note that for this problem, DC-Linear spreads the shock slightly more than the other two methods.
+
+3.5.3. Shock-reflection problem
+This two-dimensioned steady problem consists of three Aow regions separated by an oblique shock and its reflection from a wall; see Fig. 3.5.5. Prescribing the following Mach 2.9 flow data at the inflow (the first region on the left):
+
+Regionl: M=2.9,
+
+p=l, u,=2.9, u,=O, p=O.71429,
+
+(3.80)
+
+and requiring that the incident shock be at an angle of 29”, leads to the following exact solution:
+
+Region 2: M = 2.3781 , p = 1.7 , u1 = 2.61934 , uz = -0.50632 , p = 1.52819 ; (3.81)
+
+Region 3: M = 1.94235, p = 2.68728 , u1 = 2.40140 , u2 = 0 , p = 2.93407 . (3.82)
+
+166
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+1.5 1.4 1.3 1.2 1.1 1.0 -
+
+I
+
+I
+
+I
+
+_-__
+
+exact solution _I L
+
+I
+(DC-Quad.)
+
+1.5 1.4 1.3 1.2 1.1 1.0
+
+1.5
+
+1.4
+
+1.3
+
+1.2
+
+1.1
+
+1.0
+
+0.9
+
+1
+
+1
+
+I
+
+I
+
+1
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+Distance from wall, y
+
+Fig. 3.5.4. Oblique shock problem. Galerkin/least-squares with discontinuity-capturing operators.
+
+In the computations, four flow conditions were imposed on the left and top boundaries; the slip condition was imposed on the wall; and no boundary conditions were imposed on the outflow (right) boundary. The mesh consisted of 60 X 20 rectangular elements covering the domain 0~~~4.1 and Osysl.
+For the three methods with discontinuity-capturing operators, the computed densities along y = 0.25 are plotted in Fig. 3.5.6. As may be seen, DC-Quad. results in the sharpest shock.
+3.6. Mathematical properties
+In this section we prove that our method is unconditionally stable, as measured in its natural entropy norm. Moreover, we provide some necessary results towards a nonlinear convergence proof.
+In a series of studies, Johnson and Szepessy [23,29,30] proved that for nonlinear hyperbolic conservation laws equipped with a convex entropy function, such as for the Euler
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+167
+
+t
+
+M = 2.378
+
+lin
+Fig. 3.5 S. Shock-reflection problem
+equations, the solution of the Galerkin/least-squares method (equivalent to SUPG in this case) converges to the entropy solution of the conservation laws assuming the finite element solutions are uniformly bounded. Johnson et al. [12] extended these results to Galerkin/leastsquares method with an additional shock-capturing term. They also proved that for Burger’s equation with triangular elements the finite element solution is uniformly bounded. Szepessy [13] extended the proofs to scalar nonlinear hyperbolic conservation laws in two space-
+
+. (DC-Linear) 2.5 -
+
+- (DC-Mallet) 2.5 -
+
+0
+
+1
+
+2
+
+3
+
+4
+
+Distance along the wall, I
+
+Fig. 3.5.6. Shock-reflection problem. Galerkin/least-squares with discontinuity-capturing operators.
+
+168
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+dimensions with linear elements. Extension of these results to the Navier-Stokes equations is by no means an easy task. In this section, however, we consider some of the ingredients necessary for such an extension. (In addition, one can establish linear error estimates for the Galerkin/least-squares method by reproducing the analysis of Hughes et al. [ll] with the results of this section.) For error analysis of methods with discontinuity-capturing operators for linear problems we refer to [13,28].
+
+3.61. Stability proof
+We need to establish the following lemmas to prove stability:
+
+LEMMA 3.1 (Properties of V). Defining H = p(s, - s) and V = H:u, then
+
+V. U,, = H,, , V. F,,i = (z+H),~ ,
+
+(3.83) (3.84)
+
+V. F; = qi/cu&J , V. 9 = prlc,O ,
+v- i,v = p( 1+ (s, - s + #/T) )
+
+(3.85) (3.86) (3.87)
+
+where r= y- 1.
+
+PROOF. These results follow directly from the definition and structure of the above matrices; see Section 2 and Appendix A. Cl
+
+LEMMA 3.2. H is a strictly convex function of U. Furthermore,
+nondimensional constant E such that
+
+there exists a positive,
+
+W, > - H(t,’ > + V,’ >- UW, >I 3 2 tUW, >ll&l >
+
+(3.88)
+
+where [U(t,)] = U(t,‘) - U(t,).
+
+PROOF. The first assertion has been established in [19]. By strict convexity,
+A”;’ = a2H/au2
+
+(3.89)
+
+is positive-definite. By Taylor’s formula (see, e.g., [31]):
+
+W, I- HP,’ >+ W,’ >- UW, Ill
+(1- 4tw,wC?wt,-t)4wk~nwkd~&2n2Iuu(t,)j& 0
+(3.90)
+
+THEOREM
+N=l,2,...,
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+169
+
+3.1 (Stability proof). The variational equation (3.8) is entropy stable. That is, for
+
+where the L, norm with respect to metric M in domain S is defined as
+
+(3.91)
+
+PROOF. This result is obtained by substituting Vh for Wh in the variational equation (3.8), summing over y1= 0, . . . , N - 1, and using Lemmas 3.1 and 3.2. Cl
+
+The above stability result shows that J-, H dR at the end of every space-time slab is bounded by the initial data, provided that the boundary integral on the right-hand-side of (3.91) is negative. This condition can be used to derive a set of well-posed boundary
+conditions; see [21].
+
+PROPOSZTZON 3.1 (Norm equivalence). Assuming that p > 0 and 7 6 so - s c cy, where c is a positive constant, there exist positive constants c1 and c2 such that the following pointwise entropy norms are equivalent:
+
+c,H d V. A”,V d c,H .
+
+(3.93)
+
+PROOF. Note that an so can always be defined such that the first inequality in the second hypothesis is true. However, the second inequality in that hypothesis is contingent upon the boundedness of the solution.
+From Lemma 3.1
+
+v* A”,v= p(1 + (so - s + r>*/r>
+= L~~(s, - s) + yp + p(s, - s)*/y 2 2p(s, - s) = 2H .
+
+(3.94)
+
+By setting c1 s 2, the first inequality is obtained. Also
+
+v~A”,v=p(s,,-s)
+
+( 2+ (SOL)
+
++
+
+(so 7
+
+4
+
+> <p(s,-42+;
+
++c).
+
+By setting c23 (2 -t y/3/ + c), the second inequality is obtained. Cl
+
+170
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+3.6.2. Properties of r Let h and At denote the spatial and temporal mesh parameters defined as
+
+h= n=O, max, N-l ( e=l.max, (n,,)nK)) >
+
+(3.96)
+
+At= max n=O,
+
+, N-l (cl+*
+
+- tn> Y
+
+(3.97)
+
+where hz is the diameter of the smallest sphere containing 0:. Consider the eigenvalue problems: For i = 1, . . . , m,
+
+0 = (C - h”lI)fDj = @A”,’ - n,I)a$ = (i: - i$,)&-‘fDj ; 0 = (A,A, - im;I)+oj = (iji&ij - ij%o)A”,lqpi ;
+
+(3.98) (3.99)
+
+0 = (KjkKkj - /qI)!Pi = (ijkfyikj - i-5io)A”,1 !Pi .
+
+(3.100)
+
+Using the structure of these matrices, the eigenvectors can be scaled with respect to A”,‘. For example,
+
+[CD*... q$i,‘[@* . . . t&J = I.
+
+(3.101)
+
+Define the maximum eigenvalue of C, A,A, and KijKj, as
+
+@-c= i=*ya.,x, m <I\“,>,
+
+a*
+
+=
+
+i=lyfx,
+
+m (‘i)
+
+)
+
+cxK = i=lyifX,
+
+m (k)
+
+.
+
+For the compressible Navier-Stokes equations in three dimensions:
+
+(3.102) (3.103) (3.104)
+
+ac = r/2& + (bib, + (r/2‘)‘)“* ,
+
+(3.105)
+
+aA = (u’ + 2c2 + cvzzT)1’2
+
+)
+
+aK = max(((8p2 + 4p.A+ 3A*) /p’)l’*, V~K lcv p) ,
+
+where in (3.106) u = IuI and c = va are the particle and acoustic speeds.
+
+(3.106) (3.107)
+
+PROPOSITION 3.2. Given W E 9Z2”,there exists a positive constant c such that We 7-lW d C(CX+, At-’ + a,h-1 + ry,h-Z)W.A”OW.
+PROOF. This result follows directly from the definition of T in (3.35). 0
+
+(3.108)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+171
+
+PROPOSITION 3.3. Given W, there exists a positive constant c such that
+
+28~. rcYw G c acw&w + At W,, - A”,,W., + a,hVW.
+
++ h2(VdiVW)~&‘1(KijK,i)-L’2(V*iVW)}.
+
+(3.109)
+
+PROOF. Using the triangle inequality and (3.10), we have
+
+aw~~~w~c{W~~~i;W+w,,.A”~~~“w~,+vW~~7~vw + (V- KVW). T(V.KVW)} .
+
+(3.110)
+
+Substituting for 7 from (3.35) into the first term on the right-hand-side of the above inequality leads to
+
+w~&~wsw&io
+
+-l(c2 + ( $)21m + (g&4; + ( ;)4KijKji)~-“2sw
+
+< w. ,,;l(cy2
+
+cw~w*cwsa,w*A”,,w.
+
+(3.111)
+
+The remaining terms follow analogously. 0
+
+REMARK 3.1. For linear error analysis k is assumed to be constant, hence, the last term in (3.110) simplifies to
+
+(V. i&W)* T(V. iiVW) s a,h2V2W. [hA,,y]v2W.
+
+(3.112)
+
+PROPOSITION 3.4. Given Wh E ‘Vi, there exist a positive constant c such that
+
+(V+iVW”). +” iVWh) dQ s c I,< VWh . iVWh dQ . n
+PROOF. We need the following inverse estimate: For i = 1, . . . , m,
+
+(3.113)
+
+where Y, = ,L1’2A”iL !Rj and ii and !Pi are defined in (3 .lOO). In addition, define for 1= 1,. . . , d,
+
+&,Y;, $’I = : 7 (d.m)xl.
+I.1%A Then, for i = 1, . . . , m,
+
+(3.115)
+
+172
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+I=1 = (y, .K,jYJ(vwh *iVW”)
+
+I=1
+
+G (VWh
+
+*KVWh)
+
+*
+
+(3.116)
+
+The last step follows directly from the definition of & in (3.100). Proceeding as in (3.111) and using (3.35), (3.100), (3.114) and (3.116), we have
+
+I (V- iVWh) - T(V. lh’Wh) dQ
+QFi
+
+Q ‘4cm
+
+QeVWh diVWh I ”
+
+dQ .
+
+(3.117)
+
+Choosing c = Cm/4 completes the proof. 0
+
+Propositions 3.2-3.4 are essential ingredients for establishing linear error estimates of the kind presented in [11,261 and nonlinear convergence proofs as in [12]. (See also [5] for an application of Proposition 3.4.)
+
+4. Predictor multi-corrector algorithms
+In this section, we present two finite element discretizations of the space-time Galerkin/ least-squares variational equation introduced in Section 3. Each discretization leads to a system of nonlinear algebraic equations at every time step. For each case, we develop a class of predictor multi-corrector algorithms to reduce the resulting nonlinear system to a sequence of linear systems, the solution of which is discussed in [15].
+In the first discretization, we use a finite element space consisting of functions that are piecewise linear in space and constant in time. This leads to a time-marching method which has a low order of accuracy in time, but has good stability properties and is computationally efficient, thus, rendering it an attractive method for solving steady problems.
+In the second discretization, we use a finite element space consisting of functions that are piecewise linear in time as well as in space. This method exhibits a higher order of temporal accuracy than the constant-in-time method. However, it is computationally more expensive. This method is attractive for solving transient problems.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+173
+
+4.1. Constant-in-time approximation
+Experience has shown that, in many situations, a good strategy for obtaining the solution of a steady problem is to solve it as a time dependent problem. Starting from an initial guess, the solution is marched in time until it converges to a steady state. For nonlinear problems, such as compressible flow problems, this strategy has been observed to be superior to those which solve the steady problem directly, using a Newton-type method. Since the objective is to obtain the solution at steady state, it is desirable to employ a transient algorithm which has good stability properties, is computationally efficient, and is accurate in space at steady state, even if it is not spatially accurate on the way to steady state. To obtain these objectives, in this section we develop a predictor multi-corrector algorithm based on the constant-in-time approximation of the finite element spaces. This algorithm is the nonlinear version of the first-order predictor multi-corrector algorithm of Shakib and Hughes [14], applied to the compressible Navier-Stokes equations.
+
+4.1.1. Finite element discretization The finite element spaces are assumed to be constant in time within each space-time slab
+and discontinuous across the space-time slab interfaces. Hence, within the nth space-time slab, the finite element trial solution and the weighting function are defined as
+
+P(X,t)= (“$cHN)j4nyX)UA;(fonrx+EL0), tEZ,.
+
+(4.1)
+
+A=l
+
+(4.2)
+where ‘A;(, + 1) is the m x 1 vector of nodal unknowns at node A for the nth space-time slab; wAiCn+1) is the nodal values of the weighting function corresponding to uAiCn+,;) (n,,), is the number of nodal points for the nth space-time slab; and N:)(x) is the finite element spatial shape-function of node A at the nth space-time slab. To simplify the notation of the following presentation, the superscripts and subscripts associated with the nth space-time slab are dropped.
+Substituting (4.1) and (4.2) into the space-time Galerkin/least-squares variational equation (3.8) leads to
+
+174
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+= 0,
+
+(4.3)
+
+where 2%: is the discrete counterpart of the differential operator, (3. lo), acting on the contributions.of node A; this operator is defined as
+
+2; = iiN,,, - (iijNA,j),i + i;N, .
+
+(4.4)
+
+Define
+
+v = {Vi) v;, . . . ) vi,,t’ )
+
+(4.5)
+
+w= {w;)w;, . . . )W;,,p})t
+
+(4.6)
+
+V(n=) {v:;(n)7v:;(np**’ 7v;““p)(n-,);(“.)Y
+
+(4.7)
+
+Then (4.3) can be written as
+
+w - G(v; v(,J = 0,
+
+(4.8)
+
+where G(v; v(,)) is an (nnp. m) x 1 system of nonlinear algebraic equations with v as its hp . m) x 1 vector of unknowns and v(,) as its ((n,,)C,-l, * m) x 1 vector of initial conditions.
+Equation (4.8) holds for all unconstrained w. Assuming there are no essential boundary conditions (the case with essential boundary conditions is analyzed in Section 5), (4.8) leads to
+the nonlinear algebraic system
+
+where there are nnPx m equations and nnPx m unknowns. It is important to note that the above nonlinear system is unconditionally stable, provided it
+is solved exactly. This is a direct consequenceof the stability result presented in Section 3.6.1.
+In practice, we do not solve G exactly, because the cost associated with exact solution is excessive. Thus, the method is not unconditionally stable. The stability of the algorithm is
+further discussed in Section 4.3.
+Since the finite element functions are discontinuous at the space-time slab interfaces, the spatial discretization can be changed from one space-time slab to the next. This provides a natural mechanism for incorporating adaptive meshing in the formulation. Moreover, this change of meshing does not degrade the order of accuracy of the method, provided the second
+term in the jump-condition integral (i.e., the second integral in (4.3)) is computed accurately. In the current implementation of the method we have assumedthat the spatial discretization is kept constant from one space-time slab to the next. That is, we assume L?z+,= 0: = C.
+We shall restrict the spatial discretization to linear or multilinear interpolations (i.e., in two dimensions linear triangles or bilinear quadrilaterals). To avoid the evaluation of the second
+
+F. Shakib et at., The compressible Euler and Navier-Stokes equations
+derivatives we assume
+2’; = iiNA,i + EN, and
+
+175
+(4.10) (4.11)
+
+To justify this omission of the diffusive terms, consider a mixed finite element method where the diffusive flux vector is assumed to be a dependent variable. Let fif denote the diffusive flux vector and assume it is constant within each element. That is,
+
+“el
+I’:(x) = C k$p;(,, for x E fl , t E I, ,
+e=l
+
+(4.12)
+
+where fif;,,, is the diffusive flux vector of the eth element; fie is a piecewise constant shape function. $y is evaluated using
+
+Ip’ Sag . (up - KijV~j) dQ = 0 ) n
+
+where 8fie is the corresponding weighting function. On element interiors, since 1’9 is piecewise constant,
+
+““P
+c a;v, A=1
+
+“l&l
+
+“el
+
+= 2 A”iNA,ivA - c fie . &,, 1
+
+A=1
+
+e=l
+
+“nP
+f c i;N,v,
+A=1
+
+“nP
+
+““P
+
+= 2 A"iNA,ivA + 2 eNAvA
+
+A=1
+
+A=1
+
+or
+
+9; = A”iNA.j + i;N, .
+
+(4.14) (4.15)
+
+Analogously, the second derivatives in pCNAare omitted, but KijVf: is retained in the Galerkin integral.
+
+4.1.2. First-order predictor multi-corrector algorithm An iterative solver is used to solve the nonlinear algebraic system, (4.9). In the predictor
+phase, the solution of the current time step is initialized to the final solution of the previous time step. Let u(‘) be the ith iterative approximation of Us,,,), with do) = v(,) ; then the Taylor series expansion of G, retaining only the first two terms, yields
+
+WV @+‘I; vcn,)=
+
+G(u’~‘; v(,,)
+
++
+
+dG(v”‘; u(,)) au
+
+Au”)
+
+= 0 ,
+
+(4.16)
+
+where
+
+Av(~)d~fv(i+l) - $) .
+
+(4.17)
+
+176
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Denote by
+
+R(‘)= G(u'"'; u(,J ,
+
+(4.18)
+
+ill(‘) = c?G(u”‘; ucn,)/au ,
+
+(4.19)
+
+the residual vector and the consistent tangent matrix, respectively. Let V”(s) denote V”(x) within the eth element at the ith iteration:
+
+“en
+V’(x) = azl Noun’
+
+for x E 0’ ,
+
+(4.20)
+
+where nen is the number of element nodes (e.g., y1,,= 3 for linear triangles and IZ,, = 4 for
+bilinear quadrilaterals); N:(x) is the shape function of node a for element e; and us’ is the localized value of u? Similarly, let VTn,denote Vh in the previous space-time slab. Then R(‘) can be written as
+
+“el
+R(‘) = eb, R’ ,
+
+(4.21)
+
+R’ = {R;} , a = 1,. . . , ~1,”,
+
+(4.22)
+
+(Jump-condition)
+
++ At ne(-Nz,iFi(V’) J
+
++ N~,ilfijV~j + Nz6Ve) da
+
+(Galerkin)
+
++ At Jnc (Nt,,A”, + N$). +ijV;; + he) da
+
+(Least-squares)
+
+v”(Na,c;A”,,V~~+; N,A”,,V’) dfdi
+
+PC)
+
++ At JTeN;&(V) - F;(V’))n, dT
+where A is the finite element assembly operator, and
+
+(Boundary) ,
+
+(4.23)
+
+Ve-_ 2 (A”,V+pE, ve).T(ijyj +i;V) Gc *A”&, +VGi”V *
+
+(4.24)
+
+Note that dQ and dP are replaced for by At dR and At dT, respectively. Up to the second derivative terms, MC’) can be written as
+
+“el
+iv(‘) = A& M’ )
+
+(4.25)
+
+F. Sh&ib et al., The compressible Euler and Navier-Stokes equations
+M” = [MZJ ) a, b = 1, . . . ) II,, )
+
+177 (4.26)
+
+ML = I np N;A”,,N; da
+
+(Jump-condition)
+
++ At I ne(-Nz,iA”iNE + N$ijNf,j + N$Ni) dR (Galerkin)
+
++ At I Rf (Nz,,i; + N$). T(N’,,~~~+ N;i;) dR (Least-squares)
+
++ At I p! ~‘w:,&A”N’,,*j + N’,A”,,N;) da
+
+(DC)
+
++At i r’ Nt(A”,N; - iiijN;;j)ni dT
+
+(Boundary) .
+
+(4.27)
+
+The first-order predictor multi-corrector algorithm for the solution of the compressible Euler and Navier-Stokes equations is presented in Box 4.1.1.
+In Box 4.1.1, nstepis the number of time steps; i,,, is the number of corrector passes;ifreqis the frequency of formation of the left-hand-side matrix (in practice, we use a different ifreqfor
+each element group; see [15] for element group partitioning); and M* is the effective tangent matrix. This algorithm is a residual driven algorithm. Provided the iterative solutions
+converge, they converge towards the solution of the nonlinear algebraic system G. Although the condition of convergence and the convergence rate is highly dependent on the definition of M* and the values of i,,, and ifreq, the order of accuracy of the converged solution is not. In general, M* and ifreq are designed based on the stability condition, convergence rate and
+
+Box 4.1.1 First-order predictor multi-corrector algorithm, applied to the compressible Euler and Navier-Stokes equations.
+
+Given nstep, i,,, and ifreq, proceed as follows: (Initialize)
+
+Set ucn) (Time-steps) For n = 0, . . , n,,,,, - 1
+
+(pytor) u - UC”) Set At (Multi-corrector loop) For i = 0. , i,,, - 1
+
+Form R”‘(u”‘; u(~,) If mod(n X i,,, + i, ifreq) = 0, Form M*(u”‘)
+
+Solve for Au”‘: MS A,,“’ = -R”’
+
+U (,+I) = u(f) + Au"'
+(End multi-corrector u(n+k)= u (r+l) (End time step loop) Exit
+
+loop)
+
+178
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+computational convenience, and the corresponding i,,, is selected based on accuracy. Here we advocate two choices for M*:
+(I ) Implicit. In this case, we set M* = MC’). This results in a nonsymmetric matrix, having a symmetric profile. The nonsymmetry is caused by the convective part of the Galerkin integral. The nodal-block submatrices of M” (i.e., Mzb, see (4.27)) are symmetric. We have observed that for the compressible Euler and Navier-Stokes equations the nodal-block diagonal submatrices of M” are also positive-definite. This also can be verified analytically for some simplified linear systems.
+To simplify the implementation of M*, we use the non-integrated-by-parts form of the convective part of the Galerkin integral. This form eliminates the contribution of the convective term to the boundary integral. In addition, since either the magnitude of the diffusive boundary integral is negligible or some kind of boundary conditions are imposed on the boundary, this diffusive integral is omitted from M”. Thus, all boundary integral terms are eliminated in the formation of M*.
+
+(2) Explicit. In this case, M* includes only the jump-condition integral, integrated using
+
+1’(n.mX,(ph4),p. nodal quadrature. That is d&l > M*=
+
+%“p4hJn”p)
+
+(4.28)
+
+where
+
+(Jneda)hen, if node A is in element e ;
+
+0,
+
+otherwise .
+
+(4.29)
+
+This results in a nodally block-diagonal matrix. That is, the nodal points are uncoupled f;om each other, but the degrees of freedom belonging to each node remain coupled. Since A, is symmetric positive-definite, so is M* in this case.
+Motivated by the analysis in [14], we define an algorithmic Courant number:
+
+C, = 2(At/h2)i,,,
+
++ 2(At/h*)A,,, ,
+
+(4.30)
+
+where At and h are the element temporal and spatial mesh-size parameters; &,,,, and x,,, are, respectively, upper bounds on the eigenvalues of the following eigenvalue problems:
+
+(k-&[hA”,,b])q=O
+
+fori=l,...,d*m,
+
+These yield
+CT = 2(At/h”) max(2p /p, K/C”P> + (At/hbT ,
+
+(4.33)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+179
+
+where p is the viscosity coefficient; p is the density; K is the coefficient of thermal conductivity; c, is the specific heat at constant volume;
+
+u2+ $2 + cviGv)1’2
+UT=
+
+) in two-dimensions ,
+in three-dimensions ,
+
+(4.34)
+
+and u and c are the particle and acoustics speeds.
+
+4.1.3. Local-time stepping strategy
+In the predictor multi-corrector algorithm of the previous section, at the beginning of every time step, one time increment, At, was computed for the entire spatial domain. This technique is called the global-time-stepping strategy. When the transient algorithm is used to obtain a steady solution, the time increment is usually set to the maximum value which satisfies the stability condition everywhere. This means that in problems with high variations in the spatial element size, convective speed and diffusivity properties, the flow information propagates at considerably different rates on different parts of the domain. On some parts of the domain this rate could possibly be optimal and on the rest it could be highly suboptimal. This slows down convergence and increases computational cost. Alternatively, we can locally determine time increments such that the flow information would propagate at nearly optimal rate throughout the domain, without violating the stability condition. This approach is called the local-timestepping strategy.
+In our approach to local time-stepping, a different time increment is computed for every nodal point of the domain at the beginning of every time step. The nodal time increment is chosen such that the algorithmic Courant number is equal to a predetermined value, set by the user. This is an appropriate technique since the algorithmic Courant number locally measures the maximum number of elements over which the information of a node propagates in one time step.
+The next step is to interpolate the time increment within each element (or set it equal to a constant value in each element), and bring it inside the integrals of Rz and Mzb, (4.23) and (4.27), respectively. This procedure, however, leads to loss of flux conservation throughout the domain. It also alters the residual vector related to the steady problem. To overcome these difficulties, we predivide Rz and Mzb by At. In this case, only the jump-condition integral in Rz and the mass integral in Mzb are dependent on At. As the solution approaches steady state, the jump-condition integral vanishes, hence, the solution becomes independent of At. At steady state the solution obtained by using this method is identical to the one obtained by using the global-time-stepping strategy.
+See [15] for a numerical evaluation of the local and global time-stepping strategies.
+
+4.2. Linear-in-time approximation
+In this section we develop a predictor multi-corrector algorithm based on the linear-in-time approximation of the finite element spaces. This algorithm is the nonlinear version of the third-order predictor multi-corrector algorithm of Shakib and Hughes [14], applied to the compressible Navier-Stokes equations.
+
+180
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+4.2.1. Finite element discretization
+The finite element spacesare assumed to be linear in time within each space-time slab and discontinuous across them. Hence, within the nth space-time slab, the finite element trial solution can be defined as
+
+for x E 0 , t E I, , (4.35)
+
+where uA++rj and GA,(n)are the m x 1 vectors of unknowns Vh at node A and times t,+l and t+n 7 respectively; rn(tj and Gn(t) are the temporal shape-functions at space-time slab n:
+
+‘dt) = (t - t,) /At ,
+
+(4.36)
+
+;;,(t) = (tn+l - t) /At.
+
+(4.37)
+
+To enhance the stability of the resulting predictor multi-corrector algorithm, we incorporate a preconditioner into the definition of the weighting function; see [14] for a detailed discussion. This yields
+
+for x E R , t E I, , (4.38)
+
+where w~++~) and GA;(“) are the nodal values of the weighting function corresponding to u, .C+nr) and GA+), respectively.
+Let u, w and u(,,) be defined as in (4.5)-(4.7), and define v” and G similarly. Then, substituting these definitions and (4.35)-(4.38) into the Galerkin/least-squares variational
+equation (3.8), and assuming there are no essential boundary conditions, yields
+
+G(u; v”,u(n))= 0 ,
+
+(4.39)
+
+G(u”;u, U(,)) = 0.
+
+(4.40)
+
+We restrict the spatial discretizations to the same interpolation functions as before; see the end of Section 4.1.1 for the consequence of this action.
+
+4.2.2. Third-order predictor multi-corrector
+Denote by R(‘) = G(u(‘); v”(j),Q) ,
+R”(‘)= g(g); u(i+l), U(n)))
+
+algorithm
+
+(4.41) (4.42)
+
+A@‘)= aG(u”‘; i?), ucn,)/au , j+‘) = &G’; uG+l), u(n))/(yv”)
+
+(4.43) (4.44)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+181
+
+the primary and secondary residual vectors and consistent tangent matrices, respectively; where 8) is the ith iterative approximation of v”, with 6”) = u(,).
+Let V’(x) and v’(x), respectively, be the current iterative approximations of Vh(x, t,+ ,) and Vh(x, t,‘) in the eth element (see, e.g., (4.20)). In addition, let
+
+V’(x) = $(V”(x) + P(x)) )
+
+(4.45)
+
+4(x)= $(V’(x-) P(x)),
+
+(4.46)
+
+denote the average- and difference-in-time values; see Fig. 4.2.1.
+Assuming the Jacobian matrices are constant in time as evaluated at the mid-time of the space-time slab (i.e., using Ve(x) values), then R(‘) can be written as
+
+“el R(‘) = c4 RP )
+
+(4.47)
+
+R’= {R”:} , a = 1,. . . , rz,, ,
+
+(4.48)
+
+(iV;U(V’) - N;U(V;n,)) dR
+
+(Jump-condition)
+
+(Galerkin)
+
+da (Least-squares)
+
+where
+
++-AItr’ N;(& - iijf~j)n, dT ,
+
+PC)
+(Boundary) , (4.49)
+(4.50)
+
+tl; t” +;n+1 t,,,
+
+t
+
+Fig. 4.2.1. Temporal variation of Vh at a given x.
+
+182
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+and Fi = J1nFi dt/At is integrated using a two-point in time Gaussian quadrature, (Using a
+one-point in time Gaussian quadrature (i.e., setting Fi = F,(V’)) degrades accuracy.) Note that when ? = V’ the residual in (4.49) reduces to the residual of the constant-in-time approximation, (4.23). Therefore, for implementation, the constant-in-time can be considered as a special case of the linear-in-time approximation. The secondary residual, R”(‘), can be written as
+
+“el
+ii(‘) = e4 R’ ,
+
+(4.51)
+
+ii’=(
+
+a=1 ,..., II,,,
+
+(4.52)
+
+(Jump-condition)
+
+(Galerkin-1)
+
+(-N:,iii - fN$‘,$:, - iiV:&‘) da (Galerkin-2)
+
++
+
+(Least-squares-l)
+
+(- iNz,,A”, - $Nze) a7(ij$yj + cte) dO (Least-squares-2)
+
+v=(- fN:,eii,i$i - INCA”,+) da
+
++AItpN;(& + fiij$fj)ni dT
+
+(Boundary) ,
+
+(4.53)
+
+where u = $lnU dt/At and $i = $I (G,,- vn)Fi dt/At.
+Analogous to Box 4.1.1, the thi;d-order predictor multi-corrector algorithm for the solution of the compressible Euler and Navier-Stokes equations is defined and presented in Box 4.2.1. We advocate two choices for M*: (I ) Implicit. In this case, we set M* to M(‘) of the first-order algorithm, (4.25)-(4.27), with
+At replaced by iAt. (2) Explicit. In this case, M* includes only the jump-condition integral, integrated with a
+nodal quadrature rule; see (4.28).
+
+4.3. Numerical results
+In this section we present numerical examples to demonstrate the stability, accuracy and convergence of the first- and third-order predictor multi-corrector algorithms, applied to the compressible Euler and Navier-Stokes equations.
+All computations were done on a CONVEX-Cl in double precision (64 bits per floating point), using 2 x 2 Gaussian quadrature for bilinear elements and 3-point quadrature for linear triangular elements.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+183
+
+Box 4.2.1. Third-order predictor multi-corrector algorithm, applied to the compressible Euler and Navier-Stokes eauations.
+1
+
+Given nstep, i,,, and ifreqr proceed as follows:
+
+(Initialize)
+
+Set v(,) (Time-steps)
+
+For n = 0, . , nstep - 1
+
+(Predictor)
+
+V
+
+(0) =
+
+D”(O=)
+
+v (“)
+
+Set At
+
+(Multi-corrector loop)
+
+For i = 0, . . , i,,, - 1 Form R”‘(v”‘; ,-b) 9 V(n)> If mod(n x i,,, + 2i, ifreq) = 0, Form M*(v”‘, 6(“)
+
+solv$ f;( :‘lf): l _ e-R(‘)
+V (1+1)= v(l) + Au(i)
+
+Ifi=i max, Exit the loop Form $“(v”“‘. ,V (i+‘), v(n)> If mod(n x i,,, + 2i + 1, ifreq) = 0, Form M*(v(‘+~), 6(I))
+
+Solve for AD”@): &,f* A$” = -,-(d
+
+,,“,a+~u~ti~~~r~e~t~::,,, V(,,l) = v (i+l) (End time-steps)
+Exit
+
+4.3.1. Flow over a flat plate: Stability and spatial accuracy
+The problem of flow over a flat plate is used here to study the stability and spatial accuracy of the first-order predictor multi-corrector algorithm. The problem statement of this twodimensional Navier-Stokes flow is pictorially shown in Fig. 4.3.1. This problem, known as Carter’s problem, consists of a Mach three flow passing over an infinitely thin plate at zero angle of attack, causing a curved shock and a boundary layer to develop from the leading edge of the plate. The Reynolds number, based on the free stream values and distance from the leading edge of the plate, is 103. The Sutherland viscosity law, p = 0.0906 1)‘.5/ (0 + 0.0001406), is employed. This corresponds to the free stream temperature of 216.7 K.
+The computational domain covers the area -0.2 Q x d 1.2, 0 G y < 0.8, with the leading edge of the plate placed at x = 0. On the inflow boundary (x = -0.2) and top boundary (y = 0.8), four quantities, p, ul, u2 and 8, are prescribed; on the line of symmetry ( y = 0 and x < 0), the symmetry conditions, i.e., u2 = 712= q2= 0, are imposed; on the plate ( y = 0 and x 2 0), the no-slip condition (ul = u2= 0) and stagnation temperature (estag= Oinf,ow(l+ $(r l)M&,)) are prescribed; and finally, on the outflow boundary (x = 1.2), no quantity is prescribed.
+To solve this problem, we employed five uniform nested meshes, consisting of 14 x 8, 28 x 16, 56 x 32, 112 x 64 and 224 X 128 square elements, respectively. These correspond to mesh sizes of h = 0.1, 0.05, 0.025, 0.0125 and 0.00625, respectively. To validate the results of
+
+184
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Y
+
+t
+
+p = 1; ~1 = 1; u2 = 0; 6 = 2.7693-4
+
+M=3 Re = 1,000 e
+p=l 211 = 1 u2 = 0 6 = 2.769E4
+2
+Fig. 4.3.1. Flow over a flat plate problem.
+
+our method, the solution obtained using the fourth mesh is shown in Fig. 4.32. This figure presents the contour lines of the computer Mach number and pressure.
+We address the stability of the first-order predictor multi-corrector algorithm by examining two quantities: (1) the stable algorithmic Courant number, Cstab,defined as the value of CT
+which, if exceeded, causes instability; (2) the optimal algorithmic Courant number, C,Op’,at which the best convergence rate is obtained. (Recall, the algorithmic number, C,, was defined in (4.33).)
+Values of CFab and C,Op’for the explicit - first-order predictor multi-corrector algorithm using the Galerkin /least-squares method (LS), and Galerkin / least-squaresplus the quadratic form of the discontinuity-capturing operator (DC-Quad.) are plotted in Fig. 4.3.3, for the first four meshes. To obtain these values, we employed one corrector pass and the global-timestepping strategy over fifty time steps. Note that for the Galerkin/least-squares method, both
+Cyaband C,Opa’ re greater than one. This is consistent with the definition of C, in (4.33), which is a conservative estimate for this method. In contrast, for the method with the discontinuitycapturing operator, CItab= C,O”< 1. This result is to be expected because of failure to incorporate the discontinuity-capturing operator in the definition of C, (4.33). Finally, note that for (LS), C,Op<’ Cztab.
+The convergence characteristics of the implicit - first-order predictor multicorrector algorithm using (LS) and (DC-Quad.) computed for the fourth m_e_hand several values of C, are plotted in Fig. 4.3.4. The convergence is measured by the A,, ‘-norm of the residual. In this study, one corrector pass and the global-time-stepping strategy were employed. Note that the convergence improves with increasing C, up to C,O” (==70, for (LS)), past which the convergence deteriorates. For the (LS), the algorithm becomes unstable when C, L 80. Also note that the discontinuity-capturing operator stabilizes the implicit predictor multi-corrector algorithm. Crude estimations of Cztabfor (LS) and C,O” for (DC-Quad.) are plotted in Fig. 4.3.5. (Because C$’ = Cstabfor (LS) and accurate evaluation of Cftab for (DC-Quad.) was difficult, these two curves are omitted.)
+Next, assuming that the solution of the fifth mesh is the exact solution, the spatial L, norm and H’ seminorm of the solution errors for the remaining four meshes are computed and plotted as functions of mesh size h in Fig. 4.3.6. This figure also shows the norms computed on
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+185
+
+1: 0.00
+35E: 7: 0.90 9: 120
+11: 1.50 13: LEO 1s: 2.10 17: 2.40 19: 2.70 ao: 2.85
+
+brhx: 3.00
+luim 0.00
+~
+
+Fig. 4.3.2. Solution of the flow over a flat plate problem (7,168 elements).
+
+0.8 (DC-Quad.): C;‘nb, C;+
+
+I
+
+I
+
+I
+
+I
+
+I
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+Mesh size, h
+
+Fig. 4.3.3. Flow over a flat plate. Stable and optimal algorithmic Courant numbers for the explicit-first-order predictor multi-corrector algorithms.
+
+186
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+1
+
+= I?
+
+,1
+
+zQzzi
+
+-0
+
+.Ol
+
+P
+
+3
+
+,001
+
+2
+
+m-4
+
+lE-5 ’ 0
+
+10
+
+I
+
+I
+
+I
+
+I
+
+20
+
+30
+
+40
+
+50
+
+Time step
+
+-o .Ol
+P 1 8 ,001 z
+lE-4
+
+,+--c,
+
+= 500
+
+,--ax,-\
+
+Yp:"""
+
+\' _ :
+
+I' c, =50
+
+---jC-"j_'
+
+(DC-Quad.)
+
+c, = 100
+
+--\,-
+
+lE-5 0
+
+I
+
+,
+
+I
+
+I
+
+10
+
+20
+
+30
+
+40
+
+50
+
+Time step
+Fig. 4.3.4. Flow over ‘a flat plate (7,168 elements). Convergence of the implicit-first-order corrector algorithm.
+
+predictor multi-
+
+120
+0’ 100
++g 80
+2
+
+I
+
+1
+
+I
+
+1
+
+-_-___
+“\.,/
+
+(DC-Quad.): C,oJ”
+
+j
+
+60
+
+s
+
+$ 4o
+
+j3 20 4
+
+0
+
+I
+
+I
+
+I
+
+I
+
+0
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+Mesh size, h
+Fig. 4.3.5. Flow over a flat plate. Stable and optimal algorithmic Courant numbers for the implicit-first-order predictor multi-corrector algorithms.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+187
+
+Including shock Excluding shock ---
+
+Mesh size. h
+
+.l
+
+I
+
+.Ol
+
+.l
+
+Mesh size, h
+
+Fig. 4.3.6. Flow over a flat plate. L, norm and H’ seminorm of the spatial error of the solution.
+
+the domain excluding a layer of elements around the shock. The L, norm of the error exhibits first-order accuracy for large values of h and order 1.5 accuracy as h decreases.
+
+4.3.2. Acoustic wave: Temporal accuracy
+The temporal accuracy of the first- and third-order predictor multi-corrector algorithms is analyzed using a one-dimensional acoustic wave problem. For the initial conditions, one period of a low amplitude sine wave is superimposed on an inviscid fluid at rest. More precisely,
+
+at t=O: u,=c$,
+
+u,=O,
+
+P=Po(l+C
+
+P=P”c:(l+s),
+
+(4.54)
+
+where pO= 1 and cg = 1 are the density and speed of sound for the stationary fluid; S(x) is the initial perturbation:
+
+188
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+(4.55)
+and A is the wave length. With the above data, this ‘linear’ wave travels virtually without attenuation at the speed of
+sound in the direction of the increasing X. The density perturbations at the initial time and after traveling one wavelength (at T = A /co, solved using linear acoustics theory; see [32]) are shown in Fig. 4.3.7.
+In order to reduce the effects of the spatial discretizations and far field boundary conditions on the numerical solutions, a uniform mesh having 400 x 1 square elements extending over -A d x s 3A is selected. This yields 100 elements per wave length. The values at the boundaries are set to the values of the stationary fluid, and the vertical velocity is set to zero on the entire domain.
+The flow is computed over a time interval T for several combinations of the algorithmic parameters. As an example, the computed density using the implicit - third-order algorithm and four corrector passeswith the Galerkin/least-squares method is shown in Fig. 4.3.8 for several values of C,, = At c,/h. The convergence curves, for the same combination of algorithmic parameters plus different numbers of corrector passes,are presented in Fig. 4.3.9. Note that for small values of At the error is mostly caused by the spatial discretization. We compute the temporal order of accuracy from the mid-range values of At. The temporal orders of accuracy of the implicit algorithms are listed in Table 4.3.1. Note that spatial errors may still be adversely effecting convergence rates. The stability of the explicit algorithms (for C,, < 1) is summarized in Table 4.3.2. Note that the explicit - third-order algorithm with the Galerkin/least-squares method is stable when three or more corrector passesare employed. Since the stability condition of the explicit algorithms necessitatesthe use of small time steps, and for small time steps the solution errors mainly come from the spatial discretizations, we have not attempted to calculate the temporal order of accuracy of the explicit algorithms.
+
+P x
+0.8 2
+0.6
+
+Fig. 4.3.7. Acoustic wave problem. Density perturbations at the initial time and at time T = A /c,,.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+189
+
+= 100 -
+
+0.8
+
+50 --
+
+25 ---
+
+0.6
+
+12.5 --6.25 ______
+
+2.5 -.-.
+
+I
+
+!
+
+I
+
+I
+
+0
+
+1
+
+2
+
+3
+
+Dimensionless distance. z / X
+
+Fig. 4.3.8. Acoustic wave problem. Computed density perturbations at T = A /c,, using four pass implicit - thirdorder algorithm with the Galerkin/least-squares method.
+
+lE-4 lE-5
+
+lE-7 L
+
+/
+
+I
+
+.Ol
+
+.l
+
+1
+
+Dimensionless time-increment,
+
+At/T
+
+Fig. 4.3.9. Acoustic wave problem. Convergence of the implicit -third-order predictor multi-corrector algorithm with the Galerkin / least-squares method.
+
+Table 4.3.1 Acoustic wave problem. Temporal order of accuracy of the implicit-first- and third-order predictor multi-corrector algorithms
+
+Algorithm
+
+No. passes
+
+Galerkin
+
+Galerkin / least-sauares
+
+Implicit -
+
+1
+
+1.96
+
+1.41
+
+3rd-order
+
+2
+
+2.28
+
+1.99
+
+(linear-in-time)
+
+3
+
+2.41
+
+2.35
+
+4
+
+2.40
+
+2.33
+
+5
+
+2.35
+
+2.23
+
+Implicit -
+
+1
+
+0.83
+
+0.50
+
+lst-order
+
+2
+
+0.83
+
+0.50
+
+(constant-in-time)
+
+3
+
+0.83
+
+0.50
+
+190
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Table 4.3.2 Acoustic wave problem. Stability of the explicit -first- and third-order predictor multi-corrector algorithms (results are valid for C,, c 0.5)
+
+Algorithm
+
+No. passes
+
+Galerkin
+
+Galerkin / least-squares
+
+Explicit -
+
+1
+
+U
+
+U
+
+3rd-order
+
+2
+
+U
+
+U
+
+(linear-in-time)
+
+3
+
+U
+
+S
+
+4
+
+U
+
+S
+
+Explicit -
+
+1
+
+U
+
+S
+
+lst-order
+
+2
+
+S
+
+S
+
+(constant-in-time)
+
+3
+
+S
+
+S
+
+S: stable; U: unstable
+
+5. Treatment of boundary conditions and the boundary integral
+
+The two main questions concerning the boundary conditions are: What are the well-posed boundary conditions and how are these conditions implemented within the framework of the nonlinear finite element methods? Many authors have investigated the first question in the context of the compressible Euler and Navier-Stokes equations. Among them, we can refer to [21,33], who have analyzed the weak form of the differential equations, and determined sets of boundary conditions which lead to energy decaying systems.
+In this section we address only the implementational aspects of the boundary conditions. We introduce a nonlinear technique to treat the essential boundary conditions. This technique is capable of handling the nonlinearities arising from the use of working variables other than the variables used to prescribe the boundary conditions. We then extract a set of natural boundary conditions from the boundary integral in our variational equation. Next, we present a consistent method for calculating boundary fluxes, followed by some numerical results.
+
+5.1. Treatment of essential boundary conditions
+The set of quantities used as our finite element trial functions, namely the V-variables, are different from the quantities used to prescribe boundary conditions, such as density, velocity, etc. The equations relating these two sets of variables are highly nonlinear. Consequently, the treatment of essential boundary conditions, in our context, is non-trivial. In this section, we introduce a consistent method to properly treat these nonlinearities within the framework of the predictor multicorrector algorithms.
+5.1.1. Essential boundary conditions as constraint equations
+Let q be a list of prescribed quantities. Then the essential boundary conditions can be expressed in terms of q as
+
+q,(x,t)=g,(x,t) fo=Er,, WO, T[,
+
+(5.1)
+
+where the index (Yrefers to the quantity being prescribed on r, C r, and g, is its prescribed
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+191
+
+function. In general, the range of a is higher than m, where m is the number of differential
+equations in the system; but, at most m independent quantities can be prescribed at a given point on the boundary. To simplify the analysis, let q include only the primitive variables. That is, in three dimensions,
+
+91
+
+.p: density
+
+q2
+
+u,: component of velocity in r-direction
+
+4=
+
+q3 .--
+q4
+
+u,: u,:
+
+component of velocity in s-direction component of velocity in t-direction
+
+(5.2)
+
+q5 8: temperature
+
+q6 .p: pressure
+
+where u,, u, and u, are the prescribed components of the velocity in the orthogonal coordinate system (r, S, t) which is oriented according to the physical problem. More precisely,
+
+q2 = u, = c;u, + c;u, + c&3 ,
+
+(5.3)
+
+q3 = u, = Cs,Ul + c;u, + c;u, ,
+
+(5.4)
+
+q4 = u, = c;u, + c;u, + c:u, ,
+
+(5.5)
+
+where ul, u2 and u, are velocity components in the global coordinate system. Cl, Cs and C: are, respectively, the direction cosines of the r, s and t axes with respect to the global coordinate system. Without loss of generality, we assume that 1Cl) 3 1CI,1 1, )CS,l> ICTz2/and (C:l> ICif31. Note that the list q, in (5.2), can be extended to include other prescribed scalar and vector quantities, such as Mach number, mass-flux vector, etc.
+The prescribed boundary conditions, (5.1), can be rewritten in terms of the V-variables as
+
+4,(V) = & T
+
+(5.6)
+
+where q is now assumed to be a function of V. From the definition of V, (2.15)-(2.17) and (5.2) we have
+
+P ’ r”‘(-V,)-“’ exp((-1/7)(-y - VI + (Vi + Vi + Vi) /2V,)) ’
+
+IUT
+
+C’,(-V,IV,) + c;(-v31v5) + c;(-v,/v,)
+
+= <
+
+C”,(-V,IV,) + c;(-v31v,) + C”,(-V,/V,)
+
+, 7
+
+4(=V;) c:wJv,>
+
++ c:(-v3Iv,>
+
++ c:(-v41vs)
+
+1e’P
+
+, Y7’WJ7”
+
+(1 /C”W exp((-lly)(y
+
+h-5) - V, + (vi
+
++ vi + v:)/~v,))
+
+P-7)
+
+where 7=7--l. We proceed by rewriting (5.6) in the form
+
+(5.8)
+
+192
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+where the function q, relates the ith component of V to the remaining components of V and the prescribed value of the boundary condition (i.e., g, ). Before explicitly defining the above relations, it is necessaryto determine which Vi should be constrained for a given 9,. When the temperature is prescribed (i.e., q5 = g,), it is clear from (5.7) that V, should be constrained. In the particular caseswhen the (Y, s, t) coordinate system coincides with the global system, and one or more of the velocities u,, u, and U, are prescribed (i.e., q2 = u, = g,, q3 = u2 = g, or q4 = u3 = g4)3respectively V,, V, or V, should be constrained. In general configurations, when the (Y, s, t) coordinate system does not coincide with the global axes, as long as C;, Ci and C\ are bounded away from zero, this selection is still appropriate. Finally, when either density or pressure is prescribed (i.e., q1 = g, or qb = gb), V, should be constrained. With this selection, one can simultaneously prescribe any of the quantities in the list q, with one exception: Since density and pressure constrain the same variable (i.e., V,), they cannot be prescribed simultaneously. However, this does not pose any difficulty, since from the perfect gas law, (2.6) and (2.7), density and temperature can be prescribed equivalently.
+Substituting the above selection into (5.7) leads to the constraint equation in the desired
+form (5.8):
+
+for p: V, = y - In 7 + 7 In g, + ln(-V,) + i(Vz + Vi + Vi) /V, ,
+
+for u,: v, = -(C’,IC’,)V, - (c;Ic;)v, - (g2K;)vs 7
+
+for u,: v, = -(c;lc;>v, - (c;Ic;>v, - (g,lC”,)Vs 3
+
+(5.9)
+
+for u,: v, = -(c:Ic:)v*
+
+- (c:/cf,)v, - (g,/c:)v, >
+
+for 0: v, = -1 lc,g, ,
+for p: VI = y - y In 7 + 7 In g, + y ln(-V,) + i(Vi + V: + Vi)IV, .
+
+These constraint equations are not only nonlinear in V but also coupled (i.e., they are functions of each other). For example, the constraint equation for density, which is a function of g, , is also a function of V5. If the temperature is prescribed along with the density, then the density constraint equation is indirectly a function of g,. In this case, either the density constraint equation should be expressed in terms of g, and g, (instead of g, and V,), or else the temperature constraint equation should be satisfied first. The latter choice is preferred. In general, when two or more boundary conditions are prescribed at a given point, their corresponding constraint equations should be satisfied sequentially in the order: temperature, velocities, and then density or pressure. When two or more velocities are prescribed, their couplings must be reconciled. This is always possible. For instance, assume that two velocities u, and u, are prescribed:
+
+u, = c;u, + c;u, + c;u, )
+
+(5.10)
+
+u,= c;u, + c;u, + c”,u,.
+
+(5.11)
+
+Then from (5.9), we have
+v, = -(c;/c;)v, - (c;/c;)v, - (u,/CI;)V5)
+
+(5.12)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+v,= -(C”,/C”,)V- ,(C”,IC”,)-V(,u.Jqv, .
+
+193
+(5.13)
+
+Note that V, depends on V,, and V, depends on V,. To resolve this problem, we can eliminate u2 from (5.10) and U, from (5.11):
+
+ii, = Cr,Ul + c;u, )
+
+(5.14)
+
+u,= C~;u+*c;u, .
+
+(5.15)
+
+Thus, v, = -(C;/C’,)v, - (u,lc;)v, )
+v, = -(CyC;)v, - (usIC;)v5.
+
+(5.16) (5.17)
+
+These equations are equivalent to (5.12) and (5.13)) but do not exhibit any coupling between V, and V,, and can be satisfied independently of each other. Finally, when all velocities are prescribed, the constraint velocities can be expressed with respect to the global coordinate system. This eliminates the couplings.
+In addition to the constraint equations for V, (5.9), we need the constraint equations for the weighting function, W, and for the V increments, AV. In finite element methods based on the minimization of a potential function, the weighting function belongs to the tangent space of V. We use the same concept here and derive the constraint equation for W by taking the variation of the constraint equations for V. That is,
+
+(5.18)
+
+where 6 is the variation operator. Substituting (5.9) into the above equation leads to the W constraint equations
+
+for p:
+for u,: for u,: for u,: for 8:
+
+w,=+w2+;w3+;w4+
+5 w, = -(c;/qw,
+w, = -Kww% w, = -(c:Ic:)w, w,=o,
+
+5
+
+5
+
+- (cr,/c;>w,
+
+- (c;/c;>w,
+
+- (c:/c:)w,
+
+v; + v; + vi
+
+;(
+5
+
+2v:
+
+) w, ’
+
+- (g*/c;)y )
+
+- (gJc;)w~ 7
+
+- (g,lc:)w, )
+
+for p: w,=;w*+;w3+;w,+
+
+5
+
+5
+
+v; + vi + vz
+
++-
+
+5
+
+( 5
+
+2vg
+
+)K .
+
+(5.19)
+
+The constraint equations (5.19) are linear in W, with coefficients nonlinear in V. For reference, let us rewrite (5.19) as
+
+194
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+q:(W) =0 on r, X 10, T[.
+
+(5.20)
+
+The constraint equations for AV are derived by linearizing the constraint equations for V. This leads to constraint equations (5.19) with IV’s replaced by AV’s.
+
+REMARK 5.1. In finite element applications where the prescribed quantities are the same as the trial solution components, the constraint equations for V become V = gj and the corresponding constraint equations for W and AV become Wi = 0 and AV = 0.
+
+51.2. Incorporation in predictor multi-corrector algorithms
+Discretization and linearization of the finite element variational equation, (3.8), leads to the scalar equation
+
+w.MAv=-w.R,
+
+(5.21)
+
+which holds for all unconstrained w; see Section 4 for details, in particular, see (4.8) and
+
+(4.16)-(4.19). Here w = {wi, wi, . . . , wLnP}‘; where w, is W evaluated at node A; Au =
+
+{Au;, Au;, . . . , Ar~i~~}~;where Au, is AV evaluated at node A; nnpis the number of nodal
+
+points; M is the effective tangent matrix; and R is the residual vector. Before extracting a linear system of equations from (5.21), it is necessary to satisfy the w constraint equations: Define the density transformation matrix as
+
+0S4sl3,4154 01000
+
+s,=o 0 1
+
+1 1 00
+
+0
+
+0 0) 10
+
+(5.22)
+
+00
+
+0 0 1
+
+with coefficients
+
+s,,= ; 5;
+
+s,,= $ ;
+5
+
+s,,= ; ;
+5
+
+s,,= + -
+5
+
+v; +v,2+vi
+
+2v:
+
+*
+
+(5.23)
+
+Then the transformation of W by S, yields
+
++5w2+;w53+;w4+5
+
+( +5
+
+vi
+
++ v:
+2v:
+
++ vi
+
+> K
+
+S,W=
+
+K
+
+>
+
+(5.24)
+
+K
+
+K
+
+K
+
+The first term in (5.24) is precisely the density constraint equation for W; see (5.19). Consequently, to satisfy the density constraint for w and Au at node A, w and Au vectors are replaced by Spw and St Au in (5.21); where Sf = diag(I,, . . . , S,, . . . , I,) is an (IZ,,~*m) X
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+195
+
+(n”P*m) identity matrix with its Ath nodal block-diagonal entry replaced by S,. This yields a
+new equation
+
+w.tiAv=-w*k,
+
+(5.25)
+
+where
+
+li = (Sf)‘R .
+
+(5.27)
+
+Equation (5.25) automatically satisfies the density constraint equations for w and Au at node A. Therefore, if there is only a density boundary condition and only at node A, then satisfying (5.21) for all unconstrained w becomes equivalent to satisfying (5.25) for all w; or
+
+MAv=-R.
+
+(5.28)
+
+Because of the transformations (5.26) and (5.27), the row and column entries of a and the row entry of R corresponding to the constrained degree of freedom are zero. (Recall that the first column of S, is zero.) In order to avoid singularity in (5.28), the diagonal entry of g corresponding to the constrained degree of freedom can be set to a non-zero value. This does not effect the solution of the linear system. In addition, this makes the existence of boundary conditions transparent to the linear solver. Since the transformations (5.26) and (5.27) are linear with respect to w and Au, they can be performed on the element arrays before assembly. This is an important implementational consideration.
+Similar to (5.22), the transformation matrices for velocities, temperature and pressure are defined and listed in Appendix B. With these matrices, satisfaction of the w and Au constraint equations amounts to the recursive transformation of the element arrays as
+
+(5.29)
+
+R’ + (Sf )‘R’ ,
+
+(5.30)
+
+for all constraints (Yof nodes A; where St = diag(I,, . . . , S,, . . . , I,) is an (~l,~ . m) X (IZ,,, . m) identity matrix with its Ath nodal block-diagonal entry replaced by S,.
+In summary, to account for the essential boundary conditions, the following two steps are added to the predictor multi-corrector algorithms of Section 4: (1) When u is updated at the end of every predictor and corrector step, the constrained
+degrees of freedom of u are updated sequentially using (5.9). (2) Upon their formation, the element effective tangent and residual arrays are transformed
+recursively using (5.29) and (5.30). Numerical experience has shown that elimination of the second step in the above procedure can greatly degrade numerical convergence.
+
+REMARK 5.2. If we assume that the variational equation (3.8) results from minimizing some
+
+196
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+potential function, then the consistent linearized tangent matrix with constraints is the sum of two terms. The first and crucial term is the unconstrained left-hand-side matrix symmetrically transformed by the first derivative of the constraint equations. This term is provided by (5.29). The second term is the unconstrained residual vector transformed by the second derivative of the constraint equations. This amounts to adding the m x m matrix & = [&fjk] = RA$t,j, / au;4a7(, 1 d j, k G m, to the Ath nodal block-diagonal entry of the left-hand side matrix, for every constraint (Yof node A. Here, Rf is the ith component of the residual vector (prior to (5.30)) at node A; i is the degree of freedom corresponding to the constraint cy; 4, (u;‘,~; g, ) is the constraint equation defined in (5.8); and up is the jth component of u,. For the density constraint (a = 1 and i = l), we have
+
+n;l=RP
+
+00
+
+0 0
+
+l/U;1 0 0
+
+l/rJ,” 0
+
+symm
+
+1/v;
+
+I
+
+0 -u,“/(u,“>’
+
+-gI(ugA)2
+
+- u~/<u,“>”
+
+--
+
+(u;)2 + (ugy2 + (l&y2
+
+(v;)2 +
+
+(4 >”
+
+:*
+
+(5.31)
+
+For the velocity and temperature constraints i’6Iis zero, and for the pressure constraint & has a construction similar to (5.31). The addition of this term may further improve the stability and convergence of the predictor multi-corrector algorithms. This is a topic for future research.
+
+REMARK 5.3. Since the boundary nodes make up only a small subset of the total number of nodes in an analysis, it is not cost effective to vectorize the operations for the many possible combinations of boundary conditions. This is perhaps the only place in our finite element computer program where vectorization is not attained.
+
+5.2. The boundary integral and natural boundary conditions
+The boundary integral in the variational formulation (3.8) is
+
+Wh. (-Fi(Vh) + F,“(Vh))n, dP ,
+
+(5.32)
+
+where Fi and Ff are the Euler and diffusive fluxes, respectively, and ni is the ith component of the spatial unit outward normal to the space-time boundary, P,. Recall that this boundary integral resulted from the integration by parts of the Galerkin term. Substituting the definition of the fluxes from (2.3) and (2.4) into the above integral, yields (in three dimensions)
+
+(5.33)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+197
+
+where e is the total energy; 7 is the viscous stress; q is the heat flux vector; and the subscript IZ refers to the outward normal component. The above boundary integral provides the following natural boundary conditions:
+
+(1) Normal FUSSJlux: pu, = h” ,
+
+(5.34)
+
+(2) Pressure: p = hP ,
+
+(5.35)
+
+(3) Normal viscous flux: TV,,= hY ,
+
+(5.36)
+
+(4) Normal heat flux: -9, = hh ,
+
+(5.37)
+
+where h”, hP, h” and hh are the prescribed data. It is essential to include the boundary integral on the entire boundary. Neglecting this leads
+to loss of flux conservation in the method. If a natural boundary condition is imposed, then the prescribed value is substituted for the corresponding flux on that part of the boundary. Otherwise, the fluxes are evaluated from the current values of Vh. Note that pressure can be prescribed either strongly, as described in Section 5.1, or weakly, as above. Experience, however, has shown that strongly enforced pressure leads to higher numerical stability and faster convergence. A total normal stress boundary condition can be obtained by combining the pressure term with the viscous flux.
+The following two combinations of boundary conditions are worth noting:
+(1) Symmetry condition. Let (r, s, n) be an orthogonal coordinate system with n pointing in the direction of the outward normal to the boundary. Then the symmetry condition dictates: u, = 0, u, r = u, s = 0, u, n = u, n = 0, and O,,= 0. Substitution of these conditions into the definitions’ of 7 and 4 yields TV,,‘=TV,=, q, = 0. Thus, the symmetry condition becomes
+
+Un=O,
+
+(5.38)
+
+T m =7 sn =q,=o.
+
+(5.39)
+
+(2) OU@OWcondition. In advection-dominated (high Reynolds number) flows, no boundary
+condition is imposed on the outflow boundaries. Nevertheless, the boundary integral must be
+included for all flux terms, including the viscous and heat transfer contributions. These last two terms are often neglected. The rationale for this is that the omission of these terms (i.e.,
+assuming traction- and heat-flux-free boundary) is consistent with normal gradient-free flow at the boundary. Setting r,, = 7,, = 0 corresponds to weakly enforcing u,,, + u,,, = 0 and u,~,,+ U = 0. These conditions are erroneous. This fact is demonstrated using the flow over a flat p:a?teproblem described in Section 4.3.1. Here, the (r, s, n) coordinate system line up with the
+global (y, z, x) axes. Near the wall at the outflow boundary u~,~> 0. As explained above, the traction-free boundary condition weakly enforces u2 1= - u1,2< 0. This leads to oscillations of the velocity vectors in the corner element as shown in Fig. 5.2.1.
+
+198
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+without viscous boundary integal
+----
+
+with viscous boundary integral c)---
+
+-A-
+
+----
+
+Fig. 5.2.1. Flow over a flat plate. Velocity vectors by the wall at the outflow boundary.
+
+5.3. Consistent calculation of boundary fluxes
+Traditionally the wall quantities, namely the wall viscous and heat fluxes, are calculated by substituting the numerical derivatives of the flow quantities u and 8 (e.g., u,~= Cp!, NA,I~A) into the definition of the fluxes, (2.8) and (2.9). Although this classical method may provide adequate results, it does not utilize all of the information available in the variational equation. To correct for this, the consistent boundary-flux calculation technique has been developed; for reference see [34-371.
+
+5.3.1. Formulation The wall viscous flux, h”, and heat flux, hh, are defined as
+
+hy = ripi ,
+
+(5.40)
+
+hh = -qini .
+
+(5.41)
+
+These are the unknown counterparts of the boundary conditions ZzYand hh in (5.36) and (5.37). Consider the flux vector f defined on the wall boundary (P,), = 5 x Z, as
+
+= F,dn, on (P,), ,
+
+(5.42)
+
+where the velocity on the wall is assumed to be zero (in general fd= hh + u * h”). Taking fh,
+the discrete counterpart off, to be unknown and Vh to be known, the variational formulation
+(3.8) can be generalized to
+
+Wh.fhdP+ I pn-CPf,, Wh *Ff(Vh)ni dP
+
+=
+
+I
+
+e ”
+
+(-
+
+wr, - u(v”)
+
+- w; - Fi(vh)
+
++ W;. iijVt:
+
++ Wh. EV”) dQ
+
+(W”K+,)- w”o,+,>) - w”K> - W”WN dfJ
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+199
+
+(6PWh*)*(9Vh>dQ + ‘T* I,: vhqWh. [ - A”, u];vh dQ
+e=l
++ WA . Fi(Vh)ni dP . n
+Considering the above equation as an auxiliary equation to the original variational equation (3.8), we can state the consistent boundary-flux calculation technique: Given Vh E 9’:, find f” E (Sr), such that for all Wh E Y”, the auxiliary equation (5.43) is satisfied. 9’: is the finite dimensional space of Vh ‘s as defined in (3.4); ‘T’“,is the finite dimensional space of Wh‘s as defined in (3.5) with one modification: q’( W”) # 0 on (P,), , where q’ is the set of W constraint equations defined in (5.20); and (YF), is the discrete space of fh defined as
+(5.44)
+
+” 8 ‘2 .v &
+25
+
+0.025 --+-0.0125 -4-0.00625 --%-
+carter ---A---
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+1.2
+
+Distance from leading edge, z
+
+0 0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+1.2
+
+Distance from leading edge, I
+
+Fig. 5.3.1. Flow over a flat plate. Wall quantities computed via classical and consistent schemes.
+
+200
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+where Co is the space of continuous functions; and PPkis the space of kth-order interpolation polynomials.
+The auxiliary problem, (5.43)) is solved for f” after the original problem, (3.8)) is solved for Vh. This auxiliary problem is inexpensive compared to the original problem. Due to the local behavior of the discrete spaces,the integrals in (5.43) need to be performed only near the flux boundaries, and usually only after the last time step of the problem is completed. Moreover, when the nodal quadrature rule is used to evaluate the left-hand-side integral of (5.43), the unknown nodal fluxes decouple. This eliminates the need to solve a linear system of equations. In addition, the right-hand side of (5.43) is similar to the right-hand side of the original problem. Therefore, minimal coding is required to implement this technique. This is referred to as the consistent flux procedure.
+
+5.3.2. Numerical example: Flow over a flat plate
+The flow over a flat plate problem (introduced in Section 4.3.1) is used to evaluate the performance of the consistent boundary flux calculation. For the four finest meshes of Section 4.3.1, the skin friction and heat-flux coefficients computed via classical and consistent schemes are presented in Fig. 5.3.1. Here, the skin friction coefficient is defined as Cf = ~~,r,/ 4pmut; and the heat-flux coefficient is defined as C,, = -q,,,,/ 4p,u:. Note that (i) In the case of the skin friction the solution of the consistent scheme converges from above whereas the solution of the classical scheme converges from below; (ii) the consistent scheme converges faster (this allows the use of a coarser mesh if wall quantities are the primary interest); (iii) the consistent scheme captures the singularity in skin friction considerably better than the classical method; and (iv) the consistent scheme calculates the nearly-zero values of the heat-flux more accurately.
+
+6. Numerical examples
+In this section, we present numerical examples to demonstrate the performance and range of applicability of the method described in the previous sections. In particular, we present supersonic and hypersonic viscous flow over compression corners, and transient nearlyincompressible flow past a circular cylinder. Other calculations can be found in [15,36-381.
+All computations were performed on a CONVEX-Cl in double precision (64 bits per floating point), using the implicit algorithm with the GMRES iterative solver, and 2 X 2 Gaussian quadrature for bilinear elements.
+6.1. Compression corner - Mach 3
+In this Navier-Stokes problem, a Mach 3 flow passesover a compression corner at an angle of lo”; see Fig. 6.1.1. The Reynolds number, based on the free-stream values and the distance from the leading edge of the plate to the corner, is 16,800. The Sutherland viscosity law, lu.= 0.0906 e’.“/(e + 0.0001406), is employed. This corresponds to a free-stream temperature of 216.7K.
+The computational domain covers the area -0.2 s x 6 1.8, 0 d y d 0.575 on the plate, and a height of 0.575 above the wall past the corner. The leading edge of the plate is placed at x = 0
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+201
+
+E.cl.ff~~ p = 1; u1 = 1; uz = 0; l9= 2.7693-4
+
+B = 2.7693-4
+
+‘112= 0; 7-12 = (/2 = 0
+
+u, = UQ = 0; 8 = +.754E-4
+
+Fig. 6.1.1. Mach 3 compression corner problem.
+
+and the corner at x = 1. On the inflow and top boundaries, p, u,, u2 and 8 are prescribed; on the line of symmetry ( y = 0 and x < 0), the symmetry condition, u2 = 712= q2= 0, is imposed; on the plate, the no-slip condition, U, = u2 = 0, and the stagnation temperature, ostag= w + l(r - WC), are prescribed; while no condition is imposed on the outflow boundary.
+To solve this problem, two bilinear-element meshes were employed. The first mesh, shown
+in Fig. 6.1.2(a), consists of 104 X 39 (=4,056) elements with Aymi, = 6.47 x lo--” and a maximum aspect ratio of 26. The second mesh, shown in Fig. 6.1.2(b), consists of 4,095 elements with Aymi, = 3.25 x 10e4and a maximum aspect ratio of 51.
+The computed flow field using the first mesh is presented in Fig. 6.1.3. This figure demonstrates the ability of the method to capture the leading edge shock, the boundary layer which separates from the wall ahead of the corner and reattaches after the corner, resulting in a region of reverse flow by the corner and a compression fan at the reattachment point. (See [39] for a description of the physics of the problem.) Note that the leading edge shock crosses the upper boundary near the outflow. Its effect, however, does not propagate downward to disturb the flow near the wall.
+
+Fig. 6.1.2. Mach 3 compression corner. Finite element meshes: (a) 4,056 elements; (b) 4,095 elements.
+
+202
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Fig. 61.3. Solution of the Mach 3 compression corner problem (4,056 elements).
+The pressure, skin-friction and heat-flux coefficients along the wall are shown in Fig. 6.1.4. The heat-flux coefficient is defined as C, = q,,,,/ 1p-u:. The results show very good agreement with the solutions of Hung and MacCormack [39] and Carter [40]. The extent of the recirculation region is presented in Table 6.1.1.
+6.2. Compression Corner - Mach 11.68
+This problem, known as Holden’s problem, consists of a Mach 11.68, Reynolds number 248,600 flow over a compression corner at an angle of 15”; see Fig. 6.2.1. The Reynolds number is defined based on the free-stream values and the distance from the leading edge of the plate to the corner. The Sutherland viscosity law, p = 0.04428 t9’,‘/(19+ 3.113 x lo-‘), is employed. This corresponds to a reference temperature of 505.2K and a free-stream temperature of 64.6 K.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+203
+
+Hung & MacCormack ----carter-----
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+Distance from leading edge, z
+
+-4
+
+,
+
+I
+
+I
+
+0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+Distance from leading edge, z
+
+P x
+u’ 2 - 0.6 -
+
+Elements: 4,056 ---
+
+f u 0.54 -
+
+r 0.3 B
+2 0.2 $
+0.1 -
+
+0
+
+I
+
+I
+
+t
+
+0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+Distance from leading edge, z
+
+Fig. 6.1.4. Mach 3 compression corner. Wall quantities.
+
+204
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+Table 6.1.1 Mach 3 compression corner. Extent of the recirculation region
+
+Calculation
+
+Separation point
+
+Reattachment point
+
+4,095element
+
+0.88
+
+1.17
+
+Hung and MacCormack
+
+0.89
+
+1.18
+
+Carter
+
+0.84
+
+1.22
+
+Fig. 6.2.1. Mach 11.68 compression corner problem.
+The computational domain covers the area -1.74 1< x G 28, 0 s y d 5.5 on the plate, and is adjusted accordingly past the corner. The leading edge of the plate is placed at x = 0 and the corner at x = 17.4. The boundary conditions are similar to the Mach 3 compression corner problem presented in the previous section. Here, however, the wall temperature is maintained (cooled) at 8.412 X 10P5.
+To solve this problem, two meshes with bilinear elements were employed; see Fig. 6.2.2. These meshes consist of 4,056 and 14,144 elements distributed parabolically in y with Aymi, = 0.00562 and 0.00125. The domain of the finest mesh extends only to the height of 4.5 above the wall.
+
+Fig. 6.22. Mach 11.68 compression corner. Finite element meshes: (a) 4,056 elements; (b) 14,144 elements
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+205
+
+Fig. 6.2.3. Solution of the Mach 11.68 compression corner problem (14,144 elements).
+The computed flow field using the finest mesh is presented in Fig. 6.2.3. The wall quantities are compared with the experimental data of Holden [41] in Fig. 6.2.4. In this figure, the pressure coefficient is defined as CP= p / 1 p,ui.
+6.3. Flow past a circular cylinder - Nearly-incompressible
+This two-dimensional problem is chosen to demonstrate the method’s ability in modeling flow instabilities at low Mach numbers. At time t = 0, a circular cylinder is introduced in a uniform flow at Mach 0.01 and Reynolds number 100; seeFig. 6.3.1. The Reynolds number is measured using the uniform flow data and the diameter of the cylinder. The viscosity is assumed constant.
+The computational domain encompasses -4.5 B x d 15.5, -4.5 d y 9 4.5, with the circular cylinder having a diameter, D = 1, centered at x = y = 0. On the inflow boundary (X = -4.5), P, U1r u2 and 8 are prescribed. (Although well-posedness requires us to prescribe only three quantities on this subsonic boundary, experience has shown that the additional quantity helps with the stability.) On the top and bottom boundaries ( y = k4.5), the symmetry condition,
+
+206
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+L? B.$
+
+7
+
+.l
+
+;
+
+Elements: 4,056 ---
+
+14,144 -
+
+Holden --A--
+
+Inviscidsolution------
+
+,
+
+.Ol 0
+14 12 10 8 6 4 2 0 -2
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Distance from leading edge, z
+
+Distance from leading edge, z
+
+I
+
+I
+
+I
+
+1
+
+I
+
+Elements: 4,056 --14,144 -
+
+Holden ---b--
+
+Distance from leading edge, z
+Fig. 6.2.4. Mach 11.68 compression corner. Wall quantities.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+207
+
+‘u2 = 0; 722 + p = 7,143; fl2 = *z = 0
+
+M = 0.01
+Re= 100
+w
+p=l
+111 = 1 llz = 0 0 = 24.92
+
+p = 0.01
+
+T,, + p = 7,143 TlZ = 0 Pl =o
+
+w = 0; TZZ t p = 7,143; T]Z = q2 = 0
+
+Fig. 6.3.1. Flow past a circular cylinder problem.
+
+u2 = 712 = q2 = 0, with the prescribed total normal stress, a,,, are imposed. On the outflow boundary (x = 15.5), zero traction and heat-flux, 712= q2 = 0, and the total normal stress, oll, are prescribed. On the cylinder, the no-slip condition, u1 = u2 = 0, and the no heat-flux condition, q, = 0, are imposed.
+To solve this problem, we employed a mesh consisting of 4,936 bilinear elements with 5,063 nodes; see Fig. 6.3.2. In addition, we employed the third-order predictor multi-corrector algorithm (cf. Box. 4.2.1) with four corrector passesusing the Galerkin/least-squares method without any discontinuity-capturing operator. We employed a constant time increment of 0.1,
+
+Fig. 6.3.2. Flow past a circular cylinder. Finite element mesh (4,936 elements; 5,063 nodes).
+
+208
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+which yielded a maximum algorithmic Courant number (defined in (4.33)) of 656, at the initial time step.
+Figure 6.3.3 shows the temporal development of the stationary streamlines. First, a symmetric pair of eddies appears behind the cylinder. This becomes unstable, leading to a periodic vortex shedding, known as the Von Karman vortex street. Figure 6.3.4 shows the temporal development of the drag coefficient, C, = St” a,, d+ /vp,uL, and the lift coefficient,
+CL = J-02a”,, d4/np,ui. Note the sensitivity of the lift coefficient in detecting the periodicity of the flow. A shedding period, T, of 6.4 was observed, yielding a Strouhal number (St = D/u,T) of 0.156. This value is 6.3% lower than the commonly observed value of one sixth; see, e.g., [42,43].
+We have attempted to solve the problem using a coarser mesh with 1,436 elements (employed by Brooks and Hughes [42]); but we were unsuccessful in capturing the shedding
+
+t = 35
+
+t=in
+
+t = 65 Fig. 6.3.3. Flow past a circular cylinder. Stationary streamlines.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+209
+
+0.51
+0.50
+0.49 2 2 - 0.48
+f 0.47 *w 0.46 2 0.45
+0.44 0.43 ’
+0
+
+!
+
+I
+
+1
+
+I
+
+I
+
+20
+
+40
+
+60
+
+80
+
+100
+
+Dimensionless time
+
+0.20
+
+0.15
+
+0.10
+0” 2 - 0.05
+
+.$
+
+y
+
+O
+
+; -0.05
+
+DA -0.10
+
+I
+
+I
+
+,
+
+I
+
+-0.20 0
+
+I
+
+I
+
+I
+
+I
+
+1
+
+20
+
+40
+
+60
+
+80
+
+100
+
+Dimensionless time
+
+Fig. 6.3.4. Flow past a circular cylinder. Development of drag and lift coefficients.
+
+phenomena, even for a Reynolds number of 103,starting from a shedding solution and using a very small time increment. The solution of this problem is sensitive to the spatial refinement of the mesh, but it is fairly insensitive to the temporal refinement. Using the mesh in Fig. 6.3.2, we also solved the problem for a Reynolds number of 103,which yielded a Strouhal number of 0.217.
+
+7. Conclusions
+The goal of this research was to develop an efficient finite element method capable of solving a wide spectrum of compressible flow problems. To achieve this goal, we have employed the symmetric form of the compressible Navier-Stokes equations, designed a space-time Gale&in/least-squares variational formulation including a discontinuity-capturing operator, developed predictor multi-corrector algorithms for steady as well as unsteady
+
+210
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+problems, addressed the issues concerning the implementation of boundary conditions, and evaluated the performance of the method on a variety of two-dimensional problems. The development was accompanied by mathematical and numerical analyses. Although the underlying objective was to solve the compressible Navier-Stokes equations, most techniques and procedures presented are equally applicable to other physical problems of interest.
+The symmetric form of the compressible Navier-Stokes equations was obtained by expressing the equations in terms of the physical entropy variables, as in [l]. The Galerkin formulation of the symmetric form automatically satisfies the second law of thermodynamics. Use of the entropy variables in finite element formulations ensures dimensional consistency, which was previously obtained by subjective nondimensionalizations. In addition, the symmetry of the differential equations facilitates use of many basic techniques in finite element programs, such as block-diagonal pre-preconditioning.
+The space-time Galerkin /least-squares variational formulation generates complete spacetime finite element discretizations, permitting discrete discontinuities in time. The leastsquares operator has emerged from the SUPG operator of Hughes and Mallet [5]. Both of these operators compensate for the lack of stability of the basic Galerkin method for advection-dominated problems; while maintaining the accuracy of the Galerkin method for smooth solutions. The least-squares operator, however, has a conceptually simpler and more general construction, applicable to a wider class of problems. The space-time Galerkin/leastsquares method is observed to be an excellent method for smooth solutions of the advectivediffusive systems in the entire range of advective-diffusive parameters. We believe that up to the definition of 7, this is the canonical method to employ.
+We have proposed a new definition for T which has certain advantages over the original definition given in [5]: The new 7 directly accounts for the contribution of diffusion and circumvents solving an eigenvalue problem; it also accommodates source terms that are proportional to the solution; it has a simple and general structure which can extend to other problem classes; and it facilitates mathematical analysis of the Galerkin/least-squares method. Nevertheless, further research into simpler definitions is still warranted.
+The discontinuity-capturing operator is added to the Galerkin/least-squares method to control unresolved internal and boundary layers. This nonlinear operator acts in the direction of gradients to control the gradients and is proportional to the residual 2’Vh to ensure variational consistency and to diminish automatically in regions where 2’Vh is small (i.e., where the solution is smooth). Numerical solutions of Euler flows with shocks have shown that while the Galerkin/least-squares method well resolves the flow in the smooth regions and confines the overshoots and undershoots caused by the shock to a small region near the shock, the discontinuity-capturing operator effectively controls oscillations near the shock. We have proposed two discontinuity-capturing operators which are very effective in practice. These operators can be considered as two members of a class of discontinuity-capturing operators, which require further investigation.
+The implicit /explicit predictor multi-corrector algorithm emanating from the constant-intime approximation of the space-time Galerkin/least-squares variational equation has low order of time accuracy, but has good stability properties and is computationally efficient. This algorithm is well-suited for solving steady problems. Numerical solutions on unstructured meshes have shown that the convergence of this algorithm can be significantly improved through the use of the local-time-stepping strategy. The linear-in-time approximation of the
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+211
+
+space-time Galerkin /least-squares variational equation leads to an algebraic system having twice as many equations and unknowns as in the constant-in-time approximation. We have presented a technique to transform and reduce this system to two weakly-coupled subsystems, leading to a predictor multi-corrector algorithm which can employ the same left-hand side matrix for both subsystems. This fairly efficient algorithm has a higher order of time accuracy than the constant-in-time algorithm which makes it attractive for solving unsteady problems. The solution of the flow past a circular cylinder has shown that the time accuracy of this algorithm is more than sufficient to capture flow instabilities.
+We have presented a consistent technique for treating nonlihear essential boundary conditions within the framework of predictor multi-corrector algorithms. We have also studied the boundary integral residing in the space-time variational equation. This boundary integral yields the following natural boundary conditions: the normal mass flux, pressure, normal viscous flux and heat flux boundary conditions. The boundary integral also provides a consistent method for calculating boundary fluxes. The convergence of this method is faster than the classical method; it also captures singularities and nearly-zero values more accurately.
+The numerical examples presented illustrate the performance and range of applicability of the method developed. In particular, they have substantiated the ability of the method to solve steady high-speed (as high as Mach 11.68) flows with shocks, boundary and shear layers, and recirculations, as well as unsteady nearly-incompressible (Mach 0.01) flows with instabilities and periodic vortex sheddings. A number of other numerical simulations are presented in Shakib et al. [15].
+
+Acknowledgment
+The authors would like to express their appreciation to Greg Hulbert, Michel Mallet and Arthur Raefsky for helpful comments.
+This research was supported by a fellowship from the IBM Corporation, the IBM Almaden Research Center under Grant No. 604912, the NASA Langley Research Center under Grant NASA-NAG-1-361, and Avions Marcel Dassault-Breguet Aviation, St. Cloud, France.
+
+Appendix A. Flux vectors and coefficient matrices
+
+In this appendix we present the flux vectors and the coefficient matrices of the compressible Navier-Stokes equations, as expressed in terms of the (physical) entropy variables.
+For convenience, the mapping from U to V, (2.15)-(2.17), is provided here:
+
+1 Y
+
+- u, + pL(y + 1 - s + S”)
+
+v= vv,, =- 1 v, PL ,v, i
+
+u2
+4 4 -4
+
+(A4
+
+where
+
+212
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+s = ln((y - l)pIU:) ,
+
+pL=u5-(u~+u32+u~)/2u1.
+
+The inverse mapping V-U, (2.18)-(2.20), is
+
+(A-2) (A-3)
+
+where
+
+pb = ((y - 1) /(-V5)y)1’(YP’) exp(-s + so)/(r - 1) ,
+
+(fw
+
+s=~-v,+(V~+V~+V~)/2V,.
+
+(A@
+
+To be compatible with the notations used by Hughes et al. [6], we express the flux vectors and coefficient matrices with the help of the following variables:
+
+-3=7-l, k,=k;-2yk,+y, c, = jw, - v; , c, = jw, - v; ) cg = TV, - vi )
+
+k,=(V;+V;+V3/2V,, k,=kZ-9, d, = -v*v, ) d, = -V,V, , d, = -V,V, ,
+
+k,=k,-y,
+
+k, = k; - r(k, + k2) ,
+
+e, = V,V, ,
+
+(A?
+
+e2= V,V, , e3= V,V. .
+
+The Riemannian metric tensor A”,,= U,, and its inverse A”,’ = V,u can be written as
+
+-V: e, e,
+Cl 4 c2
+symm
+
+e3 W-k,)
+
+d2
+
+V,k2
+
+d3
+
+bk2
+
+c3 w2
+
+-43
+
+1
+
+and
+
+(A@
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+The Euler fluxes, (2.3), in terms of the primitive variables are
+
+1
+
+0
+
+Ul
+Fi = PUi U2 +p
+
+‘Ii ‘2, .
+
+u3
+
+4i
+
+!I e
+
+Ii ‘i
+
+In terms of the V-variables, the Euler fluxes can be expressed as
+
+213
+(A. 10)
+
+(A.ll)
+
+The Jacobians of the Euler fluxes, ii = Fi,” = A$,,, are given by
+
+e,v,
+
+o-5
+
+ws 4V5
+
+k,e,
+
+-(cl + 2yV,)V, -clV3 -c1V4 cjk, + +V,”
+
+A”, = PL TV:
+
+symm
+
+-c2v2 -V, -36
+
+k.4, , k&4
+
+(A.12)
+
+w2 1
+
+&= PL
+
+e*V,-wCsT3 -C4A -(c, + 25q)V,
+
+W,”
+i
+
+symm
+
+-d43KVl 5 wk2e2
+-cy, c&, + iv: ,
+
+-c3v3
+
+k&3
+
+w3
+
+!
+
+(A. 13)
+
+i3=
+
+e,V, wi
+
+-cl&
+
+PL
+
+5%
+i
+
+symm
+
+d3V5 c3v5
+
+-d,V,
+
+-c3v2
+
+-cP4
+
+-35
+
+-(c, + Ws)V4
+
+1. be3
+k44 w3 & + rv:
+
+(A. 14)
+
+v4
+
+The diffusive fluxes, (2.4)) are given as
+
+where
+
+Tij = Au k,k’ij + P(‘i,j
+qi = - K8,i .
+
++ ‘j,i) 9
+
+(A.15)
+(A. 16) (A. 17)
+
+214
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+The velocity components and temperature can be written in terms of the V-variables as
+
+ui = -Vi+l/V. for i = 1,2,3, 8 = -1/q,. The spatial gradients of these variables yield
+
+(A. 18) (A. 19)
+
+ui,j = (-v5V;:+l,j + 'i+l's,j>
+
+/‘: >
+
+Si = (l Ic,v:)v,,i *
+
+The coefficient of thermal conductivity, K, can be expressed as
+
+(A.20) (A.21)
+
+K=yC,p/Pr, where Pr is the Prandtl number. Furthermore, let
+x=H2jL
+
+(A.22) (A.23)
+
+With the above relations, the diffusivity coefficient-matrices, &jV,j = Ff , in terms of the V-variables are
+
+0
+
+Xel I-%
+
+Pe.3
+
+0
+
+xe,
+
+w2
+
+w3 -XV: - p(V: + Vi) +
+
+9 (A.24)
+
+-10 0
+
+0
+
+0
+
+0
+
+10 -j.Lv:
+
+0
+
+0
+
+K,, = + 10 0 -xv:
+
+0
+
+lJe1 xe2
+
+5
+
+0 0
+
+0 -PC
+
+E.L%
+
+0 Pel
+
+xe2
+
+Pe3 - xvi - p(Vi + Vi> + ypV,lPr
+
+K33=
+
++
+
+00 0
+
+0
+
+0
+
+I0 -pv0:
+
+-pv:
+
+0 0
+0
+
+5.
+
+0
+
+0 e,
+
+0
+
+-xc
+
+I-%
+
+Xe3
+
+0 IJe,
+lJe2
+xe3
+XV: - p(V: + Vf) + ypV,lPr
+
+(A.25) (A.26)
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+0 -pVz
+
+0 0
+
+pe,
+
+,
+
+I
+
+215
+(A .27) (A.28)
+
+(A.29)
+
+The source vector, (2.5), in terms of the primitive variables is given by
+
+.
+
+(A.30)
+
+In terms of the V-variables, this yields
+9= pL
+
+(A.31)
+
+The source coefficient-matrix, 6 (where & = - S), is not uniquely defined. One possible definition, which leads to a symmetric matrix, is
+
+c= pL
+
+0
+4
+b2
+b3
+-2(b,V, + b2V3 + b&,)/V, + Y
+
+(A.32)
+
+Appendix B. Essential boundary condition transformation matrices
+The transformation matrices used to incorporate the W and AV constraint equations in the predictor multi-corrector algorithms are given as follows:
+
+216
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+The density transformation matrix is
+
+0 % 43 s*‘4 s15 01000
+
+where
+
+s,,= ; ; S1=3+ ; s,,= $ ; s,,= + - v; +v: +vi
+
+5
+
+5
+
+5
+
+5
+
+2v:
+
+.
+
+The u, velocity-component transformation matrix is
+
+I 1 100 0 0 s,=oo
+000 000
+
+0 0
+
+s23 s24 s25
+
+10
+
+0)
+
+10
+
+0 1
+
+where
+
+s,,= -c;/c; ; s,,=-cj/c; ; s,,= -g& .
+
+The u, velocity-component transformation matrix is
+
+1000
+
+0
+
+0100
+
+0
+
+where
+s,,= -cyc; ; s,,=-c;/c; ; s,,=-g3/c;.
+The u, velocity-component transformation matrix is 10 0 00
+i I 0 1 0 0 0
+s,=o 0 1 0 0 )
+0 0 0 s4* s43 0 s45 0 0 1 where
+&= c;/c;; s,,= c:/c:; s45=-&G
+
+P-3) (B-4)
+0-w (B.7) w-9
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+The temperature transformation matrix is 1000 0 0 100 0
+000 10 0 0 0 0 0 The pressure transformation matrix is
+0 sn s,, s14 s15 01000
+
+217
+(B.9)
+(B.lO)
+
+where
+
+s,,= ; 5; s,,=$;5
+
+v;+v:+v;
+
+s,,= 25; s,,= 65 - 2v:
+
+*
+
+(B.ll)
+
+References
+[l] T.J.R. Hughes, L.P. Franca and M. Mallet, A new finite element formulation for computational fluid dynamics: I. Symmetric forms of the compressible Euler and Navier-Stokes equations and the second law of thermodynamics, Comput. Methods Appl. Mech. Engrg. 54 (1986) 223-234.
+[2] C. Johnson, U. Navert and J. Pitkiranta, Finite element methods for linear hyperbolic problems, Comput. Methods Appl. Mech. Engrg. 4.5 (1984) 285-312.
+[3] T.J.R. Hughes and F. Shakib, Computational aerodynamics and the finite element method, AIAA 26th Aerospace Sciences Meeting, Paper No. 88-0031, Reno, Nevada, January 1988.
+[4] T.J.R. Hughes and G.M. Hulbert, Space-time fmite element methods for elastodynamics: Formulations and error estimates, Comput. Methods Appl. Mech. Engrg. 66 (1988) 339-363.
+[5] T.J.R. Hughes and M. Mallet, A new finite element formulation for computational fluid dynamics: III. The generalized streamline operator for multidimensional advective-diffusive systems, Comput. Methods Appl. Mech. Engrg. 58 (1986) 305-328.
+[6] T.J.R. Hughes and M. Mallet, A new finite element formulation for computational fluid dynamics: IV A discontinuity-capturing operator for multidimensional advective-diffusive systems, Comput. Methods Appl. Mech. Engrg. 58 (1986) 329-339.
+[7] M. Mallet, A linite element method for computational fluid dynamics, PhD Thesis, Stanford University, 1985. [8] T.J.R. Hughes and A.N. Brooks, A multidimensional upwind scheme with no crosswind diffusion, in: T.J.R.
+Hughes, ed., Finite Element Methods for Convection Dominated Flows, AMD Vol. 34 (ASME, New York, 1979) 19-35. [9] T.J.R. Hughes and A.N. Brooks, A theoretical framework for Petrov-Galerkin methods with discontinuous weighting functions: Application to the streamline upwind procedure, in: R.H. Gallagher et al., eds., Finite Element in Fluids, Vol. 4 (Wiley, Chichester, 1982) 47-65. [lo] T.J.R. Hughes, Recent progress in the development and understanding of SUPG methods with special reference to the compressible Euler and Navier-Stokes equations, Internat. J. Numer. Methods Fluids 7 (1987) 1261-1275. [ll] T.J.R. Hughes, L.P. Franca and M. Mallet, A new finite element formulation for computational fluid
+
+218
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+dynamics: VI. Convergence analysis of the generalized SUPG formulation for linear time-dependent multidimensional advective-diffusive systems, Comput. Methods Appl. Mech. Engrg. 63 (1987) 97-112. [12] C. Johnson, A. Szepessy and P. Hansbo, On the convergence of shock-capturing streamline diffusion finite element methods for hyperbolic conservation laws, Technical Report 1987-21, Mathematics Department, Chalmers University of Technology, Goteborg, 1987. [13] A. Szepessy, Convergence of a shock-capturing streamline diffusion finite element method for a scalar conservation law in two space dimensions, Technical Report 1988-07, Mathematics Department, Chalmers University of Technology, Goteborg, Sweden, 1988. [14] F. Shakib and T.J.R. Hughes, A new finite element formulation for computational fluid dynamics: IX. Fourier analysis of space-time Galerkin/least-squares algorithms, Comput. Methods Appl. Mech. Engrg. 87 (1991) 35-58. [15] F. Shakib, T.J.R. Hughes and Z. Johan, A multi-element group preconditioned GMRES algorithm for nonsymmetric systems arising in finite element analysis, Comput. Methods Appl. Mech. Engrg. 75 (1989) 415-456. [16] R.F. Warming, R.M. Beam and B.J. Hyett, Diagonalization and simultaneous symmetrization of the gas-dynamics matrices, Math. Comput. 29 (132) (1975) 1037-1045. [17] SK. Godunov, The problem of a generalized solution in the theory of quasilinear equations and in gas dynamics, Russ. Math. Surveys 17 (1962) 145-156. [18] M.S. Mock, Systems of conservation laws of mixed type, J. Differential Equations 37 (1980) 70-88. [19] A. Harten, On the symmetric form of systems of conservation laws with entropy, J. Comput. Phys. 49 (1983) 151-164. [20] E. Tadmor, Skew-selfadjoint forms for systems for conservation laws, J. Math. Anal. Appl. 103 (1984) 428-442. [21] P.K. Dutt, Stable boundary conditions and difference schemes for Navier-Stokes type equations, PhD Thesis, University of California, Los Angeles, 1985. [22] T.J.R. Hughes, M. Mallet and A. Mizukami, A new finite element formulation for computational fluid dynamics: II. Beyond SUPG, Comput. Methods Appl. Mech. Engrg. 54 (1986) 341-355. [23] C. Johnson and A. Szepessy, A shock-capturing streamline diffusion finite element method for a nonlinear hyperbolic conservation law, Technical Report 1986-09, Mathematics Department, Chalmers University of Technology, GMeborg, Sweden, 1986. [24] A.C. Galeio and E.G. Dutra do Carmo, A consistent approximate upwind Petrov-Galerkin method for convection-dominated problems, Comput. Methods Appl. Mech. Engrg. 68 (1988) 83-95. [25] C.I. Bajer, Notes on the stability of non-rectangular space-time finite elements, Internat. J. Numer. Methods Engrg. 24 (1987) 1721-1739. [26] T.J.R. Hughes, L.P. Franca and G.M. Hulbert, A new finite element formulation for computational fluid dynamics: VIII. The Galerkin/least-squares method for advective-diffusive equations, Comput. Methods Appl. Mech. Engrg. 73 (1989) 173-189. [27] J.E. Marsden and T.J.R. Hughes, Mathematical Foundations of Elasticity (Prentice-Hall, Englewood Cliffs, NJ, 1983). [28] G.M. Hulbert, Space-time finite element methods for second-order hyperbolic equations, PhD Thesis, Stanford University, 1989. [29] C. Johnson and A. Szepessy, Convergence of a finite element method for a nonlinear hyperbolic conservation
+law, Technical Report 1985-25, Mathematics Department, Chalmers University of Technology, Goteborg, Sweden, 1985. [30] C. Johnson and A. Szepessy, On the convergence of streamline diffusion finite element methods for hyperbolic conservation laws, in: T.E. Tezduyar and T.J.R. Hughes, eds., Numerical Methods for Compressible Flows-Finite Difference, Element and Volume Techniques, AMD Vol. 78 (ASME, New York, 1986) 75-91. [31] S. Lang, Differential Manifolds (Addison-Wesley, Reading, MA, 1972). [32] P.A. Thompson, Compressible-Fluid Dynamics (McGraw-Hill, New York, 1972). [33] B. Gustafsson and A. Sundstriim, Incompletely parabolic problems in fluid dynamics, SIAM J. Appl. Math. 35 (2) (1978) 343-357. [34] A. Mizukami, A mixed finite element method for boundary flux computation, Comput. Methods Appl. Mech. Engrg. 57 (1986) 239-243.
+
+F. Shakib et al., The compressible Euler and Navier-Stokes equations
+
+219
+
+[35] E.A. Thornton, P. Dechaumphai and G. Vemaganti, A finite element approach for prediction of aerothermal loads, AIAA/ASME 4th Fluid Mechanics, Plasma Dynamics and Lasers Conference, Paper No. 86-1050, Atlanta, Georgia, 12-14 May 1986.
+[36] L.P. Franca, I. Harari, T.J.R. Hughes, M. Mallet, F. Shakib, T.E. Spelce, F. Chalot and T.E. Tezduyar, A Petrov-Galerkin finite element method for the compressible Euler and Navier-Stokes equations, in: T.E. Tezduyar and T.J.R. Hughes, eds., Numerical Methods for Compressible Flows - Finite Difference, Element and Volume Techniques, AMD Vol. 78 (ASME, New York, 1986) 19-43.
+[37] T.J.R. Hughes, L.P. Franca, I. Harari, M. Mallet, F. Shakib and T.E. Spelce, Finite element method for high-speed flows: Consistent calculation of boundary flux, AIAA 25th Aerospace SciencesMeeting. Paper No. 87-0556, Reno, Nevada, January 1987.
+[38] F. Chalot, L.P. Franca, I. Harari, T.J.R. Hughes, F. Shakib, M. Mallet, J. Periaux and B. Stoufflet. Calculation of two-dimensional Euler flows with a new Petrov-Galerkin finite element method, in: A. Dervieux and B. Van Leer, eds., Notes on Numerical Fluid Mechanics (Vieweg, Braunschweig, 1989) 88-104.
+[39] CM. Hung and R.W. MacCormack, Numerical solutions of supersonic and hypersonic laminar compression corner flows, AIAA J. 14 (4) (1976) 475-481.
+[40] J.E. Carter, Numerical solutions of the Navier-Stokes equations for the supersonic laminar How over a two-dimensional compression corner, NASA Technical Report, NASA TR R-385, 1972.
+[41] M.S. Holden, A study of flow separation in regions of shock wave-boundary layer interaction in hypersonic flow, AIAA 11th Fluid and Plasma Dynamics Conference, Seattle, Washington, lo-12 July 1978.
+[42] A.N. Brooks and T.J.R. Hughes, Streamline upwind/Petrov-Galerkin formulations for convection dominated flows with particular emphasis on the incompressible Navier-Stokes equations, Comput. Methods Appl. Mech. Engrg. 32 (1982) 199-259.
+[43] S.K. Jordan and J.E. Fromm, Oscillatory drag, lift, and torque on a circular cylinder in a uniform flow, Phys. Fluids 15 (3) (1972) 371-376.
+

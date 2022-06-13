@@ -1,0 +1,450 @@
+RESEARCH ARTICLE
+10.1029/2020RS007131
+Key Points: • Scintillation analysis of 1-Hz
+geodetic receiver network covers 50◦ in latitude over the American longitude sector • Proxy scintillation indices are derived and validated • An event analysis reveals unprecedented storm time scintillation evolution over North American continent Correspondence to: S. Mrak, smrak@bu.edu
+Citation: Mrak, S., Semeter, J., Nishimura, Y., Rodrigues, F. S., Coster, A. J., & Groves, K. (2020). Leveraging geodetic GPS receivers for ionospheric scintillation science. Radio Science, 55, e2020RS007131. https://doi.org/10. 1029/2020RS007131 Received 13 MAY 2020 Accepted 16 OCT 2020 Accepted article online 30 OCT 2020
+©2020. American Geophysical Union. All Rights Reserved.
+MRAK ET AL.
+
+Leveraging Geodetic GPS Receivers for Ionospheric Scintillation Science
+Sebastijan Mrak1 , Joshua Semeter1 , Yukitoshi Nishimura1 , Fabiano S. Rodrigues2 , Anthea J. Coster3 , and Keith Groves4
+1Department of Electrical and Computer Engineering and Center for Space Physics, Boston University, Boston, MA, USA, 2Center for Space Sciences, University of Texas at Dallas, Richardson, TX, USA, 3Haystack Observatory, Massachusetts Institute of Technology, Westford, MA, USA, 4Institute for Scientific Research, Boston College, Boston, MA, USA
+Abstract We demonstrate scintillation analysis from a network of geodetic Global Positioning System
+(GPS) receivers which provide data at 1-second resolution. We introduce proxy phase (σTEC) and amplitude (SNR4) scintillation indices and validate them against the rate of change of TEC index (ROTI) and S4. Additionally, we validate scintillation observations against a Connected Autonomous Space Environment Sensor scintillation receiver. We develop receiver-dependent scintillation event thresholding using hardware-dependent noise variance. We analyze 6 days adjacent to the 7–8 September 2017 geomagnetic storm, using 169 receivers covering magnetic latitudes between 15◦ and 65◦ in the American longitude sector. We leverage the available spatial sampling coverage to construct 2-D maps of scintillation and present episodic evolution of scintillation intensifications during the storm. We show that low-latitude and high-latitude scintillation morphology match well-established scintillation climatology patterns. At midlatitudes, spatiotemporal evolution of scintillation partially agrees with known scintillation patterns. Additionally, the results reveal previously undocumented midlatitude scintillation-producing structures. The results provide an unprecedented view into the spatiotemporal development of scintillation-producing plasma irregularities and provide a resource to further exploit scintillation evolution at large spatial scales.
+1. Introduction
+The ionosphere significantly alters traversing radio signals at frequencies <3 GHz (P.531-14, 2019), which include Global Navigation Satellite Systems (GNSS) signals. In particular, small-scale (<1 km) plasma density irregularities affect the L-band radio signals by means of Fresnel diffraction, causing the signal's amplitude and phase to rapidly fluctuate in a stochastic manner. A theoretical description of the diffracting scatter has been reviewed in detail (Kintner et al., 2007; Priyadarshi, 2015; Yeh & Liu, 1982). On the other hand, larger-scale plasma density irregularities (>1 km) impose fluctuations in received phase only, by means of signal refraction.
+Extensive surveys of occurrence and climatology of both phase and amplitude scintillation have been conducted (Aarons, 1982; Alfonsi et al., 2011; Basu et al., 1988; Jiao & Morton, 2015; Wernik et al., 2003), primarily focusing on the low- and high-latitude regions. It has often been considered that necessary conditions for ionospheric density irregularities are confined to the equatorial and low-latitude regions (by Rayleigh-Taylor instability) and high latitudes (convection-driven instabilities and particle precipitation). The midlatitude ionosphere has not generally been perceived as a possible space weather threat for radio signal scintillation, with exceptions of equatorward expansion of high-latitude convection-related dynamics (Aarons, 1982; Kintner et al., 2007). Even though significant amplitude scintillation was observed from the upstate New York during a geomagnetic storm (Ledvina et al., 2002), such scintillation occurrence geolocation and timing are not predicted by conventional scintillation models. For example, empirical scintillation models, wideband ionospheric scintillation model (WBMOD) (Secan et al., 1995, 1997), and the global ionospheric propagation model (GIM) (Béniguel, 2002) predict no signal impairments at midlatitudes.
+The historical surveys and existing models arise from insufficient availability of ground-based infrastructure for ionospheric scintillation monitoring. Many of the existing scintillation receivers are located at low and high latitudes, and only a few scintillation receivers operate at midlatitudes. Hence, a comprehensive analysis of ionospheric scintillation at midlatitudes, by means of conventional amplitude (S4) and phase (𝜎𝜙),
+1 of 17
+
+MRAK ET AL.
+
+Radio Science
+
+10.1029/2020RS007131
+
+has been impossible. Generally, the scintillation receivers cover localized areas; hence, the climatological statistics and occurrence timing is based on localized observations. We utilize a 1-Hz GNSS receiver network operated by UNAVCO, which covers an area from low (15◦ magnetic latitude [MLAT]) to high latitudes (65◦ MLAT) over North America with data availability spanning back to 2011. Therefore, the network analysis allows the creation of instantaneous two-dimensional (2-D) maps of scintillation at unprecedented scales. The network consists of hundreds of receivers (∼200 in 2011 and ∼850 in 2020), where the vast majority of the receivers monitor Global Positioning System (GPS) signals only; thus, we limit our study to the GPS.
+Utilization of high-rate geodetic receivers is an attractive and potentially ground-breaking avenue for augmentation of GNSS scintillation science. Recently, several studies demonstrated the capability of high-rate geodetic receivers on a single-receiver comparison cases with colocated ionospheric scintillation monitors (Juan et al., 2017; Luo et al., 2020; Nguyen et al., 2019). The preliminary results were focused on the equatorial scintillation. Further, Luo et al. (2020) extended the capability to image amplitude scintillation over China. Contrary to the other studies, we do not attempt to calibrate the values of our scintillation indices to S4 and 𝜎𝜙, since we have no colocated ionospheric scintillation monitor data available. We build upon the recent results and present scintillation signal processing for a diverse receiver network, capable of imaging both phase and amplitude scintillation and monitoring instantaneous scintillation patterns over a large spatial area. The purpose of this work is to promote the utility of 1-Hz (hereafter referred as high-rate) geodetic receivers for scintillation science; specifically, it is a diagnostic tool that provides an unprecedented insight into small-scale dynamics of large-scale density features, such as storm time midlatitude dynamics (Ledvina et al., 2002; Mrak et al., 2020).
+We derive and validate alternative scintillation indices based on the signal-to-noise ratio (SNR) and total electron content (TEC). Although each parameter is affected by different physical phenomena (diffraction and refraction, respectively) (McCaffrey & Jayachandran, 2019), we do not attempt to distinguish among them. We introduce and validate receiver hardware-dependent thresholding for the scintillation event decision. We demonstrate that the introduced indices are linearly correlated with S4 and ROTI. Comparison with a Connected Autonomous Space Environment Sensor (CASES) scintillation receiver from Dallas, TX, further supports the validity of the introduced indices. The scintillation events are used to produce instantaneous scintillation maps. We demonstrate the utility of the scintillation maps for spatiotemporal analysis of evolving scintillation. We analyze 6 days' worth of data adjacent to 7–8 September 2017 geomagnetic storm. The low- and high-latitude portion of the receiver network observed typical low- and high-latitude scintillation patterns. Additionally, the storm had a striking impact on the midlatitude GPS receivers, exhibiting both amplitude and phase scintillations.
+2. Methodology
+We utilize publicly available data from the high-rate UNAVCO GPS receiver network, with available receiver distribution on 8 September 2017 depicted in Figure 1. There is a heavy sampling bias toward the west coast of the continental United States (CONUS). The total distribution of receiver hardware types on that day is presented in Figure 1b. The receiver network covers area between 15◦ and 65◦ MLAT in the northern hemisphere. Most of the receivers are placed within the contiguous U.S. longitude span, whereas the high-latitude coverage comes from the Alaskan sector. In this study, we define midlatitudes as the area between 30 ◦ ≤ MLAT ≤ 60◦ in the Northern Hemisphere.
+Normally, scintillation studies use specialized GNSS scintillation receivers that provide amplitude (or power) and carrier phase at subsecond (usually 50 Hz) data rate. These measurements are used to calculate 𝜎Φ and S4 scintillation indices. The high-rate geodetic receivers do not provide signal amplitude, and the carrier phase is contaminated by receiver-imposed interference. We chose to utilize SNR provided by the Receiver Independent Exchange (RINEX) files, as a substitute for signal amplitude. SNR has an inherently bigger variance than the amplitude, as it is influenced by the variance of broadband noise. Additionally, SNR information provided by the RINEX files is by definition (computed) receiver dependent, and it is defined as an SNR of the demodulated carrier, namely, the carrier-to-noise ratio. We build upon successful demonstrations of SNR utilization for scintillation studies (Rodrigues & Moraes, 2019; Thompson et al., 2008), and we evaluate the behavior of scintillation indices for different receiver types.
+We found an impediment with Trimble NETRS carrier phase measurements, which is depicted in Figure 2. This example represents the general trend bound to this particular receiver make, not to a specific receiver
+2 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+Figure 1. (a) Spatial distribution of available UNAVCO high-rate GPS receivers on 8 September 2017. (b) Receiver hardware type distribution on that day.
+used in this figure. The top panel shows detrended L1CA (ΔL1) using a polynomial as a baseline, with units of carrier phase converted to range units. Panel (b) shows the L1CA high-pass filtered (0.1-Hz cut-off) 𝛿L1. This panel depicts numerous abrupt jumps in the carrier phase. The consequence of this impairment is that we can't use conventional phase scintillation index 𝜎Φ as it is defined on L1 carrier phase measurements. The peculiar nature of the carrier phase and its use for scintillation studies has been discussed by Beach (2006). A carrier phase combination of L2P and L1CA channels in the bottom two panels shows that the abrupt changes cancel out. The resulting detrended phase combination Δ(L2P-L1CA) in panel (c) and its high-pass filtered derivative show receiver hardware-independent carrier phase perturbations, which can be used for extracting ionosphere scintillation effects. Trimble NETRS receivers comprise more than half of the UNAVCO receiver network, and thus, we adopt the use of carrier phase combination instead of the L1 carrier phase throughout the network. As we show in the next section, carrier phase combination is proportional to the TEC, and thus, we utilize this property and the TEC as a measure of phase fluctuations. As suggested by Beach (2006), the use of a TEC, that is, a weighted carrier phase combination, can eliminate the receiver-imposed errors to phase measurements.
+
+MRAK ET AL.
+
+Figure 2. Carrier phase measurements (converted to range units) by the p413 receiver, measuring satellite G10, on 8 September 2017. (a) L1 detrended (Δ) carrier phase. (b) High-pass filtered (δ) L1 carrier phase. (c) Differential carrier phase measurements L2-L1. (d) High-pass filtered differential carrier phase of L2-L1.
+3 of 17
+
+MRAK ET AL.
+
+Radio Science
+
+10.1029/2020RS007131
+
+Measurements sampled at 1 Hz tend to undersample scintillations as the scintillation spectra extend to subsecond time scales. The carrier phase is not an issue as the power law dependence shall continuously extend into a larger spatial scale (slower time scale at the receiver). It has been demonstrated that a 1-Hz receiver and a colocated scintillation receiver measure morphologically the same scintillation spectra above 0.5 Hz (Béniguel et al., 2009). On the other hand, amplitude√scintillation spectra has a low-frequency cut-off (phase screen approximation) at the Fresnel scale rF (rF = 2𝜆Z, Z being the distance between receiver and irregularity) (Kintner et al., 2007), which translates into Fresnel frequency f F = rF v0, where v0 is the irregularity drift. Thus, a 1-Hz receiver with a Nyquist frequency at 0.5 Hz oversamples only scintillation-producing irregularities with effective drift velocity v0 ≤ 180 m/s (Rino, 1979). This calculation assumes isotropic irregularities at Z = 350 km, with v0 perpendicular to the line of sight.
+2.1. Data Processing
+
+We utilize GPS data from RINEX files where we take SNR at L1 (𝑓1 = 1575.42 MHz) and deduct slant TEC (sTEC) from carrier phases L1CA and L2P (𝑓2 = 1227.6 MHz) expressed as ranges
+
+sTEC
+
+=
+
+1 40.3
+
+𝑓12𝑓22 𝑓12 − 𝑓22
+
+(L1
+
+− L2)10−16 (TECu),
+
+(1)
+
+where cycle slips are accounted for with a method of Blewitt (1990), carrier phase ambiguities with a method
+
+from Coster et al. (1992), and 1 TECu = 1016electrons per meter squared. The sTEC is derived from the
+
+phase accumulation property that the phase advance is inversely proportional to f 2 and proportional to
+
+sTEC
+
+(𝛿L=
+
+40.3 𝑓2
+
+𝛿
+
+sTEC)
+
+(Mrak
+
+et
+
+al.,
+
+2018).
+
+The
+
+sTEC
+
+is
+
+then
+
+converted
+
+to
+
+vertical
+
+(hereafter
+
+referred
+
+as
+
+TEC)
+
+assuming the thin shell ionosphere approximation via mapping function F(Θ) (Klobuchar, 1987)
+
+√
+
+(
+
+F(Θ) = 1 − cos2(Θ)
+
+Re
+
+)2
+
+(2)
+
+Re + hIPP
+
+via zero TEC method (Rideout & Coster, 2006). Here, we assume the height of the ionospheric piercing
+
+point (hIPP) to be 350 km, Re is the radius of the Earth, and Θ is the elevation angle. We apply a (sixth order) high-pass filter, with 0.1-Hz cut-off frequency and Butterworth response (Fremouw et al., 1978) to the sTEC
+
+and SNR, obtaining 𝛿TEC and 𝛿SNR, respectively. Scintillation indices 𝜎TEC and SNR4 are then computed with a running 60-second standard deviation filter, normally used to compute phase scintillation index 𝜎𝜙.
+
+√
+
+𝜎TEC = < 𝛿TEC2 > − < 𝛿TEC>2
+
+(3)
+
+√
+
+SNR′4 = < 𝛿SNR2 > − < 𝛿SNR>2
+
+(4)
+
+We further adjust low elevation measurements due to oblique angle propagation through the irregularity layer using the approach by Alfonsi et al. (2011) and Spogli et al. (2009). Then, SNR4 can be expressed as
+
+SNR4 = SNR′4 ⋅ F(Θ)0.9.
+
+(5)
+
+Due to the problem with the carrier phase mentioned above, we compare the phase scintillation index 𝜎TEC against the rate of change of TEC (ROT) index (ROTI) similar to the early work of Beach and Kintner (1999).
+
+We compute ROTI, utilizing a running 60-second standard deviation filter, as defined by Pi et al. (1997):
+
+√
+
+ROTI = < ROT2 > − < ROT>2,
+
+(6)
+
+where the ROT is differential TEC computed at 1-second resolution. Furthermore, we estimate equivalent S4 by utilizing the SNR measurements, building upon promising results of recent case studies (Luo et al., 2020;
+
+Rodrigues & Moraes, 2019). We convert SNR into linear units of intensity I = 10SNR∕10 and then compute
+
+the index on a running 60-second window. Finally, we account for the elevation angle as introduced in
+
+Equation 5.
+
+√
+
+S4 =
+
+<
+
+I2
+
+> <
+
+−< I>2
+
+I>2
+
+⋅ F(Θ)0.9
+
+(7)
+
+4 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+MRAK ET AL.
+
+Figure 3. (a) Average receiver hardware availability distribution in January 2018. (b) Histogram of daily median σTEC distribution (left) and daily median SNR4 distribution (right) among all receivers in January 2018. (c) The same as panel (b), but for each hardware setup.
+Kintner et al. (2007) discussed signal intensity-SNR relationship, where SNR is averaged over a period of 1 second. The exact formulation used by receiver types used in this study is unknown. On one hand, the introduced technique for S4 estimation has been proven to correlate well with conventional S4 computed directly from the signal intensity (Luo et al., 2020; Rodrigues & Moraes, 2019; Thompson et al., 2008). On the other hand, the primary drawback of using SNR is a fade smearing due to the temporal averaging, as demonstrated by Jiao et al. (2016).
+2.2. Event Definition
+We have discussed data impairments and mitigation of geodetic receivers used in the UNAVCO network. Here we discuss the “scintillation event” selection procedure, which takes into account inherent noise level variability due to diverse receiver hardware selection. In the event selection criteria, we build upon the statistical survey of Jiao and Morton (2015), with additional receiver-specific factor. Figure 3 presents a distribution of receiver hardware setups and related histogram of noise levels of the introduced indices. We chose to use a daily median value of phase 𝜎̂ TEC and amplitude Ŝ NR4 scintillation index as a measure of the receiver noise floor. We compute the statistical distribution of these levels in a full month of January 2018, excluding days with planetary K (Kp) index Kp ≥ 4 (14 and 24 January). All receivers were located in the
+5 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+MRAK ET AL.
+
+Figure 4. Scintillation event diagnostic. Dashed lines present threshold values (magenta) and receiver noise level (black). Scintillation events are bolstered in the bottom panel of each example. (a) Demonstration of system glitch rejection and amplitude scintillation event. (b) Demonstration of phase scintillation events. Enumerated are two identified events where the second one demonstrates the merging of multiple events separated for less than 5 minutes.
+
+Northern Hemisphere, where the total background TEC is the lowest on a yearly basis. Figure 3a depicts
+average hardware distribution in the time period of this analysis. Figure 3b shows a distribution of receiver
+noise levels among all available receivers. Figure 3c breaks down the receiver noise levels for each receiver setup. Overall, both 𝜎̂ TEC and Ŝ NR4 have a large spread with a factor of ∼5 in 𝜎TEC and a factor of ∼10 in SNR4. While the degree of spread in 𝜎TEC is similar among different receiver setups, with the worst performer being Trimble NETR8, Septentrio PolaRX5 is notably a receiver with the smallest noise level and variance in SNR.
+To cope with receiver-dependent noise levels, we define a threshold parameter T𝜒r , for 𝜒 ∈ [𝜎TEC, SNR4], for each receiver r computed on a daily basis. The threshold values are defined as
+
+T𝜒r = 2.5 ⋅ 𝜒̂r,
+
+(8)
+
+where a value of 2.5 is a fixed standoff distance from the receiver noise level 𝜒̂r. Although this number is empirically chosen, as demonstrated below, this threshold effectively separates real scintillation signal and noise. Scintillation events are then defined separately for 𝜎TEC and SNR4 as follows: running median (60-second length) value of a scintillation index has to continuously exceed the computed threshold (Equation 8) for a minimum duration of 2 minutes. Additionally, multiple events with temporal separation
+
+6 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+MRAK ET AL.
+
+Figure 5. OMNIweb solar wind and geomagnetic indices from for the time period between 5 and 11 September 2017. (a) Interplanetary magnetic field components in Geocentric Solar Magnetospheric (GSM) coordinates. (b) Solar wind speed. (c) Auroral electrojet (AE) index. (d) Ring current strength proxy via SYM/H index.
+shorter than 5 minutes are merged together. The introduction of the variable threshold value T𝜒r depending on the noise level is a modification from a fixed cut-off method used by Jiao and Morton (2015), because a fixed threshold creates a bias between different types of receivers.
+The event selection is pictorially demonstrated in Figure 4, using two examples with measurements taken above 30◦ elevation angle. In Figure 4a, a system glitch and an amplitude scintillation event occurred within 30 minutes. The top panel shows a sudden increase in SNR by 3 dB at 00:17 universal time (UT), followed by an event of increased variance at 00:45–01:00 UT. The second panel shows the computed SNR4 index in blue and its 1-minute running median in red. The black dashed line is the receiver noise level Ŝ NR4wmok, and the magenta dashed line is the threshold level TSwNmRo4k. The bottom panel in Figure 4 demonstrates the event selection result by the thick line. The increased SNR4 due to the system glitch was rejected by the minimum length criterion. On the contrary, the event selection procedure flagged elevated SNR4 between 00:45 and 1:00 UT as a scintillation event.
+The second example in Figure 4b depicts a case of a longer phase scintillation event (labeled as “1”) colocated with a TEC gradient at 0:40–1:30 UT. Additionally, there was a secondary, more subtle enhancement in the 𝜎TEC around 2:00 UT (marked as “2”). This scintillation event consists of a period where 𝜎TEC was below the threshold (in the middle of the event). This part was included by the minimum separation criterion, which merges individual scintillation events with a separation shorter than 5 minutes into a single event.
+3. Case Study
+We analyze and validate the introduced indices and scintillation event selection on an event study. We have processed 6 days' worth of data surrounding the 7–8 September 2017 geomagnetic storm. The solar wind and geomagnetic indices for this period (5 to 11 September 2017) are presented in Figure 5. The solar wind data show that two consecutive shocks hit the magnetopause on 7 September, with a time separation of about 24 hours. While the first shock arrived with a predominantly northward interplanetary magnetic field (IMF), the latter one was accompanied by a strong (∼ − 30 nT) southward IMF. The latter shock facilitated the enhancement of the ring current (SYM/H index) and increased high-latitude geomagnetic activity measured by the auroral electrojet (AE) index. There were two episodic AE intensifications on 8 September; both were related to storm development (negative excursion of the SYM/H).
+7 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+Table 1 A Subset of Receiver (Rx)-Satellite (SV) Links Under Examination
+
+Rx name CN12 HDIL OXUM P209 P413 WMOK
+
+GLON –76.7 –89.3 –96.5 –122.1 –120.1 –98.8
+
+GLAT 18 40.6 15.7 37.1 48.4 34.7
+
+Receiver model Trimble NETR9 Septentrio PolaRx5 Trimble NETR9 Trimble NETRS Trimble NETRS Septentrio PolaRx5
+
+SV (blue, orange, magenta) G18, G21, G26 G18, G21, G32 G16, G22, G26 G10, G14, G32 G10, G14, G32 G18, G31, G32
+
+Note. Locations are given in geographic longitude (GLON) and geographic latitude (GLAT).
+
+The storm was particularly intriguing, as it severely perturbed the ionosphere at the longitude sector of northern America, and thus, it was well sampled by the UNAVCO GPS network. The ionosphere exhibited several distinct perturbations at this local time sector, in the form of equatorial plasma bubbles (EPBs), severe auroral activity, and multiple TEC gradients at midlatitudes (over CONUS). Impulsive perturbations have been reported (Aa et al., 2019; Mrak et al., 2020; Zakharenkova & Cherniak, 2020), but small-scale density irregularity distribution remains unknown, due to the lack of scintillation receivers. Severe space weather impacts on GNSS over the contiguous United States have been presented (Yang et al., 2020); however, associated scintillation or small-scale irregularities have not been yet reported. We take advantage of the UNAVCO GPS receivers and demonstrate the scintillation processing for this event.
+3.1. Evaluation of Scintillation Indices and Event Selection
+We analyze scintillation indices computed from a subset of six receivers during the time frame of the 7–8 September storm main phase. The chosen receivers are listed in Table 1, and we focus only on the three most affected lines of sight for each of the receivers. The corresponding trajectories of ionospheric pierce points (IPPs) at 350-km altitude are depicted in Figure 6 for the period shown in Figure 7. Derived TEC and scintillation indices for these receivers are presented in Figure 7. Receivers are chosen in a way to cover a large span in longitude and latitude and to present time series plots of the three most frequent hardware setups.
+
+MRAK ET AL.
+
+Figure 6. Locations of receivers from Table 1, with trajectories of ionospheric piercing points from the chosen satellites. 8 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+MRAK ET AL.
+
+Figure 7. Example measurements from three receivers, introduced in Figure 6. Each panel consist of (top to bottom) estimated vertical TEC (vTEC), ROTI, σTEC, SNR4, and S4. Each receiver represents different hardware setup, presented in Table 1. Red dashed lines are the associated thresholds T𝜒r .
+9 of 17
+
+MRAK ET AL.
+
+Radio Science
+
+10.1029/2020RS007131
+
+Each panel in Figure 7 consists of computed TEC (Equation 1), ROTI, and SNR-derived S4, 𝜎TEC, and SNR4. All presented observations were masked with a 30◦ elevation cut-off. The TEC plots show dramatic TEC per-
+turbations, some exceeding 10 TECu at time scales of a few minutes. In general, ROTI values correlate well
+with these gradients, revealing the existence of irregularities with temporal scales in the order of 1 second.
+A comparison between ROTI and 𝜎TEC indicates a linear correlation, showing no morphological differences regardless of the receiver type and intensity of irregularities. While most of the receivers observed elevated TEC perturbations by virtue of both indices, the event threshold T𝜎TEC ≈ 0.01 (translates to 𝜎̂ TEC ≈ 4 ⋅ 10−3) for all receivers, regardless of the receiver type.
+
+The bottom two panels of each receiver in Figure 7 serve as a comparison between amplitude scintillation
+indices. Like in the TEC case, the indices are visually well correlated but show strikingly different variance
+(noise level) among different receivers. A large span in the thresholds TSNR4 is expected based on the preliminary quiet day analysis (Figure 3). In the given example, Septentrio PolaRx5 receivers (wmok and hdil)
+have the threshold level of a factor of ∼2 smaller than Trimble receivers. We find that the introduced SNR4 index has a bigger dynamic range, due to the fact that it is not normalized.
+
+Another striking observation is enhanced amplitude scintillation, as four of the receivers were located within
+CONUS: Washington state (p413), Oklahoma (wmok), Illinois (hdil), and California (p209). Less strikingly,
+receivers at lower latitudes—Jamaica (cn12) and Mexico (oxum)—were as well subject to enhanced scintillation. Specifically, receiver oxum recorded extreme amplitude scintillation with S4 ≥ 0.5, accompanied by numerous loss of locks, which prevented the calculation of 𝜎TEC index. Phase scintillation was colocated with amplitude scintillation at all instances. Receiver p413 measured only increased phase scintillation, indicat-
+ing that it got affected by different kinds of ionospheric structures. Lastly, enhanced amplitude scintillation is well correlated with phase scintillation 𝜎TEC and ROTI, generally colocated with the steep TEC gradients.
+
+The correlation between ROTI and 𝜎TEC observed with all receivers is not surprising. As we introduced in the previous section via Equation 1, they should be linearly correlated. The advantages of 𝜎TEC over ROTI are a deterministic amplitude and phase response by the prescribed filtering operation and a straightforward
+
+connection with the TEC power spectral density (PSDTEC)
+
+∞
+
+𝜎T2EC = 2 ∫0.1 PSDTEC( 𝑓 ) d𝑓 ,
+
+(9)
+
+following the morphology derived for phase scintillation (Béniguel et al., 2009; Secan et al., 1995), where the low limit in the integration is a chosen frequency cut-off at 0.1 Hz. Correlation between SNR4 and 𝜎TEC does exists from cases of measured amplitude scintillation. The latter observation is also expected as several
+studies demonstrated correlation and casual relationship between ROTI and S4 (Carrano et al., 2019; Liu & Radicella, 2019; Yang & Liu, 2016). Correlation deviation in this formalism is thought to be due to viewing
+geometry and irregularity drift velocity (Carrano et al., 2019; Liu & Radicella, 2019).
+
+The importance of the hardware-dependent scintillation event classification is bolstered by means of large-scale statistical relationships: 𝜎TEC-ROTI and SNR4-S4. A mutual comparison between the indices is presented as 2-D histograms in Figure 8. The histograms encompass data from the receivers in Table 1 on a period of 48 hours (7 and 8 September 2017), with a total of ∼4.5 million data points. The histograms show two major populations: a correlated group clustered along a linear correlation line and the second uncorrelated group along both axes. The latter group exists due to receiver impairments such as cycle slips and processing artifacts.
+
+We then apply the scintillation event decision criteria and redo the correlation analysis in Figure 9. Panel (a) shows the results from the same data set as in Figure 8. The criteria effectively rejected the uncorrelated groups, and the results show a linear relationship between both 𝜎TEC-ROTI and SNR4-S4. Linear correlation with a high correlation coefficient indicates that the introduced scintillation indices are adequate substitutes for ROTI and S4. The bottom panel (b) presents analysis taken from all receivers in Figure 11 processed in this case study. The linear correlation line is plotted on each panel, including the line parameters and the correlation coefficient R. We find the correlation coefficient between 𝜎TEC and ROTI R = 0.9 and SNR4 and S4 R = 0.83.
+3.2. Comparison Against CASES Scintillation Receiver
+
+We compare measurements from the wmok receiver located in Oklahoma with a CASES scintillation receiver (Crowley et al., 2011) deployed at UT Dallas, TX. The receivers were spaced ∼240 km apart. As the
+
+10 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+Figure 8. Two-dimensional histogram showing direct comparison between conventional and introduced scintillation indices, using data of six selected receivers from Table 1. The number of points is 4.5 million as shown in the title. (a) Comparison between ROTI and σTEC. (b) Comparison between S4 and SNR4.
+UT Dallas receiver was operating only until 2:30 UT on 8 September, we utilize data recorded in this period. The CASES receivers sample carrier phase and signal intensity of the L1CA channel at 100-Hz resolution and output scintillation indices 𝜎𝜙 and S4 every 100 seconds. Thereby, the rate deviates from the conventional approach (60 seconds), which we adopted in this work. For a purpose of this comparison only, we used the same 100-second standard deviation window for the wmok receiver. CASES receivers provide estimates of the TEC and SNR at 1-second rate.
+
+MRAK ET AL.
+
+Figure 9. The same format as in Figure 8 but only using data points above the thresholds in Equation 8. (a) Using the six selected receivers from Table 1. (b) All selected 169 receivers depicted in Figure 1. The number of points T is shown in the title. White fiducial line fit to the data with equation in the top left corner. Correlation coefficient R between selected indices is given in the bottom right corner.
+11 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+Figure 10. Comparison between observations taken by CASES (top) receiver from Dallas, TX, and wmok receiver from Oklahoma (bottom). Each row consists
+of three frames of data from G10, G24, and G32 satellites. Top row (CASES) has additional scintillation indices (σ𝜙, S4) in the second and bottom panels (respectively). Red lines represent the introduced (σTEC, SNR4) scintillation indices.
+
+We analyze observations from three satellite links, where we computed the introduced scintillation indices (𝜎TEC, SNR4) at a 100-second rate for wmok receiver, which we compare with the CASES-provided 𝜎𝜙 and S4. The comparison is presented in Figure 10, where the top row consists of frames with observations taken by the CASES receiver and the bottom row of the wmok. All observations were masked with 30◦ elevation angle cut-off; the elevation angle is depicted alongside the wmok-TEC plots. Estimated TEC is plotted in the top panel, whereas the derived 𝜎TEC is in the second panel. It is plotted side by side with the CASES-provided phase scintillation index 𝜎𝜙. All three lines of sight show that 𝜎TEC follows the trend and dynamics of 𝜎𝜙. The bottom two panels show the SNR in the third panel, whereas the SNR4 and S4 indices are in the last panel. The latter amplitude scintillation indices have large variance owing to the receiver's performance, as indicated by large variations in the SNR panels. The SNR4 index was derived from the SNR and follows the trend of the S4 which is provided as a standard CASES output.
+The general trend in the scintillation indices (red lines) is morphologically similar between both receivers. While the middle frames, monitoring satellite G24, show almost identical trends in both 𝜎TEC and SNR4; the other links have a distinct difference. The difference originates in different electron density structure as measured by the TEC. Notable differences can be observed between satellites G10 and G32, where both receiver measured double-slope gradients but at the opposite links. The difference can be ascribed to the 240-km distance between the receivers. Nevertheless, both receivers measured increased amplitude scintillation in the plateau region between the density gradients. This was measured by the CASES receiver in the G10 link at ∼1:15 UT and by the wmok at about the same time. It should be noted that despite that increased variance in raw SNR data, namely, amplitude scintillation, is clearly observed, the value of the scintillation index S4 is below 0.2 usually used as a scintillation detection threshold (Béniguel et al., 2009; Jiao & Morton, 2015).
+In aggregate, the CASES scintillation receiver provides independent validation for the introduced phase scintillation index substitute, 𝜎TEC, that follows the trend of 𝜎𝜙. Additionally, CASES-derived amplitude scintillation index S4 measured instances of elevated amplitude scintillation, which were also indicated by the SNR-derived SNR4. In comparison with the closest UNAVCO receiver, it is found that both receivers measured the same scintillating structures, both with phase 𝜎TEC and amplitude SNR4 scintillation indices.
+
+MRAK ET AL.
+
+12 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+MRAK ET AL.
+
+Figure 11. Same format as Figure 1, with spatial distribution of receivers chosen (total of 169) to produce irregularity maps in this case study.
+3.3. Scintillation Maps and Event Analysis
+The spatiotemporal evolution of the scintillation indices during the storm is obtained by virtue of scintillation maps from chosen receivers presented in Figure 11. A total number of 169 receivers were selected based on the criteria to reduce receiver density to one receiver per 2◦ GLON × 2◦ GLAT bin. The total number and specific receiver hardware contribution to the subset of the receiver network is presented in Figure 11b. We present the irregularity maps in Figure 12, covering the 7–8 September storm at a time resolution of 1 hour. Irregularity maps consist of 𝜎TEC and SNR4 indices, which are compared to the ROTI maps at each epoch. Each frame consists of data points collected in the first 5 minutes after the image time stamp.
+The maps in Figure 12 show how well the regions of elevated ROTI correlate with scintillation occurrence. Each epoch consists of two maps, where ROTI maps are the top panel and the scintillation maps are the bottom one. All measurements are mapped to 350-km latitude and superposed on top TEC maps. While we plot all the ROTI observations, the scintillation indices underwent the classification process described in section 2.2. At the beginning of the storm's main phase in Figure 12a, the area with high ROTI correlated with phase scintillation 𝜎TEC. The disturbance lied within a storm-enhanced density plume (area of enhanced TEC), extending from the central United States up to northern Alaska. In the next frame (panel b), the morphology of scintillation at the poleward portion of the CONUS remained unchanged, while a meridional density depletion (seen in the TEC map) over the eastern United States hosted another disturbance with elevated ROTI and both amplitude and phase scintillation. For the evolution of the TEC depletion, we refer readers to recent storm studies (Mrak et al., 2020; Zakharenkova & Cherniak, 2020).
+An hour later in Figure 12c, the maps show a change in scintillation morphology in the vicinity of the midlatitude trough (marked in panel a) located near the United States-Canada border. There were two distinct meridionally separated scintillation regions: one poleward in the midlatitude trough (within the auroral oval) and the other one equatorward of this trough. The scintillation elongated along the secondary density trough persisted through 4:30 UT. Additionally, there were numerous instances of observed amplitude scintillation within the secondary density trough. These observations were previously described in time series plots of receiver p413 in Figure 7d. The scintillation lingered over the CONUS area for at least another hour (panel d), before they began to dissipate away.
+Another region of intense amplitude scintillation emerged at about 1:30 UT (Figure 12c), located within the high-density area near 20◦ MLAT, just west of 0◦ magnetic longitude meridian. Amplitude scintillation, accompanied with phase scintillation (in conjunction with elevated ROTI), persisted until the end of the event analysis at 4:30 UT. The scintillation observations were located deep within the high-density (the equatorial ionization anomaly) area. Considering the timing aspect of it (premidnight local time) strongly suggests that the scintillation was a consequence of EPBs (e.g., Béniguel et al., 2009). At the same time, high-latitude activity was strictly confined within the auroral oval, over the Alaskan sector.
+Lastly, we analyze total scintillation occurrence during 6 days adjacent to the storm under investigation. We present scintillation occurrence as a function of time in Figure 13. We took the same data as used to create
+13 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+Figure 12. ROTI and scintillation maps for a time period of the storm main phase. Each epoch panel consists of two vertically stacked maps: ROTI on top and the scintillation indices in the bottom map. The ROTI and scintillation indices are overlaid on top of the TEC maps. Grid lines are in geomagnetic coordinates.
+
+the instantaneous maps of scintillation discussed above and reduced the spatial dimensions into normalized scintillation parameters. The ROTI time series plot in panel (a) represents the median (< ⋅ >) value of ROTI at a given epoch. On the contrary, the sole use of this statistical moment would not comprehensively represent the scintillation occurrence due to the fact that the total number of scintillation events varies with time as defined in section 2.2. Therefore, we multiply the median value of a scintillation index with the total number of events N recorded at a given epoch. Thus, the total parameter encompasses information about (median) scintillation intensity and spatial spread of it. Resulting normalized phase scintillation <𝜎TEC > ⋅N and amplitude scintillation <SNR4 > ⋅N are plotted in the bottom two panels (respectively).
+The phase scintillation occurrence in Figure 13b has three distinct peaks (enumerated I–III), which correlate well with auroral electrojet (AE index) intensifications in the background (thin blue line). The correlation is
+
+MRAK ET AL.
+
+14 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+MRAK ET AL.
+
+Figure 13. Scintillation indices time series plots from all available receivers, for the time period surrounding the 7–8 September geomagnetic storm. (a) ROTI time series represented by instantaneous median (< ⋅ >). (b) Median σTEC value normalized by total number of events N (<σTEC > ⋅N). (c) Median SNR4 value normalized by total number of instantaneous scintillation events N (<SNR4 > ⋅N).
+expected as the AE is a proxy measure of auroral activity which is well established as the predominant source of phase scintillation at high latitudes. The second (II) increase in 𝜎TEC, however, is disproportional to the other two instances (I and II). This increase occurred in conjunction with the extreme increase in amplitude scintillation SNR4, as shown in Figure 13c. This intensification occurred at the dip of the geomagnetic storm, indicated by the negative deflection in SYM/H index (shown in the bottom panel). Finally, this storm time increase correlates well with elevated ROTI; however, the other two instances of elevated phase scintillation index 𝜎TEC do not show a contemporary increase in the ROTI. This is due to the fact that only a localized area of the receiver network coverage experienced the scintillation; hence, the median operator did not pick up the increases in ROTI, which did not undergo the scintillation event classification decision process.
+4. Summary and Conclusions
+We have introduced an alternative method to obtain ionospheric scintillation indices from geodetic GPS receivers with a 1-Hz data rate. We have discussed limitations imposed by opportunistic data source, which has limited temporal sampling range. We have introduced and demonstrated the efficiency of a hardware-dependent scintillation event classification by virtue of direct comparison with ROTI and SNR-derived S4. We showed that the introduced amplitude scintillation SNR4 index is more sensitive to weak events (cf. Figure 7) than the S4, due to the fact that SNR4 is not normalized. The introduced phase scintillation index 𝜎TEC shows a linear correlation with ROTI, with a correlation coefficient of 0.90. Another property of the introduced scintillation indices is equal signal processing treatment, where the filtering function has a deterministic impulse response, in contrary to the ROT and ROTI.
+The introduced processing was applied to the UNAVCO GPS data set; we leveraged its large spatial coverage to produce scintillation maps. The most profound virtue of large spatial coverage is the ability to examine scintillation evolution at a continental scale covering the longitude sector of the CONUS. We demonstrated the potential importance of the data product with a case study of the 7–8 September 2017 storm. The results reveal episodic scintillation occurrence and spatiotemporal evolution in an area covering over 50◦ MLAT, considered to be primarily within the midlatitude ionosphere. Six days of scintillation observations adjacent to the 8 September storm show a good correlation between increased auroral activity and the phase scintillation index 𝜎TEC. A disproportional increase in both phase and amplitude scintillation was observed during the storm main phase. The spatiotemporal evolution of the scintillation geolocation was analyzed by virtue of scintillation maps, namely, high-latitude scintillation was predominantly confined to the area within the auroral oval and in the vicinity of the trough equatorward boundary, characterized by an elevated
+15 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+phase scintillation index. Because this region lacks amplitude scintillation, the elevated phase scintillation index is likely due to phase variations associated with fast-moving density structures. Low-latitude scintillation was predominantly confined within the equatorial ionization anomaly at the premidnight local time sector, consisting of both elevated amplitude and phase scintillation, a morphology of Fresnel scatter. Lastly, additional large-scale density trough was located predominantly at midlatitudes and was associated with elevated amplitude and phase scintillation. The latter finding is a novel observation, made available by the utilization of geodetic receivers.
+The presented case of storm time spatial evolution of GPS scintillation at midlatitudes shed a new light on past observations of scintillation from upstate New York (Ledvina et al., 2002). Additionally, the promising results of scintillation event classification and demonstrated utility of scintillation maps allow a comprehensive retrospective analysis of thus far ignored scintillation occurrence at midlatitudes. The data availability goes back to 2011, as a statistical survey is currently underway. While scintillation occurrence at low and high latitudes agrees well with established scintillation climatology (Aarons, 1982; Basu et al., 1988; Béniguel et al., 2009; Kintner et al., 2007; Secan et al., 1995, 1997), the preliminary results from receivers at midlatitudes partially agree with historical morphology of midlatitude scintillation (Aarons, 1982; Kintner et al., 2007). That is, an increase of phase scintillation is predominantly due to TEC gradients in the vicinity of the trough equatorward boundary and increased plasma convection within the trough. The results of the presented case study indicate that there are other midlatitude mechanisms producing both amplitude and phase scintillation. The climatology and controlling parameters of these events are mysterious, as it appears that they occur during large storms (Aa et al., 2019; Ledvina et al., 2002; Zakharenkova & Cherniak, 2020). Leveraging 1-Hz geodetic receivers, such as the one operated by UNAVCO, could be utilized to gain insight into the midlatitude scintillation phenomenon through a comprehensive retrospective analysis.
+Data Availability Statement
+GPS data are freely available online (ftp://data-out.unavco.org/pub/highrate/1-Hz/rinex/). GPS TEC maps were retrieved publicly (http://cedar.openmadrigal.org/). Solar wind and geomagnetic indices are available via OMNI database (https://cdaweb.sci.gsfc.nasa.gov/pub/data/omni/).
+
+Acknowledgments The study was supported by NSF-AGS 1821135, NSF-AGS-1907698, NASA-80NSSC18K0657, and AFOSR FA9559-16-1-0364 awards to Boston University. F. S. R. would like to thank support from NSF-AGS-1554926. This data product was fostered by the NASA Living With a Star Institute 2019, Mid-latitude Irregularities and Scintillation.
+
+References
+Aa, E., Zou, S., Ridley, A., Zhang, S., Coster, A. J., Erickson, P. J., et al. (2019). Merging of storm time midlatitude traveling ionospheric disturbances and equatorial plasma bubbles. Space Weather, 17, 285–298. https://doi.org/10.1029/2018SW002101
+Aarons, J. (1982). Global morphology of ionospheric scintillations. Proceedings of the IEEE, 70(4), 360–378. https://doi.org/10.1109/ PROC.1982.12314
+Alfonsi, L., Spogli, L., De Franceschi, G., Romano, V., Aquino, M., Dodson, A., & Mitchell, C. N. (2011). Bipolar climatology of GPS ionospheric scintillation at solar minimum. Radio Science, 46, RS0D05. https://doi.org/10.1029/2010RS004571
+Béniguel, Y. (2002). Global Ionospheric Propagation Model (GIM): A propagation model for scintillations of transmitted signals. Radio Science, 37(3), 1032. https://doi.org/10.1029/2000RS002393
+Béniguel, Y., Adam, J. P., Jakowski, N., Noack, T., Wilken, V., Valette, J. J., et al. (2009). Analysis of scintillation recorded during the PRIS measurement campaign. Radio Science, 44, RS0A30. https://doi.org/10.1029/2008RS004090
+Basu, S., MacKenzie, E., & Basu, S. (1988). Ionospheric constraints on VHF/UHF communications links during solar maximum and minimum periods. Radio Science, 23(3), 363–378. https://doi.org/10.1029/RS023i003p00363
+Beach, T. L. (2006). Perils of the GPS phase scintillation index (𝜎𝜙). Radio Science, 41, RS5S31. https://doi.org/10.1029/2005RS003356 Beach, T. L., & Kintner, P. M. (1999). Simultaneous Global Positioning System observations of equatorial scintillations and total electron
+content fluctuations. Journal of Geophysical Research, 104(A10), 22,553–22,565. https://doi.org/10.1029/1999JA900220 Blewitt, G. (1990). An automatic editing algorithm for GPS data. Geophysical Research Letters, 17(3), 199–202. https://doi.org/10.1029/
+GL017i003p00199 Carrano, C. S., Groves, K. M., & Rino, C. L. (2019). On the relationship between the rate of change of total electron content index (ROTI),
+irregularity strength (C k L), and the scintillation index (S4). Journal of Geophysical Research: Space Physics, 124, 2099–2112. https:// doi.org/10.1029/2018JA026353 Coster, A. J., Gaposchkin, E. M., & Thornton, L. E. (1992). Real-time ionospheric monitoring system using GPS. Navigation, 39(2), 191–204. Retrieved from http://onlinelibrary.wiley.com/doi/10.1002/j.2161-4296.1992.tb01874.x/abstract http://files/254/2001-6.pdf Crowley, G., Bust, G. S., Reynolds, A., Azeem, I., Wilder, R., O'Hanlon, B. W., et al. (2011). CASES: A novel low-cost ground-based dual-frequency GPS software receiver and space weather monitor. 24th International Technical Meeting of the Satellite Division of the Institute of Navigation 2011, ION GNSS 2011, 2, 1437–1446. Fremouw, E. J., Leadabrand, R. L., Livingston, R. C., Cousins, M. D., Rino, C. L., Fair, B. C., & Long, R. A. (1978). Early results from the DNA wideband satellite experiment-complex-signal scintillation. Radio Science, 13(1), 167–187. https://doi.org/10.1029/ RS013i001p00167 Jiao, Y., & Morton, Y. T. (2015). Comparison of the effect of high latitude and equatorial ionospheric scintillation on GPS signals during the maximum of solar cycle 24. Radio Science, 50, 886–903. https://doi.org/10.1002/2015RS005719 Jiao, Y., Xu, D., Morton, Y., & Rino, C. (2016). Equatorial scintillation amplitude fading characteristics across the GPS frequency bands. Navigation, 63(3), 267–281. https://doi.org/10.1002/navi.146
+
+MRAK ET AL.
+
+16 of 17
+
+Radio Science
+
+10.1029/2020RS007131
+
+Juan, J. M., Aragon-Angel, A., Sanz, J., González-Casado, G., & Rovira-Garcia, A. (2017). A method for scintillation characterization using geodetic receivers operating at 1 Hz. Journal of Geodesy, 91(11), 1383–1397. https://doi.org/10.1007/s00190-017-1031-0
+Kintner, P. M., Ledvina, B. M., & de Paula, E. R. (2007). GPS and ionospheric scintillations. Space Weather, 5, S09003. https://doi.org/10. 1029/2006SW000260
+Klobuchar, J. (1987). Ionospheric time-delay algorithm for single-frequency GPS users. IEEE Transactions on Aerospace and Electronic Systems, AES–23(3), 325–331. https://doi.org/10.1109/TAES.1987.310829
+Ledvina, B. M., Makela, J. J., & Kintner, P. M. (2002). First observations of intense GPS L1 amplitude scintillations at midlatitude. Geophysical Research Letters, 29(14), 1659. https://doi.org/10.1029/2002GL014770
+Liu, Y., & Radicella, S. (2019). On the correlation between ROTI and S4. Annales Geophysicae Discussions, 1–14. https://doi.org/10.5194/ angeo- 2019- 147
+Luo, X., Gu, S., Lou, Y., Cai, L., & Liu, Z. (2020). Amplitude scintillation index derived from C/N0 measurements released by common geodetic GNSS receivers operating at 1 Hz. Journal of Geodesy, 94(27), 1–14. https://doi.org/10.1007/s00190-020-01359-7
+McCaffrey, A. M., & Jayachandran, P. T. (2019). Determination of the Refractive Contribution to GPS Phase “Scintillation”. Journal of Geophysical Research: Space Physics, 124, 1454–1469. https://doi.org/10.1029/2018JA025759
+Mrak, S., Semeter, J., Hirsch, M., Starr, G., Hampton, D., Varney, R. H., et al. (2018). Field-aligned GPS scintillation: Multisensor data fusion. Journal of Geophysical Research: Space Physics, 123, 97–992. https://doi.org/10.1002/2017JA024557
+Mrak, S., Semeter, J., Nishimura, Y., Foster, J. C., Hairston, R., & Bristow, W. A. (2020). Modulation of storm-time mid-latitude ionosphere by magnetosphere-ionosphere coupling. Earth and Space Science Open Archive, 1–23. https://doi.org/10.1002/essoar.10504405.1
+Nguyen, V. K., Rovira-Garcia, A., Juan, J. M., Sanz, J., González-Casado, G., La, T. V., & Ta, T. H. (2019). Measuring phase scintillation at different frequencies with conventional GNSS receivers operating at 1 Hz. Journal of Geodesy, 93(10), 1985–2001. https://doi.org/10. 1007/s00190- 019- 01297- z
+P.531-14, I.-R. (2019). Ionospheric propagation data and prediction methods required for the design of satellite networks and systems. Geneva. Retrieved from https://www.itu.int/rec/R-REC-P.531/en
+Pi, X., Mannucci, A. J., Lindqwister, U. J., & Ho, C. M. (1997). Monitoring of global ionospheric irregularities using the Worldwide GPS Network. Geophysical Research Letters, 24(18), 2283–2286. https://doi.org/10.1029/97GL02273
+Priyadarshi, S. (2015). A review of ionospheric scintillation models. Surveys in Geophysics, 36(2), 295–324. https://doi.org/10.1007/ s10712- 015- 9319- 1
+Rideout, W., & Coster, A. (2006). Automated GPS processing for global total electron content data. GPS Solutions, 10(3), 219–228. https:// doi.org/10.1007/s10291- 006- 0029- 5
+Rino, C. L. (1979). A power law phase screen model for ionospheric scintillation: 1. Weak scatter. Radio Science, 14(6), 1135–1145. https://doi.org/10.1029/RS014i006p01135
+Rodrigues, F. S., & Moraes, A. O. (2019). ScintPi: A low-cost, easy-to-build GPS ionospheric scintillation monitor for DASI Studies of Space Weather, Education, and Citizen Science initiatives. Earth and Space Science, 6(8), 1547–1560. https://doi.org/10.1029/2019EA000588
+Secan, J. A., Bussey, R. M., Fremouw, E. J., & Basu, S. (1995). An improved model of equatorial scintillation. Radio Science, 30(3), 607–617. https://doi.org/10.1029/94RS03172
+Secan, J. A., Bussey, R. M., Fremouw, E. J., & Basu, S. (1997). High-latitude upgrade to the wideband ionospheric scintillation model. Radio Science, 32(4), 1567–1574. https://doi.org/10.1029/97RS00453
+Spogli, L., Alfonsi, L., De Franceschi, G., Romano, V., Aquino, M. H. O., & Dodson, A. (2009). Climatology of GPS ionospheric scintillations over high and mid-latitude European regions. Annales Geophysicae, 27(9), 3429–3437. https://doi.org/10.5194/angeo-27-3429-2009
+Thompson, R. J. R., Cetin, E., & Dempster, A. G. (2008). Detecting amplitude scintillation using C/N0 differences. Proceedings of the 27th International Technical Meeting of the Satellite Division of The Institute of Navigation (ION GNSS+ 2014), 1115–1125.
+Wernik, A. W., Secan, J. A., & Fremouw, E. J. (2003). Ionospheric irregularities and scintillation. Advances in Space Research, 31(4), 971–981. https://doi.org/10.1016/S0273-1177(02)00795-0
+Yang, Z., & Liu, Z. (2016). Correlation between ROTI and ionospheric scintillation indices using Hong Kong low-latitude GPS data. GPS Solutions, 20(4), 815–824. https://doi.org/10.1007/s10291-015-0492-y
+Yang, Z., Mrak, S., & Morton, Y. J. (2020). Geomagnetic storm induced mid-latitude ionospheric plasma irregularities and their implications for GPS positioning over North America: A case study. In 2020 IEEE/ION Position, Location and Navigation Symposium (PLANS) (pp. 234–238). St. Louis, Missouri: IEEE. https://doi.org/10.1109/PLANS46316.2020.9110132
+Yeh, K. C., & Liu, C.-H. (1982). Radio wave scintillations in the ionosphere. Proceedings of the IEEE, 70(4), 324–360. https://doi.org/10. 1109/PROC.1982.12313
+Zakharenkova, I., & Cherniak, I. (2020). When plasma streams tie up equatorial plasma irregularities with auroral ones. Space Weather, 18, e2019SW002375. https://doi.org/10.1029/2019SW002375
+
+MRAK ET AL.
+
+17 of 17
+

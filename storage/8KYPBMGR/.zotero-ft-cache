@@ -1,0 +1,566 @@
+Journal of Geophysical Research: Space Physics
+
+RESEARCH ARTICLE
+10.1029/2017JA024900
+Key Points: • Ionospheric responses to
+geomagnetic storms of 2015 (17 March and 22 June) were analyzed using data from different geophysical instruments • Differences in ionospheric responses are explained by the difference in local time at the beginning of storms and seasons • A plasma bubble reaching midlatitudes (up to 38° N) has been identiﬁed and characterized; its formation is explained by the PPEF process
+Correspondence to: A. Kashcheyev, anton.kascheev@gmail.com
+Citation: Kashcheyev, A., Migoya-Orué, Y., AmoryMazaudier, C., Fleury, R., Nava, B., AlazoCuartas, K., & Radicella, S. M. (2018). Multivariable comprehensive analysis of two great geomagnetic storms of 2015. Journal of Geophysical Research: Space Physics, 123, 5000–5018. https://doi.org/ 10.1029/2017JA024900
+Received 19 OCT 2017 Accepted 5 APR 2018 Accepted article online 16 APR 2018 Published online 5 JUN 2018
+©2018. American Geophysical Union. All Rights Reserved.
+
+Multivariable Comprehensive Analysis of Two Great Geomagnetic Storms of 2015
+A. Kashcheyev1,2 , Y. Migoya-Orué1 , C. Amory-Mazaudier1,3 , R. Fleury4, B. Nava1 , K. Alazo-Cuartas1, and S. M. Radicella1
+1The Abdus Salam International Centre for Theoretical Physics (ICTP) T/ICT4D, Trieste, Italy, 2Department of Radiophysics of Geospace, Institute of Radio Astronomy, National Academy of Sciences of Ukraine, Kharkiv, Ukraine, 3Sorbonne Universités, UPMC Univ. Paris 06, UMR 7648, Laboratoire de Physique des Plasmas, Paris, France, 4LAB-STICC, UMR6285 Institut MinesTelecom, Brest, France
+Abstract During the year 2015 two great geomagnetic storms (Dst < À200 nT) occurred on 17 March and
+22 June. These two geomagnetic storms have similarities. They occurred during the same decreasing phase of the sunspot cycle 24. The interplanetary and magnetospheric environments were calm before the beginning of the storms. Both events were due to Coronal Mass Ejections and High-Speed Solar Wind. Variations of the solar wind velocity and the Bz component of the interplanetary magnetic ﬁeld were also similar. Two key features that are different for these storms are UT time of the beginning (04:45 UT for 17 March and 18:33 UT for 22 June) and season (equinox and solstice). The comparison of the impact of the storms on the Earth ionosphere and magnetosphere has been performed using diverse parameters including global ionospheric maps of vertical total electron content, data from individual Global Navigation Satellite System receivers, ionosondes, magnetometers, and instruments from different space missions. Visualizing global ionospheric map data as the difference of vertical total electron content between consecutive days allowed understanding better the effect of the storms as a function of time of the beginning of the storm and of the season. It is shown that the presence or absence of scintillations in Global Navigation Satellite System signals during these two storms in African longitude sector is clearly related to the local time at a given station at the beginning of the storm.
+1. Introduction
+More than two centuries ago, in 1808, Alexander Von Humboldt named “magnetic storm” a magnetic disturbance observed worldwide. Two centuries later the study of magnetic storms is still a topic of research. Criteria to deﬁne magnetic storms have evolved according to parameters available to scientists. Matsushita (1959) used Ap magnetic index to classify storms into two groups: strong storms and weak storms. Later, with the space era and the possibility for scientists to use solar wind measurements, new criteria have been established based on the variations of the magnetic index Dst and Bz component of the interplanetary magnetic ﬁeld (IMF; Gonzalez et al., 1994). These authors classiﬁed storms into three groups: small storms or typical substorms (Dst ≤ À30 nT, Bz ≤ À3 nT during 1 hr), moderate storms (Dst ≤ À50 nT, Bz ≤ À5 nT during 2 hr), and intense storms (Dst ≤ À100 nT, Bz ≤ À10 nT during 3 hr). Today, the Dst and Bz component are the two indispensable parameters for the study of magnetic storms. Gonzalez et al. (1994) mentioned also that the solar wind pressure, which depends on the density of the solar wind, must also be considered. The magnetic storms with Dst values lower than À200 nT are now commonly referred to as great or big storms (Tsurutani et al., 1992). In the past only one or two ionospheric parameters were analyzed to investigate the effect of magnetic storms. Matsushita (1959) analyzed the critical frequency of F2 layer at 38 stations during 109 magnetic storms. Szuszczewicz et al. (1998) established worldwide maps of foF2 for intense storms. Today, with the multitude of data available on the web, the study of magnetic storms has changed and becomes a multidisciplinary study with observations of the sun, solar wind, ionosphere, and atmosphere of the Earth (e.g., Astafyeva et al., 2015; Nava et al., 2016; Tsurutani et al., 2004, 2008). With the variety of measurements in different regions of the Sun-Earth system each storm seems unique, yet there are some common features.
+In addition to many data sets scientists also have access to modeling results that allow them interpreting their observations. Theoretical work carried out by Fuller-Rowell et al. (1994) deﬁned the response of the thermosphere during a magnetic storm due to thermal expansion of the atmosphere with transport of
+
+KASHCHEYEV ET AL.
+
+5000
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+mass from auroral regions to middle and low latitudes. This study highlights the importance of the local time of the beginning of the storm at the location considered. Another theoretical study by Fuller-Rowell et al. (1996) modeled the response of the thermosphere according to season showing the different responses in summer and winter hemispheres. Vasyliunas (1970) was the ﬁrst to develop a model for the rapid penetration of the magnetospheric electric ﬁeld (PPEF) from high to low latitudes in order to explain the observations of Nishida (1968) of a global magnetic perturbation that he called DP2. Blanc and Richmond (1980) established the ﬁrst model of the ionospheric disturbance dynamo (DDEF) that models the response of the ionospheric electric currents to the disturbed thermospheric winds generated by the Joule heating in the auroral zone. Fejer et al. (1983) observed the signature of these two processes (PPEF and DDEF) on the plasma vertical velocity (E × B drift) measured with Jicamarca’s incoherent scatter sounder. The theoretical work by Blanc and Richmond (1980) predicted a global magnetic disturbance due to the ionospheric disturbance dynamo. Le Huy and Amory-Mazaudier (2005) extracted the magnetic disturbance due to this physical process (DDEF) from the observation of the terrestrial magnetic ﬁeld and named it Ddyn.
+The physical processes described by the models (mass transport, prompt penetration of electric ﬁeld [PPEF], and disturbance dynamo [DDEF]) are common features of magnetic storms. In this paper the magnetic storm of 22 June 2015 is analyzed in detail and compared to that of 17 March 2015.
+The effects of the St. Patrick’s Day storm of 2015, the largest geomagnetic storm of the solar cycle 24, have been analyzed extensively by many scientists. For example, the special collection of the research papers devoted to the investigation of the geospace system responses to this geomagnetic storm contains 31 research papers (Zhang et al., 2017). These studies include global and magnetosphere/plasmasphere perspectives, latitudinal effects in the ionosphere, and effects of the PPEF and DDEF as well as plasma bubbles and irregularities. Astafyeva et al. (2015) analyzed effects of the storm globally using multi-instrumental results, including ground-based and satellite observations. Piersanti et al. (2017) studied the reaction of vertical total electron content (VTEC) from 13 Global Navigation Satellite System (GNSS) receivers located in European longitudinal sector to a Sudden Impulse. At the same time they evaluated the ionospheric currents induced by this Sudden Impulse using data from ground-based magnetometers. Carter et al. (2016) analyzed the occurrence of equatorial plasma bubbles around the world using data from 4 ionosondes, 12 groundbased GNSS receivers, and 3 collocated very high frequency receivers. They observed the suppression of post sunset equatorial plasma bubbles across most longitudes during 2 days after the storm. Le et al. (2016) observed the inhibition of the ionospheric scintillations in the ﬁrst day of the recovery phase of the storm using rate of change of TEC index (ROTI) computed with the data from nine GNSS receivers in the Asian longitudinal sector. Nayak et al. (2017) observed similar phenomena in very high frequency scintillations over Taiwan.
+The storm of 22 June 2015 has started after three successive shocks of different intensities with the minimum of the SYM-H index excursion of À207 nT. Astafyeva et al. (2017) investigated global ionospheric/thermospheric behavior during this event using data from multiple instruments. They found the signiﬁcant effects in the thermosphere and ionosphere on both dayside and nightside.
+This paper is devoted to the comparative detailed analysis of these two storms: 22 June 2015 and 17 March 2015. The approach to the analysis and data sets are similar to those used by Nava et al. (2016). The second section will be devoted to various parameters of variability of magnetic storms presenting the common features of the two storms and their differences. The third section brieﬂy describes data and data processing. In the fourth section the results of the comparison of the two storms are presented. The ﬁfth section contains the discussion of the differences, and in the sixth section we give the conclusions. The main focus of the paper is on middle- and low-latitude effects of the magnetic storms and the reasons of their differences for the two selected storms.
+2. Factors of Variability
+A large number of factors characterize the variations observed prior and during geomagnetic storms. The classiﬁcation of the main factors is given in Table 1. Two storms of 17 March and 22 June 2015 have been selected for comparison in the current study, because they
+5001
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+Table 1 Factors of Variability
+
+Factor
+
+Classes
+
+Solar cycle amplitude Solar cycle phases Solar events and related interplanetary features Type of storms Seasons Initial state of the Sw-M system UT time of the beginning of the storm
+
+High solar activity, Low solar activity Increasing, maximum, decreasing, and minimum CME, HSSW, others (Bz south alone), and CME + HSSW Small, Moderate, Intense, Great Spring, autumn, summer, and winter Quiet, disturbed 0 h-6 h-12 h-18 h Midnight to morning Noon to afternoon
+
+Note. HSSW = High-Speed Solar Wind; CME = Coronal Mass Ejection.
+
+Selected for this study
+Low solar activity cycle 24 Year 2015 declining phase of solar cycle 24 CME + HSSW Great Spring and summer Quiet SW-M system Morning Afternoon
+
+KASHCHEYEV ET AL.
+
+1. occur during the same period of the decreasing phase of the sunspot cycle 24, 2. are due to Coronal Mass Ejections (CMEs) with identiﬁable sudden storm commencements (SSCs), even if
+there are some differences that will be discussed later, 3. high-speed solar wind is present during both events, 4. are great storms (Dst < À200 nT), and 5. begin when the solar wind-magnetosphere system is quiet: the solar wind has low speed, there is no aur-
+oral magnetic activity, and the equatorial ring current is weak.
+The differences between the two storms are summarized in Table 2. The effects of CME impacting the Earth and generating great storms after a relatively quiet period (in terms of the Solar Wind-Magnetosphere System) during the descending phase of the solar cycle 24 are analyzed.
+In Tables 1 and 2 the external variability factors related to the Sun (solar event), the Earth’s motions (seasons), and to the interactions between the solar wind and the magnetosphere (IMF, Bz) have been mainly considered. However, there are many other factors of variability and an important one is the initial state of the ionosphere, which can be disturbed by low and middle atmosphere phenomena such as cyclones, tsunamis, or even stratospheric warmings. Another very important factor is the response of the magnetosphere to the solar event and the coupling among the interplanetary medium, magnetosphere, thermosphere, and ionosphere in the auroral zone.
+In the past, to deﬁne a magnetic storm, ionospheric physicists often considered only the following external parameters: IMF Bz, SSC, and the magnetosphere response deﬁned by the magnetic index Dst or SYM-H. These parameters allowed selecting mainly cases of CMEs with shocks. This type of events will be also analyzed in this study.
+3. Data Set and Data Processing
+In this work a data set similar to the one used to analyze St. Patrick’s Day storm (Nava et al., 2016) has been utilized. Figure 1 presents the location of magnetic observatories, ionosondes, and GPS receivers used in this work, and Table 3 indicates their coordinates. All the parameters used in this study are listed in Table 4.
+
+Table 2 Differences Between the Two Storms Factor Seasons
+UT time of the beginning of the storm
+
+Classes Spring Equinox: 17 March Summer Solstice: 22 June Morning: 04.45 UT Afternoon: 18.33 UT
+5002
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+Figure 1. Location of magnetometers (light blue circles), ionosondes (red circles), and Global Navigation Satellite System receivers (dark blue circles). The green lines indicate modip isolines.
+
+3.1. VTEC Values
+
+VTEC values with 30-s sampling interval were retrieved from data of several GNSS networks (Table 4). The calibration technique introduced by Ciraolo et al. (2007) has been applied to obtain the STEC and then VTEC values over the stations from the raw GNSS observables.
+
+3.2. ΔVTEC Maps
+
+The relevant VTEC data have been obtained in a form of global ionospheric maps (GIMs) produced by Center
+
+for Orbit Determination in Europe. These VTEC maps are generated at Center for Orbit Determination in
+
+Europe with 1-hr time interval using data from more than 200 GNSS
+
+Table 3 Geographic and Geomagnetic Coordinates of Magnetometers, Ionosondes, and GNSS Receivers
+
+sites of the International GNSS Service, and other networks. In order to analyze the daily variability of VTEC in different sectors, namely, Asian, African, and American, VTEC data with 1-hr time resolution have
+
+Type
+
+Name Latitude Longitude Magnetic dip been extracted from GIM maps at the corresponding longitudes. To see
+
+Magnetometer
+
+KOU MBO
+
+5.21 14.38
+
+À52.73 À16.97
+
+15.25 6.99
+
+the difference of VTEC values with respect to the day before, considered as a reference, maps of the differences of VTEC (ΔVTEC) between
+
+Ionosonde GNSS receiver
+
+GUA JI91J SA418 AREQ FOMO
+
+13.59 À12.00
+18.30 À16.50
+22.20
+
+144.87 À76.80 109.40 À71.50 113.50
+
+12.48 À0.06 25.26 À9.07 32.85
+
+consecutive days have been analyzed. Therefore, each point of a vertical line on the ΔVTEC map represents a difference of VTEC values for the given day and the day before for the same coordinates (latitude and longitude) and local time (LT):
+
+HKSL BAKO YAR2
+
+22.37 À6.49 À29.04
+
+113.93 106.85 115.35
+
+33.14 À30.78 À63.22
+
+ΔVTEClat;lon;LT;day ¼ VTEClat;lon;LT;day À VTEClat;lon;LT;dayÀ1
+
+(1)
+
+LAMP NKLG WIND BOGT ANTC HUEL SFER TARI CEU1 TETN ISGN
+
+35.50 0.35
+À22.57 4.64
+À37.34 37.2 36.46 36.01 35.89 35.56 34.93
+
+12.60
+9.67
+17.09 À74.08 À71.53
+À6.92 À6.21 À5.60 À5.31 À5.36 À4.55
+
+50.16 À28.36 À64.14
+28.44 À37.96
+50.89 49.90 49.30 49.14 48.67 47.80
+
+3.3. ROTI
+The rate of TEC (ROT) has been computed over 30-s time interval using the combination of GNSS phase measurements as follows:
+
+ROT
+
+¼
+
+STECkþ1 timekþ1
+
+À À
+
+STECk timek
+
+60
+
+(2)
+
+where STEC is in TEC units (TECU), time is in seconds, and ROT is in TECU/min. Elevation mask of 20° was applied to avoid the inﬂuence of multipath effects. ROTI has been computed each 30 s by taking
+
+KASHCHEYEV ET AL.
+
+5003
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+Table 4 Data Used in This Study
+Parameters
+Sun observations Detection of CME Solar wind parameters Speed of the solar wind Bz component of the solar wind Pressure of the solar wind Magnetospheric parameters SYM-H magnetic index High-latitudes magnetosphere Auroral magnetic index, AE Polar Cap magnetic index, PC
+Satellite data [O/N2] ratio Ground data sets
+Vertical total electron content Global ionospheric maps Ionograms Magnetic ﬁeld measurements
+
+Source/description
+Solar and Heliospheric Observatory (http://www.nasa.gov/mission_pages/soho)
+Advanced Composition Explorer (http://omniweb.gsfc.nasa.gov/) Vs Bz Ps World Data Center for Geomagnetism, Kyoto (http://wdc.kugi.kyoto-u.ac.jp) SYM-H gives information on the Chapman Ferraro and Ring currents during storms World Data Center for Geomagnetism, Kyoto (http://wdc.kugi.kyoto-u.ac.jp) AE is used to evaluate energy deposited in the auroral zone International Service of Geomagnetic Indices (http://isgi.unistra.fr/) PC is a proxy of the merging electric ﬁeld Global Ultraviolet Imager (http://guvitimed.jhuapl.edu/data_products) Thermospheric [O/N2] ratio EUREF GNSS Network, SOPAC, UNAVCO, and IGS GNSS Network (http://www.epncb.oma.be,
+http://sopac.ucsd.edu, http://www.unavco.org, and http://www.igs.org/network) Center for Orbit Determination in Europe (http://aiuws.unibe.ch/ionosphere/) Digital ionogram database (http://umlcar.uml.edu/DIDBase/) Manually scaled ionograms, computation of foF2, and slab thickness Intermagnet Network (http://intermagnet.org) H component of the Earth’s magnetic ﬁeld, computation of Diono
+
+the standard deviation of ROT (Pi et al., 1997) over a period of 10 min when at least 10 ROT values were
+
+available, that is,
+
+pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+
+ROTI ¼ ROT2-ROT2
+
+(3)
+
+3.4. Interplanetary Data
+
+Solar wind speed and pressure data have been obtained from Advanced Composition Explorer mission via OMNIWeb service (Table 4).
+
+3.5. Magnetic Indices
+
+SYM-H and AE magnetic indices have been obtained from the Word Data Center for Geomagnetism, Kyoto, while Polar Cap index has been retrieved from International Service of Geomagnetic Indices, France (Table 4).
+
+3.6. Magnetometer Data
+Magnetic observatories located along the geomagnetic equator in African longitude sector (M’Bour, MBO), American longitude sector (Kourou, KOU), and Asian longitude sector (Guam, GUA) have been selected for this study. Their geographical locations are indicated in Figure 1. Variations of the horizontal geomagnetic component (H) have been analyzed. It is important to note that near the equator the ionospheric electric currents ﬂow mainly horizontally in the eastward direction and are related to the eastward electric ﬁeld (Grodji et al., 2017). Following the Ohm’s law, these currents produce a northward deviation of the H component. At the equator the enhanced ionospheric electric current ﬂowing along the Earth’s magnetic ﬁeld during magnetic quiet days was named Equatorial Electrojet by Chapman (1951). The Equatorial Electrojet is a consequence of the E region dynamo at the geomagnetic equator due the special geometry of the Earth’s magnetic ﬁeld (Kelley, 1989).
+During the magnetic storm the H component of the Earth’s magnetic ﬁeld can be expressed by
+
+H ¼ SR þ H0 þ Dmag þ Diono
+
+(4)
+
+where SR is the regular variation of the Earth’s magnetic ﬁeld (ΔHquiet) on a given day; Sq = 〈SR〉 averaged on selected magnetic quiet days; and Dmag is the disturbance due to the magnetospheric electric currents: Chapman Ferraro current, ring current, and tail current (Cole, 1966; Fukushima & Kamide, 1973). Dmag can be estimated using SYM-H on the dayside (Menvielle et al., 2011); Diono is the disturbance due to disturbed ionospheric currents.
+
+KASHCHEYEV ET AL.
+
+5004
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+To compute the mean value of the averaged quiet ΔH component, 1-min resolution values of 10 International Quiet Days in June 2015 (http://www.gfz-potsdam.de/en/section/earths-magnetic-ﬁeld/services/kp-index/
+
+explanation/qd-days/) have been used by applying the following expression:
+
+Sqi
+
+¼
+
+1 n
+
+Xn
+j¼1
+
+ΔHquietji
+
+(5)
+
+where j is a day number, n is a total number of quite days and ΔHquieti is a value obtained by subtracting the baseline value (H0) from Hi:
+
+ΔHquieti ¼ Hi À H0
+
+(6)
+
+with i = 1 to 1,440 min.
+
+H0, which is an average of hourly values around midnight (LT), was computed as follows:
+
+H0
+
+¼
+
+Hj22
+
+þ
+
+Hj23
+
+þ Hj0þ01 4
+
+þ
+
+Hj0þ11
+
+(7)
+
+The hourly amplitude of daily variations of the geomagnetic ﬁeld, commonly known as Sq, is subjected to noncyclic variation that is deﬁned as follows (Matsushita, 1967, p. 302):
+
+ΔNC ¼ Hj0þ01 À Hj00
+
+(8)
+
+24
+
+Then the corrected hourly solar quiet variation in H, Sq(H), can be written as follows:
+
+Sqi ðHÞ
+
+¼
+
+Sqi
+
+þ
+
+iΔNC 60
+
+(9)
+
+where Sqi is computed using (5) and i = 1 to 1,440 min.
+
+The magnetic disturbance due to ionospheric electric currents (Diono) can be expressed as follows:
+
+Diono ¼ DP2 þ Ddyn
+
+(10)
+
+Diono can be estimated using the following expression (Le Huy & Amory-Mazaudier, 2005; Zaourar et al., 2017):
+
+Diono ¼ ΔH À SYM À H· cosϕ À Sq
+
+(11)
+
+where ΔH is the variation of H component obtained using (5), SYM À H is the estimation of the ring current and ϕ is the geomagnetic latitude. It is worth noting that Diono can be used to estimate ionospheric electric currents only on the dayside where they circulate.
+
+It has to be also indicated that the fact that SYM À H has other contributions besides the ring current and the way it is derived (applying averaging over four stations) might affect the estimation of Diono. An alternative approach to the use of SYM À H can be based on relationship given in Burton et al. (1975) that relates the effect on the ring current with the energy input. This approach has been recently employed by Guerrero et al. (2017) to analyze space weather effects for the St. Patrick’s Day storms in 2013 and 2015.
+
+4. Results
+Figures 2a and 2b show the parameters of the solar wind (ﬁrst panel: speed in km/s; second panel: Bz component of the IMF in nT; and third panel: the solar wind pressure in nPa) and magnetic indices (fourth panel: polar cap index PC in mV/m; ﬁfth panel: AE index in nT; and sixth panel: SYM-H index in nT) for the dates 15–26 March and 19–30 June 2015 correspondingly. Vertical lines in the sixth panels of these ﬁgures indicate the SSC. For the storm of 17 March (Figure 2a) the CME that triggers the storm hits the magnetosphere at 04:45 UT. For the 22 June event there were three shocks: on 21 June at 13:43 UT, on 22 June at 5:45 UT, and 18:33 UT (Figure 2b). From the time of the ﬁrst shock and on, ﬂuctuations of the Bz component of the IMF are observed. The ﬁrst shock is associated with an increase ~+40 nT in SYM-H and an increase in the solar wind speed from 300 to 350 km/s. After this shock there is no increase in auroral activity and no decrease of SYM-H. The second shock is associated with an increase of ~+40 nT in SYM-H and an increase in the solar wind speed from 350 to over 400 km/s. After this shock there is an increase in auroral activity, the
+
+5005
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+Figure 2. (a) Solar wind parameters and magnetic indices for 15–26 March 2015. First panel: Solar wind speed in km/s; second panel: Bz component of the interplanetary magnetic ﬁeld in nT; third panel: Solar wind pressure in nPa; fourth panel: Polar cap indices (north in black and south in gray); ﬁfth panel: AE index; sixth panel: SYM-H index. Black vertical lines on the sixth panel indicate sudden storm commencement. (b) Same as in Figure 2a but for the period 19–30 June 2015.
+magnetic index AE exceeds 1,000 nT, and a decrease of SYM-H to ~À50 nT. The third shock is associated with a rapid increase in SYM-H from À20 to +90 nT and the solar wind from 420 to more than 700 km/s. After the third shock, the large southward Bz triggered the magnetic storm and it will be used for comparisons with St. Patrick’s Day storm in this work.
+Variations of the solar wind during these two storms show a high level of similarity. For the storm of 17 March the shock at 04:45 UT is associated with an increase in the speed of the solar wind from 400 to more than 500 km/s. For the storm of 22 June after the third shock, which occurs at 18:33 UT, the solar wind speed increases from 400 to more than 700 km/s, and it remains at 600 km/s. For these two storms the solar wind speed remains above 500 km/s during the following days.
+For both storms just after the shocks (04:45 UT, 17 March; 18:30 UT, 22 June) the Bz component of the IMF performs a rapid excursion to more than À20 nT and then again becomes positive before becoming
+5006
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+Figure 3. (a) ΔVTEC on 15–26 March at different longitudes representing Asian longitude sector (ﬁrst panel), African longitude sector (second panel), and American longitude sector (third panel). The SYM-H index for the same period is also indicated (fourth panel). (b) Same as on Figure 3a but for the period 19–30 June 2015.
+negative for a long period. In both cases the magnetic index SYM-H follows the variations of Bz: it starts to decrease with the rapid negative excursion of Bz and then increases when the Bz becomes positive again and then decreases when the Bz becomes negative for a long period reaching a value of SYMH < À200 nT. For both geomagnetic storms the amplitude of the magnetic index AE reaches its maximum value of 2,000 nT on the ﬁrst day of the storm and 1,000 nT on the second day. Figures 3a and 3b present the ΔVTEC maps for the Asian (ﬁrst panel), African (second panel), and American (third panel) sectors. During the storm of 17 March (Figure 3a) a large decrease is observed in the Asian longitude sector on the day of the storm (17 March) and the day after (18 March) in the area of the crests (at around À10° and +20° latitude) of the Equatorial Ionospheric Anomaly (EIA). An increase in ΔVTEC on 17 March and a decrease on 18 March can be seen in the same area of the African and American longitude sectors. A noticeable hemispherical asymmetry in ΔVTEC can be seen in the African and American longitude
+5007
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+sectors during 2 days after the storm that has also been reported by Nayak et al. (2016). It can also be noticed that ΔVTEC is increasing again in the Asian and African longitude sectors on 19 March (the second day after the storm). It is worth noting that after the SSC of 19 March at 20:54 UT, corresponding to the arrival of a highspeed solar wind, there is an increase in the solar wind pressure and polar cap indices on 22 March. A reinforcement of the EIA can also be observed in all the longitude sectors: in Asian on 22 March, in African on 23 March, and in American on 24 March.
+In the case of 22 June the pattern is different. A large increase on the day after the storm (23 June) followed by a decrease on 24 June is observed in the Asian longitude sector, localized in the area of the southern crest of the EIA, while a large decrease on 23 June followed by an increase on 24 June can be seen in the African longitude sector in the area of the northern crest of the EIA. The decrease on 24 June is more extended in latitude in the American longitude sector. It should be noted that just after the third shock (22 June, 18:33 UT) ΔVTEC increases in the African and American longitude sectors. It can also be seen that ΔVTEC increases before the third shock in both of these longitude sectors. This increase can be attributed to the second shock. From Figure 3b one can observe that the effect of the storm lasts longer in African longitudinal sector.
+The behavior of ΔVTEC during the two storms exhibits different features due to the time of the beginning of the storm and to seasonal effects, namely,
+1. the decrease of ΔVTEC in the Asian longitude sector and increase in other longitude sectors for the storm of 17 March and the opposite for the storm of June; this can be explained by the difference in the time of the beginning of the storm: 04:45 UT for 17 March and 18:30 UT for 22 June. It is in good correspondence with the study of Fuller-Rowell et al. (1994). Their model shows that the maximum ionospheric response occurs in the sector that is closest to the magnetic pole and when this sector is on the nightside during the storm. The minimum response occurs in the sector furthest from the magnetic pole and when this sector is on the dayside.
+2. the smaller amplitude of ΔVTEC and the larger hemispherical asymmetry observed for the storm of June could be attributed to the seasonal effects. It is also in agreement with the study made by Fuller-Rowell et al. (1996), where they predicted negative ionospheric response in the summer hemisphere and positive response in the winter hemisphere.
+Figure 4 shows the thermospheric [O/N2] ratio obtained by GUVI instrument for 4 days: 21 (ﬁrst panel), 22 (second panel), 23 (third panel), and 24 June 2015 (fourth panel). When comparing the maps of 21 and 23 June, an increase in the [O/N2] ratio in the Southern Hemisphere (in winter) and a decrease in the [O/N2] ratio in the Northern Hemisphere (in summer), which is in line with VTEC observations, can be observed. Such a behavior has been explained through theoretical modeling results by Fuller-Rowell et al. (1996), where they found “the preference for ‘negative storms’ (decrease in the peak electron density, NmF2) in summer and ‘positive storms’ (increase in NmF2) in winter”. While comparing [O/N2] ratio to the results obtained for the St. Patrick’s Day storm (Figure 5 from Nava et al., 2016), the seasonal differences can be observed. Namely, the amplitude of the [O/N2] ratio in solstice is smaller than that in equinox and the hemispheric asymmetry is present at solstice but not at equinox. This observation agrees with the results obtained by Astafyeva et al. (2016). They analyzed the storm of June using a combination of magnetic and electric ﬁelds, TEC, and in situ electron density (Ne) observations from SWARM satellites and revealed hemispheric asymmetries in the topside TEC and Ne at different phases of the storm.
+Figure 5 presents VTEC variations for three stations in Asia (hskl, bako, and yar2), three stations in Africa (lamp, nklg, and wind), and three stations in America (bogt, areq, and antc). Names of the stations located in the Southern Hemisphere are underlined. On each panel the averaged variation of VTEC computed during quite days is indicated in blue with the area covered by the standard deviation in gray, while the red curve represents the observations.
+Stations in the Northern Hemisphere of the Asian longitude sector (hksl and bako) show an increase compared to previous days (as observed on ΔVTEC maps in Figure 3b). It has to be noted that the initial state of the ionosphere before the storm is disturbed showing VTEC values smaller (on 20 June) than the quietday value. This fact hides the effect of the magnetic storm.
+Two stations located in the American longitude sector (bogt and areq) undergo a peak in VTEC associated with the third shock on 22 June followed by a strong 7-day decrease. For these stations the variation
+5008
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+Figure 4. Maps of thermospheric [O/N2] ratio obtained by Global Ultraviolet Imager instrument for 4 days: 24 June 2015 (fourth panel), 23 June 2015 (third panel), 22 June 2015 (second panel), and 21 June 2015 (ﬁrst panel).
+of VTEC before the storm is closer to the regular behavior and a clear signature of the magnetic storm can be observed.
+At nklg, located at the southern crest of the EIA in the African longitude sector, there is no clear signature of the storm triggered by the third shock.
+A large increase in VTEC on the day after the storm can be observed at yar2 and wind stations located in the Southern Hemisphere of Asian and African longitude sectors, respectively. This increase corresponds to the response of the winter hemisphere to a magnetic storm as predicted by Fuller-Rowell et al. (1996). A small increase in VTEC associated with the third shock at antc station in American longitude sector can be seen during the day of storm. In these three stations (yar2, wind, and antc) there is no large decrease detected during the days after the storm as in the American stations of bogt and areq.
+An increase in VTEC associated with the third shock is also observed at lamp station in African longitude sector that is similar to the three stations in the American longitude sector. This feature is also found on the maps of ΔVTEC in Figure 3b. On 23 June a decrease followed by an increase on the following day can be seen at the same stations. Three days after the storm, on 25 June, a strong increase of VTEC is followed by a large decrease on 26 June. The same features can be observed on ΔVTEC maps in Figure 3b. Figures 6a and 6b consist of three panels showing the variations in the critical frequency of F2 layer (foF2, ﬁrst panel), VTEC (second panel), and slab thickness (third panel) for the period of 19–27 June. Figure 6a presents data from areq station in America and Figure 6b from fomo station in Asia. On each panel the blue curve shows the average behavior computed using four quiet days before the storm and the red curve represents the observed variation during the period considered.
+The most noticeable observation in the American longitude sector (Figure 6a) is the signiﬁcant decrease in foF2 and VTEC during 2 days following the storm (23 and 24 June). This decrease observed in VTEC lasts
+5009
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+Figure 5. Variations of vertical total electron content (VTEC) for three stations in Asia (hskl, bako, and yar2), three stations in Africa (lamp, nklg, and wind), and three stations in America (bogt, areq, and antc). The averaged variation computed during quiet days is in blue, the standard deviation of quite variations is in gray, and the observations are in red color.
+5010
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+Figure 6. Variations of foF2 (ﬁrst panel), vertical total electron content (VTEC) (second panel), and slab thickness (third panel) parameters in low latitudes of Asian (Figure 6a) and American (Figure 6b) sectors 19–27 June 2015 are shown in red; blue lines represent corresponding daily average values computed using four quite days before the storm.
+longer than the one in foF2. At the beginning of the storm an increase in VTEC with a peak at 21:56 UT can be observed. foF2 also increases reaching its average value after a substantial decrease at the same time as VTEC increases. Slab thickness experiences two maxima; ﬁrst at 20:20 UT when foF2 reaches its local minimum and next at the same time when VTEC reaches its maximum. In general, the period following the third shock is characterized by large ﬂuctuations of foF2, VTEC, and slab thickness. Figure 6b shows signiﬁcant ﬂuctuations of foF2 for the Asian longitude sector during the local daytime hours on the days following the storm (23–27 June) and VTEC shows a small decrease compared to the regular value of 23 and 24 June, and signiﬁcant ﬂuctuations on 23 June. However, it is important to indicate that during the days preceding the storm, VTEC diurnal variations at this station do not correspond to the quiet-day ones. In particular, VTEC is lower than the average on 20–22 June. It can be noted that on 20 June all external parameters, such as Bz (IMF), AE, and SYM-H, stay close to zero throughout the day and there were no evidences of a magnetic disturbance. Therefore, the decrease observed in VTEC on 20 June cannot be explained by the factors of variability given in Table 1. It is worth noting that there is no signiﬁcant decrease in foF2; therefore, a reduction of slab thickness is related to the decrease in VTEC. On 21 June, again, the observed shift of maxima in VTEC and foF2, which occurred before the ﬁrst shock at 16:43 UT, cannot be explained by the factors given in Table 1. On the other hand, the ﬁrst shock that is followed by
+5011
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+the second shock on 22 June at 5:45 UT may be responsible for the decrease in foF2 and VTEC observed in the morning of 22 June before the third shock. This case illustrates clearly the inﬂuence of the initial state of the ionosphere, which may partially mask the effect of a storm. Indeed, an increase in VTEC due to the storm cannot be distinctly seen because the ionosphere was disturbed prior to the beginning of the storm. On the other hand, the expected increase in foF2 can be observed clearly. The slab thickness increases during the local night time hours with decrease in foF2 and decreases during local daytime hours with foF2 increase, while VTEC stays closer to the average indicating large dynamic effects in the F2 layer. The comparison between Figures 6a and 6b leads to the same results as concluded while analyzing Figure 3b. In the American longitude sector the largest decrease in VTEC maps is observed on 23 June after the third shock, while at the same time there is an increase in the Asian longitude sector. The effect of the second shock is seen in African and American longitude sectors as an increase in VTEC. These different responses can be explained by a difference in the local time of the longitudinal sector when the storm begins. It should also be noted that the decrease of VTEC in the Asian longitude sector on 20 June can be seen both in Figures 3b (globally) and 6b (fomo station).
+
+Figure 7 presents magnetic variations registered at three low-latitude
+
+stations: GUA in Asia (ﬁrst panel), MBO in Africa (second panel), and
+
+KOU in America (third panel), during the period 19–30 June 2015.
+
+Black curves present observations, blue ones show regular variations,
+
+and red curves indicate the disturbance due to the ionosphere Diono that is computed using equation (11). The biggest disturbance of the
+
+H component of the Earth’s magnetic ﬁeld with amplitude of
+
+À250 nT is observed at GUA compared to À200 nT at MBO and
+
+À180 nT at KOU. The anti-Sq signature (the ﬂuctuation of the Diono with the opposite sign to Sq) during the 4 days following the start of the
+
+storm can be better identiﬁed in African and American longitude sec-
+
+Figure 7. Variations of H-component of the magnetic ﬁeld at different longitudinal sectors during 19–30 June; ﬁrst panel: GUA (Asian longitude sector), second panel: MBO (African longitude sector), and third panel KOU (American longitude sector). On each panel the regular variation (Sr) is presented in blue, the observed H component is in black and the disturbed ionospheric electric currents DI is in red.
+
+tors. At GUA Diono becomes positive very quickly. It is also interesting to note that in the Asian longitude sector there is a large value of H component on 22 June, before the ﬁrst shock with the maximum value of 82 nT compared to the regular value of 49 nT. At MBO and KOU a decrease in H component can be observed before the shock. During 19 and 20 June the peaks in H component were 26 and 10 nT less than
+
+the regular variation at MBO and 25 and 7 nT at KOU, respectively. At MBO the maximum value reached 65 nT
+
+compared to the regular of 58 nT, and at KOU the maximum was 69 nT compared to the regular of 56 nT. A
+
+nontypical variation of H component has been observed at MBO on 20 June and the occurrence of a double
+
+peak on 21 June (on 13:00 and 17:15). At KOU on 21 June a shift of around 2 hr between H component varia-
+
+tion and its regular behavior has been registered.
+
+The variability of H component of the terrestrial magnetic ﬁeld during the magnetic quiet days (20–21 June) is mainly related to atmospheric tides that propagate from the lower atmosphere up and are the main source of the ionospheric dynamo. Analysis of VTEC and foF2 (Figure 6b) as well as magnetic observations lead to the same conclusion that there was a perturbation in the lower atmosphere.
+
+In Figure 8, variations of Diono (computed using equation (11)) observed at equatorial stations GUA (ﬁrst panel), MBO (second panel), and KOU (third panel) are superimposed with variations of the Ey component of the interplanetary electric ﬁeld (IEF). Ey can be computed as Ey = ÀVx · Bz, where Vx is the x component of the solar wind speed and Bz is the z component of the IMF in GSM coordinates. On each panel local middays (12 LT) are indicated with triangles. The local time at the stations was calculated using the relation: LT = UT + longitude/15, with longitude expressed in degrees. Therefore, the local time at GUA (lon = 144.79°E)
+
+KASHCHEYEV ET AL.
+
+5012
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+was LTGUA = UT + 9.65; at MBO (lon = À16.97°E), LTMBO = UT À 1.13; at KOU (lon = À52.73°E), LTKOU = UT À 3.51. Two vertical lines on the ﬁgure indicate times of the SSC and the SSC + 3 hr.
+
+Figure 8. Diono and Ey component of the interplanetary electric ﬁeld (in black) at GUA (ﬁrst panel), MBO (second panel), and KOU (third panel). Two vertical lines indicate the time of the sudden storm commencement (SSC) and the
+SSC + 3 hr, respectively.
+
+Between the time of the SSC and SSC + 3 hr, Diono at MBO and KOU exhibits the same behavior as the Ey component of IEF. Conversely, the variation of Diono at GUA is opposite to that of the Ey. Nevertheless, the simultaneity of variations of Diono and Ey at all the three stations suggests a prompt penetration of magnetospheric convection electric ﬁeld PPEF. During the ﬁrst hours of the storm, the disturbance dynamo electric ﬁeld (DDEF) is not registered at the equator. Indeed, during magnetic storms, Joule energy dissipation in the auroral zone generates perturbations of thermospheric winds that, in turn, generate disturbed ionospheric electric ﬁelds and currents (Blanc & Richmond, 1980). These disturbances propagate from the auroral zone toward low latitudes in few hours, as observed for many storms at midlatitudes by Mazaudier and Bernard (1985). After that, both PPEF and DDEF processes can inﬂuence the magnetic variations at the equator.
+
+Fejer et al. (1983) used observations of the vertical E × B drift registered on the satellite ROCSAT at the equator to demonstrate that an upward/downward vertical drift corresponds to an eastward/westward electric ﬁeld. They characterized the effect of the PPEF process according to the local time sector. This process produces an eastward electric ﬁeld in the afternoon and evening and a westward electric ﬁeld in the morning sectors.
+
+Diono increases at MBO and KOU stations, which were in the afternoon sector at the beginning of the storm. This corresponds to a northward disturbance of the Earth’s magnetic ﬁeld associated with an eastward ionospheric electric ﬁeld. At GUA station, Diono decreases, corresponding to a southward perturbation of the Earth’s magnetic ﬁeld associated with a westward electric ﬁeld in the ionosphere. Therefore, these observations are in good agreement with the model of Fejer et al. (1983).
+
+A large decrease of Diono is observed at GUA and MBO stations and a smaller decrease at KOU during the local daytime on 23 June. These decreases are the signature of the DDEF described by the model of Blanc and Richmond (1980) and characterized by Le Huy and Amory-Mazaudier (2005). It is also important to note that the short-time ﬂuctuations of Diono superimposed on its large decrease are related to PPEF. The extra eastward electric ﬁeld increases the vertical drift and as a consequence the Prereversal Enhancement, leading to the formation of plasma bubbles producing scintillations in GNSS signals.
+
+ROTI has been widely used by the scientiﬁc community as a proxy to indicate a presence of ionospheric scintillations when conventional scintillation data (e.g., S4 index) are not available (e.g., Basu et al., 1999). Figures 9 and 10 show maps of ROTI over the African region for the storms of March 2015 and June 2015, respectively. These maps are produced using the algorithm described by equations (2) and (3). ROTI was calculated using data from 46 GPS stations having different geographic locations between 30°W and 60°E in longitude. ROTI values are plotted on the map using the coordinates of corresponding ionospheric pierce points with (1) thin blue line when the value of ROTI is less than 1.5 TECU/min and (2) red square when ROTI exceeds 1.5 TECU/min.
+
+During St. Patrick’s Day storm (Figure 9) there are practically no values of ROTI higher than 1.5 TECU/min on 17–19 March. It has to be noted that high values of ROTI have been registered throughout the month of March except during these 3 days. The disappearance of scintillations is related to the impact of DDEF, which produces a westward electric ﬁeld opposite to the regular eastward dynamo electric ﬁeld at the origin of the scintillation (Azzouzi et al., 2015). During the solstice storm (Figure 10) the situation is opposite: there are high values of ROTI only on 22 June; particularly at midlatitudes in the Northern Hemisphere. On all the other days of the month there are no high values of ROTI at midlatitudes and very few at low latitudes.
+
+It is known that two physical processes (PPEF and DDEF) can increase/inhibit scintillations by imposing an eastward/westward electric ﬁeld at the equator (Azzouzi et al., 2015; Tulasi Ram et al., 2008). Indeed, this electric ﬁeld makes the layer rapidly rise or fall. It is also known that plasma bubbles at low latitudes are created
+
+KASHCHEYEV ET AL.
+
+5013
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+Figure 9. Rate of change of total electron content index (ROTI) maps over African region during St. Patrick’s Day storm, 16– 21 March 2015. Thin blue lines show ROTI ≤1.5 TECU/min, while red squares represent ROTI >1.5 TECU/min. Black squares indicate Global Navigation Satellite System station used to produce ROTI maps.
+after sunset during the rapid rise of the ionospheric layers. The storm of June 2015 begins around 18:33 UT; at that time, the physical PPEF process produces an eastward electric ﬁeld (Fejer et al., 2008) that creates a rapid rise of the layer, thus giving favorable conditions for the generation of plasma bubbles. Therefore, an increase in ROTI values can be seen, that is, related to the creation of plasma bubbles at the equator, which, in turn, can propagate to midlatitudes.
+Figure 11 demonstrates an effect of a bubble in ROTI and STEC observed on links to PRN 11 at six GPS stations located in middle latitudes. On the same plot elevation angle of the links (at the top), ROTI (×10), and uncalibrated but stacked together STEC values are indicated. The maximum elevation angle for the selected links was around 75° at approximately 21:30 UT.
+STEC decreases steadily (toward the night) and begins to rise around 19:50, while the elevation angle is above 40° and is not yet at its maximum, so the inversion is an evidence of an ionospheric structure. Around 20:00
+5014
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+Figure 10. Rate of change of total electron content index (ROTI) maps over African region during storm of June 2015, 21– 23 June 2015. Thin blue lines show ROTI ≤1.5 TECU/min, while red squares represent ROTI >1.5 TECU/min. Black squares indicate Global Navigation Satellite System station used to produce ROTI maps.
+UT STEC decreases strongly between 0 TECU (north stations which are not shown), À50 TECU and À30 TECU when descending in latitudes (from À50 TECU in oblique links to À30 TECU in nearly vertical at 50°). STEC continues to be very variable with a peak that shifts for East stations. It regains its initial level toward 21:10 UT. The duration of STEC decrease is ~1:10 hr with latitude of pierce points being fairly constant. These features characterize a large equatorial bubble, and the dynamics of STEC obtained on links crossing this bubble leads to high values of ROTI. Such an equatorial bubble at 38°N latitude is not a common phenomenon. It might be a structure that propagates from Central Africa where scintillations are frequently
+observed, since there are no scintillations registered at the same longitude to the south from Dakar. This bubble appears to propagate from SE to NW; however, no data from Central Africa is available to conﬁrm this assumption.
+Between 21:10 UT and 22:30 UT a few large variations in STEC can be seen. Therefore, ROTI stays below the threshold of 1.5 TECU/min and STEC reaches its minimum around 22:20 UT. This behavior is similar for all the selected PRNs. From 22:30 UT to 24:00 UT STEC increases in a regular way from À30 to +20 TECU reaching its maximum around 23:30 UT. Strong scintillations can be seen in the eastern Morocco and northern Algeria at 30–34°N latitudes (Figure 10).
+
+5. Discussion
+
+Figure 11. Rate of change of total electron content index (ROTI), STEC, and elevation angle computed for links to PRN#11 at 6 GPS stations located at middle latitudes on 22 June.
+
+1. ΔVTEC dependence on local time:
+a. The magnetic storms of 17 March and 22 June 2015 began at different times: 04:45 UT and 18:33 UT, respectively. A strong decrease in
+
+KASHCHEYEV ET AL.
+
+5015
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+KASHCHEYEV ET AL.
+
+VTEC can be observed in the Asian longitudinal sector (Figure 3a), which was on the dayside at the beginning of the storm (LT = 04:45 + 7:00 = 11:45), and a large increase in American longitude sector (Figure 3b), which was on the nightside (LT = 04:45–5:00 = 23:45). These observations are in good correspondence with the results by Fuller-Rowell et al. (1994). The comparison of the two storms highlights the importance of the local time at the location when the storm starts.
+2. ΔVTEC and [O/N2] dependence on season:
+a. The effect of the season is observed ﬁrst in the magnitude of ΔVTEC being larger in equinox (60 TECU) than in solstice (40 TECU). It is in accordance with absolute values of VTEC, which are lower in solstice than in equinox.
+b. The seasonal effect is also observed in [O/N2] ratio (Figure 4): it increases in the Southern Hemisphere during the storm. These observations correspond to predictions by Fuller-Rowell et al. (1996) and more particularly to Figure 3 of their paper. The differences are explained by the atmospheric motion from the summer to winter hemisphere at solstices. The magnetic storm adds a disturbed atmospheric motion from the pole toward the equator in each hemisphere. In the winter hemisphere the atmospheric circulation, which transports the atmospheric mass from the pole to the equator, is counteracted by the regular circulation from the summer hemisphere toward the winter hemisphere and there is then conﬁnement of the atmospheric mass in the Southern (winter) Hemisphere.
+c. The increase of VTEC at yar2 and wind stations (Figure 5), which are in the winter hemisphere, represents also a common feature of many ionospheric storms. Statistical studies on ionospheric storms show that there is a preference for ionospheric positive storms in the winter hemisphere (e.g., Fuller-Rowell et al., 1996; Prolss & von Zahn, 1977).
+3. PPEF and DDEF: Magnetic signature in Diono and peak and decrease in VTEC a. During the two storms variations of the magnetic ﬁeld have the same characteristics (Figure 7 of Nava
+et al. (2016) and Figure 7 of this paper). The Diono component (in red) that represents disturbances related to ionospheric currents shows diurnal ﬂuctuations opposite to regular Sq variations (anti-Sq) as well as ﬂuctuations with shorter periods. These two types of ﬂuctuations are the magnetic signature Ddyn of DDEF and DP2 of PPEF, respectively. On the days following the storm anti-Sq ﬂuctuations can also be observed. b. Figure 5 shows clearly an increase of VTEC at all stations in American longitude sector and at lamp station in African longitude sector. This peak can be associated to the third shock in all the stations and is the signature of PPEF. The day after the storm the decrease observed mainly in American longitude sector (during 7 days) is associated with DDEF.
+4. Peculiarities of the June 2015 storm
+a. The great storm occurs after three successive shocks (SSC). The second shock on 21 June at 16:43 produces a positive ΔVTEC in African and American longitudinal sectors that can be observed in Figure 3b.
+b. Before the three shocks, there is a signiﬁcant negative perturbation of VTEC on 20 June in the Asian longitude sector (Figures 3b, 5, and 6b). This disturbance cannot be explained by the inﬂuence of the solar wind that remains very low nor by the auroral activity or SYM-H, which are practically zero (Figure 2b). In the Asian longitude sector ΔVTEC maps (Figure 3b) show clearly the disturbance due to the storm, while VTEC values observed on the day of the storm are close to their regular values (Figure 5).
+c. Magnetic variations different from regular ones have been observed at GUA, MBO, and KOU stations before the three shocks. This fact seems to indicate that there was a perturbation of the mass movements in the lower atmosphere, which are the origin of regular variations of the terrestrial magnetic ﬁeld.
+d. A signature of a large plasma bubble has been detected at middle latitudes using ROTI data. It can be explained by the fact that at the beginning of the storm, just at the time of the post sunset in African longitude sector, there was a very large increase of the eastward component of the IEF. This variation inﬂuenced low latitudes via PPEF mechanism and increased the local dynamo electric ﬁeld and Prereversal Enhancement. As a consequence it led to the formation of a plasma bubble that propagated up to middle latitudes.
+5016
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+6. Conclusion
+A comprehensive comparative multivariable analysis of two great storms (Dst < À200 nT) has been performed using diverse kinds of geophysical data. The ﬁrst storm, St. Patrick’s Day storm, occurred in equinox at 04:45 UT on 17 March 2015, while the second one took place in solstice at 18:33 UT on 22 June 2015. Both storms occurred during the decreasing phase of the sunspot cycle 24 and were associated with CMEs on the Sun. In these two cases the states of the magnetosphere and solar wind systems before the start of the storms were quiet with no apparent disturbances registered. Two main differences of these two storms are the time of the beginning and the season.
+Effects of the storms are analyzed and compared using data from space missions and a variety of groundbased instruments. Variations of the solar wind velocity and Bz component of the IMF during the storms have been found to be similar. However, the comparison of effects in the ionosphere has revealed differences when looking at the same longitudinal sectors. Representing VTEC behavior in form of maps for three different longitudinal sectors (Asian, African, and American), where each line represents a difference of VTEC between values obtained during two consecutive days at the same local time and same coordinates, allowed for better understanding of the ionospheric response (Figures 3a and 3b). The observed differences between sectors are explained by their local time at the beginning of the storms and are in a good agreement with theoretical models (Fuller-Rowell et al., 1994).
+The differences in the amplitude of the ionospheric response in VTEC as well as in the variations of thermospheric [O/N2] ratio are explained by the seasonal effect and are also in line with predictions from theoretical models (Fuller-Rowell et al., 1996).
+The analysis of data from individual GNSS stations has revealed also the evidence that the presence or absence of scintillations in African longitude sector is clearly related to the local time at the beginning of the storm. In the case of June storm, this fact led to the formation of a plasma bubble propagated up to middle latitudes and causing strong scintillations in GNSS signals.
+The results of the analysis suggest that the classiﬁcation by the time of the beginning and season is essential for modeling the ionospheric response to a geomagnetic storm. However, in order to understand better the effects of geomagnetic storms in the Earth ionosphere and to conﬁrm the results obtained by the authors, analysis of a bigger number of events is required and it can be considered as a possible future work.
+
+Acknowledgments The authors acknowledge the use of data from all the data centers listed in Table 4. They would also like to thank the following organizations/networks: CDDIS, UNAVCO, EUREF, SONEL, REPANGOL (Angola), NIGNET (Nigeria), BING (Italy), NOANET (Greece), and Youcef Elomra from the Tamanrasset Observatory.
+
+References
+Astafyeva, E., Zakharenkova, I., & Alken, P. (2016). Prompt penetration electric ﬁelds and the extreme topside ionospheric response to the June 22–23, 2015 geomagnetic storm as seen by the Swarm constellation. Earth, Planets and Space, 68(1), 152. https://doi.org/10.1186/ s40623-016-0526-x
+Astafyeva, E., Zakharenkova, I., & Forster, M. (2015). Ionospheric response to the 2015 St Patrick’s day storm: A global multi-instrumental overview. Journal of Geophysical Research: Space Physics, 120, 9023–9037. https://doi.org/10.1002/2015JA02629
+Astafyeva, E., Zakharenkova, I., Huba, J. D., Doornbos, E., & van den IJssel, J. (2017). Global ionospheric and thermospheric effects of the June 2015 geomagnetic disturbances: Multi-instrumental observations and modeling. Journal of Geophysical Research: Space Physics, 122, 11,716–11,742. https://doi.org/10.1002/2017JA024174
+Azzouzi, I., Migoya-Orué, Y., Amory Mazaudier, C., Fleury, R., Radicella, S. M., & Touzani, A. (2015). Signatures of solar event at middle and low latitudes in the Europe-African sector, during geomagnetic storms, October 2013. Advances in Space Research, 56(9), 2040–2055. https:// doi.org/10.1016/j.asr.2015.06.010
+Basu, S., Groves, K., Quinn, J., & Doherty, P. (1999). A comparison of TEC ﬂuctuations and scintillations at Ascension Island. Journal of Atmospheric and Terrestrial Physics, 61(16), 1219–1226. https://doi.org/10.1016/S1364-6826(99)00052-8
+Blanc, M., & Richmond, A. D. (1980). The ionospheric disturbance dynamo. Journal of Geophysical Research, 85(A4), 1669–1686. https://doi. org/10.1029/JA85iA04p01669
+Burton, R. K., McPherron, R., & Russell, C. (1975). An empirical relationship between interplanetary conditions and Dst. Journal of Geophysical Research, 80(31), 4204–4214. https://doi.org/10.1029/JA080i031p04204
+Carter, B. A., Yizengaw, E., Pradipta, R., Retterer, J. M., Groves, K., Valladares, C., et al. (2016). Global equatorial plasma bubble occurrence during the 2015 St. Patrick’s day storm. Journal of Geophysical Research: Space Physics, 121, 894–905. https://doi.org/10.1002/ 2015JA022194
+Chapman, S. (1951). The equatorial electrojet as detected from the abnormal electric current distribution above Huancayo, Peru, and elsewhere. Archiv fur Meteorologie, Geophysik, und Bioklimatologie Serie A Meteorologie und Geophysik, 4(1), 368–390. https://doi.org/10.1007/ BF02246814
+Ciraolo, L., Azpilicueta, F., Brunini, C., Meza, A., & Radicella, S. M. (2007). Calibration errors on experimental slant total electron content (TEC) determined with GPS. Journal of Geodesy, 81(2), 111–120.
+Cole, K. D. (1966). Magnetic storms and associated phenomena. Space Science Reviews, 5(6), 699–770. https://doi.org/10.1007/BF00173103 Fejer, B. G., Jensen, J. W., & Su, S.-Y. (2008). Seasonal and longitudinal dependence of equatorial disturbance vertical plasma drifts.
+Geophysical Research Letters, 35, L20106. https://doi.org/10.1029/2008GL035584
+
+KASHCHEYEV ET AL.
+
+5017
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2017JA024900
+
+Fejer, B. G., Larsen, M. F., & Farley, D. T. (1983). Equatorial disturbance dynamo electric ﬁelds. Geophysical Research Letters, 10(7), 537–540. https://doi.org/10.1029/GL010i007p00537
+Fukushima, N., & Kamide, Y. (1973). Partial ring current models for worldwide geomagnetic disturbances. Reviews of Geophysics and Space Physics, 11(4), 795–853. https://doi.org/10.1029/RG011i004p00795
+Fuller-Rowell, T. J., Codrescu, M. V., Moffett, R. J., & Quegan, S. (1994). Response of the thermosphere and ionosphere to geomagnetic storms. Journal of Geophysical Research, 99(A3), 3893–3914. https://doi.org/10.1029/93JA02015
+Fuller-Rowell, T. J., Codrescu, M. V., Rishbeth, H., Moffett, R. J., & Quegan, S. (1996). On the seasonal response of the thermosphere and ionosphere to geomagnetic storms. Journal of Geophysical Research, 101(A2), 2343–2353. https://doi.org/10.1029/95JA01614
+Gonzalez, W. D., Joselyn, J. A., Kamide, Y., Kroehl, H. W., Rostoker, G., Tsurutani, B. T., & Vasyliunas, V. M. (1994). What is a geomagnetic storm? Journal of Geophysical Research, 99(A4), 5771–5792. https://doi.org/10.1029/93JA02867
+Grodji, F. O., Doumbia, V., Boka, K., Amory-Mazaudier, C., Cohen, Y., & Fleury, R. (2017). Estimating some parameters of the equatorial ionosphere electrodynamics from ionosonde data in West Africa. Advances in Space Research, 59(1), 311–325. https://doi.org/10.1016/j. asr.2016.09.004
+Guerrero, A., Palacios, J., Rodríguez-Bouza, M., Rodríguez-Bilbao, I., Aran, A., Cid, C., et al. (2017). Storm and substorm causes and effects at midlatitude location for the St. Patrick’s 2013 and 2015 events. Journal of Geophysical Research: Space Physics, 122, 9994–10,011. https:// doi.org/10.1002/2017JA024224.
+Kelley, M. (1989). The Earth’s Ionosphere. New York: Elsevier. Le, H. M., Lan, T. T., Fleury, R., Amory Mazaudier, C., Le, T. T., Thang, N. C., & Thanh, N. H. (2016). TEC variations and ionospheric disturbances
+during the magnetic storm on March 2015 observed from continuous GPS data in the Southeast Asian region. Vietnam Journal Earth Sciences, 38(3), 287–305. https://doi.org/10.15625/0866-7187/38/3/8714 Le Huy, M., & Amory-Mazaudier, C. (2005). Magnetic signature of the ionospheric disturbance dynamo at equatorial latitudes: “Ddyn”. Journal of Geophysical Research, 110, A10301. https://doi.org/10.1029/2004JA010578 Matsushita, S. (1959). A study of morphology of ionospheric storms. Journal of Geophysical Research, 64(3), 305–321. https://doi.org/10.1029/ JZ064i003p00305 Matsushita, S. (1967). Solar quiet and lunar daily variation ﬁelds. In S. Matsushita & W. H. Campbell (Eds.), Physics of geomagnetic phenomena (pp. 302–424). New York: Academic Press. Mazaudier, C., & Bernard, R. (1985). Saint-Santin radar observations of lower thermospheric storms. Journal of Geophysical Research, 90(A3), 2885–2895. https://doi.org/10.1029/JA090iA03p02885 Menvielle, M., Iyemori, T., Marchaudon, A., & Nosé, M. (2011). Geomagnetic indices. In M. Mandea & M. Korte (Eds.), Geomagnetic observations and models, IAGA Special Sopron book Series (Vol. 5, Chapter 7, pp. 183–228). Heidelberg: Springer. https://doi.org/10.1007/978-90-4819858-0 Nava, B., Rodríguez-Zuluaga, J., Alazo-Cuartas, K., Kashcheyev, A., Migoya-Orué, Y., Radicella, S. M., et al. (2016). Middle and low latitude ionosphere response to 2015 St. Patrick’s Day geomagnetic storm. Journal of Geophysical Research: Space Physics, 121, 3421–3438. https:// doi.org/10.1002/2015JA022299 Nayak, C., Tsai, L.-C., Su, S.-Y., Galkin, I. A., Caton, R. G., & Groves, K. M. (2017). Suppression of ionospheric scintillation during St. Patrick’s Day geomagnetic super storm as observed over the anomaly crest region station Pingtung, Taiwan: A case study. Advances in Space Research, 60(2), 396–405. https://doi.org/10.1016/j.asr.2016.11.036 Nayak, C., Tsai, L.-C., Su, S.-Y., Galkin, I. A., Tan, A. T. K., Nofri, E., & Jamjareegulgarn, P. (2016). Peculiar features of the low-latitude and midlatitude ionospheric response to the St. Patrick’s Day geomagnetic storm of 17 March 2015. Journal of Geophysical Research: Space Physics, 121, 7941–7960. https://doi.org/10.1002/2016JA022489 Nishida, A. (1968). Geomagnetic DP2 ﬂuctuations and associated magnetospheric phenomena. Journal of Geophysical Research, 73(5), 1795–1803. https://doi.org/10.1029/JA073i005p01795 Piersanti, M., Cesaroni, C., Spogli, L., & Alberti, T. (2017). Does TEC react to a sudden impulse as a whole? The 2015 Saint Patrick’s day storm event. Advances in Space Research, 60(8), 1583–1904. https://doi.org/10.1016/j.asr.2017.01.021 Pi, X., Mannucci, A. J., Lindqwister, U. J., & Ho, C. M. (1997). Monitoring of global ionospheric irregularities using the worldwide GPS network. Geophysical Research Letters, 24(18), 2283–2286. https://doi.org/10.1029/97GL02273 Prolss, G. W., & von Zahn, U. (1977). Seasonal variation in the latitude structure of atmospheric disturbances. Journal of Geophysical Research, 82(35), 5629–5632. https://doi.org/10.1029/JA082i035p05629 Szuszczewicz, E. P., Lester, M., Wilkinson, P., Blanchard, P., Abdu, M., Hanbaba, R., et al. (1998). A comparative study of global ionospheric responses to intense magnetic storm conditions. Journal of Geophysical Research, 103(A6), 11,665–11,684. https://doi.org/10.1029/ 97JA01660 Tsurutani, B. R., Mannucci, A., Ijima, B., Saito, A., Yumoto, K., Abdu, M. A., et al. (2004). Global dayside ionospheric uplift and enhancement associated with interplanetary electric ﬁelds. Journal of Geophysical Research, 109, A08302. https://doi.org/10.1029/2003JA010342 Tsurutani, B. T., Lee, Y. T., Gonzalez, W. D., & Tang, F. (1992). Great magnetic storms. Geophysical Research Letters, 19(1), 73–76. https://doi.org/ 10.1029/91GL02783 Tsurutani, B. T., Verkhoglyadova, O. P., Mannucci, A. J., Saito, A., Araki, T., Yumoto, K., et al. (2008). Prompt penetration electric ﬁelds (PPEFs) and their ionospheric effects during the great magnetic storm of 30–31 October 2003. Journal of Geophysical Research, 113, A05311. https://doi.org/10.1029/2007JA012879 Tulasi Ram, S., Rama Rao, P. V. S., Prasad, D. S. V. V. D., Niranjan, K., Gopi Krishna, S., Sridharan, R., & Ravindran, S. (2008). Local time dependent response of postsunset ESF during geomagnetic storms. Journal of Geophysical Research, 113, A07310. https://doi.org/10.1029/ 2007JA012922 Vasyliunas, V. M. (1970). Mathematical models of the magnetospheric convection and its coupling to the ionosphere. In M. McCormac (Ed.), Particles and ﬁelds in the magnetosphere (pp. 60–71). New-York: Springer. https://doi.org/10.1007/978-94-010-3284-1-6 Zaourar, N., Amory-Mazaudier, C., & Fleury, R. (2017). Hemispheric asymmetries in the ionosphere response observed during the high-speed solar wind streams of the 24–28 August 2010. Advances in Space Research, 59(9), 2229–2247. https://doi.org/10.1016/j.asr.2017.01.048 Zhang, S.-R., Zhang, Y., Wang, W., & Verkhoglyadova, O. P. (2017). Geospace system responses to the St. Patrick’s Day storms in 2013 and 2015. Journal of Geophysical Research: Space Physics, 122, 6901–6906. https://doi.org/10.1002/2017JA024232
+
+KASHCHEYEV ET AL.
+
+5018
+

@@ -1,0 +1,2724 @@
+PLOS
+
+Good Enough Practices in Scientific Computing
+Greg Wilson1,‡*, Jennifer Bryan2,‡, Karen Cranston3,‡, Justin Kitzes4,‡, Lex Nederbragt5,‡, Tracy K. Teal6,‡ 1 Software Carpentry Foundation / gvwilson@software-carpentry.org 2 University of British Columbia / jenny@stat.ubc.ca 3 Duke University / karen.cranston@duke.edu 4 University of California, Berkeley / jkitzes@berkeley.edu 5 University of Oslo / lex.nederbragt@ibv.uio.no 6 Data Carpentry / tkteal@datacarpentry.org
+‡ These authors contributed equally to this work. * E-mail: Corresponding gvwilson@software-carpentry.org
+
+Abstract
+We present a set of computing tools and techniques that every researcher can and should consider adopting. These recommendations synthesize inspiration from our own work, from the experiences of the thousands of people who have taken part in Software Carpentry and Data Carpentry workshops over the past six years, and from a variety of other guides. Our recommendations are aimed specifically at people who are new to research computing.
+
+Author Summary
+Computers are now essential in all branches of science, but most researchers are never taught the equivalent of basic lab skills for research computing. As a result, data can get lost, analyses can take much longer than necessary, and researchers are limited in how effectively and they can work with software and data. Computing workflows need to follow the same practices as lab projects and notebooks, with organized data, documented steps and the project structured for reproducibility, but researchers new to computing often don’t know where to start.
+This paper presents a set of good computing practices that every researcher can adopt regardless of their current level of computational skill. These practices, which encompass data management, programming, collaborating with colleagues, organizing projects, tracking work, and writing manuscripts, are drawn from a wide variety of published sources, from our daily lives, and from our work with volunteer organizations that have delivered workshops to over 11,000 people since 2010.
+
+Introduction
+
+1
+
+Three years ago a group of researchers involved in Software Carpentry and Data
+
+2
+
+Carpentry wrote a paper called “Best Practices for Scientific Computing” [1]. That
+
+3
+
+paper provided recommendations for people who were already doing significant amounts 4
+
+of computation in their research. However, as computing has become an essential part 5
+
+of science for all researchers, there is a larger group of people newer to scientific
+
+6
+
+computing, and the question then becomes “where to start?”.
+
+7
+
+1/21
+
+PLOS
+
+This paper focuses on these first, accessible skills and perspectives - the “good
+
+8
+
+enough” practices - for scientific computing, a minimum set of tools and techniques that 9
+
+we believe every researcher can and should consider adopting. It draws inspiration from 10
+
+many sources [2–8], from our personal experience, and from the experiences of the
+
+11
+
+thousands of people who have taken part in Software Carpentry and Data Carpentry 12
+
+workshops over the past six years.
+
+13
+
+Our intended audience is researchers who are working alone or with a handful of
+
+14
+
+collaborators on projects lasting a few days to several months. A practice is included in 15
+
+our list if large numbers of researchers use it, and large numbers of people are still using 16
+
+it months after first trying it out. We include the second criterion because there is no 17
+
+point recommending something that people won’t actually adopt.
+
+18
+
+Many of our recommendations are for the benefit of the collaborator every researcher 19
+
+cares about most: their future self (as the joke goes, yourself from three months ago 20
+
+doesn’t answer email. . . ). Change is hard and if researchers don’t see those benefits
+
+21
+
+quickly enough to justify the pain, they will almost certainly switch back to their old 22
+
+way of doing things. This rules out many practices, such as code review, that we feel are 23
+
+essential for larger-scale development (Section 6).
+
+24
+
+We organize our recommendations into the following topics (Box 1):
+
+25
+
+• Data Management: saving both raw and intermediate forms; documenting all
+
+26
+
+steps; creating tidy data amenable to analysis.
+
+27
+
+• Software: writing, organizing, and sharing scripts and programs used in an
+
+28
+
+analysis.
+
+29
+
+• Collaboration: making it easy for existing and new collaborators to understand 30
+
+and contribute to a project.
+
+31
+
+• Project Organization: organizing the digital artifacts of a project to ease discovery 32
+
+and understanding.
+
+33
+
+• Tracking Changes: recording how various components of your project change over 34
+
+time.
+
+35
+
+• Manuscripts: writing manuscripts in a way that leaves an audit trail and
+
+36
+
+minimizes manual merging of conflict.
+
+37
+
+Acknowledgments
+
+38
+
+We are grateful to Arjun Raj (University of Pennsylvania), Steven Haddock (Monterey 39
+
+Bay Aquarium Research Institute), Stephen Turner (University of Virginia), Elizabeth 40
+
+Wickes (University of Illinois), and Garrett Grolemund (RStudio) for their feedback on 41
+
+early versions of this paper, to those who contributed during the outlining of the
+
+42
+
+manuscript, and to everyone involved in Data Carpentry and Software Carpentry for 43
+
+everything they have taught us.
+
+44
+
+1 Data Management
+
+45
+
+Data within a project may need to exist in various forms, ranging from what first
+
+46
+
+arrives to what is actually used for the primary analyses. Our recommendations have 47
+
+two main themes. One is to work towards ready-to-analyze data incrementally,
+
+48
+
+documenting both the intermediate data and the process. We also describe the key
+
+49
+
+features of “tidy data”, which can be a powerful accelerator for analysis [5, 8].
+
+50
+
+2/21
+
+PLOS
+
+1. Save the raw data (1a). Where possible, save data as originally generated (i.e. 51
+
+by an instrument or from a survey). It is tempting to overwrite raw data files
+
+52
+
+with cleaned-up versions, but faithful retention is essential for re-running analyses 53
+
+from start to finish; for recovery from analytical mishaps; and for experimenting 54
+
+without fear. Consider changing file permissions to read-only or using spreadsheet 55
+
+protection features, so it is harder to damage raw data by accident or to hand edit 56
+
+it in a moment of weakness.
+
+57
+
+Some data will be impractical to manage in this way. For example, you should 58
+
+avoid making local copies of large, stable databases. In that case, record the exact 59
+
+procedure used to obtain the raw data, as well as any other pertinent information, 60
+
+such as an official version number or the date of download.
+
+61
+
+Ensure that raw data is backed up in more than one location. (1b) If 62
+
+external hard drives are used, store them off-site of the original location.
+
+63
+
+Universities often have their own data storage solutions, so it is worthwhile to
+
+64
+
+consult with your local Information Technology (IT) group or library.
+
+65
+
+Alternatively cloud computing resources, like Amazon Simple Storage Service
+
+66
+
+(Amazon S3), Google Cloud Storage or Microsoft Azure are reasonably priced and 67
+
+reliable. For large data sets, where storage and transfer can be expensive and
+
+68
+
+time-consuming, you may need to use incremental backup or specialized storage 69
+
+systems, and people in your local IT group or library can often provide advice and 70
+
+assistance on options at your university or organization as well.
+
+71
+
+2. Create the data you wish to see in the world (1b). Create the dataset you 72
+
+wish you had received. The goal here is to improve machine and human
+
+73
+
+readability, but not to do vigorous data filtering or add external information.
+
+74
+
+Machine readability allows automatic processing using computer programs, which 75
+
+is important when others want to reuse your data. Specific examples of
+
+76
+
+non-destructive transformations that we recommend at the beginning of analysis: 77
+
+File formats: Convert data from closed, proprietary formats to open,
+
+78
+
+non-proprietary formats that ensure machine readability across time and
+
+79
+
+computing setups [9]. Good options include CSV for tabular data, JSON, YAML, 80
+
+or XML for non-tabular data such as graphs (the node-and-arc kind), and HDF5 81
+
+for certain kinds of structured data.
+
+82
+
+Variable names: Replace inscrutable variable names and artificial data codes with 83
+
+self-explaining alternatives, e.g., rename variables called name1 and name2 to
+
+84
+
+personal name and family name, recode the treatment variable from 1 vs. 2 to 85
+
+untreated vs. treated, and replace artificial codes for missing data, such as
+
+86
+
+“-99”, with NA, a code used in most programming languages to indicate that data is 87
+
+“Not Available” [10].
+
+88
+
+Filenames: Store especially useful metadata as part of the filename itself, while 89
+
+keeping the filename regular enough for easy pattern matching. For example, a 90
+
+filename like 2016-05-alaska-b.csv makes it easy for both people and programs 91
+
+to select by year or by location.
+
+92
+
+3. Create analysis-friendly data (1c): Analysis can be much easier if you are 93
+
+working with so-called “tidy” data [5]. Two key principles are:
+
+94
+
+Make each column a variable: Don’t cram two variables into one, e.g.,
+
+95
+
+“male treated” should be split into separate variables for sex and treatment status. 96
+
+Store units in their own variable or in metadata, e.g., “3.4” instead of “3.4kg”. 97
+
+Make each row an observation: Data often comes in a wide format, because that 98
+
+facilitated data entry or human inspection. Imagine one row per field site and
+
+99
+
+3/21
+
+PLOS
+
+Fig 1. Example of gathering columns to create tidy data.
+
+then columns for measurements made at each of several time points. Be prepared 100
+
+to gather such columns into a variable of measurements, plus a new variable for 101
+
+time point. Fig 1 presents an example of such a transformation.
+
+102
+
+4. Record all the steps used to process data (1d): Data manipulation is as 103
+
+integral to your analysis as statistical modeling and inference. If you do not
+
+104
+
+document this step thoroughly, it is impossible for you, or anyone else, to repeat 105
+
+the analysis.
+
+106
+
+The best way to do this is to write scripts for every stage of data processing. This 107
+
+might feel frustratingly slow, but you will get faster with practice. The immediate 108
+
+payoff will be the ease with which you can re-do data preparation when new data 109
+
+arrives. You can also re-use data preparation steps in the future for related
+
+110
+
+projects. For very large data sets, data preparation may also include writing and 111
+
+saving scripts to obtain the data or subsets of the data from remote storage.
+
+112
+
+Some data cleaning tools, such as OpenRefine, provide a graphical user interface, 113
+
+but also automatically keep track of each step in the process. When tools like
+
+114
+
+these or scripting is not feasible, it’s important to clearly document every manual 115
+
+action (what menu was used, what column was copied and pasted, what link was 116
+
+clicked, etc.). Often you can at least capture what action was taken, if not the 117
+
+complete why. For example, choosing a region of interest in an image is inherently 118
+
+interactive, but you can save the region chosen as a set of boundary coordinates. 119
+
+5. Anticipate the need to use multiple tables, and use a unique identifier 120
+
+for every record (1e): Raw data, even if tidy, is not necessarily complete. For 121
+
+example, the primary data table might hold the heart rate for individual subjects 122
+
+at rest and after a physical challenge, identified via a subject ID. Demographic 123
+
+variables, such as subject age and sex, are stored in a second table and will need 124
+
+to be brought in via merging or lookup. This will go more smoothly if subject ID 125
+
+is represented in a common format in both tables, e.g., always as “14025” versus 126
+
+“14,025” in one table and “014025” in another. It is generally wise to give each 127
+
+record or unit a unique, persistent key and to use the same names and codes when 128
+
+variables in two datasets refer to the same thing.
+
+129
+
+6. Submit data to a reputable DOI-issuing repository so that others can 130
+
+access and cite it. (1f) Your data is as much a product of your research as the 131
+
+papers you write, and just as likely to be useful to others (if not more so). Sites 132
+
+such as Figshare, Dryad, and Zenodo allow others to find your work, use it, and 133
+
+cite it; we discuss licensing in Section 3 below. Follow your research community’s 134
+
+standards for how to provide metadata. Note that there are two types of
+
+135
+
+4/21
+
+PLOS
+
+metadata: metadata about the dataset as a whole and metadata about the content 136
+
+within the dataset. If the audience is humans, write the metadata (the README 137
+
+file) for humans. If the audience includes automatic metadata harvesters, fill out 138
+
+the formal metadata and write a good README file for the humans [11].
+
+139
+
+Taken in order, the recommendations above will produce intermediate data files with 140
+
+increasing levels of cleanliness and task-specificity. An alternative approach to data
+
+141
+
+management would be to fold all data management tasks into a monolithic procedure 142
+
+for data analysis, so that intermediate data products are created “on the fly” and stored 143
+
+only in memory, not saved as distinct files.
+
+144
+
+While the latter approach may be appropriate for projects in which very little data 145
+
+cleaning or processing is needed, we recommend the explicit creation and retention of 146
+
+intermediate products. Saving intermediate files makes it easy to re-run parts of a data 147
+
+analysis pipeline, which in turn makes it less onerous to revisit and improve specific data 148
+
+processing tasks. Breaking a lengthy workflow into pieces makes it easier to understand, 149
+
+share, describe, and modify. This is particularly true when working with large data sets, 150
+
+where storage and transfer of the entire data set is not trivial or inexpensive.
+
+151
+
+2 Software
+
+152
+
+If you or your group are creating tens of thousands of lines of software for use by
+
+153
+
+hundreds of people you have never met, you are doing software engineering. If you’re 154
+
+writing a few dozen lines now and again, and are probably going to be its only user, you 155
+
+may not be doing engineering, but you can still make things easier on yourself by
+
+156
+
+adopting a few key engineering practices. What’s more, adopting these practices will 157
+
+make it easier for people to understand and (re)use your code.
+
+158
+
+The core realization in these practices is that readable, reusable, and testable are all 159
+
+side effects of writing modular code, i.e., of building programs out of short,
+
+160
+
+single-purpose functions with clearly-defined inputs and outputs [12]. Much has been 161
+
+written on this topic [12–14], and this section focuses on practices that best balance 162
+
+ease of use with benefit for you and collaborators.
+
+163
+
+1. Place a brief explanatory comment at the start of every program (2a), 164
+
+no matter how short it is. That comment should include at least one example of 165
+
+how the program is used: remember, a good example is worth a thousand words. 166
+
+Where possible, the comment should also indicate reasonable values for
+
+167
+
+parameters. An example of such a comment is show below.
+
+168
+
+Synthesize image files for testing circularity estimation algorithm.
+
+169
+
+170
+
+Usage: make_images.py -f fuzzing -n flaws -o output -s seed -v -w size
+
+171
+
+172
+
+where:
+
+173
+
+-f fuzzing = fuzzing range of blobs (typically 0.0-0.2)
+
+174
+
+-n flaws = p(success) for geometric distribution of # flaws/sample (e.g. 0.5-1705 .8)
+
+-o output = name of output file
+
+176
+
+-s seed = random number generator seed (large integer)
+
+177
+
+-v
+
+= verbose
+
+178
+
+-w size = image width/height in pixels (typically 480-800)
+
+179
+
+-h = show help message
+
+180
+
+2. Decompose programs into functions (2b) that are no more than one page 181
+
+(about 60 lines) long. A function is a reusable section of software that can be
+
+182
+
+5/21
+
+PLOS
+
+treated as a black box by the rest of the program. The syntax for creating
+
+183
+
+functions depends on programming language, but generally you name the function, 184
+
+list its input parameters, and describe what information it produces. Functions 185
+
+should take no more than five or six input parameters and should not reference 186
+
+outside information.
+
+187
+
+The key motivation here is to fit the program into the most limited memory of all: 188
+
+ours. Human short-term memory is famously incapable of holding more than
+
+189
+
+about seven items at once [15]. If we are to understand what our software is doing, 190
+
+we must break it into chunks that obey this limit, then create programs by
+
+191
+
+combining these chunks. Putting code into functions also makes it easier to test 192
+
+and troubleshoot when things go wrong.
+
+193
+
+3. Be ruthless about eliminating duplication (2c). Write and re-use functions 194
+
+instead of copying and pasting code, and use data structures like lists instead of 195
+
+creating many closely-related variables, e.g. create score = (1, 2, 3) rather 196
+
+than score1, score2, and score3.
+
+197
+
+Also look for well-maintained libraries that already do what you’re trying to do. 198
+
+All programming languages have libraries that you can import and use in your 199
+
+code. This is code that people have already written and made available for
+
+200
+
+distribution that have a particular function. For instances there are libraries for 201
+
+statistics, modeling, mapping and many more. Many languages catalog the
+
+202
+
+libraries in a centralized source, for instance R has CRAN, Python has PyPI, and 203
+
+so on. So always search for well-maintained software libraries that do 204
+
+what you need (2d) before writing new code yourself, but test libraries
+
+205
+
+before relying on them (2e).
+
+206
+
+4. Give functions and variables meaningful names (2f), both to document 207
+
+their purpose and to make the program easier to read. As a rule of thumb, the 208
+
+greater the scope of a variable, the more informative its name should be: while it’s 209
+
+acceptable to call the counter variable in a loop i or j, things that are re-used 210
+
+often, such as the major data structures in a program should not have one-letter 211
+
+names. Remember to follow each language’s conventions for names, such as
+
+212
+
+net charge for Python and NetCharge for Java.
+
+213
+
+Tab Completion
+
+214
+
+Almost all modern text editors provide tab completion, so that typing
+
+215
+
+the first part of a variable name and then pressing the tab key inserts
+
+216
+
+the completed name of the variable. Employing this means that
+
+217
+
+meaningful longer variable names are no harder to type than terse
+
+218
+
+abbreviations.
+
+219
+
+5. Make dependencies and requirements explicit. (2g) This is usually done 220
+
+on a per-project rather than per-program basis, i.e., by adding a file called
+
+221
+
+something like requirements.txt to the root directory of the project, or by
+
+222
+
+adding a “Getting Started” section to the README file.
+
+223
+
+6. Do not comment and uncomment sections of code to control a
+
+224
+
+program’s behavior (2h), since this is error prone and makes it difficult or
+
+225
+
+impossible to automate analyses. Instead, put if/else statements in the program 226
+
+to control what it does.
+
+227
+
+7. Provide a simple example or test data set (2i) that users (including
+
+228
+
+yourself) can run to determine whether the program is working and whether it 229
+
+gives a known correct output for a simple known input. Such a “build and smoke 230
+
+6/21
+
+PLOS
+
+test” is particularly helpful when supposedly-innocent changes are being made to 231
+
+the program, or when it has to run on several different machines, e.g., the
+
+232
+
+developer’s laptop and the department’s cluster.
+
+233
+
+8. Submit code to a reputable DOI-issuing repository (2j) upon submission 234
+
+of paper, just as you do with data. Your software is as much a product of your 235
+
+research as your papers, and should be as easy for people to credit. DOIs for
+
+236
+
+software are provided by Figshare and Zenodo. Zenodo integrates directly with 237
+
+GitHub.
+
+238
+
+3 Collaboration
+
+239
+
+You may start working on projects by yourself or with a small group of collaborators 240
+
+you already know, but you should design it to make it easy for new collaborators to join. 241
+
+These collaborators might be new grad students or postdocs in the lab, or they might 242
+
+be you returning to a project that has been idle for some time. As summarized in [16], 243
+
+you want to make it easy for people to set up a local workspace so that they can
+
+244
+
+contribute, help them find tasks so that they know what to contribute, and make the 245
+
+contribution process clear so that they know how to contribute. You also want to make 246
+
+it easy for people to give you credit for your work.
+
+247
+
+1. Create an overview of your project. (3a) Have a short file in the project’s 248
+
+home directory that explains the purpose of the project. This file (generally called 249
+
+README, README.txt, or something similar) should contain the project’s title, a 250
+
+brief description, up-to-date contact information, and an example or two of how to 251
+
+run various cleaning or analysis tasks. It is often the first thing users and
+
+252
+
+collaborators on your project will look at, so make it explicit how you want people 253
+
+to engage with the project. If you are looking for more contributors, make it
+
+254
+
+explicit that you welcome contributors and point them to the license (more below) 255
+
+and ways they can help.
+
+256
+
+You should also create a CONTRIBUTING file that describes what people need to do 257
+
+in order to get the project going and use or contribute to it, i.e., dependencies 258
+
+that need to be installed, tests that can be run to ensure that software has been 259
+
+installed correctly, and guidelines or checklists that your project adheres to.
+
+260
+
+2. Create a shared “to-do” list (3b). This can be a plain text file called
+
+261
+
+something like notes.txt or todo.txt, or you can use sites such as GitHub or 262
+
+Bitbucket to create a new issue for each to-do item. (You can even add labels 263
+
+such as “low hanging fruit” to point newcomers at issues that are good starting 264
+
+points.) Whatever you choose, describe the items clearly so that they make sense 265
+
+to newcomers.
+
+266
+
+3. Decide on communication strategies. (3c) Make explicit decisions about 267
+
+(and publicize where appropriate) how members of the project will communicate 268
+
+with each other and with externals users / collaborators. This includes the
+
+269
+
+location and technology for email lists, chat channels, voice / video conferencing, 270
+
+documentation, and meeting notes, as well as which of these channels will be
+
+271
+
+public or private.
+
+272
+
+4. Make the license explicit. (3d) Have a LICENSE file in the project’s home
+
+273
+
+directory that clearly states what license(s) apply to the project’s software, data, 274
+
+and manuscripts. Lack of an explicit license does not mean there isn’t one; rather, 275
+
+it implies the author is keeping all rights and others are not allowed to re-use or 276
+
+modify the material.
+
+277
+
+7/21
+
+PLOS
+
+We recommend Creative Commons licenses for data and text, either CC-0 (the 278
+
+“No Rights Reserved” license) or CC-BY (the “Attribution” license, which permits 279
+
+sharing and reuse but requires people to give appropriate credit to the creators). 280
+
+For software, we recommend a permissive open source license such as the MIT, 281
+
+BSD, or Apache license [17].
+
+282
+
+What Not To Do
+
+283
+
+We recommend against the “no commercial use” variations of the
+
+284
+
+Creative Commons licenses because they may impede some forms of
+
+285
+
+re-use. For example, if a researcher in a developing country is being
+
+286
+
+paid by her government to compile a public health report, she will be
+
+287
+
+unable to include your data if the license says “non-commercial”. We
+
+288
+
+recommend permissive software licenses rather than the GNU General
+
+289
+
+Public License (GPL) because it is easier to integrate
+
+290
+
+permissively-licensed software into other projects, see chapter three
+
+291
+
+in [17].
+
+292
+
+5. Make the project citable (3e) by including a CITATION file in the project’s 293
+
+home directory that describes how to cite this project as a whole, and where to 294
+
+find (and how to cite) any data sets, code, figures, and other artifacts that have 295
+
+their own DOIs. The example below shows the CITATION file for the Ecodata
+
+296
+
+Retriever (https://github.com/weecology/retriever); for an example of a more
+
+297
+
+detailed CITATION file, see the one for the khmer project
+
+298
+
+(https://github.com/dib-lab/khmer).
+
+299
+
+Please cite this work as:
+
+300
+
+301
+
+Morris, B.D. and E.P. White. 2013. "The EcoData Retriever:
+
+302
+
+improving access to existing ecological data." PLOS ONE 8:e65848.
+
+303
+
+http://doi.org/doi:10.1371/journal.pone.0065848
+
+304
+
+4 Project Organization
+
+305
+
+Organizing the files that make up a project in a logical and consistent directory
+
+306
+
+structure will help you and others keep track of them. Our recommendations for doing 307
+
+this are drawn primarily from [2, 3].
+
+308
+
+1. Put each project in its own directory, which is named after the
+
+309
+
+project. (4a) Like deciding when a chunk of code should be made a function, the 310
+
+ultimate goal of dividing research into distinct projects is to help you and others 311
+
+best understand your work. Some researchers create a separate project for each 312
+
+manuscript they are working on, while others group all research on a common 313
+
+theme, data set, or algorithm into a single project.
+
+314
+
+As a rule of thumb, divide work into projects based on the overlap in data and 315
+
+code files. If two research efforts share no data or code, they will probably be
+
+316
+
+easiest to manage independently. If they share more than half of their data and 317
+
+code, they are probably best managed together, while if you are building tools that 318
+
+are used in several projects, the common code should probably be in a project of 319
+
+its own. Projects do often require their own organizational model, but the below 320
+
+are recommendations on how you can structure data, code, analysis outputs and 321
+
+other files. The important concept is that is useful to organize the project by the 322
+
+types of files and that consistency helps you effectively find and use things later. 323
+
+8/21
+
+PLOS
+
+TEMP_DIR = ./temp_zip_files
+echo "Packaging zip files required by analysis tool..." mkdir $(TEMP_DIR) ./src/make-zip-files.py $(TEMP_DIR) *.dat
+echo "Analyzing..." ./bin/sqr_mean_analyze -i $(TEMP_DIR) -b "temp"
+echo "Cleaning up..." rm -rf $(TEMP_DIR)
+Fig 2. Example of a “runall” script.
+
+2. Put text documents associated with the project in the doc
+
+324
+
+directory. (4b) This includes files for manuscripts, documentation for source 325
+
+code, and/or an electronic lab notebook recording your experiments.
+
+326
+
+Subdirectories may be created for these different classes of files in large projects. 327
+
+3. Put raw data and metadata in a data directory, and files generated
+
+328
+
+during cleanup and analysis in a results directory (4c), where
+
+329
+
+“generated files” includes intermediate results, such as cleaned data sets or
+
+330
+
+simulated data, as well as final results such as figures and tables.
+
+331
+
+The results directory will usually require additional subdirectories for all but 332
+
+the simplest projects. Intermediate files such as cleaned data, statistical tables, 333
+
+and final publication-ready figures or tables should be separated clearly by file 334
+
+naming conventions or placed into different subdirectories; those belonging to
+
+335
+
+different papers or other publications should be grouped together. Similarly, the 336
+
+data directory might require subdirectories to organize raw data based on time, 337
+
+method of collection, or other metadata most relevant to your analysis.
+
+338
+
+4. Put project source code in the src directory. (4d) src contains all of the 339
+
+code written for the project. This includes programs written in interpreted
+
+340
+
+languages such as R or Python; those written compiled languages like Fortran, 341
+
+C++, or Java; as well as shell scripts, snippets of SQL used to pull information 342
+
+from databases; and other code needed to regenerate the results.
+
+343
+
+This directory may contain two conceptually distinct types of files that should be 344
+
+distinguished either by clear file names or by additional subdirectories. The first 345
+
+type are files or groups of files that perform the core analysis of the research, such 346
+
+as data cleaning or statistical analyses. These files can be thought of as the
+
+347
+
+“scientific guts” of the project.
+
+348
+
+The second type of file in src is controller or driver scripts that that contains all 349
+
+the analysis steps for the entire project from start to finish, with particular
+
+350
+
+parameters and data input/output commands. A controller script for a simple 351
+
+project, for example, may read a raw data table, import and apply several cleanup 352
+
+and analysis functions from the other files in this directory, and create and save a 353
+
+numeric result. For a small project with one main output, a single controller
+
+354
+
+script should be placed in the main src directory and distinguished clearly by a 355
+
+name such as “runall”. The short example in Fig 2 is typical of scripts of this
+
+356
+
+kind; note how it uses one variable, TEMP DIR, to avoid repeating the name of a 357
+
+particular directory four times.
+
+358
+
+9/21
+
+PLOS
+
+. |-- CITATION |-- README |-- LICENSE |-- requirements.txt |-- data | -- birds_count_table.csv |-- doc | -- notebook.md | -- manuscript.md | -- changelog.txt |-- results | -- summarized_results.csv |-- src | -- sightings_analysis.py | -- runall.py
+Fig 3. Project layout.
+
+5. Put compiled programs in the bin directory (4e). bin contains executable 359
+
+programs compiled from code in the src directory (the name bin is an old Unix 360
+
+convention, and comes from the term “binary”). Projects that do not have any 361
+
+will not require bin.
+
+362
+
+Scripts vs. Programs
+
+363
+
+We use the term “script” to mean “something that is executed directly
+
+364
+
+as-is”, and “program” to mean “something that is explicitly compiled
+
+365
+
+before being used”. The distinction is more one of degree than
+
+366
+
+kind—libraries written in Python are actually compiled to bytecode as
+
+367
+
+they are loaded, for example—so one other way to think of it is “things
+
+368
+
+that are edited directly” and “things that are not”.
+
+369
+
+External Scripts
+
+370
+
+If src is for human-readable source code, and bin is for compiled
+
+371
+
+binaries, where should projects put scripts that are executed
+
+372
+
+directly—particularly ones that are brought in from outside the project?
+
+373
+
+On the one hand, these are written in the same languages as the
+
+374
+
+project-specific scripts in src; on the other, they are executable, like
+
+375
+
+the programs in bin. The answer is that it doesn’t matter, as long as
+
+376
+
+each team’s projects follow the same rule. As with many of our other
+
+377
+
+recommendations, consistency and predictability are more important
+
+378
+
+than hair-splitting.
+
+379
+
+6. Name all files to reflect their content or function. (4f) For example, use 380
+
+names such as bird count table.csv, manuscript.md, or
+
+381
+
+sightings analysis.py. Do not using sequential numbers (e.g., result1.csv, 382
+
+result2.csv) or a location in a final manuscript (e.g., fig 3 a.png), since those 383
+
+numbers will almost certainly change as the project evolves.
+
+384
+
+The diagram in Fig 3 provides a concrete example of how a simple project might be 385
+
+organized following these recommendations:
+
+386
+
+The root directory contains a README file that provides an overview of the project as 387
+
+a whole, a CITATION file that explains how to reference it, and a LICENSE file that
+
+388
+
+states the licensing. The data directory contains a single CSV file with tabular data on 389
+
+bird counts (machine-readable metadata could also be included here). The src
+
+390
+
+10/21
+
+PLOS
+
+directory contains sightings analysis.py, a Python file containing functions to
+
+391
+
+summarize the tabular data, and a controller script runall.py that loads the data
+
+392
+
+table, applies functions imported from sightings analysis.py, and saves a table of 393
+
+summarized results in the results directory.
+
+394
+
+This project doesn’t have a bin directory, since it does not rely on any compiled 395
+
+software. The doc directory contains two text files written in Markdown, one containing 396
+
+a running lab notebook describing various ideas for the project and how these were
+
+397
+
+implemented and the other containing a running draft of a manuscript describing the 398
+
+project findings.
+
+399
+
+5 Keeping Track of Changes
+
+400
+
+Keeping track of changes that you or your collaborators make to data and software is a 401
+
+critical part of research. Being able to reference or retrieve a specific version of the
+
+402
+
+entire project aids in reproducibility for you leading up to publication, when responding 403
+
+to reviewer comments, and when providing supporting information for reviewers,
+
+404
+
+editors, and readers.
+
+405
+
+We believe that the best tools for tracking changes are the version control systems 406
+
+that are used in software development, such as Git, Mercurial, and Subversion. They 407
+
+keep track of what was changed in a file when and by whom, and synchronize changes 408
+
+to a central server so that many users can manage changes to the same set of files.
+
+409
+
+While these version control tools make tracking changes easier, they can have a steep 410
+
+learning curve. So, we provide two sets of recommendations, 1 a systematic manual 411
+
+approach for managing changes and 2 version control in its full glory, and you can use 412
+
+the first while working towards the second, or just jump in to version control.
+
+413
+
+Whatever system you chose, we recommend that you:
+
+414
+
+1. Back up (almost) everything created by a human being as soon as it is 415
+
+created. (5a) This includes scripts and programs of all kinds, software packages 416
+
+that your project depends on, and documentation. A few exceptions to this rule 417
+
+are discussed below.
+
+418
+
+2. Keep changes small. (5b) Each change should not be so large as to make the 419
+
+change tracking irrelevant. For example, a single change such as “Revise script file” 420
+
+that adds or changes several hundred lines is likely too large, as it will not allow 421
+
+changes to different components of an analysis to be investigated separately.
+
+422
+
+Similarly, changes should not be broken up into pieces that are too small. As a 423
+
+rule of thumb, a good size for a single change is a group of edits that you could 424
+
+imagine wanting to undo in one step at some point in the future.
+
+425
+
+3. Share changes frequently. (5c) Everyone working on the project should share 426
+
+and incorporate changes from others on a regular basis. Do not allow individual 427
+
+investigator’s versions of the project repository to drift apart, as the effort
+
+428
+
+required to merge differences goes up faster than the size of the difference. This is 429
+
+particularly important for the manual versioning procedure describe below, which 430
+
+does not provide any assistance for merging simultaneous, possibly conflicting, 431
+
+changes.
+
+432
+
+4. Create, maintain, and use a checklist for saving and sharing changes 433
+
+to the project. (5d) The list should include writing log messages that clearly 434
+
+explain any changes, the size and content of individual changes, style guidelines 435
+
+for code, updating to-do lists, and bans on committing half-done work or broken 436
+
+code. See [18] for more on the proven value of checklists.
+
+437
+
+11/21
+
+PLOS
+
+5. Store each project in a folder that is mirrored off the researcher’s
+
+438
+
+working machine (5e) using a system such as Dropbox or a remote version 439
+
+control repository such as GitHub. Synchronize that folder at least daily. It may 440
+
+take a few minutes, but that time is repaid the moment a laptop is stolen or its 441
+
+hard drive fails.
+
+442
+
+Manual Versioning
+
+443
+
+Our first suggested approach, in which everything is done by hand, has two additional 444
+
+parts:
+
+445
+
+1. Add a file called CHANGELOG.txt to the project’s docs subfolder (5f), and 446
+
+make dated notes about changes to the project in this file in reverse chronological 447
+
+order (i.e., most recent first). This file is the equivalent of a lab notebook, and 448
+
+should contain entries like those shown below.
+
+449
+
+## 2016-04-08
+
+450
+
+451
+
+* Switched to cubic interpolation as default.
+
+452
+
+* Moved question about family’s TB history to end of questionnaire.
+
+453
+
+454
+
+## 2016-04-06
+
+455
+
+456
+
+* Added option for cubic interpolation.
+
+457
+
+* Removed question about staph exposure (can be inferred from blood test resul4t58s).
+
+2. Copy the entire project whenever a significant change has been
+
+459
+
+made (5g) (i.e., one that materially affects the results), and store that copy in a 460
+
+sub-folder whose name reflects the date in the area that’s being synchronized.
+
+461
+
+This approach results in projects being organized as shown below:
+
+462
+
+.
+
+463
+
+|-- project_name
+
+464
+
+| -- current
+
+465
+
+|
+
+-- ...project content as described earlier...
+
+466
+
+| -- 2016-03-01
+
+467
+
+|
+
+-- ...content of ’current’ on Mar 1, 2016
+
+468
+
+| -- 2016-02-19
+
+469
+
+|
+
+-- ...content of ’current’ on Feb 19, 2016
+
+470
+
+Here, the project name folder is mapped to external storage (such as Dropbox), 471
+
+current is where development is done, and other folders within project name are 472
+
+old versions.
+
+473
+
+Data is Cheap, Time is Expensive
+
+474
+
+Copying everything like this may seem wasteful, since many files won’t
+
+475
+
+have changed, but consider: a terabyte hard drive costs about $50 retail,
+
+476
+
+which means that 50 GByte costs less than $5. Provided large data files
+
+477
+
+are kept out of the backed-up area (discussed below), this approach
+
+478
+
+costs less than the time it would take to select files by hand for copying.
+
+479
+
+This manual procedure satisfies the requirements outlined above without needing 480
+
+any new tools. If multiple researchers are working on the same project, though, they 481
+
+will need to coordinate so that only a single person is working on specific files at any 482
+
+time. In particular, they may wish to create one change log file per contributor, and to 483
+
+merge those files whenever a backup copy is made.
+
+484
+
+12/21
+
+PLOS
+
+Version Control Systems
+
+485
+
+What the manual process described above requires most is self-discipline. The version 486
+
+control tools that underpin our second approach—the one we use in our own
+
+487
+
+projects–don’t just accelerate the manual process: they also automate some steps while 488
+
+enforcing others, and thereby require less self-discipline for more reliable results.
+
+489
+
+1. Use a version control system (5h), to manage changes to a project.
+
+490
+
+Box 2 briefly explains how version control systems work. It’s hard to know what 491
+
+version control tool is most widely used in research today, but the one that’s most talked 492
+
+about is undoubtedly Git. This is largely because of GitHub, a popular hosting site that 493
+
+combines the technical infrastructure for collaboration via Git with a modern web
+
+494
+
+interface. GitHub is free for public and open source projects and for users in academia 495
+
+and nonprofits. GitLab is a well-regarded alternative that some prefer, because the
+
+496
+
+GitLab platform itself is free and open source. Bitbucket provides free hosting for both 497
+
+Git and Mercurial repositories, but does not have nearly as many scientific users.
+
+498
+
+What Not to Put Under Version Control
+
+499
+
+The benefits of version control systems don’t apply equally to all file types. In particular, 500
+
+version control can be more or less rewarding depending on file size and format. First, 501
+
+file comparison in version control systems is optimized for plain text files, such as source 502
+
+code. The ability to see so-called “diffs” is one of the great joys of version control.
+
+503
+
+Unfortunately, Microsoft Office files (like the .docx files used by Word) or other binary 504
+
+files, e.g., PDFs, can be stored in a version control system, but it is not possible to
+
+505
+
+pinpoint specific changes from one version to the next. Tabular data (such as CSV files) 506
+
+can be put in version control, but changing the order of the rows or columns will create 507
+
+a big change for the version control system, even if the data itself has not changed.
+
+508
+
+Second, raw data should not change, and therefore should not require version
+
+509
+
+tracking. Keeping intermediate data files and other results under version control is also 510
+
+not necessary if you can re-generate them from raw data and software. However, if data 511
+
+and results are small, we still recommend versioning them for ease of access by
+
+512
+
+collaborators and for comparison across versions.
+
+513
+
+Third, today’s version control systems are not designed to handle megabyte-sized 514
+
+files, never mind gigabytes, so large data or results files should not be included. (As a 515
+
+benchmark for “large”, the limit for an individual file on GitHub is 100MB.) Some
+
+516
+
+emerging hybrid systems such as Git LFS put textual notes under version control, while 517
+
+storing the large data itself in a remote server, but these are not yet mature enough for 518
+
+us to recommend.
+
+519
+
+Inadvertent Sharing
+
+520
+
+Researchers dealing with data subject to legal restrictions that prohibit
+
+521
+
+sharing (such as medical data) should be careful not to put data in public
+
+522
+
+version control systems. Some institutions may provide access to private
+
+523
+
+version control systems, so it is worth checking with your IT department.
+
+524
+
+Additionally, be sure not to unintentionally place security credentials, such
+
+525
+
+as passwords and private keys, in a version control system where it may be
+
+526
+
+accessed by others.
+
+527
+
+6 Manuscripts
+
+528
+
+An old joke says that doing the research is the first 90% of any project; writing up is 529 the other 90%. While writing is rarely addressed in discussions of scientific computing, 530
+
+13/21
+
+PLOS
+
+computing has changed scientific writing just as much as it has changed research.
+
+531
+
+A common practice in academic writing is for the lead author to send successive 532
+
+versions of a manuscript to coauthors to collect feedback, which is returned as changes 533
+
+to the document, comments on the document, plain text in email, or a mix of all three. 534
+
+This allows co-authors to use familiar tools, but results in a lot of files to keep track of, 535
+
+and a lot of tedious manual labor to merge comments to create the next master version. 536
+
+Instead of an email-based workflow, we recommend mirroring good practices for
+
+537
+
+managing software and data to make writing scalable, collaborative, and reproducible. 538
+
+As with our recommendations for version control in general, we suggest that groups 539
+
+choose one of two different approaches for managing manuscripts. The goals of both are 540
+
+to:
+
+541
+
+• Ensure that text is accessible to yourself and others now and in the future by
+
+542
+
+making a single master document that is available to all coauthors at all times. 543
+
+• Reduce the chances of work being lost or people overwriting each other’s work. 544
+
+• Make it easy to track and combine contributions from multiple collaborators.
+
+545
+
+• Avoid duplication and manual entry of information, particularly in constructing 546
+
+bibliographies, tables of contents, and lists.
+
+547
+
+• Make it easy to regenerate the final published form (e.g., a PDF) and to tell if it 548
+
+is up to date.
+
+549
+
+• Make it easy to share that final version with collaborators and to submit it to a 550
+
+journal.
+
+551
+
+The First Rule Is. . .
+
+552
+
+The workflow you choose is less important than having all authors agree on
+
+553
+
+the workflow before writing starts. Make sure to also agree on a single
+
+554
+
+method to provide feedback, be it an email thread or mailing list, an issue
+
+555
+
+tracker (like the ones provided by GitHub and Bitbucket), or some sort of
+
+556
+
+shared online to-do list.
+
+557
+
+Single Master Online
+
+558
+
+Our first alternative will already be familiar to many researchers:
+
+559
+
+1. Write manuscripts using online tools with rich formatting, change
+
+560
+
+tracking, and reference management (6a), such as Google Docs. With the 561
+
+document online, everyone’s changes are in one place, and hence don’t need to be 562
+
+merged manually.
+
+563
+
+We realize that in many cases, even this solution is asking too much from
+
+564
+
+collaborators who see no reason to move forward from desktop GUI tools. To satisfy 565
+
+them, the manuscript can be converted to a desktop editor file format (e.g., Microsoft 566
+
+Word .docx or LibreOffice .odt) after major changes, then downloaded and saved in 567
+
+the doc folder. Unfortunately, this means merging some changes and suggestions
+
+568
+
+manually, as existing tools cannot always do this automatically when switching from a 569
+
+desktop file format to text and back (although Pandoc can go a long way).
+
+570
+
+14/21
+
+PLOS
+
+Text-based Documents Under Version Control
+
+571
+
+The second approach treats papers exactly like software, and has been used by
+
+572
+
+researchers in mathematics, astronomy, physics, and related disciplines for decades:
+
+573
+
+1. Write the manuscript in a plain text format that permits version
+
+574
+
+control (6b) such as LaTeX or Markdown, and then convert them to other
+
+575
+
+formats such as PDF as needed using scriptable tools like Pandoc.
+
+576
+
+Using a version control system provides good support for finding and merging
+
+577
+
+differences resulting from concurrent changes. It also provides a convenient platform for 578
+
+making comments and performing review.
+
+579
+
+This approach re-uses the version control tools and skills used to manage data and 580
+
+software, and is a good starting point for fully-reproducible research. However, it
+
+581
+
+requires all contributors to understand a much larger set of tools, including markdown 582
+
+or LaTeX, make, BiBTeX, and Git/GitHub.
+
+583
+
+Why Two Recommendations for Manuscripts?
+
+584
+
+We initially recommended that researchers should always using plain text in version 585
+
+control to manage manuscripts. However, several members of our community felt
+
+586
+
+strongly that the learning curve associated with this recommendation was a significant 587
+
+barrier to entry. For example, Stephen Turner wrote:
+
+588
+
+. . . try to explain the notion of compiling a document to an overworked
+
+589
+
+physician you collaborate with. Oh, but before that, you have to explain the
+
+590
+
+difference between plain text and word processing. And text editors. And
+
+591
+
+markdown/LaTeX compilers. And BiBTeX. And Git. And GitHub. Etc.
+
+592
+
+Meanwhile he/she is getting paged from the OR. . .
+
+593
+
+. . . as much as we want to convince ourselves otherwise, when you have to
+
+594
+
+collaborate with those outside the scientific computing bubble, the barrier to
+
+595
+
+collaborating on papers in this framework is simply too high to overcome.
+
+596
+
+Good intentions aside, it always comes down to “just give me a Word
+
+597
+
+document with tracked changes,” or similar.
+
+598
+
+Similarly, Arjun Raj [19] said in a blog post:
+
+599
+
+Google Docs excels at easy sharing, collaboration, simultaneous editing,
+
+600
+
+commenting and reply-to-commenting. Sure, one can approximate these
+
+601
+
+using text-based systems and version control. The question is why anyone
+
+602
+
+would like to. . .
+
+603
+
+The goal of reproducible research is to make sure one can. . . reproduce. . .
+
+604
+
+computational analyses. The goal of version control is to track changes to
+
+605
+
+source code. These are fundamentally distinct goals, and while there is some
+
+606
+
+overlap, version control is merely a tool to help achieve that, and comes
+
+607
+
+with so much overhead and baggage that it is often not worth the effort.
+
+608
+
+Collaborative editing in something like Google Docs does not have all the benefits of 609
+
+text-based formats (notably, being able to store manuscripts in the same place, and in 610
+
+the same way, as other materials). However, it does meet the requirements that we
+
+611
+
+initially outlined. We still recommend against using desktop tools like LibreOffice and 612
+
+Microsoft Word with either email or file-sharing services like Dropbox, as workflows 613
+
+based on these do not scale beyond a small number of participants.
+
+614
+
+15/21
+
+PLOS
+
+Supplementary Materials
+
+615
+
+Supplementary materials often contain much of the work that went into the project, 616
+
+such as tables and figures or more elaborate descriptions of the algorithms, software, 617
+
+methods, and analyses. In order to make these materials as accessible to others as
+
+618
+
+possible, do not rely solely on the PDF format, since extracting data from PDFs is
+
+619
+
+notoriously hard. Instead, we recommend separating the results that you may expect 620
+
+others to reuse (e.g., data in tables, data behind figures) into separate, text-format files 621
+
+in formats such as CSV, JSON, YAML, XML, or HDF5. We recommend against more 622
+
+innovative formats in deference to an old saying: “What’s oldest lasts longest.” The 623
+
+same holds for any commands or code you want to include as supplementary material: 624
+
+use the format that most easily enables reuse (source code files, Unix shell scripts etc). 625
+
+What We Left Out
+
+626
+
+We have deliberately left many good tools and practices off our list, including some that 627
+
+we use daily, because they only make sense on top of the core practices described above, 628
+
+or because it takes a larger investment before they start to pay off.
+
+629
+
+Branches A branch is a “parallel universe” within a version control repository.
+
+630
+
+Developers create branches so that they can make multiple changes to a project 631
+
+independently. They are central to the way that experienced developers use
+
+632
+
+systems like Git, but they add an extra layer of complexity to version control for 633
+
+newcomers. Programmers got along fine in the days of CVS and Subversion
+
+634
+
+without relying heavily on branching, and branching can be adopted without
+
+635
+
+significant disruption after people have mastered a basic edit-commit workflow. 636
+
+Build Tools Tools like Make were originally developed to recompile pieces of software 637
+
+that had fallen out of date. They are now used to regenerate data and entire
+
+638
+
+papers: when one or more raw input files change, Make can automatically re-run 639
+
+those parts of the analysis that are affected, regenerate tables and plots, and then 640
+
+regenerate the human-readable PDF that depends on them. However, newcomers 641
+
+can achieve the same behavior by writing shell scripts that re-run everything;
+
+642
+
+these may do unnecessary work, but given the speed of today’s machines, that is 643
+
+unimportant for small projects.
+
+644
+
+Unit Tests A unit test is a small test of one particular feature of a piece of software. 645
+
+Projects rely on unit tests to prevent regression, i.e., to ensure that a change to 646
+
+one part of the software doesn’t break other parts. While unit tests are essential 647
+
+to the health of large libraries and programs, we have found that they usually 648
+
+aren’t compelling for solo exploratory work. (Note, for example, the lack of a
+
+649
+
+test directory in Noble’s rules [3].) Rather than advocating something which
+
+650
+
+people are unlikely to adopt, we have left unit testing off this list.
+
+651
+
+Continuous Integration Tools like Travis-CI automatically run a set of user-defined 652
+
+commands whenever changes are made to a version control repository. These
+
+653
+
+commands typically execute tests to make sure that software hasn’t regressed, i.e., 654
+
+that things which used to work still do. These tests can be run either before
+
+655
+
+changes are saved (in which case the changes can be rejected if something fails) or 656
+
+after (in which case the project’s contributors can be notified of the breakage). CI 657
+
+systems are invaluable in large projects with many contributors, but pay fewer 658
+
+dividends in smaller projects where code is being written to do specific analyses. 659
+
+16/21
+
+PLOS
+
+Profiling and Performance Tuning Profiling is the act of measuring where a
+
+660
+
+program spends its time, and is an essential first step in tuning the program (i.e., 661
+
+making it run faster). Both are worth doing, but only when the program’s
+
+662
+
+performance is actually a bottleneck: in our experience, most users spend more 663
+
+time getting the program right in the first place.
+
+664
+
+Coverage Every modern programming language comes with tools to report the
+
+665
+
+coverage of a set of test cases, i.e., the set of lines that are and aren’t actually
+
+666
+
+executed when those tests are run. But as with unit testing, this only starts to 667
+
+pay off once the project grows larger, and is therefore not recommended here.
+
+668
+
+The Semantic Web Ontologies and other formal definitions of data are useful, but in 669
+
+our experience, even simplified things like Dublin Core are rarely encountered in 670
+
+the wild.
+
+671
+
+Documentation Good documentation is a key factor in software adoption, but in
+
+672
+
+practice, people won’t write comprehensive documentation until they have
+
+673
+
+collaborators who will use it. They will, however, quickly see the point of a brief 674
+
+explanatory comment at the start of each script, so we have recommended that as 675
+
+a first step.
+
+676
+
+A Bibliography Manager Researchers should use a reference manager of some sort, 677 such as Zotero, and should also obtain and use an ORCID to identify themselves 678 in their publications, but discussion of those is outside the scope of this paper. 679
+
+Code Reviews and Pair Programming These practices are valuable in projects 680
+
+with multiple people making large software contributions, which is not typical for 681
+
+the intended audience for this paper [20].
+
+682
+
+One important observation about this list is that many experienced programmers 683
+
+actually do some or all of these things even for small projects. It makes sense for them 684
+
+to do so because (a) they’ve already paid the learning cost of the tool, so the time
+
+685
+
+required to implement for the “next” project is small, and (b) they understand that 686
+
+their project will need some or all of these things as it scales, so they might as well put 687
+
+it in place now.
+
+688
+
+The problem comes when those experienced developers give advice to people who 689
+
+haven’t already mastered the tools, and don’t realize (yet) that they will save time if 690
+
+and when their project grows. In that situation, advocating unit testing with coverage 691
+
+checking and continuous integration is more likely to overwhelm newcomers rather than 692
+
+aid them.
+
+693
+
+Conclusion
+
+694
+
+We have outlined a series of practices for scientific computing based on our collective 695
+
+experience, and the experience of the thousands of researchers we have met through 696
+
+Software Carpentry, Data Carpentry, and similar organizations. These practices are 697
+
+pragmatic, accessible to people who consider themselves new to computing, and can be 698
+
+applied by both individuals and groups. Most importantly, these practices make
+
+699
+
+researchers more productive individually by enabling them to get more done in less time 700
+
+and with less pain. They also accelerate research as a whole by making computational 701
+
+work (which increasingly means all work) more reproducible.
+
+702
+
+But progress will not happen by itself. The practices are being increasingly
+
+703
+
+incentivized through requirements from funding agencies and journals, but the time and 704
+
+skills required to put these approaches into practice are still not being valued.
+
+705
+
+17/21
+
+PLOS
+
+At a local level, PIs can have the most impact, requiring that the research their lab 706
+
+produces follow these recommendations. Even if a PI doesn’t have a background in
+
+707
+
+computation, they can require that students show and share their code in lab meetings 708
+
+and with lab mates, that data is available and accessible to all in the lab and that
+
+709
+
+computational methods sections are comprehensive. PIs can also value the time it takes 710
+
+to do these things effectively and provide opportunities for training.
+
+711
+
+Universities can also support such efforts. While this is often provided by IT or High 712
+
+Performance Computing (HPC) groups, research librarians are an often
+
+713
+
+under-appreciated resource. Librarians have thought about and worked with data and 714
+
+provenance even before these computational challenges and increasingly have dedicated 715
+
+data librarians on staff who have an explicit service role.
+
+716
+
+Many campuses also have self-organized groups led by students who wish to learn 717
+
+from each other, which may operate independently or in concert with organizations like 718
+
+Software Carpentry, Data Carpentry, or The Hacker Within.
+
+719
+
+Finally, many funding agencies now require data management plans and education 720
+
+and outreach activities. The true cost of implementing these plans includes training: it 721
+
+is unfair as well as counter-productive to insist that researchers do things without
+
+722
+
+teaching them how. We believe it is now time for funders to invest in such training; we 723
+
+hope that our recommendations will help shape consensus on what “good enough” looks 724
+
+like and how to achieve it.
+
+725
+
+References
+
+726
+
+1. Wilson G, Aruliah DA, Brown CT, Hong NPC, Davis M, Guy RT, et al. Best 727
+
+Practices for Scientific Computing. PLoS Biology. 2014;12(1):e1001745.
+
+728
+
+doi:10.1371/journal.pbio.1001745.
+
+729
+
+2. Gentzkow M, Shapiro JM. Code and Data for the Social Sciences: A
+
+730
+
+Practitioner’s Guide; 2014. Available from:
+
+731
+
+http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf.
+
+732
+
+3. Noble WS. A Quick Guide to Organizing Computational Biology Projects. PLoS 733
+
+Computational Biology. 2009;5(7). doi:10.1371/journal.pcbi.1000424.
+
+734
+
+4. Brown CT. How to grow a sustainable software development process; 2015.
+
+735
+
+Available from: http://ivory.idyll.org/blog/
+
+736
+
+2015-growing-sustainable-software-development-process.html.
+
+737
+
+5. Wickham H. Tidy Data. Journal of Statistical Software. 2014;59(1):1–23.
+
+738
+
+doi:10.18637/jss.v059.i10.
+
+739
+
+6. Kitzes J. Reproducible Workflows; 2016. Available from: http:
+
+740
+
+//datasci.kitzes.com/lessons/python/reproducible_workflow.html.
+
+741
+
+7. Sandve GK, Nekrutenko A, Taylor J, Hovig E. Ten Simple Rules for
+
+742
+
+Reproducible Computational Research. PLoS Computational Biology. 2013;9(10). 743
+
+doi:doi:10.1371/journal.pcbi.1003285.
+
+744
+
+8. Hart EM, Barmby P, LeBauer D, Michonneau F, Mount S, Mulrooney P, et al. 745
+
+Ten simple rules for digital data storage. PLoS Computational Biology.
+
+746
+
+2016;doi:doi:10.1371/journal.pcbi.1005097.
+
+747
+
+9. U. of Illinois Library. File Formats and Organization. Available from:
+
+748
+
+http://www.library.illinois.edu/sc/services/data_management/file_ 749
+
+formats.html.
+
+750
+
+18/21
+
+10. White EP, Baldridge E, Brym ZT, Locey KJ, McGlinn DJ, Supp SR. Nine
+
+751
+
+Simple Ways to Make It Easier to (Re)use Your Data. Ideas in Ecology and
+
+752
+
+Evolution. 2013;6(2). doi:doi:10.4033/iee.2013.6b.6.f.
+
+753
+
+11. Wickes E. Comment on ”Metadata”; 2015. Available from: https://github. 754
+
+com/swcarpentry/good-enough-practices-in-scientific-computing/
+
+755
+
+issues/3#issuecomment-157410442.
+
+756
+
+12. Hunt A, Thomas D. The Pragmatic Programmer. Addison-Wesley; 1999.
+
+757
+
+13. Martin, Robert C. Clean Code: A Handbook of Agile Software Craftsmanship. 758
+
+Addison-Wesley; 2008.
+
+759
+
+14. McConnell, Steve. Code Complete: A Practical Handbook of Software
+
+760
+
+Construction. Microsoft Press; 2004.
+
+761
+
+15. Miller GA. The Magical Number Seven, Plus or Minus Two: Some Limits on Our 762
+
+Capacity for Processing Information. Psychological Review. 1956;63(2):81–97. 763
+
+doi:doi:10.1037/h0043158m.
+
+764
+
+16. Steinmacher I, Graciotto Silva M, Gerosa M, Redmiles DF. A Systematic
+
+765
+
+Literature Review on the Barriers Faced by Newcomers to Open Source Software 766
+
+Projects. Information and Software Technology. 2015;59(C).
+
+767
+
+doi:10.1016/j.infsof.2014.11.001.
+
+768
+
+17. St Laurent AM. Understanding Open Source and Free Software Licensing.
+
+769
+
+O’Reilly Media; 2004. Available from:
+
+770
+
+http://www.oreilly.com/openbook/osfreesoft/book/.
+
+771
+
+18. Gawande A. The Checklist Manifesto: How to Get Things Right. Picador; 2011. 772
+
+19. Raj A. From over-reproducibility to a reproducibility wish-list; 2016. Available 773
+
+from: http://rajlaboratory.blogspot.ca/2016/03/
+
+774
+
+from-over-reproducibility-to.html.
+
+775
+
+20. Petre M, Wilson G. Code Review For and By Scientists. In: Katz D, editor. Proc. 776
+
+WSSSPE 2014; 2014.
+
+777
+
+PLOS
+
+19/21
+
+PLOS
+
+Box 1: Summary of Practices
+
+778
+
+1. Data Management
+
+779
+
+a) Save the raw data.
+
+780
+
+b) Ensure that raw data is backed up in more than one location.
+
+781
+
+c) Create the data you wish to see in the world.
+
+782
+
+d) Create analysis-friendly data.
+
+783
+
+e) Record all the steps used to process data.
+
+784
+
+f) Anticipate the need to use multiple tables, and use a unique identifier for every record.
+
+785
+
+g) Submit data to a reputable DOI-issuing repository so that others can access and cite it.
+
+786
+
+2. Software
+
+787
+
+a) Place a brief explanatory comment at the start of every program.
+
+788
+
+b) Decompose programs into functions.
+
+789
+
+c) Be ruthless about eliminating duplication.
+
+790
+
+d) Always search for well-maintained software libraries that do what you need.
+
+791
+
+e) Test libraries before relying on them.
+
+792
+
+f) Give functions and variables meaningful names.
+
+793
+
+g) Make dependencies and requirements explicit.
+
+794
+
+h) Do not comment and uncomment sections of code to control a program’s behavior.
+
+795
+
+i) Provide a simple example or test data set.
+
+796
+
+j) Submit code to a reputable DOI-issuing repository.
+
+797
+
+3. Collaboration
+
+798
+
+a) Create an overview of your project.
+
+799
+
+b) Create a shared “to-do” list for the project.
+
+800
+
+c) Decide on communication strategies.
+
+801
+
+d) Make the license explicit.
+
+802
+
+e) Make the project citable.
+
+803
+
+4. Project Organization
+
+804
+
+a) Put each project in its own directory, which is named after the project.
+
+805
+
+b) Put text documents associated with the project in the doc directory.
+
+806
+
+c) Put raw data and metadata in a data directory, and files generated during cleanup and
+
+807
+
+analysis in a results directory.
+
+808
+
+d) Put project source code in the src directory.
+
+809
+
+e) Put external scripts, or compiled programs in the bin directory.
+
+810
+
+f) Name all files to reflect their content or function.
+
+811
+
+5. Keeping Track of Changes
+
+812
+
+a) Back up (almost) everything created by a human being as soon as it is created.
+
+813
+
+b) Keep changes small.
+
+814
+
+c) Share changes frequently.
+
+815
+
+d) Create, maintain, and use a checklist for saving and sharing changes to the project.
+
+816
+
+e) Store each project in a folder that is mirrored off the researcher’s working machine.
+
+817
+
+f) Add a file called CHANGELOG.txt to the project’s docs subfolder.
+
+818
+
+g) Copy the entire project whenever a significant change has been made.
+
+819
+
+h) Use a version control system.
+
+820
+
+6. Manuscripts
+
+821
+
+a) Write manuscripts using online tools with rich formatting, change tracking, and reference
+
+822
+
+management.
+
+823
+
+b) Write the manuscript in a plain text format that permits version control.
+
+824
+
+20/21
+
+Box 2: How Version Control Systems Work
+
+825
+
+A version control system stores snapshots of a project’s files in a repository. Users
+
+826
+
+modify their working copy of the project, and then save changes to the repository when 827
+
+they wish to make a permanent record and/or share their work with colleagues. The 828
+
+version control system automatically records when the change was made and by whom 829
+
+along with the changes themselves.
+
+830
+
+Crucially, if several people have edited files simultaneously, the version control
+
+831
+
+system will detect the collision and require them to resolve any conflicts before
+
+832
+
+recording the changes. Modern version control systems also allow repositories to be
+
+833
+
+synchronized with each other, so that no one repository becomes a single point of
+
+834
+
+failure. Tool-based version control has several benefits over manual version control:
+
+835
+
+• Instead of requiring users to make backup copies of the whole project, version
+
+836
+
+control safely stores just enough information to allow old versions of files to be 837
+
+re-created on demand.
+
+838
+
+• Instead of relying on users to choose sensible names for backup copies, the version 839
+
+control system timestamps all saved changes automatically.
+
+840
+
+• Instead of requiring users to be disciplined about completing the changelog,
+
+841
+
+version control systems prompt them every time a change is saved. They also keep 842
+
+a 100% accurate record of what was actually changed, as opposed to what the 843
+
+user thought they changed, which can be invaluable when problems crop up later. 844
+
+• Instead of simply copying files to remote storage, version control checks to see 845
+
+whether doing that would overwrite anyone else’s work. If so, they facilitate
+
+846
+
+identifying conflict and merging changes.
+
+847
+
+PLOS
+
+21/21
+

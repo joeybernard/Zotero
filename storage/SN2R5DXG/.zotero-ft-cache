@@ -1,0 +1,1935 @@
+Available online at www.sciencedirect.com
+ScienceDirect
+
+Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+www.elsevier.com/locate/cma
+
+Unified adaptive Variational MultiScale method for two phase compressible–incompressible flows
+E. Hachema,∗, M. Khalloufia, J. Bruchonb, R. Valettea, Y. Mesria
+a MINES ParisTech, PSL - Research University, CEMEF - Centre for material forming, CNRS UMR 7635, CS 10207 rue Claude Daunesse, 06904 Sophia-Antipolis Cedex, France
+b Ecole des Mines de Saint-Etienne, Centre SMS, LGF UMR CNRS 5307, 158 cours Fauriel, 42023 Saint-Etienne Cedex 2, France
+Received 2 March 2016; received in revised form 19 May 2016; accepted 21 May 2016 Available online 30 May 2016
+
+Highlights • A two-fluid flow finite element stabilized formulation for compressible–incompressible fluids is presented. • A unified formulation is implemented using an appropriate constitutive model and a level set method is used to capture the
+interface. • Edge based error estimator with multi-criteria adaptation is adopted to deal with discontinuities at the interfaces. • Stability and accuracy properties are achieved on anisotropic meshes with highly stretched elements. • The formulation is applied on bubble dynamics: shrinking, compressing and rising.
+Abstract
+In this paper we present a new stabilized finite element method to solve the two phase compressible–incompressible fluid flow problems using the level set method. An anisotropic mesh adaptation with a regularized interface is adopted to deal with the high discontinuity in the material properties. The coupling between the pressure and the flow velocity is ensured by introducing mass conservation terms in the momentum equation. Therefore, the same set of primitive unknowns and equations is described for both phases. The unified system is solved using a new derived Variational MultiScale stabilized finite element method. It is tested on three time-dependent liquid–gas interface problems. The numerical results show good stability and accuracy properties, permitting also to deal with important compressibility effect, high density ratio, and extremely stretched anisotropic elements. ⃝c 2016 Elsevier B.V. All rights reserved.
+Keywords: Unified compressible–incompressible Navier–Stokes; Stabilized finite element method; Multiphase flows; Level set; Anisotropic mesh adaptation; Bubble dynamics
+1. Introduction
+Multiphase flows describe a wide variety of natural and industrial problems arising mostly in fluid mechanics, environmental applications and nuclear and chemical engineering. Indeed, it plays an important role to understand the
+∗ Corresponding author. Tel.: +33 0 4 92 95 74 58; fax: +33 0 4 92 38 97 52. E-mail addresses: elie.hachem@mines-paristech.fr (E. Hachem), mehdi.khalloufi@mines-paristech.fr (M. Khalloufi), bruchon@emse.fr
+(J. Bruchon), rudy.valette@mines-paristech.fr (R. Valette), youssef.mesri@mines-paristech.fr (Y. Mesri).
+http://dx.doi.org/10.1016/j.cma.2016.05.022 0045-7825/⃝c 2016 Elsevier B.V. All rights reserved.
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+239
+
+physical phenomena such as bubble dynamics, groundwater flow, oil propagation, phase change and evaporation, and blood flow in biomechanical applications. Therefore, it is essential in most of these situations to well consider each phase and to treat precisely the dynamics of the interface (i.e. liquid–gas mixture).
+In the literature, several advanced computational approaches have treated both phases as incompressible fluids. To cite few, we refer to the sharp interface method in [1], hybrid particle level set method in [2], a front-tracking method proposed in [3], SPH method in [4], high order finite difference method suggested in [5], and recently a conservative sharp interface method in [6]. At the same level, numerous works investigated compressible multiphase flows, in particular for applications related to underwater explosion, fuel injections, bubble dynamics and confined flows among many others [7–12]. However, the use of a single model encounters several numerical issues, in particular when simulating coupled complex problems. Indeed, the assumption that both fluids are treated as incompressible does not allow the change of volume, whereas if we assume that both gas and liquids are compressible, using an equation of state to mimic the incompressibility in the liquid phase, then the mass conservation is not controlled. These difficulties among many others have motivated the development of unified formulations. In this context, there is a renewed interest in modeling appropriately and in a coupled manner the properties of each phase [13]. The remaining challenge is to provide a numerical strategy to each component ensuring: (i) mass conservation, (ii) the ability to deal with large density and viscosity ratios, and (iii) accurate transmission of waves across the interface.
+Only few attempts in the literature can be found that deals with the coupling of incompressible liquid and compressible gas. We can mention the coupling of sharp interface method with Ghost fluid approach proposed in [14], the use of multiple pressure variable approach [15], the use of the level set method to simulate small gas bubble clusters [16] and also the application of Galerkin Least Square method to the modified Navier–Stokes equation with a level set approach in [17].
+In this work, we derived a new unified adaptive Variational MultiScale (VMS) method for liquid–gas flows. First, the same set of primitive unknowns and equations is described everywhere and the coupling between the pressure and the flow velocity is ensured by introducing mass conservation terms in the momentum equation. The main reasons for this choice of global description of the flow are stability, robustness and computational efficiency (see [18,19]). The obtained system is then solved using a new derived Variational MultiScale stabilized finite element method designed to handle the abrupt changes at the liquid–gas interface. Indeed, it consists on the decomposition for both the velocity and the pressure fields into coarse/resolved scales and fine/unresolved scales [20–23], needed to deal with convection dominated problems and pressure instabilities. Note that this choice of decomposition is extended here to the pressure equation which in return is shown to be favorable for simulating flows at high Reynolds number and to remove spurious oscillations at the interface due to the high discontinuity in the material properties. A conservative level set method is used in this case to provide a precise position of the interfaces and to enable homogeneous physical properties for each subdomain [24].
+Finally, we combine this new VMS formulation with an a posteriori error estimator for dynamic anisotropic mesh adaptation [24]. It involves building a mesh based on a metric map. It provides both the size and the stretching of elements in a very condensed information data. Consequently, due to the presence of high gradients in the primitive variables, it provides highly stretched elements at the interfaces, at the inner and the boundary layers, and thus yields an accurate modeling framework for two-phase compressible and incompressible isothermal flows. We assess the behavior and accuracy of the proposed formulation in the simulation of three time-dependent challenging numerical examples.
+The paper is structured as follows. In Section 2, we present the Variational MultiScale formulation accounting both compressible and incompressible phases. In Section 3, we introduce the anisotropic mesh adaptation procedure governed by the length distribution tensor and its extension to deal with multi-component fields. Section 4 provides three time dependent numerical examples showing the capability of the new unified compressible–incompressible Navier–Stokes solver.
+
+2. Global model for compressible–incompressible coupling
+
+2.1. Governing equations
+
+In this section, the general equations of the global compressible–incompressible model are presented. The same set of primitive unknowns will be used by introducing mass conservation terms in the momentum and energy equations.
+
+240
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+To keep the presentation simple, we sidestep the surface tension effects and we assume no slip condition at the interface and that the viscous part of the stress tensor is negligible in comparison to the pressure contribution. The mass and momentum equations are first formulated in the following conservative form:
+
+∂ρ ∂t
+
++∇
+
+· (ρu)
+
+=
+
+0
+
+(1)
+
+ρ
+
+∂u ∂t
+
++ ρu · ∇u − ∇ · σ
+
+=
+
+ρg
+
+(2)
+
+where ρ, g and u are the density, the gravity and the velocity, and σ the stress tensor which reads:
+
+σ = 2µ ε(u) − p Id
+
+(3)
+
+with p and µ the pressure and the dynamic viscosity, ε the deviatoric part of the strain rate tensor and Id the identity tensor.
+The system must be closed by a state equation relating the density, the thermodynamic pressure and the temperature.
+
+ρ = ρ(T, p).
+
+(4)
+
+In order to express the global model, and assuming that the fluid is divariant, we reformulate the density as function of the pressure and the temperature (see [18,19]):
+
+dρ dt
+
+=
+
+∂ρ
+
+ 
+
+dT
+
+ ∂T p dt
+
++
+
+∂ρ
+
+ 
+
+
+
+dp.
+
+∂p T dt
+
+(5)
+
+Consequently, the mass conservation equation can be reformulated as an equation for the pressure
+
+1 ρ
+
+∂ρ
+
+ 
+
+ ∂p T
+
+dp dt
+
++
+
+1 ρ
+
+∂ρ
+
+ 
+
+dT
+
+ ∂T p dt
+
++∇
+
+·u
+
+=
+
+0.
+
+(6)
+
+By introducing
+
+χp
+
+=
+
+1 ρ
+
+∂ρ
+
+ 
+
+ ∂p T
+
+and
+
+χT
+
+=
+
+1 −ρ
+
+∂ρ ∂T
+
+   p
+
+(7)
+
+as the isothermal compressibility coefficient and the thermal expansion coefficient respectively, the mass conservation now reads
+
+∂p
+
+dT
+
+∇ · u + χp ∂t + χpu · ∇ p = χT dt .
+
+(8)
+
+Finally, the system of Eqs. (1)–(2) is now transformed in a unified form that can be used for both incompressible and compressible flows as follows:
+
+ρ ∂u ∂t
+
++
+
+ρu
+
+· ∇u
+
+−∇
+
+· (2µε(u))
+
++∇p
+
+=
+
+ρg
+
+(9)
+
+∇
+
+·
+
+u
+
++
+
+χp
+
+∂p ∂t
+
++
+
+χpu
+
+·
+
+∇p
+
+=
+
+χT
+
+dT dt
+
+.
+
+(10)
+
+The following Table 1 resumes all the required physical parameters and coefficients needed in (9)–(10) to simply solve an incompressible liquid with a compressible gas. We used in this case the perfect gas equation of state with R as the perfect gas constant.
+
+2.2. Variational MultiScale method
+
+It is well known, that the stability of the discrete formulation of Navier–Stokes depends on appropriate compatibility restrictions on the choice of the finite element spaces for the velocity and the pressure. According to this, standard Galerkin mixed elements with continuous equal order linear/linear interpolation is not a stable discretization. This lack of stability manifests in uncontrollable oscillations that pollute the solution.
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+241
+
+Table 1 Model parameters.
+
+Liquid ρl
+
+χl = (0, 0)
+
+µl
+
+Gas
+
+ρg = p/RT χg = (1/T, 1/ p)
+
+µg
+
+Many measures may be distinguished to solve and get around these difficulties. In particular, the classical stabilized finite element methods may be applied to deal with the instabilities in convection-dominated regime and the velocitypressure compatibility condition. However, the direct use of such methods may be inadequate when additional terms are inserted in the Navier–Stokes equations or when different physics is applied. Indeed, one needs to seek for a general framework that deal with different and new variant of mixed variational formulations. The Variational MultiScale method, proposed by Hughes [20–22,25] offers such an ideal framework. Therefore, terms related to such as Darcy [26], extra stress constraint [27], hydrodynamics [28], turbulence [22,29], viscoelastic flow [30] among others are treated accordingly and taken into account by the stabilization process.
+Accordingly, in this section, we derive a new Variational MultiScale formulation for the unified two-phase compressible and incompressible isothermal flows. It considers that the unknowns of the mixed problem (9)–(10) can be split into two components, coarse and fine, corresponding to different scales or levels of resolution.
+Following the lines in [20], we consider a direct sum decomposition of the velocity and the pressure fields into resolvable coarse-scale and unresolved fine-scale u = uh + u˜ and p = ph + p˜. Likewise, we apply the same decomposition for the weighting functions v = vh + v˜ and q = qh + q˜. The unresolved fine-scales are usually modeled using residual based terms that are derived consistently. The static condensation consists of substituting the fine-scale solution into the large-scale problem providing additional terms, tuned by a local stabilizing parameter. The latter enhances the stability and accuracy of the standard Galerkin formulation. The enrichment of the functional spaces is performed as follows: V = Vh ⊕ V˜ , V0 = Vh,0 ⊕ V˜0 and Q = Qh ⊕ Q˜ . Thus, the mixed-finite element approximation of the time-dependent unified compressible–incompressible problem can read:
+Coarse scale
+
+
+
+ 
+
+ρ
+
+
+
+
+
+∂(uh + ∂t
+
+u˜ )
+
+,
+
+ vh
+
++
+
+(ρ (u h
+
++
+
+u˜ )
+
+·
+
+∇ (u h
+
++
+
+u˜ ),
+
+vh )
+
+−
+
+( ph
+
++
+
+p˜,
+
+∇
+
+·
+
+vh )
+
++
+
+(2µε(u h )
+
+:
+
+ε(vh ))
+
+
+
+= ( fv, vh) ∀vh ∈ Vh,0
+
+(11)
+
+  (∇
+
+·
+
+(uh
+
++
+
+u˜ ),
+
+qh )
+
++
+
+χp
+
+ ∂( ph + ∂t
+
+p˜) ,
+
+ qh
+
++
+
+χp
+
+((uh
+
++
+
+u˜ )
+
+·
+
+∇( ph
+
++
+
+p˜),
+
+qh )
+
+=
+
+
+
+f
+
+p,
+
+qh 
+
+∀qh ∈ Qh.
+
+Fine scale
+
+
+ρ   
+
+∂(uh + ∂t
+
+u˜ )
+
+,
+
+ v˜
+
++
+
+(ρ (u h
+
++
+
+u˜ )
+
+·
+
+∇ (u h
+
++
+
+u˜ ),
+
+v˜)
+
+−
+
+( ph
+
++
+
+p˜,
+
+∇
+
+·
+
+v˜)
+
++
+
+(2µε(u˜ )
+
+:
+
+ε(v˜))
+
+
+
+= ( fv, v˜) ∀v˜ ∈ V˜
+
+(12)
+
+  (∇
+
+·
+
+(uh
+
++
+
+u˜ ),
+
+q˜ )
+
++
+
+χp
+
+
+
+∂( ph + ∂t
+
+p˜) ,
+
+ q˜
+
++
+
+χp
+
+((uh
+
++
+
+u˜ )
+
+·
+
+∇( ph
+
++
+
+p˜),
+
+q˜ )
+
+=
+
+
+
+fp,
+
+q˜ 
+
+∀q˜ ∈ Q˜ .
+
+To simplify the notation, we used fv and f p as the source terms in (9)–(10) and we only consider isothermal physics. To derive the stabilized formulation, we first solve the fine scale problem, defined on the sum of element interiors and written in terms of the time-dependent large-scale variables. Then we substitute the fine-scale solution back into the coarse problem, thereby eliminating the explicit appearance of the fine-scale while still modeling their effects. At this stage, two important remarks have to be made in order to deal with the time-dependency and the non-linearity of the momentum equation of the subscale system:
+
+(i) The subscales are not tracked in time, therefore, quasi-static subscales are considered here (see [31] for a justification of this choice); however, the subscale equation remains quasi time-dependent since it is driven by the large-scale time-dependent residual. For time-tracking of subscales, see [32].
+(ii) The convective velocity of the non-linear term may be approximated using only large-scale part so that (uh + u˜) · ∇(uh + u˜) ≈ uch · ∇(uh + u˜) where uch is the convection velocity (see [33]).
+
+242
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+The equations for the coarse scales are obtained taking the subscale test functions equal to zero. Therefore, using the previous assumptions, we have
+
+
+ ρ  
+
+∂uh ∂t
+
+,
+
+ vh
+
++
+
+(ρu
+
+c h
+
+·
+
+∇uh,
+
+vh )
+
+−
+
+( ph
+
++
+
+p˜,
+
+∇
+
+·
+
+vh )
+
++
+
+(2µε(u h )
+
+:
+
+ε(vh ))
+
+
+
+    
+
++  u˜, −ρuch · ∇vh = ( fv, vh)
+
+∀vh ∈ Vh,0
+
+
+
+K ∈Th
+
+(∇  
+
+·
+
+uh, qh)
+
++
+
+χp
+
+ ∂ ph ∂t
+
+ , qh
+
++
+
+χp
+
+uch
+
+·
+
+∇
+
+ph ,
+
+qh 
+
+(13)
+
+    
+
+−  (u˜, ∇ · qh) −   p˜, χpuch · ∇qh =  f p, qh
+
+∀qh ∈ Qh
+
+K ∈Th
+
+K ∈Th
+
+for
+
+all
+
+(vh, qh)
+
+∈
+
+Vh,0
+
+×
+
+Ph,0,
+
+where
+
+
+K
+
+stands
+
+for
+
+the
+
+summation
+
+over
+
+all
+
+the
+
+elements
+
+of
+
+the
+
+finite
+
+element
+
+partition
+
+Kh and (·, ·)K denotes the L2 product in each K . The problem for the fine scales is obtained from (12) and using
+
+approximations (i) and (ii) described above. Introducing the finite element residuals
+
+Ru Rc
+
+= =
+
+fv fp
+
+− −
+
+ρ ∂uh ∂t
+∇ · uh
+
+−
+
+ρu
+
+c h
+
+·
+
+∇uh
+
+−
+
+χ
+
+p
+
+∂ ph ∂t
+
+−
+
++ ∇ · (2µε(uh
+
+χ
+
+p
+
+u
+
+c h
+
+·
+
+∇
+
+ph
+
+))
+
+−
+
+∇
+
+ph
+
+(14)
+
+and using the same ideas as in [34], it turns out that the subscales may be approximated within each element K ∈ Kh by
+
+u˜ =  τu P˜u(Ru)
+
+Th
+
+
+(15)
+
+p˜ = τc P˜c(Rc)
+
+Tc
+
+where P˜v and P˜p are the projections onto V˜ and Q˜ , respectively, and τu and τc are the so called stabilization parameters. The most common choice is to take the former as the identity when applied to finite element residuals (see [20]), and this is what we will do here, although it is also possible to take them as the projection orthogonal to the finite element space (see [35] and references therein).
+Inserting the expression for the subscales, we finally obtain the stabilized finite element problem. The new variational formulation reads:
+
+ 
+ρ   
+
+∂uh ∂t
+
+,
+
+ vh
+
++
+
+(ρu
+
+c h
+
+·
+
+∇uh,
+
+vh
+
+)
+
+−
+
+(
+
+ph ,
+
+∇
+
+·
+
+vh )
+
++
+
+(2µε(uh
+
+)
+
+:
+
+ε(vh ))
+
+                
+
++
+
+
+K ∈Th
+
+τu
+
+ ρ
+
+∂uh ∂t
+
++
+
+ρuch
+
+· ∇uh
+
+−∇
+
+·
+
+(2µε(u h ))
+
++ ∇ ph
+
+−
+
+fv
+
+,
+
+ρ
+
+u
+
+c h
+
+·
+
+ ∇ vh
+
++
+
+  τc ∇
+K ∈Th
+
+· uh
+
++
+
+χ
+
+p
+
+∂ ph ∂t
+
++
+
+χ
+
+p
+
+u
+
+c h
+
+· ∇ ph
+
+−
+
+f p, ∇
+
+ · vh
+
+=
+
+( fv, vh)
+
+∀vh ∈ Vh,0
+
+(∇   
+
+·
+
+uh, qh)
+
++
+
+χp
+
+ ∂ ph ∂t
+
+ , qh
+
++
+
+χp
+
+uch
+
+·
+
+∇
+
+ph ,
+
+qh 
+
+(16)
+
+               
+
++
+
+
+K ∈Th
+
+τu
+
+ ρ
+
+∂uh ∂t
+
++
+
+ρuch
+
+· ∇uh
+
+−∇
+
+·
+
+(2µε(u h ))
+
++ ∇ ph
+
+−
+
+ fv, ∇qh
+
++
+
+  τc ∇
+K ∈Th
+
+· uh
+
++
+
+χ
+
+p
+
+∂ ph ∂t
+
++
+
+χ
+
+p
+
+u
+
+c h
+
+· ∇ ph
+
+−
+
+f p, χpuch
+
+ · ∇qh
+
+=
+
+ f p, qh
+
+∀qh ∈ Qh.
+
+When compared with the standard Galerkin method and even to the Variational MultiScale method for the incompressible Navier–Stokes equations, the proposed stable formulation involves new additional integrals that are evaluated element-wise. These additional terms, obtained by replacing the approximated u˜ and p˜ into the large-scale equation (13), represent the effects of the sub-grid scales in both incompressible and compressible phases. This is
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+243
+
+the first attempt that takes into account these new terms. They are introduced in a consistent way to the Galerkin formulation and are multiplied by stabilizing parameters and enable to overcome the instability of the classical formulation arising in convection dominated flows and to deal with the pressure instabilities. Similar conclusions were obtained in other applications such as in shock hydrodynamics [28].
+
+2.3. Level set approach
+
+In this section, we describe the level set method that enables the localization and the capturing of the interface between the compressible and incompressible phases. It is a widely used tool in multiphase flow, crystal growth, image restoration or surface reconstruction [36]. We remind briefly its definition and resolution. Let Ω be the whole domain, Ωl the liquid domain and Ωg the gas domain. The level set function is a signed distance function from the interface Γ = Ωl ∩ Ωg defined at each node X of Ω as follows:
+
+−dist(X, Γ ) 
+
+if X ∈ Ωl
+
+α(X) = 0
+
+if X ∈ Γ and consequently |∇α| = 1.
+
+(17)
+
+dist(X, Γ ) if X ∈ Ωg
+
+The classical use of the level set implies to follow the evolution of the zero isovalue of the distance function. Olsson and Kreiss proposed instead in [37] to filter the level set by a hyperbolic tangent function, replacing the level set function by a smooth Heaviside function. The isovalue to follow is therefore 0.5.
+
+φ (α)
+
+=
+
+1 2
+
+ 1
+
++
+
+tanh
+
+α 2ϵd
+
+
+
+(18)
+
+where ϵd is a given thickness (see [37] for details). The level set function is advected using the transport equation as follows:
+
+∂φ ∂t
+
++
+
+u
+
+· ∇φ
+
+=
+
+0.
+
+(19)
+
+As a result, the function φ may lose its hyperbolic tangent shape. It is therefore necessary to reinitialize it. The reinitialization is performed by solving the following equation:
+
+∂φ ∂τ
+
++
+
+∇
+
+·
+
+ φ (1
+
+−
+
+φ)n
+
+− ϵ(∇φ
+
+·
+
+ n)n
+
+=
+
+0
+
+(20)
+
+where the first flux term corresponds to a nonlinear convection term which compresses the profile and is balanced by a diffusion term, in the direction normal to the interface with n = ∇φ/ |∇φ|. The hyperbolic tangent filtering of the level set and the reinitialization arising from it, result in a better mass conservation.
+Once the level set function is computed, we can derive a global description for both compressible and incompressible phases as one fluid with different properties. Therefore, we introduce the following mixed properties
+
+ρ = H˜ (α)ρg + (1 − H˜ (α))ρl
+
+µ = H˜ (α)µg + (1 − H˜ (α))µl
+
+(21)
+
+χp = H˜ (α)χg + (1 − H˜ (α))χl
+
+and the mixed stabilization coefficients for each phase are obtained using
+
+τmixed = H˜ (α)τg + (1 − H˜ (α))τl
+
+(22)
+
+where H˜ is a smoothed Heaviside function used to obtain a better continuity at the interface [37] and given by
+
+1
+
+if α > ε
+
+
+
+H˜ (α)
+
+=
+
+ 
+
+1
+
+2
+
+ 1+
+
+α ε
+
++
+
+1 π
+
+
+
+π
+
+α
+
+ 
+
+sin ε
+
+if |α| ≤ ε
+
+(23)
+
+0
+
+if α < −ε.
+
+244
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+Here ε is a small parameter such that ε = O(him), known as the interface thickness, and him is the mesh size in the normal direction to the interface. In the vicinity of the interface, it can be computed using the following expression:
+
+him = max ∇α · x jl ,
+
+(24)
+
+j ,l ∈ K
+
+where x jl = xl − x j and K is the mesh element under consideration. According to the chosen approximations, the Heaviside function is then approximated using linear interpolations (P1) between fluid and solid properties or a piecewise constant interpolation (P0).
+Referring to the general definitions of the stabilization parameters, we compute them within each element as
+
+τu
+
+=
+
+  2ρ
+ ∆t
+
+2
+
++
+
+ 2ρ |uh|K hK
+
+2
+
++
+
+ 2−1/2 4µ
+
+h
+
+2 K
+
+
+
+,
+
+τc
+
+=
+
+ µ
+ρ
+
+2
+
++
+
+ c2 |uh|K c1h K
+
+21/2
+
+(25)
+
+where c1 and c2 are two constants independent from hK [38] and hK being the characteristic length of the element. Note also, in the case of compressible phases, we modify in τg the convection velocity into |uh|K + c where c is the speed of sound.
+Finally, it is important to mention that the calculation of hK is critical in the case of strongly anisotropic meshes with highly stretched elements. We adopt here the definition proposed in [39] to compute hK as the diameter of K in the direction of the velocity uh
+
+h K = NK 2 |uh |K
+
+(26)
+
+ |uh · ∇ϕi |K
+
+i =1
+
+where NK is the number of vertices of K and ϕ1, . . . , ϕNK are the usual basis functions of P1(K ) mapped onto K .
+
+3. Anisotropic adaptation for multi-fluid flows
+
+The mesh adaptation strategy presented in this work relies on the a posteriori definition of a unit metric able to, in some specified sense, minimize the interpolation error on the finite element solution. It relies on a statistical representation of the distribution of edges sharing an extremity, a quantity we call length distribution tensor. In order to relate the length distribution tensor to the interpolation error, following [40,41] we define an edge based error estimator combined to a gradient recovery procedure. Once the optimal metric has been obtained, the mesh generation and adaptation procedure described in [42], based on a topological representation, is applied to obtain the new mesh.
+
+3.1. Definition of the length distribution tensor: a statistical representation
+
+First,
+
+we
+
+consider
+
+a
+
+discretization
+
+Ω
+
+=
+
+
+K ∈K
+
+K
+
+where
+
+K
+
+is
+
+a
+
+simplex
+
+such
+
+as
+
+a
+
+triangle
+
+or
+
+tetrahedron.
+
+Let
+
+Γ (i)
+
+be the “patch” associated to a vertex xi of the mesh defined as the set of nodes which share one edge with xi , and let
+
+us denote by xi j the edge connecting xi to x j as in Fig. 1. The problem of finding a unitary metric Mi associated to
+
+the ith node can be formulated as the least squares problem [40]
+
+
+
+2
+
+Mi = argmin   Mxi j · xi j − |Γ (i )| .
+
+(27)
+
+M∈Rdsy×md j ∈Γ (i )
+
+Provided that the vertices of |Γ (i)| form at least d non colinear edges with vertex xi , then an approximate solution of (27) is given by
+
+Mi = 1 Xi −1 ,
+
+(28)
+
+d
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+245
+
+Fig. 1. Patch associated with node xi .
+
+where, denoting by ⊗ the tensor product between two vectors, we have introduced the length distribution tensor
+
+
+
+
+
+Xi
+
+=
+
+1 |Γ (i)|
+
+ 
+
+xi j
+
+j∈Γ (i)
+
+⊗ xi j 
+
+(29)
+
+whose purpose is to give an “average” representation of the distribution of edges in the patch.
+
+3.2. Gradient recovery error estimator
+
+Let vh be a P1 finite element approximation obtained by applying the Lagrange interpolation operator to a regular function v ∈ C2(Ω ). At node xi , we seek the recovered gradient gi defined by
+
+gi = argmin
+
+
+
+ (g 
+
+−
+
+∇ vh )
+
+·
+
+xi
+
+j
+
+2 
+
+
+
+=
+
+argmin
+
+
+
+ g 
+
+·
+
+xi j
+
+−
+
+ vh
+
+(x
+
+j
+
+)
+
+−
+
+vh
+
+(xi
+
+2 )
+
+
+.
+
+(30)
+
+g∈Rd j∈Γ (i)
+
+g∈Rd j∈Γ (i)
+
+The solution to (30) can be expressed in terms of the length distribution tensor introduced before as
+
+gi
+
+=
+
+1 |Γ (i)|
+
+Xi −1
+
+
+
+ vh
+
+(x
+
+j
+
+)
+
+−
+
+vh
+
+(xi
+
+ )
+
+xi
+
+j
+
+.
+
+j∈Γ (i)
+
+(31)
+
+It can be shown [40] that the quantity |gi · xi j | gives a second order accurate approximation of the second derivative of v along the edge xi j . Motivated by the fact that, for P1 finite elements on anisotropic meshes, edge residuals dominate
+a posteriori errors, as proved in [43], it is therefore suitable to define an error indicator function associated to the edge xi j as
+
+
+
+
+
+ei j = gi j · xi j  .
+
+(32)
+
+
+
+
+
+Moreover, this quantity can be easily extended to account for several sources of error, instead of just the scalar field vh, by applying formula (32) to each component separately.
+
+3.3. Metric construction
+
+In order to relate the error indicator defined in (32) to a metric suitable for a mesh adaptation procedure, we introduce the concept of stretching factor si j defined as the ratio between the length of the edge xi j after the adaptation procedure and before the adaptation procedure. The new metric, denoted by Mi , will then be given by
+
+
+
+
+
+M i = 1 Xi −1 ; d
+
+Xi
+
+=
+
+1 |Γ (i)|
+
+  (si j )2xi j
+j∈Γ (i)
+
+⊗ xi j  .
+
+(33)
+
+246
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+To relate the metric to the interpolation error, following [41] we set a target total number of nodes N . Because of the quadratic behavior of the error as a function of the scaling factor, denoting by e˜i j the quantity defined in (32)
+computed after the mesh adaptation process we have
+
+si j
+
+=
+
+ e˜i j ei j
+
+1/2
+
+.
+
+(34)
+
+Moreover, the number of nodes in the new mesh after applying the scaling factor si j to the edge will be roughly equal to
+
+Nij
+
+=
+
+1 si j
+
+,
+
+(35)
+
+so that the total contribution of node i (in the old mesh) to the number of nodes in the new mesh will be given by
+
+
+
+
+
+N i = det Xi −1  N i j xi j ⊗ xi j  .
+
+(36)
+
+j∈Γ (i)
+
+By combining (34) and (35) it is possible to see that (36) is a function of e˜i j . If we assume that the total error is equidis-
+
+tributed among all edges such that each edge contributes a constant error e
+
+to the total, we can see that
+
+Nij
+
+=
+
+ ei j
+e
+
+1/2 ,
+
+which yields the relation
+
+N
+
+i
+
+(e)
+
+=
+
+e−
+
+d 2
+
+N
+
+i
+
+(1).
+
+(37)
+
+By summing over all the nodes of the old mesh we get an expression for the total error as a function of the number of nodes in the new mesh. By inverting this equality we obtain
+
+2
+  N i (1)  d
+
+e= i
+
+,
+
+(38)
+
+N
+
+and injecting this into (34) yields an expression for the scaling factors
+
+1
+
+
+
+d
+
+ N i (1)
+
+sij =
+
+i
+
+N
+
+1 d
+
+(ei
+
+j
+
+)
+
+1 2
+
+.
+
+(39)
+
+3.4. Mesh adaption criteria
+In multiphase applications, the material interface between liquid and gas needs to be modeled accurately. Two strategies are commonly used; we refer to them in this work as explicit and implicit adaptation. In the first one, we design and pre adapt the mesh around the boundaries and in the wake regions. The obtained adapted mesh will be used all along the simulation, provided that the flow exhibits a bounded level of unsteadiness. The criteria for the mesh adaptation are geometric and do not depend on the solution. Whereas, the implicit strategy imposes a dynamic mesh adaptation that changes the mesh frequently and minimizes as possible the prescribed error. Consequently, it requires a criterion based solely on the solution.
+The common way to adapt a mesh to several variables, such as the velocity and the level set function, is to compute the metrics corresponding to each of them and then to produce a unique metric by an operation known as the intersection of metrics. In this work, we simplify this operation and we use one metric that accounts for different variables. Therefore, based on the theory proposed in the previous section, it is possible to extend definition (32) to
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+247
+
+Fig. 2. Set-up for the bubble compression.
+
+Fig. 3. Shrinking bubble: Anisotropic adapted mesh at different times.
+
+account for several sources of error. In the following numerical experiments, the adaptivity accounts for the velocity, its magnitude and also the level set function by defining the following vector of sources of error
+
+
+
+
+
+v(xi
+
+)
+
+=
+
+ 
+
+V |V
+
+i i
+
+|
+
+,
+
+|V i | max |V
+
+j
+
+|
+
+,
+
+φ max(φ)
+
+ 
+
+.
+
+(40)
+
+j
+
+4. Numerical examples
+In order to validate the proposed unified formulation, three time-dependent numerical test cases are presented in this section. The results obtained with the proposed approach are compared with either analytic solutions or with those obtained by other approaches that can be found in the literature. Some test cases cannot be handled using
+
+248
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+Fig. 4. Shrinking bubble: Evolution in time of the density.
+
+Fig. 5. Set-up for the bubble compression.
+
+Table 2 Physical parameters for the bubble compression.
+
+ρg
+
+ρl
+
+µg
+
+µl
+
+g
+
+1
+
+1000
+
+0.01
+
+1
+
+0
+
+ρl /ρg 1000
+
+µl /µg 100
+
+classical incompressible model for liquid and gas and attest of the benefit of a unified compressible–incompressible formulation.
+4.1. Shrinking bubble
+The first test case is the shrinking bubble as proposed in [44]. An air bubble of radius r = 0.03 m is compressed by water in a closed cavity of length side equal to 0.1 m (see Fig. 2). The water is injected at a velocity of
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+249
+
+Fig. 6. Bubble compression velocity field. The red line represents the interface at t = 0.165 s (left) and t = 0.331 s (right). Comparison between [17] (top) and current work (bottom). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)
+
+u0 = 0.0025 m s−1, in the direction normal to the boundaries of the domain. The gravity and the surface tension
+
+are
+
+set
+
+null.
+
+The
+
+evolution
+
+in
+
+time
+
+of
+
+the
+
+density
+
+is
+
+given
+
+by
+
+the
+
+analytic
+
+solution
+
+ρ (t )
+
+=
+
+ ρ0/ 1 −
+
+qt 
+π R2
+
+where
+
+q = 0.001 m2 s−1 is the flow rate of injected water and ρ0 is the initial density. The isothermal compressibility
+
+coefficients
+
+for
+
+gas
+
+and
+
+liquid
+
+are
+
+set
+
+to
+
+χ
+
+g p
+
+=
+
+9.8692327
+
+×
+
+10−6
+
+Pa−1
+
+and
+
+χ
+
+l p
+
+=
+
+0.444
+
+×
+
+10−9
+
+Pa−1.
+
+Fig. 3 shows how quickly the bubble volume is decreasing until it collapses. The number of nodes is set to 10,000
+
+and the mesh adaptation criteria are both the level set and the velocity (in direction and in norm).
+
+As expected, the nodes are concentrated along the interface of the bubble and follows the change of direction of
+
+the velocity. This reflects how, for a controlled number of nodes, the mesh is naturally and automatically coarsened in
+
+smooth regions while extremely refined near the interface. It also illustrates the right orientation and deformation of
+
+the mesh elements (longest edges parallel to the boundary). This yields a great reduction of the number of triangles
+
+compared to [44] and consequently a reduction in the computational cost.
+
+Fig. 4 shows a very good agreement between the numerical results for the evolution of the density and the analytic
+
+solution.
+
+4.2. One sided bubble compression
+
+We consider the 2D bubble compression test case inside a cavity of 1m side as presented in [17]. A bubble of radius 0.25 m is initially placed at the center of the square and surrounded by an incompressible liquid (see Fig. 5).
+
+250
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+Fig. 7. Bubble compression: Evolution in time of the bubble shape and the mesh.
+
+The liquid is injected in the square at an inflow velocity defined by u(t)|x=0 = 100t (y −0.75)(0.25− y) m s−1 for y ∈ [0.25; 0.75]. Gravity and surface tension are neglected. The initial pressure is the atmospheric one (105 Pa). We assume the flow isothermal with a sound speed c = 317 m s−1 in the gas. Densities and viscosities are summarized in Table 2.
+
+As the liquid is progressively injected inside the closed cavity, the gas bubble is compressed. In Fig. 6, we show
+
+a very good agreement between a reference solution and the current obtained results at two different time step. We
+
+highlight also that the interfaces do not show instabilities and this is mainly due to the use of adaptive Variational
+
+MultiScale method. The results here are obtained using a decreased number of elements and allow further the
+
+compression of the bubble. Indeed, Fig. 7 shows new obtained results for the time evolution of the interface until
+
+a quasi complete compression.
+
+Again, all the main directional features characterizing the velocity inside the cavity are detected and well captured
+
+by the anisotropic error estimator. The mesh elements are highly stretched along the direction of the layers, at the
+
+detachment regions and around the interface. Once again, the developed adaptive unified VMS solver is shown to be
+
+very efficient and robust to deal with discontinuities using highly stretched elements. For a given constraint on the
+
+number of elements we can find the mesh that maximizes the accuracy of the numerical solution.
+
+The zoom on the interface and at the right side of the cavity in Fig. 8 highlights how sharply the interface and the
+
+layers can be captured. It shows the correct orientation and deformation of the mesh elements (longest edges parallel
+
+to the boundary). This yields a great reduction of the number of triangles. These results give confidence that the
+
+extension of the approach to take into account different components seems to work very well and plays an important
+
+role for transient flows.
+
+The evolution of the volume is
+
+given
+
+by
+
+V (t)
+
+=
+
+π 16
+
+−
+
+100t 96
+
+2
+
+.
+
+Finally,
+
+comparison
+
+with
+
+this analytic solution in Fig.
+
+9
+
+shows a good agreement.
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+251
+
+Fig. 8. Bubble compression: focus on the mesh adaptation around the bubble and at the boundaries. Highly stretched elements are found at the interface of the bubble, allowing an accurate capture of physical phenomena.
+
+4.3. Rising bubble
+
+Fig. 9. Bubble compression: Evolution in time of the bubble volume using two meshes.
+
+In this numerical example, we consider the test case of the rising bubble inside a 2D cavity of 0.3 m side [17]. A circular bubble of radius 0.05 m is initially placed at the center of the square and surrounded by an incompressible liquid (see Fig. 10). The system being initially at rest, the motion of the bubble is driven by the buoyancy force only.
+Two test cases are considered, defined by the density ratio ρl /ρg and the viscosity ratio µl /µg. Densities and viscosities are summarized in Table 3.
+Figs. 11 and 12 show the evolution of the bubble shape in time. The obtained results are in good agreement with those obtained by [45]. We can clearly see the impact of using different density and viscosity ratio. It is also worth mentioning that we show additional snapshots of the results until the bubble gets closer to the top wall. Whereas in the literature, comparisons stop at the middle of the cavity. This is mostly due to the use of a dynamic anisotropic mesh adaptation with multi-criteria. Indeed, the interfaces are very well captured and the boundary layers as well as
+
+252
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+Fig. 10. Set-up for the rising bubble.
+
+Fig. 11. Rising bubble #1: Evolution in time of the bubble shape and the mesh.
+
+Table 3 Physical parameters for the rising bubble test cases.
+
+g
+
+Re
+
+ρl /ρg
+
+Case #1
+
+10
+
+10
+
+100
+
+Case #2
+
+10
+
+100
+
+1000
+
+µl /µg
+100 100
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+253
+
+Fig. 12. Rising bubble #2: Evolution in time of the bubble shape and the mesh.
+the detachments are automatically detected. This again highlights the capacity of the developed adaptive unified to treat accurately liquid–gas flows.
+5. Conclusion
+We proposed in this paper a new unified Variational MultiScale method to address easily the coupling between two-phase compressible and incompressible flows. Using a level set function that describes implicitly the interface between the two phases, combined with an edge based error estimator for anisotropic mesh adaptation, it results in a simple and accurate framework that allows simulating liquid-gas flows. All the details to implement the new derived stabilized finite element method were presented. Several time-dependent test cases, where the compressibility effects are important, were presented. The numerical results and the comparisons with the literature show that the new solver is able to exhibit good stability and accuracy properties on anisotropic meshes with highly stretched elements. Further investigations will take into account surface tension and three dimensional simulations using high performance computing.
+References
+[1] M. Sussman, K. Smith, M. Hussaini, M. Ohta, R. Zhi-Wei, A sharp interface method for incompressible two-phase flows, J. Comput. Phys. 221 (2) (2007) 469–505.
+[2] D. Enright, R. Fedkiw, J. Ferziger, I. Mitchell, A hybrid particle level set method for improved interface capturing, J. Comput. Phys. 183 (1) (2002) 83–116.
+[3] S.O. Unverdi, G. Tryggvason, A front-tracking method for viscous, incompressible, multi-fluid flows, J. Comput. Phys. 100 (1) (1992) 25–37.
+
+254
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+[4] X. Hu, N. Adams, An incompressible multi-phase SPH method, J. Comput. Phys. 227 (1) (2007) 264–278. [5] O. Desjardins, G. Blanquart, G. Balarac, H. Pitsch, High order conservative finite difference scheme for variable density low Mach number
+turbulent flows, J. Comput. Phys. 227 (15) (2008) 7125–7159. [6] J. Luo, X. Hu, N. Adams, A conservative sharp interface method for incompressible multiphase flows, J. Comput. Phys. 284 (2015) 547–565. [7] R. Saurel, R. Abgrall, A simple method for compressible multifluid flows, SIAM J. Sci. Comput. 21 (3) (1999) 1115–1145. [8] C. Farhat, J.-F. Gerbeau, A. Rallu, FIVER: A finite volume method based on exact two-phase Riemann problems and sparse grids for multi-
+material flows with large density jumps, J. Comput. Phys. 231 (19) (2012) 6360–6379. [9] R.P. Fedkiw, T. Aslam, B. Merriman, S. Osher, A non-oscillatory Eulerian approach to interfaces in multimaterial flows (the ghost fluid
+method), J. Comput. Phys. 152 (2) (1999) 457–492. [10] S.Y. Kadioglu, M. Sussman, S. Osher, J.P. Wright, M. Kang, A second order primitive preconditioner for solving all speed multi-phase flows,
+J. Comput. Phys. 209 (2) (2005) 477–503. [11] T. Liu, B. Khoo, C. Wang, The ghost fluid method for compressible gas–water simulation, J. Comput. Phys. 204 (1) (2005) 193–221. [12] R. Valette, M. Mackley, G. del Castillo, Matching time dependent pressure driven flows with a Rolie Poly numerical simulation, J. Non-
+Newton. Fluid Mech. 136 (2006) 118–125. [13] F. Xiao, R. Akoh, S. Ii, Unified formulation for compressible and incompressible flows by using multi-integrated moments II: Multi-
+dimensional version for compressible and incompressible flows, J. Comput. Phys. 213 (1) (2006) 31–56. [14] R. Caiden, R.P. Fedkiw, C. Anderson, A numerical method for two-phase flow consisting of separate compressible and incompressible regions,
+J. Comput. Phys. 166 (1) (2001) 1–27. [15] C.-D. Munz, S. Roller, R. Klein, K. Geratz, The extension of incompressible flow solvers to the weakly compressible regime, Comput. &
+Fluids 32 (2) (2003) 173–196. [16] J. Bruchon, A. Fortin, M. Bousmina, K. Benmoussa, Direct 2D simulation of small gas bubble clusters: from the expansion step to the
+equilibrium state, Internat. J. Numer. Methods Fluids 54 (1) (2007) 73–101. [17] M. Billaud, G. Gallice, B. Nkonga, A simple stabilized finite element method for solving two phase compressible–incompressible interface
+flows, Comput. Methods Appl. Mech. Engrg. 200 (9) (2011) 1272–1290. [18] G. Hauke, T.J. Hughes, A comparative study of different sets of variables for solving compressible and incompressible flows, Comput.
+Methods Appl. Mech. Engrg. 153 (1) (1998) 1–44. [19] G. Hauke, T. Hughes, A unified approach to compressible and incompressible flows, Comput. Methods Appl. Mech. Engrg. 113 (3) (1994)
+389–395. [20] T.R.J. Hughes, Multiscale phenomena: Green’s functions, the Dirichlet-to-Neumann formulation, subgrid scale models, bubbles and the origin
+of stabilized methods, Comput. Methods Appl. Mech. Engrg. 127 (1995) 387–401. [21] T.J.R. Hughes, G. Scovazzi, P.B. Bochev, A. Buffa, A multiscale discontinuous Galerkin method with the computational structure of a
+continuous Galerkin method, Comput. Methods Appl. Mech. Engrg. 195 (19–22) (2006) 2761–2787. [22] Y. Bazilevs, V. Calo, J. Cottrell, T. Hughes, A. Reali, G. Scovazzi, Variational multiscale residual-based turbulence modeling for large eddy
+simulation of incompressible flows, Comput. Methods Appl. Mech. Engrg. 197 (2007) 173–201. [23] E. Hachem, B. Rivaux, T. Kloczko, H. Digonnet, T. Coupez, Stabilized finite element method for incompressible flows with high Reynolds
+number, J. Comput. Phys. 229 (23) (2010) 8643–8665. [24] M. Sussman, P. Smereka, S. Osher, A level set approach for computing solutions to incompressible two-phase flow, J. Comput. Phys. 114 (1)
+(1994) 146–159. [25] T. J. R. Hughes, G.R. Feijoo, L. Mazzei, J.N. Quincy, The variational multiscale method–a paradigm for computational mechanics, Comput.
+Methods Appl. Mech. Engrg. 166 (1998) 3–24. [26] K. Nakshatrala, D. Turner, K. Hjelmstad, A. Masud, A stabilized mixed finite element method for darcy flow based on the multiscale
+decomposition of the solution, Comput. Methods Appl. Mech. Engrg. 196 (2006) 120–142. [27] E. Hachem, S. Feghali, R. Codina, T. Coupez, Immersed stress method for fluid–structure interaction using anisotropic mesh adaptation,
+Internat. J. Numer. Methods Engrg. 94 (9) (2013) 805–825. [28] G. Scovazzi, Lagrangian shock hydrodynamics on tetrahedral meshes: A stable and accurate variational multiscale approach, J. Comput. Phys.
+231 (2012) 8029–8069. [29] U. Rasthofer, V. Gravemeier, Multifractal subgrid-scale modeling within a variational multiscale method for large-eddy simulation of turbulent
+flow, J. Comput. Phys. 234 (2013) 79–107. [30] E. Castillo, R. Codina, Variational multi-scale stabilized formulations for the stationary three-field incompressible viscoelastic flow problem,
+Comput. Methods Appl. Mech. Engrg. 279 (2014) 579–605. [31] T. Dubois, F. Jauberteau, R. Temam, Dynamic Multilevel Methods and The Numerical Simulation of Turbulence, Cambridge University Press,
+Cambridge, UK New York, ISBN: 0521621658, 1999. [32] R. Codina, J. Principe, Dynamic subscales in the finite element approximation of thermally coupled incompressible flows, Internat. J. Numer.
+Methods Fluids 54 (2007) 707–730. [33] E. Hachem, B. Rivaux, T. Kloczko, H. Digonnet, T. Coupez, Stabilized finite element method for incompressible flows with high reynolds
+number, J. Comput. Phys. 229 (23) (2010) 8643–8665. [34] S. Badia, R. Codina, Stabilized continuous and discontinuous Galerkin techniques for Darcy flow, Comput. Methods Appl. Mech. Engrg. 199
+(2010) 25–28. [35] R. Codina, Stabilized finite element approximation of transient incompressible flows using orthogonal subscales, Comput. Methods Appl.
+Mech. Engrg. 191 (39) (2002) 4295–4321. [36] S. Osher, R. Fedkiw, Level Set Methods and Dynamic Implicit Surfaces, Springer, New York, ISBN: 978-0-387-22746-7, 2003. [37] E. Olsson, G. Kreiss, A conservative level set method for two phase flow, J. Comput. Phys. 210 (1) (2005) 225–246.
+
+E. Hachem et al. / Comput. Methods Appl. Mech. Engrg. 308 (2016) 238–255
+
+255
+
+[38] R. Codina, Stabilization of incompressibility and convection through orthogonal sub-scales in finite element methods, Comput. Methods Appl. Mech. Engrg. 190 (2000) 1579–1599.
+[39] T.E. Tezduyar, Y. Osawa, Finite element stabilization parameters computed from element matrices and vectors, Comput. Methods Appl. Mech. Engrg. 190 (3–4) (2000) 411–430.
+[40] T. Coupez, Metric construction by length distribution tensor and edge based error for anisotropic adaptive meshing, J. Comput. Phys. 230 (2011) 2391–2405.
+[41] G. Jannoun, E. Hachem, J. Veysset, T. Coupez, Adaptive time-step with anisotropic meshing for unsteady convection–diffusion problems, Appl. Math. Model. 39 (7) (2015) 1899–1916.
+[42] T. Coupez, Ge´ne´ration de maillage et adaptation de maillage par optimisation locale, Rev. Eur. E´ le´m. Finis 9 (4) (2000) 403–423. [43] G. Kunert, R. Verfu¨rth, Edge residuals dominate a posteriori error estimates for linear finite element methods on anisotropic triangular and
+tetrahedral meshes, Numer. Math. 86 (2) (2000) 283–303. [44] J.-P. Caltagirone, S. Vincent, C. Caruyer, A multiphase compressible model for the simulation of multiphase flows, Comput. & Fluids 50 (1)
+(2011) 24–34. [45] D. Bhaga, M.E. Weber, Bubbles in viscous liquids: shapes, wakes and velocities, J. Fluid Mech. 105 (1981) 61–85.
+

@@ -1,0 +1,1358 @@
+Revival dynamics in a traversable wormhole
+Stephan Plugge,1, ∗ E´tienne Lantagne-Hurtubise,1, † and Marcel Franz1 1Department of Physics and Astronomy & Quantum Matter Institute, University of British Columbia, Vancouver BC, Canada V6T 1Z4 (Dated: March 10, 2020)
+Quantum eﬀects can stabilize wormhole solutions in general relativity, allowing information and matter to be transported between two connected spacetimes. Here we study the revival dynamics of signals sent between two weakly coupled quantum chaotic systems, represented as identical SachdevYe-Kitaev models, that realize holographically a traversable wormhole in anti-de Sitter spacetime AdS2 for large number N of particles. In this limit we ﬁnd clear signatures of wormhole behavior: an excitation created in one system is quickly scrambled under its unitary dynamics, and is reassembled in the other system after a characteristic time consistent with holography predictions. This leads to revival oscillations that at low but ﬁnite temperature decay as a power-law in time. For small N we also observe revivals and show that they arise from a diﬀerent, non-gravitational mechanism.
+
+arXiv:2003.03914v1 [cond-mat.str-el] 9 Mar 2020
+
+General relativity allows for wormhole solutions connecting two approximately ﬂat space-times – the Einstein-Rosen bridge [1]. Unfortunately, such wormholes are known to be unstable and cannot be used to transmit matter or information. The ER bridge solution can be stabilized by the insertion of exotic matter with negative rest energy, but such matter is not available classically [2]. In a remarkable development, recent work in quantum gravity demonstrated that quantum effects can substitute for the exotic matter and stabilize a traversable wormhole [3–8]. From a practical standpoint it is unlikely that genuine quantum gravity eﬀects, such as the traversable wormhole formation, can be probed experimentally in the foreseeable future. One can imagine, however, testing these eﬀects in quantum systems that are related to gravity by holographic dualities – thus enabling, at least in principle, explorations of otherwise inaccessible physical phenomena in tabletop experiments.
+An example of this duality, notable for its simplicity and wide appeal, is the Sachdev-Ye-Kitaev (SYK) model [9, 10], believed to be holographically dual to an extremal black hole embedded in AdS2 [10–12]. The model shows extensive residual entropy, emergent (weakly broken) conformal invariance and is maximally chaotic [13], all properties shared with black holes. At the same time the SYK model is suﬃciently simple to be analytically tractable in the limit of a large number N of particles. There now exist several proposed physical realizations of the SYK model and its variants in atomic and solid-state systems [14–19], making it a potential platform for laboratory studies of quantum dynamics of black holes.
+In this Letter we study a pair of weakly coupled SYK models which, according to recent work by Maldacena and Qi [20], furnishes a holographic realization of an eternal traversable wormhole in AdS2. The model exhibits many interesting properties [21–24] and its physical realization based on the proposed SYK platforms has been
+
+discussed [25]. It is deﬁned by Hamiltonian
+
+H = HLSYK + HRSYK + iµ χjLχjR
+
+(1)
+
+j
+
+where HαSYK describe the SYK models
+
+HαSYK =
+
+Jijklχiαχjαχkαχlα ,
+
+(2)
+
+i<j<k<l
+
+and α = L, R refer to the “left” and “right” side of the
+
+wormhole. Each contains N Majorana operators respect-
+
+ing (χjα)† = χjα and {χiα, χjβ} = δijδαβ. The real-valued
+
+random couplings Jijkl are drawn from a Gaussian dis-
+
+tribution
+
+with
+
+Jijkl
+
+= 0,
+
+Ji2jkl
+
+=
+
+3!J 2 N3
+
+and
+
+are,
+
+crucially,
+
+identical for α = L, R.
+
+The Maldacena-Qi (MQ) model Eq. (1) is believed to
+
+be dual to a traversable wormhole for small coupling,
+
+µ J, and low temperatures T < µ [20]. The key prop-
+
+erty that makes it a wormhole is the following. Starting
+
+in the ground state |Ψ0 of the model, imagine creating an excitation on the right side χjR|Ψ0 . In the absence of coupling (µ = 0), the excitation will rapidly dissipate
+
+due to the chaotic nature of the SYK model [10, 12].
+
+Quantum information contained in the excitation will be
+
+scrambled among the 2N/2 states comprising the Hilbert
+
+space of HRSYK, becoming eﬀectively lost to all simple observables. Remarkably, when the two systems are cou-
+
+pled by a small µ, the scrambled excitation is instead
+
+transported to the left side where it is ‘unscrambled’ to its
+
+original form: after a characteristic time tre, the state of the system becomes close to χjL|Ψ0 . In quantum gravity language, the particle has passed through the wormhole.
+
+While this revival property has been predicted based
+
+on the gravity interpretation of the MQ model [20], a
+
+direct observation within the quantum mechanical de-
+
+scription of Eqs. (1)-(2) is yet to be achieved. This is the
+
+main goal of the present work. To this end we employ two
+
+complementary approaches. First, numerical exact diag-
+
+onalization (ED) of the Hamiltonian (1) yields the com-
+
+plete set of many-body eigenstates |Ψn with energy En.
+
+() log ( )
+n/ 2/3
+log ( n)
+
+60 (a)
+50
+
+40
+
+30
+
+20
+
+10
+
+0
+
+50
+
+0
+
+2
+
+WH SYK
+
+0
+
+2
+
+4
+
+20
+
+2
+
+50/ 2/3 100
+
+150
+
+200
+
+= 0.1
+
+(b)
+
+= 0.03
+
+100
+
+= 0.01
+
+= 0.005
+
+= 0.002
+
+0
+
+3
+
+100
+
+2
+
+1
+
+200 30
+
+20
+
+0
+p10eak i0ndex 1n0
+
+20
+
+30
+
+2
+
+8
+
+(c)
+
+7
+
+6
+
+5
+
+gap Egap offset p0 sralotpioepp11/p0
+
+4
+
+3
+
+2
+
+1
+
+00.00 0.02 0.04 0.06 0.08 0.10
+
+FIG. 1. Spectral features of the MQ model obtained from numerical solution of the SD equations (4) in real time and at small temperatures T µ. (a) inset: spectral functions for SYK (ρ0, µ = 0) and wormhole (ρ+, µ = 0.004). Main panel: relative spectral weight δρ(ω) = ρ+/ρ0. Red dots indicate positions of the dominant peaks analyzed further in (b,c). (b) peak location ωn vs index n counted from the central peak ω0 in (a). A linear ﬁt ωn = p1n + p0 is indicated. Inset: peak heights δρ(ωn) vs n, with δρ(ωn 1) = 1 reﬂecting the approach to SYK behavior at high energies. (c) spectral gap Egap = ω0, oﬀset p0 and slope p1 of linear ﬁts in (b), and ratio p1/p0 as a function of µ; Egap and p0,1 are in units µ2/3.
+
+Any observable or correlation function can then be computed exactly; however, ED is limited to small systems with 2N ≤ 32. The second approach consists of solving the saddle-point equations for the averaged fermion propagator
+
+1 Gαβ(τ1, τ2) = N
+
+T χjα(τ1)χjβ(τ2) ,
+
+(3)
+
+j
+
+where T denotes imaginary-time ordering and · · · stands for thermal average. For the SYK model this approach is asymptotically exact in the limit of large N .
+Large-N solution.– Under the assumption of timetranslation invariance, Gαβ(τ1, τ2) = Gαβ(τ1 − τ2), and the mirror symmetry between L and R systems which constrains GRR(τ ) = GLL(τ ) and GRL(τ ) = −GLR(τ ), the saddle-point equations of the MQ model can be reduced to a single pair of self-consistent equations [26],
+
+G+(iωn) = [iωn − µ − Σ+(iωn)]−1 ,
+
+(4)
+
+Σ+(τ
+
+)
+
+=
+
+−
+
+1 4
+
+J2
+
+3G2+(τ )G+(−τ ) + G3+(−τ )
+
+.
+
+Here we deﬁned G±(τ ) = GLL(τ ) ± iGLR(τ ) and similar for the self energies Σ±(τ ) (henceforth, we set J = 1). The advantage of this representation is that the equations for G+ and G− decouple. Since the propagators are related by G±(τ ) = −G∓(−τ ), solving Eqs. (4) yields both G± and can be used to reconstruct the full Gαβ(τ ).
+To access dynamical properties of the MQ model, we switch to real-time representation of the SD equations in Eq. (4) and employ a weighted-iteration scheme [20, 25] to ﬁnd self-consistent solutions (G, Σ) [26]. In the limit of weak coupling µ where wormhole eﬀects are presumed to arise, it is necessary to employ both a large frequency cutoﬀ ωmax J and small spacing δω µ to resolve ﬁne details of the spectral function and capture slowly
+
+decaying tails at high energies that are characteristic of
+
+SYK physics. This makes numerics challenging [27]. By
+
+implementing the symmetries in Eq. (4) we are able to
+
+go beyond earlier works [20, 21].
+
+Spectral function.– In Fig. 1 we analyze the spectral
+
+function
+
+ρ+(ω)
+
+=
+
+−
+
+1 π
+
+ImGr+et(ω)
+
+of
+
+the
+
+MQ
+
+model
+
+ob-
+
+tained from the large-N saddle-point solution. A key
+
+observation in Fig. 1a is the series of evenly-spaced spec-
+
+tral peaks at frequencies ωn shown in Fig. 1b. Holography predicts the emergence of two conformal “towers” of
+
+states at energies [20]
+
+Enconf = (∆ + n) , Enbg =
+
+1 2(1 − ∆) n + , (5)
+2
+
+where ∆ = 1/4 is the fermion scaling dimension.
+
+These towers correspond to conformal excitations and a
+
+“boundary graviton” in the gravity interpretation of the
+
+MQ model [20], respectively. From the SD equations (4)
+
+and scaling arguments one expects ∼ µ2/3, leading to
+
+a spectral gap E0conf ∼ ∆µ2/3. Our approach in Fig. 1c hence is two-fold: We ﬁrst extract Egap from the lowest
+
+peak in the spectral function; then ﬁt the remaining peak
+
+positions to a linear dependence ωn p1n + p0 and ex-
+
+tract the oﬀset p0 and slope p1. We observe evenly-spaced
+
+peaks at all energies with |n| ≥ 1, indicative of conformal
+
+behavior with fermion scaling dimension ∆
+
+p0/p1
+
+=
+
+1 4
+
+,
+
+assuming ωn = Enconf in Eq. (5). We ﬁnd this ratio to
+
+be robust across several decades in µ [26]. Surprisingly,
+
+the oﬀset p0 does not match the dominant central peak Egap µ2/3 which appears to be an outlier, removed
+
+from the conformal tower of states. Further, we ﬁnd no
+
+evidence for the “boundary graviton” states among the
+
+dominant peaks in ρ+(ω) [28].
+
+The full spectrum generated by Eqs. (4) comprises
+
+states encoded in both ρ+(ω) and ρ−(ω) = ρ+(−ω). For
+
+3
+
+clarity we excluded the latter in Fig. 1, but the implica-
+
+tion is that we obtain two conformal towers related by
+
+reﬂection about ω = 0. The peak spacing for spectral
+
+functions ραβ(ω) then leads to ∆ = p0/p1
+
+1 2
+
+.
+
+Revival dynamics. – Revival dynamics are captured by
+
+the transmission amplitudes between the two systems
+
+Tαβ (t)
+
+=
+
+2|G>αβ(t)| ,
+
+G>αβ (t)
+
+=
+
+θ(t) N
+
+χjα(t)χjβ(0) .
+
+j
+
+(6)
+
+The transmission Tα2β(t) then reﬂects the probability to recover χjα(t) after inserting χjβ(0) initially, averaged over all modes j.
+
+In Fig. 2 we show Tαβ(t) obtained from the numeri-
+
+cal solution of the SD equations. For µ = 0, we recover the usual SYK power-law TSYK(t) = 2|G>SYK(t)| ∼ t−1/2. For small µ > 0, TLL(t) initially follows closely the SYK
+
+result. Then, at time tre, a sharp peak in TLR(t) indi-
+
+cates that the excitation has traversed to the other side.
+
+The situation at t = tre is similar to the initial conﬁgura-
+
+tion with L and R reversed – thus at t = 2tre we expect
+
+a recurrence of the excitation at its original position, in-
+
+dicated by a peak at TLL(2tre), and so on. As found in
+
+Fig.
+
+2,
+
+the
+
+characteristic
+
+frequency
+
+ωre
+
+=
+
+p1 2π
+
+∼
+
+µ2/3
+
+for
+
+such oscillations is consistent with the prediction from
+
+holography [20, 26]. It is much larger than the naive
+
+guess ωre ∼ µ, indicating that the chaotic SYK interac-
+
+tions assist the transmission of information between the
+
+two sides of the wormhole. For small µ the oscillations de-
+
+cay as a power-law in time with an exponent approaching
+
+1 2
+
+[26],
+
+indicative
+
+of
+
+an
+
+SYK-like
+
+envelope
+
+to
+
+the
+
+revivals.
+
+This shows that the MQ model (at ﬁnite temperature)
+
+contains contributions beyond the gravitational picture,
+
+which predicts an eternal traversable wormhole where
+
+particles bounce back and forth indeﬁnitely. Further the
+
+observed revivals can be contrasted with the large µ limit,
+
+which is not dual to a wormhole. A simple calculation
+
+gives Tαβ(t) ≡ 1 in the ground state of the system for
+
+µ 1, which is reﬂected in the suppressed oscillation
+
+amplitudes for large µ, cf. Fig. 2.
+
+Note that the Fourier transform of the transmission,
+
+Fαβ(ω) = dteiωtTα2β(t), can be written as a spectral auto-correlation function [26]
+
+2∞ Fαβ(ω) = π 0 dω ραβ(ω )ραβ(ω + |ω|). (7)
+
+Sharp revivals thus rely on a series of evenly-spaced peaks in Fαβ(ω), originating from strong peak-spacing correlations in the spectral functions ραβ(ω), cf. Fig. 1. The “beating” in Fig. 2 stems from the shift of the lowest spectral peak. The transmission does not decay to zero between peaks – this ﬁnite value persists up to times of order inverse temperature β, which sets the width of the ω = 0 peak in Fαβ(ω) [26]. At long times t > β the system eventually thermalizes, Tαβ(t) → 0, losing any memory of the initial excitation.
+
+LL( ) FLL( )
+
+1.2 1.0
+
+TTTSLLLRYK
+
+0.8
+
+= 0.1 = 0.01
+
+0.6
+
+0.4
+
+= 0.001
+
+0.2
+
+0.0 0
+
+5
+
+10
+
+t
+
+15
+re
+
+20
+
+25
+
+FIG. 2. Revival dynamics in transmission amplitudes TLL,LR in Eq. (6); TSYK = TLL(µ = 0) refers to an uncoupled SYK model. Main panel and insets show data for various µ, with time axes rescaled by ωre = p1/2π, cf. Fig. 1. Vertical lines indicate times tre,n = (2n + 1)/ωre for which an excitation χR(0) is expected to re-assemble on the left side.
+
+30
+
+(a)
+
+20
+
+10
+
+0
+
+10
+
+20
+
+= 0.01
+
+300.0 0.2 0.4 0.6 0.8
+
+12
+
+= 0.005
+
+(b)
+
+10
+
+= 0.01 = 0.02
+
+8
+
+= 0.03 = 0.04
+
+6
+
+= 0.05 = 0.06
+
+SYK
+
+4
+
+2
+
+00.10 0.05 0.00 0.05 0.10
+
+FIG. 3. Spectral properties of the MQ model from exact diagonalization for 2N = 16 Majorana fermions. (a) spectral function ρLL for two distinct disorder realizations, showing doublets of states split by ωD. (b) Auto-correlation FLL(ω) for various µ, each averaged over 50 disorder realizations.
+
+Spectrum from ED.– The corresponding ED results for the spectral function ρLL(ω) are shown in Fig. 3. We here ﬁnd no evidence for a conformal tower of states, presumably due to ﬁnite-N eﬀects. Instead, for µ 1 the spectral function consists of a collection of doublets separated by a splitting ωD. The position of these doublets in energy is uncorrelated between diﬀerent disorder realizations, see Fig. 3a. As a result, averaging the spectral function does not produce the spectral peaks expected from the large-N solution. However, averaging the spectral auto-correlation function Fαβ(ω) [Eq. (7)] retains a clear signal at the doublet splitting frequency ωD, while high-frequency components are washed out and roughly follow the SYK continuum, see Fig. 3b.
+
+T (t) p (t) T(a, t)
+
+1.0
+
+SYK, 16 LL, 16
+
+SYK, 32 LL, 32
+
+1.0
+
+= L, 16 = R, 16
+
+= L, 32 = R, 32
+
+100
+
+0.8
+
+LR, 16
+
+LR, 32
+
+0.5
+
+0.6
+
+10 1
+
+0.0
+
+0.4
+
+0.5
+
+10 2
+
+0.2
+
+1.0
+
+0.00 1000 2000 t 3000 4000 5000
+
+0 1000 2000 t 3000 4000 5000
+
+10 3
+
+10 2
+
+A, 16
+
+A, 32
+
+DD,,
+
+16 32
+
+10 1
+
+100
+
+4
+
+1.0
+
+a=0
+
+a = 10
+
+0.8
+
+a = 20 a = 50
+
+a = 100
+
+0.6
+
+0.4
+
+0.2
+
+0.00 1000 2000 t 3000 4000 5000
+
+FIG. 4. Revival dynamics from ED with µ = 0.005. (a) Transmission amplitudes Tαβ(t) for 2N = 16, 32 averaged over 50 disorder realizations. The SYK result (µ = 0) is plotted for reference. (b) Corresponding fermion parity oscillations pα(t). (c) Scaling of the oscillation frequency ωD and amplitude A of the parity oscillations in (b) as function of µ. The error bars represent the standard deviation computed from 50 disorder realizations. (d) Transmission amplitude T (a, t) of low-energy states |ψa [Eq. (8)], for 2N = 32 and a single disorder realization.
+
+Revival dynamics in ED.– Fig. 4 shows transmission amplitudes Tαβ(t) for system sizes 2N = 16 and 32 [29]. For a single disorder realization, we observe rapid oscillations modulated by a much slower envelope. The fast dynamics originate from the discreteness of the spectrum in ED (λ ∼ N e−N is the typical level spacing) and vary strongly between disorder realizations. Averaging Tαβ(t) over disorder smooths them out and retains only the envelope, see Fig. 4a. Note that the oscillations are less peaked than in large-N , since Fαβ(ω) shows a single peak at frequency ωD rather than a series of evenly-spaced peaks. The frequency ωD of the envelope is precisely the doublet splitting identiﬁed in Fig. 3. It scales linearly with µ for µ < λ and sub-linearly for λ < µ 1, see Fig. 4c. The latter is the regime of interest for the wormhole solution – however, a power-law ωD ∼ µ2/3, as predicted by scaling arguments [20] and obtained in SD numerics, cannot be extracted from ED.
+A cleaner way to observe the revival oscillations is from the time evolution of fermionic parities on each side, pα(t) = Ψ|Pα(t)|Ψ with Pα = (−i)N/2 k χkα and the initial excitation |Ψ = χjR|Ψ0 . This observable tracks the propagation of fermion modes between the two sides regardless of the precise quantum state, and thus is less sensitive to disorder, as shown in Fig. 4b.
+Contrary to the expectation that ED should approach the saddle-point results as N increases, the amplitude of oscillations in Tαβ(t) and pα(t) actually goes down significantly when increasing 2N from 16 to 32 (see Fig. 4a-c). This is because conformal towers of states are absent for small N . The observed revivals in ED do not rely on a series of evenly-spaced spectral peaks, but rather on a series of spectral doublets with roughly the same splitting, as shown in Fig. 3. When N increases the distribution of doublet splitting frequencies become wider [26], leading to a reduced oscillation amplitude. We also ﬁnd an exact result for the averaged revivals in the µ λ limit, valid only for 2N = 16, which explains the corre-
+
+sponding absence of decay in Fig. 4a-b [26]. For the same reason, transmissions are improved drastically when considering low-energy excitations initially localized on one side. These can be generated by applying the projection
+
+|ψαj ,a
+
+1 =√
+C
+
+e |n −
+
+a(En −E0 |E0 |
+
+)
+
+n
+
+n|χjα|0 ,
+
+(8)
+
+with normalization C. For a > 0 this shifts the spectral weight of the excitation to a few low-energy doublets of states. As a result the transmissions Ta(t) = | ψLj ,a(t)|ψRj ,a | show oscillations with an amplitude that increases with a and saturates at Ta(ttr) ∼ 1, see Fig. 4d.
+Discussion and outlook.– We studied dynamical properties of the Maldacena-Qi model, believed to be holographically dual to a traversable wormhole. In the largeN limit, sharp revival oscillations at frequency ∼ µ2/3 are observed in fermion transmission amplitudes, consistent with predictions of quantum gravity. The revivals arise from two conformal towers of states that emerge from the SYK continuum, and for weak couplings µ their amplitude decays as a power-law in time. For small N , no towers of states are visible in exact diagonalization. Revivals instead rely on a series of approximately equalsplit doublets, and the revival amplitude decreases with N . Only low-energy states localized in one system can be transmitted with probability ∼ 1. The associated fermion parity oscillations could provide an experimental probe of revivals in the proposed platforms for physical realization [25], by employing parity measurements after “severing” the wormhole (quench to µ = 0).
+Our work leaves several interesting open questions that are relevant to future experimental explorations of revivals in coupled SYK models. How do the dynamics of the MQ model change with increasing N , from being dominated by ﬁnite-size eﬀects to arising from conformal behavior? In other words, how does the dual gravitational description emerge in a system with ﬁnite N ? These questions are out of reach of exact diagonalization, but progress could be made with Krylov subspace
+
+5
+
+methods, recently used to study quantum chaos in the SYK model [30]. Another interesting avenue would be to relate the present results to circuit-based teleportation protocols using traversable wormholes [31, 32].
+Note: After completion of this work, we learned about a related parallel study by X.-L. Qi and P. Zhang that focuses on ﬁnite-temperature eﬀects in the MQ model [33].
+Acknowledgements.– We thank O. Can, B. Kobrin, J. Maldacena, M. Rozali, X.-L. Qi, and S. Sahoo for useful discussions. This research was supported by SBQMI at UBC, UBC ARC Sockeye computational facilities, NSERC, and CIfAR. Further, E.L.H. acknowledges support from the Heising-Simons Foundation, the Simons Foundation, and National Science Foundation Grant No. NSF PHY-1748958 at KITP.
+∗ plugge@phas.ubc.ca † lantagne@phas.ubc.ca [1] A. Einstein and N. Rosen, “The particle problem in the
+general theory of relativity,” Phys. Rev. 48, 73–77 (1935). [2] Michael S. Morris and Kip S. Thorne, “Wormholes in
+spacetime and their use for interstellar travel: A tool for teaching general relativity,” Am. J. Phys. 56, 395–412 (1988). [3] P. Gao, D. L. Jaﬀeris, and A. C. Wall, “Traversable wormholes via a double trace deformation,” J. High Energy Phys. 12, 151 (2017). [4] Juan Maldacena, Douglas Stanford, and Zhenbin Yang, “Diving into traversable wormholes,” Fortschr. Phys. 65, 1700034 (2017). [5] Juan Maldacena, Alexey Milekhin, and Fedor Popov, “Traversable wormholes in four dimensions,” arXiv:1807.04726 (2018). [6] Dongsu Bak, Chanju Kim, and Sang-Heon Yi, “Bulk view of teleportation and traversable wormholes,” J. High Energy Phys. 2018, 140 (2018). [7] Ping Gao and Hong Liu, “Regenesis and quantum traversable wormholes,” J. High Energy Phys. 2019, 48 (2019). [8] Zicao Fu, Brianna Grado-White, and Donald Marolf, “Traversable asymptotically ﬂat wormholes with short transit times,” Classical and Quantum Gravity 36, 245018 (2019). [9] Subir Sachdev and Jinwu Ye, “Gapless spin-ﬂuid ground state in a random quantum heisenberg magnet,” Phys. Rev. Lett. 70, 3339 (1993). [10] A. Kitaev, “A simple model of quantum holography,” in KITP Strings Seminar and Entanglement 2015 Program (2015). [11] Subir Sachdev, “Bekenstein-hawking entropy and strange metals,” Phys. Rev. X 5, 041025 (2015). [12] Juan Maldacena and Douglas Stanford, “Remarks on the sachdev-ye-kitaev model,” Phys. Rev. D 94, 106002 (2016). [13] Juan Maldacena, Stephen H. Shenker, and Douglas Stanford, “A bound on chaos,” J. High Energy Phys. 2016, 106 (2016). [14] Ippei Danshita, Masanori Hanada, and Masaki Tezuka,
+
+“Creating and probing the sachdevyekitaev model with ultracold gases: Towards experimental studies of quantum gravity,” Prog. Theor. Exp. Phys. 2017, 083I01 (2017). [15] D. I. Pikulin and M. Franz, “Black hole on a chip: Proposal for a physical realization of the sachdev-ye-kitaev model in a solid-state system,” Phys. Rev. X 7, 031006 (2017). [16] Aaron Chew, Andrew Essin, and Jason Alicea, “Approximating the sachdev-ye-kitaev model with majorana wires,” Phys. Rev. B 96, 121119(R) (2017). [17] Anﬀany Chen, R. Ilan, F. de Juan, D. I. Pikulin, and M. Franz, “Quantum holography in a graphene ﬂake with an irregular boundary,” Phys. Rev. Lett. 121, 036403 (2018). [18] Marcel Franz and Moshe Rozali, “Mimicking black hole event horizons in atomic and solid-state systems,” Nat. Rev. Mater. 3, 491 (2018). [19] Alexander Altland, Dmitry Bagrets, and Alex Kamenev, “Sachdev-ye-kitaev non-fermi-liquid correlations in nanoscopic quantum transport,” Phys. Rev. Lett. 123, 226801 (2019). [20] Juan Maldacena and Xiao-Liang Qi, “Eternal traversable wormhole,” arXiv:1804.00491 (2018). [21] Antonio M. Garc´ıa-Garc´ıa, Tomoki Nosaka, Dario Rosa, and Jacobus J. M. Verbaarschot, “Quantum chaos transition in a two-site sachdev-ye-kitaev model dual to an eternal traversable wormhole,” Phys. Rev. D 100, 026002 (2019). [22] Juan Maldacena and Alexey Milekhin, “SYK wormhole formation in real time,” arXiv:1912.03276 . [23] Yiming Chen and Pengfei Zhang, “Entanglement entropy of two coupled syk models and eternal traversable wormhole,” J. High Energy Phys. 2019, 33 (2019). [24] Fabien Alet, Masanori Hanada, Antal Jevicki, and Cheng Peng, “Entanglement and Conﬁnement in Coupled Quantum Systems,” arXiv:2001.03158 . [25] E´tienne Lantagne-Hurtubise, Stephan Plugge, Oguzhan Can, and Marcel Franz, “Diagnosing quantum chaos in many-body systems using entanglement as a resource,” Phys. Rev. Research 2, 013254 (2020). [26] For further discussion, additional data and analysis, see the supplementary material available at [online link]. [27] In order to observe revivals, it is crucial to extract more than just an energy gap from saddle-point equations or exact diagonalization. A single-scale expression GLL(τ ) ∼ e−Egapτ → GLL(t) ∼ e−iEgapt [20, 21] does not predict revivals, cf. Eqs. (6). In imaginary-time formulation, revivals associated with higher energy scales (conformal tower) are hidden in the early-time, nonexponential transient behavior of GLL(τ ). [28] The spectral function shows additional subdominant peaks which might be related to the boundary graviton tower. However, due to their small amplitude and rapid decay at large ω we were unable to establish their identity conclusively. [29] We consider the simplest case N mod 8 = 0, corresponding to the Gaussian orthogonal ensemble (GOE) in the random matrix theory classiﬁcation for a single SYK model. We thus avoid spectral degeneracies present for the unitary (GUE) and symplectic (GSE) ensembles which complicate the analysis. [30] Bryce Kobrin, Zhenbin Yang, Gregory D KahanamokuMeyer, Christopher T Olund, Joel E Moore, Douglas
+
+6
+Stanford, and Norman Y Yao, “Many-body chaos in the sachdev-ye-kitaev model,” arXiv:2002.05725 (2020). [31] Adam R. Brown, Hrant Gharibyan, Stefan Leichenauer, Henry W. Lin, Sepehr Nezami, Grant Salton, Leonard Susskind, Brian Swingle, and Michael Walter, “Quantum Gravity in the Lab: Teleportation by Size and Traversable Wormholes,” arXiv:2002.05725 (2019). [32] Ping Gao and Daniel Louis Jaﬀeris, “A Traversable Wormhole Teleportation Protocol in the SYK Model,” arXiv:1911.07416 (2019). [33] Xiaoliang Qi and Pengfei Zhang, “The Coupled SYK model at Finite Temperature,” arXiv (2020). [34] Sumilan Banerjee and Ehud Altman, “Solvable model for a dynamical quantum phase transition from fast to slow scrambling,” Phys. Rev. B 95, 134302 (2017).
+
+1
+
+SUPPLEMENTARY MATERIAL
+Large-N saddle point equations
+The derivation of the large-N saddle point equations for the problem deﬁned by Eqs. (1)-(2) in the main text proceeds along the same lines as for the original SYK model [S10, S12], so we only outline the key steps here and focus on the novel features that arise from having two
+
+coupled SYK models. The ﬁrst step is to reformulate the theory using an imaginary-time path integral with Majorana ﬁelds represented as anticommuting Grassmann variables. Averaging over the quenched disorder in coupling constants Jijkl then leads to an action for averaged propagators Gαβ(τ1, τ2) deﬁned by Eq. (3). The resulting action is quadratic in the fermion ﬁelds and, when these are integrated out, has the following form [S20, S25]
+
+N S = −N ln Pf(δαβ ∂τ − Σαβ ) + 2 τ1,τ2 α,β
+
+Σαβ(τ1, τ2) − µσαyβδ(τ1 − τ2)
+
+Gαβ (τ1 ,
+
+τ2)
+
+−
+
+J2 4
+
+Gαβ (τ1 ,
+
+τ2)4
+
+,
+
+(S1)
+
+where σy is a Pauli matrix acting in the LR space. The Lagrange multiplier Σαβ has been introduced to enforce Eq. (3) and can be interpreted as the fermion self-energy. For µ = 0 the action (S1) describes two decoupled SYK models [S10, S12]. The large-N saddle-point equations are obtained by varying the action with respect to Σαβ and Gαβ,
+
+Gαβ(iωn) = [iωn − µσy − Σ(iωn)]−1 |αβ, Σαβ(τ ) = J 2Gαβ(τ )3,
+
+(S2) (S3)
+
+and ωn = πT (2n + 1) is the nth Matsubara frequency. The solution of the saddle-point equations can be con-
+siderably simpliﬁed by exploiting symmetries. First, we
+notice that the MQ Hamiltonian is invariant under the exchange χjL → χjR and χjR → −χjL which implies GLL(τ ) = GRR(τ ) and GLR(τ ) = −GRL(τ ). The full matrix propagator can be therefore expressed in terms of
+its two independent components as
+
+G(τ ) = GLL(τ ) + iσyGLR(τ ).
+
+(S4)
+
+To further simplify the solution it is useful to rotate into a new basis in the LR space by deﬁning
+
+G±(τ ) = GLL(τ ) ± iGLR(τ ),
+
+(S5)
+
+Σ±(τ ) = ΣLL(τ ) ± iΣLR(τ ).
+
+In the absence of interactions, that is when J = 0, this
+rotation diagonalizes Eq. (S2) which is then solved by G0±(iωn) = 1/(iωn ∓ µ). Fourier transforming into the imaginary time domain one immediately obtains the sec-
+ond useful symmetry property
+
+G0∓(τ ) = −G0±(−τ ).
+
+(S6)
+
+In the new basis, Eq. (S3) can be rewritten as
+
+J2 Σ±(τ ) = 4
+
+3G2±(τ )G∓(τ ) + G3∓(τ )
+
+.
+
+(S7)
+
+If we assume for a moment that symmetry (S6) is the property of the full interacting propagator then Eq. (S7)
+
+implies the same symmetry for the self energy, i.e. Σ∓(τ ) = −Σ±(−τ ). Therefore, we conclude that the symmetry (S6) of the non-interacting system is respected by the saddle-point equations in the presence of interactions. We can then substitute G∓(τ ) = −G±(−τ ) in Eq. (S7) which makes the equations for the + and − channel decouple, and leads to Eq. (4) of the main text.
+
+Real-time and -frequency formulation of SD equations
+
+To access transmission amplitudes or spectral features in real time and frequency, we analytically continue the ﬁnal set of Schwinger-Dyson (SD) equations, Eq. (4) of the main text, following the procedures outlined in Refs. [S25, S34]. For completeness and to keep this work self-contained, we here outline the essential steps leading to the ﬁnal set of real-time SD equations that we then solve numerically. Analytic continuation of Eq. (4) gives
+
+Gr+et(ω) = ω + iη − µ − Σr+et(ω) −1 ,
+with bare GF G0+(ω) = 1/(ω +iη −µ) giving a Lorentzian peak (δ-function) in the spectral function at ω = µ. A tractable route to obtaining the retarded self-energy Σr+et(ω) consists of Fourier transforming the imaginarytime self-energy, going over to spectral representation of Matsubara Greens functions, and ﬁnally continuing to real frequency, using steps and identities outlined in Refs. [S25, S34]. This can either be done in LL-LR basis, afterwards adding up contributions according to Eq. (S5), or by directly operating on the decoupled SD equations for ± channels, given by Eq. (4). In both cases, for representation purposes, it is useful to retain the occupation functions of the LL, LR channels given by [S25]
+
+∞
+
+nLL/LR(t) =
+
+dωρLL/LR(ω)nF (ω)e−iωt ,
+
+−∞
+
+(S8)
+
+comprising even and odd frequency-parity combinations
+
+ρLL/LR(ω)
+
+=
+
+1 2
+
+[ρ+(ω)
+
+±
+
+ρ+(−ω)]
+
+of
+
+the
+
+spectral
+
+func-
+
+2
+
+tion
+
+ρ+(ω)
+
+=
+
+−
+
+1 π
+
+ImGr+et(ω),
+
+cf.
+
+Eq.
+
+(S5),
+
+and
+
+the
+
+Fermi
+
+function nF (ω). The latter arises after carrying out Mat-
+
+subara sums that transform imaginary to real frequencies
+
+in the spectral representation of GFs. In doing this we
+
+use various identities [S25] to relate Fermi/Bose occu-
+
+pation functions on frequency diﬀerences to products of
+
+individual Fermi functions, and ﬁnally ﬁnd the retarded
+
+self-energy
+
+∞
+
+Σr+et(ω) = − 2iJ 2
+
+dtei(ω+iη)t ×
+
+0
+
+Re[n3LL(t)] − iIm[n3LR(t)] .
+
+(S9)
+
+From here, to ﬁnd a solution of the SD equations, we perform weighted numerical iterations [S12, S20, S25] transforming between time and frequency representations to evaluate self-energies and Dyson equations. We declare convergence to a physical solution once propagators and spectral functions stop changing within the accessible numerical resolution. For the results presented in this work, we employ a frequency cutoﬀ ωmax = 211 with Ngrid = 228 − 229 grid points for Fourier transforms and the SD iteration. For the smallest µ we consider, this leads to frequency spacings δω 10T 100µ.
+
+Generalization to order-q SYK-interactions
+
+8
+
+gap Egap/ 2/3
+
+7
+
+offset p0/Egap
+
+6
+
+slope p1/Egap ratio p1/p0
+
+5
+
+4
+
+3
+
+2
+
+1
+
+00.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8
+
+FIG. S1. Additional ﬁgure for spectral function analysis. The spectral gap stays remarkably close to Egap ∼ µ2/3 for µ ∈ [10−4, 0.8], over almost four orders of magnitude; devia-
+tions are observed at µ 0.001. Oﬀsets and slopes of spectral
+peak series are plotted by dividing out Egap, showing a diver-
+gence towards µ = 0. This is even though both p0,1 exhibit a down-turn similar to the gap when plotted in units µ2/3. The
+ratio of slope and oﬀset, indicative of scaling dimension ∆, is robust at ∆−1 = p1/p0 4 over the full range of µ.
+
+Similar simpliﬁcations as above are possible for generalized interactions with q > 4 SYK fermions [S12, S20] in Eq. (2) of the main text. Here we ﬁnd self-energies
+
+Σqαβ(τ ) = J 2Gαβ(τ )q−1,
+
+(S10)
+
+in place of Eq. (S3). The SD equations can be simpliﬁed in an analogous manner. We again switch to combinations G±(τ ) and ﬁnd by the same steps as above
+
+Σq+(τ )
+
+=
+
+J2 2q−1 {[G+(τ )
+
+−
+
+G+(−τ )]q−1
+
+(S11)
+
+− [G+(τ ) + G+(−τ )]q−1}.
+
+This is the generalization of Eqs. (4),(S7) to arbitrary q. With regards to the analytic continuation to real time and frequency, while intermediate steps are somewhat more tedious for general q (more Matsubara sums and Bose/Fermi function identities), by analogous steps one ﬁnds for the retarded self-energy
+
+∞
+
+Σr+et,q(ω) = − 2iJ 2
+
+dtei(ω+iη)t ×
+
+0
+
+(S12)
+
+Re[nqL−L1(t)] − i(−1)q/2Im[nqL−R1(t)] .
+
+Here
+
+we
+
+again
+
+used
+
+nLL/LR(t)
+
+=
+
+1 2
+
+(n+
+
+± n−)
+
+with
+
+time-
+
+dependent occupation n±(t) = dωρ+(±ω)nF (ω)e−iωt,
+
+cf. Eq. (S8). This result allows to solve real-time and
+
+-frequency SD equations for the MQ model at arbitrary
+
+q in a uniﬁed manner. However note that by virtue of Eq. (S12), larger q leads to stronger non-linearity of the self-energy, implying more diﬃculty in ensuring numerical stability and convergence. Indeed upon numerically implementing the above equations for q = 6 or q = 8, by naive comparison to the simplest q = 4 case, we found the quality of solutions to deteriorate rapidly.
+Extended data for spectral function analysis
+Here we discuss additional results for the peak structure in the spectral function. As shown in Fig. S1, our results of Fig. 1 in the main text extend to a range of couplings µ ∈ [10−4, 0.8] of almost four decades. The ratio of peak spacing slope to the oﬀset, ∆−1 = p1/p0, indicative of the fermion scaling dimension ∆ of the presumed conformal tower of eigenstates in the spectral function, is remarkably robust over the full range of µ.
+We also note a downturn of the spectral gap away from the conformal scaling prediction Egap µ2/3J 1/3 , around µ 0.001. This is likely due to convergence problems for large separations of energy scales µ and J = 1. Recall that SYK spectral functions decay slowly, as power laws ρSYK ∼ ω−1/2, necessitating large cutoﬀs in numerical solutions of Schwinger-Dyson equations [S12]. In the wormhole case this goes along with a simultaneous need for high frequency resolution, to capture low-energy
+
+physics on scales below µ [S20, S21, S25]. Similar to the spectral gap, the peak spacing slopes and oﬀsets experience down-turn upon approaching µ → 0 (in units µ2/3, cf. Fig. 1 main text). After dividing out the diminishing gap Egap, cf. Fig. S1, one observes a systematic divergence of p0,1/Egap towards vanishing µ. In our numerics, relative scales thus seem more robust to ﬁnite resolution and cutoﬀ than the absolute values of the gap etc.
+
+FFFSLLLRYK
+
+3
+= 0.01
+= 0.001
+
+Link between revival dynamics and spectral features
+
+Revival dynamics are related to peaks in the spectral
+function in a subtle way. This is seen by considering
+transmissions, i.e. the square of transmission amplitudes |Tαβ|2 = 4G>αβ(t)[G>αβ(t)]∗. After performing Fourier transforms and representing greater GFs via spectral
+functions according to
+
+iG>αβ(ω) = [1 − nF (ω)]ραβ(ω),
+
+(S13)
+
+these can be expressed (at zero temperature) as
+
+Fαβ(ω) = dωeiωt|Tαβ(t)|2
+
+(S14)
+
+2∞
+
+= π0
+
+dω ραβ(ω )ραβ(ω + |ω|) .
+
+Thus the positive-frequency auto-correlation of the spectral function gives the Fourier transform of revival dynamics. The equal energy spacings of spectral peaks (i.e., the conformal tower) obtained in the large-N solution for the spectral function ραβ(ω) (Fig. 1 of the main text) obviously give rise to sharp features in auto-correlations at multiples of the energy spacing. As seen in Fig. S2, aside from a dominant peak at zero frequency, the most prominent feature is found at about twice the spectral gap Egap in Fig. S1. Further we observe a series of spectral peaks in Fαβ, with an even-odd structure inherited from the spectral function, most clearly apparent in the plot of FLR in Fig. S2. From here, we can associate the revival oscillations in transmission amplitudes to the (almost) equally-spaced peak series in Fαβ, with slight deviations from perfectly even spacings leading to the beating observed in Fig. 3 of the main text and Figs. S3 in the SM.
+
+Thermalization and decay of revivals
+Using the link between the spectral auto-correlation function and the revival dynamics, we now discuss two features of the revivals arising in the large-N solution: (i) thermalization of the system – that is, whether the auto-correlation function TLL(t) = |G>LL(t)| → 0 in the inﬁnite-time limit (does the system retain memory of its initial state?), and (ii) the decay of revival oscillations (is the wormhole eternal?).
+
+= 0.0003
+
+0
+
+20
+
+/
+
+40
+2/3
+
+60
+
+FIG. S2. Fourier transforms of the transmissions, obtained from the auto-correlation of spectral functions, cf. discussion in text and Eq. (S14). FLL and FLR show a distinct peak structure that is altogether absent from FSYK, aside from a default central peak at zero frequency. In the revival oscillations of Fig. 3 in main text, slight shifts of the peak frequencies observed here translate to a slow “beating” of oscillations.
+
+The ﬁrst question is related to the zero-frequency peak
+
+in FLL(ω). We ﬁnd that for temperatures T µ J it has a Lorentzian-like shape, with a width that is inde-
+
+pendent of µ but scales as Γ ∼ T . Thus its Fourier trans-
+
+form contributes ∼ e−Γt to the transmission amplitude,
+
+with decay rate Γ. The system hence eventually thermal-
+
+izes, on a timescale T −1 that is much longer than both
+
+J−1 (the timescale for the initial decay of two-point func-
+
+tions) and µ−2/3 (the timescale of revival oscillations).
+
+In the zero-temperature limit the system thus may fail
+
+to thermalize: a ﬁnite, constant value corresponding to
+
+the weight in the ω = 0 peak remains up to inﬁnite time.
+
+The second question is more subtle, and requires un-
+
+derstanding the structure of ﬁnite-frequency peaks in
+
+F (ω). For T
+
+µ J those peaks are roughly
+
+equally spaced, ωn = pn, and resemble Lorentzians with a linearly-increasing width Γn = Γ0n. For the spec-
+
+tral auto-correlation function at low frequencies, we thus
+
+make the ansatz
+
+FLL(ω) ≈
+
+n
+
+Γ0n (ω − pn)2 + (Γ0n)2
+
+(S15)
+
+Fourier transforming to real time, we obtain
+
+TLL(t)2 =
+
+dω 2π FLL(ω) ≈ 2
+
+cos (2πpnt) e−2πΓ0nt
+
+n>0
+
+(S16)
+
+4
+
+0.0 0.2
+
+= 0.0003
+
+TTTfitLLSLRYK t 0.45 fit t 0.50
+
+0.0 0.2
+
+= 0.001
+
+0.4
+
+0.4
+
+TTTfitLLSLRYK t 0.39 fit t 0.50
+
+0.0 0.2
+
+0.4
+
+= 0.006
+
+0.6
+
+0.6
+
+0.6
+
+0.8 1.0
+
+0.8 1.0
+
+0.8 1.0
+
+TTTfitLLSLRYK t 0.22 fit t 0.50
+
+2
+
+1 log(0t 2/3) 1
+
+2
+
+2
+
+1 log(0t 2/3) 1
+
+2
+
+2
+
+1 log(0t 2/3) 1
+
+2
+
+FIG. S3. Detailed transmission amplitude analysis of revival oscillations at large N , cf. Fig. 3 of the main text. We here focus on small µ = 0.0003, 0.001, 0.006 as indicated in the ﬁgure panels, where “beating” eﬀects are reduced and relatively clean revival oscillations can be observed. In each panel, we indicate and ﬁt the decay of the SYK transmission amplitude TSYK (unchanged, modulo shift on x-axis), as well as the revival peak heights. The revival peaks used for ﬁtting of the revival amplitude decay are indicated by red dots, and ﬁts are shown as dotted lines.
+
+Whenever t = tre = m/p with m integer, all oscillating terms interfere constructively, leading to a sharp revival signal. The height of this revival peak is then given by
+
+TLL(tre)2 ≈ 2
+
+e−2πΓ0nt =
+
+2
+
+e2πΓ0t − 1
+
+n>0
+
+(S17)
+
+When the argument of the exponential is small (valid for T µ J and time t not too large) one can expand to leading order and ﬁnd
+
+TLL(trm)2
+
+∼=
+
+1 .
+πΓ0t
+
+(S18)
+
+This gives a decay TLL(tre) ∼ t−1/2 similar to the observation in Fig. 2 and S3. Interestingly this decay has
+
+the same power as the uncoupled SYK model, leading us
+
+to hypothesize that the SYK interactions are responsible
+
+for the Γn ∼ n broadening of the ﬁnite-frequency peaks. This argument is supported by the revival oscillations
+
+in Fig. S3 (and Fig. 3 of the main text). Our ﬁrst obser-
+
+vation is that we reliably recover the expected two-point
+
+function decay of SYK, where GSYK(t) ∼ t−1/2. This
+
+behavior is reﬂected in the initial trend of the transmis-
+
+sion amplitude TLL up to times tgap ∼ 1/µ2/3 where the
+
+wormhole physics in the form of revivals arise. For small
+
+enough µ and in the absence of “beating” in the revival
+
+oscillation, we can ﬁt the decay of transmission ampli-
+
+tudes to a power law, TLL,LR(t = tpeak) ∼ t−ν . The
+
+exponent ν is found to approach the characteristic value
+
+for the decay of correlation functions in SYK, ν
+
+1 2
+
+.
+
+This decay of revivals goes beyond the predictions of
+
+the dual gravity theory, and likely necessitates an addi-
+
+tional mechanism beyond the low-energy conformal ﬁeld
+
+theory discussion of Maldacena-Qi [S20]. A detailed anal-
+
+ysis of the decay of revivals may provide valuable hints
+
+towards an extension of the low-energy theory [S20] to
+
+include non-conformal eﬀects – e.g. to allow excitations to dissipate energy as they traverse the wormhole.
+
+Symmetries of the Maldacena-Qi model
+
+In this section we discuss useful symmetries of the
+
+MQ model. The most obvious is conservation of fermion
+
+parity, P = (−1)N
+
+N j=1
+
+(χjL
+
+χjR),
+
+which
+
+is
+
+equivalent
+
+to
+
+fermion number (or charge) Q mod 2. This clearly com-
+
+mutes with the Hamiltonian (1) because the latter has
+
+only two-fermion and four-fermion terms. The MQ model
+
+also has a Z4 symmetry deﬁned as q ≡ Q mod 4, which crucially relies on the perfectly correlated disorder be-
+
+tween L and R SYK Hamiltonians in Eqs.(1)-(2) [S21].
+
+The coupling term in the MQ Hamiltonian is proportional to the charge Q = j c†jcj. However it does not
+commute with the SYK terms (only Q mod 4 does). This
+
+is the main diﬀerence between the MQ and complex SYK
+
+models, the latter having U (1) charge symmetry [S11].
+
+We can also deﬁne a unitary operator U which takes χjL → χjL and χjR → −χjR. This is a symmetry of the
+model with zero coupling (µ = 0), and it anti-commutes
+
+with the charge operator, {Q, U } = 0. As a result the
+
+Z4 sectors q = 1, 3, which are related by Q ↔ −Q, are mapped to each other by U and thus degenerate,
+
+|n, 3 = U |n, 1 and vice versa. This will be useful in the
+
+following.
+
+Analytical result for revivals at small coupling
+To better understand the revival dynamics, it is helpful to look at the structure of the “single-Majorana” excita-
+
+5
+
+tions that we wish to transfer from one side to the other:
+
+|j, L ≡ χLj |0 , |j, R ≡ χRj |0
+
+(S19)
+
+Expanding in the eigenbasis of the Hamiltonian, we have
+
+|j, α = cαj (n, q)|n, q
+n,q
+
+(S20)
+
+with α = L, R. Here the sum is taken over all eigenstates |n in the Z4 “charge” sectors q = 0, 1, 2, 3. The ground state |0 of the MQ model is always in the q = 0 sector, therefore the excited states deﬁned above are in one of the two odd-parity sectors, q = 1, 3. The coeﬃcients cαj (n, q) thus vanish for q = 0, 2.
+The (unaveraged) causal Green’s functions G>LL(t) = 0|χLj (t)χLj |0 and G>RL(t) = 0|χRj (t)χLj |0 thus read
+
+G>LL(t) = eiE0t
+
+|cLj (n, q)|2e−iEn,qt
+
+n q=1,3
+
+(S21)
+
+G>RL(t) = eiE0t
+
+cRj (n, q) ∗ cLj (n, q)e−iEn,qt
+
+n q=1,3
+
+for a given, ﬁxed mode j. Due to the all-to-all, random
+
+nature of the interactions within each ﬂake, any choice of
+
+χj is equivalent on average. To understand the transmission of those “single-particle” excitations from one side
+
+of the wormhole to the other, we study the transmission Tα2L = |G>αL(t)|2. We have
+
+TR2L(t) =
+
+cLj (m, p)cRj (n, q) ∗ cLj (n, q)cRj (m, p)
+
+m,n p,q
+
+× e , i(Em,p−En,q)t
+
+(S22)
+
+TL2L(t) =
+
+|cLj (m, p)|2|cLj (n, q)|2ei(Em,p−En,q)t.
+
+m,n p,q
+
+(S23)
+
+For the smallest system size 2N = 16, and in the limit µ λ 1, where λ is the typical ﬁnite-N level spacing, two dramatic simplifying features occur:
+1) The spectrum in the odd sectors (q = 1, 3) acquires the simple form
+
+Em,1 = Em,3 + ωD.
+
+(S24)
+
+There is a uniform spectral shift between the two charge sectors. This is the mechanism at the root of the revival dynamics observed in ED (and the splitting of doublets observed in the spectral function). A simple calculation given below reveals why that uniform shift occurs.
+2) The absolute value of the coeﬃcients cαj (n, q) becomes independent of the charge sector q, and respect the following relation for all n:
+
+cLj (n, 1) = icRj (n, 1) , cLj (n, 3) = −icRj (n, 3) (S25)
+
+Combining these two features, we obtain the simple result
+
+|G>LL(t)|2 = 2 (1 + cos ωDt) G0(t) |G>RL(t)|2 = 2 (1 − cos ωDt) G0(t)
+
+(S26)
+
+where
+
+G0(t) =
+
+|cj (m)|2|cj (n)|2ei(Em,1−En,1)t
+
+m,n
+
+(S27)
+
+In this limit the behavior of the revival dynamics becomes clear: there is an envelope ∼ (1 ± cos ωDt) at a slow frequency set by the splitting between doublets, and fast oscillations at a large number of non-universal frequencies Em,1 − En,1 contained in G0(t), set by ﬁnite-size energy gaps characteristic of SYK physics. Considering only the non-oscillating part with m = n, we get
+
+G0(t) = |cj(m)|4 ≡ Rj
+m
+
+(S28)
+
+where we deﬁned the participation ratio Rj of the initial excitation. This quantity characterizes the “inverse number of eigenstates” that are involved in the dynamics. This time-independent quantity sets the amplitude of the revivals,
+
+|G>LL/LR(t)|2 = 2 (1 ± cos ωDt) Rj
+
+(S29)
+
+and it rapidly decreases with system size N , as shown in Fig. S4 c. This highlights the fact that the mechanism presented here cannot account for the revivals obtained in large-N solution – it relies crucially on the hierarchy of energy scales µ λ 1.
+Another way to understand this is to realize that Eq. (S27) corresponds to the Green’s function of the canonical SYK model. As N increases, this quantity should approach the power-law decay G0(t) = |GSYK(t)|2 ∼ |t|−1. This decay occurs on a timescale J−1 much smaller than the revivals and will thus completely obscure them. What saves the day for small N is that the decay of GSYK(t) is cut-oﬀ by ﬁnite-size eﬀects at time t ∼ λ−1 ∼ eN /N , which leaves room for revival oscillations at longer times, as seen in Fig. 4.
+For larger N (such as 2N = 32) the uniform splitting result, Eq. (S24) does not hold exactly – there is a weak dependence of the splitting frequency on the eigenstate index n. This gives rise to a decay in revivals, as observed in Fig. 4, because the doublets oscillate with a distribution of frequencies.
+
+Perturbation theory
+In the very weak coupling regime µ λ, one can utilize degenerate perturbation theory to gain some insight. As argued above, for µ = 0 the spectrum of the model in identical in the charge sectors q = 1, 3 due to the correlated disorder between the two SYK models. Introducing a non-zero µ couples each pair of degenerate states. To ﬁrst-order we get a shift for U, Q (see also discussion of
+
+6
+
+FIG. S4. Additional ED results. (a) and (b): Diﬀerence between the spectra in the diﬀerent Z4 symmetry sectors, E3 − E1, as a function of µ for 2N = 16 (a) and 2N = 32 (b). We observe a uniform spectral shift for µ λ in (a) but not in (b). (c) Participation ratio of the excitation χj|0 for various µ.
+
+symmetries of the MQ model above)
+
+En,1 = µ n, 1|Q|n, 1 En,3 = µ n, 3|Q|n, 3 = n, 1|U †QU |n, 1
+= − n, 1|Q|n, 1 = −En,1
+
+(S30) (S31)
+
+which is opposite in the two Z4 sectors. An additional result, valid for 2N = 16 only, is that the expectation
+
+value
+
+µ
+
+En,1 = µ n, 1|Q|n, 1
+
+= 2
+
+(S32)
+
+is independent of the eigenstate index n (see Fig. S4). This ﬁxes Em,1 = Em,3 + ωD above with ωD = µ. However, we have not yet been able to ﬁnd a solid argument to explain the statement of Eq. (S32).
+

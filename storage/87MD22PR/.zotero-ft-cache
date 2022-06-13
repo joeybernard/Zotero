@@ -1,0 +1,598 @@
+See discussions, stats, and author profiles for this publication at: https://www.researchgate.net/publication/235055952
+Ionospheric Patch Formation: Direct Measurements of the Origin of a Polar Cap Patch
+Article in Geophysical Research Letters · April 2004
+DOI: 10.1029/2003GL018166
+
+CITATIONS
+63
+4 authors, including:
+H. C. Carlson Utah State University 180 PUBLICATIONS 4,463 CITATIONS
+SEE PROFILE
+
+READS
+66
+
+Some of the authors of this publication are also working on these related projects: PhD thesis View project
+
+All content following this page was uploaded by H. C. Carlson on 24 July 2014.
+The user has requested enhancement of the downloaded file.
+
+REPORT DOCUMENTATION PAGE
+
+"Form Approved
+
+OMB No. 0704-0188
+
+The public reporting burden for this collection of information is estimated to average 1 hour per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding this burden estimate or any other aspect of this collection of information, including suggestions for reducing the burden, to Department of Defense, Washington Headquarters Services, Directorate for Information Operations and Reports (0704-0188), 1215 Jefferson Davis Highway, Suite 1204, Arlington, VA 22202-4302. Respondents should be aware that notwithstanding any other provision of law, no person shall be subject to any penalty for failing to comply with a collection of information if it does not display a currently valid OMB control number.
+PLEASE DO NOT RETURN YOUR FORM TO THE ABOVE ADDRESS.
+
+1. REPORT DATE (DD-MM-YYYY) 12. REPORT TYPE 20-04-2004
+
+REPRINT
+
+3. DATES COVERED (From - To)
+
+4. TITLE AND SUBTITLE
+
+5a. CONTRACT NUMBER
+
+Ionospheric patch formation: Direct measurements of the origin of a polar cap
+
+patch
+
+5b. GRANT NUMBER
+
+5c. PROGRAM ELEMENT NUMBER
+
+6. AUTHOR(S)
+Herbert C. Carlson, Jr.*, Kjellmar Oksavik**, Joran Moen**, Todd Pedersen
+7. PERFORMING ORGANIZATION NAME(S) AND ADDRESS(ES)
+Air Force Research Laboratory/VSBXI 29 Randolph Road Hanscom AFB, MA 01731-3010
+
+5d. PROJECT NUMBER
+2311
+5e. TASK NUMBER
+SD
+5f. WORK UNIT NUMBER
+A4
+8. PERFORMING ORGANIZATION
+REPORT NUMBER AFRL-VS-HA-TR-2005-1072
+
+9. SPONSORING/MONITORING AGENCY NAME(S) AND ADDRESS(ES)
+12. DISTRIBUTION/AVAILABILITY STATEMENT
+Approved for public release; distribution unlimited
+
+10. SPONSOR/MONITOR'S ACRONYM(S) AFRL/VSBXI
+11. SPONSOR/MONITOR'S REPORT NUMBER(S)
+
+13. SUPPLEMENTARY NOTES
+REPRINTED FROM: Geophysical Reesearch Letters, Vol. 31, L08806, doi: 10.1029/2003GL019166, 2004. Copyright 2004, American Geophysical Union. *Air Force Office of Scientific Research, Arlington, VA (continued)
+14. ABSTRACT
+We present the first direct measurements documenting the origin of an ionospheric patch, emerging into the polar cap from the noon dark cusp region of the dayside auroral oval. A series of such patches were observed. The observed patch-formation signatures, in plasma density and velocity, ion and electron temperature, and optical transient signatures, are all compared to those required of the Lockwood andCarlson [1992] transient reconnection mecchanism for patch formation. Conformity of the observed signatures, to the stringent signatures demanded of these five ilndependent parameters by the tested mechanism, is taken as strong substantiation of the applicability of this mechanism. The data exclude two alternate candidate mechanisms.
+
+15. SUBJECT TERMS
+Polar ionosphere Auroral cusp Incoherent scatter radar Polar cap patches
+
+16. SECURITY CLASSIFICATION OF:
+
+17. LIMITATION OF
+
+a. REPORT b. ABSUTNRCALCT c. TUUHNINSCCPLLAPGAE GES ABSTRACT
+
+UNCL
+
+UNCL
+
+UNCL
+
+18. NUMBER 19a. NAME OF RESPONSIBLE PERSON
+
+OF
+
+Todd R. Pedersen
+
+19b. TELEPHONE NU(M78B1E)R3(7In7c-l2u8de4a5rea code)
+
+Standard Form 298 (Rev. 8/98)
+Prescribed by ANSI Std. Z39.18
+
+Block 13 (Continued) "**Physics Department, University of Oslo, Blindern, Norway
+
+AFRL-VS-HA-TR-2005-1072
+
+GEOPHYSICAL RESEARCH LETTERS, VOL. 31, L08806, doi:10. 1029/2003GL018166, 2004
+
+DISTRIBUTION STATEMENT A Approved for Public Release Distribution Unlimited
+Ionospheric patch formation: Direct measurements of the origin of a polar cap patch
+
+Herbert C. Carlson Jr.,1 Kjellmar Oksavik,2 Joran Moen,2 and Todd Pedersen3
+
+Received 14 July 2003; revised 3 March 2004; accepted 12 March 2004; published 20 April 2004.
+
+[i] We present the first direct measurements documenting
+
+the origin of an ionospheric patch, emerging into the polar
+
+cap from the noon dark cusp region of the dayside auroral
+
+oval. A series of such patches were observed. The observed
+
+patch-formation signatures, in plasma density and velocity,
+
+ion and electron temperature, and optical transient
+
+signatures, are all compared to those required of the
+
+Lockwood and Carlson [1992] transient reconnection
+
+mechanism for patch formation. Conformity of the
+
+observed signatures, to the stringent signatures demanded
+
+of these five independent parameters by the tested
+
+mechanism, is taken as strong substantiation of the
+
+aalptperlincaatbeilitcyandoifdathteis mmeecchhaanniissmms.. TheINdDaEtaX eTxEcRlMudSe: s 2t4w31o
+
+herne: cnohermechagnimsp
+
+interactions (2736); 2463
+
+Ionosphere: Ionosphere/magnetosphere ionsphere:);lasma
+
+Ionosphere: Plasma convection; 2467 Ionosphere: Plasma
+
+temperature and density; 2475 Ionosphere: Polar cap ionosphere;
+
+2724 Magnetospheric Physics: Magnetopause, cusp, and boundary
+
+layers. Citation: Carlson, H. C., Jr., K. Oksavik, J. Moen, and
+
+T. Pedersen (2004), Ionospheric patch formation: Direct
+
+measurements of the origin of a polar cap patch, Geophys. Res.
+
+Lett., 31, L08806, doi: 0.1029/2003GL018 166.
+
+physical parameters, all required by the Lockwood and Carlson [1992] transient reconnection mechanism for patch creation. Then we test for the presence or absence of each of these predicted signatures. Absence of one or more would prove the mechanism inapplicable. The presence of all would have to be taken as very strong support of the mechanism for patch production, as well as for the presence of the physical processes on which it is based, and phenomena which logically follow.
+
+2. Signatures for Critical Test
+
+[3] The Lockwood and Carison [1992] mechanism is
+
+based on applies a
+
+a burst of magnetopause reconnection, voltage (in its own rest frame) along the
+
+Xw-hliinche
+
+in the low-latitude magnetopause. This voltage projects
+
+down to the ionosphere where (absent of any significant
+
+field-aligned voltage drop) it applies to the merging gap in
+
+its own rest frame (Figure 1). The flux transferred across the
+
+boundary, in the earth's frame, can occur by either having
+
+the merging gap move equatorward, or be fixed in the earth
+
+frame with a poleward flow of ionospheric plasma through
+
+1. Introduction
+[2] For southward interplanetary magnetic field (IMF negative) conditions, which apply half the time, the character of the polar cap ionosphere is dominated by the presence of F region patches. Patches are islands of high plasma density, comparable to daytime mid-latitude values, surrounded by much lower plasma densities characteristic of nighttime values. While the properties of these patches have been studied for twenty years [Weber et al., 1984; Anderson et al., 1988; Carlson, 1994; Crowley, 1996; Basu and Valladares, 1999], we still do not know their dominant formation mechanism(s). Adequate measurements have been absent. Such understanding, beyond being of intrinsic interest to ionospheric and plasma physics, is of practical
+application to prediction of communication and navigation disruption at high latitudes [Buchau et al., 1985; Basu and Valladares, 1999]. Here we present the first observations of a patch at its moment of creation. These are furthermore the first sufficiently definitive maps of transient patch formation to rigorously test for the patch production mechanism. First we describe below specific signatures in five independent
+
+21APhirysFicosrceDeOpfafritcme eonft,SUcineinvteifriscityReosfeaOrcslho,,
+
+Arlington, Blindem,
+
+Virginia, Norway.
+
+USA.
+
+3Air Force Research Laboratory, Space Vehicles Directorate, Hanscom
+
+Air Force Base, Massachusetts, USA.
+
+it, or both. In the latter case, when there is no reconnection there is no voltage and thus no plasma flow in the dayside
+
+ionosphere between reconnection pulses (assuming no other sources of flow), so a continuous tongue of plasma enters the polar cap. In the former case, at the onset of reconnection the merging gap migrates towards the equator, crossing plasma whose flow into the polar cap accelerates with time during the reconnection. This boundary migration can bring in increasingly higher density plasma as the boundary moves increasingly equatorward. At turnoff (when reconnection stops there is zero electric field along the merging gap) the plasma flows poleward with the merging gap boundary, as the open-closed boundary relaxes back poleward toward an equilibrium configuration [Cowley and Lockwood, 1992]. Near the day/night terminator, one can see that this brings low density plasma in behind the higher density plasma, thereby "pinching off" the high plasma density patch by the time the flows have stopped (Figure 2).
+[4] Stated more generally, patches occur because adjacent flux tubes in the polar cap have arrived via different paths, and patches can originate from significantly different locations
+outside or inside the polar cap (e.g., sunlit sub-auroral, trough, dark polar cap, etc.). However, it is most convincing
+
+to test this mechanism when the merging gap is slightly
+
+poleward of the day/night terminator. Then this alternation of
+
+high [5]
+
+vsS.elvoewradl ensisgitnyaptularessmathceann
+
+bmeuasnt
+
+ufnolalmowb.iguEoauchs
+
+intidmiceatwore.
+
+identify a unique signature that can be experimentally
+
+Copyright 2004 by the American Geophysical Union. 0094-8276/04/2003GL018166$05.00
+
+tested, we will denote it by a number {x}, for reference in the Discussion of Data section, where we will search for
+
+20050919 01108806
+
+1of
+
+L08806
+
+CARLSON ET AL.: PATCHES-DIRECT MEASUREMENTS
+
+L08806
+
+-
+
+thermal balance, so signs of a transient heat input are
+
+necessary, but are not an unambiguous signature.
+
+[9] A current sheet must be initiated with the reconnection event for magnetic field topology-preservation,
+
+A
+
+separating different particle populations. Associated soft-
+
+z
+
+B --
+
+"X
+
+y
+
+electron aurora poleward (equatorward) of the velocity
+shear for IMF By > 0 (By < 0) and faster electron excitation
+are not pursued here, as we had no optical data from Svalbard.
+
+[10] In summary, each Ne contour motion, coincident
+
+Figure 1. Projection of magnetopause reconnection X-line with a true Vi spurt, of a By dependent sense of east/west
+
+(AB) to ionospheric merging gap (ab), adapted from Cowley motion, should be accompanied by a spurt of Tj enhance-
+
+and Lockwood [1992].
+
+ment, all coincident in time and space {1, 2, and 3
+
+coincident). Each of these transients must be synchronized
+
+with each reconnection event. Enhanced Te is necessary {4}
+
+eccaaabciblshiiglintasytyignoafttuhreet.h.mmeTehchehaaannbiisssemne.cee
+
+of any one ooptical
+
+disqualifies
+
+appli-
+
+but not sufficient proof. However we can look for a clear motion. siUgpnoatnuretheasreacnoninmemcteiodniateevpernetc, utrhseosre tooptthicealpleamsmisa-
+
+[6] When Southward IME conditions apply, near local sions, excited by initially dumped particles, should show as magnetic noon, one should look just poleward of the cusp, a flash at the feet of the newly opened field lines. Within the
+
+for F region peak plasma densities that alternate between cusp the flash should only last a few minutes, initially
+
+high and low values, entering the polar cap from the cusp. brightening, broadening, and fading. This will be the signature of patches having been formed.
+
+The envelope of the high density plasma regions (patches)
+should move stepwise poleward {1}, with time resolutions 3. Observing Mode
+
+of about two minutes required to follow events. Plasma velocity Vi boundary leaps {2} must coincide in time and space with the virtual motion of the high density plasma Ne contours, ramping up in a couple of minutes, and lasting a few minutes. Right after reconnection, the magnetic curvature or tension forces drive the plasma dawnward and westward for IMF By > 0 (duskward and eastward for By < 0) as in Figure 2, thereby defining the sense of the velocity flow burst. This drags the plasma through the thermosphere below, leading to ion heating, as the down-
+
+[ii] We now discuss the observing mode used to search
+for these critical signatures in the plasma parameters {1},
+(2}, {3}, and {4}. Although the mechanism we test here was hypothesized in 1992, it was not until now, a decade later, that an observing mode could be created to test it. The doubled ESR transmitter power, plus our new radar controller and analysis methods, enabled us to invent a capability to sample 1200 km by 600 km areas, yet revisit a given piece of plasma every two minutes in a windshield wiper mode. This enabled study of new classes of space
+
+ward Poynting flux energy is dissipated in frictional drag or ohmic heating. The ion temperature Ti {3} enhancement serves as a sensitive indicator, as a few-minute integration over spurts or shears in Vi.
+
+plasma processes. Carlson et al. [2002] introduced this new high-speed mesoscale mapping capability, and illustrated its comprehensive accuracy mapping full thermal plasma properties of a cold "fossil" patch well inside the polar cap,
+
+[7] The reconnection event will also initially dump downstream from the presumed region of origin.
+trapped particles into the ionosphere and thermosphere. [12] By contrast, here we observe the actual process of This will cause an initial flash {5} of optical emissions in creation of a patch, and trace it emerging from the cusp as
+
+the green (the faster precipitated energetic electrons) and red lines. The flash should last a few of minutes (time to precipitate energetic particles), and just precede (timing of {5} wrt {I, 2, 3}) the onset of the reconnection velocity
+
+By < 0
+
+%--)0
+
+B.> 0
+
+shear. This is because the precipitated energetic electrons
+
+take significantly less time to reach the thermosphere than the Alfven waves, which take a couple of minutes to
+
+communicate to the ionosphere the new motion it must assume after reconnection. Energetic particles will initially
+
+precipitate out the feet of the newly reconnected magnetic
+
+flux tubes as they transport downstream from the sun.
+
+[8] The electrons precipitated by the newly opened field lines will also heat the ambient electron gas that they transit Figure 2. Snapshots of ionospheric flow 6 and 10
+
+downwards, to the ionosphere and thermospheric heat sink, (-,2 minute) time steps into a sequence of reconnection increasing the electron temperature Te {4}. The heating and pulses [Carlson, 2003; after Lockwood and Carlson, 1992]
+
+cooling time constant for the Te response is about where the merging gap, having migrated equatorward is
+
+30 seconds, so Te increases only during the time required seen (6) almost relaxed back to it's starting position (thin
+for the particles to dump out of the flux tube, disappearing arch), and later (10) starting it's next pulse cycle. The heavy thereafter with a half minute cooling decay time. The line is a high-density plasma contour, initially straight east-
+
+electron gas has so little heat capacity though, that many west, and dashed line the initial merging gap. Arrows trace
+
+other heating and cooling phenomena enter into its overall plasma flow, poleward is up.
+
+2 of 4
+
+L08806
+
+CARLSON ET AL.: PATCHES-DIRECT MEASUREMENTS
+
+L08806
+
+Figure 3. The 4 plasma parameters measured by the ESR, in a magnetic meridian plane spanning ,- 1200 km north-south, by 600 km altitude, just before and just after the reconnection event. Magnetic north, about 400 west of geographic north, points towards Nord, Greenland. The patch formation event is most noticeable overhead to 200 km North.
+
+it enters the polar cap, still hot from the initial transient heating of formation. These data allow for the first time, rigorous test of alternate competing patch production mechanisms.
+[13] Data is taken with the single fully steerable ESR antenna, at a fixed azimuth, windshield wiping the radar elevation from 300 above the northern horizon, through zenith, to 30' above the southern horizon, and back. Other than that, data is taken as by Carlson et al. [2002], with each mapped cell measured with a 3.2 second and 50 km range resolution, and 128 s per sweep.
+4. Discussion of Data
+[14] During 07:40-08:30 UT (,10:30-11:20 MLT), on January 20, 2001, four regions of enhanced Ne were observed to emerge poleward from the cusp region, and could be tracked moving 600 km into the polar cap before leaving the field of view (FOV) of the ESR. The location of the cusp persisted between overhead and 200 km south of the ESR, where we define the cusp location by the signa-
+tures of persistently enhanced Ne, Te and Ti, and Vi shear boundaries. This persistence was periodically interrupted by poleward surges of all these boundaries coincident with poleward launching of enhanced N, regions (patches).
+[15] Figure 3 shows the four plasma parameters directly measured by the ESR: Ne, Te, Ti, and Vi, for two consecutive sampling periods with a full latitude sweep every 128 seconds. The data set starting 07:55:52 UT (10:45 MLT) shows two patches centered about 300 and 500 km north of overhead, formed during the previous 15 minutes. The next data set, starting 07:57:52 UT shows the initial emergence of a new (third) patch from the cusp region.
+[16] Now examine the details of the plasma properties during this transient patch-formation time. The poleward surge of a high Ne contour defines the envelope of the entering patch {1). From 07:57 to 07:59 the poleward edgee of this high N, boundary goes from overhead to about 100 km northward (150 north of vertical). At the same time
+the location of the Vi boundary, from >150 m/s away to towards or stagnant, shows the very same movement (from overhead to 100 km northward) in the F region {2}. At 07:55 the poleward edge of the cusp coincides with the poleward edge of the enhanced Ti, taken as noted above as a boundary between two different plasma populations. At 07:57, while this boundary remains, an additional Ti boundary is seen, about 100 km north of overhead. This boundary
+
+also is coincident with the poleward edge of the high Ne and new Vi boundary location {3}.
+[17] At 07:55 T. above 300 km is persistently near 3000 K in a 200 km wide latitude band from overhead to about 200 km equatorward, with lower Te outside this band. At 07:57 this high T, band has moved 100 km poleward {4}, in synchronism with the location and timing of the poleward shift of the N,, Ti, and Vi boundaries just noted. Recall the electron gas is too tenuous for Te to be an unambiguous boundary signature, but this motion is entirely consistent with our hypothesis.
+[18] For the fifth signature predicted, Figure 4 shows
+ASIP data from Nord which includes the cusp and poleward ESR FOV in its magnetically southern FOV. Images are shown at one-minute intervals during the ten-minutes of 07:50-07:59 UT. There is one flash of 630.0 nm emission seen in the cusp, from 07:55-07:57. This is just the precursor timing required of the hypothesized mechanism
+
+EISCAT Svalbard Radar: Jan 20,2001
+
+07:55:44-07:07:52
+
+07:57:52-08:00:00
+
+1 ra20
+0•
+-6W -400 -20
+
+-.
+
+200
+
+"F_ Noth
+
+0'
+
+0 200 400 N6 600.40
+
+-200
+
+4
+i tl
+200 400 60
+
+400
+i620
+Noir -0 -400 -200 0
+®A "
+2002000 Nt
+-. -400 200 0
+
+400 < h
+
+2M
+low • II
+
+200 40 W 00-6040 .2 0 20 4 0
+• 40 ¶• W1AAI
+7.
+
+,
+200 400 600 600 .40
+
+-2D 0
+
+ljow
+200 400 600
+
+400
+
+10 -0
+
+200
+
+Po
+
+0
+
+4o
+
+-G2ro0u0nd R0ange (W20on)
+
+400
+
+600-600
+
+-400
+
+Ground Range
+
+20D 40
+(krn)
+
+600
+
+Figure 4. All sky photometric (ASIP) images for the F-region field of view from Nord. The cusp over Svalbard is
+in the lower right, showing a transient 630.0 nm flash in 1 minute frames, at the reconnection event time (fixed red streak is artifact).
+
+3 of4
+
+L08806
+
+CARLSON ET AL.: PATCHES-DIRECT MEASUREMENTS
+
+L08806
+
+we are testing against the observations here {5}. To rule out exclude explanation by an alternate mechanism, segmenta-
+
+chance coincidence, we note that during the full time from tion of a plasma tongue by enhanced recombination in
+
+07:40-08:30, only 4 such flashes were seen, each coincid- velocity jets. The transients are of too short duration for
+
+ing within the 1-2 minute time resolution of the data, with particle precipitation to contribute significantly to creating
+
+launching of a new patch from the cusp into the polar cap. these patches within the polar cap. Digisonde data verifies
+
+119] Thus, all five signatures required by the Lockwood patch signatures present later in the central polar cap.
+
+and Carlson [1992] patch formation mechanism are ob- [23] We present these data as compelling evidence for the
+
+served, including stringent temporal and spatial relation- Lockwood and Carlson [1992] patch generation mechanism ships. Ne, Vi, Ti, and the optical flash show verification, and to apply to the series of patches seen on this day. We also
+
+Te shows the required consistency. This is taken as rather take these data then to be strong evidence for the applica-
+
+remarkable agreement with, or confirmation of, the model bility of the more fundamental plasma processes on which
+
+tested.
+
+this mechanism for patch production is premised. Lastly, we
+
+[20] We can also rule out two alternate patch generation demonstrate plasma processes essential to the fundamental
+
+mechanisms here. One is segmentation of a continuous nature of the polar ionosphere and its coupling to the solar
+
+tongue of ionization through the cusp, by enhanced chem- wind, which intrinsically derive from events of a transient ical recombination in a high velocity plasma jet. Here we nature. The gross behavior of the associated circulation can
+
+observe increased plasma density in high velocity streams then partially be the sum of many such transient events.
+
+away from the cusp (carrying the high density plasma into
+
+the polar cap), not decreased density. This rules out that [24] Acknowledgments. We are happy to acknowledge support from
+
+mechanism here. Plasma flows much greater than - 1 km/s should erode plasma at altitudes much below 250 km (the plasma densities here peak near and above 300 km) and so
+
+AFOSR 2311 AS and the Norwegian Research Council. Thanks to staff on
+
+EbyISFCiAnlTanSdv(aSlbAa)r,dFRraandcaer.(CEINSRCSA)T,
+
+is an International Association supported the Federal Republic of Germany (MPG),
+
+Japan (NIPR), Norway (NFR), Sweden (NFR) and the United Kingdom
+
+should play some role for patches from the lower altitude (PPARC).
+
+sunlit cusp at Sondrestrom [Valladares et al., 1996]; how-
+
+ever, not here. We can also exclude production of these References
+
+patches within the polar cap by cusp particle precipitation Anderson, D. N., et al. (1988), Origin of density enhancements in the winter [Walker et al., 1999]. Scaling the calculations ofMillward et Bupcohlaaur ,caJp., ieotnoals.ph(1e9re8,5)R, aIdoinooSscpi.h,er2i3c, s5t1ru3c. tures in the polar cap: Their
+
+al. [1999] as done by Nielsen et al. [2004], to the two origin and relation to 250-MHz scintillation, Radio Sei., 20, 325.
+
+minute duration of particle late a particle precipitation
+
+beunrshtasncoebmseernvtedofhe<re0,.5we101calcmu3-
+
+above the background, only about 15% of the observed -3 101 m3 enhancement. The plasma enhancements inserted poleward of the cusp here must then be due to transport of higher density plasma from outside the polar
+
+Basu, S., and C. Valladares (1999), Global aspects of plasma structures,
+
+CaJr.lsAotnm, oHs..
+
+Solar Terr. Phys., C. (1994), The
+
+61, dark
+
+127. polar
+
+ionosphere:
+
+Progress
+
+and
+
+future
+
+challenges, Radio Sci., 29, 157.
+
+Carlson, H. C. (2003), A voyage of discovery into the polar cap and Sval-
+
+bard, in Egeland Symposium of Atmospheric and Auroral Research, edited by J. Moen and J. A. Holtet, Norwegian Academy of Science Press, Oslo, Norway, pp. 33-53.
+
+cap. Long duration (- 10 min) cusp particle precipitation Carlson, H. C., et al. (2002), ESR mapping of polar-cap patches in the dark
+
+could produce low-to-moderate, but not high density cusp, Geophys. Res. Lett., 29(10), 1386, doi:10.1029/2001GL014087.
+
+(ld02 i)patc
+
+el senoetate2, 0]
+
+Cowley, S. W. H., and M. Lockwood (1992), Excitation and decay of solarwind-driven flows in the magnetosphere-ionosphere system, Ann. Geo-
+
+5. Conclusions
+[21] In this paper we have presented the first data oftime resolution, spatial coverage, and accuracy adequate to
+
+phys., 10, 103. Crowley, G. (1996), Critical review of ionospheric patches and blobs,
+Review of Radio Science 1993-1996, edited by W. R. Stone, pp. 619648, Oxford Univ. Press, New York. Lockwood, M., and H. C. Carlson (1992), Production of polar cap electron
+density patches by transient magnetopause reconnection, Geophys. Res.
+
+meaningfully test polar cap patches.
+
+fpoorlt.hTdehaetma eccohvaenrissma
+Thelectron
+
+-p60ro0ducbiyng12i0o0noksmphaerreica
+
+in the magnetic meridian plane spanning the dark noon
+
+Lett., 19, 173 1. Millward, G. H., et al. (1999), Modeling of ionospheric effects of ion and
+precipitation in the cusp, J. Geophys. Res., 104, 2460. Nielsen, C. P., et al. (2004), Patch formation in relation to cusp auroral
+
+cusp, with -2 minute time resolution for several hours activity, Ann. Geophys., in press.
+
+about magnetic noon. Under southward IMF conditions we
+observed a sequence of high Ne regions emerge from the cusp location and move antisunward (poleward) into the
+
+Valladares, C. E., et al. (1996), Modeling the formation of polar cap patches using large plasma flows, Radio Sci., 31, 573.
+Walker, I. K., et al. (1999), On the possible role of cusp/cleft precipitation in
+the formation of polar-cap patches, Ann. Geophys., 17, 1298-1305.
+
+polar cap.
+
+Weber, E. J., et al. (1984), F-layer ionization patches in the polar cap,
+
+[22] Five transient signatures are identified that must be J. Geophys. Res., 89, 1683.
+
+present during the initiation of these moving density
+
+enhancements, if these patches are indeed produced by the H. C. Carlson Jr., Air Force Office of Scientific Research, 801 N.
+
+Lockwood and Carlson [1992] mechanism of transient Randolph Street, Mail Room 732, Arlington, VA 22203-1977, USA.
+
+reconnection. Failure of any one would disqualify the (herb.carlson@afosr.af.mil)
+
+mechanism proposed. We see all five signatures (Ne, Vi,
+Ti, Te, and optical emission flashes), with the predicted
+
+J. Moen and K. Oksavik, Physics Department, University of Oslo, P.O. Box 1048, N-0316 Blindem, Norway.
+T. Pedersen, Air Force Research Laboratory, Space Vehicles Directorate,
+
+relative timing and locations. The observations here also 29 Randolph Road, Hanscom Air Force Base, MA 01731-3010, USA.
+
+View publication stats
+
+4 of 4
+

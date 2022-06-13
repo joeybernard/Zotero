@@ -1,0 +1,433 @@
+GEOPHYSICAL RESEARCH LETTERS, VOL. 27, NO. 3, PAGES 317-320, FEBRUARY 1, 2000
+
+Diffraction model of ionospheric irregularity-induced heater-wave pattern detected on the WIND satellite
+P. N. Guzdar, and N. A. Gondarenko
+Institute for Plasma Research,University of Maryland, CollegePark, MD
+K. Papadopoulos*,G. M. Milikh, and A. S. Sharma
+Departments of Physics* and Astronomy,University of Maryland, CollegePark, MD
+P. Rodriguez
+Information TechnologyDivision, Naval ResearchLaboratory, Washington, DC
+Yu. V. Tokarev, and Yu. I. Belov
+RadiophysicalResearchInstitute, Nizhny Novgorod, Russia
+S. L. Ossakow Plasma PhysicsDivision, Naval ResearchLaboratory, Washington, DC
+
+Abstract.
+
+Highfrequency(HF) radiationfromthe HAARP and SURA ionosphericheaterstransmitted through the underdenseionosphereand receivedby the WIND satellite showthe presenceof strong spatial structure in the radiation pattern. A simple model based on the com-
+
+the HAARP transmitterat lowpower[Rodrigueezt al., 1998].In thisletterweexplainthe observesdignalpattern with a simpletheoreticalmodelthat combinesthe effectof irregularitiesin the ionospherewith diffraction analysisin the wavepropagationafter encounteringthe
+
+bination of ionosphericirregularities and interference F-peak.
+
+effectshas been developedto account for the observations. The analysisdemonstratesthe utility of satellite Theoretical
+
+Model
+
+receptionsas probesof ionosphericirregularitiescreated
+
+or enhancedby powerfulHF radio waves.
+
+One possiblesourceof irregularities is the thermal
+
+self-focusinginstability of the high-poweredHF radio
+
+Introduction
+
+waves[Litvak, 1970; Perkinsand Valeo,1974; Gurevich, 1978; Bernhardt and Duncan 1982; Guzdar et al.
+
+A new classof ionosphericheating experiments have beenrecentlyinitiated, first usingthe newly constructed
+HAARP ionosphericheatingfacility [Rodriguezet al., 1998],subsequenttlhyeSURAfacility[Rodrigueezt al.,
+
+1998; Gondarenkoet al. 1999]. Alsopre-existingnatural irregularitiescan seedthe underdensethermal selffocusinginstability[Guzdaret al. 1996].In this letter we focus on the consequenceof the natural or wave-
+
+1999aT; okarevet al., 1999]andmostrecentlythe combined HAARP and HIPAS heaters[Rodriguezet al., 1999b].In theseexperimenttshefrequencyofthetransmitted signalsexceedsthe critical plasma frequencyof
+
+•, 5000
+
+the F-peak. The HF radiation is receivedby detector
+
+on the WIND satellite[Bougereet t al., 1995]. Figure c• 3000 1, takenfrom Rodriguezet al. [1999a],showsthe sig-
+
+.................................
+
+'•2' 000 nal amplitude receivedby the 8925 kHz channelon the
+wave detector on WIND for SURA transmissions at the
+
+'
+
+samefrequencyand in a CW mode, when the overhead
+
+critical frequency was 6300 kHz. The spiky structure of the signal is similar to previousmeasurementsusing
+
+1000
+
+Copyright2000 by theAmericanGeophysicaUl nion.
+Papernumber1999GL003675. 0094-8276/00/1999GL003675505.00
+
+10:55:00 11:05:00 11:15:00 11:25:00 11:35:00 11:45:00 11:5•i:00
+UT (H:M:S)
+Figure 1. WAVES receivermeasurementof the SURA radiated power at 8925 kHz.
+
+317
+
+318
+
+GUZDAR ET AL.' DIFFRACTION MODEL...
+
+enhancedirregularities on the far-field wave pattern of
+
+1.0
+
+the electromagnetic HF wave. The theoretical model
+
+has two key assumptions. The first assumptionis that the HF beam breaks up into a number of smaller fil-
+
+a)
+
+aments forming a relatively regular lattice due to the
+
+0.5 -
+
+self-focusinginstability or pre-existing irregularities en-
+
+hancedby self-focusing.The secondassumptionis that
+
+once the radiation passesthe F-peak, each filament of the lattice becomesan independent transmitter, whose
+
+0.0 -0.2
+
+radiation propagates freely in the low density plasma
+
+with phase determined by its phase when exiting the
+
+1.0
+
+F-peak.
+
+Propagation Model
+
+b)
+
+A simple diffraction model is used to follow the HF
+
+radiation once it exits the F-peak. A schematicof the
+
+model is shown in Figure 2. The irregularities in the
+
+ionosphereare modelledby a transmissiongrating with
+
+0.0
+
+transparentwidths (slit) of 2a and the separationbe-
+
+-0.2
+
+-0.1
+
+0.0
+
+O. 1
+
+0.2
+
+tween the center of two slits of 2d. In reality, the trans-
+
+missionthroughthe ionosphereconsistsof wavespropa-
+
+1.0
+
+gating through the low densitytransparent field aligned
+
+filaments,andthroughthe plasmabetweenthe depleted
+
+channels.It is the differencein the phasesbetweenthe
+
+two regionswhich givesrise to a diffraction pattern so
+
+that the constantbackgroundthat arisesfrom the semi-
+
+transparent nature of the ionosphereis removedby the present model. In reality, there is a distribution in the
+
+0.0...!.,I ,I,!......[.,,IJI,I,,.
+
+widths of the filaments and spacing between the fila-
+
+-0.2
+
+-0.1
+
+0.0
+
+O. 1
+
+0.2
+
+ments as well as curvature of the incident beam. Also if
+wave-enhancedself-focusingoccurs,the "optical" path of the heater wave through the filamentswith depleted density would vary from filament to filament. All these different physicaleffectswhich can introducedifferent
+
+sin(©i)
+Figure 3. Diffractionpatternfor (a) a = 0.1 kin, and d = 1.0 kin, (b) a = 0.1 kin, and d = 0.5 kin, and (c) a = 0.2 kin, and d = 1.0 kin.
+
+path-lengthsof the wave propagationin filaments are
+
+modelledby introducing a random phasefor the wave at the slits. The angulardistributionof the far-fieldam- missiongrating with N slits and random phases•bnat
+each slit is
+plitude of a monochromaticwave incidenton a trans-
+
+E(O--)-ia•-sink(kaassininO)e• exp[2ik- d1()nsin+Oiqbn]
+
+Here k = w/c is the wavenumberof the heaterwave
+
+with frequencyw, and the summation is over the num-
+
+ber of the filaments N. We assume that 2Nd = L,
+
+where L is the size of the irradiated spot in the F re-
+
+gion. If we assumethat the random phases½nare zero,
+
+the sumruination can be readily done to yield the well-
+
+2d
+
+known formula for the intensity of an N slit diffraction
+
+pattern
+
+I(e)oc(s]cinas(inkoaskidnsiOnO)•)•((2s) in(k
+
+HF Heater
+Figure 2. Schematicof heater, ionosphericirregularity and far-field diffraction pattern.
+
+This expression shows that there are basically three characteristicscalelengths'(1) the width of the primary maximais (A/2Nd)R, whereR is the radial dis-
+tance from the heater source and A is the heater wave-
+
+GUZDAR ET AL.' DIFFRACTION
+
+MODEL...
+
+319
+
+0.30
+
+separated by the same distances or unequal sized fil-
+
+aments separated by unequal spacing. None of these
+
+0.15
+
+a) three scenarioscan be distinguished from each other.
+However, the magnitude of the noiseis very sensitveto the choiceof the window in which the phases½• are cho-
+
+sen. Figure 4b showsthe diffraction pattern for the case
+
+0.00 -0.2
+
+whenthe phase½• variesin the range[-vr, vr].The noise
+
+level is significantlyenhanced. Thus, sincethe observed
+
+0.0
+
+0.1
+
+0.2
+
+level of the noise in Figure 1 is small, it indicates that
+
+the fluctuation in the filament size or the inter-filament
+
+0.16
+--• 0.08
+
+separationis significantlysmaller than the averagesize
+(2a) or inter-filamentdistance(2d). The "effective" diffraction grating is two-dimensional
+b) (2D)in reality. Howeverthe basiccharacteristicscalelengthsare well representedby our 1D model and this
+has been the main focus of this letter. The full two-
+
+dimensionalstudy will be reported in the future. One
+
+possibleexplanation of the asymmetry of the peak in-
+
+0.00
+
+-0.2
+
+-0.1
+
+0.0
+
+0.1
+
+0.2
+
+tensity of the observedpattern can be attributed to the
+
+trajectory of the satellite relative throught the 2D dif-
+
+•
+
+sin(ei)
+
+fraction pattern. We can assumethat during the period
+
+Figure4. Diffractiopnatternfora- 0.1kin,d- 1.0 of observation the satellite is stationary as the pattern
+
+kin,(a) -2.0 < ½n< 2.0,and(b)
+
+sweepspast it due to the rotation of the earth. As the
+
+earth rotates the satellite traces a path through this
+
+two-dimensionaldiffraction pattern. If the beam is not
+
+circular, as is the case, there will be an asymmetry in
+
+length,(2) the distancebetweenthe primarymaxima the diffraction pattern sampled by the satellite. Also
+
+is (X/2d)R,and(3) theenvelopweidthis (X/2a)R. In the "chaotic" structure of the secondarysignal spikes
+
+Figure3a-3cthe diffractionpatternfor threedifferent can be a manifestation of the satellite path through the
+
+values of a and d are shown. The patterns are plot- two-dimensional pattern.
+
+ted in the angularinterval-,r/60 < 0 < ,r/60 for the
+
+incidentwavefrequencyf - c•/2vr= 8.9 MHz. Fig- Discussion
+
+ure 3ais for a = 0.1 km and d = 1.0 kin. Figure 3b
+
+illustrates the case when the inter-filament distance is We have developeda simple diffraction model of
+
+reducedto d = 0.5 kin, but the filament width is un- the wavepattern observedby the WAVES RAD2 re-
+
+change(da = 0.1kin). In Figure3cthefilamenwt idth ceiveron the WIND satellite, when the heater facility
+is increased to a = 0.2 km for d = 1.0 kin. What is at SURA wasoperatedin the continuousmodefor 50
+
+clearisthat dramaticchangesin the patternoccurwhen minutes.To compareour resultswith the observations,
+
+the inter-filament distance and the filament widths are the time scalesgivenin Figure 1 can be convertedto
+
+changedby a factorof two. Sincethe diffractionpat- spacescaleby assumingthat the pattern sweepspast
+tern is a Fourier transform of the sine of the angle 0, the satellite in 40 minutes due to the rotation of the
+
+the envelopescaleis a measureof the filamentwidth earth. We now showwhy irregularitiesof the size of
+
+(2a),andthe inter-filamendtistance(2d)controltshe 200m, separatedby2 km agreewith theobservedstrucnumberof primarylines. The casethat qualitatively tures. As mentionedearlier, there are three basicscalematchesthe observationsin Figure la of Rodriguez et lengthsobtainedfromthe diffractionmodel.The first
+
+al. [1999ai]sthediffractionpatternin Figure3a.
+
+is the primary line-width of the individual spikes,which
+
+There are other features that need to be explained. for the SURA heater is m 300 km at 140 Re. This is in
+
+In the observations there is low-level noise between the agreementwith the 3-4 sectemporalwidth [Rodriguez
+
+primarylinesaswellasa distinctasymmetryin thean- et al., 1999a]of the individualspikeswhich,usingthe
+
+gulardistributioanboutthepeakintensityW. enowad- earth's rotation rate, translates into 300 kin. The over-
+
+dressthesetwo features. If we introduce random phases all envelopeis controlledby the sizeof the irregularities.
+
+with a uniform distribution between -2.0 < ½n < 2.0, For 200 m irregularities the envelopewidth is 23.6 Re.
+then the diffraction pattern looks like that shown in This is in reasonableagreementwith the envelopewidth Figure 4a. The secondarynoiselike-featurereadily ap- of 24 Re, from Figure 1. Finally, the distance between pears.The computedpatternhasa very highwavenum- the primary maxima obtained from the model is 2.36 ber characterto it. In examiningEquation (1), the Re compared to the average distance between the prirandom phasescan arise from nonuniform separation mary maxima of 1.5 Re from Figure 1. The low-level of equal-sizedfilamentsor filamentswith unequalsizes of the noise interspersedin the well-defined diffraction
+
+320
+
+GUZDAR ET AL.: DIFFRACTION MODEL...
+
+pattern indicates that the deviation from the assumed Perkins, F. W., and E. J. Valeo, Thermal self-focusingof
+
+filament size and inter-filament distance are very small. It cannot be stated unambiguouslywhether the irregularitieswerepresentprior to the turning on of the heater or whether these are heater induced or enhancedirregularities. However, based on our earlier work on the
+
+electromagnetic waves in plasmas, Phys. Rev. Lett., 32, 1234, 1974. Rodriguez, P., E. J. Kennedy, M. J. Keskenin, C. L. Siefring, Sa. Basu, M. McCarrick, J. Preston, M. Engebretson, M. L. Kaiser, M.D. Desch, K. Goetz, J.-L. Bougeret, and R. Manning, The WIND-HAARP experiment: initial results
+
+nonlinear state of the thermal filaments there is a preferred size of the irregularities for a given heater power density.This suggeststhat the observeddiffractionpattern is causedby heater inducedor enhancedthermal
+
+of high power radiowave interactions with spaceplasmas, Geophys. Res. Lett., 25, 257, 1998. Rodriguez, P., M. Keskenin, Y. Tokarev, V. Alimov, Y. Belov, V. L. Frolov, N. Karashtin, G. Komrakov, M. Kaiser, M. Desch, K. Goetz, J. Bougeret, and R. Man-
+
+filamentsand that the observedsignalhas the potential ning, Evidence of high power HF radiowave self-focusing
+
+to be usedas a gooddiagnosticof theseirregularities.
+
+in the ionosphere: preliminary report of SURA-WIND observationN, RL/MR/6750-99-8312, 1999a.
+
+Acknowledgments. This work was supported by NSF
+under the Grant Number ATM-9713719 and ONR.
+
+Rodriguez, P., E. J. Kennedy, M. J. Keskenin, Sa. Basu, M. McCarrick, J. Preston, H. Zwi, M. Engebretson, A. Wong, R. Wuerker, M. L. Kaiser, M.D. Desch, K. Goetz,
+
+References
+
+J.-L. Bougeret, and R. Manning, A wave interference experiment with HAARP, HIPAS,and WIND, Geophys.
+
+Res. Lett., 26, 2351, 1999b.
+
+Bougeret,J.-L., M. L. Kaiser, P. J. Kellog, R. Manning, K. Tokarev, Yu. V., M. L. Kaiser, P. Rodriguez, V. A. Alimov,
+
+(]oetz, S. J. Monsoon, N. Monge, L. Friel, C. A. Meetre, Yu. I. Belov, G. N. Boyko, G. P. Komrakov, N. V. Mu-
+
+C. Perche, L. Sitruk, and S. Hoang, WAVES: the radio rav'eva, and A. V. Rakhlin, SURA-WIND Radar: Study
+
+and plasma wave investigationon the WIND spacecraft, of non-linear effectsto be found during ionospheresound-
+
+Space$ci., Rev., 71, 231, 1995.
+
+ing by HF radio waves,to appear in Izv. VUZ Radiophys.,
+
+Bernhardt, P. A., and L. M. Duncan, The feedback-diffraction 42, S, 1999.
+
+theory of ionosphericheating, J. Atmos. Terr. Phys., •,
+
+1061,1982.
+
+P.N. Guzdara, ndN. A. GondarenkInostituteforPlasma
+
+BernhardPt,.A.,andL.M.DuncanT,hetheoryofionospherRkesearcUhn, iversitoyfMarylandC, ollegPeark,MD 20742.
+
+focusehdeatingJ,. AtmosT. err.Phys.J,9,11071, 987. (e-mailg:uzdar@ipr.umdn.eadtual,ia@ipr.umd.edu)
+
+Gondarenko, N. A., P. N. Guzdar, G. M. Milikh, A. S. K. PapadopoulosDepartment of Physicsand Department
+
+Sharma, K. Papadopoulos,and S. L. Ossakow,Spatio- of Astronomy, University of Maryland, College Park, MD
+
+temporaldevelopmentof filamentsdueto the thermalself- 20742. (e-mail: kp@astro.umd.edu
+
+focusinginstability near the critical surfacein ionospheric G. M. Milikh, and A. S. Sharma Department of
+
+plasmas,to appear in Izv. VUZ Radiophys.,7, 1999.
+
+Astronomy, University of Maryland, College Park, MD
+
+Gurevich, A. V., Nonlinear Phenomenain the Ionosphere, 20742. (e-mail:milikh@astro.umd.eduss, h@astro.umd.edu)
+
+Springer-Verlag, New York, 1978.
+
+P. Rodriguez, Information Technology Division, Naval
+
+Guzdar, P. N., P. K. Chaturvedi, K. Papadopolous,M. ResearchLaboratory, Washington, DC 20375. (e-mail:
+
+Keskenin,and S. L. Ossakow,The self-focusinginstability paul.rodriguez@nrl.navym. il
+
+in the presenceof density irregularitiesin the ionosphere, Yu. V. Tokarev, and Yu. I. Belov, RadiophysicalResearch
+
+J. Geophys. Res. 101, 2453, 1996.
+
+Institute, Nizhny Novgorod,Russia. (e-maih yt@nirfi.sci-
+
+Guzdar, P. N., P. K. Chaturvedi, K. Papadopoulos,and S. nnov.ru, belov@nirfi.sci-nnov.ru
+
+L. Ossakow,The thermal self-focusinginstability near the S. L. Ossakow, Plasma Physics Division, Naval
+
+critical surface in the high-latitude ionosphere, J. Geo- ResearchLaboratory, Washington, DC 20375. (e-mail:
+
+phys. Res., 103, 2231, 1998.
+
+ossakow@ccfn.rl.navy. mil
+
+Litvak, A. G., Possibilityof self-focusingof electromagnetic wavesin the ionosphere,Izv. VUZ Radiophys.,11, 814, (ReceivedSeptember15, 1999; revisedNovember10, 1999;
+
+1970.
+
+acceptedNovember29, 1999.)
+

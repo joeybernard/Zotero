@@ -1,0 +1,451 @@
+arXiv:gr-qc/9511068v6 9 Mar 1998
+
+Hyperfast interstellar travel in general relativity
+S. V. Krasnikov∗ The Central
+Astronomical Observatory at Pulkovo, St Petersburg, 196140, Russia
+Abstract
+The problem is discussed of whether a traveller can reach a remote object and return back sooner than a photon would when taken into account that the traveller can partly control the geometry of his world. It is argued that under some reasonable assumptions in globally hyperbolic spacetimes the traveller cannot hasten reaching the destination. Nevertheless, it is perhaps possible for him to make an arbitrarily long round-trip within an arbitrarily short (from the point of view of a terrestrial observer) time.
+1 Introduction
+Everybody knows that nothing can move faster than light. The regrettable consequences of this fact are also well known. Most of the interesting or promising in possible colonization objects are so distant from us that the light barrier seems to make an insurmountable obstacle for any expedition. It is, for example, 200 pc from us to the Polar star, 500 pc to Deneb and ∼ 10 kpc to the centre of the Galaxy, not to mention other galaxies (hundreds of kiloparsecs). It makes no sense to send an expedition if we know that thousands of years will elapse before we receive its report.1 On the other
+∗Email: redish@pulkovo.spb.su 1The dismal fate of an astronaut returning to the absolutely new (and alien to him) world was described in many science ﬁction stories, e. g. in [1].
+1
+
+hand, the prospects of being conﬁned forever to the Solar system without any hope of visiting other civilizations or examining closely black holes, supergiants, and other marvels are so gloomy that it seems necessary to search for some way out.
+In the present paper we consider this problem in the context of general relativity. Of course the light barrier exists here too. The point, however, is that in GR one can try to change the time necessary for some travel not only by varying one’s speed but also, as we shall show, by changing the distance one is to cover.
+To put the question more speciﬁc, assume that we emit a beam of test particles from the Earth to Deneb (the event S). The particles move with all possible (sub)luminal speeds and by deﬁnition do not exert any eﬀect on the surrounding world. The beam reaches Deneb (with the arrival time of the ﬁrst particle tD by Deneb’s clocks), reﬂects there from something, and returns to the Earth. Denote by ∆τE (τE is the Earth’s proper time) the time interval between S and the return of the ﬁrst particle (the event R). The problem of interstellar travel lies just in the large typical ∆τE . It is conceivable of course that a particle will meet a traversible wormhole leading to Deneb or an appropriate distortion of space shortening its way (see [2] and Example 4 below), but one cannot hope to meet such a convenient wormhole each time one wants to travel (unless one makes them oneself, which is impossible for the test particles). Suppose now that instead of emitting the test particles we launch a spaceship (i. e. something that does act on the surrounding space) in S. Then the question we discuss in this paper can be formulated as follows:
+Is it possible that the spaceship will reach Deneb and then return to the Earth in ∆τ ′ < ∆τE ?
+By “possible” we mean “possible, at least in principle, from the causal point of view”. The use of tachyons, for example, enables, as is shown in [2], even a nontachionic spaceship to hasten its arrival. Suppose, however, that tachyons are forbidden (as well as all other means for changing the metric with violating what we call below “utter causality”). The main result of the paper is the demonstration of the fact that even under this condition the answer to the above question is positive. Moreover, in some cases (when global hyperbolicity is violated) even tD can be lessened.
+2
+
+2 Causal changes
+2.1 Changes of spacetime
+In this section we make the question posed in the Introduction more concrete. As the point at issue is the eﬀects caused by modifying the (four-dimensional) world (that is, by changing its metric or even topology), one may immediately ask, Modifying from what? To clarify this point ﬁrst note that though we treat the geometry of the world classically throughout the paper (that is, we describe the world by a spacetime, i. e., by a smooth Lorentzian connected globally inextendible Hausdorﬀ manifold), no special restrictions are imposed for a while on matter ﬁelds (and thus on the right-hand side of the Einstein equations). In particular, it is not implied that the matter ﬁelds (or particles) obey any speciﬁc classical diﬀerential equations.
+Now consider an experiment with two possible results. Example 1. A device set on a spaceship ﬁrst polarizes an electron in the y-direction and then measures the x-component of its spin σx. If the result of the measurement is σx = +1/2, the device turns the spaceship to the right; otherwise it does not. Example 2. A device set on a (very massive) spaceship tosses a coin. If it falls on the reverse the device turns the spaceship to the right; otherwise it does not. Comment. One could argue that Example 2 is inadequate since (due to the classical nature of the experiment) there is actually one possible result in that experiment. That is indeed the case. However, let us
+(i) Assume that before being tossed the coin had never interacted with anything.
+(i) Neglect the contribution of the coin to the metric of the world.
+Of course, items (i,ii) constitute an approximation and situations are conceivable for which such an approximation is invalid (e. g., item (i) can be illegal if the same coin was already used as a lot in another experiment involving large masses). We do not consider such situations. And if (i,ii) are adopted, experiment 2 can well be considered as an experiment with two possible results (the coin, in fact, is unobservable before the experiment).
+Both situations described above suﬀer some lack of determinism (originating from the quantum indeterminism in the ﬁrst case and from coarsening
+3
+
+the classical description in the second). Namely, the spaceship is described now by a body whose evolution is not ﬁxed uniquely by the initial data (in other words, its trajectory (non-analytic, though smooth) is no longer a solution of any “good” diﬀerential equation). However, as stated above, this does not matter much.
+
+So, depending on which result is realized in the experiment (all other factors being the same; see below) our world must be described by one of two diﬀerent spacetimes. It is the comparison between these two spacetimes that we are interested in.
+
+Notation. Let M1 and M2 be two spacetimes with a pair of inextendible timelike curves Ei, Di ⊂ Mi in each (throughout the paper i, j = 1, 2). One of these spacetimes, M1 say, is to describe our world under the assumption that we emit test particles at some moment S1 ∈ E1 and the other, under the assumption that instead of the particles we launch a spaceship in S2, where S2 ∈ M2 corresponds in a sense (see below) to S1. The curves Ei and Di are the world lines of Earth and Deneb, respectively. We require that the two
+pairs of points exist:
+
+Fi ≡ Bd (J+(Si)) ∩ Di and Ri ≡ Bd (J+(Fi)) ∩ Ei.
+
+(1)
+
+These points mark the restrictions posed by the light barrier in each spacetime. Nothing moving with a subluminal speed in the world Mi can reach Deneb sooner than in Fi or return to the Earth sooner than in Ri. What we shall study is just the relative positions of Si , Fi , Ri for i = 1, 2 when the diﬀerence in the spacetimes M1 and M2 is of such a nature (below we formulate the necessary geometrical criterion) that it can be completely ascribed to the pilot’s activity after S.
+
+2.2 “Utter causality”
+The eﬀect produced by the traveller on spacetime need not be weak. For example, by a (relatively) small expenditure of energy the spaceship can break the equilibrium in some close binary system on its way, thus provoking the collapse. The causal structures of M1 and M2 in such a case will diﬀer radically. If an advanced civilization (to which it is usual to refer) will cope with
+
+4
+
+topology changes, it may turn out that M1 and M2 are even nondiﬀeomorphic. So the spacetimes under discussion may diﬀer considerably. On the other hand, we want them to be not too diﬀerent:
+1. The pilot of the spaceship deciding in S whether or not to ﬂy to Deneb knows the pilot’s past and in our model we would prefer that the pilot’s decision could not change this past. This restriction is not incompatible with the fact that the pilot can make diﬀerent decisions (see the preceding subsection).
+2. The absence of tachyons (i. e. ﬁelds violating the postulate of local causality [3]), does not mean by itself that one (located in, say, point A) cannot act on events lying oﬀ one’s “causal future” (i. e. oﬀ J+(A)).
+(i ) Matter ﬁelds are conceivable that while satisfying local causality themselves do not provide local causality to the metric. In other words, they aﬀord a unique solution to the Cauchy problem for the metric, not in D+(P) (cf. chapter 7 in [3]), but in some smaller region only. In the presence of such ﬁelds the metric at a point B might depend on the ﬁelds at points outside J−(B). That is, the metric itself would act as a tachyon ﬁeld in such a case.
+(ii ) Let M1 be the Minkowski space with coordinates (t1, xµ1 ) and M2 be a spacetime with coordinates (t2, xµ2 ) and with the metric ﬂat at the region x12 > t2, but nonﬂat otherwise (such a spacetime describes, for example, propagation of a plane electromagnetic wave). Intuition suggests that the diﬀerence between M1 and M2 is not accountable to the activity of an observer located in the origin of the coordinates, but neither local causality nor any other principle of general relativity forbids such an interpretation.
+In the model we construct we want to abandon any possibility of such “acausal” action on the metric. In other words, we want the condition relating M1 and M2 to imply that these worlds are the same in events that cannot be causally connected to S. This requirement can be called the principle of utter causality.
+2.3 Relating condition
+In this section we formulate the condition relating M1 to M2. Namely, we require that Mi should “diverge by S” (see below). It should be stressed
+5
+
+that from the logical point of view this condition is just a physical postulate. Being concerned only with the relation between two “possible” worlds, this new postulate does not aﬀect any previously known results. In defense of restrictions imposed by our postulate on Mi we can say that it does not contradict any known facts. Moreover, in the absence of tachyons (in the broad sense, see item (i ) above) it is hard to conceive of a mechanism violating it.
+Formulating the condition under discussion we would like to base it on the “principle of utter causality”. In doing so, however, we meet a circle: to ﬁnd out whether a point is causally connected to Si we must know the metric of the spacetime Mi, while the metric at a point depends in its turn on whether or not the point can be causally connected to Si. That is why we cannot simply require that Mi \ J+(Si) be isometric. The following example shows that this may not be the case even when utter causality apparently holds.
+Example 3. “Hyper-jump.” Let M1 be the Minkowski plane with S1 located at the origin of the coordinates and let M2 be the spacetime (similar to the Deutsch-Politzer space) obtained from M1 by the following procedure (see Fig. 1). Two cuts are made, one along a segment l lying in I+(S1) and another along a segment l′ lying oﬀ J+(S1) and obtained from l by a translation. The four points bounding l, l′ are removed and the lower (or the left, if l is vertical) bank of each cut is glued to the upper (or to the right) bank of the other. Note that we can vary the metric in the shadowed region without violating utter causality though this region “corresponds” to a part of M1 \ J+(S1).
+To overcome this circle we shall formulate our relating condition in terms of the boundaries of the “unchanged” regions.
+Notation. Below we deal with two spacetimes Ni ⊂ Mi related by an isometry φ: N2 = φ(N1). To shorten notation we shall write sometimes X(1) for a subset X ⊂ N1, and X(2) for φ(X). The notation A ⋆ B for points A, B will mean that there exists a sequence {an}:
+an(i) → A, an(j) → B.
+Clearly if A ∈ N1, then A ⋆ B = A means simply B = φ(A). Lastly, J ≡ J+(S1) ∪ J+(S2).
+6
+
+E l
+
+D
+
+N 1
+
+(
+
+F1
+
+)
+
+l'
+
+F2
+
+S2
+
+Figure 1: “Hyper-jump.” The thick dashed line depicts an allowed world line of a spaceship.
+
+Deﬁnition 1. We call spacetimes M1, M2 diverging by the event S1 (or
+by S2, or simply by S) if there exist open sets Ni ⊂ Mi, points Si, and an isometry φ: N1 → N2 such that I−(S2) = φ(I−(S1)) and
+
+(Qj ∪ Qk) ∩ J = ∅
+
+(2)
+
+whenever Qj ∈ Bd Nj and Qj ⋆ Qk = Qj.
+
+Comment. In the example considered above the two spacetimes diverged by S. Note that (i ) The possible choice of Ni is not unique. The dotted lines in Fig. 1 bound from above two diﬀerent regions that can be chosen as N2. (ii ) A(2) ≺ B(2) does not necessarily imply (1) ≺ B(1). (iii ) Points constituting the boundary of N fall into two types, some have counterparts (i. e. points related to them by ⋆) in the other spacetime and the others do not (corresponding thus to singularities). It can be shown (see Lemma 1 in the Appendix) that the ﬁrst type points form a dense subset of Bd N.
+In what follows we proceed from the assumption that the condition relating the two worlds is just that they are described by spacetimes diverging by S (with Ni corresponding to the unchanged regions). It should be noted, however, that this condition is tentative to some extent. It is not impossible that some other conditions may be of interest, more restrictive than ours
+
+7
+
+(e. g. we could put some requirements on points of the second type) or, on the contrary, less restrictive. The latter can be obtained, for example, in the following manner. The relation ⋆ is reﬂective and symmetric, but not transitive. Denote by ∼ its transitive closure (e. g. in the case depicted in Fig. 2, A ⋆/ B, but A ∼ B). Now, if we want to consider topology changes
+
+B
+
+A
+
+CD
+
+S1
+
+S2
+
+Figure 2: Make cuts along the thin lines on the cylinder at the left and glue
+their banks to obtain the “trousers” at the right. The shadowed regions depict J+(S). Note that these spacetimes cannot be considered as diverging by S. For, if we take, for example, the whole Mi with the thin lines removed, as Ni, then Bd N1 ∋ B ⋆ C, while neither B nor C lies in J.
+
+like that in Fig. 2 as possibly produced by the event S, we can replace (2) by the requirement that for any ﬁrst type point Q ∈ Bd Nj,
+
+[Q]∼ ∩ J = ∅,
+
+(3)
+
+where [Q]∼ ≡ {x| x ∼ Q}. It is worth pointing out that replacing (2) by (3) does not actually aﬀect any of the statements below.
+Now we can formulate the question posed in the Introduction as follows:
+Given that spacetimes Mi diverged by an event S, how will the points F2, R2 be related to the points F1, R1?
+(It is understood from now on that
+
+where Ci = Di, Ei.)
+
+C2 ∩ N2 = φ(C1 ∩ N1),
+
+8
+
+3 One-way trip
+Example 3 shows that contrary to what one might expect, utter causality by itself does not prevent a pilot from hastening the arrival at a destination. It is reasonable to suppose, however, that in less “pathological” spacetimes2 this is not the case.
+
+Proposition 1. If Mi are globally hyperbolic spacetimes diverging by S, then
+F1 ⋆ F2.
+The proof of this seemingly self-evident proposition has turned out to be quite tedious, so we cite it in the Appendix.
+
+Example 4. Recently it was proposed [2] to use for hyper-fast travel the metric (I omit two irrelevant dimensions y and z)
+
+ds2 = −dt2 + [dx − vsf (rs)dt]2.
+
+(4)
+
+Here rs ≡ |x − xs|, vs(t) ≡ dxs(t)/dt, and xs(t) and f are arbitrary smooth functions satisfying3
+
+xs(t) =
+
+D 0
+
+at t > T at t < 0
+
+f (ξ) =
+
+1 0
+
+for ξ ∈ (−R + δ, R − δ) for ξ ∈/ (−R, R).
+
+δ, T , and R are arbitrary positive parameters. To see the physical meaning of the condition of utter causality take the
+Minkowski plane as M1 and the plane endowed with the metric (4) as M2 (the Si are meant to be the origins of the coordinates). It is easy to see that the curve λ ≡ (t, xs(t)) is timelike with respect to the metric (4) for any xs(t). So we could conclude that an astronaut can travel with an arbitrary velocity (“velocity” here is taken to mean the coordinate velocity dxa(t)/dt, where xa(t) is the astronaut’s world line). All he needs is to choose an appropriate xa(t) and to make the metric be of form (4) with xs(t) = xa(t). The distortion
+2Note that we discuss the causal structure only. So the fact that there are singularities in the spacetime from Example 3 is irrelevant. As is shown in [4], a singularity-free spacetime can be constructed with the same causal structure.
+3 In [2] another f was actually used. Our modiﬁcation, however, in no way impairs the proposed spaceship.
+
+9
+
+of the spacetime in the region {0 < x < D, t > 0} of M2 will allow him to travel faster than he could have done in the ﬂat space M1 (which does not of course contradict the Proposition since the Mi do not diverge by S).
+The subtlety lies in the words “to make the metric be . . . .” Consider the curve λ+ ≡ (t, xs(t) + R), which separates the ﬂat and the curved regions. It is easy to see that vs(t) > 1 when and only when λ+(t) is spacelike. At the same time eq. (19) of [2] says that the space immediately to the left of λ+ is ﬁlled with some matter (G00 = 0)4. The curve λ+(t) is thus the world line of the leading edge of this matter. We come therefore to the conclusion that to achieve T < D the astronaut has to use tachyons. This possibility is not too interesting: no wonder that one can overcome the light barrier if one can use the tachyonic matter. Alternatively, in the more general case, when the spacetime is nonﬂat from the outset, a similar result could be achieved without tachyons by placing in advance some devices along the pilot’s way and programming them to come into operation at preassigned moments and to operate in a preassigned manner. Take the moment P when we began placing the devices as a point diverging the spacetimes. Proposition 1 shows then that, though a regular spaceship service perhaps can be set up by this means, it does not help to outdistance the test particles from M1 in the ﬁrst ﬂight (i. e. in the ﬂight that would start at P ).
+4 Round-trip
+The situation with the points Ri diﬀers radically from that with Fi since the segment F R belongs to J+(S) for sure. So even in globally hyperbolic spacetimes there is nothing to prevent an astronaut from modifying the metric so as to move R closer to S (note that from the viewpoint of possible applications to interstellar expeditions this is far more important than to shift F ). Let us consider two examples.
+Example 5. “The warp drive.” Consider the metric
+ds2 = −(dt − dx)(dt + k(t, x)dx),
+4The case in point is, of course, a four-dimensional space.
+10
+
+where k ≡ 1 −(2 −δ)θǫ(t−x)[θǫ(x) −θǫ(x+ ǫ−D)]. Here θǫ denotes a smooth
+
+monotone function:
+
+θǫ(ξ) =
+
+1 at ξ > ǫ 0 at ξ < 0
+
+δ and ǫ < D being arbitrary small positive parameters.
+
+t N1 (R1 )
+
+rI
+
+xa(t)
+
+lI
+
+R2
+
+t-x S2
+
+lO
+g
+D
+
+rO x
+
+Figure 3: Warp drive.
+Three regions can be recognized in M (see Fig. 3): The outside region: {x < 0} ∪ {x > D} ∪ {x > t}. The metric is ﬂat here (k = 1). Future light cones are generated by vectors rO = ∂t + ∂x and lO = ∂t − ∂x The transition region. It is a narrow (of width ∼ ǫ) strip shown as a shaded region in Fig. 3. The spacetime is curved here. The inside region: {x < t − ǫ} ∩ {ǫ < x < D − ǫ}. This region is also ﬂat (k = δ − 1), but the light cones are “more open” here being generated by rI = ∂t + ∂x and lI = −(1 − δ)∂t − ∂x.
+The vector lI is almost antiparallel to rI and thus a photon moving from F toward the left will reach the line x = 0 almost in S.
+We see thus that an arbitrarily distant journey can be made in an arbitrarily short time! It can look like the following. In 2000, say, an astronaut — his world line is shown as a bold dashed line in Fig. 3 — starts to Deneb. He moves with a near light speed and the way to Deneb takes the (proper) time ∆τa ≪ 1600 yr for him. On the way he carries out some manipulations with the ballast or with the passing matter. In spite of these manipulations
+11
+
+the traveller reaches Deneb at 3600 only. However, on his way back he ﬁnds that the metric has changed and he moves “backward in time,” that is, t decreases as he approaches the Earth (though his trajectory, of course, is future-directed). As a result, he returns to the Earth in 2002.
+Example 6. Wormhole. Yet another way to return arbitrarily soon after the start by changing geometry is the use of wormholes. Assume that we have a wormhole with a negligibly short throat and with both mouths resting near the Earth. Assume further that we can move any mouth at will without changing the “inner” geometry of the wormhole. Let the astronaut take one of the mouths with him. If he moves with a near light speed, the trip will take only the short time ∆τa for him. According to our assumptions the clocks on the Earth as seen through the throat will remain synchronized with his and the throat will remain negligibly short. So, if immediately after reaching Deneb he returns to the Earth through the wormhole’s throat, it will turn out that he will have returned within ∆τE ≈ ∆τa after the start.
+Similar things were discussed many times in connection with the wormhole-based time machine. The main technical diﬀerence between a time machine and a vehicle under consideration is that in the latter case the mouth only moves away from the Earth. So causality is preserved and no diﬃculties arise connected with its violation.
+5 Discussion
+In all examples considered above the pilot, roughly speaking, “transforms” an “initially” spacelike (or even past-directed) curve into future-directed. Assume now that one applies this procedure ﬁrst to a spacelike curve (AC1B) and then to another spacelike curve (BC2A) lying in the intact until then region. As a result one obtains a closed timelike curve (AC1BC2A) (see [5, 6, 7] for more details). So the vehicles in discussion can be in a sense considered as “square roots” of time machine (and thus a collective name space machine — also borrowed from science ﬁction — seems most appropriate for them). The connection between time and space machines allows us to classify the latter under two types. 1. Those leading to time machines with compactly generated Cauchy horizons (Examples 4–6). From the results of [8] it is clear that the creation of a space machine of this type requires violation of the weak energy condition.
+12
+
+The possibility of such violations is restricted by the so-called “quantum
+
+inequalities”, QIs [9]. In particular, with the use of a QI it was shown in
+
+[6] that to create a four-dimensional analog of our Example 5 one needs
+
+huge amounts (e. g. 1032Mgalaxy) of “negative energy”. Thermodynami-
+
+cal considerations suggest that this in its turn necessitates huge amounts
+
+of “usual” energy, which makes the creation unlikely. This conclusion is
+
+quite sensitive to the details of the geometry of the space machine and one
+
+could try to modify its construction so as to obtain more appropriate val-
+
+ues. Another way, however, seems more promising. The QI used in [6]
+
+was derived with the constraint (see [9]) that in a region with the radius
+
+smaller than the proper radius of curvature spacetime is “approximately
+
+Minkowski” in the sense that the energy density (to be more precise, the
+
+integral E[λ, τ0, T ] ≡
+
+T −∞
+
+Tµν uµuν
+
+(τ 2
+
++ τ02)−1 dτ ,
+
+where
+
+λ
+
+is
+
+a
+
+timelike
+
+geodesic parametrized by the proper time τ , u ≡ ∂τ , and τ0 is a “sampling
+
+time”) is given by essentially the same expression as in the Minkowski space.
+
+So, in designing space machines, spacetimes are worth searching for where
+
+this constraint breaks down.
+
+Among them is a “critical” (i. e. just before its transformation into a
+
+time machine) wormhole. Particles propagating through such a wormhole
+
+again and again experience (regardless of speciﬁc properties of the wormhole
+
+[10]) an increasing blueshift. The terms in the stress-energy tensor associated
+
+with nontrivial topology also experience this blue-shift [11]. As a result, in
+
+the vicinity of the Cauchy horizon (even when a region we consider is ﬂat
+
+and is located far from either mouth) the behaviour of the energy density
+
+has nothing to do with what one could expect from the “almost Minkowski”
+
+approximation [12]. (The diﬀerence is so great that beyond the horizon we
+
+cannot use the known quantum ﬁeld theory, including its methods of eval-
+
+uating the energy density, at all [13].) Consider, for example, the Misner
+
+space with the massless scalar ﬁeld in the conformal vacuum state. From the
+
+results of Sec. III.B [12] it is easy to see that E[λ, τ0, ∞] = −∞ for any λ and τ0 and the QI thus does not hold here5. Moreover, E[λ, τ0, T ] → −∞ as
+one approaches the Cauchy horizon along λ. So, we need not actually create
+
+a time machine to violate the QI. It would suﬃce to “almost create” it.
+
+Thus it well may be that in spite of (or owing to) the use of a wormhole
+
+the space machine considered in Example 6 will turn out to be more realistic
+
+5It is most likely (see Sec. IV of [8]) that the same is true in the four-dimensional Misner space as well.
+
+13
+
+than that in Example 5. 2. Noncompact space machines, as in Example 3. These (even their singularity free versions; see [4, 14]) do not necessitate violations of the weak energy condition. They have, however, another drawback typical for time machines. The evolution of nonglobally hyperbolic spacetimes is not understood clearly enough and so we do not know how to force a spacetime to evolve in the appropriate way. There is an example, however (the wormhole-based time machine [15]), where the spacetime is denuded of its global hyperbolicity by quite conceivable manipulations, which gives us some hope that this drawback is actually not fatal.
+
+Acknowledgments
+This work is partially supported by the RFFI grant 96-02-19528. I am grateful to D. Coule, A. A. Grib, G. N. Parﬁonov, and R. R. Zapatrin for useful discussion.
+
+Appendix
+
+Throughout this section we take Mi to be globally hyperbolic spacetimes diverging by S and (U)J to mean U \ J for any set U.
+
+Lemma 1. Let O be a neighbourhood of a point of Bd Nj and ON ⊂ O∩Nj be such an open nonempty set that
+
+Bd ON ∩ O ⊂ Bd Nj
+
+(5)
+
+Then
+
+Bd ON (i) ∩ J+(Si) = ∅ for some i.
+
+Proof. Let j = 1 for deﬁniteness. Consider a smooth manifold M ≡ M2 ∪φ′ O, where φ′ is the restriction of φ on ON . Induce the metric on M by the natural projections
+
+πi:
+
+M2 −π→1 M , O −π→2 M
+
+(or, more precisely by πi−1) thus making M into a Lorentzian manifold and πi into isometrical embeddings. M must be non-Hausdorﬀ since otherwise it
+
+14
+
+would be a spacetime and so (as M2 M ) M2 would have an extension in contradiction to its deﬁnition. So points Qi exist:
+
+Q1 ⋆ Q2,
+
+Q1 ∈ Bd ON (1) ∩ O, Q2 ∈ Bd ON (2)
+
+(6)
+
+and the lemma follows now from Def. 1 coupled with (5).
+
+Lemma 2. If both A(i) lie in (Ni)J, then so do I−(A(i)).
+Proof. Mi are globally hyperbolic. So any point P has such a neighbourhood (we shall denote it by VP ) that, ﬁrst, it is causally convex, i. e. J−(x) ∩ J+(y) ⊂ VP for any points x, y: y ∈ J−(x, VP ); and, second, it lies in a convex normal neighbourhood of P . Now suppose the lemma were false. We could ﬁnd then such a point A′ ∈ I−(A(i), Ni) (let i = 1, for deﬁniteness) that
+W = I−(A′, VA′), where W ≡ I−(A′, N1 ∩ VA′).
+A
+
+A' C
+
+B1 bm
+cn
+
+C'
+
+Figure 4: Case 1 of Lemma 2. The white area does not belong to N1, the darkest area is W . If instead of the larger area bounded by a dashed line we take the smaller one as VA′, we get Case 2.
+Denote Bd W ∩I−(A′, VA′) by ∂W . Clearly ∅ = ∂W ⊂ N1. So, let us consider the two possible cases (see Fig. 4):
+15
+
+I. ∂W ⊂ Bd N1. Under this condition a point C and a sequence of causal curves {γn} from A′ to points cn exist such that
+
+γn ⊂ W, cn → C ∈ ∂W ∩ N1
+
+According to [16, Prop. 2.19] there exists a causal curve γ connecting A′ and
+
+C, which is limit for {γn} and is lying thus in W . Since VA′ belongs to a normal convex neighbourhood and C ∈ I−(A′, VA′), γ by [3, Prop. 4.5.1] is
+
+not a null geodesic and hence
+
+γ ⊂ N1
+
+(7)
+
+(otherwise by [3, Prop. 4.5.10] and by causal convexity of VA′ we could deform
+it into a timelike curve lying in N1 ∩ VA′, while C ∈/ W ). Now note that for any C′ ∈ I−(C, N1) there exists a subsequence {γk}
+lying in I+(C′, N1). So by (7) a sequence of points {bm} and a point B1 can
+be found such that
+
+bm → B1 ∈ Bd N1,
+
+bm ∈ I−(A′, N1) ∩ I+(C′, N1).
+
+(8)
+
+Thus the φ(bm) lie in a compact set J−(A′(2)) ∩ J+(C(′2)) and therefore
+
+φ(bm) → B2: B1 ⋆ B2.
+
+From Def. 1 it follows that at least one of the Bi lies in J+(Si) and since Bi ∈ I−(A(i)) we arrive at a contradiction.
+II. ∂W ⊂ Bd N1. In this case taking O = I−(A′, VA′) and ON = W in Lemma 1 yields
+
+W(i) ∩ J+(Si) = ∅ for some i,
+
+which gives a contradiction again since W(i) ⊂ I−(A(i)).
+
+Consider now the sets Li ≡ {x| I−(x) ⊂ Ni}. They have a few obvious features:
+
+Li = Int Li, Int Li ⊂ Ni
+
+(9)
+
+A(1) ∈ (L1)J ⇔ A(2) ∈ (L2)J
+
+(10)
+
+Combining Lemma 2 with (9,10) we obtain:
+
+(Bd Li)J ⊂ Bd Ni.
+
+(11)
+
+16
+
+Lemma 3. (Li)J = (Mi)J.
+Proof. Since (Mi)J is connected and (Int Li)J is non-empty [e. g. from Def. 1 I−(Si) ⊂ (Int Li)J] it clearly suﬃces to prove that (Bd Li)J = ∅. To obtain a contradiction, suppose that there exists a point A ∈ (Bd L1)J and let U be such a neighbourhood of A that
+U ⊂ (M1)J
+Then for U L ≡ U ∩ Int L1 it holds that U L(i) ∩ J +(Si) = ∅ i = 1, 2.
+On the other hand, owing to (9,11) we can take O = U and ON = UL in Lemma 1 and get
+U L(i) ∩ J +(Si) = ∅ for some i.
+Contradiction.
+
+Corollary 1. (I+(E2))J = φ((I+(E1))J).
+
+Proof of Proposition 1.
+
+Mi is causally simple. Hence a segment of null geodesic from Si to Fi exists.
+
+By [3, Prop. 4.5.10] this implies that any point P(i) ∈ (Ei)J can be connected
+
+to Fi by a timelike curve. Hence a point P ′ ∈ (Di)J can be reached from P(i)
+
+by a timelike curve without intersecting J+(Si). Thus Fi is the future end
+
+point of the curve Di′:
+
+Di′ ≡ D ∩ (I+(Ei))J
+
+And from Corollary 1 it follows that φ(D1′ ) = D2′ .
+
+References
+[1] S. Lem 1989 Return from the stars (Harcourt, Brace and Co.) [2] M. Alcubierre, Class. Quantum Grav. 11, L73 (1994)
+17
+
+[3] S. W. Hawking and G. F. R. Ellis 1973 The Large Scale Structure of Spacetime (Cambridge, Cambridge University Press)
+[4] S. V. Krasnikov gr-qc 9702031 [5] A. Everett, Phys. Rev. D 53, 7365 (1996) [6] A. E. Everett and T. A. Roman, Phys. Rev. D 56, 2100 (1997) [7] M. S. Morris and K. S. Thorne, Am. J. Phys. 56, 395 (1988) [8] S. W. Hawking, Phys. Rev. D 46, 603 (1992) [9] L. H. Ford and T. A. Roman, Phys. Rev. D 53, 5496 (1996) [10] S. V. Krasnikov, Class. and Quantum Grav. 11, 1 (1994) [11] U. Yurtsever, Class. Quantum Grav. 8, 1127 (1991) [12] S. V. Krasnikov, Phys. Rev. D 54, 7322 (1996) [13] B. S. Kay, M. J. Radzikowski, and R. M. Wald, Commun. Math. Phys.
+183, 533 (1997); S. V. Krasnikov gr-qc 9802008 [14] S. V. Krasnikov, Gen. Relativ. Gravit. 27, 529 (1995) [15] M. S. Morris, K. S. Thorne, and U. Yurtsever, Phys. Rev. Lett. 61, 1446
+(1988) [16] J. Beem and P. Ehrich 1981 Global Lorentzian Geometry (N. Y., Marcel
+Dekker. Ink.)
+18
+

@@ -1,0 +1,552 @@
+Physica Scripta
+Solitons
+To cite this article: D ter Haar 1979 Phys. Scr. 20 291 View the article online for updates and enhancements.
+
+Related content
+- Physics of Hot Plasmas D ter Haar
+- EHD Envelope Solitons of CapillaryGravity Waves in Fluidsof Finite Depth M F El-Sayed and D K Callebaut
+- The Stability of Three-Dimensional Planar Langmuir Solitons M J Wardrop and D ter Haar
+Recent citations
+- Nonlinear Evolution of a 3D Inertial Alfvén Wave and Its Implication in Particle Acceleration Prachi Sharma et al
+- Time evolution of nonplanar dust ionacoustic solitary waves in a charge varying dusty plasma with superthermal electrons Saliha Mayout et al
+- Modified Zakharov equations in dusty plasmas with variable charges on dust particles Mouloud Tribeche and Taha Houssine Zerguini
+
+This content was downloaded from IP address 131.202.65.42 on 19/02/2020 at 18:16
+
+Physica Scripta. Vol. 20,291-295, 1979
+SoIitons”
+D. ter Haar
+Magdalen College, Oxford, England Received June 7, 19 78
+
+Abstract
+Solitons. D. ter Haar (Magdalen College, Oxford, England). Physica Scripta (Sweden) 20, 291-295, 1979.
+
+ago in the same surroundings: the interpretation of the spiral structure of galaxies like our own as solitons.
+
+I will briefly discuss a few topics in soliton physics which have recently been considered. I first of all deal with some aspects of the relation between the Zakharov equations and the non-linear Schrodinger equation in the small Mach number regime, focussing attention on the adiabatic invariants and their relation to conservation laws. I secondly describe some experimental results about non-linear deep-water waves, and I end with a brief discussion of some aspects of spiral density-wave theory.
+
+2. Behaviour of slow Langmuir solitons
+
+I shall discuss here some work done by John Gibbons [ l ] in our group in Oxford. This work deals with the one-dimensional Zakharov equations. The first of these equations is a kind of NLS for the complex electric field amplitude E‘ [ 2 , 3 ] ,
+
+E;, 4- -n’E’ = 0
+
+(2.1)
+
+1 . Introduction
+The speaker giving the introductory lecture at a thematic conference has a task which is at once easier and more difficult than that of the succeeding speakers. Easier, because he is not tied to a particular topic and can, in theory at least, roam over the whole field. More difficult, because he is speaking to a gathering of experts who can - and will - correct any of his slips and because he is honour-bound not t o cover the ground t o be covered later during the conference. The difficulty is compounded, if the speaker is himself an amateur speaking to professionals. I am acutely aware of all these difficulties. When I was planning this lecture, I naturally - because of my own interests - considered paying special attention to solitons in plasmas, but then I noticed that this topic will be covered by Ichikawa, Michelsen, Bondeson and Schamel. All the same. I shall in a moment turn to the equations which were first derived by Zakharov and which describe the modulational instability of the Langmuir condensate. I shall not discuss the general features of the development of the modulational instability, but instead I shall consider the relation between the Zakharov equations and the non-linear Schrodinger equation ( N U ) in the regime of small Mach numbers and focus the discussion on the adiabatic invariants of the perturbed NLS, to which the Zakharov equations reduce in the limit considered, and their relation to the conserved quantities of the unperturbed N U . 1 shall then briefly discuss the whole question of the importance of conservation laws.
+As solid-state applications will be covered by Bishop, Toda and Davydov, and elementary particles, physiology, and mathematics are closed books to me, I shall next turn to solitons in hydrodynamics - after all, t o some extent one might say that it all started with the Korteweg-de Vries equation (KdV). I shall briefly discuss some beautiful experiments by Lake and co-workers on the modulational instability of non-linear deepwater waves. I shall end my talk with a discussion of a topic which I also used to end another introductory talk two years
+-_
+* Introductory lecture given at the Chalmers Symposium on Solitons,
+Goteborg, June 1978.
+
+where n’ is the density variation, where subscripts indicate partial derivatives, and where we have introduced primes because we want t o reserve unprimed symbols for later use. Here and in what follows we have “normalized” the various variables in the usual way (see, for instance, [ 3 ] ) .The second equation describes the propagation of sound waves, driven by the ponderomotive, or Miller, force:
+
+Eqs. (2.1) and (2.2) have been studied extensively (see, for instance, [4] where one can find a bibliography) both in the general form and in the limit where the Langmuir solitons move with velocities close t o the ion-sound speed (which is un’ the normalized variables). I shall discuss here a different IIIIIIL, namely the one of slow motion. where all wavenumbers are small. In the limit, as the speed goes to zero, we can neglect the first term on the left-hand side of eq. (2.2) and find
+
+n’ = - IE‘I’,
+
+(2.3)
+
+so that eq. (2.1) reduces t o the N U ,
+
+-t + lE’I2E’= 0
+
+(2.4)
+
+which has been solved by Zakharov and Shabat [5] using an inverse scattering transform. I shall now discuss the approach of equations (2.1) and (2.2) to the N U (2.4).
+Eqs. (2.1) and (2.2) can be derived from the Hamiltonian
+
+~31
+
+where
+We are interested in the regime where all group velocities are much less than the speed of sound. To make this explicit, we transform t o unprimed variables such that a typical group velocity will be of order unity. If the Mach number, which is now a small number, is E , the sound speed will be the larger
+parameter . The necessary transformation is
+x = a’,t = ~ ’ t ’ ,E = E ’ / € , n = n’/E2. U‘ = U (2.7)
+
+Physica Scripta 20
+
+292 D.ter Haar
+
+The density perturbation n can now be split into two parts, one with length scale of order unity, which follows the electric
+field, and the radiated sound, which will be at much longer wavelengths, of order In the unprimed variables eqs. (2.1), (2.2), and (2.6) are
+
+energy H . If we introduced instead of E the variable = E - €2 ,E,, + h l E 2
+Fsatisfies, up to order e’, the equation
+iFt+F,, + IFI2F = c2{ IF2IF, + IF2,1 F, -F‘I IF}
+
+(2.16) (2.17)
+
+iEf +E,, -nE = 0
+e2nt = U,,
+ut = n + IE2 I
+
+(2‘8) which can be derived from a Lagrangian densityygiven by the (2.9) equation
+(2.10) y = 4 i ( F * F t - - F T F ) + ~ I F 4 1 - I F ~ I + e 2 l F ~ I I F 2 I (2.18)
+
+The next step is to expand in powers of e, and we have
+
+There are three constants of motion
+
+(2.19)
+
+1 4 FC) I do not have time to go into a detailed discussion of these 1, = i(@Fx-
+
+(2.20)
+
+equations so I shall content myself with noting a few facts. In
+
+j 4 the zeroth approximation we get, as we would expect,
+p)= 0
+
+Z~ = {IF,12 - IF^ I - €2 FI: I IF^ I} dx
+(2.12)
+
+(2.21)
+
+and E(’) satisfies the N S (2.4). The next equation becomes
+
+and one can verify that they are the same as the integrals of the Zakharov equations, apart from terms which happen to be invariants of the NLS.
+
+ui2) = -i(E*E, -E,$)(o)
+
+(2.13) Of course, minimizing Z3 for fixed I I and 1, leads to a single
+
+from which we can derive again an equation for EC2’not involving n. However, the next equation in this scheme is of the form
+
+U$? = {\E41 -41E:( + \ E 2\,,)io)
+
+(2.14)
+
+(envelope) soliton solution. Similarly, if there were conserved
+quantities of higher order in F and a/ax,we could use those to
+construct multi-soliton solutions. We do noc expect such extra conserved quantities to exist, but John Gibbons has shown that
+
+and the scheme breaks down, as the right-hand side is not an exact space derivative. In fact, the reason for this is that it is no longer correct to assume that there is no long-wavelength sound present. If sound is emitted, it will be at frequencies comparable
+with those of the electric field, and thus at waveleng-ths of order
+As n --do)satisfies a continuity equation, but n(2) does
+
+one can exploit the smallness of E’ to obtain adiabatic invariants which in the limit as e -+ 0 reduce to the integrals of the NLS. The construction of these invariants proceeds as follows. If I is an integral of the system,its Poisson bracket with the Hamiltonian H must vanish:
+
+{I,H } = 0
+
+(2.22)
+
+not, n must contain a term, contributing in second order to J n dx,but not to n,, that is, a term ~ ~ n ( ~ )w(huic~h c)a,n be visualized as arising from the “stretching-out’’ of n , as sound is emitted. The equation for E to second order in E is thus
+
++ and expanding I in powers of e’, I = I(’) t e2I(l) . . . ,and using the fact that H =H‘O’ + e2H(l),one finds that can
+be found by solving the equation
+
++ E,+ E,, + lE12E = e’ (El4-41E: I t / E, 2, I )E ~ ‘ n ( ~ ) ( a ) E{, pH,(0))+ { pH,‘”) = 0
+
+(2.23)
+
+(2.15)
+and the earlier equation is the one where we neglected the last term on the right-hand side of eq. (2.15).
+Let us briefly consider when this term will significantly affect the dynamics. We note that the term is small and has also a
+
+For instance, taking the fourth invariant Ido) of the N U ,
+
+”! -Fex,] Ido) = {$i[F*F,.,
+
+t #ilF2I(F*F, -F$)} dx,
+
+Gibbons found
+
+(2.24)
+
+small gradient so that, treated as a potential in a Schrodinger Id’’ = -i ~ ~ ~ v ; ~ ~ ( F , F * - F F ~ ) + ~ I F ~ / , , ( F * F , - F F
+equation, its effect will be insignificant. Its main influence
+
+will be when its frequency is in resonance with that of the
+oscillations of IE2 I, leading to an acceleration of wavepackets.
+
++ 3IF:I(F*F, -FF,*)-$(F*F,,, -FC,,)) dx (2.25)
+
+This is a weak effect, as (i) the local contribution is weak, while In principle, it seems that one could in that way find a
+
+(ii) any long-range interaction will be over distances much greater possibly infinite set of adiabatic invariants, which expresses
+
+than the typical wavelength of [El2,that is, much greater than the fact that the system is almost an integrable one. the coherence length of E. However, even if E is small, this is Before leaving the topic of invariants, I want to remind us
+
+the term responsible for the transfer of energy from the electric field to sound waves and vice versa. This is the coupling which gives rise to the interactions between solitons leading to fusion or the capture of the electric field by sound pulses. Since it is small when e is small, we may expect the interactions between slow Langmuir solitons to be especially simple.
+Let us now consider eq. (2.15) without the last term on its right-hand side, and let us look for constants of motion. We know that Zakharov’s equations have three exact equations of motion, the plasmon number N , the momentum P, and the
+
+all of the fact that for the KdV, the sG, and the modified KdV equations Wadati and co-workers [6] have shown that from the fact that there exists an inverse scattering method it follows that there is a Backlund transformation, and vice versa, and that from the existence of either of these, the conservation laws follow. Finally, I want to mention the possible relation existing between multi-soliton solutions, conservation laws, adiabatic invariants, and the non-ergodic behaviour of coupled oscillator and other systems, exemplified by the Fermi-PastaUlam (FPU) effect and by the HBnon-Heiles system.
+
+Physica Scripta 20
+
+Solitons 293
+
+3. Modulational instability of deepwater waves
+
+The Zakharov equations discussed in the previous section can be used to describe and discuss the modulational instability of the Langmuir condensate [2, 41. To some extent one can say that any system described by a KdV or N U equation, shows modulatiorial instability, as any solution of these equations will develop into a multi-soliton solution, that is, exhibit behaviour which could just as well be described by the term “modulational instability” (MI). In the present section and the next one I want to look at two systems, the behaviour of which leads t o soliton-producing non-linear partial differential equations; these systems thus exhibit MI. The first system is that of deep-water waves and I want to discuss both some experimental results as well as the theory describing them.
+Using Whitham’s method [7] of deriving equations of motion from averaged Lagrangians Yuen and Lake [8] derived the VLS for the amplitude A of the deep-water waves in the forin
+
+i[A, t l(woko)4,] -(wo/8k~)A,,-lwok~lAI2A = 0 (3.1)
+where wo and ko are the frequency and wavenumber of the carrier wave. The same equation was derived for weakly nonlinear, dispersive waves by Benney and Newell [9] and for water waves by Hasimoto and Ono [ l o ] . For our purpose we need only the following points from the derivation. Let 0 be the phase-function so that the characteristic frequency w and wavenumber k are given by
+
+B t = - w . 0,. = k
+
+(3.1)
+
+In that case the equations of motion follow from the variational principle
+
+with
+
+(3.4)
+
+where L(x, t ) is the Lagrangian density of the system. For water waves
+
+j-h17
+L =
+
+[ot + 4(@:
+
++ @,I2 + U1 dY,
+
+(3.5)
+
+where ho is the depth of the water. the free surface, q5 the
+
+potential, g the gravitational acceleration, and where the density
+
+is put equal to unity. For a weakly non-linear. slowly varying,
+
+amplitude-modulated wavetrain we can write
+
++ + rj = a cos 0 a2 cos 26 . . .
+
+(3.6)
+
+If h e are considering a uniform, steady deep-water wavetrain, we must have, as was shown by Stokes [ 1 11
+
+a2 := $ k a 2
+
+(3.7)
+
+and we can write
+
+8 = h-wt
+
+they tried to match theory and experiment they ran into some difficulties and I want to discuss this point briefly.
+Benjamin and Feir [131 looked for the MI by superimposing
+
+on rj a perturbation of the form
+
++ E = E+ e cos [k(l K)X - w ( l + 6)t]
+
++ €-ent cos [k(l - K)X - w(1 -6)tI .
+
+(3.9)
+
+where K and 6 are small perturbations in the wavenumber and frequency. They found that there was instability with a growth rate C2 given by the relation
+
+C2 = 46(2k2a2 --6’)’’’w,
+
+(3.10)
+
+provided 7) is given by (3.6) satisfying the Stokes condition (3.7). The maximum growth rate occurs for 6 = ka. Experimentally, however, the growth rate does not satisfy relation (3.10). and it is interesting t o see that this occurred, because condition (3.7) was not satisfied - due to the way the waves were excited. If the actual value for a2 was used in the equation, agreement ensued between experiment and theory. The moral drawn by Lake and Yuen [ 141 who analyzed this phenomenon was a clear one: beware of using measurements of first-order quantities (such as a and k ) t o deduce the value of a non-linear quantity (such as a 2 ) .
+
+4. Density waves in galaxies
+
+I want t o conclude my talk with a discussion of another system showing the MI. This is the system of stars and gas which makes up our Galaxy and other spiral galaxies. The spiral structure of galaxies seems to be a long-lived one and this has been for a long time a mystery, until Lin [15] showed how one could explain the spiral structure in terms of density waves. Although this seemed to open a way to solving the problem, there remained several problems, especially that of the inclusion of non-linear terms. These have been discussed more recently by several authors. such as Dekker [16], Ikeuchi and Nakamura [17]. Kaplan, Khodataev, and Tsytovich [18], Norman [19], Mikhailovskii, Petviashvili, and Fridman [20] , and Fridman
+[21] . As in the previous section we shall use Whitham‘s method
+of averaged Lagrangians to derive the relevant equations, following Sorman’s procedure. We shall after that follow Mikhailovskii and co-workers [20] to show that. depending on the conditions in a rotating gravitating disc either subsonic or supersonic solitons can propagate in such a disc.
+In a three-dimensional case we have instead of eq. (3.3) the variational principle
+
+116 d 3 r d t Y = 0.
+
+(4.1)
+
+where P i s the Lagrangian density. Whitham [7, 221 suggested that, if one considers perturbations of a state which is changing in space and time on scales which are large compared to the wavelength and period of the perturbation - in which case we can use the WKB approximation we can replace Y i n eq. (4.1)
+~
+by an averaged Lagrangian density. This is done as follows. Let the perturbation be in the WKB form
+
+From eqs. (3.3)-(3.7) one can, in fact, derive eq. (3.1). As deep-water waves are described by the NLS (3.1) we
+should expect them to be subject to MI and this was, indeed. found by Lake and co-workers [12]. They also found that the waves showed an FPU-type of recurrence. However. when
+
+9 = a cos 8,
+
+(4.7)
+
+so that the (zeroth-order) wavevector k and frequency w are given by (compare (3.2.))
+
+k = V8, w = -8,
+
+(4.3)
+
+Physica Scripta 20
+
+294 D.ter Haar
+
+In that case the averaged Lagrangian density @7 becomes
+
+L~ = &(i.: + a z r : + 4 a r l i 1+s?)
+
+- & ~ " ( r ) r :-rl v 1 , t ( r + t , 8 t q / r )
+
+(4.15)
+
+and the Euler-Lagrangian equations become
+-am- - 0
+aa or D(k,w) = 0 which implies (37 = 0, and
+
+where V(r) is the unperturbed gravitational potential and
+
+(4.16) (4.5)
+We can now average over a,9 ,and $, where $ is introduced.
+by writing
+
+C; = a sin 9, 7 = b cos $,
+
+(4.17)
+
+which is related to the epicyclic frequency K :
+
+KG$
+(4.7) The result of the averaging is
+
+(4.18)
+
+This approach can be applied to electrostatic plasma waves, as was shown by Dewar [23], but we shall discuss his approach to galactic spiral density waves, which was also adopted by Norman.
+Let p 1 and Vl be, respectively, the mass-density and gravitational-potential perturbations. Up to second-order in the perturbations - indicated by the subscript 2 - the Lagrangian density of the perturbation is
+
+where G is the gravitation constant. To find (3)we adapt
+eq. (4.2) to the geometry of our Galaxy and write
+
+Vl = A ( r ) cos [@(r,t ) + m a ] e-''''
+
+(4.9)
+
+(.L) = 1 t Z R Z - V ( r ) + a a 2 ( K z - ~ ; )
+
+(4.19)
+
+where K~ is the unperturbed epicycle frequency,
++ K ; V ( r ) 3az(r),
+
+(4.20)
+
+and where the sum of the right-hand side of eq. (4.19) derives from substituting expressions (4.17) for C; and 77 into the last term on the right-hand side of eq. (4.15) and using expression
+(4.9) for Vl ;the J, are Bessel functions.
+The Euler-Lagrange equation with respect to a leads to
+
+where
+k(r, t) Qr, w(r, t) -at
+
+(4.10)
+
+where we have used the approximation of an infinitely thin galaxy with cylindrival polar coordinates r , 9, z (origin at the galactic centre, axis at right angles to the galactic plane), and where we have used already Laplace's equation to get the factor e-'kz'. The quantity m which is equal to the number of spiral arms must be an integer. If the averaging includes integration over z , we find that the second term on the right-hand side of eq. (4.8) averages to
+
+((VV, VVl )) -- -IkM
+
+8nG
+
+8nG
+
+(4.1 1)
+
+which was the starting point of Norman's discussion of galactic
+
+density waves.
+
+As far as the Lagrangian (4.8) is concerned, the first term on
+
+the right-hand side corresponds just to the last term on the
+
+(g) right-hand side of eq. (4.19) and to get
+
+we must now
+
+average that term over the particle distribution function f(v, r)
+
+so that
+
+e2=) d2vf(v,r)Uz) ((VV, VV, ))
+8 nG
+
+(4.22)
+
+where v is the velocity in the galactic plane; this leads to
+
+(1 + n(k, w ; m ,r )
+
+(4.23)
+
+To find the average of the first term on the right-hand side of eq. (4.8) we note that it corresponds to the interaction of the particles in the galactic disc with the perturbed potential. Let us, therefore, start from the single-particle Lagrangian, using the epicyclic approximation. The position of the guiding centre in its circular motion around the galactic centre is r, 9, to
+
+where we have used eq. (4.1 1) and where n is the linear re-
+sponse function which is, for instance, given by Lin, Yuan, and
+Shu [24] .
+From the Euler-Lagrange equation with respect to A we find
+the dispersion relation
+
+which we must add the epicyclic motion with coordinates, E,
+a / r , and the perturbed motion due to the density wave, r l , s l / r .
+
+1 + - 2nG n(k, w ;m, r)
+Ikl
+
+Consistently with the WKB approximation, which in our case is
+
+(4.24)
+
+the tight-winding approximation, we can take k , t , and 77 to be which, of course, for the linear case can also be derived starting
+
+of an order of smallness (measured, say, by a parameter E ) from the equations of motion [ 151 . Mikhailovskii, Petviashvili,
+
+higher than r. We can now expand the single-particle Lagrangian and Fridman [20, 251 considered the dispersion relation in
+
+(up to terms of order E ~ ) :
+
+the form derived by Toomre [26] for the case where the gas
+
+pressure is taken into account and the oscillations are assumed
+
+L = L-,+L-,+Lo+L1+Lz
+
+(4.12) to be adiabatic from which follows the following expression
+
+where (L-l and L 1 average out to zero)
+
+for the growth rate y:
+
+L - 2 = & r Z a 2- V(r)
+
+(4.13) y2 = -2aKo -k2c: + 2nG~oIk1,
+
+(4.25)
+
+L O = i(gz + a2tz+ 4at7j+7jz> - 1 V"(r>tz
+
+(4.14) where c, is the sound velocity and uo the unperturbed surface
+
+Physica Scripta 20
+
+Solitons 295
+
+density in the disc. They also showed that the first-order
+
+perturbation v1 of the azimuthal velocity satisfies the non-
+
+linear differential equation
+
+;( ;).,t 52
+
+= y;v* + hIv1 I2v1,
+
+(4.26)
+
+where yo is the maximum value of the growth rate, which occurs for k = k o ,and where
+
+(4.27)
+
+(4.28)
+
++ with y the adiabatic exponent (so that the pressure P 0: p y )
+and w r= m a (252K)1'2. As eq. (4.26) is an NLS we would expect soliton solutions
+to exist, and this is shown by considering a wavepacket. This is a standard procedure and leads to the following equation for VI (r, t)
+(4.29)
+
+where
+
+E kr+mS--wt cy2 = (w -mS2)2 - k2c:
+
+The solution of eq. (4.29) is
+
+vi([)
+
+=
+
+a -
+
+sech
+
+aC;
+
+b
+
+where
+
+(4.30) (4.31)
+(4.32)
+
+a = y;/cy2, h 2 = - h / 2 a 2
+
+(4.33)
+
+We notice that if yo2> 0, which means that the disc is un-
+stable, the soliton (4.32) is supersonic, while for a stable disc
+
+(7;<O), we have a subsonic soliton. One can easily trace
+from the formulae given here the conditions on the adiabatic exponent which must be satisfied for these two cases to be realized.
+
+References
+
+1. Gibbons, J., Oxford preprint 14/78; Physics Letters 67A, 22 (1978);
+
+unpublished Oxford D.Phil. thesis.
+
+2. Zakharov, V. E., Sov. Phys. JETP 35,908 (1972).
+
+3. Gibbons, J., Thornhill, S. G., Wardrop, M. J. and ter Haar, D., J.
+
+Plasma Phys. 17, 153 (1977).
+
+4* Thornhill, S. G . and ter H a , D., Phys. Repts. 43, 53 (1978). 5. Zakharov, V. E. and Shabat, A. B., Sov. Phys. JETP 3 4 , 6 2 (1972).
+
+6 . Wadati, M., Sanuki, H. and Konno, K., Progr. Theor. Phys. 5 3 , 4 1 9
+
+(1975).
+
+7. Whitham, G. B., Linear and Non-linear Waves, Wiley, New York,
+
+1974.
+9": Yuen, H. C. and Lake, B. M., Phys. Fluids 18, 956 (1975). Benney, D. J. and Newell, A. C., J. Math. Phys. 46, 133 (1967).
+
+Hasimoto, H. and Ono, H., J. Phys. Soc. Japan 33, 805 (1972).
+
+11. Stokes, G. G., Math. Phys. Papers 1, 197 (1847).
+
+.II
+I L.
+
+Lake, B. M., Yuen, H. C., Rungaldier, H. and Ferguson, W. E.
+
+J. Fluid Mech. 83, 49 (1977).
+
+13. Benjamin, T. B. and Feir, J. E., J. Fluid Mech. 27, 417 (1967).
+
+14. Lake, B. M. and Yuen, H. C., J. Fluid Mech. 83, 75 (1977).
+
+15. Lin, C. C., in H. Y. Chiu and A. Muriel (ed.), Galactic Astronomy
+
+Vol. 2, Gordon and Breach, New York, 1970.
+ii:16, Dekker, E., Phys. Repts. 24, 315 (1976). Ikeuchi, S. and Nakamura, T., Progr. Theor. Phys. 55, 1419 (1976).
+Kaplan, S. A., Khodataev, K. V. and Tsytovich, V. N., Sov. Astron.
+
+Lett. 3, 7 (1977).
+
+19. Norman, C. A., Monthly Not. Roy. Astron. Soc. 182, 457 (1978).
+
+20. Mikhailovskii, A. B., Petviashvili, V. I. and Fridman, A. \I.J,ETP
+
+Lett. 26, 121 (1977).
+
+21. Fridman, A. M., SibIZMIR preprint 6-78.
+
+22. Whitham, G. B., J. Fluid Mech. 22, 273 (1965).
+
+23. Dewar, R. L., Astrophys. J. 174, 301 (1972).
+
+24. Lin, C. C., Yuan, C. and Shu, F. H., Astrophys. J. 155, 721 (1969).
+
+25. Mikhailovskii, A. B., Petviashvili, V. I., and Fridman, A. M., SibIZhlIR
+
+preprint 19-77.
+
+26. Toomre, A., Astrophys. J. 139, 1217 (1964).
+
+Physica Scripta 20
+

@@ -1,0 +1,6703 @@
+https://ntrs.nasa.gov/search.jsp?R=20110015936 2019-08-16T17:50:53+00:00Z
+Warp Field Mechanics 101 Dr. Harold “Sonny” White NASA Johnson Space Center
+2101 NASA Parkway, MC EP4 Houston, TX 77058
+e-mail: harold.white-1@nasa.gov
+Abstract:
+This paper will begin with a short review of the Alcubierre warp drive metric and describes how the phenomenon might work based on the original paper. The canonical form of the metric was developed and published in [6] which provided key insight into the field potential and boost for the field which remedied a critical paradox in the original Alcubierre concept of operations. A modified concept of operations based on the canonical form of the metric that remedies the paradox is presented and discussed. The idea of a warp drive in higher dimensional space-time (manifold) will then be briefly considered by comparing the null-like geodesics of the Alcubierre metric to the Chung-Freese metric to illustrate the mathematical role of hyperspace coordinates. The net effect of using a warp drive “technology” coupled with conventional propulsion systems on an exploration mission will be discussed using the nomenclature of early mission planning. Finally, an overview of the warp field interferometer test bed being implemented in the Advanced Propulsion Physics Laboratory: Eagleworks (APPL:E) at the Johnson Space Center will be detailed. While warp field mechanics has not had a “Chicago Pile” moment, the tools necessary to detect a modest instance of the phenomenon are near at hand.
+Keywords: warp, boost, York Time, bulk, brane
+Introduction
+How hard is interstellar flight without some form of a warp drive? Consider the Voyager 1 spacecraft [1], a small 0.722 mT spacecraft launched in 1977, it is currently out at ~116 Astronomical Units (AU) after 33 years of flight with a cruise speed of 3.6 AU per year. This is the highest energy craft ever launched by mankind to date, yet it will take ~75000 years to reach Proxima Centauri, the nearest star at 4.3 light years away in our neighboring trinary system, Alpha Centauri. Recent informal mission trades have been assessing the capabilities of emerging high power EP systems coupled to light nuclear reactors to accomplish the reference Thousand Astronomical Units (TAU) [2] mission in ~15 years. Rough calculations suggest that such a Nuclear Electric Propulsion (NEP) robotic mission would pass Voyager 1 in just a few years on its way to reaching 1000 AU in 15 years. While this is a handy improvement over Voyager 1 statistics - almost 2 orders of magnitude, this speedy robotic craft would still take thousands of years to cross the black ocean to Proxima Centauri. Clearly interstellar flight will not be an easy endeavor.
+
+Background
+The study of interstellar flight is not a new pursuit, and there have been numerous studies published in the literature that consider how to approach robotic interstellar missions to some of our closest stellar neighbors, with the objective of having transit times closer to the 100 year mark rather than thousands of years. One of the most familiar studies is Project Daedelus [3] sponsored by the British Interplanetary Society in 1970. The Daedelus study’s objective was to consider a 50-year robotic mission to Barnard’s star, which is ~6 light years away. The spacecraft detailed in the report was quite massive weighing in at 54000 mT, 92% of which was propellant for the fusion propulsion system. For comparison, the International Space Station is a “modest” ~400 mT, thus the Daedelus spacecraft is nearly the equivalent of 150 International Space Stations. Project Longshot [4], a joint NASA-NAVY study in the late 1980’s to develop a robotic interstellar mission to Alpha Centaury, produced a 400 mT (67% propellant) robotic spacecraft that could reach Alpha Centaury in 100 years. At one ISS of mass, this vehicle is easier to visualize than its heftier older cousin, Daedelus. There are many other studies that have been performed over the years each having slight permutations on the answer, primarily depending on the integrated efficiency of converting propellant mass directly into spacecraft kinetic energy (matter-antimatter being among the best). All results are of course bounded by the speed of light, meaning earth-bound observers will likely perceive interstellar transit times of outbound spacecraft in decades, centuries, or more.
+
+Alcubierre Metric
+
+Is there a way within the framework of current physics models such that one could cross any given cosmic distance in an arbitrarily short period of time, while never breaking the speed of light? This is the question that motivated Miguel Alcubierre to develop and publish a possible mathematical solution to the question back in 1994 [5]. Since the expansion and contraction of space does not have a speed limit, Alcubierre developed a model (metric) within the domain of general relativity that uses this physics loop hole and has almost all of the desired characteristics of a true interstellar space drive, much like what is routinely depicted in science fiction as a “warp drive”.
+
+The metric that is discussed in the paper is presented in equation 1. This uses the familiar coordinates, (t, x, y, z) and curve x = xs(t), y = 0, z=0 where x is analogous to what is commonly referred to as a spacecraft’s trajectory.
+
+𝑑𝑠2 = −𝑐2𝑑𝑡2 + [𝑑𝑥 − 𝑣𝑠(𝑡)𝑓(𝑟𝑠)𝑑𝑡]2 + 𝑑𝑦2 + 𝑑𝑧2
+
+(1)
+
+In this metric, vs is defined as the velocity of the spacecraft’s moving frame, dxs/dt, and rs is the radial position in the commoving spherical space around the spacecraft’s origin. The f(rs) term is a “top hat” shaping function that is defined as:
+
+𝑓(𝑟𝑠)
+
+=
+
+tanh�𝜎(𝑟𝑠
+
++ 𝑅)� − tanh�𝜎(𝑟𝑠 2 tanh(𝜎𝑅)
+
+−
+
+𝑅)�
+
+The parameters σ and R when mapped into the metric given in equation 1 control the wall thickness and radius of the warp bubble respectively. For very large σ, the wall thickness of the bubble becomes exceedingly thin, approaching zero thickness in the limit. The driving phenomenon that facilitates speedy travel to stellar neighbors is proposed to be the expansion and contraction of space (York Time) shown in equation 2. Figure 1 shows several surface plots of the York Time surrounding the spacecraft. The region directly in front of the spacecraft experiences the most contraction of space, while the region directly behind the spacecraft experiences the most expansion of space. The phenomenon reverses sign at the x = xs symmetry surface. As the warp bubble thickness is decreased, the magnitude of the York Time increases. This behavior when mapped over to the energy density requirements will be discussed in the next section.
+
+𝜃
+
+=
+
+𝑣𝑠
+
+𝑥𝑠 𝑟𝑠
+
+𝑑𝑓 𝑑𝑟𝑠
+
+(2)
+
+Figure 1: York Time, θ, is depicted for several different warp bubble wall thicknesses, σ.
+The energy density shown in equation 3 for the field has a toroidal form that is axisymmetric about the x-axis, and has a symmetry surface at x = xs. The energy density is exactly zero along the x-axis. For a fixed target velocity vs and warp bubble radius R, varying the warp bubble thickness σ changes the required peak energy density for the field at a fixed velocity. Figure 2 shows the relative change in energy density for several warp bubble wall thicknesses. As is evident when comparing the magnitudes, as the warp bubble is allowed to get thicker, the required density is drastically greatly reduced, but the toroid grows from a thin equatorial belt to a diffuse donut. The advantage of allowing a thicker warp bubble wall is that the integration of the total energy density for the right-most field is orders of magnitude less that the left-most field. The drawback is that the volume of the flat space-time in the center of the bubble is reduced. Still, a minimal reduction in flat space-time volume appears to yield a drastic reduction in total energy requirement that would likely outweigh reduced real-estate. Sloppy warp fields would appear to be “easier” to engineer than precise warp fields. Some additional appealing characteristics of the metric is that the proper acceleration α is zero, meaning there is no acceleration felt in the flat space-time volume inside the warp bubble when the field is turned on, and the coordinate
+
+time t in the flat space-time volume is the same as proper time τ, meaning the clocks on board the spacecraft proper beat at the same rate as clocks on earth.
+
+𝑇00
+
+=
+
+−
+
+1 8𝜋
+
+𝑣𝑠2𝜌2 4𝑟𝑠2
+
+�𝑑𝑑𝑟𝑓𝑠�2
+
+(3)
+
+Figure 2: Energy density, T00, is depicted for several different warp bubble wall thicknesses, σ.
+
+The concept of operations as described by Alcubierre is that the spacecraft would depart the point of origin (e.g. earth) using some conventional propulsion system and travel a distance d, then bring the craft to a stop relative to the departure point. The field would be turned on and the craft would zip off to its stellar destination, never locally breaking the speed of light, but covering the distance in an arbitrarily short time period of time just the same. The field would be turned off a similar standoff distance from the destination, and the craft would finish the journey conventionally. This approach would allow a journey to say Alpha Centauri as measured by an earth bound observer (and spacecraft clocks) measured in weeks or months, rather than decades or centuries.
+
+A paradox identified in [6] is an issue that arises due to the symmetry of the energy density about the x = xs surface. When the energy density is initiated, the choice in direction of the +x-axis is mathematically arbitrary, so how does the spacecraft “know” which direction to go? Comparing Figure 1 to Figure 2 visually displays the asymmetry of the York Time and the symmetry of the energy density. Both sets of three frames were purposely aligned to make direct comparison easier. This asymmetry/symmetry paradox issue can be potentially resolved when considering the canonical form of the metric derived by using a gauge transformation in [6] as shown in equation 4.
+
+𝑑𝑠2
+
+=
+
+(𝑣𝑠2𝑓(𝑟𝑠)2
+
+−
+
+1) �𝑑𝑡
+
+−
+
+𝑣𝑠𝑓(𝑟𝑠) 𝑣𝑠2𝑓(𝑟𝑠)2−1
+
+2
+𝑑𝑥�
+
+−
+
+𝑑𝑥2
+
++
+
+𝑑𝑦2
+
++
+
+𝑑𝑧2
+
+(4)
+
+Using this canonical form, the field potential φ and the boost γ can be determined using the standard identity γ = cosh(φ). They are, respectively:
+
+𝜙
+
+=
+
+1 2
+
+ln|1
+
+−
+
+𝑣𝑠2𝑓(𝑟𝑠)2|
+
+and trivially, 𝛾 = cosh �12 ln|1 − 𝑣𝑠2𝑓(𝑟𝑠)2|�
+
+Using this new information, a modified concept of operations is proposed that may resolve the asymmetry/symmetry paradox. In this modified concept of operations, the spacecraft departs earth and establishes an initial sub-luminal velocity vi, then initiates the field. When active, the field’s boost acts on the initial velocity as a scalar multiplier resulting in a much higher apparent speed, <veff>= γ vi as measured by either an earth bound observer or an observer in the bubble. Within the shell thickness of the warp bubble region, the spacecraft never locally breaks the speed of light and the net effect as seen by earth/ship observers is analogous to watching a film in fast forward. Consider the following to help illustrate the point – assume the spacecraft heads out towards Alpha Centauri and has a conventional propulsion system capable of reaching 0.1c. The spacecraft initiates a boost field with a value of 100 which acts on the initial velocity resulting in an apparent speed of 10c. The spacecraft will make it to Alpha Centauri in 0.43 years as measured by an earth observer and an observer in the flat space-time volume encapsulated by the warp bubble. While this line of reason seems to resolve the paradox, it also suggests that the York Time may not be the driving phenomenon, rather a secondary result. In this physical explanation of the mathematics, the York Time might be thought of as perhaps a Doppler strain on space as this spherical region is propelled through space. A pedestrian analog to use to help envision this concept would be to consider the hydrodynamic pressure gradients that form around a spherical body moving through a fluid – the front hemisphere has a high pressure region while the rear hemisphere has a low pressure region. Analogously, the warp bubble travelling through space-time causes space to pile up (contract) in front of the bubble, and stretch out (expand) behind the bubble. Figure 3 depicts the boost field for the metric, and shows that the toroidal ring of energy density creates spherical boost potentials surrounding a flat space-time volume. Also note pseudo-horizon at v2f(rs)2=1 where photons transition from null-like to space-like and back to null like upon exiting. This is not seen unless the field mesh is set fine enough. The coarse mesh on the right did not detect the horizon.
+
+Figure 3: Boost plots for the field
+
+Chung-Freese Metric
+
+Additional work has been published that expands the idea of a warp drive into higher dimensional space-times. In 2000, Chung and Freese [7] published a higher dimensional space-time model that is a modified Friedmann-Robertson-Walker (FRW) metric as shown in equation 5. The idea of a higher dimensional model is that the standard 3+1 subspace exists as a “brane” embedded in this higher dimensional space-time labeled the “bulk.” The size and number of extra dimensions are not explored in this paper; rather the discussion will stick to the original form of the published metric.
+
+𝑑𝑠2
+
+=
+
+−𝑐2𝑑𝑡2
+
++
+
+𝑎2(𝑡) 𝑒2𝑘𝑈
+
+𝑑𝑋2
+
++
+
+𝑑𝑈2
+
+(5)
+
+The dX2 term represents the 3+1 space (on the brane), while the dU2 term represents the bulk with the brane being located at U=0. The a(t) term is the scale factor, and k is a compactification factor for the extra space dimensions. A conventional analogy to help visualize the brane-bulk relationship, consider a 2D sheet that exists in a 3D space. The 2D inhabitants if the “flat-land” subspace have a manifold that is mapped out with the simple metric, dx2 + dy2, where this can be viewed as being analogous to the dX2 term in equation 5. The remainder of the 3D bulk space is mapped by the z-axis, and anything not on the sheet would have a non-zero z-coordinate. This additional dz2 term is, from the perspective of the 2D inhabitants, the dU2 term in equation 5. Anything not on the 2D sheet would be labeled as being in the
+bulk with this simplified analogy.
+
+In order to illustrate the mathematical relationship between a “hyper drive” and a warp drive, the nulllike geodesics for the Chung-Freese metric will be considered and compared to the conjectured driving phenomenon in the Alcubierre metric, the boost. The equation for the null-like geodesics for equation 5 is (setting c=1):
+
+𝑑𝑋 𝑑𝑡
+
+=
+
+𝑒𝑘𝑈 𝑎(𝑡)
+
+�1
+
+−
+
+𝑑𝑈2 𝑑𝑡2
+
+If dU/dt is set to 1, then a test photon that has a velocity vector orthogonal to the brane would have a zero speed as measured on the brane, dX/dt=0. If a test photon has dU/dt=0, but arbitrarily large U coordinate, dX/dt will be large, possibly >>1. Remember that c was set to 1, so dX/dt >1 is analogous to the hyper-fast travel character of the Alcubierre metric. The behavior of the null-like geodesics in the Chung-Freese metric becomes space-like as U gets large. The null-like geodesics in the Alcubierre metric become space-like within the warp bubble, or where the boost gets large. This suggest that the hyperspace coordinate serves the same role as the boost, and the two can be informally related by the simple relationship 𝛾~𝑒𝑈. A large boost corresponds to an object being further off the brane and into the bulk.
+
+Mission Planning with a Warp-enabled System
+To this point, the discussion has been centered on the interstellar capability of the models, but in the interest of addressing the crawl-walk-run paradigm that is a staple of the engineering and scientific
+
+disciplines, a more “domestic” application within the earth’s gravitational well will be considered. As a preamble, recall that the driving phenomenon for the Alcubierre metric was speculated to be the boost acting on an initial velocity. Can this speculation be shown to be consistent when using the tools of early reference mission planning while considering a warp-enabled system? Note that the energy density for the metric is negative, so the process of turning on a theoretical system with the ability to generate a negative energy density, or a negative pressure as was shown in [8], will add an effective negative mass to the spacecraft’s overall mass budget. In the regime of reference mission development using lowthrust electric propulsion systems for in-space propulsion, planners will cast part of the trade space into a domain that compares a spacecraft’s specific mass α to transit time. While electric propulsion has excellent “fuel economy” due to high specific impulses that are measured in thousands of seconds, it requires electric power measured in 100’s of kW to keep trip times manageable for human exploration class payloads. Figure 4 shows a notional plot for a human exploration solar electric propulsion tug sized to move payloads up and down the earth’s well – to L1 in this case. If time were of no consequence, then much of this discussion would be moot, but as experience shows, time is a constraint that is traded with other mission constraints like delivered payload, power requirements, launch and assembly manifest, crew cycling frequency, mission objectives, heliocentric transfer dates, and more.
+The specific mass of an element for an exploration architecture or reference mission can be determined by dividing the spacecraft’s beginning of life wet mass by the power level. Specific mass can also be calculated at the subsystem level if competing technologies are being compared for a particular function, but for this exercise, the integrated vehicle specific mass will be used. The transit time for a mission trajectory can then be calculated and plotted on a graph that compares specific mass to transit time. This can be done for a few discrete vehicle configurations, and the curve that fits these points will allow mission planners to extrapolate between the points when adding and subtracting mass, either in the form of payload or subsystem, for a particular power level. Figure 4 shows a simple plot of this approach for two specific impulse/efficiency values representing notional engine choices. It is apparent from the graph that lower specific impulse yields reduced trip times, but this also reduces delivered payload. However, if negative mass is added to the spacecraft’s mass budget, then the effective specific mass and transit time are reduced without necessarily reducing payload. A question to pose is what effect does this have mathematically? If energy is to be conserved, then ½ mv2 would need to yield a higher effective velocity to compensate for apparent reduction in mass. Assuming a point design solution of 5000kg BOL mass coupled to a 100kW Hall thruster system (lower curve), the expected transit time is ~70 days for a specific mass of 50 kg/kW without the aid of a warp drive. If a very modest warp drive system is installed that can generate a negative energy density that integrates to ~2000kg of negative mass when active, the specific mass is dropped from 50 to 30 which yields a reduced transit time of ~40 days. As the amount of negative mass approaches 5000 kg, the specific mass of the spacecraft approaches zero, and the transit time becomes exceedingly small, approaching zero in the limit. In this simplified context, the idea of a warp drive may have some fruitful domestic applications “subliminally,” allowing it to be matured before it is engaged as a true interstellar drive system.
+
+Figure 4: Trip time to L1 as a function of Beginning of Life (BOL) specific mass.
+Advanced Propulsion Physics Lab: Eagleworks
+A good question to ask at the end of this discussion is can an experiment be designed to generate and measure a very modest instantiation of a warp field? As briefly discussed by the author in [9], a Michelson-Morley interferometer may be a useful tool for the detection of such a phenomenon. Figure 5 depicts a warp field interferometer experiment that uses a 633nm He-Ne laser to evaluate the effects of York Time perturbations within a small (~1cm) spherical region. Across 1cm, the experimental rig should be able to measure space perturbations down to ~1 part in 10,000,000. As previously discussed, the canonical form of the metric suggests that boost may be the driving phenomenon in the process of physically establishing the phenomenon in a lab. Further, the energy density character over a number of shell thicknesses suggests that a toroidal donut of boost can establish the spherical region. Based on the expected sensitivity of the rig, a 1cm diameter toroidal test article (something as simple as a very highvoltage capacitor ring) with a boost on the order of 1.0000001 is necessary to generate an effect that can be effectively detected by the apparatus. The intensity and spatial distribution of the phenomenon can be quantified using 2D analytic signal techniques comparing the detected interferometer fringe plot with the test device off with the detected plot with the device energized. Figure 5 also has a numerical example of what the before and after fringe plots may look like with the presence of a spherical disturbance of the strength just discussed. While this would be a very modest instantiation of the phenomenon, it would likely be Chicago pile moment for this area of research.
+
+Figure 5: Warp Field Interferometer layout (here, φ is the phase angle).
+Conclusion
+In this paper, the mathematical characteristics of the Alcubierre metric were introduced and discussed, the canonical form was presented and explored, and the idea of a warp drive was even considered within a higher dimensional manifold. The driving phenomenon was conjectured to be the boost field as opposed to purely the York Time which resolved the asymmetry/symmetry paradox. An early idea of a warp drive was briefly discussed within the context of mission planning to elucidate the impact such a subsystem would have on the mission trade space. Finally, a laboratory experiment that might produce a modest instantiation of the phenomenon was discussed. While it would appear that the model has nearly all the desirable mathematical characteristics of a true interstellar space drive, the metric has one less appealing characteristic – it violates all three energy conditions (strong, weak, and dominant [9]) because of the need for negative energy density. This does not necessarily preclude the idea as the cosmos is continually experiencing inflation as evidenced by observation, but the salient question is can the idea be engineered to a point that it proves useful for exploration. A significant finding from this effort new to the literature is that for a target velocity and spacecraft size, the peak energy density
+
+requirement can be greatly reduced by allowing the wall thickness of the warp bubble to increase. Analysis performed in support of generating the plots shown in Figures 1 and 2 also indicate a corresponding reduction in total energy when converted from geometric units (G=c=1) to SI units, but still show that the idea will not be an easy task. So it remains to be seen if the evolution of the phrase penned by J. M. Barrie in the story Peter Pan will ever be uttered on the bridge of some majestic starship just embarking on a daring mission of deep space exploration taking humanity beyond the bounds of this solar system and boldly going out into the stars: “2nd star to the right, straight on till morning…”
+Godspeed…
+References
+[1] Available at: http://voyager.jpl.nasa.gov/mission/fastfacts.html
+[2] Nock, k. T., “TAU – A Mission to a Thousand Astronomical Units”, 19th AIAA/DGLR/JSASS International Electric Propulsion Conference, Colorado Springs, (1987).
+[3] Bond, Martin, “Project Daedalus: The Mission Profile,” JBIS: Project Daedalus Final Report (1978).
+[4] Available at: http://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19890007533_1989007533.pdf
+[5] Alcubierre, M., “The warp drive: hyper-fast travel within general relativity,” Class. Quant. Grav. 11, L73-L77 (1994).
+[6] White, H., “A Discussion on space-time metric engineering,” Gen. Rel. Grav. 35, 2025-2033 (2003).
+[7] Chung, D. J. H., and Freese, K., “Can geodesics in extra dimensions solve the cosmological horizon problem?,” Phys. Rev. D 62, 063513 (2000).
+[8] White, H., Davis, E., “The Alcubierre Warp Drive in Higher Dimensional Space-time,” in proceedings of Space Technology and Applications International Forum (STAIF 2006), edited by M. S. El-Genk, American Institute of Physics, Melville, New York, (2006).
+[9] S.W. Hawking and G.F.R. Ellis, The Large Scale Structure of Spacetime, Cambridge University Press, (1973).
+
+
+
+
+
+
+
+
+
+ 
+
+ ¦
+
+©
+
+
+
+§¨ ¦
+
+¢
+
+¤
+
+¥
+
+
+! "
+" !
+
+
+¡
+
+¢
+
+£
+
+H
+
+&
+
+I
+
+8
+
+&
+C &
+E 1
+
+9
+
+E(
+
+A
+
+B
+
+9
+
+E(
+
+A
+
+B
+
+F 2
+
+H
+0 D
+8 0
+
+% & A
+D ) D
+H F
+A ) 1
+
+& (
+D 7
+)
+6
+A % G
+5 )
+
+345
+
+0 12
+&
+) '(
+%0
+
+&
+
+'()
+
+#$
+
+%
+
+F
+0
+1 E
+C
+DE
+
+B
+
+C
+
+B
+
+A
+
+B
+
+A
+
+&
+
+9@
+
+&
+
+8
+
+"
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+
+
+§
+
+¡
+
+¨
+
+¨
+
+¡
+
+¥
+
+¦
+
+!
+
+"
+
+£
+
+ ¡
+
+ ¦ ¨
+¤ 
+
+¢§ 
+¨
+
+
+
+§
+
+¨
+
+¡
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+¥
+
+¡
+
+
+
+ 
+
+§ ¨©
+
+¦ £
+¥
+
+¤ ¢§
+
+¥¦
+
+£
+
+¤
+
+¢
+
+¡
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+¦
+
+§ " 
+¦ ¦
+¥
+
+¨ 
+
+©
+
+
+
+¥
+
+¦
+
+ ©
+
+§
+
+¤
+
+¥
+
+¨
+
+¦
+
+
+¤ ¡
+§ ¦  ¡ ¥ ¨
+¦ ¦
+
+
+¤ ¡
+
+ 
+¢ ¡ 
+§ ¨©
+
+¥ ¦§
+ ¨ 
+ 
+ ¨
+
+§ "
+
+¥
+
+
+
+¦ £
+¥
+¤ ¢§
+
+¥¦
+
+£
+
+¤
+
+¢
+
+¡
+
+¦ ¦
+
+ ©
+
+§
+
+¤
+
+¥
+
+¤
+
+£
+
+£ "
+£
+!
+
+• • • • •
+
+•
+–
+• •
+–
+• •
+
+¡
+
+¢
+
+§ £
+ &
+¦
+¢ 
+¥ ¤  
+
+¡
+
+¨
+
+
+
+¡
+
+
+
+
+
+%
+
+&
+
+#$
+
+ !
+" " "
+
+2
+0 ) 0 1
+
+© ¨
+&  §
+§
+0 ¢ 
+
+
+
+¦
+
+0
+
+
+
+©
+¨ & 
+§
+£ ©
+¢ §
+© )
+
+
+
+!
+
+ §
+
+¢
+¨  ¤ ¤
+
+
+
+¡
+
+¢
+
+§ 
+
+& ¤ ¤  
+
+¡
+
+¢
+
+§ £
+¤
+
+¢
+¤  
+
+ §  £
+ ¢ 
+¤ 
+
+¨
+
+©
+
+¦
+
+§
+
+¤¥
+
+£ ¢
+
+¡
+
+¢
+
+ ¢
+
+
+
+'
+
+¨
+§ " " (
+
+¢ £
+¤ §
+
+¤ 
+© ¨
+& ¤ ¦
+¥  £ &
+
+
+¢
+ & ¦ ¦
+ ¢
+¤ ¨
+¤ ¤  
+
+©
+¨ & ¤
+ ¥
+
+¤
+¨ ¡
+
+' ¨
+§ 3
+£
+&
+© ¨
+ ¦
+§ © £ ¢ £
+¥ 
+
+ §  £
+ ¢ 
+¤ 
+
+© ¨
+
+
+© ¨
+
+¦
+
+§
+
+¤¥
+
+£ ¢
+£ §
+ &
+
+
+¢ ¤
+
+¥ ¦
+
+4
+
+¢
+
+ ¢ 5
+
+¡
+
+¢
+
+§ © 
+¡
+
+§ £
+
+¢ § § 3
+¢
+4
+
+£ ¢
+¨ 
+
+
+ 4
+
+¥ ¤ § ¤ ¨ ¡
+§ £
+ &
+© ¨
+& §
+¥ ¦
+& 0
+
+©
+¨ & ¤
+¦
+¥
+ £ &
+
+¤ ¢ ¦
+¥
+ £ 
+
+¦
+
+¢
+
+ ¥ ©
+
+¡
+
+¢
+
+§ 4
+
+¢
+ ¢
+
+& § ¦
+¢ 
+¥ 
+© ¨
+3 ¢
+%
+8
+
+¡
+
+7
+
+¨ § 
+
+ §
+!
+"
+"
+
+¢ ©
+&
+& § §
+© ¦
+¢ 
+¨  ¥ @
+¢ ¤ §
+ &
+¦ 
+
+© ¨
+3 ¢
+¤ 4
+£  4
+© 
+¤ §
+¤ 9
+  4
+& §
+ 3
+
+¦
+
+¢
+
+3
+
+¨ ¤
+
+
+ ¢
+
+£ ¢
+ &
+
+
+
+6
+
+& ¤ ¤  
+ ¡
+¨ § 
+
+¨ §
+3
+
+
+
+
+
+'
+
+¤ ¨
+¤ ¤  
+
+¢ ¤ §
+¤ 
+
+¤
+¨ ¡
+
+'
+0 ) 0
+
+A
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+
+
+§
+
+¡
+
+¨
+
+¨
+
+¡
+
+¥
+
+¦
+! "
+£ 
+¡
+
+ ¦ ¨
+¤ 
+
+¢§ 
+¨
+
+
+
+§
+
+¨
+
+¡
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+¥
+
+¡
+
+
+
+ 
+
+§ ¨©
+
+¦ £
+¥
+
+¤ ¢§
+
+¥¦
+
+£
+
+¤
+
+¢
+
+¡
+
+5
+¤ 
+
+¥
+
+¤
+
+¦
+
+%
+
+Q
+
+E(
+
+ 4
+ ¤ 
+
+3
+
+
+
+§  
+
+3  £ §
+¡2 
+ 
+# 
+
+¨
+
+
+
+¨
+
+ 
+ 
+
+#
+   ¤
+
+  ¦ § £ 
+ ¤
+
+¦
+
+¤
+
+
+
+
+¤ 
+
+7 H
+
+)
+
+$
+
+%
+
+8
+
+G
+¨ )
+ 
+
+§
+
+¡
+
+£
+
+¢
+
+¡ P
+
+I
+
+¡
+
+I
+
+7
+
+¤
+
+¦
+
+§
+
+¥ §
+
+¦ 
+ 
+©  ¤  £
+ £ %
+
+# 
+¦ §
+
+$
+
+ 
+¤
+
+&
+£ 
+
+
+
+
+
+
+
+
+
+¤
+
+¦
+
+  
+ 
+
+
+ £  
+# £ § 
+
+£ 
+% 
+¦
+§ 
+
+ £  
+# ¤
+£   
+§  
+
+
+¦ 
+
+¦     ¤ B
+
+ "
+¡ D
+7 
+
+¤ 
+
+#
+
+%
+
+§
+
+7 ¨ ¨ ¤
+ 
+
+
+
+
+¤
+
+$
+
+
+
+£
+
+  ¦ 
+ ¨
+§
+
+¦
+
+¤
+
+
+
+
+
+§
+
+¦ ¤
+ )
+¨
+$
+ §
+
+ ©
+£ 3
+§ ¨
+
+ 3 
+ 
+
+ ¤
+£ § #
+¦ $  9
+
+
+& 
+
+§
+
+¤
+
+¥
+
+
+
+
+
+%
+
+¤
+
+¦
+
+
+
+
+
+
+
+£ 
+
+$ 
+
+ ¥
+
+¤
+
+¦
+
+
+
+
+
+
+
+
+
+
+
+# ¨
+
+  £   §
+¨
+
+§ 
+
+  £ 
+
+ 
+ 
+§
+¡ 
+
+¦ 01
+A 
+
+(
+
+)
+
+'(
+
+ 
+
+
+¡
+
+&
+
+
+
+¦
+
+¤
+
+
+
+
+
+¤
+
+
+¦ §
+£
+
+¡@
+
+¤
+
+%
+
+£
+
+!
+
+ 
+
+
+3 7
+
+¤ 
+
+
+
+¥
+
+¤
+
+¦
+
+£
+
+
+
+%
+$ 
+
+¦ §
+
+ §
+
+¨
+
+©
+
+
+
+ ¤
+
+¤
+
+¦
+
+
+
+
+
+! 7
+GH
+
+¦
+
+¤
+
+
+
+
+
+
+
+#
+
+$
+
+¦ "
+¤ £ 
+ 
+
+ § ¤
+¡!
+
+
+¦    
+ 
+
+
+
+
+
+ 
+§ £
+
+¨
+
+
+
+§
+
+
+
+¦ 
+
+¤
+
+
+
+£
+
+
+
+
+
+
+
+¦ §
+
+¨
+
+©
+
+¨
+
+§
+
+¤
+
+¦
+
+¤
+
+¥
+
+£
+
+¡¢
+
+© 
+£ %
+$  #
+¦ §
+
+§   £
+
+
+
+
+
+ ¨ 9
+§
+
+§ 
+
+ ¤ 
+
+¤ 
+ 
+
+¦
+
+¤
+
+
+
+¨ 
+
+$ 
+
+F 1
+
+#E
+
+¦  ©  9
+ ¤ 
+ #
+ ¤  ¤
+
+¦  # ¤
+¦ $
+¦ §
+ 
+§
+¤ #
+
+
+¤
+
+¦
+
+
+¦ §
+
+ £ 
+
+ 
+
+
+¦
+ 
+¤ 
+ ¤ 8
+
+¥ ¦ § £
+¥ ¦  4 D
+C
+
+¡
+¥ §
+
+6
+
+7
+
+£
+
+
+
+§
+
+
+
+¨
+
+( 
+
+6 5 345
+
+0 12
+&
+) '(
+
+%0 7
+D
+F
+
+$
+
+1
+
+R
+1)
+$ H H $ Q
+
+
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+¦ 7
+& 2 G
+$
+& $
+
+H
+
+E
+
+H () E
+( D
+) F
+D )
+$ 8
+&
+$
+B H
+G
+) E & ( & 1
+3 E
+
+I
+(
+9 ) 2 8
+
+ C
+ ¡ 
+
+G @
+$ )
+¥ (
+9
+E(
+B
+
+ 
+ I
+
+7 ¡ ¡
+
+8
+) £¤
+7 Q
+C 7
+
+G
+C E © (
+& D C
+
+() ( ¢$
+) '
+H %
+
+E
+¨ '
+
+1 1
+C
+
+H
+
+E
+
+§
+
+5
+
+¡ C
+
+•
+– – –
+•
+– – – –
+
+ds2 = −dt 2 + (dx − vs f (rs )dt )2 + dy2 + dz2
+
+¦ © ¨ ¦§
+¡¢ ¥
+¤ £¤
+¡¢
+
+¡ ¨ 
+§ 
+¦ ¨ 
+¤ 
+
+
+¤ ¤ ¡
+§ 
+¦
+ ¤
+¡¢ ¡ 
+
+¤
+
+¨
+
+
+
+§  
+
+¤ 
+
+
+
+
+
+¤¤
+
+¤¤ 
+
+ ¢¢
+¡¢ ¡¢
+
+§ § ¤ ¦  £ ¨ 
+
+ 
+¤ 
+
+
+
+
+
+¤¤
+
+¤¤ 
+
+ ¢¢
+¡¢ ¡¢
+
+tanh(σ
+
+(rs
+
+f
+
+(rs )
+
+=
+
++ R))− tanh(σ (rs
+2 tanh(σR)
+
+−
+
+R))
+
+θ
+
+=
+
+vs
+
+xs rs
+
+df (rs ) drs
+
+@
+
+¦ © ¨  £
+ ¢  ¦ © £
+£¤
+¡¢
+
+¡ ¨ 
+§ ©
+ ¦ © 
+¦ ¨
+
+©
+¦ © ¨ 
+£ ¢ © !
+
+
+¤ ¡ ©  ¡
+¡ ¨ 
+§
+
+3
+#
+$ ) 2
+1 0
+()
+
+'
+
+0
+
+()
+
+&' %
+$
+
+"
+
+#
+
+6 # ' 9
+8 1 $ 9
+
+6 #
+
+7
+
+8
+
+6 # ' 0 16
+45
+)
+
+) 8 1
+5
+3 0
+#
+
+
+
+9
+
+@
+
+
+
+
+
+678 
+
+5 4
+
+
+3
+(3 
+
+¦
+
+1
+
+2
+
+©
+
+
+
+)0 (
+
+$
+
+§¨
+
+¦
+
+&
+
+'
+
+E 
+AE
+! " C D
+AD
+C !
+"
+ AB
+
+
+¢
+
+#
+
+$
+
+%
+
+¤
+
+¥
+
+¡
+
+¢
+
+£
+
+1  
+¦
+
+
+
+0
+
+¥
+
+ )
+
+(
+
+¦ ¨ % %
+¡ % '
+§
+¢ ¤ &
+
+¦ ¨
+%
+
+¤ 
+¢ ¤
+
+
+¦
+
+
+
+
+
+¡
+¨ ©
+
+
+¢ 
+¦
+¦ 
+
+¤  $
+¢ 
+¦
+¦ 
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+"#
+
+¥ 
+"#
+!
+
+
+
+
+
+¦
+
+
+
+
+
+
+
+© ¢ 
+£ ©
+
+
+
+
+
+©
+
+¨ §
+
+¥¦
+
+£
+
+¤
+
+¡¢
+
+• •
+
+  ¦
+
+
+
+0
+
+¥
+
+ )
+
+(
+
+¦ ¨ % %
+¡ % '
+§
+¢ ¤ &
+
+¦ ¨
+%
+
+¤ 
+¢ ¤
+
+
+¦
+
+
+
+
+
+¡
+¨ ©
+
+
+¢ 
+¦
+¦ 
+
+¤  $
+¢ 
+¦
+¦ 
+
+"#
+
+¥ 
+"#
+!
+
+
+
+
+
+ 
+£ ©
+
+
+
+
+
+©
+
+¨ §
+
+¥¦
+
+£
+
+¤
+
+¡¢
+
+• •
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+
+
+
+
+9
+
+@
+
+
+
+
+
+678 
+
+5 4
+
+
+3
+(3 
+
+¦
+
+1
+
+2
+
+©
+
+
+
+)0 (
+
+$
+
+§¨
+
+¦
+
+&
+
+'
+
+E 
+AE
+! " C D
+AD
+C !
+"
+ AB
+
+
+¢
+
+#
+
+$
+
+%
+
+¤
+
+¥
+
+¡
+
+¢
+
+£
+
+2
+
+
+
+)
+
+df (rs drs
+
+
+
+y2 + z2)
+4rs 2
+
+vs2 (
+
+8π
+
+1 G00 = − 1
+
+8π
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+H
+C £
+) D
+C ©
+) ¦
+7 F D
+$
+( D ) F $ ) D
+
+$
+
+%)
+
+&
+
+(
+
+I )
+
+I )
+& $
+
+I
+
+% ) E
+9 1
+D
+
+D 0
+
+$
+
+1
+
+1 0
+
+'
+1 % R$
+
+ 
+C
+¦ ¥¦   
+¥¦
+
+I ¥¤
+£
+¥¦ 7 5
+7 ¢
+C ¤
+7
+
+&
+$ 8
+) ¡
+
+G
+C E © (
+
+¡ C
+
+•
+– – –
+
+"
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+H
+C £
+) D
+C ©
+) ¦
+7 F D
+$
+( D ) F $ ) D
+
+$
+
+%)
+
+&
+
+(
+
+I )
+
+I )
+& $
+
+I
+
+% ) E
+9 1
+D
+
+D 0
+
+$
+
+1
+
+1 0
+
+'
+1 % R$
+
+ 
+C
+¦ ¥¦   
+¥¦
+
+I ¥¤
+£
+¥¦ 7 5
+7 ¢
+C ¤
+7
+
+&
+$ 8
+) ¡
+
+G
+C E © (
+
+¡ C
+
+• –
+•
+–
+
+
+
+
+
+
+
+¤ ¨ 
+
+
+© §
+©
+
+
+γ Φ = cosh(Φ)
+
++ dz2
+
++ dy2
+
+− dx2
+
+2 dx
+
+
+ds2 = −dt 2 + (dx − vs f (rs )dt)2 + dy2 + dz2
+
+1
+
+f (rs ) (rs )2 −
+
+(
+
+¥
+
+$
+
+# 3
+¤ 1
+
+8 '
+6 #
+16
+
+8
+
+6 '
+£
+
+# 6
+
+'
+
+0
+
+6 # ' 9 1
+2
+¢
+
+) ) ¡ 9
+
+) 8
+6 '
+
+§
+
+©
+
+)
+
+'
+
+¨
+
+$
+
+) §
+
+¦ )
+
+16
+8 9
+0 # # ¦
+) ¡
+9
+
+2Φ [ ]
+− e c2 = vs2 f (rs )2 −1
+
+
+
+
+
+£
+
+
+
+¦ ¨ 
+ ¢ 
+
+
+Φ
+
+=
+
+1 2
+
+ln[
+
+1−
+
+vs 2
+
+f
+
+(rs
+
+)2 ]
+
+
+
+¨
+
+§
+
+
+
+
+
+¤ ¨
+
+
+
+© § © 
+ ©
+
+
+ ©
+
+¦§
+ ¢ 
+  ¦
+ ¤ © !
+¤ 
+
+
+
+
+!
+
+
+
+¢ ¨
+
+¨
+
+
+
+
+
+
+
+
+
+9
+
+@
+
+
+
+
+
+678 
+
+5 4
+
+
+3
+(3 
+
+¦
+
+1
+
+2
+
+©
+
+
+
+)0 (
+
+$
+
+§¨
+
+¦
+
+&
+
+'
+
+E 
+AE
+! " C D
+AD
+C !
+"
+ AB
+
+
+¢
+
+#
+
+$
+
+%
+
+¤
+
+¥
+
+¡
+
+¢
+
+£
+
+vs 2f
+
+vs
+
+]
+−1 dt − 
+
+(rs )2
+
+f
+
+vs 2
+
+=[
+
+ds 2
+
+A
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+" " " "
+
+• • •
+γ • •
+– – –
+
+¢
+¡ ¡
+
+¤ 1
+6 # ' 9
+6 ) ¨ 6 # 8 1
+1 0 ¡
+§
+16
+' $ 2 1
+9
+6 ¤
+)
+1 ¡
+5 ¤
+£
+§ 0 $ 1 £
+# 9 9
+2
+#
+§ 0 1
+) ¡
+9 3
+1 $
+8 ) 8 1
+5 0 ) ¡ 9
+()
+2
+0 £
+0
+
+¥ 9 '
+8 # ¤
+)
+¨ ¤
+1
+' 9
+'
+6 '
+) ¡
+9
+6 #
+9 0 8 1
+¡
+8 ' ¡
+£
+§ §
+
+3
+#
+) 2 ¤ 1
+
+¨ 8
+
+§
+
+¨
+
+¦
+
+¨ 1
+¡
+9
+' £
+
+6 ' ¡
+8 1
+$ ) 3
+#
+) ¤ ¦
+1
+5 1
+8 (
+9 )
+¥ 0
+0 6 # ' ¤ 0 2
+5 # $
+5
+
+§ ¤
+) 3
+'
+9
+0 # # ¦
+1
+0 9
+) 1
+' 9
+'
+6 '
+9 3
+1 $
+8
+) 8 1
+5
+0 ) ¡ &
+
+¡ 9 $ 1
+)
+16 ¥ ¦
+§
+$ ) 2
+1 0
+()
+
+1 0
+$ 0 1
+¥ )
+
+©
+
+§
+
+¨
+
+§ ¥
+  
+ ¢ 
+
+ 
+ ¥  ¨ 
+
+6 ' '
+$ 2
+1 9
+
+¨ 8 §
+3
+# §
+
+6 ¤
+)
+1 ¡
+5 ¤
+£
+
+) ) 5
+0 9
+6 $ ) 1
+5 5 1
+16
+6 '
+¦
+6 '
+9 ¤
+2
+0 $ )
+
+# 9
+9
+'
+% ) 1 (
+
+¤ ¤
+' £
+
+9 3
+1 $
+
+8
+) 8 1
+5
+0 ) ¡ &
+
+$
+) $ ¨
+) ¦
+0
+#
+
+ £
+
+§ §
+¥
+§ ¦ 
+  
+
+§ §
+ 
+
+ ¦ ¦
+!
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+8 & )
+G H
+) 1
+10 D
+
+$
+
+1
+
+D0
+
+I ) $ ¥
+E &
+¤ (
+D
+) $
+1
+
+ C
+¦ ¦ ¥¦   ¡
+¤
+§ ¦
+7 ¥
+R§
+
+1$
+
+%
+
+¥
+
+G
+C £
+
+) ) 1
+F 0
+C 2 8
+D )
+#
+
+§ E
+£
+7 £
+C 7
+1
+
+¦ 7
+¦
+I H ¢
+)
+
+)
+) () ¥¢ D
+
+0 9( D
+
+$
+
+¥
+
+0
+
+E 7
+¢
+C ¡
+C R
+
+( 8
+0 H
+
+E
+
+F
+
+$
+
+%
+
+C 7 F
+D
+' 8 §
+
+H 0
+0 I 1
+
+%0
+
+¡ C
+
+•
+– – –
+
+ds2
+
+=
+
+−c 2dt 2
+
++
+
+a2 (t) e 2 kU
+
+dX
+
+2
+
++
+
+dU
+
+2
+
+¨ ¦
+)
+16 $ ¦
+
+) ¡
+9
+
+6
+# ¥
+
+) 8 1
+5 0 ¤
+
+ )
+¡ 9
+
+9 0
+6 )
+0 $ )
+5 $ )
+(
+$
+
+9 )
+£
+
+¡
+
+¢
+
+§
+
+¨
+
+¨
+
+§ 9 1
+§
+9 ) 1
+8 # ¤ ¦
+6 ' ¦
+)
+
+) 16 $ ¦
+
+) ¡
+9
+¡ 9
+' £
+% ¤
+2 ¦
+
+) ¡
+9
+
+9 0
+6 ) 0 $ )
+5 $ )
+(
+$
+9 )
+£
+
+¡
+
+§
+
+) ¡
+&
+
+) ¡
+&
+
+) 8 1
+5
+0 1 $ 9 4
+)
+) ¡
+9 $
+# 3
+$
+# 9
+8 1 3
+6 # ' 9 1
+8 3
+' '
+9
+8 1
+5 (
+# 8 1
+
+'
+
+0
+
+
+
+§
+
+16
+$ ¥
+# 9
+8 1 3
+
+) ¤
+1
+8 0 ) ¡ 9
+
+'
+
+0
+
+(
+
+$
+
+9 )
+¦
+
+¥
+
+
+
+©
+
+) ¡
+&
+
+¨
+0 6 # '
+0 6 ()
+' §
+
+9 1
+¡ 9 9
+) ) ¡
+0
+
+1
+$
+) §
+' 0 6 # 8 ¥ 5
+' ¡
+0 6 # ' 9 1 ¤
+$ ) % ¤ 2 ¦
+
+) 16 $ ¦
+
+) ¡
+9
+
+)
+
+'
+
+
+
+¤
+
+1
+
+2
+
+'
+
+0
+
+¨
+5 ¤
+
+) ¡
+
+# 9
+¥ ¦
+# ¤
+1
+16
+¤ 1
+6 # ' 9
+6 )
+¨ 6 # 8 £
+
+© ) 8 1
+5
+0
+ 
+1
+
+6 '
+9 0
+
+'
+
+0
+
+4
+
+)
+
+¡ 9
+' £
+9 2
+
+£
+
+¡
+
+¢
+
+# §
+) 5 5 1 (
+
+) ¡
+9
+# 9
+2 0
+# ¦
+
+'
+
+0
+
+9
+
+1
+
+¡
+
+9
+
+§ ¤
+
+# 3
+'
+16 (
+
+1
+
+)
+1 ¨ ¡
+
+)
+8 1
+
+# ¤
+1
+16
+¦
+6 ' ¦
+)
+1 0 §
+£ )
+) '
+¨ ¦
+)
+
+5 ¦
+0 2
+0 §
+16 ¤
+ 9
+1 ¤ 3 
+) ¡
+9 3
+#
+9 0
+16 9 ' ¦
+1 ¡
+6 '
+
+16 8
+
+'
+
+0
+
+¡
+
+9
+
+$ )
+) ¡
+£
+
+£ ¥
+
+¡
+
+
+
+¤
+
+£
+
+¡
+
+
+
+¥ 8 ' $ 9
+()
+
+) ¤
+5 (
+
+
+) ¡
+&
+
+' 0 )
+¡ 9
+
+(
+$
+9 )
+
+) ¡
+9
+
+6 # 9
+#
+6 ¦
+6 ' ¡
+9 ¥
+16
+§
+
+16
+
+¥
+
+'
+
+0
+
+4
+
+1 
+
+ ) ¡ 9 ¥ ¦
+§
+
+)
+5
+¨ 5 1
+9 )
+( 1
+
+'
+
+0
+
+)
+8 1
+
+5
+% 0
+¤ 2
+¦
+
+ 
+) ¡
+9 3
+# $
+) §
+6 '
+1 (
+$ )
+) ¡
+&
+
+6 ' §
+$
+# # 8
+
+ # $
+) 
+
+6 #
+6 1
+) 1 ¨ ¡
+§ ¤
+2
+# £
+9
+) ) ¡
+0
+
+¨ (
+$
+9 )
+£
+
+¡
+
+§
+
+) ¡
+9
+¥ 9
+0
+16 9 ' ¦
+1 ¡
+6 '
+
+
+) ¡
+9 3
+#
+
+)
+
+'
+
+¨
+
+9
+
+8 ) 5 $ 0
+) 5
+
+) ¡
+9 (
+
+# $
+3
+
+¥
+
+'
+
+0
+
+(
+
+$
+
+9 )
+£
+¡
+¤ 1
+
+6 # ' 9
+' §
+§
+1
+
+'
+
+0
+
+¡
+
+&
+
+@ §
+
+) 3
+'
+' ¤
+5 (
+
+'
+
+0
+
+'
+
+0
+
+¡
+
+9
+
+¡
+9
+' £
+
+% ¤
+2 ¦
+
+) ¡
+9
+6 '
+¦
+6 ' ¦
+)
+1 0 §
+) ¤ ¦
+) 1 ¤
+¦ )
+§ ¤
+2
+# £
+9
+) ) ¡
+0 
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+) ¡
+9
+
+6 # 9
+#
+6 ¦
+6 ' ¡
+9 ¥
+£ 6
+
+¥ ¨
+¦
+# ¤
+1
+16
+
+dX = cekU dt a(t)
+
+1
+
+−
+
+dU 2 c2dt 2
+
+γ ≈ eU
+
+¨ ) 8 1
+5 0 9 ) 1
+6 ' §
+$
+# # 8
+6 '
+6 # 9
+# ¡
+5 1 3
+# §
+) ) 5 0 ) ¡ 9
+
+'
+
+0
+
+¡ 
+7
+
+¡
+
+¢
+
+§
+9 ) 8 ) 45
+) 1 0
+
+¨
+
+¡ 
+7
+
+¡
+
+¢
+
+§ ¥
+¨
+
+§ $
+#
+
+§ ¤
+2
+# £
+
+) 16 $ ¦
+
+) ¡
+9
+# 9
+¤ 1
+
+6 # ¦
+# ¡
+9 $
+# $
+# 9
+8 )
+¨ ¥ 9 ' 8 # ¤
+)
+¨ 1
+1 0 ¡
+9 1
+¡ 9
+6 # 9
+# ¡
+
+§
+
+¨
+
+¨
+
+¡ 
+7
+
+¡
+
+¢
+
+¥ ) 16 $ ¦
+
+) ¡
+9
+6 # §
+
+5 $ )
+9 2
+0 1
+9 ) 0
+
+6 ) ¡ 9
+¥
+
+()
+1 0 §
+
+# 9
+9
+
+) 0
+
+'
+
+0
+
+¡ 
+7
+
+¡
+
+§
+
+3 ¡
+
+) ) 5
+0 # $
+)  1
+) 1 ¨ ¡
+
+¥ ¥
+¤ ¦
+
+'
+
+0 0 #
+5 5
+¥ ¥
+¦ ¦ ) $ 1
+¤
+¦ )
+¤ ¤
+' £
+
+¡ 
+7 7
+
+¡
+
+¢
+
+¤
+) 1 ¨ $ 9 9
+1 0 3
+ $
+) ¥ 5 ¡
+) ¡
+9
+
+¥ ¥ 9 ) 1
+6 ' §
+$
+# # 8
+
+# 9
+2 0
+# ¦
+# ¤
+1
+16
+
+§
+¦ ¦ ) $ 1 ¤ ¥ ¥ ¤ ' $ 1 $ 9
+' ¦
+$ 1
+9 2
+¦
+
+§ ¥ ¥
+¨
+¡ 
+7 7
+
+¡
+
+§
+
+1 0
+¡
+
+6 # 9
+# ¡
+5 5 9
+0 9
+) 1
+3 ¡
+
+'
+
+0
+
+¢
+
+¡ 
+7
+
+¡
+
+¢
+
+#
+0 ¥
+# 9 9
+) 0 1 0 £
+
+8 9
+1 ¡
+9 $
+¦ ) (
+()
+£ )
+¨ ¢ ¢
+
+¨ 8 ' $ 9
+()
+$ ) $
+) ' ¦
+2
+8 ¤
+£
+) ¡
+9 3
+# $
+9 )
+8 1 $ 1 ¡
+8
+
+§
+1 0
+% )
+' ¤
+
+) 8 1
+5 0 0 ()
+# 8 ¦ )
+8 '
+$ 9
+()
+
+) 0 ) $ )
+ ¦
+26 ¡
+¤
+
+) ¡
+9
+
+6 '
+0 8 '
+0 ) §
+#
+¦ )
+
+% )
+' ¤
+
+¤ ¤
+2
+
+6
+) ¡
+9 3
+# $
+# '
+1 ¨ ¡
+¦ )
+) ¡
+&
+
+¨
+¦ ) $ 1 ¤
+9 0
+¦ )
+
+$
+# ¥
+) ¤ ¦ ¦
+2 ¦
+$ 5 1 £
+
+) ¡
+9
+6 ' ¡
+9 '
+£
+% )
+' ¤
+
+) 8 1
+5 0 ()
+# 8 ¦ )
+8 '
+$ 9
+()
+
+$ ) $
+) ' ¦
+2
+8 ¤
+£
+
+) ¡
+9
+6 '
+0 8 '
+0 ) §
+# ¦ )
+% )
+' ¤
+ ¤ ¤
+2
+6
+) ¡
+&
+
+¨ ¦ ) $ 1 ¤
+9 0
+¦ )
+9
+0 # # ¦
+) ¡
+9
+$ )
+) ¡
+£
+
+¦ )
+
+16
+8
+# £
+9
+) ¡
+9 §
+16
+9 ¥
+0 # # ¦
+
+1 0
+) ¤
+# $
+
+()
+1
+0
+0 ) $ ¨
+) 0 9 ) 1
+6 ' §
+$
+# # 8
+) 8 1
+5 $ 0
+) ¥ 5 ¡
+9 1
+¡ 9 9
+0 ¦ ) ¦ 2
+
+0
+
+'
+
+0
+
+¡
+
+&
+
+¨ )
+¨ # ¦ 1
+5 ' ¡
+0 6 # ' 9 1 ¤
+$ )
+) ¤
+5 (
+'
+0 ¥ ¦
+§
+9 ) 1
+¤
+$ ) ¥ ¤ ¤ 1 (
+$
+# 3
+6 '
+
+1
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+• • • • • • • • • • •
+
+) )
+
+£ 4
+9
+)
+¦ 8
+8
+¢ '
+
+¨ @
+) ' (3
+9
+
+' ¤
+$ )
+' )
+
+9
+
+@
+
+¡
+
+$
+
+9
+
+@
+
+8 9
+' 
+8 ' $
+¡ ©
+97
+
+$
+3 '
+@ 8
+(3
+@
+
+0 @ $
+
+9
+
+@
+
+97 3
+978
+
+3 @ ¤
+3 @ @ ¦ ¡
+' 7
+(3
+
+¨ 8
+(3
+9 8
+' ¤ ) ¢ 8 ¢
+' 5
+
+¡ ¡ 8 ¥
+¡¤
+
+¤ 9
+¡ 8
+@ §
+(
+
+8 0
+
+1
+
+0
+
+9
+
+£
+
+3
+
+(
+
+@
+
+($ 8
+¢
+
+§ ¡
+
+978 (
+
+' 9
+¥
+¦
+
+% 0
+@ $ @ 0 ¡ 8 (3
+¤
+@ ¦
+) )
+¨ 8
+
+(
+9 '
+¡ ($
+¡
+
+4 £
+§ ' 9
+
+¡
+
+8
+ @
+
+'
+
+3
+
+@
+
+9
+
+(3
+
+0 4
+
+8 '
+
+ 3
+8 3 $ ¥
+9 
+(
+¡ ¡
+
+ $ @
+3 @
+ @
+9 8
+'
+
+@
+
+
+
+@
+¤ (
+
+3
+
+¢$
+
+9
+
+@
+
+( ¡
+£  @
+9 8
+'
+ @
+
+' $ @ 3 @
+( 9
+4 9
+
+3 ¡
+8 ¤
+
+) ¦ 8 8
+'
+
+9 $
+8 97
+
+@ §
+($ 
+4 9
+¡ 8
+3 @ 0 4
+ $ @ 3 
+
+¨ 8
+§
+
+9
+
+@
+
+¡
+
+4
+
+¡
+
+)
+
+' ¤ 9
+8 @ ($
+
+@ 97
+
+ @
+3
+ @
+9
+8 ¤
+ @
+
+
+@
+
+3 '
+
+0
+
+0
+
+' ) )
+¨
+8
+£ 
+ E
+
+9 %
+@
+ 0
+¥ ¦
+
+3
+8 ¨ 3
+(
+
+7
+
+¡
+
+¡
+
+'
+@ $ ¥ ¡ ¡
+
+¡ ¡
+§ '
+) )
+' $  @ (
+¡ ©
+9 
+
+@ ¢$
+ @
+9 8
+'
+ @ 3
+
+' $ ¤ @ ¤ ¢ ' ¡
+@ 97
+
+(3
+¡ ) 8
+¥ ¢ (
+¢$
+¤ 9
+$ 8
+¤ @ )
+@ 9
+¡ ¥
+
+@ ¤ ¢ ' ¡
+@ 0
+' 9
+$ 
+(
+9
+$ ¢ '
+9 ¡
+
+$ 97
+
+¨
+
+
+
+( )
+
+' ¤ ) ) ¨
+8 ¡
+
+ 3 ¡
+¥ 8
+9
+
+$ @ 3 3 ) ' ¢
+
+( 9
+ 
+@ ¡@ 
+% @ §
+9 8 9
+¡ 8
+3 ' 9 $ ( 9
+' ¡ ¡
+§ '
+¤ 
+
+3 @ §
+¢ ( )
+ @
+@ 0
+(3
+¡ ¡ 8 § 8
+
+£ (3
+
+8
+¤ 8
+@ ¢
+
+¡ ¡
+
+)
+
+8
+
+¡
+
+¥
+
+¢ @
+( $
+¢ ' ¢$ §
+
+@ ¤ ¢ ' ¡
+
+3
+
+(
+¤ 9
+' 97
+
+@ ¤
+3 @ $  @
+@ $
+3 
+
+8 ($
+
+¡ §
+
+9
+
+@
+
+¡
+
+4
+
+¡
+
+3
+
+§
+
+8
+
+'
+
+(
+
+0 (
+9
+3
+
+! 9
+¡@
+3
+8  E
+
+8
+
+ 3
+8 0
+
+8
+8 0
+4
+¦
+
+0 @ 3 §
+8
+
+$
+
+9
+
+@
+
+@ 0
+@ ¦
+
+3 ' ¤ 9
+3 @ §
+
+@ )
+@
+@ $ ¥ 9
+
+¤
+
+9
+
+@
+
+78 ¤ $ '
+3 '  (
+¡ ¡
+§ '
+
+¤ 
+8 ¤
+8 @ ¢
+2
+
+(3
+
+0
+
+9
+
+@
+
+9
+
+(
+
+) ¢
+
+) %
+ @
+@ )
+$ ¨ @
+( ¢
+@ 97
+4 ¦
+
+0 3 '
+
+0
+
+9
+
+@
+
+) ' ¥
+
+¤ )
+' ¤
+@ ¦
+
+¡ ¡
+§ '
+9
+¨ @
+ @
+) 
+8 (
+ 3
+8 3 3
+8  @
+¦
+¡ ©
+9 
+' $ ¤ @ ¤ ¢ ' ¡
+
+3 ' ¤ 4
+($ 9
+¤ @ "
+' 9
+$
+(3
+¡ ¡ 8 § 8
+' ($ 
+@ §
+9 8 9
+¡ 8
+3 ' $
+
+ @
+9 8
+¤ 
+@ 
+@
+@ 97
+
+ 3
+¤ ¥ 8
+0 @ $ 4
+)
+
+%
+@ §
+
+$ 8
+3 ¡ '
+¡ @
+
+97
+
+9
+
+£
+
+@
+ 0
+¥ ¦
+
+@ ¤ @
+3 9
+¥ (
+
+9 8 9
+¡ 8
+3 ' 9 $ ( 9 ¡ ¡
+§ '
+¤ 
+8 ¤
+8 @ ¢ ¡ ¡
+@ $ ¢ ' §
+(
+¤ 9
+' 97
+7 ¢
+' $
+
+
+¡ ¡
+§ '
+¡ ©
+9 
+
+97 ¨
+8
+0 @ ¤ ¥
+
+' $ ¤ @ ¤ ¢ ' ¡
+( 9
+0 @
+0 0
+' ¡
+
+0 @ $
+@ $ '
+@ §
+9 8 9
+¡ 8
+3 ' 9 $
+
+¡ 8
+¡
+§ '
+
+0
+3
+' ¡ ¡
+
+ @
+9
+8 '
+ @
+3 
+
+
+§ '
+¤ 
+8 ¤
+8 @ ¢ ¡
+
+  % 4 ) )
+' ¤ 9 8 § '
+@ 97
+
+$ @ 7
+ 78
+'
+)0
+@ 4 8 ( 9
+
+§ '
+ @
+' 7
+¡
+978 ¡
+
+0 @ @ 3
+)0 ¥ ( ¨
+)
+
+¡ %
+¡
+§ '
+3
+8 (3
+9 8
+¤ ¥
+0 @ $
+9
+3 @ $ ¢ ' ¢
+
+@ (
+0 9
+¤ 
+@ 
+@ 9
+' ¨ 7
+¡
+
+8 ¡@ ( ¢
+( 9
+
+(3
+
+% 0
+( '
+) 4
+
+9 ¡
+8
+@ ¥
+
+#
+
+$
+
+¢ '
+
+'( &
+
+' ($ 
+
+9
+
+@
+
+3
+
+¡
+' @
+
+97 3
+@ ¢ £
+
+0  @
+$ ¡@
+(3
+¤
+
+§
+(
+¤ ( 9 4 9
+
+@ ¦
+( 9
+¡
+4 8
+
+¤ ( 8 )
+ @
+0
+( 34
+
+ 02
+$
+1 @
+1
+0 3
+@
+
+
+
+8
+
+
+
+7
+
+' ( 9
+0 @
+) ¢ ¥ (
+¤ ¡ ¡
+§ '
+
+A
+
+ A@ A A
+
+
+
+9
+
+(
+
+(3
+9 ¥
+8 )
+( ¡
+3
+¡ 8
+@ 0 9
+3 ( 8 ¢
+'
+ 3 § 8 ¥ ¡ ¡ #
+
+A D
+C
+¡
+
+%
+ @
+
+8 @ §
+9
+8 9
+¡
+8 3
+' 9
+$
+
+$ 8 0
+¢
+$ ¨ '
+' 
+(
+
+0
+
+9
+
+@
+
+0
+
+8
+
+'
+
+¤ @ ¢ B
+@ £
+!
+
+@ 97 9
+¥ (
+
+97  @
+¨
+$ ¥
+8
+6 ¤
+$
+C @
+¨ @
+
+(
+) 
+§
+
+9
+
+@
+
+¡
+
+4
+
+¡
+
+ @ A
+
+
+
+9
+
+(
+
+¡ ¡
+
+'
+
+9
+
+@
+
+' $ @ 3 @
+ 3 ' ¤ 9
+
+' 97
+
+0 @
+) )
+9 ' ¡
+3 ¡ 8
+§ 8
+
+9
+
+@
+
+¡
+
+4
+
+¡
+
+ @
+$ 8 0
+¢
+
+$
+
+9
+
+@
+
+¡
+
+¥
+
+$ 97
+) )
+
+§ '
+¤ 
+8 ¤
+8 @ ¢ ¡
+
+&
+
+'
+
+6
+
+A@ A
+E
+
+' ($  ¡ 4
+' 0
+
+$ ¨ '
+9 ¡
+@ ( 0 §
+4
+$  @
+' 
+
+
+¡ ¡
+§ '
+ @
+9 8
+'  @ 3  (
+
+ A@ A A
+
+C D
+( 9
+¡
+
+9
+
+@
+
+' $
+
+
+
+9
+
+@
+
+3 9 8
+' 97
+4 9
+¡ 8
+3 @ 0 4
+
+ $ @ 3 @
+ @
+9 8
+'
+ @ 3
+
+' ¡
+)0 @ 4
+8 7
+¤
+¨ 78
+A E
+( 9 A
+
+9 §
+(
+ $
+
+0 @ ¢ ¢ (
+
+$ 0
+¡
+¡ 8
+¡
+§ '
+¤ 
+8 ¤
+8 @ ¢ ¡
+
+¡ %
+4
+' 0 A F
+C
+ (
+@ §
+
+9
+
+@ 97
+
+8 9
+¡
+
+£  @
+9
+
+8 3
+' 9
+$
+
+8 ¤ '
+3 @ ¨ 7
+
+0 @ ¤ ¥
+0 @ $
+
+¡ ¡
+§ '
+
+¡ ¤ 
+
+8 ¤
+8 @ ¢ ¡
+@
+
+@ §
+(
+¤ @ ¦
+
+97
+@ §
+£
+
+ @ A A A
+9 ¡
+@ 7
+¤ ( '
+¢$ ¢
+' ¡ ¡
+§ '
+
+9 8 9
+¡ 8
+3 ' 9 $
+@ 97
+
+9 %
+§ 8 ) 8
+@ 97
+
+0 3 ' £ (
+$ @ ¡G
+
+3 ( 8 $ @ G
+ 3
+
+ @
+9 8
+'
+ @ 3  (
+9
+3 ¥ ( §
+'
+@ 97
+¡ #
+
+@ 7
+¤ ( '
+¢$ ¢
+' 9 
+' $ ¤ @ ¤ ¢ ' ¡
+@ 97 
+(
+
+78 ¤ ( '
+¢$ ¢
+' £
+) )
+§ '
+¡ 4 )
+ 3
+8 0
+@ @ B ¤
+@
+
+0
+@ $ ¥
+9 @ §
+§ ' (
+¡
+
+@ ¦
+ @
+(
+
+9 '
+9 7
+4
+
+§ '
+ @
+$ 8 0
+¢
+$ ¨ '
+' 
+(
+' @ 0
+8 @
+97
+
+8  3 ¨
+8 (
+) )
+' 5
+4 £
+) )
+' 3 § 8
+) ¦ 8
+¥ ¡ 1
+¡
+(3
+
+9
+
+£
+
+B
+
+9
+
+@
+
+(3
+
+9
+8 ' ¤
+) ¢
+8 ¢
+
+' ¤
+
+§ %
+
+9
+
+@
+
+¡
+
+4
+
+¡
+
+ @
+
+$ 8 0
+$
+) '
+)
+
+9
+
+@
+
+¡
+
+$
+
+9
+
+@
+
+3
+8 @ ¥
+9 $
+
+' ¡
+'
+0 @
+
+¤ 
+
+0
+
+9
+
+'
+
+¡ @
+8 
+
+
+3
+
+8
+
+@
+
+)
+
+§
+
+¢ @
+
+8 ¡
+
+§ (
+
+¡ 8
+¡
+978
+3 
+
+0 )
+¥
+ 9
+¥
+8 
+$
+
+9 8
+8 @ ($
+
+@ ¦
+
+#6
+
+5
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+H DE
+
+$
+
+1
+
+D0
+
+D
+
+1
+E D
+
+$
+
+%
+
+I ) R$
+( 8
+F ) $ ¢
+D
+$
+G
+$ )
+R (
+9
+¡ E(
+() ( ¢$ ) ' H %
+8 5
+) £¤
+7 H
+C 7 1 G $
+R E
+7 ¢
+C 7
+& $ 8
+) ¡
+
+& $
+0 E
+
+$
+
+%
+
+H
+
+9 9
+
+¥
+D 5
+
+E F 2
+
+H
+0 D
+8 0
+
+%
+¤ )
+% ) E 9 6
+3
+
+1 F 0
+D
+$ ¥
+
+) % )
+0 9( D
+$ ¦
+7
+I ) & $
+I
+% ) E 9 6
+
+(
+I )
+7 P 5
+D
+
+©
+
+) H H
+I
+6
+C Q
+C
+
+¢
+
+2
+
+¥
+
+&
+$ ¥
+)
+7 
+)
+§ ¦ ¥¦
+
+I ¢
+¤ 6 5 
+
+I '
+( 0 ¢ H
+DE
+& $
+0 DE
+
+& (
+D
+) I
+
+ C
+§ ¦ ¥¦ 
+7 P
+Q ( 0
+B
+
+4 ) 7
+H H
+G $
+) H
+Q
+) 7
+1
+
+1$
+
+%
+
+2 8 #
+3
+
+0 &
+
+&
+
+'
+
+)
+
+& $
+1 D
+
+I
+
+¡ C
+
+ "
+
+ 
+ 
+ ¡
+ ¥
+
+ 
+
+¢
+
+§
+
+¥
+
+¥ 
+
+
+ ¥
+
+¦
+
+¢ 
+¦ 
+¢
+¦
+   ¢
+ ¡
+ 
+
+
+§¨
+¦ ¤ ¡
+
+¦
+  ¥ ¢  ¤
+ 
+¦ ¡
+ 
+
+£ ¢ 
+¦
+
+
+
+
+¥
+
+
+
+¥
+
+¥ 
+§ §
+
+§
+
+¤
+
+£ ¥
+
+ ¦
+¦
+
+¥ ¤    ¡
+¦ ¡
+
+¦
+
+  ¥
+
+
+ ¨ 
+¦ £
+ 
+
+
+
+ 
+§
+¡ ¦¢
+§
+
+¦
+
+¨
+
+§ 
+ ¡
+ §
+
+¥ ¦  
+¤  
+
+ ¨
+  
+¦ ¨
+
+
+ ¥
+
+
+
+
+
+¥
+
+ 
+
+¥
+¡ 
+ 
+
+¨ 
+¢  ¤
+ 
+ 
+¦
+
+¤  
+¢
+ 
+
+¦
+¢
+ ¢
+ 
+©
+
+
+
+
+
+
+
+
+
+¨  
+¢
+
+  £
+
+
+
+
+
+
+
+¦
+
+
+
+¢ £
+ 
+
+¦
+
+¦ 
+
+ 
+¢ §
+¨ ¥ ¨ ¦ 
+¦¢
+ ¢
+ 
+
+
+¢
+ ¢
+ 
+ 
+
+ ¦
+
+  § 
+¦
+
+¥ ¦
+
+¨
+
+λ
+
+
+
+ ¢ 
+¦
+§ §
+¥
+
+§
+
+
+
+
+
+¢
+  ¡ 
+
+  
+
+ 
+
+
+
+¦ ¤
+¢ 
+
+
+  ¥
+ ¦
+
+§¨ 
+ 
+
+¢ ¢ ¥
+§
+¡ ¥
+ ¢
+ 
+ 
+
+ 
+ ¥
+
+¢
+
+§
+
+¥
+
+
+
+
+
+
+
+¤
+
+¨
+
+ 
+ ¥
+ 
+ ¦
+
+ ¢  ¥
+
+
+¦ 
+
+ 
+¡
+ 
+¨  ¥ 
+ 
+¢  
+ ¦
+
+
+£ ¦
+ 
+
+¢
+
+ 
+
+
+
+¥
+
+
+
+ £
+
+
+
+
+
+§
+
+¥
+
+
+
+¢
+¥  ¡
+
+¤
+¨
+  § §
+¢ 
+
+¦
+ 
+
+¢
+§¨ 
+ 
+
+¢ ¢ ¥
+
+ ¦
+
+
+
+§¨
+¦ ¤ ¡
+
+
+
+
+
+¥
+
+ 
+
+ ¥
+
+§
+
+
+
+
+
+ 
+   ¢
+ 
+
+ 
+
+
+
+
+¥
+
+
+
+ 
+
+ ¦
+
+
+
+¨ ¤
+
+
+
+
+
+ 
+
+ ¥
+
+ 
+
+ 
+¨
+¨ £
+ ¦
+¢
+ §
+
+¥ ¡  
+ 
+¨
+
+£ 
+
+¡ 
+  
+¤
+
+  
+
+¦
+
+
+¦
+ 
+
+
+¢ ¢
+§ ¦ ¥ 
+  
+
+
+
+
+¥
+
+
+
+ ¨
+¢ 
+
+¨ 
+
+
+
+
+
+
+©
+
+ §
+¥ ¦
+ ¥
+¢  
+ 
+ §
+ £
+¢ ¥
+
+A  !
+ § 
+
+¦ ¤
+¢
+
+ §¨
+  
+ ¦ ¦
+
+¢ ¥  ¡ 
+  
+ 
+
+
+£ "     
+£ ¦
+      
+
+ ¥
+
+¦
+
+£
+¦ 
+
+
+ ¥ ¡
+  
+
+
+¢
+¨ ¦¢ 
+
+
+
+
+ 
+¢ §
+¥ ¨
+¦ 
+¦¢
+
+
+¥ 
+
+¢
+
+
+
+
+
+ § §
+¥ 
+ 
+
+¦ 
+
+
+φ
+
+ ¢
+
+¦ ¥
+
+ ¢ ¥  ¡
+
+¦
+ 
+
+
+ ¦
+
+ 
+
+ 
+©
+ £
+ 
+¦ ¡
+
+
+ §
+¥ 
+ 
+¦ 
+
+ 
+
+φ
+
+γ
+
+ ¨
+£ 
+ ¡
+¥ 
+
+
+
+¥
+
+
+
+¤  ¥
+¦¢
+§
+
+ ¦
+¡ 
+¥ ¦
+ 
+
+§¨
+¦ ¤ ¡
+ ¡
+ ¢
+
+¥ 
+ 
+¦ 
+
+ 
+
+¡ A   
+ £
+
+¦ 
+
+ ¦
+
+  ¥ 
+
+
+
+
+¡ 
+
+¤ 
+¢  
+
+ 
+§ 
+ ¥ ¢
+¦ ¨
+
+
+¡
+
+
+
+
+
+¦
+
+§ 
+£
+
+¥ ¦
+ 
+ ¥ ¤ 
+
+
+
+
+
+
+
+¥
+
+£
+
+ ¡
+ 
+
+
+¢ 
+
+¡
+
+
+ £
+
+
+
+
+
+
+§
+
+¥
+
+
+
+§
+
+
+
+¥ ¡ 
+
+
+
+ 
+§ 
+¢
+ ¤
+
+ ¦
+¦
+
+ §
+
+ 
+ ¦
+
+ 
+¡ 
+¥ ¦ 
+
+ ¦ ¤
+
+
+¦ 
+¨  ¥  
+¥ §
+¦ 
+£
+ 
+
+
+¢  
+  
+¥  §¨
+¦ ¤ ¡
+
+ ¥  £
+ ¢
+¨
+¦¢
+
+¡
+
+
+
+
+
+  ¥
+¢
+
+ ¥
+§ §
+¥
+¦
+
+
+
+
+
+
+
+¨
+
+¨
+
+
+
+£
+ ¥
+
+¡ ¥
+¦ 
+
+ 
+¢
+¥  ¦ §  
+
+
+¥ 
+¦
+ ¢
+
+§
+
+¥
+
+
+
+¦ 
+
+§¨
+¦ ¤ ¢
+
+¡ £
+ ¢ ¡
+ 
+§ 
+
+¨ 
+
+
+
+ 
+
+¢
+
+
+
+
+
+"
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+•
+
+•
+
+ 
+¨
+
+¤ ¦
+
+¤
+
+¡
+
+¥
+
+§ ©
+ £
+
+§ ¤ §
+£ 
+
+
+
+¤
+
+¤ 
+© 
+
+¤ 
+
+
+
+¤
+
+¦
+
+¤ 
+¤ ¨ 
+¡ 
+¢
+
+
+
+¤
+
+¤ 
+
+¢ 
+¢ 
+¢ ¦
+
+¨
+
+
+
+§
+
+£¤ ¦
+
+ ¤
+¤ 
+
+
+
+¤
+
+¦
+
+¨
+
+
+
+¤
+
+ ¢
+
+¢ 
+
+¢
+
+£
+
+
+
+¤
+
+¡
+
+¨ 
+
+¤ ¦
+¤  ©  
+¤ § ¢ 
+
+
+¢ ¤ 
+©
+
+ ¤ 
+¤ ¦ ©
+© 
+ ¨
+
+¨ ¥ ©  ¡
+¦ ¨ 
+£¤
+¢ 
+¡
+
+£¤ ¨
+ ¤ 
+
+
+§
+
+
+
+¤
+
+ § £
+¤
+¤
+¤ 
+¨ 
+  ¡ ©
+¨
+
+
+
+¤
+
+¢
+
+
+
+£
+
+¢  ¤ © 
+ 
+
+¡¢
+
+
+
+
+
+£¤
+
+¡¢
+
+§ ©
+¦ © ¨  £
+ ¢  ¦ © £  ¦ © ¨
+¦§
+
+¡¢ ¥
+¤ ©
+
+λ
+
+¤ ¦
+©
+
+¦
+¨
+© §  
+¢  ¨ 
+¡
+
+§
+
+¨
+
+§
+
+ 
+
+¦
+
+ 
+
+ ©
+
+¢ ¤  
+
+¦ ¨
+¤ 
+£¤ ¨
+ ¤ 
+
+ © £     
+¢ ¤ ¦
+§ § ¡¢
+© 
+
+
+¤ § ¢ 
+¤ ¦
+
+¤
+
+¡
+
+¥
+
+¢ ¤ 
+©
+ 
+¡¢
+
+¤
+
+¨
+
+
+
+
+
+¢ 
+ ¤
+
+£¤
+ £ ¦
+¨   ¨
+
+§ ¦ © ¨
+  ¤  
+¤ ¨
+¡ 
+¢
+§ ©
+
+ 
+
+
+
+¤
+
+§
+
+
+
+¤
+
+£¤ ¦
+¤ §  ¤ 
+
+¤ 
+ 
+© £ 
+§ 
+¢ 
+
+§
+¢ ¤ 
+ ¨ 
+¡
+§ ¦
+¤ ¤
+ § ¤
+
+
+¨ 
+§
+¤ § ¢  ¡
+
+¨
+
+§
+
+
+
+¨ 
+
+§
+¤ § ¢  ¡
+
+©
+
+¤ 
+ £
+¨ ¦
+ ¢ 
+
+¤  ¨
+©   ¡
+
+¤ 
+
+
+ ¢
+£
+
+
+
+¤
+
+¤ 
+
+ ©
+
+
+
+ 
+¦
+¤ ¨
+£ ¨
+£ §
+
+¤ 
+
+
+
+
+¤
+
+£
+
+ ¢
+
+¥
+
+! ¤ 
+
+
+¤
+¤ 
+
+¦ ©
+
+¦ ¨
+§ § £¤ ©  ¡
+
+¢ ¦
+
+¨
+
+
+
+£ ¨
+
+
+¢ ¦ 
+
+£ ¢  
+¤ ¨
+¤ 
+
+©
+¤ § ¢  ¡
+ ¦
+¢
+¤ 
+
+
+¦ ¨
+§ 
+
+ £
+¨ ¦
+
+¢ 
+
+ § 
+¤ 
+©
+
+
+
+£ ¢ ¨ 
+ ¤ ©
+
+¤ 
+
+© 
+¦ ©
+
+¨
+
+§
+
+
+
+¡¢ 
+© £  ¦
+
+¢ 
+
+ £
+§
+
+•
+
+•
+
+X (x, y)
+
+X1(x, y)
+
+M (x, y)e jφ(x,y)
+
+¦ © ¨ 
+¢ 
+ £
+¨
+§ 
+£ ¢ ¨ 
+¤ 
+£ ¦
+
+φ
+
+" "
+
+©
+ ©
+ ¡
+
+© £  ¦ © £
+©
+
+ 
+¤ ¨
+¡ 
+¢
+ § ©
+
+9
+
+@
+
+678
+
+5 4
+
+3 (3
+
+1
+
+2
+
+)0 (
+
+$
+
+&
+
+'
+
+E AE
+C D
+AD C
+AB
+
+#
+
+$
+
+%
+
+¦ © ¨ 
+¢ 
+ £
+¨
+§ 
+£ ¢ ¨ 
+¤ 
+£ ¦
+
+ ©
+ £
+
+
+
+¤
+
+¤ 
+
+
+¢
+¤ ¦ ¨ 
+
+©
+
+¦ ©
+£¤ ¨
+ ¤    ¨
+§
+
+¦ © ¨ 
+¢ 
+ £
+¨
+§ 
+£ ¢ ¨ 
+¤ 
+£ ¦
+
+ ©
+ £
+
+
+
+¤
+
+¤ 
+
+
+¢
+¤ ¦ ¨ 
+
+©
+
+©
+£¤ ¨
+ ¤    ¨
+§
+
+! E % A A
+D 
+E E A
+D 
+9 AD
+D £
+E 9
+ %
+' $
+
+) %
+
+!
+
+@
+
+% 3 @
+5
+£
+ 3
+$ 8
+@ @ 3
+8  3 @
+¤
+9 $
+8
+@ §
+
+@ §
+9 8
+ @ ¤ ¢ ' ¡
+(3
+
+(3
+¡ ¡ 8 ¥
+
+¡¤
+# 8 # 1
+
+£ &
+%
+
+£
+
+9
+
+@
+
+678
+
+% E
+
+“2nd star to the right, straight on till morning… ”
+Godspeed!
+
+"
+
+&
+
+I
+
+8
+
+&
+
+C (
+
+#
+
+¡
+
+5 #
+
+A
+9 9 ¢ A ¡
+¡
+¡
+A G
+F 0 1 E
+C DE
+
+% C
+F
+(
+
+B
+
+C
+
+B
+
+A
+
+B
+
+A
+
+&
+
+9@
+
+&
+
+8
+
+&
+
+E ¥
+D
+
+' 3
+1 0
+
+DE
+
+$
+
+1
+
+1
+
+0 1
+
+& ) 1
+& $
+
+E(
+
+¢
+
+2
+
+D
+
+& $
+0 $ ¥
+D
+
+()
+

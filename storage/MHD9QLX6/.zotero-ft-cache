@@ -1,0 +1,579 @@
+VOLUME 72, NUMBER 3
+
+P H YSICA L R EV I E% LETTERS
+
+Universal Scaling Laws in Fully Developed Turbulence
+
+17 3AXUARV 1994
+
+Zhen-Su She and Emmanuel Leveque* Department of Mathematics, University of Arizona, Zhcson, Arizona 85721
+(Received 12 July 1993)
+
+The inertial-range scaling laws of fully developed turbulence are described in terms of scalings
+
+of a sequence of moment ratios of scale E Th. ese moment ratios es"
+
+t—he (eesn+erg)y/(esd)iss(ippat=ion0,
+
+field 1, 2,
+
+e&
+...,)
+
+coarse form
+
+grained at a hierarchy
+
+inertial-range of structures.
+
+The most singular structures e& are assumed to be filaments, and it is argued that ~& t
+
+Furthermore, a universal relation between scalings of successive structures is postulated, which leads
+
+- e', - r„= to a prediction of the entire set of the scaling exponents: (eP) E &,
+
+—sp+ 2[1 —(s)"] and
+
+(av;)
+
+~„= ~+ 2[1 (-',) 1'].
+
+PACS numbers: 47.27.Gs
+
+An intriguing aspect of fully developed turbulence is the possible existence of universal scaling behavior of
+small-scale fluctuations. In large Reynolds number flows, at spatial scales E called inertial-range scales (Eo )& E &) t7, where Eo is the energy-injection scale and tl is the molecular dissipation scale), turbulent fluctuations reach a statistically quasiequilibrium state which is characterized by a continuous energy flux from large to small scales. The
+universal scaling behavior refers to the observation that all moments of fluctuations at scale E have a power-law dependence on E, and the scaling exponents are universal. Two fluctuating quantities are of special interest: the energy dissipation averaged over a ball of size E, et, and the velocity differences across a distance E, bv&. The scaling behavior of et and bvt is expressed as
+
+P". (bvt ) E~&, (et")
+
+(1)
+
+Under the Kolmogorov refined similarity hypothesis [1], which has recently received both experimental and nu-
+merical support [2], gz and rz are related, for positive p,
+
+by
+
+(„=p/3+ r„/s.
+
+(2)
+
+The existence of such a universal state was first pos-
+
+tulated by Kolmogorov [3] in 1941, who then presented a theory from which the scaling exponents are predicted
+
+with no adjustable constant. Kolmogorov (K41) assumes
+
+that all statistically averaged quantities at scale E depend
+
+only on the mean dissipation rate e and f. Dimensional
+
+r„= considerations then lead to the predictions that
+
+0
+
+P and
+At
+
+p
+
+t',~
+=
+
+=
+2,
+
+p/3, because it results in
+
+(e~r)
+the famous
+
+is independent of E. 2/3 law for the av-
+
+eraged kinetic energy fluctuations (bv~~). Nevertheless,
+
+extensive experimental [4] and numerical [5] studies during the last 30 years provide evidence that K41 is not
+
+)accurate: (& seems to deviate significantly from p/3 for
+p 3. This has been referred to as intermittency corrections to K41. A number of phenomenological models [1,6—12] have since been proposed to address this correction. All existing models, however, appeal to adjustable
+
+parameters, in the determination of („and r„, which ei-
+ther have no physical meaning, or cannot be determined
+by plausible physical arguments. In this Letter, we present a set of hypotheses about the
+statistical structures of small-scale fluctuations in turbulence. These assumptions lead to predictions of the
+entire set of scaling exponents of dissipation moments and velocity structure functions, without appeahng to adjustable parameters. Here, we characterize the energy dissipation field et [13] by a hierarchy of fluctua-
+tion structures: et" (p = 0, 1, 2, ...,) defined by the ra-
+tio of successive dissipation moments (e~&+ )/(8&). The two extreme characteristic structures of the hierarchy,
+e& and e&, are associated, respectively, to the mean
+fluctuation structure e and to filamentary fluid structures [14—16], in accordance to the two-fluid model [17]. As
+~ E 0, the mean dissipation e& is kept constant, while
+
+shows divergent scale dependence. A simple argu-
+
+ment leads to the determination of the scaling behavior
+of eI . et ~ E / It is furthe. r assumed that the seal-
+ing behavior of any intermediate fluctuation structures,
+say e&"+, is determined by a universal relation involving
+
+only e&" and e& scaling exponents
+
+. We then obtain an expression
+7„= —2p/3 + 2[1 —(2/3) "].
+
+for the
+
+Specifically, the intensity of the pth order dissipation
+
+structures er" is given by
+
+f („) (e~t+ )
+
+eq+'P(et)der
+
+where P(es) is the probability density function (PDF)
+f of et, and Q„(et) = e&P(et)/ etP(et)des. Note that
+
+Q„(et) is a weighted PDF for which e&" is the mathematical expectation. For reasonable P(et) (with a sin-
+
+gle maximum and exponentially decaying tail), e&" is a
+
+monotonically increasing sequence of p. Also, for large p,
+
+Q„(er) is strongly peaked around e&", indeed, it can be
+
+( shown that the variance of Q~(et) tends to zero as p goes
+
+to infinity, if e&
+
+oo. Therefore, Q„(e&) for large p
+
+336
+
+003 1-9007/94/7 2 (3)/3 36 (4)$06.00
+
+1994 The American Physical Society
+
+VOLUME 72, NUMBER 3
+
+P H YSICAL REVI EW LETTERS
+
+17 JANUARY 1994
+
+captures fluid structures with specific dissipation inten-
+~ sity ~&" . Moreover, as p oo, ~&" naturally approaches (oo) ~e
+Working with the quantities c&" is motivated as fol-
+lows. It has been observed in numerical experiment [18] that dissipation of high intensities displays a higher degree of coherence in space, and can therefore have differ-
+ent scaling properties. Since e&" probe dissipation structures of increasing intensities as p increases, the varia-
+tion of their scaling with p gives directly a differentiation of physical properties of these structures. We now pro-
+ceed in determining the scaling properties of e&" . First,
+by definition, s& is scale independent. It is just the mean field that Kolmogorov [3] used for determining all scaling properties of dissipation and velocity structure functions. The presence of anomalous scaling laws stems from a divergent scaling dependence of e& as E -+ 0 due
+to the presence of intermittent structures. ss is the coarse-grained intensity of the most intermittent struc-
+tures which, we assume, are isolated filaments. They are geometrical objects of dimension one embedded in
+thre=-dimensional space. The scaling behavior of ~& is determined by the following argument. Dimensionally, it can be estimated by a kinetic energy divided by a time:
+SE /ts. The anomalous scaling can enter here either through bE~ or through ts. We chose to have no anomalous scaling in ts, which amounts to setting a uni-
+form time scale for the dissipation of various intensities. This yields ts ~ i/sE2/s. The underlying physical picture is, roughly speaking, that the mixing rate of fluid elements which determine this time scale for the dissi-
+pation is homogeneous in space, irrespective of the amplitude of dissipation intensity (see the next paragraph). The largest available kinetic energy to be dissipated is 6vo, which corresponds to the situation of quasidiscontinuity in velocity fluctuations. We then obtain
+
+i~i
+
+) -2/3
+—/ g
+
+-2 s
+
+(4)
+
+&&s)
+
+A fluid mechanical picture of those extremely intermit-
+tent events e& is as follows. Associated with a strong fil-
+amentary structure are quasi-two-dimensional spiral mo-
+tions around the filament axis with only a small velocity component along the axis [19]. Such motions represent a remarkable coherence with respect to lower intensity fluctuations. These filamentary structures constantly en-
+train surrounding, less ordered fluid elements which, after being absorbed into the structure, also display quasitwo-dimensional motions. This entraining process therefore effectively dissipates their kinetic energy fluctuation along the axis of the filament, and since surrounding fluids do not move in any preferred direction, the dissipated energy is of the order of their total (fluctuating) kinetic energy ( bv&). The assumptions in the last paragraph
+
+imply that in the most coherent state, absorbed (dissi-
+
+pated) kinetic energy by coarse-grained structures is in-
+
+dependent of the length scale E and attains the typical
+
+amplitude of the large-scale kinetic energy. On the other
+
+hand, the rate of entrainment (the time scale of the dis-
+
+sipation) is independent of the degree of the coherence of
+
+the structures; this rate is associated with motions of fil-
+
+amentary structures as a whole. This assumption needs
+
+experimental verifications.
+
+This picture points out the nature of intermittency
+
+growth. It is the tendency towards the formation of local
+
+coherent structures that drives a strong deviation from
+
+the mean fluctuation level. In regions of these coherent
+
+structures, an equipartition of kinetic energy is realized
+
+(velocity difference is independent of length scale). Re-
+
+call that moving towards equipartition is the statistical
+
+interpretation of 3D energy cascade. While most turbu-
+
+lent structures cannot reach such an equipartition state
+
+because of the disordered motions of smaller eddies, the
+
+most intermittent structures, which correspond to rare
+
+and exceptional trajectories in phase space, have effec-
+
+tively achieved this goal by establishing remarkable co-
+
+~ r„~ herence locally.
+
+It follows
+—2/3, or rz
+
+from
+-+
+
+—(3s)pa+ndC(o4.)
+
+that This
+
+as p oo, r„+i —
+asymptotical law
+
+has
+
+received some support from the recent published experi-
+
+mental measurements [20]. A geometrical interpretation
+
+of the constant Co can be made through the Legendre
+
+transform: Co is the codimension of the very high in-
+
+tensity structures as l -+ g (see more discussion below).
+
+Since these high intensity structures are filaments, the
+
+—. Hausdorff dimension is 1; thus Co = 2. We then obtain
+
+r. = 'p+2+o(p) (p ~)
+
+(5)
+
+Characteristic dissipation intensities es" for finite p correspond to less singular and less coherent structures which may be geometrically more ribbon or sheetlike [15]. The scaling of s&" characterizes how singular the pth order structures are. These structures are results of the dynamics which intend to form very singular (e& ) struc-
+tures, but fail to fully accomplish it because of abundant
+surrounding disorder. In physical space, pth order structures of intensity e&" are mostly likely to be surrounded
+by structures of (p —1)th order having slightly lower in-
+tensity. In time, structures of intensity ~&" are also likely to occur before the formation of even higher intensity structures of pth order. This reasoning suggests that the scaling behavior of e&" may be related to that
+of es" and ez . We propose that the scaling behavior
+of e&"+ is determined by a universal relation involving
+and e& for all p. Specifically, we postulate
+
+=A e e
+
+0&P&1 (6)
+
+~ ~ so that as p
+
+oo,
+
+(s)
+e&
+
+(~)
+e&
+
+.
+
+A„are
+
+constants
+
+which
+
+337
+
+VOLUME 72, NUMBER 3
+
+PHYSICAL REVIEW LETTERS
+
+17 3AXUARV 1994
+
+are independent of E, but may depend on the specific geometry of the flow system. (There is no reason that they are universal. ) The correctness of (6) needs experimental verification. We believe that this relation is a consequence of some hidden (statistical) symmetries in the solution of the Navier-Stokes equations.
+It follows from (3) and (6) that for each p = 0, 1, 2, ...,
+~,+, —(1+/)~„+~+ P~„+ -', (1 —P) = 0.
+
+It can be verified that the asymptotic solution (5) is sat-
+isfied exactly. Let us pose 7„= —2/3p+ 2+ f(p) with
+f(oo) = 0; we then obtain a second order homogeneous
+
+difference equation for f(p):
+
+f f f(p + 2) —(1 + P) (p + 1) + P (p) = 0. (8)
+
+The only nontrivial solution of (8) is f(p) = o.P". The
+
+whole solution ~„must satisfy two boundary conditions
+7o = 0 and 7 y = 0. The first condition is derived from an
+
+| assumption that the support of dissipation is finite in the
+limit of zero viscosity, and the second is exact. These two
+conditions uniquely determine a and P: n = — o = —2
+
+; and P = 2/3. The final expression of w„ is then = —'p, + 2[1 —(-'. )"]
+
+(9)
+
+Using (2), we predict that
+( = p/9+2[1 —(-')" ']
+The present model predicts an energy spectrum bulence
+E(k) k ++ (~) =k ~
+
+(10) of tur-
+
+A widely used quantity [4,5], y„characterizing intermit-
+
+tency correction to K41 is the deviation from K41 of the
+
+exponent for the sixth order velocity structure function:
+
+(s = 2
+between
+
+—p.
+0.2
+
+Experimental measurements
+and 0.25. Here, we predict p,
+
+[4,5] give
+= 2/9.
+
+a
+
+p
+
+There has been much effort in both experimental stud-
+
+ies of laboratory turbulent flows and direct numerical
+
+simulations of the Navier-Stokes turbulence to measure
+the scaling exponents t',„of high-order velocity structure
+
+functions [4,5]. Although the accuracy of the measure-
+
+ments is not all satisfactory, expecially for large p where
+
+systematic errors may result from undersampling, qual-
+
+) itative features are clear: strong deviations from K41
+occur for p 3. Recently, Benzi et aL [21] made sig-
+nificant progress in accurately determining these scaling
+
+exponents. With the concept of extended self-similarity,
+
+they are able to extend by almost a decade the inertial
+
+range, allowing for significant improvement of the accu-
+
+racy of the numerical values of t',„(under a few percent
+for p up to 8, private communication from Benzi). In Table I, we compare our predictions (10) to their results.
+
+It can be seen that the agreement is very good.
+
+Legendre transform of vz, or (&, gives a conjugate description of the multiscaling behavior of turbulence. This
+
+TABLE I. Comparison of the measured scaling exponents
+(„from experiments [21] and the theoretical prediction (10).
+
+Order y Experiment [21] („ Theory (10)
+
+2
+
+0.71
+
+0.696
+
+K41 (~ = p/3
+0.667
+
+3
+
+1
+
+4
+
+1.28
+
+1
+1.279
+
+1
+1.333
+
+5
+
+1.53
+
+1.538
+
+1.667
+
+6
+
+1.78
+
+1.778
+
+2
+
+7
+
+2.01
+
+2.001
+
+2.333
+
+8
+
+2.22
+
+2.211
+
+2.667
+
+10
+
+2.60
+
+2.593
+
+3.333
+
+transformation can be calculated analytically here, which
+yields a function D(h), usually referred to as the fractal
+dimension of scaling exponent h. For („, the fractal di-
+mension D(h) is
+
+D(h)
+
+= 1 + cq (h
+
+—s ) —c2(h
+
+—
+s
+
+)
+
+ln(h
+
+—s ),
+
+(12)
+
+cI =31(1+lnln & lnzs
+
+) )'
+
+3
+ln2s
+
+h;„= ) It is interesting to note that D(1/3) = 2.97, D(0.381) =
+
+3, and
+
+1/9 0. The function D(h) was the
+
+basis for the multifractal interpretation [6] of turbulence
+
+scalings. It is natural to ask what their interpretation is
+
+in the present framework. We would like to argue that
+
+each individual exponent h in (12) may not be dynami-
+
+cally relevant; instead, a mean exponent h(p) should be
+
+introduced. Observe that
+
+@+1 g "dp =
+
+p+1
+h(p)dp = h(p).
+
+(13)
+
+Here, h(p) are exponents associated with the dissipation
+field. It is now clear that the scaling exponents of e&", 7.„+p —w„, are just the mean exponents h(p) integrated
+from p to p+ 1. Recall that e&" is the expectation of
+Q„(er) which are the central objects in the present description. The assumption (6) can also be understood as an invariant relation between the mean and relative dispersion of Qz(er) with respect to scale transformation. Since Qz(et) has finite dispersion at small p, they mostly select geometrical objects with a range of dissipa-
+tion intensities around s&("), reflecting uncertainty about
+tracing dynamically revelant objects of low intensities. This is quite consistent with the observation [18] that low intensity Quctuations have a considerable degree of randomness. h(p) can be interpreted as the mean scaling exponent of this range of objects. The uncertainty in exponents naturally leads to uncertainty in dimension estimate. As p increases, however, both exponents and dimensions become properties more specific to fluctua-
+tion intensities at e&", since the variance Var@ (et) tends to zero. Only there can geometrical objscts in space be clearly identified. These are the asymptotic filamentary
+structures.
+
+338
+
+VOLUME 72, NUMBER 3
+
+PH YSICAL REVI E% LETTERS
+
+17 3ANUARY 1994
+
+In 1974, Kraichnan [22] pointed out that once K41 is abandoned, a Pandora's box of possibilities is open and
+specific contact with the Navier-Stokes dynamics must be made in order to determine scaling properties of the inertial range. Phenomenological models, both the family of models of log-normal type for et [1,9—11] and those based on multiplicative processes [7,8] (motivated by the idea of multifractality [6]), are unable to relate themselves to the Navier-Stokes fluid dynamics. Consequently, parameters in those models cannot be determined by plausible arguments. The present work attempts to make a concrete connection to the Navier-Stokes dynamics. To summarize, two major assumptions are made in the present description: First, the self-similar structure expressed by (6) relates the scaling properties of structures of various intensities, which is, we believe, due to the quadratic nonlinearity of the underlying dynamics. Indeed, similar arguments can be carried out to analyze Burgers equation, a strongly intermittent case. Second, there is a class of structures that represents the most intermittent events; they are asymptotically filaments. The nature of
+these asymptotic flow structures is a specific property of the three-dimensional incompressible flows: only filamentary structures seem to be mechanically stable. In two-
+dimensional incompressible flows with strong enstrophy cascades, the corresponding structures may be instead point vortices, and the quantitative predictions should therefore be a little difFerent. What is interesting is that
+these two ingredients seem to fully specify the scaling properties of turbulence at inertial-range scales. Much
+work is in progress in digesting the mathematical content of the present work; results will be communicated in the near future.
+We thank Dr. J. Watkins for many interesting dis-
+cussions. This work is partially supported by AFOSR through the Department of Mathematics, the University of Arizona. Z.S.S. gratefully acknowledges the support of the Alfred P. Sloan Foundation.
+' On leave &om Observatoire de Nice, BP 229, F-06304
+Nice Cedex, France.
+[1] A.N. Kolmogorov, J. Fluid Mech. 18, 82—85 (1962).
+
+[2] G. Stolovitzky, P. Kailasnath, and K.R. Sreenivasan, Phys. Rev. Lett. 69, 1178 (1992); S.T. Thoroddsen and C.W. Van Atta, Phys. Fluids A 4, 2592 (1992); S. Chen, G.D. Doolen, R.H. Kraichnan, and Z.-S. She, Phys. Fluids A 5(2), 458—463 (1993).
+[3] A.N. Kolmogorov, C.R. Acad. Sci. URSS 80, 301—305 (1941).
+[4] There are many results, see, e.g., F. Anselmet, Y. Gagne,
+E.J. Hopfinger, and R.A. Antonia, J. Fluid Mech. 140,
+63—89 (1984).
+[5] A representative work is A. Vincent and M. Meneguzzi,
+J. Fluid Mech. 225, 1 (1991).
+[6] U. Frisch and G. Parisi, in Zbrbutence and Predictabil ity in Ceophysica/ F/uid Dynamics and Climate Dynam-
+ics, edited by M. Ghil, R. Benzi, and G. Parisi (NorthHolland, Amsterdam, 1985), p. 71.
+[7] R. Benzi, G. Paladin, G. Parisi, and A. Vulpiani, J. Phys.
+A 17, 3521—3531 (1984). [8] C. Meneveau and K.R. Sreenivasan, Phys. Rev. Lett. 59,
+1424-1427 (1987).
+[9] B. Castaing, J. Phys. (Paris) 50, 147-156 (1989). [10] L.C. Andrews, R.L. Phillips, B.K. Shivamoggi, J.K.
+Beck, and M.L. Joshi, Phys. Fluids A 1, 999 (1989).
+[11] S. Kids, J. Phys. Soc. Jpn. 60, 5 (1990).
+[12] Z.-S. She and S.A. Orszag, Phys. Rev. Lett. 66, 1701
+(1991).
+[13] The dissipation we consider here can be either a 1D cut
+v(du/dx) or the sum of all components vs;~s,~. We believe that both display similar behavior at high Reynolds
+numbers.
+[14] E.D. Siggia, J. Fluid Mech. 107, 375-406 (1981).
+[15] Z.-S. She, E. Jackson, and S.A. Orszag, Nature (London) 844, 226—228 (1990).
+[16] S. Douady, Y. Couder, and M.-E. Brachet, Phys. Rev. Lett. 6'7, 983 (1991).
+[17] Z.-S. She, Fluid Dyn. Res. 8, 143—158 (1991). [18] Z.-S. She, E. Jackson, and S.A. Orszag, Proc. R. Soc.
+London A 484, 101 (1991). [19] At the completion of this work, we noticed that a similar
+suggestion was made in a recent work by I. Procaccia and
+P. Constantin, Phys. Rev. Lett. 70, 3416—3419 (1993). [20] A. Bershedskii and A. Tsinober, Phys. Rev. E 48, 282
+(1993).
+[21] R. Benzi, S. Ciliberto, C. Baudet, F. Massaioli, R. Tripic-
+cione, and S. Succi, Phy. Rev. E 48, 29 (1993).
+[22] R.H. Kraichnan, J. Fluid Mech. 62, 305-330 (1974).
+
+339
+

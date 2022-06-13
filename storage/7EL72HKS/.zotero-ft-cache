@@ -1,0 +1,643 @@
+RADIO SCIENCE Journal of Research NBSjUSNC- URSI Vol. 68D, No . 7, July 1964
+VLF Propagation in' a: Compressible Ionospherel
+
+Richard B. Kieburtz
+Contribution From New York University School of Engineering and Science, Bronx, N.Y.
+(R eceived Januar y 28, 1964)
+The effect of fini te compressib il ity of the electron gas is taken in to acco un t in the calc ulat io n of t hc propagation constant a nd t he power carr ied by a VLF wave propagat ing in the ionosp here.
+The princip al r es ul t is that t he electromagnetic wave ("whistler" mode) a nd a quasi-aco ust ic or co mpressiona l wa ve are coupled near the critical, or max imum, a ng le of t he wav e norma l with res pect to the d irect ion of t he geo mag netic fi eld . Ncar t he critical a ngle, t he d irec tion of power ft ow is n o l onger co nst rain ed to lie wi t h in a nitrrow co ne of itngles a bou t th e geo magnet ic fi eld , bu t energy ca n p ropagate in a quas i-aco ll stic mod e at itll a ngles up to t he cri t ical ang le of t he wav e normal. Beca use of colli sio na l dampin g, t he cfl'ects of fin ite co mpr essibil ity d o not appear to be detectable unl ess t he electro n te mperat ur c in t he o u ter ionosphere cxceeds 10' °IC
+1. Introduction
+R ecen t expel'i men ts in comm u ni cation with satell ites and spnce probes II aye stim ulated consid erable in ter est in st udi es o f' pl'opagatio n or electro mag ne ti c wn \"es in ionized gases. Thi s interest l ias n ot b ee n co nfin ed to th e hi gh er l'ad io f'l'equen cies, but exte nciS to th e VLF band as well. Altho ugh mucll or th e ba si c pb el]om enon o r VLF propH,gation within th e ion os ph ere has been satis ractorily explain ed b y Storey [1953] and b y mOre r ecen t worker s (1'01' example, [Helliwell a nd Morgan , 19,59; Smi th , H elli well , and Y abrofl', 196 0 ; Yabrofl', 19 61]), in co nn ection with t b e stud y 0 (' atmosph eric " whi s tlers," the possibility o r pcrl'orming satellite experim ents [Lei ph art ct al. , 1962; Ca in et a1., 1961] at VLF, u tilizi ng a nten nas located wi thi n the ionosphere, afl'ord s t]le opportull ity o f' m easurin g oth e r efrec ts whi ch may not b e m easured directly from tllC g round.
+One 0(' the efl'ects whi ch has n ot prcviously b ecn accounted roJ' in tll e tl1 cory 0 [' ionospll eri c
+propagation is th e fi nite compressibility o f the electron g,lS. T il e effec ts 0r fill ite compressi-
+bility may not be apparent at frequcn cies above the gyrof'req uen cy, b ecn,use o r the grC<Lt discrepancy in th e propa gation " elo cit ies of electromagnetic and ,1 CO Ll SLic w,wcs. A t VLF, IlOwe ver, t he great ph asc r etardation o r th e electromag netic wa ve whi ch can Occur appears to pro vid e favorable cOllditions for interactio n 0(' t he electl'o ma,g ne li c waye wit h aD acoustic, or compressional wn.ve . It is til e purpose of this p aper to i nycstigate the efl'ects o ('fini tc compressibility on the propagation of' small-signal, plan e wa \"es at VLF frequencies in a unirorm ionosphere.
+
+2 . Magneto-ionic Theory for an Electron Gas
+
+In considering propagation at frequencies 0(' several kilohertz and hi gh er , th e mo t ion s of heavy ions may be ignored. sin ce the ion plasm a frequency and ionic gyrorreq uen cy in the earth's atmosphere are less than a few hundred hertz.
+T h e field equations for a time-harmonic (e Jwl ) electromagnetic field in an electron gas can
+then b e wl'itten [Oster, 1960] in linearized form for fields of small amplitude (}J.olIr,<< Bo),
+and for zero average drift velocity of the electron gas,
+
+V' X E = -jw}J.oH
+
+(1)
+
+V' X H = jwtoE-Nev
+
+(2)
+
+1 Pan or the resu lts presented in t hi s paper were give n in a paper presented at the [ E EE Sy mposi um on An ten n as and Propagation in BouI · dcl', Colo., J ul y 1963.
+795
+
+v ·v= - '-YJWPop
+
+(3)
+
+Vp=-(jw+v)mNv-Ne(E + v X Bo)
+
+(4)
+
+where
+E, H represent the time-varying electromagnetic field intensities, Bo is the flux density of the geomagnetic field , N is the average electron density, v is the electron velocity, averaged over a small element of volume whose radius is the Debye length, e is electronic charge, m is electron mass, v is the electron collision frequency, Po is the time-averaged pressure of the electron gas, p is the time-varying component of pressure, 'Y is the ratio of specific heats, eq ual to 5/3 for a gas of free electrons.
+
+Equations (1) and (2) are just Maxwell's equations, taking into account convection CID'I'ents due to electron motion; (3) is the combined eq uation of contin uity and state, and (4) is the momentum equation.
+Equations (3) and (4) can be combined to give
+
+- 'Y~ovv.v =-(jw+ v)mNv -Ne(E + v X Bo)
+
+(5)
+
+JW
+
+which now gives the behavior of the electron plasma, expr essed in terms of the velocity, in response to the electromagnetic forces acting upon it.
+Now to solve the field equations (1), (2 ), and (5), consider propagation of a plane wave. Expressing t h e field vectors in terms of a Cartesian coordinate system, and taking the z-axis along the direction o[ propagation, it is seen that the spatial dependence of all time-varying quantities is given by e- i {3z, where {3 is the propagation constant, which may be complex.
+The two Maxwell equations, (1) and (2), may be combined to give a wave equation,
+
+vX V X E - k6E = jw,uoN ev
+
+(6)
+
+where lco = w~,uOEO is the wave number in free space. In view of the assumed plane-wave spatial dependence of the fields, (6) becomes
+(7)
+
+l It is convenient to write (7) in matrix form, observing that (V, E )= {32Ez, obtaining
+
+k5- f3 2 . e
+J -wm 0
+
+o
+:]. E= k! v
+
+(8)
+
+o
+
+o k6
+
+where
+
+1(2n=,u-omN-e= 2 W2Il,uOEo
+
+•
+IS
+
+the
+
+square
+
+of
+
+the
+
+wave
+
+number
+
+corresponding
+
+to
+
+the
+
+electron
+
+plasma frequency. Similarly, by taking the coordinate system such that Bo lies in the x- z
+
+796
+
+plane, (5) can be written as
+
+(9)
+
+.wm
+=-] - e
+
+L
+
+·v
+
+where U 2= ,N,(mPo·IS t h e square of'· th e aco ustI.c veIoC'lty 1.11 t1le med'lum,
+WL = W cos fl , W7' = Wo sin fl , wo = ~m E o, the electron radian gYl'ofrcq uency,
+
+eis the angle between the direction of t he wave normal and the geomagnetic fi eld.
+
+The acoustic velocity is directly r elated to the temp. erature or the electron baas, u2= "(mkT, wh ere T is in degrees Kelvin, andle is the Boltzmann con stant.
+Combining (8) and (9) and eliminating E gives a determinan tftl equation for t he propagation constant,
+
+(10)
+]. -W 'f' le?0 W
+It is th e solut ion of (10) for values of (3 whi ch is now of co ncern.
+3. Perturbation Solution of the Determinantal Equation
+The d eterminantal (10) yields a cubi c equation in (32, with complex coeffi.cients. An analytic solution of the equation is difficult except for some sp ecial cases, wh en the direction of propagation is either along, or transverse to the direction of the geomagn etic fleld. For t h e transverse case, there are no solution s which yield Re ((3Z» O, or a propagating wave. In the longitudinal case, two such solutions occ ur. One of these values of (32 corresponds to whistler mode propagation, and the other to a longitudinal acousLic wave.
+A perturbation solut ion to the determinantal equation may be obtained using the solutions for longitudinal propagation as th e zero-order solution. The first perturbation of the equation will be shown to give a propagation constant for the electromagnetic wave which is r ecognizable as t he qu asi-longitudinal approximation of magneto-ionic theory for an incompressible plasma,
+
+797
+
+plus another propagation constant for an acoustic wave. Application of the perturbation method to obtain a second order correction is not fruitful, since the perturbation parameter is not small for all angles O.
+It is useful to rewrite (10) as an operator eq uation
+
+U-j.Z)( l - A)-X
+
+Sx· v = [
+
+JYL (l - A)
+
+-jYL (l- A) (l -jZ) (l-A)-X
+
+].v =o - j Y TOU-A)
+
+(11)
+
+°
+
+jY 7•
+
+where, in the usual notation for the magneto-ionic theory,
+
+X
+
+_
+-
+
+Wn2 _
+?-
+W-
+
+~ k ? k 02 '
+
+1- jZ-VA -X
+
+}
+
+T
+
+L
+
+_ -
+
+WL -
+
+'
+
+W
+
+Y _ WT T-- J W
+
+and, in addition,
+
+and A is t h e sq uare of the refractive index. It can be seen that f.. is an eigenva lue of an operator So by separating the terms containing f.. from Sx ,
+
+(12)
+
+The operators So and I'- are, in matrix form,
+
+-:y,] [P-X -jYL
+
+So = j:L
+
+p -·x
+
+(13)
+
+jYT
+
+P-X
+
+F[ J~"
+
+-jYL p
+
+-:T]
+
+(14)
+
+where P = l-jZ.
+
+°
+
+The eigenvalue equation (12) can be put into a more conventional form by a coordinate
+
+transformation diagonalizing 1'-. This can be accomplished by defining
+
+(15)
+
+which gives the eigenvalue equation
+
+T·x - A,x= O
+
+(16)
+
+where
+
+1-P2P_XY i
+
+PX
+
+1 P2-Yi
+
+(17)
+
+. PYT
+J P 2- Yi
+798
+
+The operator T is now written as the sum of a zero-order term and a perturbation term ,
+
+wh ere
+
+(18)
+, XYL
+-J r - Yl
+
+(19)
+
+o
+
+and
+
+o
+
+o
+
+XYL
+17
+
+o
+
+,PX -J V
+
+(20)
+
+j P -1P Y71'
+
+Thus To corr esp onds Lo the qu asi-longitudinal approxim ation of magneto-ionic tl leory, and Lh e
+exp ansion par am eter of th e p er t urbation is Y1' /-,/Yi- P2•
+The eigenvalues and cOlTesp ondin g n orm alized eigenv ectors of 1~ are
+
+x \ (0)= 1- - - ,
+
+I
+
+P - } 'L
+
+x ~Ol= ( ~,
+,2
+
+o} --./2.7,
+
+(21 a)
+
+\
+
+(O)-
+2 -
+
+l
+
+-
+
+P~ +Y L
+
+'
+
+x;0l= (,12,
+
+.2, o} 2
+
+(21b)
+
+\
+
+(Ol
+3
+
+-_
+
+P----vX-'
+
+x~o) = (0,
+
+0,
+
+1) .
+
+(21c )
+
+In calcul atin g th e eigenvectors, th e cl ampin g has b een n eglected , by takin g P = l. This is justifiable for th e case oJ small losses sin ce Ul e eigenvecto rs ~U' e to be used only in p ower calcul ations, in which a vector is mu ltiplied by i ts eo mpl ex conju gate in order to find real-valued
+q uan tltlCs. In such calcul ations, Lh e errol' in culTed in n eglectin g Z in th e eigenvectors will be
+Z2<<1. of order Z2in th e power calculations, and cnn thererOl'c b c n eglected for
+The firs t-order approxim ation to the eigenvalu es is now calcula ted from t h e zero-order eigenvectors and the oper ator T,
+
+'XJOi ' r. X!Ol
+
+x)O) . x!0)
+
+(22)
+
+These are
+
+(23b )
+(230 )
+Since V is ordin arily a v ery sm all number , only terms containing negative p owers of V h ave b een retained in th e expression for A~l).
+799
+
+For Z < < 1, the complex eigenvalues can be expanded to first power in Z, giving
+
+x ( . z ) - Al(1) _ 1-I-YL I + J l - Y L '
+
+( +. - A2(1 ) _ 1-I +XY L 1 J l +ZY L ) '
+
+A 3(1) l - X - J Z
+
+n, ( I ' Z )
+
+V
+
+V(1-YD 1,-J l -YD •
+
+(24a) (24b) (24c)
+
+It can be seen that the first two eigenvalues still agree with the results of the QL approximation of magneto-ionic theory, in which only one of these eigenvalues has a positive real part for X>YL>1. The third eigenvalu e has a positive real part for YNCYi-l»X-l, which indicates that a quasi-acoustic mode can propagate over a narrow cone of wave-normal angles near the critical angle for whistler mode propagation, which is given approximately by
+
+The d amping of either the electromagnetic whistler mode or of the quasi-acoustic mode becomes large near the critical angle, thus the acoustic mode may not be observed due to excessive damping if the cone of the angles along wh ich it may propagate is too sm all. The width of this cone can be shown to be approximately given by
+
+Thus the acoustic wave with low damping can probably be observed only in the outer ionosphere, above the height of maximum electron density in the F2 layer.
+It is now of interest t o examine the first-order approximation to the eigenvectors. These are found from perturbation theory by writing the eigenvalue equation as
+
+[T - A]' X= [To- ACO) ] . XCO) + a[To - A(0) ]. (x (l) - XCO» + a[T1-(A(1) - A(O» ]. X(0) + 0 (a2),
+
+(25)
+
+where .a IS a dumm y perturbation parameter , Since [To-A(O )],x(O) = O, x (l) can be found by
+
+setting
+
+[To- A(0)]. (x (l)- x (0»= - [ T 1- (A(l )- A(0» ], x (O)
+
+(26)
+
+and solving for the vectors x (l) subject to the restriction
+
+(x (lJ- x (O») ·x (O)= O.
+
+(27)
+
+This restriction enables x (l) to be specified uniquely, The new set of vectors which are found by this procedure are, again neglecting Z in solving for the eigenvectors,
+
+Xj1)= (I,- J'(I _ V) (l-i:~X) + XYL}
+
+(2Sa)
+
+X~I)=(I , J,
+
+Yl'l1
+
+),
+
+(1- V) (l + YL - X) - XY L
+
+(2S b )
+
+x.,\lJ = (
+
+XY 7,
+
+J'
+
+XY 1,
+
+1)
+
+>
+
+(I -X) (I -YD' (I - X) (l -YJJ' .
+
+(2Sc)
+
+4, Poynting Vector
+
+In order to find the ray direction, or direction of energy transport, it is necessary to evaluate the power flow from the generalized Poynting vector, Thus for a wave having both electro-
+
+800
+
+magnetic and acoustic energy, the power density is given by
+
+p = t R e [E X H + pvacoustlc].
+
+(29)
+
+For plane waves with the wave normal along the z coordin ate, this expression can be written as
+
+{ (3 [ - - J} (wm)2 - P = 21"Re W}Lo E · Eaz-E zE+ - e- XVvzvzaz .
+
+(30)
+
+To find the quantities of interest, v and E from x, it is necessary to invert the transforma-
+
+tion (15 ), finding
+
+V = }L - l. X.
+
+(31)
+
+This form is appropriate to find vz for use in the power calculation (3 0), but is not appropriate to find E. The electromagnetic energy term should not depend on the longi tudin al velocity compon en t, so we fi nd that part of the electric field which con tr ibutes to the electromagnetic power How by employin g a proj ection operator,
+
+(3 2)
+
+Th en, for use in th e calculation or (30 ),
+
+.wmL E= - Je
+
+Q ' }L - 1 ' , X
+
+(33)
+
+where L is tIl e operator defin ed by (9). One finds th en that
+
+and, for X «
+
+1 so that X/ ( X- I) ~ I,
+
+wm E'l)- 7' 3- .
+
+e
+
+~ 1- y~(' J -
+
+J' Y / (1,T
+
+Y )i L "
+
+From these vectors, the power expressions are easily calculated ,
+
+(3 4a)
+(34b) (35 a )
+
+(35b)
+
+Th e ray directions, or directions of power How, deviate from the wave-normal directions by
+
+angles
+
+lfi =
+
+arctan
+
+(PPiiXz
+
+) '
+
+i=I,3.
+
+(36)
+
+B ecause the ratio X /V is a very large number, it is seen that the ray direction of the quasi-
+
+801
+
+acoustic wave, P 3, is nearly along the wave normal, whereas that of the quasi-electromagnetic
+
+wave, PI, becomes very nearly in the direction of the geomagnetic field for angles near the
+
+Y>> critical angle, if
+
+l.
+
+The wave impedance of the quasi-electromagnetic and the acoustic waves can also be
+
+determined from the power calculation. Defining a wave impedance in the direction of the
+
+wave normal by
+
+IPI
+Z Z= H 2'
+
+the impedance is found to be
+
+[ (Wm)2xv _] --
+Z z= wjJ.:! 1+ e
+
+VzV z
+.
+
+(3 7)
+
+(3
+
+E· E-EzEz
+
+In the quasi-electromagnetic wave, the ratio of acoustic to electromagnetic energy is small, and the impedance becomes approximately
+
+(38)
+
+For the quasi-aco ustic wave, the acoustic energy is many times greater than the electromagnetic energy, and the wave impedance is correspondingly greater,
+
+(39)
+
+As a result of the disparity in wave impedances, an antenna ",,-hich is designed to radiate an electromagnetic wav e efficiently will not couple greatly to the quasi-acoustic wave, and in order to observe acoustic wave propagation in the ionosphere, it may be necessary to employ special antennas.
+5. Some Numerical Results
+In figures 1 and 2 the refractive index is given for a lossless ionosphere (Z = O) as a function of wave-normal angle for parameters X = 50 , Y = 7. 8, V = 0.002 2, as obtained by a numerical solution of the exact determinantal (10) . The refractive indices obtained by m eans of the first-order p erturb ation solution ar e also given in :6.gure 2 for comparison . The longitudinal
+
+. .- -----
+
+~ e ~------ --- --- --- - ------
+
+- - ---
+
+.
+
+FI GURE 1. S ection oj TejTactive i n dex 8mface f or X = 50 , Y = 7 .B, V = 0.002.
+1' hc a ngle 0 is the inclination of t he wave normal wi t h respect to t he geomagnetic fie ld . 'rhc arrows alon g the cur ve ind icate directions of power flo w for waves having \Oarious wave-n ormal angles O.
+
+' These parameter val ues correspond roughly to a m odel of t he eart h's ionosphcro at a d istance of sli ghtl y Illore than one eartb radins above th e earth 's surface. '-rhe val ue of 17 corres ponds to an electron temperature of a bout 7X lOti 01":'. 'Phese values were no t chosen to give a realistic a pproximation to an y actual conditions so much as t hey " -e},e chosen to give results which could be illustra ted gra phicall y. A more realistic set of values would h ave X~400- 7000 and V~5 X( 1O-'- 1O-') , yielding a la rger critioal angle a nd a n arrow er COIlO of an gles in which the q uasiacoustic wa ve can propagate.
+802
+
+60 55
+
+50
+
+45 40 x W35 o z >0
+
+QUASI -ACOUST IC
+
+25
+
+20 15 10
+I-
+
+EXAC T /
+1/
+V
+
+OUASI- EL E C T RO M AG N E ~
+~V V
+
+V
+
+V
+
+I-::::::
+
+/
+/
+y/
+~' RS T - ORDER -
+PERTURBAT ION
+
+> TAN 8
+
+F IG URE 2. R efractive index as a .function of tan 8, indicati n g the transition fr om a quasi-electl'omagnetic to a quasi-acoustic wave.
+The fi rst-o rder pert urhation solut ion is co mparcd with tho exaet so lution of thc determ ineutal equation fo r X =50, Y = 7.8, V = O.002.
+
+acoustic wav e is not shown in th ese fig ures. It is confined to wave-normal angles v ery n ear th e direction of the geomagnetic field a nd does not couple wi th the electromagn etic wave.
+The curve of figure 1 shows the refr active indl'x and the direction of p ower flow , or ray direction , versus wave-normal angle with r esp ect to the dir ection of the geo magnetic fi eld . Up to t he angle of transition from the quasi-electromagnetic to t he quasi-acoustic w ave, th e r efractive ind ex is similar t o that for th e whistler mode in a cold or incompressible ion ospher e, a nd the ray direction is approximately normal to the plane tangent to the r efr active index surface, as for the incompressible case. For larger angles, the wave becomes primarily acoustic in natme; the r efractiv e index increases v ery r apidly with the wave normal angle, and th e r ay direction is nearly along the wave normal.
+From the approximate form (24c) for the square of r efractive index, it is seen that th e quasi-acoustic wave exists from an angle 8A to Be, where the angles ar e r elated by
+(40)
+
+6 . Damping Effects
+D amping effects can b e accounted for by collisions between electrons and h eavy particles, principally positive ions and neutral atoms . The scattering cross section presen.ted by charged ions to electrons is rela ti vely very large at low electron temperatmes, due to the long r ange of the Coulomb force. H owever , as the temperatme, or mean kinetic energy of electrons incr eases, the scattering cross section of ions decreases, until at approximately 1.8 X 105 OK the scatterin g
+803
+725- 998- 6,1- - 3
+- ------
+
+cross section presented by the Coulomb potential is no greater than is that of short range forces. The result is that the collision frequency in the ionosphere can be extremely low if the electron temperature is of the order of 105 OK. For instance, if X = 50 , T = 105 oK, and it is assumed that the den sity of positive ions is equal to that of electrons, while the density of all heavy p articles is 10 times that of electrons, then the collision frequency, estimated by the formulas given by Cowling [1945] would be approximately 8 X 10-\ giving Z at 18 kHz equal to 4.4 X 10- 8•
+The darnping of the quasi-acoustic wave will be greater than that of the quasi-electromagnetic wave , particularly near the region of coupling of the two waves. The ratio of attenuation constant to propagation constant for each of the waves is approximately
+
+tan (1)1
+
+(41a)
+
+(l-ywn'" tan cf>3
+
+I1m {J~ll., }
+
+Z
+
+Re (J~1) 2 (YL - 1)·h-(1-X)
+
+(41b)
+
+Near the transition angle, the denominator of the term on the right of (41 b) is small, giving a larger damping term than that of the quasi-electromagnetic wave. At the transition angle , damping will be greater, the smaller the value of V. For very small values of V, corresponding to electron temperatures in the range 103 OK or less, the damping will probably be so great as to prevent observation of a quasi-acoustic wave at wave-normal angles near the transition angle in any part of the ionosphere.
+7. Conclusions
+
+From the analysis presented here it appears that quasi-acoustic waves can be propagated within the ionosphere at VLF frequencies provided the electron temperature is sufficiently high (104- 105 OK). These waves will be coupled with the propagating electromagnetic waves, the so-called "whistler" mode of magneto-ionic theory, near the critical angle between the wave normal and the direction of the geomagnetic field.
+The effect of losses due to collisions between electrons and heavy particles is important, and in general the quasi-acoustic wave is subject to greater damping than is the electromagnetic wave. The damping of the quasi-acoustic wave increases with increasing electron density and decreases with increasing electron temperature. Damping prevents observation of the quasi-acoustic mode in the lower part of the ionosphere.
+It also appears unlikely that waves propagating in a natural whistler mode which couples in the outer ionosphere to an acoustic wave will be able to be detected at the earth's surface,
+although this conjecture has not been confirmed by ray-tracing calculations. However, only waves which have wave normal directions near the critical angle with respect to the geomagnetic field will be appreciably coupled , and such waves may either be "lost," leaving the earth's field, or may be highly attenuated in the lower region of the ionosphere.
+Acoustic waves at VLF may also be directly excited by radio transmitters located on earth satellites or by large-scale disturbances, such as nuclear explosions in the upper atmosphere.
+The possibility of excitation of such waves should be taken into account in the design of VLF satellite transmitting antennas, as the effect on the antenna impedance could be appreciable for certain orientations with respect to the geomagnetic field.
+
+8 . References
+Cain, J. C:" L R. Shapiro, J. D. Stolarik, and J. P . H eppner (Sept. 1961), A note on whistlers observed above the ionosphere, J. Geophys . Res. 66, 2677- 2680.
+Cowling, T. G. (1945) , The electrical conductivity of an ionized gas in a magnetic field with applications to the solar atmosphere and the ionosphere, Proc. Roy. Soc. 183(A) , 453.
+
+804
+
+H elli,,'eU, R, A., and M. G. Morgan (F eb. 1959), Atmospheric whist lers, Proc. IRE 407, 200- 208. Le iphart, J. P., R. W. Zee k, L. S. Bearce, and E. Toth (J an. 1962) , P e netration of the ionospher e by ver y-low
+frequ e ncy radio s igna l - I nte rim res ults of t he Lofti I experiment, Proc. IRE 50, 6- 17. Oster, L. (J an. 1960), Lin eari zed theory of p lasma oscillat ion s, R ev. Mod. Phys. 32, 141- 168. Smith, R. L. , R. A. H elli well, a nd 1. W. Yab rofr (:\Ja r. 1960), A theory of trapping of ,yhistJer s in fi eld a lined
+columns o f enhan ced ion izat ion, J . Geophys. R es. 65, 815- 823. Storey, J~. R . O. (July 1953), An inves t igation of whistlin g a tmospheri cs, Phil. Trans. Roy. Soc. 2406 (A) , 11 3
+14l. Yab rofT, 1. (Sept. 1961), Comp utat ion of whist ler ray paLhs, J . R es. NBS 65D (Radio Prop.) , No. 5, 485-505.
+(Paper 68D7-376)
+805
+

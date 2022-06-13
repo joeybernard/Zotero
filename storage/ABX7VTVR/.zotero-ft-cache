@@ -1,0 +1,3242 @@
+ESAIM: M2AN 43 (2009) 173–208 DOI: 10.1051/m2an:2008044
+
+ESAIM: Mathematical Modelling and Numerical Analysis www.esaim-m2an.org
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+Laurent Di Menza1
+Abstract. In this paper, we present numerical methods for the determination of solitons, that consist in spatially localized stationary states of nonlinear scalar equations or coupled systems arising in nonlinear optics. We ﬁrst use the well-known shooting method in order to ﬁnd excited states (characterized by the number k of nodes) for the classical nonlinear Schr¨odinger equation. Asymptotics can then be derived in the limits of either large k are large nonlinear exponents σ. In a second part, we compute solitons for a nonlinear system governing the propagation of two coupled waves in a quadratic media in any spatial dimension, starting from one-dimensional states obtained with a shooting method and considering the dimension as a continuation parameter. Finally, we investigate the case of three wave mixing, for which the shooting method is not relevant.
+Mathematics Subject Classiﬁcation. 35J25, 35J60, 65N06, 65N99, 78M20.
+Received July 14, 2006. Revised April 7, 2008. Published online December 5, 2008.
+
+1. Introduction
+
+Solitons have always been considered as a object of fascination in optics, as spatial structures propagating in nonlinear media with shape invariance. Among all the possible models investigated for the description of wave propagation, a well-known equation relevant in nonlinear optics as well as plasma physics or quantum mechanics is the nonlinear Schro¨dinger equation (NLS)
+
+i ∂ψ + Δψ + α|ψ|2σψ = 0, ψ = ψ(t, x) ∂t
+
+(1.1)
+
+where x ∈ Rd is the transverse coordinate, t ∈ R+ is the propagation distance normalized to the diﬀraction length, α ∈ R, σ > 0 and Δ = ∂2/∂x21 + . . . + ∂2/∂x2d (one can refer to [17] for the derivation of (1.1) in various physical contexts). Note that the speciﬁc case σ = 1 leads to the cubic equation that corresponds to wave propagation in Kerr media: the nonlinear index is then proportional to the ﬁeld intensity |ψ|2. Seeking
+for solutions on the form ψ(t, x) = u(x) exp(iωt), where ω is real and u is assumed to be localized in space (say,
+a solution that fastly decreases to zero as r := x goes to inﬁnity; this kind of solution can be denoted by a
+bright soliton) equation (1.1) turns into the nonlinear elliptic problem
+
+− ωu + Δu + α|u|2σu = 0, x ∈ Rd.
+
+(1.2)
+
+Keywords and phrases. Nonlinear optics, elliptic problems, stationary states, shooting method, continuation method. 1 Universit´e de Reims, Laboratoire de Math´ematiques, Moulin de la Housse, BP 1039, 51687 Reims Cedex 2, France. laurent.di-menza@univ-reims.fr
+
+Article published by EDP Sciences
+
+c EDP Sciences, SMAI 2008
+
+174
+
+L. DI MENZA
+
+In the one-dimensional case d = 1, such an equation can be explicitly integrated for ω > 0 and α > 0 to ﬁnd sech-proﬁles and only nonnegative localized states can be obtained. For higher space dimensions, the situation
+becomes completely diﬀerent: for the same assumptions made on ω and α, (1.2) admits many localized radial solutions for reasonable values of σ (namely, σ > 0 if d ≤ 2 and 0 < σ < σ∗ = 2/(d − 2) if d ≥ 3) that can be parameterized by the number k of nodes. These solutions uk are often referred as bound states or excited states, for the sake of correspondence with quantum mechanics formalism; see for example [13]. The localized
+solutions of (1.2) can be seen as critical points of the action S(u) deﬁned as
+
+ω S(u) :=
+
+|u(x)|2 dx + 1
+
+∇u(x) 2 − α |u(x)|2(σ+1) dx
+
+2 Rd
+
+2 Rd
+
+σ+1
+
+and a variational framework enables to show existence of such solutions [17]. A vast literature can be found
+concerning stationary states of these equations, with particular attention paid on the connection between the so-called ground state u0 deﬁned as the only strictly positive solution in H1(Rd) of (1.2) [10] and blow-up occurrence of the solution of (1.1) in the focusing critical case σ = 2/d: it is well-known (see [19]) that if ψ0 ∈ H1(Rd) is such that ψ0 L2(Rd) < u0 L2(Rd), then the solution ψ of (1.1) such that ψ(0) = ψ0 is global in time and ψ(t) H1(Rd) remains uniformly bounded in time.
+
+Recently, more general models have been investigated for the concern of propagation in media where the susceptibility tensor is quadratic in terms of input ﬁelds. A typical example is given by the so-called type I polarization, governed by the system
+
+⎧
+
+⎪⎪⎨
+
+i∂u ∂z
+
++ Δu − u + u¯v = 0
+
+⎪⎪⎩ iσ ∂v + Δv − ρv + 1 u2 = 0,
+
+∂z
+
+2
+
+(1.3)
+
+up to several assumptions as well as various rescalings in longitudinal and transverse domains (see [3] for a review of quadratic models in nonlinear optics). This model describes the propagation of the fundamental wave u of frequency ω and the ﬁrst harmonic wave v characterized by frequency 2ω. Stationary bright solutions have been obtained in this context with diﬀerent methods: the ﬁrst one enabled to compute approximate values of ground states from a Gaussian ansatz, leading to the resolution of a nonlinear algebraic system (see for instance [2]). Shooting method or relaxation technique (starting from explicit solutions that are obtained for particular values of the parameters) have also permitted to exhibit excited states. In [7], stationary states have been topologically classiﬁed with use of a Newtonian description. Other studies have been made for spatio-temporal solitons leading to nonradial structures when taking into account time dispersion eﬀects (see [12,18]).
+
+This paper is organized as follows: in Section 2, we describe the way of computing solitons states for (1.1)
+using the shooting method and give some numerical illustrations. We also obtain localized solutions in the sublinear case −1/2 < σ < 0 (for which the nonlinear term still makes sense even if the nonlinear index cannot be deﬁned) that appear to be compactly supported in space, as opposed as what has been found for nonnegative σ. Moreover, two-dimensional vortex-like solutions are computed with this technique. Finally, the asymptotics k → ∞ and σ → σ∗ are numerically investigated, leading us to scaling laws in terms of k or σ∗ − σ. In Section 3, we investigate the case of system (1.3) starting from one-dimensional bright bound states computed with the shooting method. A continuation technique is then used for the determination of higher space dimension solutions as well as vortex solitons. In the last section, we deal with a model involving
+three coupled waves propagating in a quadratic media. In this situation, we show that it is not possible to
+start using the shooting method from the one-dimensional case as it was the case for previous two-wave model. A continuation argument is then applied to carry out solitons in any space dimension.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+175
+
+2. Solitons for NLS equation
+
+We ﬁrst seek solutions of (1.1) that write ψ(t, x) = eiωtu(r) (with ω > 0 and r = x ), leading us to the
+
+elliptic equation (1.2) that will be seen later as a diﬀerential second-order equation. This problem has been
+
+intensively studied and it has been proved using variational arguments that in the case α > 0 and ω > 0, H1 solutions exist only when σ < σ∗ (which means for every σ > 0 if d ≤ 2). Note that nonexistence results can
+
+be obtained as a consequence of Pohozaev identities (see [17] and references therein). First, a simple rescaling
+
+argument shows λ > 0, the new
+
+that it is always function u˜(r) =
+
+possible to assume that ω = λ1/σu(λr) solves (1.2) with
+
+1: ω˜
+
+if =
+
+ωuλd2e.noTtaeks iangsoλlu=tio1n/o√f ω(1t.2h)u,sthleeandsfotroeathche
+
+correctly rescaled equation. Furthermore, looking for a C2 solution at r = 0 requires to set u (0) = 0 in order
+
+to avoid a singular point at the origin. We then investigate the diﬀerential system which expresses as
+
+⎧ ⎨
+
+u
+
+(r) +
+
+d − 1 u (r) − u(r) + α|u(r)|2σu(r) = 0,
+
+r
+
+⎩
+
+u(0) = β, u (0) = 0
+
+r>0
+
+(2.1)
+
+and we look for globally deﬁned solution of (2.1) that tends to zero as r → ∞. First, this system can be rewritten as a general ﬁrst-order system of the form X (r) = F (r, X(r)) with X(r) = (u(r), u (r)) ∈ R2. Here, the function F may be delicate to evaluate at r = 0 because of the singular term u (r)/r that arises as a
+consequence of radial geometry assumption. Indeed, a Taylor expansion around r = 0 of the derivative leads us to u (r)/r ∼ u (0) as r → 0. Consequently, we have u (r) + (d − 1)u (r)/r ∼ d u (0) and the second derivative of u at zero can be expressed using (2.1) as u (0) = (β − α|β|2σβ)/d. The initial data β should be prescribed
+in such a way that the corresponding solution has nice decreasing properties at inﬁnity.
+
+2.1. The shooting method for bright solitons
+We ﬁrst present the numerical algorithm in order to ﬁnd the ground state denoted u0 of (1.1), that is with no node. This algorithm is based on the fact that (1.2) admits a unique positive radial solution that tends to zero at inﬁnity (see [10]), associated to some initial value β = β∗ in (2.1) to be determined. At each step, say n, the exact value β∗ is seeked in an interval [an, bn]. We compute βn = (an + bn)/2 and we numerically solve (2.1) for β = βn. If the approximate solution becomes negative at some r0, then β∗ < βn and we set an+1 = an and bn+1 = βn. If the solution is always larger then some small prescribed value ε > 0, then we prescribe an+1 = βn and bn+1 = bn. The initial interval is chosen in such a way that a0 < β∗ < b0: a0 is set equal to zero and b0 is such that the solution of the corresponding Cauchy problem changes its sign.
+We give in Figures 1 and 2 an illustration of this method for the determination of the ground state on the numerical domain [0, 10] in the focusing cubic bidimensional case α = σ = 1 and d = 2 (often referred in the literature as the Townes soliton), starting from b0 = 4. In all these experiments, (2.1) has been solved with use of the fourth-order Runge-Kutta method, meaning that approximate solutions of the soliton are computed on prescribed discrete points rj = j δr (0 ≤ j ≤ N ) where N is given and δr = R/N . At the second step, we have a1 = 2 and b1 = 4 and taking β1 = (a1 + b1)/2 gives us a solution that changes its sign, which indicates that the expected value lies in [a1, β1] (see Fig. 1). We thus set a2 = a1 and b2 = β1. After 10 iterations, the solution calculated from β9 = (a9 + b9)/2 still changes its sign and consequently, we set a10 = a9 and b10 = β9 (see Fig. 2). Of course, the number of iterations in this algorithm is closely related to the size of the prescribed computational domain [0, R]. We decided to stop our computations as soon as the numerical solution of (2.1) no longer diﬀers within this bounded domain between two consecutive dichotomy iterations. It is observed that the solution that is obtained is in good agreement with the numerical approximation of the ground state that can be found in the literature (see for example [19]) and that is well-known by physicists, using for example Gaussian ansatz and ﬁnite-dimensional minimization algorithm to get an approximate proﬁle (this method can be extended to more general models, see [16]). We then found a value at the origin for the Townes soliton given by β∗ ≈ 2.2 062 027 369...
+
+176
+
+L. DI MENZA
+
+4
+
+3 β = a1
+2
+
+1
+β = b1 0
+
+−1
+
+β = (a1+b1)/2
+
+−2
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+r
+
+Figure 1. Determination of the ground state: second iteration (a1 = 2, b1 = 4), d = 2, α = σ = 1.
+2.5
+
+2
+
+1.5
+
+1
+
+β = a9
+
+0.5 β = (a9+b9)/2
+0
+
+−0.5
+
+−1
+
+β = b9
+
+−1.5
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+r
+
+Figure 2. Determination of the ground state: 10th iteration (a9 = 2.203 125, b9 = 2.2 109 375), d = 2, α = σ = 1.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS 5
+
+177
+
+4
+
+3 β = b1
+2
+
+β
+
+=
+
+(a +b )/2
+11
+
+1
+
+0
+
+−1
+
+−2
+
+β = a1
+
+−3
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+r
+
+Figure 3. Determination of the 2nd excited state: second iteration (a1 = 2.5, b1 = 5).
+
+The algorithm for the determination of the kth excited state uk is very similar to the one previously described. Here, at step n, if the solution computed with βn changes its sign more than k times, we ﬁx an+1 = an and bn+1 = βn. In the opposite case, we prescribe an+1 = βn and bn+1 = bn. We present in Figures 3 and 4 the results obtained for n = 1 and n = 9 on the computational domain [0, 20] initializing the method with a0 = 5 for the calculation of the second excited state of (1.2) still considered for α = σ = 1, d = 2. In this case, it is observed that taking β1 = (a1 + b1)/2 leads us to a solution that vanishes 2 times on [0, R] but which does not tend to zero at inﬁnity. After a few iterations, the proﬁle of the excited state begins to stabilize for r ∈ [0, 10] (see Fig. 4) and the remaining amount of mass is evacuated at large distances.
+In all these computations, the bounded interval [0, R] is such that R is assumed to be larger than all the nodes of the seeked solution. In our experiments, we choose R suﬃciently large and check that the computed solution with this algorithm does not depend on R. Moreover, the approximate solution of (2.1) depends on the numerical scheme and one has to deal with suﬃciently large values of N to grant that the error given with the method is small enough. It has been observed that the value at the origin given by the shooting method converges to a limit value when N large enough. Lastly, the upper bound b0 has to be chosen suﬃciently large in order to have uk(0) < b0. It suﬃces to take the value at the origin of a solution of (2.1) that vanishes at least k + 1 times. We have validated this method in the one-dimensional case: we have checked that the solution numerically found perfectly mimics the exact one explicitly given by
+
+u(x) =
+
+(σ + 1)1/2σ (cosh σx)1/σ ,
+
+x ∈ R,
+
+obtained by a direct integration of (1.2). From now on, the value of uk at the origin will be noted uk0.
+In Figure 5, we plot the results obtained when looking for the ground state u0 and the ﬁrst two excited states u1 and u2, for the same values of d, α and σ as before. We also view in Figure 6 the plot of the logarithm of the solution, noticing that the asymptotics does not depend on the number of nodes. Indeed, in this pure
+
+178
+
+L. DI MENZA
+
+5
+
+4
+
+3 β = (a9+b9)/2
+2 β = a9
+1
+
+0
+
+−1 β = b9
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+r
+
+Figure 4. Determination of the 2nd excited state: 10th iteration (a9 = 4.140 625, b9 = 4.150 390 625).
+
+5 0 node 1 node 2 nodes
+4
+
+3
+
+2
+
+1
+
+0
+
+−1
+
+−2
+
+0
+
+5
+
+10
+
+15
+
+r
+
+Figure 5. The ﬁrst three stationary states of (1.1), d = 2, α = σ = 1.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+0 node 1 node 2 nodes
+0
+
+179
+
+−5
+
+−10
+
+−15
+
+0
+
+5
+
+10
+
+15
+
+r
+
+Figure 6. Plot of the log of the solutions, d = 2, α = 1 = σ = 1.
+
+power case, the solution behaves similarly to the one of the linear problem that is given by u(r) ∼ Ce−r/r(d−1)/2 (r → ∞) and the log proﬁle will exhibit a linear evolution slightly corrected by the perturbation (d − 1) log r/2. As said before, the choice of parameter R depends on the number of nodes of the expected solution: it has been noticed that for a given ε > 0, the quantity Rkε := max {r ≥ 0 : |uk(r)| ≥ ε} is an increasing sequence. Thus, the kth excited state will become less spatially localized for large k. Finally, we have observed that uk possesses k local extrema that satisfy the following property: the ﬁrst one is attained at the origin and the k − 1 other ones are located at some rj > 0 (j ∈ {1, . . . , k}) such that ∀ j ∈ {1, . . . , k}, uk0 > |uk(rj )| and consequently
+uk L∞(Rd) = uk0. This statement can be proved using Appendix C in [5].
+2.2. Vortex solitons in the two-dimensional case
+
+In the particular case d = 2, it is also possible to look for stationary states that express as ψ(t, x) = eiωteimθu(r), where m is an integer (sometimes known as the vortex charge or the winding number ) and (r, θ) stand for the polar coordinates of x (that is (x1, x2) = (r cos θ, r sin θ) with θ ∈ [0, 2π[). That means that the spatial solution is no longer radial, even if the function u still depends on r. Plugging this expression into (1.1),
+we now ﬁnd the new ordinary diﬀerential equation
+
+u
+
+(r) +
+
+1 r
+
+u
+
+(r)
+
+−
+
+m2 r2
+
+u(r)
+
+−
+
+u(r)
+
++
+
+α|u(r)|2σ u(r)
+
+=
+
+0,
+
+r > 0.
+
+(2.2)
+
+As opposed to the previous situation, seeking a smooth proﬁle requires to prescribe u(0) = 0 due to the new
+
+term u(r)/r2 in (2.2) and another shooting parameter has to be found in this case. We then set u(r) = rmU (r)
+
+in order to get rid of the term m2u(r)/r2. It is easy to check that the new function U solves the modiﬁed
+
+equation
+
+U
+
+(r)
+
++
+
+2m
+
++
+
+1 U
+
+(r)
+
+−
+
+U (r)
+
++
+
+αr2mσ|U (r)|2σU (r)
+
+=
+
+0,
+
+r>0
+
+r
+
+which closely looks like the one that had to be solved in the radial case, except that the nonlinearity now
+
+depends on r.
+
+180
+
+L. DI MENZA
+
+m = 0
+
+m = 1
+
+m = 2
+
+m = 3
+
+2
+
+m = 4
+
+m = 5
+
+1.5
+
+1
+
+0.5
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+r
+
+Figure 7. Plots of the zero node vortex, m = 0, 1, 2, 3, 4, 5 (α = 1, σ = 1).
+
+We also use a shooting strategy in this new context in order to ﬁnd stationary states denoted by uk,m (that is with k nodes and corresponding to the winding number m). These vortex states have been theoretically studied in [14] in the case k = 0 and in [8] for any k. We show the results obtained in the cubic focusing case σ = 1, ω = 1, α = 1: in Figure 7 are shown the proﬁles of the nodeless solutions (but that vanish at r = 0; the kth excited state is deﬁned here as the solution that vanishes k times outside the origin), computed with m = 0, m = 1, m = 2, m = 3, m = 4 and m = 5 whereas in Figure 8 is shown the spatial proﬁle of the vortex computed with (k, m) = (0, 1). It can be clearly pointed out in Figure 7 that solitons obtained for large m look like spatially translated soliton u0,1. In particular for m ≥ 1, the maximal amplitude does not seem to depend on m and the distance between two consecutive maxima is approximately 1.4. We also plot in Figure 9 excited vortices with m = 1 obtained for various k (k = 0, 1, 2, 3) and in Figure 10 the spatial proﬁle obtained with (k, m) = (1, 3).
+
+2.3. Case of negative power index
+
+We also numerically investigate the particular case −1/2 < σ < 0 for which the refraction index |u|2σ is no
+
+more deﬁned but the nonlinearity still makes sense. We use the numerical algorithm described above to compute
+
+the corresponding solitons in this context. We have taken the parameters d = 2, σ = −1/4 and α = ω = −1
+
+(that is the defocusing case that appears to be the only way to grant existence of such solutions). In Figure 11
+
+are plotted the four solutions obtained with N = 1000 on a numerical bounded domain depending on the node
+
+number. Even if the proﬁle does not much diﬀer from the ones already displayed, there is a striking diﬀerence
+
+that can be noticed when viewing Figure 12 the log proﬁle of these states with respect to r. In this case, the log
+
+proﬁles do not decrease almost linearly as in Figure 6 after the last node: this suggests that the approximate
+
+solutions tend to zero much faster than with the usual exponential rate. Since tests performed with larger values
+
+of N on the same interval have shown log proﬁles that do not stabilize around these transition zones, it is thus
+
+conjectured that these states are the compactly supported solutions that have been obtained in [1] for sublinear
+
+elliptic problems. Since 0 < 2σ + 1 < 1, ones and the large distance asymptotics
+
+the u(r)
+
+n≡onClien−era/r√terrmfouαn|du|f2oσruσis>n0otisnengolimgiobrlee
+
+with respect valid.
+
+to
+
+the
+
+other
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+181
+
+Figure 8. Cartesian (x, y)-plot of Re (eimθuk,m(r)), (k, m) = (0, 1).
+
+3
+
+0 node
+
+2.5
+
+1 node
+
+2 nodes
+
+3 nodes 2
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10 12 14 16 18 20
+
+r
+
+Figure 9. Plots of the ﬁrst four vortex solutions, m = 1 (α = 1, σ = 1).
+
+2.4. Asymptotics
+We now intend to investigate the asymptotic behaviour the excited states as the number of nodes increases. Indeed, it has been found in [9] that the L2 and H1 norms of uk asymptotically behave as kd/2 under suitable assumptions made on the nonlinearity. In [15], the kth energy level for the Schro¨dinger-Newton equation,
+
+182
+
+L. DI MENZA
+
+Figure 10. Cartesian (x, y)-plot of Re (eimθuk,m(r)), (k, m) = (1, 3).
+
+7
+
+0 node
+
+6
+
+1 node
+
+2 nodes
+
+3 nodes 5
+
+4
+
+3
+
+2
+
+1
+
+0
+
+−1
+
+−2
+
+−3
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+r
+
+Figure 11. Plots of the solitons computed with k = 0, k = 1, k = 2 and k = 3 (d = 2, α = ω = −1, σ = −1/4).
+
+deﬁned as the frequency ωk associated to the L2 normalized solution of the nonlinear eigenvalue problem has been numerically found to evolve as k−2. Our goal is to study the inﬂuence of d, σ and m (for d = 2) on the stationary excited states with large numbers of nodes.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+5
+
+0 node
+
+1 node 2 nodes
+
+0
+
+3 nodes
+
+183
+
+−5
+
+−10
+
+−15
+
+−20
+
+−25 0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+r
+
+Figure 12. Plots of the logarithm of the soliton proﬁles (d = 2, α = ω = −1, σ = −1/4).
+
+2.4.1. Bright solitons
+First, we have observed that the value uk(0) and uk L2 seem to increase with k (see Figs. 13 and 14 where these two quantities have been plotted for 0 ≤ k ≤ 25 for various σ in the two-dimensional case d = 2). In these computations, system (2.1) has been solved on a spatial domain that increases with the number of nodes (we have observed in our all tests that a suitable choice for R in the computation of uk previously described is Rk = R0 + k δ, where δ is a constant depending on σ). These two plots show that these two quantities increase for any value of σ and the plot of uk L2 seems to depend linearly on parameter k for any value of σ.
+We now intend to study accurately the dependence of these norms regarded as functions of k. Seeking a asymptotic law fk ∼ kγ (k → ∞) for some sequence fk that can be computed for each k, it is possible to plot log fk as a function of log k that should behave linearly with the slope γ. This means that the ﬁnite diﬀerence approximation of the discrete derivative δk := log (fk+1/fk)/log ((k + 1)/k) of log fk with respect to log k should tend to γ for large k. Considering ﬁrst the L∞ norm, the computed derivatives (plotted in Fig. 15) converge to√the limit 0.5 for any value of nonlinear exponent σ. This suggests that the asymptotic behaviour
+uk L∞ ∼ k holds. Note that the same computations made for the uk L2 and ∇uk L2 numerically conﬁrm the asymptotics given by Theorem 1 in [9]: we have found uk L2 ∼ k, ∇uk L2 ∼ k and S(uk) ∼ k2 as k → ∞.
+The same computations have been made for higher values of d. Surprisingly, they showed that for d ≥ 3, the asymptotic growth now depends on σ (see Fig. 16 for d = 3), whereas the L2 norm of the solution still obeys the asymptotics uk L2 ∼ kd/2 given in [9]. Our results have shown that S(uk) ∼ kd that is again consistent with [9]. Let us mention that for large values of σ (that means σ → σ∗), it becomes quite diﬃcult to ﬁnd accurate values for excited solitons since the values at the origin become very large (as an example, for k = 25 and d = 4, we have found uk0 1.5040 × 107). All these experiments suggest us that for d ≥ 2, the asymptotics of the L∞ norm of the solutions is governed by some power law
+uk L∞ ∼ kγ(d,σ)
+where γ(2, σ) = 1/2, ∀ σ > 0 and where γ(d, .) is an increasing function of σ if d ≥ 3. (Moreover, Fig. 16 suggests that γ is nonlinear with respect to σ.) In order to ﬁnd the proﬁle of γ, we compute the limit value
+
+184
+
+L. DI MENZA
+14
+
+sigma = 0.5
+
+12
+
+sigma = 1.0
+
+sigma = 1.5
+
+sigma = 2.0
+
+10
+
+8
+
+6
+
+4
+
+2
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+k
+
+Figure 13. uk0 for 0 ≤ k ≤ 25, σ = 0.5, 1.0, 1.5, 2.0 (d = 2).
+
+250
+
+sigma = 0.5
+
+200
+
+sigma = 1.0
+
+sigma = 1.5
+
+sigma = 2.0
+
+150
+
+100
+
+50
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+k
+
+Figure 14. uk L2 for 0 ≤ k ≤ 25, σ = 0.5, 1.0, 1.5, 2.0 (d = 2).
+
+of the derivative when σ continuously varies from 0 to σ∗ and it is found that γ diverges when σ tends to σ∗. We then study log γ(d, σ) as a function of log(σ∗ − σ) and observe a slope very close to −1 for every d; we
+
+thus set
+
+γ(d, σ) =
+
+C(d) σ∗ − σ ,
+
+σ
+
+∈ [0, σ∗[.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+0.5
+
+185
+
+0.45
+
+sigma = 0.5
+
+sigma = 1.0
+
+0.4
+
+sigma = 1.5
+
+sigma = 2.0
+
+0.35
+
+0.3
+
+0.25
+
+0.2
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+k
+
+Figure 15. Derivative of log uk0 as a function of log k for 0 ≤ k ≤ 25, σ = 0.5, 1.0, 1.5, 2.0 (d = 2).
+
+2
+
+1.8
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8 sigma = 0.25
+
+sigma = 0.5
+
+0.6
+
+sigma = 0.75
+
+sigma = 1.0
+
+0.4
+
+0.2
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+k
+
+Figure 16. Derivative of log uk0 as a function of log k for 0 ≤ k ≤ 25, σ = 0.25, 0.5, 0.75, 1.0 (d = 3).
+
+The constant C(d) is then numerically found by comparing the numerical proﬁles of γ(d, σ) with the desired expression. It has been found in all our tests that C(d) closely looks like the constant (d − 1)/(d − 2) = 1 + σ∗/2.
+
+186
+18
+
+L. DI MENZA
+
+16
+
+Theoretical, d = 3
+
+Numerical, d = 3
+
+Theoretical, d = 4
+
+14
+
+Numerical, d = 4
+
+Theoretical, d = 5
+
+Numerical, d = 5
+
+12
+
+10
+
+8
+
+6
+
+4
+
+2
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+σ
+
+Figure 17. Comparison between numerical and possible theoretical values of γ(d, σ), σ ∈ [0, σ∗[, d = 3, 4, 5.
+
+We thus conjecture that the L∞ norm of the kth excited state obeys the asymptotic power law
+
+1+σ∗ /2
+
+d−1
+
+uk L∞ ∼ k σ∗−σ = k , 2+σ(2−d) k → ∞.
+
+(2.3)
+
+This expression still makes sense for d = 2: we then have σ∗ = ∞ and this implies γ(2, σ) = 1/2 that had been observed below. Figure 17 displays a remarkably good agreement between the computed γ for diﬀerent σ and d and the expression given in (2.3), recalling that each value of σ is obtained as a numerically calculated limit when k is large enough.
+
+We ﬁnally made the same tests in the case of negative index in order to look again for asymptotic rates
+
+in various norms. The situation now diﬀers from what was found above: the limit value of the derivative
+
+of log uk L∞ with respect to log k does not depend on σ. The proﬁles obtained indicate that we have the asymptotics
+
+uk
+
+L∞
+
+∼
+
+d−1
+k2,
+
+uk L2 ∼ kd/2,
+
+∇uk L2 ∼ kd/2 and S(uk) ∼ kd.
+
+2.4.2. Vortex solitons
+We now set d = 2 and look for asymptotics laws in L2, H1 norms of vortex solutions as k is large. It is now observed (see Figs. 18 and 19) that for each m ≥ 1, the value U0k,m of Uk,m(r) := uk,m(r)/rm at r = 0 depends on both σ and m. It has also been obtained that the L2 norm of uk,m uniformly scales as k. We notice that in this case, the rate that is numerically found for the L∞ norm seems to ﬁt the explicit one given by
+
+U0k,m
+
+∼
+
+1+mσ
+k2
+
+,
+
+k → ∞.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+1.5
+
+187
+
+1
+
+0.5
+
+sigma = 0.5
+
+sigma = 1.0
+
+sigma = 1.5
+
+sigma = 2.0
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+k
+
+Figure 18. Derivative of log U0k,m as a function of log k for 0 ≤ k ≤ 25, σ = 0.25, 0.5, 0.75, 1.0 (m = 1).
+
+2.5
+
+2
+
+1.5
+
+1
+
+sigma = 0.5
+
+sigma = 1.0
+
+0.5
+
+sigma = 1.5
+
+sigma = 2.0
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+k
+
+Figure 19. Derivative of log U0k,m as a function of log k for 0 ≤ k ≤ 25, σ = 0.25, 0.5, 0.75 (m = 2).
+
+2.4.3. Large nonlinear exponent
+As recalled in the beginning of Section 2.1, solitons can be computed when α > 0 and ω > 0 only for σ < σ∗ and we now focus on the asymptotics σ → σ∗: we compute stationary states for large values of σ in order
+
+188
+
+L. DI MENZA
+5
+
+4.5
+
+0 node
+
+1 node
+
+4
+
+2 nodes
+
+3.5
+
+3
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+σ
+
+Figure 20. Values of u0 L∞, u1 L∞ and u2 L∞ versus σ (d = 2).
+2.5
+
+sigma = 1
+
+2
+
+sigma = 5
+
+sigma = 10
+
+1.5
+
+1
+
+0.5
+
+0
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+r
+
+Figure 21. Plot of u0, σ = 1, σ = 5, σ = 10 (d = 2).
+
+to derive a scaling law for uk L∞, uk L2, ∇uk L2 and S(uk) when k is prescribed. Our experiments ﬁrst show that for d = 2, the value of the soliton at the origin seems to converge as σ → ∞ to some limit depending
+on the number of nodes (see Fig. 20 where this value is plotted with respect to σ for k = 0, k = 1 and k = 2).
+Furthermore, a spatial plot of the fundamental solution u0 for various σ indicates a conﬁnement of the stationary state around the origin when σ → ∞, as viewed in Figure 21.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+0.5
+
+0 node
+
+1 node
+
+0
+
+2 nodes
+
+3 nodes
+
+−0.5
+
+−1
+
+−1.5
+
+−2
+
+−2.5
+
+−3
+
+−3.5
+
+−4
+
+−6
+
+−5
+
+−4
+
+−3
+
+−2
+
+−1
+
+0
+
+1
+
+log(sigma* − sigma)
+
+Figure 22. Derivative of log uk L∞ as a function of log (σ∗ − σ) (d = 3), k = 0, k = 1, k = 2 and k = 3.
+
+189
+
+In this case, we have used a diﬀerential solver on a nonuniform grid that is geometrically reﬁned around
+
+r = 0: we have set rj = λjr0, with λ > 1 constant. All the experiments have been made with λ = 1.01 that is enough to capture the singularity. Our computations showed that there does not exist a uniform scaling factor
+
+λk(σ) for which uk(λk(σ)r) could tend to a universal proﬁle as in the one-dimensional case for the ground state. Higher-order schemes have been used to check the validity of the results obtained with RK4 method in the
+
+resolution of (2.1); it has been observed that the computed solutions were not signiﬁcantly changed, leading us
+
+to the conclusion that taking a standard fourth-order diﬀerential solver on a reﬁned grid around the origin was suﬃcient to approximate accurately localized states. We now consider the case d ≥ 3 for which σ∗ < ∞. We perform the same experiments as before and observe that uk0 tends to inﬁnity as σ → σ∗. We intend to analyze the rate of blow-up of this quantity in terms of σ∗ − σ: as before, we view the derivative of log uk0 as depending on log (σ∗ − σ) (see Fig. 22 for d = 3) for the ﬁrst four excited states u0, u1, u2 and u3.
+It can be observed that in any dimension, the rate of convergence depends on the number of nodes: it seems
+
+that large k give a stronger tendency to diverge. We give an illustration of this property in Figure 22 where the
+
+approximate rate of blow-up is given as σ tends to σ∗ for d = 3. Longer tests made with diﬀerent d and k have
+
+shown
+
+that
+
+this
+
+rate
+
+seems
+
+to
+
+behave
+
+as
+
+−
+
+1 2
+
+− k.
+
+We
+
+thus
+
+conjecture
+
+that
+
+uk
+
+L∞
+
+∼
+
+(σ∗
+
+−
+
+σ)−
+
+1 2
+
+−k
+
+,
+
+σ → σ∗.
+
+Our experiments
+
+have shown that the
+
+L2
+
+norm of uk
+
+tends to
+
+zero with
+
+the
+
+uniform
+
+rate
+
+(σ∗
+
+−
+
+σ)
+
+1 2
+
+that do
+
+not
+
+not depend neither on k, neither on the spatial dimension. Furthermore, the proﬁle of the limit value of S(uk) as σ → σ∗ for diﬀerent d with respect to k behaves as a linear function of k. We may have in the general case
+
+S(uk) ∼ ck ∼ k, σ → σ∗.
+
+We have plotted in Figure 23 the values found for the derivative of the limit of ∇uk L2 with respect to log k for 0 ≤ k ≤ 15 and 3 ≤ d ≤ 5. In all dimensions, this derivative converges to 1/2. This result suggests that
+
+190
+
+L. DI MENZA
+
+0.5
+
+0.45
+
+0.4
+
+d = 3
+
+d = 4
+
+0.35
+
+d = 5
+
+0.3
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+0
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+k
+
+Figure 23. Limit values of the derivative of log ∇uk L2 with respect to log (σ∗ − σ) versus k, d = 3, 4, 5.
+
+for any dimension, we have
+
+√ ∇uk L2 ∼ dk ∼ k, σ → σ∗.
+
+We have also noticed that in the case d = 3, the proﬁle of uk L∞ is not monotonous with respect to σ: we have found that this quantity decreases from zero to some σ˜ and increases from σ˜ to σ∗. The numerical value
+of σ˜ is 0.585, which is not far from the critical exponent 2/d in that case. For higher dimensions, the proﬁle of the L∞ norm is always increasing with respect to σ.
+
+2.4.4. Sum up of the results We ﬁnally recall all the asymptotics obtained for the stationary states in the previous paragraphs. • For σ < σ∗ = 2/(d − 2) in the case d ≥ 2, ω = 1 and α = 1, we have for k → ∞
+
+1+σ∗ /2
+uk L∞ ∼ k σ∗−σ ,
+
+uk L2 ∼ kd/2,
+
+∇uk L2 ∼ kd/2 and S(uk) ∼ kd.
+
+• For σ > 0 in the case d = 2, ω = 1 and α = 1, we have for k → ∞
+
+uk,m rm
+
+∼
+
+k
+
+1+mσ 2
+
+,
+
+r=0
+
+uk,m L2 ∼ k,
+
+∇uk,m L2 ∼ k and S(uk) ∼ k2.
+
+• For −1/2 < σ < 0 in the case d ≥ 2, ω = −1 and α = −1, we have for k → ∞
+
+uk
+
+L∞
+
+∼
+
+d−1
+k2,
+
+uk L2 ∼ kd/2,
+
+∇uk L2 ∼ kd/2 and S(uk) ∼ kd.
+
+• For d ≥ 2, ω = 1 and α = 1, we have at prescribed k when σ → σ∗ = 2/(d − 2)
+
+uk
+
+L∞
+
+∼
+
+(σ∗
+
+−
+
+σ)−
+
+1 2
+
+−k
+
+,
+
+uk
+
+L2
+
+∼
+
+(σ∗
+
+−
+
+σ)
+
+1 2
+
+,
+
+√ uk L2 ∼ k and S(uk) ∼ k.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+191
+
+3. Solitons for two-wave quadratic media
+
+We are now concerned with the computation of solitons for a system occurring in nonlinear optics that
+
+governs the propagation of two electromagnetic waves in a quadratic media. The system writes
+
+⎧
+
+⎪⎪⎨
+
+i
+
+∂u ∂z
+
++ Δu − u + u¯v = 0
+
+⎪⎪⎩ iσ ∂v + Δv − ρv + 1 u2 = 0,
+
+∂z
+
+2
+
+(3.1)
+
+where σ and ρ stand for nonnegative parameters. Seeking stationary states of the form u(z, x) = eiωzu(x) and v(z, x) = e2iωzv(x), system (3.1) is transformed into the nonlinear elliptic system in Rd
+
+⎧ ⎨ −(1 + ω)u + Δu + u¯v = 0 ⎩ −(ρ + 2σω)v + Δv + 1 u2 = 0.
+2
+
+(3.2)
+
+In all that follows, we will assume for the sake of convenience that ω = 0 without loss of generality (taking ω = 0 only changes the values of the zero-order parameters). Looking for radial solutions, this system will consist in two diﬀerential second-order equations where the unknowns u and v have to be computed for r ∈ [0, ∞[. In this case, the previous scalar shooting method based on a single dichotomy algorithm cannot be used directly because two independent parameters u(0) and v(0) have to be adjusted in order to enforce a nice decay property at inﬁnity. We ﬁrst focus on the case d = 1.
+
+3.1. The one-dimensional case
+
+If we assume that u and v stand for even functions of x, smoothness assumption requires that the two derivatives have to vanish at x = 0. System (3.2) thus reduces to
+
+⎧ ⎪⎪⎪⎨ ⎪⎪⎪⎩
+
+u v
+
+(x) − u(x) + u(x)v(x) = 0 (x) − ρv(x) + 1 u2(x) = 0
+2
+
+x>0
+
+u(0) = α, v(0) = β, u (0) = 0, v (0) = 0.
+
+(3.3)
+
+Proposition 3.1. Let (α, β) the initial values of a spatially localized solution (u, v) of (3.3) at x = 0. Then
+
+one has the identity
+
+α2 + ρβ2 − α2β = 0.
+
+(3.4)
+
+Proof. We multiply the ﬁrst equation by u and the second one by v . Summing these two relations, one obtains
+
+− 1 (u2(x)) − ρ (v2(x)) + 1 ((u )2(x)) + 1 ((v )2(x)) + u(x)u (x)v(x) + 1 u2(x)v (x) = 0.
+
+2
+
+2
+
+2
+
+2
+
+2
+
+We now integrate between 0 and x and plug the initial conditions to get (claiming that uu v +u2v /2 = (u2v) /2)
+
+1 u2(x) + ρ v2(x) − 1 u2(x)v(x) = 1 α2 + 1 ρβ2 − 1 α2β.
+
+2
+
+2
+
+2
+
+22
+
+2
+
+Now, since we look for localized solutions for (3.3), we assume that u, v and all their derivatives vanish at inﬁnity. Letting x tend to inﬁnity, the result follows.
+
+192
+
+L. DI MENZA
+4.5
+
+4
+
+3.5 rho = 0.5
+
+rho = 1.0
+
+rho = 2.0
+
+3
+
+rho = 4.0
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+x
+
+Figure 24. Plot of u0, ρ = 0.5, ρ = 1, ρ = 2 and ρ = 4.
+
+As a consequence, it is possible to express one of the two parameters in terms of the other one, which enables us to deﬁne a shooting strategy as for the case of a single equation. We have equivalently
+
+α =±β
+
+ρ β−1
+
+or
+
+β = α2 ± α α2 − 4ρ · 2ρ
+
+Note that if (u, v) solves (3.2), so does (−u, v) and in order to have deﬁnite square roots, we require
+
+it is possible to make that β > 1 and α >
+
+2th√eρf.urItfhtehreavsasulumesptaitonthαe
+
+> 0. Moreover, origin are seen
+
+as local minima of u and v, then u (0) ≤ 0, v (0) ≤ 0 and (3.3) implies that ρβ ≤ α2/2, from which we deduce
+
+that we ﬁnally have β = (α2 − α α2 − 4ρ)/2ρ. Note that the condition ρβ ≤ α2/2 leads us to β ≤ 2 and
+
+we ﬁnd that β is uniformly bounded. We have always chosen to express β with use of α since in the second
+
+equation, the maximum principle asserts that v remains strictly positive: α will be adjusted in order to obtain
+
+a solution which can vanish k times. The kth excited solutions will be noted (uk, vk), with values at x = 0 given by (uk0, v0k).
+We plot in Figures 24 and 25 the fundamental solutions (u0, v0) obtained with the shooting technique for
+diﬀerent values of ρ on the domain [0, 10] using the Runge-Kutta method with N = 1000. As opposed to NLS equation (1.1), it can be observed that the values (uk0, v0k) of the kth excited solution at x = 0 (that is the solution of (3.3) for which u vanishes k times) seem to converge to a limit value (u∗, v∗) that is conjectured to be the Cauchy data of the periodic solution of (3.3): we present in Table 1 the values uk0 and v0k obtained for 0 ≤ k ≤ 5 in the case ρ = 0.5.
+Consequently, it becomes quite diﬃcult to analyze the rate of convergence of (uk0, v0k) to (u∗, v∗). We also view in Figures 26 and 27 the proﬁles of the ﬁrst excited states. We remark that vk can be closely approximated
+by a translated plot of vk−1; this provides a numerical illustration that letting k tend to inﬁnity leads us to a
+periodic solution.
+
+We have also found that excited states (uk, vk) only seem to exist for 0 < ρ < 1. As an example, we try to compute the ﬁrst excited solution when ρ tends to 1. The approximate solution v attains a local extremum
+
+at some x0 that is observed to tend to inﬁnity when ρ becomes close to 1 (see Figs. 28 and 29, where this
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+1.8
+
+193
+
+1.6
+
+1.4
+
+rho = 0.5
+
+rho = 1.0
+
+1.2
+
+rho = 2.0
+
+rho = 4.0
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+x
+
+Figure 25. Plot of v0, ρ = 0.5, ρ = 1, ρ = 2 and ρ = 4.
+
+Table 1. uk0 and v0k for 0 ≤ k ≤ 5.
+
+k
+
+uk0
+
+v0k
+
+0 1.55 309 535 851 485 1.41 508 910 697 179
+
+1 1.54 841 943 801 909 1.42 123 527 210 442
+
+2 1.54 840 928 210 547 1.42 124 884 162 844
+
+3 1.54 840 925 984 781 1.42 124 887 136 843
+
+4 1.54 840 925 979 908 1.42 124 887 143 354
+
+5 1.54 840 925 979 861 1.42 124 887 143 418
+
+limiting behaviour is illustrated with tests performed on the interval [0, 30] discretized with N = 2000 points). It is conjectured that all the excited states will converge to the fundamental solution (u0, v0) when ρ tends to 1. Note that in this case, it becomes diﬃcult for our method to capture excited solutions. Let us mention that
+all these computations can be made when dealing with solutions such that u(0) = 0, v(0) = β, u (0) = γ and v (0) = 0. In this case, the necessary condition in order to have localized solutions now writes γ2 = ρβ2.
+
+3.2. Higher-dimensional bright solitons
+
+We now investigate the determination of radial stationary solution of (3.2) in any space dimension. The new
+
+system writes
+
+⎧ ⎪⎪⎪⎪⎪⎨
+
+u
+
+(r) +
+
+d
+
+− r
+
+1
+
+u
+
+(r)
+
+−
+
+u(r)
+
++
+
+u(r)v(r)
+
+=0
+
+⎪⎪⎪⎪⎪⎩
+
+v
+
+(r)
+
++
+
+d
+
+−
+
+1 v
+
+(r)
+
+−
+
+ρv(r)
+
++
+
+1 u2(r)
+
+=
+
+0
+
+r
+
+2
+
+u(0) = α, v(0) = β, u (0) = 0, v (0) = 0.
+
+r>0 r>0
+
+(3.5)
+
+Unlike (3.3), it is not possible to ﬁnd for localized solutions of (3.5) a relation between α and β, because of the frictional terms u /r and v /r that come into play if d ≥ 2. We then use a continuation method that enables to
+
+194
+
+L. DI MENZA
+2 1 node 2 nodes 3 nodes
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5
+
+−2
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+35
+
+x
+
+Figure 26. Plot of uk, ρ = 0.5, k = 1, k = 2 and k = 3.
+
+1.6
+1 node
+2 nodes
+3 nodes 1.4
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+35
+
+x
+
+Figure 27. Plot of vk, ρ = 0.5, k = 1, k = 2 and k = 3.
+
+follow a path between one-dimensional solitons and d-dimensional solitons. Let us deﬁne (us, vs) as a spatially localized solution of (3.5) where s is regarded as a continuous parameter that varies between 1 and d. Since it is possible to evaluate numerically any excited one-dimensional soliton (see Sect. 3.1), we assume that the starting point, say (u1, v1), is known. We now follow the path between (u1, v1) and the desired solution (ud, vd),
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+5
+
+rho = 0.5
+
+rho = 0.6
+
+4
+
+rho = 0.8
+
+rho = 0.92
+
+3
+
+2
+
+1
+
+0
+
+−1
+
+−2
+
+−3
+
+−4
+
+−5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+x
+
+Figure 28. Plot of u1, ρ = 0.7, ρ = 0.8, ρ = 0.9, ρ = 0.92.
+
+2
+
+rho = 0.5
+
+rho = 0.6
+
+1.8
+
+rho = 0.8
+
+rho = 0.92
+
+1.6
+
+1.4
+
+1.2 1
+
+0.8 0.6
+
+0.4 0.2
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+x
+
+Figure 29. Plot of v1, ρ = 0.7, ρ = 0.8, ρ = 0.9, ρ = 0.92.
+
+expressing that for each s, (us, vs) satisﬁes the system
+
+⎧ ⎪⎨
+
+us (r) +
+
+s
+
+− r
+
+1
+
+us(r)
+
+−
+
+us(r)
+
++
+
+us (r)vs (r)
+
+=
+
+0
+
+⎪⎩
+
+vs (r) +
+
+s
+
+− r
+
+1
+
+vs
+
+(r)
+
+−
+
+ρvs
+
+(r)
+
++
+
+1 2
+
+u2s (r)
+
+=
+
+0
+
+r>0 r > 0.
+
+195 (3.6)
+
+196
+
+L. DI MENZA
+
+It implies that the derivative (u˙ s, v˙s) with respect to s identically vanishes on this path. We thus get for each r > 0 the identities
+
+⎧ ⎪⎨
+
+u˙ s (r) +
+
+s
+
+− r
+
+1
+
+u˙ s(r)
+
+−
+
+u˙ s(r)
+
++
+
+vs(r)u˙ s(r)
+
++
+
+us (r)v˙ s (r)
+
+=
+
+−
+
+1 r
+
+us(r)
+
+⎪⎩
+
+v˙s (r) +
+
+s
+
+− r
+
+1
+
+v˙s(r)
+
+−
+
+ρv˙s(r)
+
++
+
+us(r)u˙ s(r)
+
+=
+
+−
+
+1 r
+
+vs(r).
+
+(3.7)
+
+This means that for each s, (u˙ s, v˙s) can be obtained from (us, vs) solving a linear nonhomogeneous elliptic-like system (it is not elliptic in the usual sense because s is not an integer) that is noted (u˙ s, v˙s) = F ((us, vs)). In order to compute (ud, vd) starting from the initial data (u1, v1), we thus have to solve the diﬀerential problem
+
+(u˙ s, v˙s) = F ((us, vs)), s ∈ [1, d] (us, vs) s=1 = (u1, v1),
+
+(3.8)
+
+which can be easily done, again with a standard Runge-Kutta routine. Since radial exponentially decaying states are seeked, we consider the numerical domain [0, rmax] where this elliptic system is discretized on a uniform grid with spatial mesh h. Unfortunately, we have to deal with boundary condition at the right end-point of the segment in order to preserve the decreasing rate at inﬁnity. Recalling that we drop oﬀ the nonlinear terms in order to ﬁnd the correct asymptotics, we ﬁrst have
+
+u(r)
+
+∼
+
+C
+
+e−r r(d−1)/2
+
+and
+
+v(r)
+
+∼
+
+C
+
+e−√ρr r(d−1)/2
+
+·
+
+(3.9)
+
+Diﬀerentiating with respect to r, we ﬁnd that if r is large enough,
+
+∂u + 1 + d − 1 u = 0 and ∂v + √ρ + d − 1 v = 0.
+
+∂r
+
+2r
+
+∂r
+
+2r
+
+(3.10)
+
+Note that these conditions could be interpreted as transparent conditions for the linear part of the timedependent system rewritten in Laplace transform L. In this case, L(∂ψ/∂t) = ωLψ that can be compa√red with the zero-order term ρv and we ﬁnd in (3.10) the pseudodiﬀerential half-derivative operator of symbol ω that is well-known in the theory of transparent conditions; see for example [4]. If s once again stands for the continuous dimension parameter, then we have that for each s ∈ [1, d]
+
+∂us + ∂r
+
+1+ s−1 2r
+
+us = 0
+
+and
+
+∂vs + ∂r
+
+√ρ + s − 1 2r
+
+vs = 0.
+
+Now, we have to ﬁnd correct boundary conditions for u˙ s and v˙s, since (3.8) will involve ﬁrst-order derivatives. Diﬀerentiating with respect to s, the original boundary conditions lead us to
+
+∂u˙ s + ∂r
+
+1+ s−1 2r
+
+u˙ s
+
+=
+
+−
+
+1 2r
+
+us
+
+and
+
+∂v˙s + ∂r
+
+√ρ + s − 1 2r
+
+v˙s
+
+=
+
+−
+
+1 2r
+
+vs.
+
+(3.11)
+
+These boundary conditions guarantee that the computed solutions keep a correct asymptotics at inﬁnity. How-
+ever, the Cauchy data that is obtained in the one-dimensional case with the shooting method is such that u1 changes its sign at r = rmax, which is not consistent with (3.9). We thus decide to compute one-dimensional solitons on a spatial domain [0, rmax + r∗] and to restrict ourselves to the truncated domain [0, rmax] for the continuation method. In all the tests that have been made, the choice r∗ = 8 has given a correct starting point. In this case, boundary conditions (3.11) enable to preserve the right asymptotics for the solutions between 1
+and d. Concerning now the left end-point of the numerical domain, diﬀerentiating the Neumann conditions us(0) = vs(0) = 0 with respect to s simply gives us again u˙ s(0) = v˙s(0) = 0. One can refer to Appendix for the discretization of (3.7) and (3.11) that allows us to compute the discrete values of (u˙ s, v˙s) from (us, vs).
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+2.5 d = 1 d = 2
+2
+
+197
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10 12 14 16 18 20
+
+r
+
+Figure 30. Plot of u1, one-dimensional starting point and two-dimensional excited state, ρ = 0.2.
+
+We ﬁrst plot the stationary states (u1, v1) comparing them with the proﬁles obtained in the one-dimensional case, taken as starting points. We have used the following values of parameters: ρ = 0.2, Nd = 100 discretization points for the numerical resolution of (3.8) and rmax = 20. As seen in Figures 30 and 31, the one-dimensional solitons have traveled through the continuous path and have given radial excited two-dimensional proﬁles. Note
+that in [11], a continuation method has been used starting from one-dimensional explicit solutions with no nodes
+that can be calculated for ρ = 1. In Figures 32 and 33 are shown a collection of excited states computed in the case d = 2 (when dealing with
+large number of nodes, the spatial domain has been enhanced as for solitons computed in Sect. 2). As for the
+scalar NLS equation, it is noted that the values of uk and vk at the origin is an increasing function of k. In Figure 33, we observe that v1 is strictly decreasing in R+ although the starting point admits two local extrema outside the origin. Surprisingly, for larger values of k, the last local extrema for vk in 1d will persist as local extrema of vk in 2d, whereas the ﬁrst ones close to the origin will be lost: as an example, v2 (respectively v3) only admits one local minimum and one local maximum (outside the origin) and has been calculated from a
+one-dimensional proﬁle with 2 (respectively 3) local minimum and local maximum (outside the origin).
+
+3.3. Vortex solitons in two-dimensional case
+As for NLS equation, it is possible to look for solutions with dependence with respect to angular parameter θ. We thus look for solutions of the form u(r) exp(imθ) and u(r) exp(2imθ); the system to be solved now reads
+
+⎧ ⎪⎪⎨
+
+u
+
+(r) +
+
+1 ru
+
+(r) −
+
+m2 r2
+
+u(r)
+
+−
+
+u(r)
+
++
+
+u¯(r)v(r)
+
+=
+
+0
+
+⎪⎪⎩
+
+v
+
+(r)
+
++
+
+1 v
+r
+
+(r)
+
+−
+
+4m2 r2
+
+v(r)
+
+−
+
+ρv(r)
+
++
+
+1 u2(r) 2
+
+=
+
+0.
+
+(3.12)
+
+198
+
+L. DI MENZA
+
+3 d = 1 d = 2
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+0
+
+2
+
+4
+
+6
+
+8 10 12 14 16 18 20
+
+Figure 31. Plot of v1, one-dimensional starting point and two-dimensional excited state, ρ = 0.2.
+
+3.5
+
+0 node
+
+1 node
+
+3
+
+2 nodes
+
+3 nodes
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+r
+
+Figure 32. Plot of uk, ρ = 0.5, k = 0, k = 1, k = 2 and k = 3.
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+5
+
+0 node
+
+1 node
+
+4.5
+
+2 nodes
+
+3 nodes
+
+4
+
+3.5
+
+3
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+r
+
+Figure 33. Plot of vk, ρ = 0.2, k = 0, k = 1, k = 2 and k = 3.
+
+199
+
+Such solutions vanish at r = 0 and we set u(r) = rmU (r) and v(r) = r2mV (r). The system turns into
+
+⎧ ⎪⎨
+
+U
+
+(r) + 1 + 2m U (r) − U (r) + r2mU (r)V (r) = 0 r
+
+⎪⎩ V (r) + 1 + 4m V (r) − ρV (r) + 1 U 2(r) = 0.
+
+r
+
+2
+
+(3.13)
+
+We decide to use the continuation procedure described above, taking m as a continuation parameter that is still
+
+noted s: we deﬁne the pair (Us(r), Vs(r)) as the solutions of (3.13). Diﬀerentiating with respect to s ∈ [0, m],
+
+we get
+
+⎧ ⎪⎪⎪⎪⎪⎨ ⎪⎪⎪⎪⎪⎩
+
+U˙ s (r) + V˙s (r) +
+
+1
+
++ r
+
+2s
+
+U˙ s
+
+(r)
+
+−
+
+U˙ s(r)
+
++
+
+r2sVs
+
+(r)U˙ s −2 r
+
+(r) + Us(r)
+
+r2sUs(r)V˙s(r) = − 2 log r r2sUs(r)Vs
+
+(r)
+
+1
+
++ r
+
+4s V˙s
+
+(r)
+
+−
+
+ρV˙s(r)
+
++
+
+Us(r)U˙ s(r)
+
+=
+
+−
+
+4 r Vs(r).
+
+(3.14)
+
+If (Us, Vs) is known, this gives us (U˙ s, V˙s). Here again, a diﬀerential solver enables us to compute (Um, Vm) from Cauchy data (U0, V0) which is nothing else but the bright solitons in the two-dimensional case, because of the the friction terms U (r)/r and V (r)/r in the system at s = 0. The boundary conditions set at the right side of the numerical domain are the same as for bright solitons. We show in Figures 34 and 35 the proﬁles of
+excited states (uk,m, vk,m) obtained in the case m = 1 for various k. Taking larger values of m has faced us with a stability problem, due to the fact that the original solutions
+are (u(r), v(r)) = (rmU (r), r2mV (r)). Consequently, a small perturbation in the computation of (U, V ) will generate a catastrophic variation on u and v at large r. This can be dramatic when seeking excited states with large number of nodes. If m > 1, we then use the previous continuation method from 0 to 1 and we go back to
+
+200
+
+L. DI MENZA
+
+2.5
+
+0 node
+
+1 node
+
+2
+
+2 nodes
+
+3 nodes
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5 0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+r
+
+Figure 34. Plot of uk,m, m = 1, ρ = 0.2, k = 0, k = 1, k = 2 and k = 3.
+
+2
+
+0 node
+
+1 node
+
+1.8
+
+2 nodes
+
+3 nodes
+
+1.6
+
+1.4 1.2
+1
+
+0.8 0.6
+
+0.4 0.2
+
+0
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+r
+
+Figure 35. Plot of vk,m, m = 1, ρ = 0.2, k = 0, k = 1, k = 2 and k = 3.
+
+the initial system from 1 to m; the system that is solved in order to compute (u˙ , v˙) is now
+
+⎧ ⎪⎪⎨
+
+u˙ s (r) +
+
+1 r
+
+u˙ s
+
+(r)
+
+−
+
+s2 r2
+
+u˙ s(r)
+
+−
+
+u˙ s(r)
+
++
+
+vs(r)u˙ s(r)
+
++
+
+us (r)v˙ s (r)
+
+=
+
+2s r2 us(r)
+
+⎪⎪⎩
+
+v˙s (r) +
+
+1 r
+
+v˙s(r)
+
+−
+
+4s2 r2
+
+v˙s(r)
+
+−
+
+ρv˙d(r)
+
++
+
+us(r)u˙ s(r)
+
+=
+
+8s r2 vs(r).
+
+(3.15)
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+6
+
+201
+
+4 u v
+2
+
+0
+
+−2
+
+−4
+
+−6
+
+0
+
+5
+
+10
+
+15
+
+r
+
+Figure 36. Plot of u1,1 and v1,1, ρ = 4.
+
+In this case, the two continuation techniques have been compared and the solutions that are found are quite the same. As for equation (1.1), it seems that taking larger values of m translates the vortex.
+We have also used this strategy with respect to parameter ρ, between its initial value and some ﬁnal value ρf . Indeed, it had been observed that excited bright solitons for the one-dimensional case do not exist if ρ ≥ 1. We then decided to investigate if excited vortex states could exist anyway for large ρ. Continuation technique enabled us to compute excited states for ρ > 1 (that is for ρf > 1) (see Fig. 36) where the ﬁrst excited vortex solution has been computed for ρ = 4). This possibility to ﬁnd vortex solutions for large ρ points out that the continuation techniques that are successively used are not commutative: it would be impossible to reach vortex excited states at some ρ ≥ 1 starting from one-dimensional excited bright solitons computed with ρ since these states do not exist. Note that in [6], vortex states have been computed in the case k = 0 with a ﬁnite-diﬀerence strategy.
+
+4. Three-wave models
+
+We ﬁnally investigate the case where the nonlinear model involves 3 coupled waves noted u, v and w, respectively associated to carrying wave numbers ku, kv and kw, with the matching condition kw = ku + kv. The system that has to be solved writes now
+
+⎧ ⎪⎪⎨ Δu − u + v¯w = 0
+
+⎪⎪⎩
+
+Δv − γv + u¯w = 0 Δw − ρw + uv = 0,
+
+(4.1)
+
+where ρ and γ are strictly positive constants. If γ = 1, it is possible to ﬁnd real solutions of the form (u, u, v), where u and v solve the two-wave model described in the previous section.
+
+202
+
+L. DI MENZA
+
+4.1. One-dimensional solitons
+For γ = 1, it becomes impossible to use a scalar shooting strategy as before to compute stationary states. This can be explained by the relation that can be obtained between the values α, β and δ of u, v and w at r = 0 (assuming that the expected solutions of (4.1) satisfy u (0) = v (0) = w (0) = 0). Indeed, following the strategy used for Proposition 3.1, it is possible to show that the new relation reads now
+
+α2 + γβ2 + ρδ2 − 2αβδ = 0.
+
+(4.2)
+
+Thus, it becomes impossible to express all the values at the origin with respect to one single parameter that can be used as a shooting parameter. We then intend to use a continuation technique, starting from the two-wave system obtained initially setting γ = 1, u1 = v1 = u and w1 = v that can be computed using the algorithm described in Section 3.
+
+Let (us, vs, ws) be the solution of the nonlinear system
+
+⎧ ⎪⎪⎨ us (r) − us(r) + ws(r)vs(r) = 0
+
+⎪⎪⎩
+
+vs (r) − svs(r) + ws(r)us(r) = 0 ws (r) − ρws(r) + us(r)vs(r) = 0.
+
+(4.3)
+
+We assume that the one-parameter family (us, vs, ws) solves (4.3) for each s, then if we diﬀerentiate with respect
+
+to s, we ﬁnd that
+
+⎧ ⎪⎪⎨ u˙ s (r) − u˙ s(r) + ws(r)v˙s(r) + vs(r)w˙ s(r) = 0
+
+⎪⎪⎩
+
+v˙s (r) − sv˙s(r) + ws(r)u˙ s(r) + us(r)w˙ s(r) = vs(r) w˙ s (r) − ρw˙ s(r) + vs(r)u˙ s(r) + us(r)v˙s(r) = 0,
+
+(4.4)
+
+for each s between 1 and γ. This system enables to ﬁnd (u˙ s, v˙s, w˙ s) if (us, vs, ws) is known, under the general
+
+form (u˙ s, v˙s, w˙ s) = G((us, vs, ws)). As in the two-wave model, (u˙ s, v˙s, w˙ s) solves a linear system with coeﬃcients
+
+and source term depending on (us, vs, ws). We then solve the diﬀerential problem
+
+(u˙ s, v˙s, w˙ s) = G((us, vs, ws)), s ∈ I (us, vs, ws) s=1 = (u1, u1, v1)
+
+(4.5)
+
+where I = [γ, 1] if γ < 1 and I = [1, γ] if γ ≥ 1 and ﬁnd the three-wave soliton starting from the two-wave soliton. Note that in this case, the starting point is such that us|s=1 = vs|s=1 and initializing with an excited state will lead us to a three-wave excited state with the same number of nodes for u and v. In order to solve the system at each s, we add the following boundary conditions at r = rmax, following the strategy deﬁned for the two-wave system:
+
+∂u˙ s ∂r
+
++
+
+u˙ s
+
+=
+
+0,
+
+∂v˙s ∂r
+
++
+
+√ sv˙s
+
+=
+
+−
+
+√1 2s
+
+vs
+
+and
+
+∂w˙ s ∂r
+
++
+
+√ ρw˙ s
+
+=
+
+0.
+
+In Figure 37 is plotted the ﬁrst component u of the solutions obtained for γ = 1, 2, 3 and 4, computed for ρ = 0.5 on the numerical domain [0, 15] discretized with 1000 spatial points, starting with the two-wave solution (u0, v0). In this case, (4.5) has been solved using Nγ = 40 discretization points in γ. Other computations have shown that the state (u0, v0, w0) seems to exist for each γ > 0. The solution at ﬁnal value γ is such that relation (4.2) is satisﬁed.
+The same tests have been made with (u1, v1) as the starting point (see Fig. 38 the plots of u1 computed with diﬀerent values of γ): in this case, we notice that the ﬁnal solution keeps the same structure (u1 and v1 have one node and w1 remains strictly positive). It is remarkable that u1 and v1 vanish at the same point;
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+2.5 γ = 1 γ = 2 γ = 3 γ = 4
+2
+
+203
+
+1.5
+
+1
+
+0.5
+
+0
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+x
+
+Figure 37. Plot of u0, ρ = 0.5, γ = 1, 2, 3, 4.
+
+2.5
+
+γ = 0.5
+
+γ = 0.8
+
+2
+
+γ = 2.0
+
+γ = 4.0
+
+1.5
+
+1 0.5
+
+0 −0.5
+
+−1 −1.5
+
+−2
+
+−2.5
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+x
+
+Figure 38. Plot of u1, ρ = 0.5, γ = 0.5, 0.8, 2, 4.
+
+this implies by the maximum principle that w1 ≥ 0. Furthermore, when γ decreases, the local minimum of w1
+seems to tend to zero and the two extrema of w1 are attained at some values of r that become large. After this,
+it is observed that relation (4.2) is no more fulﬁlled and the computed solution cannot be considered as a correct one. More tests have shown that for each k ≥ 1, there exists a threshold value γ∗ = γ∗(ρ, k) < 1 such that no solution (uk, vk, wk) with equal number of nodes for uk and vk will be found for γ ≤ γ∗. This indicates to us
+
+204
+
+L. DI MENZA
+k = 0 k = 1 k = 2 2
+
+1.5
+
+1
+
+0.5
+
+0
+
+−0.5
+
+−1
+
+−1.5 0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+r
+
+Figure 39. Plot of uk, ρ = 0.5, γ = 0.8, d = 2, k = 0, 1, 2.
+
+that three-wave kth excited states could only exist for γ ∈ ]γ∗(ρ, k), ∞[ which diﬀers from the two-wave excited states where any excited solitons seem to exist for any ρ < 1. If now γ ≥ 1 > γ∗(ρ, k), excited solitons have be
+computed with k arbitrarily large; furthermore, for each k, the local minima of wk increase with γ. Finally, it has been noticed that at ρ prescribed smaller than 1, (γ∗(ρ, k))k≥1 is an increasing sequence. Of course, this investigation only concerns localized solutions with the same number of nodes for the ﬁrst two components u
+and v. Others kinds of stationary states may exist in this case.
+
+4.2. Generalizations
+The same method as in Section 3 can be used in order to ﬁnd stationary states in dimension d ≥ 2. In this new context, we compute the path between the three-wave starting point (u1, v1, w1) in one space dimension and the solution (ud, vd, wd) of (4.1) at dimension d solving a diﬀerential system similar to the one described for two-wave system. We view in Figure 39 the ﬁrst wave proﬁle obtained in the two-dimensional case for ρ = 0.5 and γ = 0.8, starting from (uk, vk, wk) (0 ≤ k ≤ 2). As opposed to what was observed for the two-wave case, the solutions obtained for k = 2 indicate that excited states with same number of nodes for u and v may not exist for large k when γ is prescribed: the two local extrema are reached at some r0 and r1 that go away from the origin. The conclusion is the same as in the one-dimensional case. If γ > 1, it becomes again possible to compute excited states (see Fig. 40 where the ﬁrst state u has been plotted for computations made with γ = 1.5). This regime is very diﬀerent qualitatively from the one found for γ = 0.8.
+Finally, the method still works for the determination of three-wave vortices solutions, that write u(t, x1, x2) = u(r) exp(imuθ), v(t, x1, x2) = v(r) exp(imvθ) and w(t, x1, x2) = w(r) exp(i(mu + mv)θ), where mu and mv are integers. Using the change of variables u(r) = U (r)rmu , v(r) = V (r)rmv and w(r) = W (r)rmu+mv , the system
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+5 1 node 2 nodes 3 nodes
+4
+
+205
+
+3
+
+2
+
+1
+
+0
+
+−1
+
+−2
+
+0
+
+5
+
+10
+
+15
+
+r
+
+Figure 40. Plot of uk, ρ = 0.5, γ = 1.5, d = 2, k = 1, 2, 3.
+
+that has to be solved writes
+
+⎧ ⎪⎪⎪⎪⎪⎪⎨ ⎪⎪⎪⎪⎪⎪⎩
+
+U V W
+
+(r) + 1 + 2mu U (r) − U (r) + r2mv W (r)V (r) = 0 r
+(r) + 1 + 2mv V (r) − γV (r) + r2mu W (r)U (r) = 0 r
+(r) + 1 + 2(mu + mv) W (r) − ρW (r) + U (r)V (r) = 0.
+
+r
+
+(4.6)
+
+We solve this system using a continuation technique from a starting point given by the three-wave solitons
+(u, v, w), that is solutions of (4.1) obtained in the two-dimensional case. Here, mu stands for the continuation parameter, setting mv = θmu. In other words, the continuation acts on both mu and mv and we initialize the system with (Us, Vs, Ws)|s=0 = (u, v, w). Once again, the path between 0 and mu is calculated by solving a diﬀerential system and allows us to calculate kth excited vortex noted (uk,mu,mv , vk,mu,mv , wk,mu,mv ). This algorithm is of course also valid for the computation of special solutions for which mv + mv = 0 and mu = 0, meaning that w does not vanish at r = 0: u and v stand as vortices and w reduces to a usual bright soliton.
+
+5. Conclusion
+In this paper, we wave computed solitons for equations arising in nonlinear optics. First, we have used the classical shooting method in order to ﬁnd numerical approximations of the excited states of (1.1). This method is quite robust and it allowed us to study various asymptotics in several cases: when the number of zeros k is large, it is observed that uk L∞, uk L2, ∇uk L2 and S(uk) are governed by scaling laws in terms of k with speciﬁc exponents. In the two-dimensional case, vortex solitons have been found and here again, scaling laws involving σ and m have been numerically found. In the case of negative σ (only investigated for ω = α = −1), we have found that the power only depends on k. Finally, the case σ → σ∗ has been considered at ﬁxed number of zeros, leading us to the conclusion that the asymptotics depends on k. This points out that this asymptotic behaviour is not driven by a scaling argument that would give a uniform law in terms of the number of nodes.
+
+206
+
+L. DI MENZA
+
+Then, we focused on the system of wave propagation in quadratic media. It has been shown that the shooting strategy still works in the case of two coupled waves. Even in the one-dimensional case, this model admits a large variety of stationary states (including excited states), as opposed to NLS equation. A continuation algorithm has been proposed in order to compute the path between one-dimension and d dimensional solitons where the shooting method cannot be directly used. It is believed that excited states do not exist for any values of parameter ρ in the system. In the two-dimensional case, vortex have been obtained with use of a change of variable that transforms the desired solutions into structures that do not vanish at the origin. These solutions are found to exist for a wider range of parameters as for bright solitons.
+
+We have also been able to compute three-wave solitons using the continuation method, starting from two-wave solutions, as well as vortex solutions. Here again, we conjecture that depending on parameters ρ and γ, this model does not possess an inﬁnite number of excited localized solutions. It is remarkable that one-dimensional solitons for the two-wave system can be extended in such stable way in order to compute solitons for other equations: higher dimensional cases, vortex solitons, diﬀerent parameters in the system, etc. This kind of method could be used in other contexts where stationary solutions cannot be explicitly integrated as solutions of a scalar diﬀerential equation.
+
+6. Appendix
+
+We give now the linear system obtained when solving diﬀerential system (3.7) for the computation of solitons in the two-wave model in dimension d. We recall that in this case, s denotes the parameter that continuously joins one-dimensional solitons and d dimensional solitons. Let rj = jh for 0 ≤ j ≤ N and let (us)j , (vs)j , (u˙ s)j and (u˙ s)j respectively stand for the approximate values of us, vs, u˙ s and v˙s at r = rj.
+• For j = 0, we have to investigate the discretization of the singular term u˙ s(r)/r. As seen in Section 2.1, we have u˙ s(r)/r → u˙ s (0) as r → 0. Since u˙ s(0) = 0, it follows that
+
+(u˙ s)1
+
+=
+
+(u˙ s)0
+
++
+
+h2 2 (u˙ s )0
+
++
+
+O(h3)
+
+and the second derivative at r = 0 is approximated by 2((u˙ s)1 − (u˙ s)0)/h2. Consequently, the ﬁrst equation
+
+writes
+
+−
+
+(u˙ s)0
+
++
+
+2s h2
+
+(u˙ s)1 − (u˙ s)0
+
+2 + (vs)0(u˙ s)0 + (us)0(v˙s)0 = h2
+
+(us)1 − (us)0
+
+whereas the second one is
+
+−
+
+ρ(v˙s)0
+
++
+
+2s h2
+
+(v˙s)1 − (v˙s)0
+
+2 + (us)0(u˙ s)0 = h2
+
+(vs)1 − (vs)0 .
+
+• For 1 ≤ j ≤ N − 1, the discretization of (3.7) leads us to the discrete equations
+
+−
+
+(u˙ s)j
+
++
+
+1 h2
+
+(u˙ s)j+1 − 2(u˙ s)j + (u˙ s)j−1
+
+s−1 +
+2hrj
+
+(u˙ s)j+1 − (u˙ s)j−1
+
++
+
+(vs)j (u˙ s)j
+
++
+
+(us)j (v˙s)j
+
+=
+
+−1 2hrj
+
+(us)j+1 − (us)j−1
+
+−
+
+(v˙s)j
+
++
+
+1 h2
+
+(v˙s)j+1 − 2(v˙s)j + (v˙s)j−1
+
+s−1 +
+2hrj
+
+(v˙s)j+1 − (v˙s)j−1
+
++
+
+(us)j (u˙ s)j
+
+=
+
+−1 2hrj
+
+(vs)j+1 − (vs)j−1
+
+.
+
+• In order to ﬁnd the equation set at the last point rN of the domain, we start with the Taylor expansion
+
+(u˙ s)N−1
+
+=
+
+(u˙ s)N
+
+−
+
+h(u˙ s)N
+
++
+
+h2 2 (u˙ s )N
+
++
+
+O(h3)
+
+NUMERICAL COMPUTATION OF SOLITONS FOR OPTICAL SYSTEMS
+
+207
+
+from which we deduce the following relation, plugging the boundary condition (u˙ s)N = −(1+(s−1)/2rN)(u˙ s)N −
+
+(us)N /2rN :
+
+(u˙ s )N
+
+=
+
+2 h2 (u˙ s)N−1
+
+−
+
+22 h2 + h
+
+s−1 1+
+2rN
+
+(u˙ s)N
+
+−
+
+1 hrN
+
+(us)N
+
++
+
+O(h).
+
+If we neglect the Taylor remainder and use the initial boundary condition (us)N = −(1 + (s − 1)/2rN )(us)N ,
+
+this ﬁnally leads us to the relation
+
+2 h2
+
+(u˙ s)N
+
+−1
+
+−
+
+2 1 + h2 +
+
+s−1 1+
+2rN
+
+2 s−1 +
+h rN
+
+− (vs)N (u˙ s)N + (us)N (v˙s)N
+
+1
+
+1 s−1
+
+= 1+ +
+
+rN
+
+h rN
+
+(us)N .
+
+With the same considerations made on v, we also get
+
+2 h2
+
+(v˙ s )N −1
+
+−
+
+2 ρ + h2 +
+
+√ s−1 ρ+ 2rN
+
+2 s−1 +
+h rN
+
+(v˙s)N + (us)N (u˙ s)N
+
+1 √ 1 s−1
+
+= rN
+
+ρ+ + h rN
+
+(vs)N .
+
+If we set U˙ s = (u˙ s)0, . . . , (u˙ s)N , (u˙ s)0, . . . , (u˙ s)N ∈ R2(N+1), then the matrix is a 2 × 2 block, where each block turns out to be a tridiagonal matrix (N + 1) × (N + 1). In our computations, we have preferred to deal with the vector U˙ s = (u˙ s)0, (v˙s)0, . . . , (u˙ s)N , . . . , (v˙s)N since the proﬁle of the matrix will not depend on the number of discretization points, contrary to the ﬁrst way of storing the unknowns of the problem.
+Concerning continuation algorithm with respect to other parameters such as ρ or m in the two-dimensional case, the way of discretizing linear elliptic problems is similar.
+
+Acknowledgements. The author would like to thank the referees for fruitful suggestions that enabled various improvements in the revised form of the manuscript.
+References
+[1] M. Balabane, J. Dolbeault and H. Ounaies, Nodal solutions for a sublinear elliptic equation. Nonlinear Anal. 52 (2003) 219–237.
+[2] A.V. Buryak, V.V. Steblina and Y. Kivshar, Self-trapping of light beams and parametric solitons in diﬀractive quadratic media. Phys. Rev. A 52 (1995) 1670–1674.
+[3] A.V. Buryak, P. Di Trapani, D.V. Skryabin and S. Trillo, Optical solitons due to quadratic nonlinearities: from basic physics to futuristic applications. Phys. Rep. 370 (2002) 62–235.
+[4] L. Di Menza, Transparent and absorbing conditions for the Schr¨odinger equation in a bounded domain. Numer. Funct. Anal. Optim. 18 (1997) 759–775.
+[5] G. Fibich, N. Gavish and X.-P. Wang, Singular ring solutions of critical and supercritical nonlinear Schr¨odinger equations. Physica D 18 (2007) 55–86.
+[6] W.J. Firth and D.V. Skryabin, Optical solitons carrying orbital angular momentum. Phys. Rev. Lett. 79 (1997) 2450–2453. [7] H. He, M.J. Werner and P.D. Drummond, Simultaneous solitary-wave solutions in a nonlinear parametric waveguide. Phys.
+Rev. E 54 (1996) 896–911. [8] J. Iaia and H. Warchall, Nonradial solutions of a semilinear elliptic equation in two dimensions. J. Diﬀ. Equ. 119 (1995)
+533–558. [9] R. Kajikiya, Norm estimates for radially symmetric solutions of semilinear elliptic equations. Trans. Amer. Math. Soc. 347
+(1995) 1163–1199. [10] M.K. Kwong, Uniqueness of positive solutions of Δu − u + up = 0 in Rn. Arch. Rat. Mech. Anal. 105 (1989) 243–266. [11] D.J.B. Lloyd and A.R. Champneys, Eﬃcient numerical continuation and stability analysis of spatiotemporal quadratic optical
+solitons. SIAM J. Sci. Comput. 27 (2005) 759–773. [12] B. Malomed, P. Drummond, H. He, A. Berntson, D. Anderson and M. Lisak, Spatiotemporal solitons in multidimensional
+optical media with a quadratic nonlinearity. Phys. Rev. E 56 (1997) 4725–4735.
+
+208
+
+L. DI MENZA
+
+[13] K. McLeod, W.C. Troy and F.B. Weissler, Radial solutions of Δu + f (u) = 0 with prescribed number of zeros. J. Diﬀ. Equ. 83 (1990) 368–378.
+[14] T. Mizumachi, Vortex solitons for 2D focusing nonlinear Schr¨odinger equation. Diﬀ. Int. Equ. 18 (2005) 431–450. [15] I.M. Moroz, R. Penrose and P. Tod, Spherically-symmetric solutions of the Schr¨odinger-Newton equation. Class. Quant. Grav.
+15 (1998) 2733–2742. [16] V.V. Steblina, Y. Kivshar, M. Lisak and B.A. Malomed, Self-guided beams in diﬀractive χ(2) medium: variational approach.
+Optics Comm. 118 (1995) 345–352. [17] P.L. Sulem and C. Sulem, The nonlinear Schro¨dinger equation, Self-focusing and wave collapse. AMS, Springer-Verlag (1999).
+[18] I.N. Towers, B.A. Malomed and F.W. Wise, Light bullets in quadratic media with normal dispersion at the second harmonic. Phys. Rev. Lett. 90 (2003) 123902.
+[19] M.I. Weinstein, Nonlinear Schr¨odinger equations and sharp interpolation estimates. Comm. Math. Phys. 87 (1983) 567–576.
+

@@ -1,0 +1,976 @@
+II, pp. Journal of Armospherk and Terrestrial Physics, Vol. 43. No.
+
+1199%1214. 1981.
+
+Printedin Great Bntain.
+
+0021-9169/81/111199-16~002.00/0
+0 1981PergamonPressLtd.
+
+Theory of refractive scattering in scintillation phenomena
+HENRY G. BOOKER and GHOLAMREZA MAJIDIAHI
+Department of Electrical Engineering and Computer Sciences *, University of California, San Diego, La Jolla, California 92093 U.S.A.
+(Received 24 April 1981)
+Abstract-For a plane wave incident upon a thin plane one-dimensional phase-changing screen that has an outer scale L,,, an inner scale Li and an intervening inverse power-law spectrum (spectral index p), calculations are made of the spatial power spectrum of intensity fluctuations in a reception plane parallel to the screen. The outer scale is taken to be large compared with the Fresnel scale F, and results are obtained for a range of values of the spectral index and of the mean square fluctuation of phase (A@)‘. For large values of (A@)‘, lens action occurs in the screen, producing focal action in the reception plane. A lens scale F[2(A@)2]‘/4 is defined, as well as a focal scale 1 that varies from LO[(AQ)2]-“2 at p = 5 to L,[2(AQ))2]-1 at p = 2. When refractive scattering dominates, I-’ is the upper roll-off angular spatial frequency for intensity fluctuations in the reception plane whether this is the focal plane or not. The lower roll-off angular spatial frequency occurs at a scale such that its geometric mean with the focal scale is equal to the Fresnel scale. Refractive scattering dominates even for weak scattering if p - 5 or p > 5. For lower values of p. dsractive scattering dominates unless the lens scale exceeds the focal scale. Refractive scattering dominates when the focal scale is small compared with the lens scale. Saturation of the intensity spectrum occurs when the focal scale is small compared with the Fresnel scale. The scintillation index tends to unity as (A@)’+ cc for all p. The turbulence parameter approximation is satisfactory for a range of spectral indices near 2, but not for p - 3 and p > 3.
+
+1. INTRODUCTION
+When waves are propagated through an irregular medium, small-angle scattering causes what is known as scintillation. In such phenomena, a distinction can be drawn between diffractive and refractive scattering. For a given location in the medium, a Fresnel scale can be defined that depends on the wavelength and the locations of the source and the observer. Diffractive scattering is caused by irregularities whose scale is less than the Fresnel scale. Refractive scattering is caused by irregularities whose scale is greater than the Fresnel scale.
+The role of diffractive scattering in electromagnetic scintillation phenomena such as those occurring in the troposphere, the ionosphere, and the solar wind is well recognized, and a large literature exists (ISHIMARU, 1978 ; USCINSKI, 1977). The role of refractive scattering, although in some respects more straightforward, seems to be less well understood. The effect of ray deviations in media possessing irregularities of refractive index has been studied by HOLLWEC (1968) HOLLWEC and HARRINGTON (1968), YEH and LIU (1968) and by YOUAKIM et al. (1973, 1974). The potential importance of refractive scattering in the ionosphere has been pointed out by SINGLETON(1970)
+* Supported by the National Science Foundation under Grant ATM 78-02625.
+
+and CRAIN et al. (1979). For VHF radio transmission through the ionospheric F-region from a satellite or from an astronomical source, intensity fluctuations observed on the ground arise predominantly from diffractive scattering when the fluctuations of ionization density are sufficiently weak, but they arise predominantly from refractive scattering when the fluctuations of ionization.density are strong. As the fluctuations of density increase from weak to strong, refractive scattering takes over from diffractive scattering as the dominant phenomenon involved in intensity fluctuations. But it is difficult to find a paper in which this is unambiguously recognized ; reference is usually made to strong scattering without adequate analysis of what this actually means as a matter of physics.
+Furthermore, even when the fluctuations of ionization density in the ionospheric F-region are weak and the intensity fluctuations at ground level are caused predominantly by diffractive scattering, the fluctuations of phase at ground level are caused predominantly by refractive scattering. This feature is partially recognized in the literature (FREMOUW et al. 1976; FREMOUWer al. 1980; FREMOUW, 1980), but nevertheless misunderstanding seems to exist concerning how large the fluctuations of phase can be, how large is the size of the associated irregularities, and to what extent the values of these quantities affect observations at ground level.
+
+1199
+
+1200
+
+HENRYG. BANKERand GHOLAMREZMAAJIDIAHI
+
+Not many years ago it was considered quite multiple refractive scattering by weak irregularities of
+
+reasonable to use an outer scale for the ionospheric refractive index. A thin phase screen never involves
+
+F-region of the order of 300 m and an RMS fluctua- multiple scattering. Such a model substitutes weak
+
+tion of phase of not much more than a radian. In 1977 multiple scattering by strong single scattering. This is
+
+BODKERand MILLER (1980) calculated RMS fluctu- quite a drastic substitution of one problem by another,
+
+ations of phase at 138 MHz as high as 100 rad, and the but if accepted it greatly simplifies the problem. For
+
+initial version of their paper was strongly criticized in this reason we shall accept the substitution in this
+
+review on the grounds that such large fluctuations of paper. A thin phase screen with a finite RMS fluctu-
+
+phase are contrary to ‘observations’. In fact, the ation of phase, large compared with one radian, brings
+
+observations involved phase spectra from which the refractive scattering into play in a way that permits one
+
+low-frequency fluctuations, where most of the content to understand, for this model, the relation between
+
+lies, had been removed by a detrending filter. Lowering diffractive and refractive scattering in scintillation
+
+the cut-off frequency of the detrending filter so as to phenomena.
+
+incorpor.ate scales up to the ionospheric scale-height H
+
+(wavelength 27rH) and greater has not proceeded rapidly. It was argued that the mean square fluctuation of phase would increase indefinitely as the observing
+
+2. METHODOF CALCULATION Let us consider a thin phase screen with a mean
+
+time increased, and that no identifiable measure would square fluctuation of phase equal to (A@)* and an
+
+be obtained for the overall fluctuation of phase or for outer scale equal to L,. Let the angular spatial
+
+the outer scale. That this is not so for the phase frequency be denoted by k, and let the spectrum of
+
+difference between the ordinary and extra- phase fluctuations created by the screen at angular
+
+ordinary waves in the ionosphere was known from the spatial frequencies large compared with L;’ be ip-
+
+fact that this phase difference has long been used to versely proportional to a power of k. If the screen
+
+measure fluctuations in the total electron content for possesses two-dimensional irregularities, we shall
+
+periods of the order of a sunspot cycle down to periods assume that an integration is performed in one dimen-
+
+of about ten minutes (TITHERIDGE1,968,197l). BROKER sion so as to reduce it to a screen with one-dimensional
+
+(1979) gave reasons for believing that the outer scale in irregularities. This simplifies calculations without
+
+the ionospheric F-region is of the order of the scale- seriously impairing physical understanding. For the
+
+height and that, when the observing time has increased one-dimensional screen we shall suppose that the
+
+sufficiently to bring the outer-scale irregularities into power spectrum of the phase fluctuations is propor-
+
+play, no further systematic increase would take place tional to kep when k >>_L;l, and we shall refer to p as
+
+in the mean square fluctuation of phase.
+
+the spectral index.
+
+The upshot is that, for satellite communication
+
+For a practical scintillating medium, p is the spectral
+
+through the ionospheric F-region, the outer scale is of index that is observed in making measurements of
+
+the order of the scale-height of the region and is phase fluctuations along a straight line. It is also the
+
+therefore two or three powers of ten bigger than the spectral index that is observed when the irregular
+
+Fresnel scale, while the RMS fluctuation of phase is medium is being blown across the line of sight by a
+
+very large, considerably larger than even BUCKERand wind (tropospheric wind, ionospheric drift or solar
+
+MILLER (1980) calculated. These authors only took wind). For the ionosphere, it is also the spectral index
+
+account of irregularities of ionization density aligned that is observed when the source is in a satellite moving
+
+along the Earth’s magnetic field and having transverse above the ionosphere in a straight line. The spectral
+
+dimensions up to the mean free path of the neutral index p is one integer greater than that observed when
+
+atmosphere in the F-region (-3 km). Major ad- measurements of refractive index are made along a
+
+ditional fluctuation of phase is caused by irregularities straight line in the scintillating medium. The spectral
+
+with scale (wavelength/2a) between this and the true index p is one integer less than is obtained by analyz-
+
+outer scale, which is about a power of ten bigger.
+
+ing fluctuations of phase made over an area rather
+
+In studying the effect ofrefractive scattering, we shall than along a line.
+
+employ the thin phase screen as a model of the
+
+Observed values of p range from about 2 to 4, with
+
+scintillating medium. This is far from satisfactory in values between about 2.5 and 3.5 being most common.
+
+many scintillation problems. It is satisfactory for The smaller values of p are reported when the scintil-
+
+diffractive scattering by weak irregularities. But when lation phenomenon is strong (Woo and ARMSTRONG,
+
+the RMS fluctuation of phase is large compared with 1979 ; LIVINGSTONet al., 1981). There is some evidence
+
+one radian, scintillation phenomena in the tropos- that the spectral index may be somewhat different in
+
+phere, the ionosphere and the solar wind involve different parts of the spectrum, but this we shall not
+
+Theory of refractive scattering in scintillation phenomena
+
+1201
+
+attempt to take into acwunt. We will, however, allow for an inner scale.
+While it has been known for a long time that turbulence-like phenomena are associated with inverse power-law spectra, nevertheless much of the literature on scintillation has contemplated a gaussian spectrum, largely because it is easier to handle mathematically (BOOKER et al. 1950; RATCLIFFE, 1956; HEWISH, 1952; BREGS and PARKIN, 1963; BRAMLEY, 1967; SALPETER,1967; USCXNSKI,1977). A gaussian spectrum behaves somewhat like an inverse power-law spectrum having a high spectral index (6 or more). In our calculations we shall include a spectral index of 5 in order to provide some insight into how the treatment for power-law spectra with low spectral indices relates to that for a gaussian spectrum. We shall therefore consider values of p in the range from 2 to 5.
+If no inner scale is taken into account, we may express the power spectrum of the phase fluctuations as
+
+made to papers by BUCKLEY(1971), SHISH~V(1971), PROKHOROVet al. (1975) and FANTE (1980).
+The distance z from the screen to the reception plane enters via the Fresnel scale defined, in terms of z and the wavelength 2, by
+/1”\1/2
+
+For a given wavelength, it is often convenient to specify the distance between the screen and the reception plane by specifying the value of F. Using the selected autocorrelation function p(x), one formulates two
+functions that each depend on x and on the angular spatial frequency k. The first is
+
+f(x,k) = 2p(x)-p(x-kF’)-p(x+kF2)
+
+(3)
+
+and the second is
+
+g(x, k) = exp t -(A@)’ C.00, k) - f(x, Ml> -expC--W~*f(O, k)l. (4)
+
+(A@)S’ (k)
+
+(1)
+
+where the values of S(k) are those listed in Table 1. This table also presents the corresponding autocorrelation functions p(x) obtained by Fourier transformation ; the functions K, and K, are the standard Bessel functions. However, an inner scale I;; has, in fact, been incorporated in this study. The autocorrelation functions listed in Table 1 are therefore modified as shown in Table 2a. Fourier transformation of these then gives the normalized phase spectra listed in Table 2b.
+When a plane wave is incident normally on a phasechanging screen, the intensity spectrum in a reception plane at distance z beyond the screen is calculated as described in books by TATARSKI (19611, ISHIMARU
+(1978) and USCENSKI(1977). Reference may also be
+
+In terms of g(x, k), the power spectrum of the fractional ~u~uation of intensity in the reception plane is then
+
+m
+
+I(k) = 4 g(x, k) cos (kx)dx.
+
+(5)
+
+I 0
+
+Using this spectrum, index S4 is given by
+
+the square of the scintillation
+s m Z(k)dk. 0
+
+S4 is the RMS fractional fluctuation of intensity, and I(k) is the contribution to S: per unit spatial frequency
+k/(2$. Calculations of intensity fluctuations in the recep-
+tion plane are performed as follows :
+
+Table 1. Phase spectra S(k) per unit mean square fluctuation of phase, together with the corresponding autocorrelation
+functions p(x)
+
+P
+
+S(k)
+
+2- 4L0
+1+ kZI‘ZI)
+
+6) Select the appropriate autocorrelation function p(x) from Table 2a.
+(ii) Substitute p(x) into equation (3) to obtain fhk).
+(iii) Substitute f(xk,) into equation (4) to obtain
+g(x, k). (iv) Substitute g(x, k) into Equation (5), and in-
+tegrate numerically to obtain the intensity spectrum I(k). (4 Substitute I(k) into equation (6) to obtain the square of the scintiIlation index.
+
+371L, 5 (l+k2fi,)s’2
+Outer scale, L,; inner scale, zero.
+
+3. THE FOCAL SCALE, THE PEAK SCALE AND THE LENS SCALE
+We shall find that, in addition to the outer scale I+,, the inner scale L, and the Fresnel scale F, si~ificant
+
+1202
+
+HENRYG. BCHIKERand GHOLAMREZMA AIIDIAHI
+
+Table 2a. Autocorrelation functions for an outer scale LO and an inner scale Li
+
+P
+
+P(X)
+
+Table 2b. Phase spectra per unit mean square fluctuation of phase for an outer scale L, and an inner scale Li
+
+P
+
+S(k)
+
+Theory of refractive scattering in scintillation phenomena
+
+1203
+
+roles are played by a focal scale I, a peak scale P and a
+
+lens scale L. The scales I, P and L are required when
+
+refractive scattering is important.
+
+.
+
+Let us consider a simple situation in which there is a
+
+sinusoidal variation of phase with distance x across the
+
+screen equal to
+
+with expression (7) and the value of (A@)*is large, this distance is approximately a fraction (2(A@)‘}- ‘I2 of the scale L. The focal scale is therefore
+(14)
+
+[2(AcD)*]“* cos 27rx/L.
+
+(7)
+
+Let [(A@)*]‘/* be large compared with one radian, and let L be large compared with the Fresnel scale. We are then concerned with refractive scattering by a sinusoidal phase screen for which the mean square fluctuation of phase is (A@)’ and the scale is L. The displacement of surfaces of constant phase just beyond the screen is given by
+
+From equations (12) and (14) we see that, for a given scale in the screen, the larger the mean square fluctuation of phase, the closer is the focal plane to the screen and the sharper are the foci.
+Using equation (12), we may also write equation (14) as
+
+F I= -
+[qua)*]
+
+F*
+114 = t
+
+(15)
+
+[1/(27r)][2(A@)‘] “’ cos 2n x/L.
+
+(8) or as
+
+From the radius of curvature of these surfaces at the
+
+L = F’/l.
+
+(16)
+
+positions
+
+We see that, for a sinusoidal phase screen, the screen
+
+X = 0, f2sL, f4nL...
+
+(9)
+
+we see that an array of optical foci is produced in a plane parallel to the screen at distance
+
+scale and the focal scale have a geometric mean equal to the Fresnel scale.
+Provided that (A@)*and L/F are sufficiently large, the fine structure in the reception plane has scale 1
+
+C [1/(27r)][2(AQ)2]“2’
+
+given by equation (14) not only in the focal plane but (10) also out of the focal plane. The fine structure is
+controlled by the cone-angle of the angular spectrum
+
+These foci lie in the reception plane at distance z if
+
+of waves arriving at the reception plane, and this is controlled by the distance across the screen over which
+
+(11) the transmitted field can be considered to have ap-
+proximately uniform phase. This distance is the ex-
+
+that is, if the scale of the fluctuation in the screen is
+
+pression on the right hand side of equation (14). Hence, for refractive scattering, the fine structure in a recep-
+
+L = F[2(AO)2]“4
+
+(12)
+
+where F is the Fresnel scale defined in equation (2). Equation (12) implies that, to focus a sinusoidal phase screen of scale L at a reception plane whose location z is specified by a Fresnel scale F requires that the mean square fluctuation of phase in the screen be
+
+tion plane, even one displaced from the focal plane, is the same as it is in the focal plane. However, this fine
+structure no longer takes the form of isolated peaks of width 1 having separation equal to the repetition distance in the screen. Out of the focal plane the
+variation of intensity with distance across the reception plane is a fluctuation of fine scale 1having a gross
+
+(A@)*= &(L/F)4.
+
+(13) spatial modulation at the screen scale. The fluctuation
+
+is caused by interference between plane waves that
+
+For a sinusoidal phase screen, the scale L can be have been refracted by the screen through somewhat
+
+sensed in the focal plane from the fact that 27rL is the different angles. In the focal plane these waves are
+
+separation between foci. The width of the focal spots is, cophased at the foci.
+
+however, quite a different scale that we shall denote by We therefore see that the relation between scales in
+
+1and call the focal scale. The focal scale is associated the screen and scales in the reception plane is quite
+
+with arrival at the reception plane of an angular different when refractive scattering dominates from
+
+spectrum of waves that are approximately cophased what it is when diffractive scattering dominates. In the
+
+within an angle of about +1/(2x1) of the normal. This latter case the scales produced in the reception plane
+
+is caused by the fact that the field transmitted by the are the same as those existing in the screen (BOOKERet
+
+screen can be considered to have approximately al., 1950). But when refractive scattering dominates, a
+
+uniform phase only over a limited distance. For a large scale in the screen creates a small scale in the
+
+screen in which change of phase varies in accordance reception plane. The spatial spectrum of intensity
+
+1204
+
+HENRYG. BOOKERand GHOLAMREZMAAJIDIAHI
+
+fluctuation in a reception plane then extends from the angular spatial frequency of the screen to an upper roll-off angular spatial frequency equal to I- ’ given by equation (14). Moreover, this is true whether or not the reception plane coincides with the focal plane. The upper roll-off frequency of the intensity spectrum always corresponds to the focal scale provided that the RMS fluctuation of phase in the screen is sufficiently large compared with one radian, and the screen scale is sufficiently large compared with the Fresnel scale.
+A more complicated situation is presented by a phase-changing screen that is not simply sinusoidal but that possesses a spectrum of spatial frequencies. This is what occurs for an irregular phase-changing screen. Insight into behaviour in these circumstances can be obtained from the work of USCINSKIet al. (1981). They consider a phase screen with spectrum (A@)’S(k), where S(k) has the value listed in Table 1 for a spectral index p of 4. They show that, when the RMS fluctuation of phase is large compared with one radian and the outer scale L, is large compared with the Fresnel scale, the spectrum of intensity fluctuations in the reception plane in the neighbourhood of the highfrequency roll-off is given approximately by the gaussian formula
+
+Z(k) = (8~)“~ 1exp( -ik212)
+
+(17)
+
+where
+
+approximately and that, when k < L; ‘, this becomes (see Table 1, p = 4)
+
+Z(k) = 8(A@)’ L,F4k4.
+
+(20)
+
+The decrease of Z(k) as k drops to zero, combined with the increase as k drops below I-‘, leads to a value of k at which Z(k) has a peak. For p = 4, USCINSKIet al. (1981) have shown that this peak occurs where k is of
+the order of
+
+LO 1 (21)
+F2 [(A@)2]“2’
+
+We shall define the peak scale P for p = 4 to be given, not precisely by the raiprocal of expression (21), but
+by
+
+p = F2[2(A@)2]“2 (22)
+LO
+Insertion of the factor 2 results in P identifying the lowfrequency edge of the peak rather than the peak proper, in much the same way that, for diffractive scattering with spectral indices less than 4, the Fresnel scale F defined in equation (2) identifies the lowfrequency edge of the diffraction peak.
+From equations (18) and (22) we see that, for p = 4, the peak scale may be written
+
+P = F’Jl.
+
+(23)
+
+(18)
+Equation (18) constitutes the expression for the focal scale. Comparison of equation (18) with equation (14) shows that, in passing from a screen with a single scale to a screen with a spectrum of spectral index 4, one replaces the single scale L by the outer scale L; when calculating the focal scale. The distance across the screen over which the field transmitted by the screen can be considered to have an approximately uniform
+phase is then the fraction [2(A@)2]- ’ of the outer scale
+LOand, when (A@)’ $ 1 and L, $ F, this is the scale that controls the fine structure of the intensity fluctuation in the reception plane.
+The approximation for the intensity spectrum given in equation (17) would create, when k < I- ‘, a uniform intensity spectrum of density (8n)‘/21. In fact the spectrum for p = 4 slowly increases as k decreases below I-‘, and USCINSKI et al. (1981) have given approximate formulae describing this increase. They have also shown that, for sufficiently small spatial frequencies,
+
+Hence the peak scale and the focal scale have a geometric mean equal to the Fresnel scale. Comparison of equation (23) with equation (16) shows that equation (23) is valid not only for a phase screen with an outer scale L, and a spectral index of 4 but also for a sinusoidal screen ; for a sinusoidal screen the peak scale is identical with the screen scale. We shall in fact find that equation (23) is valid for all screens with which we shall be concerned.
+For a given wavelength 1, consider a reception plane whose distance z from the screen corresponds to a specified value F of the Fresnel scale defined in equation (2). For a sinusoidal phase screen whose mean square fluctuation of phase is large and is equal
+to (A@)‘, the reception plane is the focal plane if the screen scale is given by equation (12). We shall define this scale as the lens scale not only for a sinusoidal screen but for all screens with which we shall be concerned. This means that, for a phase screen whose power spectrum is (A@)‘S(k), where S(k) has values such as those listed in Table 1 and Table 2b (p integral or non-integral), we shall define the lens scale to be
+
+Z(k) = (A@)2S(k)(kF)4
+
+(19)
+
+L = F[2(A@)2]“4.
+
+(24)
+
+Theory of refractive scattering in scintillation phenomena
+
+1205
+
+The lens scale L is such that, if the screen were sinusoidal of scale L and had the same mean square
+fluctuation of phase (A@))‘,then the reception plane would be the focal plane.
+For the phase screen of spectral index 4 studied by USCINSKIet al. (1981), the peak scale of the intensity spectrum in the reception plan is given by equation (22) and the lens scale in the screen is given by equation (24). The two are equal if
+
+(A@)*= &/F)4.
+
+(25)
+
+Moreover, for this value of the mean square fluctuation of phase, Equations (22) and (24) give
+
+P = L = L,.
+
+(26)
+
+In these circumstances the outer scale in the screen is the lens scale for the reception plane, and the peak scale in the reception plane is also the outer scale in the screen. The screen is then focussing in the reception plane in a manner comparable to a sinusoidal screen of scale L, having mean square fluctuation of phase given by equation (25).
+But if the peak scale in the reception plane and the lens scale in the screen are unequal, focussing in the reception plane is less effective, and refractive scattering at the screen is not dominated by a unique scale. However, it will be noticed that the numerator on the right hand side of equation (22) is the square of the lens scale defined in equation (24). Hence, equation (22) implies that
+
+L = (PLO)“*.
+
+(27)
+
+This means that the lens scale is intermediate between the peak scale and the outer scale. Thus, even when refractive scattering at the screen is not dominated by a single scale, the lens scale defined in equation (24) is likely to be a rough measure of the structure size in the screen involved in refractive scattering to the reception plane. We shall verify later that the scale L defined in equation (24) does exhibit the behaviour that would be expected for a lens scale, not only for p = 4, but for all
+
+spectral indices that we shall study. We shall also show that the focal scale 1 and the peak scale P vary with spectral index in the manner shown in Table 3.
+
+4. RESULTSOF THECALCULATIONS
+
+Calculations of intensity spectra have been performed in accordance with equation (5) for an outer scale equal to ten times the Fresnel scale and for an inner scale equal to a hundredth of the Fresnel scale, that is, for
+
+L, = lOF, Li = lo-‘F.
+
+(28)
+
+These calculations have been made for a wide range of values of the mean square fluctuation of phase, namely,
+
+(A@)*= lo-‘, 1, 10, lo*, 103, 104, 105.
+They have been made for four values of the spectral index, namely,
+p = 2, 3,4, 5.
+To perform these calculations it is first necessary to evaluate the function j&k) defined in equation (3), and to derive from it the function g&k) defined in equation (4). Examples of how these functions behave are shown in Fig. 1, which refers to a spectral index of 3. The left half of Fig. la presents f(x, k), and the right half g(x, k). The middle pair of diagrams show how
+f and g depend on x when k = F- ‘, corresponding to
+the Fresnel scale. The upper pair of diagrams show
+how f and g depend on x when k = L- ‘, correspond-
+ing to the lens scale. The lower pair of diagrams show
+how f and g depend on x when k = I- ‘, corresponding
+to the focal scale. The function f(x, k) defined in equation (3) is independent of (A@)2as shown in the middle left-hand diagram. The reason why the other diagrams for f (x, k) involve (A@)* as a parameter is that they are calculated for the lens scale and the focal
+scale whose values depend on (A@)* as shown in equation (24) and in Table 3.
+
+2.0 I- LO
+&W
+P ;Z(A@)’ 0
+
+Table 3. The focal scale I and the peak scale P. (A@)’and LJF large
+
+Spectral Index p
+
+2.5
+
+3.0
+
+3.5
+
+4.0
+
+LO [2(AO))‘]“‘3
+
+-
+
+L-O
+
+[(A@)’In (A@)*]“2
+
+-
+
+~
+
+; [2(A@))2]2’3 f [(A@)’ln (A@)‘]‘/’
+
+0
+
+0
+
+LO [4(A@)‘]I”
+
+LO [2(AcP)‘]“’
+F2 ~ L [2(A@)‘]“’
+0
+
+5.0
+LO [(A@)21] ’2
+
+1206
+
+HENRY G. BOXER and GHOLAMREZAMAJIDIAHI
+
+Displacement x in the screen
+Fig. l(a). Illustrating, for p = 3, L, = lOF, and various values of(A@)‘, the variations off(x, k) and g(x, k) with x for the lens scale L (top diagrams), the Fresnel scale F (middle diagrams), and the focal scale I (bottom
+diagrams).
+
+In the left half of Fig. la the curves for f(x, k) are flat near x = 0 up to a value of x of the order of kF*. This value of x is equal to F in the middle diagram, to F*/L in the top diagram and to F*/l in the bottom diagram. This is the behaviour for p = 3. For p = 2, however,
+the length of this flat section is decreased to a value of the order of the inner scale Li. On the other hand, for p = 4 it is increased to a value of the order of the outer scale L,, and remains of this order of magnitude for higher values of p.
+To obtain, for p = 3, the values of the intensity spectrum I(k) at the lens scale, the Fresnel scale and the focal scale, we have to use in equation (5) the curves for g(x, k) shown in the right half of Fig. la and then integrate numerically. some care is necessary in this
+numerical integration. For example, at the lens scale
+the parts of the curves plotted in the top right-hand
+
+L
+
+2L”
+
+Dlsdacement x in the screen
+
+Fig. l(b). Showing the behaviour of the top right hand
+
+diaerarn in Fie. la for values of x of the order of the outer
+
+-
+
+-
+
+scale L,.
+
+Theory of refractive scattering in scintillation phenomena
+
+1207
+
+diagram of Fig. la are not the parts that matter most in the integration. These are associated with the minima of g(x, k) that occur for values of x of the order of the outer scale as shown in Fig. lb.
+To obtain the complete intensity spectrum, cafculations of this sort have to be performed for a wide range of values of k. The result for p = 3 is shown in Fig. 3. Corresponding results for p = 2, 4 and 5 are shown in Figs 2,4 and 5 respectively.
+
+5. DISCUSSION OF THE CALCULATED INTENSITY SPECl-RA
+In Figs 2-5 it will be noticed that, for all spectral indices, the intensity spectrum derived for
+
+(A@)’ = LO-’
+
+agrees with that for weak scattering. This is given by
+
+I(k) = 4(A@ S(k) sin’ (ik2FZ)
+
+(29)
+
+where S(k) has the value shown in Table 2b if the inner scale is taken into account and in Table 1 if L, = 0. It will also be noticed that no significant departure from the spectrum for weak scattering occurs even when
+
+(AL\cD=)21. In Figs 2-5 the Fresnel oscillation associated with the sin’ ()k’F’) term in equation (29) is depicted for the main lobe and the first side lobe. For
+the remaining lobes only the average value, corresponding to replacement of sin” (fk2FZ) in equation (29) by 4, is shown (the broken fine). The bending of this
+
+line that can be seen in Figs 2 and 3 at high spatial frequencies is caused by the cut-off at the inner scale L, (see upper abscissa). The corresponding effect in Figs 4 and 5 occurs at ordinates below those shown in the diagrams.
+As (A@)’increases, the spectrum changes. The initial change involves smoothing of the Fresnel oscillation,
+but with further increase of (A@)’the spectrum spreads both towards high spatial frequencies and towards low spatial frequencies. Let us first examine Fig. 4, which corresponds to the situation studied analytically by I_bXINSKl et ai. (1% 1).
+In Fig. 4 the crosses mark the focal scale 1given by
+equation (18). For (A@)2= 103, lo4 and lo5 in Fig. 4 we can see the high-frequency gaussian roll-off of the spectrum at the focal scale. This is described by equation (17). This roll-off connotes the existence of fine structure of scale I created in the reception plane by refractive scattering. The refractive scattering in the screen that is causing the fine structure in the reception plane is taking place in roughly the neighbourhood of the lens scale L indicated in Fig. 4 by circles.
+For large values of (A@)’ in Fig. 4 we can also see that, as k increases above 1- r, the fast gaussian roll-off soon brings the intensity spectrum down to the value appropriate for weak diffractive scattering. There is then a kink in the curve, and the intensity spectrum switches to inverse power-law behaviour until the angular spatial frequency i.;’ is reached, whereupon cut-off appropriate to the inner scale ensues. This
+
+---Scale of intensityfluctuations
+
+IO
+
+L,
+
+F
+
+I
+
+I
+
+L,
+
+8
+
+I
+
+I
+
+0 Lens scale L
+x Focalscale 1
+Ratioof spatialfrequency to fresnelfrequency
+Fig. 2 Illustrating, for a spectral index of 2, the power spectrum of the fractional intensity fluctuations for various values of the mean square fluctuation of phase, keeping the outer scale, the inner scale, and the
+Fresnel scale constant. L, = lOF, Li = IO-‘F.
+
+1208
+
+HENRYG. BOOKERand GHOLAMREZMAAJIDIAHI
+
+-Scale
+
+of intensitfyluctuations
+L,
+I p=3 L,=IOF L,=dF
+
+0 Lens scaleL X FocalscaleI
+
+IO
+
+I
+
+IO
+
+IO'
+
+Ratioof spatialfrequencyto fresnelfrequency
+
+Fig. 3. Illustrating, for a spectral index of 3, the power spectrum of the fractional intensity fluctuations for various values of the mean square fluctuation of phase, keeping the outer scale, the inner scale, and the
+Fresnel scale constant. I,,, = lOF, Li = lo-‘F.
+
+-Scale L0
+
+of intensityfluctuations
+F
+
+0 Lens scaleL X Focal scaleI
+
+16’
+
+I
+
+IO
+
+IO1
+
+Ratioof spatialfrequencyto fresneflrequency
+
+Fig. 4. Illustrating, for a spectral index of 4, the power spectrum of the fractional intensity fluctuations for various values of the mean square fluctuation of phase, keeping the outer scale, the inner scale, and the
+Fresnel scale constant. L,, = lOF, Li = 10m2F.
+
+Theory of refractive scattering in scintillation phenomena
+
+rd [
+
+-Scale
+LO
+I
+
+of intensityfluctuations
+
+F
+
+L
+
+I
+
+I
+
+/
+
+1209
+
+IO
+IO
+
+x Focal scale 1 tA@I%d
+
+IO’
+
+I
+
+I”
+
+IO'
+
+Ratioof spatialfrequencyto fresnelfrequency
+
+J
+IO3
+
+Fig. 5. Illustrating, for a spectral index of 5, the power spectrum of the fractional intensity fluctuations for
+various values of the mean square fluctuation of phase, keeping the outer scale, the inner scale, and the Fresnel scale constant. L, = lOF, Li = 10e2F.
+
+residual diffractive scattering is quite weak and, if 1< L,, is virtually non-existent.
+Notice that there is no reason why the focal scale cannot be less than the inner scale. The focal scale is not associated with irregularities in the screen of scale I but with ones in the neighbourhood of the lens scale. The kink in the spectrum where refractive scattering is replaced by diffractive scattering has the following property. Spatial frequencies near that of the kink, but on opposite sides, correspond to irregularities of intensity in the reception plane that are not very different in scale. But they arise from totally different scales in the screen. On the low-frequency side of the kink they are due to refractive scattering by large-scale irregularities in the screen. On the high-frequency side of the kink they are due to diffractive scattering by small-scale irregularities in the screen. As the spatial frequency in the reception plane passes through that corresponding to the kink, a drastic change takes place in the size of the causative irregularities in the screen.
+The specific role of the lens scale defined in equation
+(24) is demonstrated in Fig. 4 as follows. As (A@)’ decreases from large values, the focal scale (cross) increases and the lens scale (circle) decreases. When the cross and the circle have passed each other, the intensity spectrum created in the reception plane by the screen reverts substantially to that appropriate to weak scattering, and no cross or circle is shown. The scale L defined in equation (24) does therefore have the
+
+property that we expect of a lens scale. When the focal scale exceeds the lens scale, lens and focal behaviour is irrelevant. When the focal scale becomes less than the lens scale, lens and focal behaviour starts to matter. When the lens scale is large compared with the focal scale, lens and focal behaviour play a dominant role.
+Equation (23) states that the geometric mean of the peak scale P and the focal scale I is equal to the Fresnel scale F. For the logarithmic plots of Fig. 4, this means that, when refractive scattering dominates, the peak scale should be as far to the left of the Fresnel scale as the focal scale is to the right. Remembering that we have defined P so that it gives the low-frequency edge of the peak, we can see from Fig. 4 that equation (23) is verified.
+The results that we have described for a spectral index of 4 using Fig. 4 apply with only minor modification to all values of p 2 3. This is illustrated in Figs 3 and 5. The main modification is concerned with the value of the focal scale; this is derived in the following Section.
+In Fig. 5 the principal con~ibution to the intensity spectrum comes from the vicinity of the outer scale even for weak scattering. This means that, when p = 5, even weak scattering is refractive rather than diffractive. This becomes progressively more true as the special index is increased above 5 (BOOKER and MILLER,1979).
+
+1210
+
+HENRY G. EWOKERand GHOLAMREZAMAJIDIAHI
+
+6. THE DEPENDENCE OF THE FOCAL SCALE ON THE SPECCRAL INDEX
+
+When (A@)’ + 1, the spectrum in the neighbourhood of the focal scale involves only small values of x in the integral of equation (5). This is illustrated for P = 3 in the lower right hand diagram of Fig. la. We may then approximate equation (3) as
+
+f(x, k) = 2CP(X)- PW)l
+
+(30)
+
+and equation (4) as
+
+g(x,k) = exp{-22(A~)2C1-P(~)I}. (31)
+This function is now independent of k so that equation (5) simply becomes a Fourier transformation. Moreover, in equation (31), the autocorrelation function p(x) is only required for small values of x. In approximating P(x), however, care is necessary depending on the value of p.
+Let us set the inner scale L, equal to zero, and use the autocorrelation functions listed in .Table 1. Then, for p > 3, the behaviour for sufficiently small x is given by
+
+P(X) = 1- C2(P- 3)1- l w,)2
+
+(32)
+
+so that equation (3 1) becomes
+
+g(x, k) = exp( -+xX2/l’)
+
+(33)
+
+where
+
+with equation (5), the intensity spectrum I(k) in the
+neighbourhood of the focal scale when (A@ B 1 is not quite gaussian. This can be seen in Fig. 3 ; the departure consists of the switch to inverse power-law behaviour on the high-frequency side of the kink in the spectrum. Comparison of Figs 3,4 and 5 shows that residual diffractive scattering at scales less than the focal scale becomes progressively more noticeable as the spectral index is reduced from 5 to 4 to 3. However, even when p = 3, residual diffractive scattering is weak, and is virtually non-existent if I < Li. On the low-frequency side of the kink, the spectrum is still roughly gaussian. This behaviour for p = 3 is obtained by writing equation (37) in the approximate form
+
+g(x, k) = exp{ --*[(A@)” In (A@)*]x*/L”,}. (38)
+
+We then recover equation (35) but with equation (34) replaced by
+
+I= ~ L_O_
+
+(39)
+
+[(A@)*ln(A@)*]“*’
+
+This is the value of the focal scale that is listed in Table 3 for p = 3 and that is marked on the curves in Fig. 3 by means of crosses.
+When the spectral index drops below 3, the gaussian behaviour at angular spatial frequencies in excess of that corresponding to the focal scale is gradually replaced by the power-law behaviour, except when k > L; I. The consequence may be seen in Fig. 2, where the spectral index is 2. For 1 < p < 3, equation (32) is replaced by
+
+Substitution from equation (33) into equation (5) then gives
+
+I(k) = (8x)“* 1exp( -ik*l*).
+
+(35)
+
+Equation (34) gives the values of 1listed in Table 3 for p = 3.5, 4.0 and 5.0. In particular, when p = 4, equation (34) verifies equation (18) and equation (35) verifies equation (17).
+The approximation in equations (32) (33) and (34) is technically true when p > 3, but in fact it ceases to have practical utility before p has decreased to 3. When p = 3, equation (32) is replaced by
+
+2L
+p(x)= I-- rnlxl-m
+
+2
+
+&
+
+(36)
+
+I( >
+
+where y is Euler’s number. Equation (31) then becomes
+
+p(x) = 1 - r{#3-P))
+
+1x1 p-1
+
+(40)
+
+F{%l+ P)) c-21Lo
+
+so that equations (33) and (34) are replaced by
+
+g(x, k) = ew-(141~P-11
+
+(41)
+
+and l=
+
+LO
+
+I .
+
+(42)
+
+While the approximation in equations (40), (41) and (42) is technically true when 1 < p < 3, it in fact ceases to have practical utility when p is close to 1 or close to 3. When p = 3 we use equations (36H39).
+For p = 2 equation (41) becomes
+
+g(x, k) = expC(- I~llOl
+
+(43)
+
+and equation (42) becomes
+
+This function is not quite gaussian, as can be seen in the lower right-hand diagram in Fig. la. In accordance
+
+I=--__. L0
+
+(44)
+
+2(A@)*
+
+Theory of refractive scattering in scintillation phenomena
+
+1211
+
+Substitution from equation (43) into equation (5) then gives
+I(k) = -. 41 1+ k=l=
+This intensity spectrum for p = 2 has a level value 41 when k < 1-l and an inverse power-law behaviour 41-lke2 when k B I-‘. This behaviour in the neighbourhood of the focal scale can be seen in Fig. 2 for
+(A@)’ = 10’. For p = 2, residual diffractive scattering takes over from refractive scattering at the focal scale.
+However, for the curve (A@)’ = lo2 in Fig. 2, the cutoff of diffractive scattering at the inner scale is soon
+reached. For the curves (A@)’ = 103, lo4 and lo’, the focal scale is less than the value assumed for the inner scale, and the roll-off at the focal scale then reverts to gaussian behaviour. In these circumstances a modified evaluation of the focal scale is needed.
+Equation (45) is the high-frequency approximation
+derived by RUMSEY (1975). It applies when (A@)= is sufficiently large and the spectral index is 2 (or 3 for the two dimensional screen considered by Rumsey). The calculations in Fig. 2 may be compared with those of MARIANS (1975), which are based on the work of Rumsey. When the spectral index differs from 2 but is not close to 1 or 3, equation (45) is replaced by the Fourier transform of equation (41).
+If the scintillation index S, is evaluated by substitution from equation (45) into equation (6), the result is unity. The intensity fluctuations are then saturated, and the probability distribution of amplitude in the reception plane is Rayleigh. Also, when k + I- ‘, equation (45) becomes, on substituting for 1 from equation (44),
+
+From Table 3 it will be noticed that, whereas the focal scale 1 is inversely proportional to [(A@)‘]‘/’ when p exceeds 3 and is not close to 3, nevertheless for
+p = 2 the focal scale is inversely proportional to (A@)= without the radical; compare equation (34) with
+equation (42). This means that, as (A@)’ increases, refractive scattering causes a more rapid extension of the intensity spectrum to high spatial frequencies for p = 2 than occurs for p 2 3. That this is so may be verified by comparing Fig. 2 with Figs 3,4 and 5.
+The derivation of equation (5) given by TATARSKI (1961), ISHIMARU(1978) and USCINSKI (1977) assumes that all scattering is through a small angle. This means that all significant scales in Figs 1, 2, 3 and 4 must be small compared with l/(2@. This is satisfied in Figs 3,4 and 5 if the scale A/(27c) on the upper abscissa corresponds to the right hand edge in each diagram, or is even further to the right. However, with sufficient
+increase of (A@)=, this condition is bound to be violated. Moreover, this happens more quickly for p = 2 than for p >>3 because of the change in the dependence of 1 on (A@)’ that occurs near p = 3 (see Table 3). If in Fig. 2 the scale A/(27r)corresponds to the right hand edge of the diagram, the small-angle
+approximation is violated for (A@)’ = 10’. We then have a situation in which the screen is substantially an omnidirectional scatterer (cf. daylight on a cloudy day). In these circumstances the level portion of the
+curve for (A@)’ = lo5 in Fig. 2 should be raised slightly, and the intensity spectrum should be maintained at approximately this level for all higher values
+of (A@)=.
+
+I(k) = S[(A@)‘/L,]k-=.
+Furthermore, in these circumstances the weak scattering formula in equation (29) also takes the form given in equation (46) if the Fresnel oscillatory term sin2 (fk2F2) is replaced by its average value. We may
+say therefore that, when p = 2 and (A@)’ is sufficiently large, the intensity spectrum in the neighbourhood of the focal scale is obtained approximately by decapitating the smoothed weak scattering spectrum at such a level as to make the scintillation index unity. This result also applies for other values ofp in the vicinity of 2 but breaks down if p is increased to 3. It is still reasonably satisfactory for p = 2.5, and the value of 1 quoted in Table 3 for p = 2.5 is calculated in this way. If it is calculated from equation (42), the expression for 1 when p = 2.5 is L0/[2.8(A@)2]2’3.
+
+7. THE DEPENDENCE OF THE PEAK SCALE ON THE SPECTRALINDEX
+By comparing Figs 2,3,4 and 5, we can see that the peak scale is quite a prominent feature of the intensity spectrum if p > 3 but that it has largely disappeared when p has dropped to 2. It has not completely disappeared, however. A slight rise of the spectra for
+m = 10’ and lo4 can be seen at the lowest frequencies shown in Fig. 2 ; peaks of no practical importance do exist beyond the left hand edge of the diagram. Even
+for (A@)’ = lo3 there exists, close to the low-frequency roll-off, a maximum that cannot be detected on a logarithmic plot but that is noticeable on a linear plot. For p = 2 and (A@)= sufficiently large, an approximation to the intensity spectrum, omitting the unimportant peak, has been obtained independently by COLES
+
+1212
+
+HENRYG. B~~KERand GHOLAMREZMA AJIDIA~
+
+and RUMSEY(1979), RINO (1980) and USCINSKI et al. (1981). It is
+
+I(k) = ~ 41 1+ W
+
+x {1-cxp(-F)[cos(k2Fz)+v]}
+
+(47)
+
+where 1 is given by equation (44). Unless k is small compared with I- ‘, this reduces to equation (45). At the low-frequency end of the spectrum, however, equation (47) gives approximately
+
+I(k) = 2Tk’.
+
+(48)
+
+For (A@)’ sufficiently large, this equation describes the low-frequency decrease of the intensity spectrum to zero from the value 41 that corresponds to the level mid-frequency section of the spectrum in Fig. 2. It will be noticed that the expression on the right hand side of equation (48) is proportional to kZ whereas that on the right hand side of equation (20) is proportional to k4. From Figs 2, 3, 4 and 5, we can see that the lowfrequency behaviour is given by the k4 formula for the higher values of the spectral index. Even for p = 2, it is given by the k4 formula until (A@)’ has increased sufficiently to bring refractive scattering into play. It then changes to the k2 behaviour in equation (48).
+The low-frequency roll-off of the intensity spectrum
+when p = 2 and (AQ)2 is sufficiently large may be conveniently taken to occur at the value of k where the expression on the right hand side of equation (48) is equal to half the value 41 corresponding to the level mid-frequency section of the spectrum. The lowfrequency roll-off then occurs at the angular spatial frequency
+
+k = l/F’.
+
+(49)
+
+The corresponding scale F2/l is identical to the peak scale P appearing in equation (23), and it will be remembered that P was designed to mark the lowfrequency edge of the peak. It follows that, even for p = 2, equation (23) for P is applicable in spite of the fact that very little peak then exists. The values of the peak scale P quoted in Table 3 are obtained by applying equation (23) to all values of the spectral index, using the appropriate value of the focal scale 1 listed in the Table. As the spectral index descends through the value 3, not only do increasingly large
+values of (A@)2 cause the intensity spectrum to spread more rapidly towards high spatial frequencies but the same is also true towards low spatial frequencies.
+
+RMS Fluctuation of phase m rodtans
+Fig. 6. Illustrating, for various values of the spectral index, how the scintillation index S, varies with the RMS fluctuation of phase, keeping the outer scale, the inner scale, and the
+Fresnel scale constant. L, = lOF, Li d F.
+8. BEHAVIOUROF THE SCINTILLATIONINDEX
+From the intensity spectra in Figs 2,3,4 and 5, the values of the scintillation index S, may be calculated in accordance with equation (6). The results are shown in Fig. 6. As (A@)’ increases, lens action starts to matter when the focal scale is equal to the lens scale, shown by circles in Fig. 6. Saturation of the intensity spectrum has not occurred, however, even when the focal scale is equal to the Fresnel scale, shown by crosses in Fig. 6. Saturation requires that the focal scale be small compared with the Fresnel scale.
+The overshoot of the scintillation index beyond unity in Fig. 6 is associated with the peaks in the spectra appearing in Figs 3,4 and 5. It will be noticed, however, that the overshoot commences before the peak has developed into a relatively isolated lowfrequency phenomenon and that, when it has, the overshoot is already disappearing. The main contribution to the scintillation index for large values of (A@)z comes from the high-frequency portion of the intensity spectrum in the neighbourhood of the focal scale. Figure 6 illustrates the fact that, as one would expect, the scintillation index tends to unity as (A@)’ tends to infinity.
+9. THE RESTRICTIONS ON THE VALIDITY OF THE TURBULENCEPARAMETERAPPROXIMATION
+For phase screens with an inverse power-law spectrum for which the outer scale is large compared with
+
+Theory of refractive scattering in scintillation phenomena
+
+1213
+
+the Fresnel scale, it is often assumed that the precise value of the outer scale is irrelevant. Neglecting the inner scale, the phase spectrum for spectral index p is then proportional to (Table 1)
+
+(A@)’ L,
+
+(1+ k2Lz,)p12
+
+(50)
+
+and, when k $ L; ‘, this becomes
+
+(A@)’ 1
+
+Lp0-‘kp.
+
+(51)
+
+The coefficient of kmP is known as a turbulence parameter, and the argument is made that the intensity spectrum depends on this parameter rather than on the
+individual values of L, and (A@)‘. This is equivalent to saying that the intensity spectrum depends, not on the outer scale and the mean square fluctuation of phase individually, but on the combination appearing in the scale
+
+L0
+
+LT = __
+
+1.
+
+(52)
+
+[(AO)‘]X
+
+For weak diffractive scattering this is true, but care is necessary when refractive scattering is important. The theory outlined in Section 2 then contains the values of
+L,, and (A@)2in a way that is not solely dependent upon the combination appearing in equation (52). Even when the intensity spectrum is so completely saturated that it depends only on the focal scale 1,the right hand side of equation (52) is not the controlling combination
+of L, and (A@)2 for all values of the spectral index. Equation (42) shows that, if p is about 2, and does not depart from 2 enough to be close to 1 or 3, then 1does depend upon the combination appearing in equation (52). But equations (34) and (39) show that this is not true when p is in the neighbourhood of 3 or exceeds 3.
+It follows that the turbulence parameter approximation is useful for spectral indices in the vicinity of 2 but not otherwise. The turbulence parameter approximation is satisfactory up to p = 2.5 but not up to p = 3. As p approaches the value 3, the turbulence parameter approximation first becomes inaccurate and then incorrect. There is a range of values of the spectral index in the neighbourhood of 2 over which the turbulence parameter approximation is reliable, but this does not include the range p N 3 and p > 3.
+The effect of using the turbulence parameter concept in circumstances when it should not be used may be seen in the work of RINO (1979, 1980). He concludes that, for 3 < p < 4, the scintillation index fails to tend to unity as the turbulence parameter tends to infinity. But use of the turbulence parameter concept is inap-
+
+propriate when p N 3 and p > .3. When the spectral index lies between 3 and 5 and is not close to either 3 or 5, the intensity spectrum depends on the combination
+L,/[(AQ)2]“u-‘) for weak scattering, on the combi-
+nation L,/[(A@)‘] ‘I2 under saturation conditions, and
+on the values of L, and (A@)’ individually during the transition between the two. When p - 5 or p > 5 even weak scattering is predominately refractive and fails to
+depend primarily on the combination of L, and (A@ involved in the turbulence parameter (BOOKERand MILLER,1980). It is only for values of the spectral index in the vicinity of 2, and not departing from 2 enough to be close to 1 or 3, that it is feasible to assume that the intensity spectrum depends on the combination
+LJ(A@)2] “(P- ‘i. It is sometimes assumed incorrectly that the work of
+RUMSEY(1975) proves that the turbulence parameter concept is applicable for 1 < p < 5. Rumsey allows the outer scale to tend to infinity in such a way that the scale L, in equation (52) remains finite. The effect of this is to replace Table 3 by Table 4. The entries for p = 2.0 and 2.5 are equivalent in the two tables, and this is what is required for the turbulence parameter approximation to be useful. The zeros and infinites in Table 4 record the fact that the turbulence parameter approximation is inapplicable when p - 3 and p > 3 ; the associated value of the intensity spectrum is zero, and the small-angle approximation of scintillation theory is violated. Rumsey points out that, when the outer scale is taken to be infinite, the value of 1is zero for p = 5 ; he does not say that I vanishes for all values of p from 3 to 5, although this statement is in fact true. He does not say that the turbulence parameter approximation is inapplicable when p - 3 and p > 3, but he does say, both in the body of the paper and in the abstract, that the turbulence parameter approximation is valid when 1 < p < 3. This is correct if it is noted that, because a phase sp.ectrum proportional to expression (51) is invalid for p = 1 and for p = 3, it is inaccurate when p is close to 1 and when p is close to 3.
+RUMSEY(1975) also shows that, if the outer scale is allowed to tend to infinity keeping the scale L, in equation (52) fixed, divergent integrals are not in-
+
+Table 4. The focal scale I and the peak scale P when (A@)’ = co, L, = co and L, is finite. L, = LO/[(A@)2]“(p-1L
+
+Spectral index p
+
+2.0 1 2_‘L, P 2FZL-,’
+
+2.5
+2_2’3LT 22’3FZLT_1
+
+3.0 3.5 4.0 5.0 0 0 0 0 CL, 03 00 03
+
+1214
+
+HENRY G.B~~KER and GHOLAMREZA MAJIDIAHI
+
+volved provided that 1 < p < 5. But this is only a necessary condition for validity of the turbulence parameter approximation. It is not a sufficient condition, and RUMSEY does not say that it is. Provided that the outer scale is large compared with the Fresnel scale, equation (42) of this paper shows that the turbulence parameter concept is satisfactory for values of p in the neighbourhood of 2 and not near 1 or 3. But equations (34) and (39) show that, when refractive scattering dominates, the turbulence parameter concept is not applicable for p _ 3 and p > 3.
+
+For all spectral indices, including those in excess of
+3, the scintillation index tends to unity as (A@)’ + 00 as illustrated in Fig. 6. For p 2 3 and for sufficiently
+large values of (A@)2, the important part of the intensity spectrum is given by equation (35) with the appropriate value of 1.As (A@)’ -+ co, the departures of the intensity spectrum from this limiting form tend to zero both at high spatial frequencies and at low. Substitution from equation (35) into equation (6) verifies that the limiting value of S4 is unity.
+
+BANKERH. G.
+BWKER H. G. and MILLER D. C.
+BWKER H. G., RATCLIFFEJ. A. and SHINND. BRAMLEYE. N. BRIGGSB. H. and PARKINI. A. BUCKLEYR. GRAINC. M., BANKERH. G. and FERGU~~NJ. A. FANTEZR. FREMOUWE. J., RINOC. L. and LIVINGSTONR.
+FREMOUWE. J. FREMOUWE. J., LIVINGSTONR. C. and MILLERD. A. HEWISHA. HOLLWEGJ. V. HOLLWEGJ. V. and HARRINGTONJ. V. ISHIMARUA.
+LIVINGSTONR. C., RINOC. L., MCCLUREJ. P. and HANSONW. B.
+MARIANSM. PROKHOROVA. M., BUNKINF. V.,
+GIXHELAS~ILY K. S. and SHISHOVV. I. RATCLIFFEJ. A.
+RINOC. L. RINOC. L. RUM~EYV. H. SALPETERE. E. SHISHOVV. I. SINGLETOND. G. TATAR~KVI . I.
+TITHERIDGEJ. E. TITHERIDGEJ. E. USCINSKIB. J.
+USCINSKIB. J., Boom H. G. and MARIANSM. Woo R. and ARMSTRONGJ. W. YEH K. C. and Lru C. H. YOUAKIMM. Y., LIU C. H. and YEH K. C. YOUAKIMM. Y., LIU C. H. and YEH K. C.
+
+REFERENCES
+
+1979 1980 1950 1967 1963 1971 1979 1980 1976
+1980 1980 1952 1968 1968 1978
+1981
+
+J. atmos. terr. Phys. 41, 501. J. atmos. terr. Phys. 42, 189. Phil. Trans. R. Sac. A 242, 579. 1. atmos. terr. Phys. 29, 1. J. atmos. terr. Phys. 25, 339. Aust. J. Phys. 24, 351; 373.
+Radio Science 14, 125. Proc. IEEE 68,1424. Proceedings of the COSPAR Symposium on the geo-
+physical use of satellite beacon observations, 463.
+Boston University, Boston, Massachusetts.
+J. atmos. terr. Phys. 42,775. J. atmos. terr. Phys. 42, 717. Proc. R. Sot. A 214,494. Astrophys. J. 73,972. J. geophys. Res. 13, 7221. Wave Propagation and Scattering in Random Media,
+Vol. 2, Academic Press, New York.
+J. geophys. Res. 86,242l.
+
+1975 1975
+
+Radio Science lo,, 115. Proc. IEEE 63,790.
+
+1956
+1919 1980 1975 1967 1971 1970 1961
+1968 1971 1977
+1981 1979 1968 1973 1974
+
+Some aspects of diffraction theory and their application to the ionosphere, Rep. Prog. Phys. 9,188.
+Radio Science 14, 1147.
+Radio Science 15,41. Radio Science 10, 107. Astrophys. J. 147,443. Radio Physics and Quantum Electronics 14, 85. J. atmos. terr. Phys. 32, 157. Wave Propagation in a Turbulent Medium, Dover, New
+York. J. geophys. Res. 73,243. Planet. Space Sci. 19, 1593. The Elements of Wave Propagation in Random Media,
+McGraw-Hill, London. Proc. R. Sot. A 374,503. J. geophys. Res. 84,7288. Trans. IEEE on Antennas and Propagation AP16,678. Appl. scient. Res. 28,223. Appl. scient. Res. 29, 259.
+
+Reference is also made to the following unpublished material:
+
+COLESW. A. and RUMSEYV. H.
+
+1979
+
+Effect of the refractive index outer scale on the intensity
+scintillation spectrum, National Radio Science Meeting, Boulder, Colorado.
+

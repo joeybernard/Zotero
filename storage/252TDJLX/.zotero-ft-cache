@@ -1,0 +1,671 @@
+S.-K. Nam et al. / Proceedings of the 2004 FEL Conference, 45-48
+
+45
+
+BEHAVIOUR OF ELECTRON BEAM IN COMBINED A SELF-GENERATED FIELD AND A REVERSED GUIDE FIELD
+IN THE HELICAL WIGGLER
+
+Soon-Kwon Nam ∗ and Ki-Bum Kim Department of Physics, Kangwon National University, Chunchon 200-701, Republic of Korea
+
+Abstract
+We have studied behaviour of electron beam in combined a self-generated ﬁeld and a reversed axial-guide ﬁeld in the tapered helical wiggler. The divergence of electron beam is caused by three-dimensional effects on the electron beam loss, we employ a tapered and reversed axialguide ﬁeld magnetic ﬁeld. Evolution of energy spread and emittance of electron beam are investigated using three dimensional simulation. Beam cross-section, transverse momentum variation and cross-section view of electron beam are also calculated along z axis. The electron beam loss is reduced by optimizing the magnetic ﬁeld strength and tapering parameter of reversed axial guide ﬁeld.
+
+INTRODUCTION
+In free-electron laser(FEL), the gain increases when the beam current and the wiggler ﬁeld amplitude are increased. When the free-electron laser experiments operate at the high-current regime and the intense wiggler ﬁeld regime to get the sufﬁciently large gain, the axial-guide ﬁeld make us to steer the electron beam in the axial direction [1–4] and the electron motion can be altered by the axial-guide ﬁeld and self-ﬁeld effects [5–11] .
+In this work, we study the behaviour of electron beam in combined a self-generated ﬁeld and a reversed axial-guide ﬁeld in the tapered helical wiggler. Cross-section, proﬁle and density of electron beam are investigated using three dimensional simulation.
+
+THE SELF-GENERATED FIELD AND EXTERNAL FIELD
+
+The space charge and current of electron beam generate the self-electric and self-magnetic ﬁelds. The Maxwell’s equations in steady state are
+
+∇
+
+·
+
+E
+
+=
+
+4πρ0
+
+,
+
+∇
+
+×
+
+B
+
+=
+
+4π c
+
+J
+
+(1)
+
+We assume that equilibrium properties (electron density
+and velocity) are uniform in the z-direction with ∂nb/∂z = 0 and ∂vb/∂z = 0. There is no equilibrium electric ﬁeld parallel to z-direction with E · ˆez = 0. Where nb is electron density and vb is mean velocity of electron. The radial
+density and velocity proﬁles are assumed to be azimuthally
+
+∗ snam@kangwon.ac.kr; Tel:+82-33-250-8463; fax:+82-33-257-9689
+
+symmetric about the z-axis. Therefore the density and velocity proﬁles can be written as only function of r, that is,
+
+nb(r, θ, z) = nb(r), vb(r, θ, z) = vb,θ(r)eˆθ + vb,z(r)eˆz
+The self-generated electric ﬁeld Er(r) induced by the space charge, azimuthal self-magnetic ﬁeld induced by the axial current Jz(r), and axial self-magnetic ﬁeld induced by the azimuthal current Jθ(r). One can ﬁnd the self-generated ﬁeld from the steady state Maxwell equations.
+Within above assumptions, the equilibrium selfgenerated ﬁeld components are
+
+E(r, θ, z) = Er(r)eˆr Bs(r, θ, z) = Bθ(r)eˆθ + Bz(r)eˆz
+
+(2)
+
+Therefore the self-generated ﬁelds are determined from the steady-state Maxwell’s equations
+
+∇
+
+·
+
+E(r)
+
+=
+
+1 r
+
+∂ ∂r
+
+rEr (r)
+
+= 4πρ0(r)
+
+∇
+
+×
+
+B(r)
+
+=
+
+−
+
+∂ Bz (r) ∂r
+
+eˆθ
+
++
+
+1 r
+
+∂
+
+Bθ (r) ∂r
+
+eˆz
+
+(3)
+
+4π =c
+
+Jθ(r)eˆθ + Jz(r)eˆz
+
+where ρ0(r) = −efb(r) is charge density, Jz(r) = −fb(r)evz is axial current density, Jθ(r) = −fb(r)evθ is azimuthal current density and fb(r) is electron beam pro-
+
+ﬁle function. The axial velocity and azimuthal velocity of
+
+electron beam are vz = βbc and vθ = rωr, where βb = vbc is the normalized axial velocity, ωr is the angular velocity.
+
+The self-generated ﬁeld amplitude depends on the elec-
+
+tron beam proﬁle. We consider Gaussian shape electron
+
+beam. The proﬁle function fb(r) for the Gaussian density
+
+is
+
+fb(r) =
+
+cnnb 2πrb2
+
+exp
+
+−
+
+r2 2rb2
+
+(4)
+
+where cn = πrb2 is the normalized factor and the self electric and magnetic ﬁeld are
+
+Esr(r) Bsθ (r) Bsz(r)
+
+= = =
+
+−−−222αααrrωβrcb2brrr»b2b21»»−1exe−pxpe„x„−p−„2rr2−2rb2r2b2«2r«r2−b2–«eeˆ–xr peˆθ„−
+
+rw2 2rb2
+
+«–
+
+eˆz
+
+(5)
+
+Available online at http://www.JACoW.org
+
+FEL Theory
+
+46
+
+S.-K. Nam et al. / Proceedings of the 2004 FEL Conference, 45-48
+
+(a)
+1
+
+(b)
+1
+
+(c)
+1
+
+y(cm)
+
+0
+
+0
+
+0
+
+-1
+
+-1
+
+-1
+
+-1
+
+0
+
+1
+
+x(cm)
+
+-1
+
+0
+
+1
+
+x(cm)
+
+-1
+
+0
+
+1
+
+x(cm)
+
+Figure 1: Cross section views of electrons at (a) the entrance of wiggler and (b) the end of wiggler for κs = 2, ag=0 and (c) κs = 2, ag=-2, t=0. Dotted(solid) line indicate r = rb(2rb).
+
+Electron beam cross section (cm2)
+
+Number of electron (%)
+
+k =0.01 s
+
+100
+
+0.6
+
+k =1
+
+s
+
+k =2.5 s
+
+80
+
+0.4
+
+60
+
+0.2 40
+
+a =0 g
+a =-1 g
+a =-2 g
+a =-3 g
+
+0.0 0
+
+200
+
+400
+
+600
+
+800
+
+z [cm]
+
+20
+
+0
+
+2
+
+4
+
+6
+
+8
+
+z [ m]
+
+Figure 2: The electron beam cross section along z-axis of Figure 3: Number of electron along z-axis of the wiggler
+
+the wiggler for various self-ﬁeld parameters.
+
+in rb for various reversed axial guide ﬁeld strength.
+
+where α = πenb, ωp = (4πnbe2/me)1/2 is plasma frequency of electron beam, ωr = kwcβ is the angular velocity, rb is the electron beam radius and rw is the cylindrical
+waveguide radius.
+The scalar potential and vector potential of the selfgenerated ﬁeld which satisﬁes Es = −∇Φs and Bs = ∇ × As are
+
+Φs = αrb2
+
+Γ − Ei
+
+−
+
+r2 2r2b
+
+− log
+
+r2 2r2b
+
+Asθ = Φsβbeˆz
+
+Asz
+
+=
+
+αωr rb2 cr
+
+2rb exp
+
+−
+
+r2 2rb2
+
+(6)
+
++(r2 + 2rb2 − rw2 ) exp
+
+−
+
+rw2 2rb2
+
+eˆθ
+
+where Ei(x) =
+
+x −∞
+
+e−u u
+
+du
+
+is
+
+exponential
+
+integrate
+
+func-
+
+tion, and Γ = limm→∞
+
+m k=1
+
+1 k
+
+−
+
+log m
+
+≈ 0.577 is
+
+Euler-Mascheroni constant. The vector potential of helical wiggler magnetic ﬁeld in
+Cylindrical coordinate system is deﬁned as
+
+Aw
+
+=
+
+Bw kw
+
++ Bw kw
+
+I0(kwr) + I2(kwr) cos(kwz − θ) eˆr (7)
+I0(kwr) − I2(kwr) sin(kwz − θ) eˆθ
+
+and vector potential of axial-guide ﬁeld Bg = Bgeˆz which
+
+steer
+
+the
+
+electron
+
+to
+
+axial
+
+direction
+
+is
+
+Ag
+
+=
+
+1 2
+
+Bg
+
+reˆθ
+
+.
+
+HAMILTONIAN FORMALISM AND THE TAPERING PROFILE OF GUIDE MAGNETIC FIELD
+The Hamiltonian of relativistic test electron is
+H = (cP + eA)2 + m2ec4 − eΦs ≡ γmec2 − eΦs (8)
+
+MOPOS32
+
+S.-K. Nam et al. / Proceedings of the 2004 FEL Conference, 45-48
+
+47
+
+(a)
+1
+
+(b)
+2
+
+(c)
+0.2
+
+y[c m ]
+P tran x '
+
+0
+
+0.0
+
+1
+
+-1
+
+0
+
+-1
+
+0
+
+1
+
+30
+
+x [cm]
+
+-0.2
+
+40
+
+50
+
+P z
+
+-1
+
+0
+
+1
+
+x [cm]
+
+Figure 4: Electron beam proﬁles at the exit of the wiggler for aw = 3, κs = 2, ag = −2, t = 0.6. Dotted(solid) line indicate r = rb(2rb).
+
+100
+
+Number of electron (%)
+
+80
+
+60
+
+40
+ε =0 t
+
+εt=0.3
+
+εt=0.6
+
+20
+
+εt=1
+
+0
+
+2
+
+4
+
+6
+
+8
+
+z [ m]
+
+Figure 5: Number of electron along the z-axis of wiggler in rb for various tapering parameters.
+
+where P is the canonial momentum, p = P + eA/c is the mechanial momentum, γ = 1 + (p/mec)2 is the relativistic mass factor, me is the electron rest mass, e is the electron charge and total vector potential is A = Aw + Ag + Asθ + Asz.
+Conveniently, we introduce the dimensionless potentials, canonical momentum, and Hamiltonian deﬁned by
+
+A¯
+
+=
+
+eA mec2kw
+
+,
+
+Φ¯ s
+
+=
+
+eΦs mec2kw
+
+,
+
+P¯
+
+=
+
+P me
+
+c
+
+,
+
+H¯
+
+=
+
+H me c2
+
+(9)
+
+In the dimensionless scalar and vector potential of selfﬁeld, the constant α becomes α = κskw2 /4, where κs = ωp2/c2kw2 is the dimensionless strength of the self-ﬁeld.
+Therefore the dimensionless Hamiltonian is
+
+q
+
+q
+
+H¯ = 1 + (P¯ + A¯ )2 − Φ¯ s = 1 + Σh2i − Φ¯ s
+
+h1 = P¯r + aw(I0(r¯) − I2(r¯)) cos(z¯ − θ)
+
+h2
+
+=
+
+P¯θ r¯
+
++
+
+ag r¯ 2
+
++ A¯sθ
+
++ aw(I0(r¯) + I2(r¯)) sin(z¯ − θ)
+
+(10)
+
+h3 = P¯z + A¯sz
+
+where ag = eBg/mec2kw is a dimensionless axial-guide ﬁeld strength, aw = eBw/mec2kw is a dimensionless wig-
+gler ﬁeld amplitude, and r¯ = kwr, z¯ = kwz.
+The tapered guide magnetic ﬁeld ag(z) = ag(0)ft(z),
+where ft(z) is the tapering proﬁle function.
+
+ft(z) =
+
+1 1 + cn t(z − zt)
+
+for 0 ≤ z < zt for z > zt
+
+(11)
+
+where zt is the starting position of the tapering, t is tapering parameter, and cn is constant which satisfy ft(z = zf , t = 1) = 2. The electron orbits can be calculated from the equation of motions which derived from the Hamilto-
+nian of Eq. 10.
+We make the incident electron beam using the beam parameters such as electron beam energy Eb = 3 MeV, energy spread Es = 5 %, emittance x,y = 10 πmm · mrad. Fig. 1(a) shows the cross section view of the incident elec-
+tron beam which is the initial state of the Gaussian ran-
+dom distribution. Fig. 1(b) shows the cross section views at the exit of the wiggler for self-ﬁeld parameters κs = 2 without axial guide ﬁeld, and (c) with uniform axial guide ﬁeld ag = −2 for aw = 3. Those parameters correspond to the wiggler magnetic ﬁeld strength Bw = 2.67 kG, the guide magnetic ﬁeld strength Bw = 1.78 kG and the electron beam current Ib = 368 A for wiggler period λw = 12 cm and electron beam radius rb = 0.4 cm.
+Fig. 2 shows the electron beam cross section area
+along z-axis of the wiggler for various self-ﬁeld parame-
+ter stength. The cross section area is reduced by increasing self-ﬁeld parameter. Number of electron in rb along z-axis
+
+FEL Theory
+
+48
+
+S.-K. Nam et al. / Proceedings of the 2004 FEL Conference, 45-48
+
+30
+
+(a) 30
+
+(b)
+
+Electron Density
+
+20
+
+20
+
+10
+
+10
+
+0
+
+0
+
+0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0 0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+30
+
+(c) 30
+
+(d)
+
+Electron Density
+
+20
+
+20
+
+10
+
+10
+
+0
+
+0
+
+0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0 0.0
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+kr
+
+kr
+
+w
+
+w
+
+Figure 6: Electron beam density versus kwr; (a) incident electron beam, (b) κs = 2 and ag = 0, (c) κs = 2, ag = −2 and t = 0, (d) κs = 2, ag = −2 and t = 0.6.
+
+of the wiggler for various reversed axial guide ﬁeld strength is shown in Fig. 3.
+Fig. 4 shows the cross section view, transverse momentum variation and x versus x phase space for κs = 2, ag = −2 and = 0.6. The number of electron in rb along z-axis of the wiggler for various tapering parameters is shown in Fig. 5. The electron densities versus kwr are shown in Fig. 6. The electron density with tapered and reversed axial guide ﬁeld is increased by about twice correspond to that of without axial guide ﬁeld case in center of electron beam.
+CONCLUSION
+We studied behaviour of electron beam in combined a self-generated ﬁeld and a reversed axial-guide ﬁeld in the helical wiggler. Evolution of energy spread and emittance of electron beam were investigated by using three dimensional simulation. Beam cross-section, transverse momentum variation and cross-section view of electron beam were also calculated along z axis. The electron beam loss was reduced by optimizing the magnetic ﬁeld strength and tapering parameter of reversed axial guide ﬁeld.
+
+REFERENCES
+[1] L. Friedland, Phys. Fluids. 23 (1980) 2376. [2] P. Diament, Phys. Rev. A23 (1981) 2537. [3] H. P. Freund and A. T. Drobot, Phys. Fluids. 25 (1982) 736. [4] H. P. Freund, Phys. Rev. A27 (1983) 1977. [5] C. Chen and R. C. Davidson, Phys. Fluids. B2 (1990) 171. [6] C. Chen and R. C. Davidson, Phys. Rev. A43 (1991) 5541. [7] L. Michel, A. Bourdier and J. M. Buzzi, Nucl. Instri. and
+Meth. A304 (1991) 465. [8] S. Spindler and G. Renz, Nucl. Instri. and Meth. A304
+(1991) 492. [9] L. Michel-Lours, A. Bourdier and J. M. Buzzi, Phys. Fluids.
+B5 (1993) 965. [10] A. Bourdier and L. Michel-Lours, Phys. Rev. E49 (1994)
+49. [11] R. C. Davidson, Physics of Nonneutral Plasmas (Addison
+Wesley, 1990).
+
+ACKNOWLEDGEMENTS
+This work was supported by a Korea Research Foundation grant.
+
+MOPOS32
+

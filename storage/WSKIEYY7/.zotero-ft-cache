@@ -1,0 +1,830 @@
+ISSN 1064-2269, Journal of Communications Technology and Electronics, 2020, Vol. 65, No. 6, pp. 600–608. © Pleiades Publishing, Inc., 2020. Russian Text © The Author(s), 2020, published in Radiotekhnika i Elektronika, 2020, Vol. 65, No. 6, pp. 559–567.
+STATISTICAL RADIOPHYSICS
+
+Model of a Multifractal Phase Screen for Modeling Field Fluctuation Intermittency
+in a Transionospheric Radio Channel
+E. V. Makarenkovaa, * and V. E. Gherma, **
+aSt. Petersburg State University, St. Petersburg, 199034 Russia *e-mail: st023937@student.spbu.ru **e-mail: v.germ@spbu.ru
+Received April 24, 2019; revised August 11, 2019; accepted August 12, 2019
+Abstract—In this paper, we propose a method and present the results of modeling fluctuations of transionospheric signals during propagation under conditions of intermittent ionospheric turbulence. The effects of intermittent fluctuations of the medium are studied using a non-Gaussian multifractal phase-screen model. A significant effect of non-Gaussian phase fluctuations on the statistical characteristics of the field on the Earth is demonstrated. In particular, an increase in the field coherence radius and a decrease in the scintillation index with an increase in the intermittency degree of phase fluctuations on the screen are revealed while the spatial spectrum of phase on the screen is kept the same. The possibility of solving the inverse problem of estimating the parameters of a multifractal model of stochastic phase perturbations on the screen by measuring the characteristics of the signal behind the screen is discussed.
+DOI: 10.1134/S1064226920050095
+
+INTRODUCTION
+Fluctuations of the phase and amplitude of transionospheric signals are well known to be characterized by the presence of intervals of irregular behavior, during which the measured value deviates especially strongly from its typical value. This behavior is called intermittency. Since signal fluctuations arise due to scattering by inhomogeneities of the electron concentration during propagation in the ionosphere, it is natural to assume that the cause of the intermittency of the amplitude and phase fluctuations of the signal is the intermittent nature of the electron density fluctuations, which is a consequence of the turbulent structure of the ionosphere. The intermittency leads to more frequent fluctuations with a large amplitude than that predicted by the normal distribution (Gauss), i.e., there arise so-called “heavy-tailed distributions” decreasing more slowly than the Gaussian distribution. Such non-Gaussian behavior is observed in measurements obtained using satellites and rockets [1].
+Most existing theories of scintillation of transionospheric signals suggest a Gaussian character of electron density fluctuations in the ionosphere. As was repeatedly confirmed experimentally [2], the spatial spectrum of ionospheric inhomogeneities can be approximated by an inverse power law in the space of wave numbers. The corresponding structure function of electron density fluctuations in the inertial interval
+
+is a power function of the distance between the observation points. The exponents of the spectrum and the structure function in the general case are fractional values. From a geometric point of view, random functions of this type describing the spatial distribution of the electron concentration are stochastic fractals, have the property of scale invariance (scaling), and are characterized by the Hurst exponent H. In particular, for isotropic three-dimensional Kolmogorov turbu-
+lence, the Hurst exponent is H = 1 3. In this case, the exponent of the second-order structure function is
+2H = 2 3 while the corresponding exponent of the three-dimensional fluctuation spectrum is equal to
+− (2H + 3) = −11 3.
+Thus, the correlation and spectral properties of fractal Gaussian fluctuations can be characterized by a single parameter, i.e., the Hurst exponent. However, for a complete statistical description of non-Gaussian stochastic inhomogeneities of the electron density associated with the phenomenon of intermittency, it is necessary to involve moments of not only the first and second, but also higher orders. Modern turbulence theories allow taking into account the intermittency by using the concept of multifractals or heterogeneous fractals that include the whole spectrum of exponents of local power laws, i.e., multifractal spectrum [3].
+The problem of wave propagation in a non-Gaussian fluctuating medium was studied much less thor-
+
+600
+
+MODEL OF A MULTIFRACTAL PHASE SCREEN
+
+601
+
+oughly. The propagation of radio waves in an interstellar medium was considered in [4] under the assumption that fluctuations of electron density obey a stable probability distribution of the form of Lévy flights. Numerical calculations of the transionospheric propagation of radio waves with the use of the double exponential distribution (Laplace distribution) to simulate fluctuations of electron density were performed by the method of multiple phase screens [1]. A detailed description of the fractal theory and its application in radiophysics and radiolocation is contained in monographs [5, 6], where there is also an extensive bibliography on this subject.
+In a series of papers on an experimental study of the fractal structure of ionospheric turbulence (see, for example, [7, 8] and the literature cited there), the results of transmission through the upper midlatitude ionosphere are analyzed, and the multifractal structure of the intermittency of fluctuations in the energy of the received signal is established to be a consequence of the intermittency of electron concentration fluctuations of the ionospheric plasma.
+For satellite navigation problems, it is of interest to study both the amplitude and phase f luctuations of the received transionospheric signals since it is the phase characteristics of the navigation signal that are used for accurate positioning. For a theoretical description of field fluctuations taking into account intermittency, it is necessary to solve the problem of propagation in a medium with intermittent fluctuations of the refractive index, which requires an appropriate model of fluctuations of the medium.
+In this paper, we consider the problem of radiowave propagation in a turbulent ionosphere, taking into account the phenomenon of intermittency. The problem is solved in the approximation of a thin stochastic screen (phase screen), on which a non-Gaussian intermittent spatial distribution of phase fluctuations generated using the multifractal model presented here is specified. Varying the model parameters allows simulating various fluctuation modes, from complete absence to a significant degree of the intermittency. The problem of diffraction of the incident plane wave on the constructed screen is solved numerically while the stochastic amplitude and phase distributions of the field behind the screen are subjected to a statistical analysis in order to study the dependence of their statistical characteristics on the degree of phase intermittency on the screen.
+1. MULTIFRACTAL STOCHASTIC PHASE SCREEN
+To estimate the effect of the intermittency of electron density fluctuations on the scattered field, the stochastic phase screen approximation is used. Historically, the phase screen model was one of the first models used to solve the problem of wave propagation
+
+in a random medium. Currently, the phase screen theory is being exhaustively developed for the normal distribution of phase on the screen.
+To introduce a non-Gaussian multifractal model for a random statistically uniform phase distribution on the screen, following [1], we introduce generalized phase structure functions of various orders:
+
+Sq (L) = ϕ(r + L) − ϕ(r ) q ,
+
+(1)
+
+where ϕ is the phase, L is the distance between two points, and q is the order of the structure function. Angle brackets denote statistical averaging over an ensemble of random phase distribution realizations. If the phase is described by a Gaussian random process, then for any specified distance between two points, the distribution of the phase difference between these points will be normal. For Gaussian fractal processes (statistically self-similar random processes with a power-law spectrum), the scale invariance property corresponds to the following scaling for the structure function of order q:
+
+Sq (L) ∼ LHq,
+
+(2)
+
+where 0 < H < 1 is the Hurst exponent. Here, the exponent (scaling exponent) is a linear function of
+order q. For Gaussian processes, the second-order structure function completely determines the higher-
+
+order structure functions: Sq (L) ∼ S2 (L)q/2 . For
+inhomogeneous fractals (multifractals), the structure
+functions have the following form:
+
+Sq (L) ∼ Lζ(q),
+
+(3)
+
+where the function ζ (q) called the scaling exponent
+nonlinearly depends on q. In a certain interval of vari-
+ation of the variable q, the following approximation by
+a segment of a power series can be used for ζ (q):
+
+ζ (q) = hq − λ2q2 + ....
+
+(4)
+
+2
+
+In the representation (4), the parameters h and λ2 determine the scaling properties of the multifractal
+random process. The deviation of the scaling ζ (q)
+from the linear law is characterized by the parameter
+λ2: the larger the parameter λ2, the stronger the deviation of the random process from the normal one, and the distribution becomes more intermittent.
+To generate a stochastic phase distribution with a specified scaling of the form (4), we use the cascade model [10] that mimics a turbulent process, the internal and external scales of which are determined by the grid parameters while the energy transfer from large to small scales is modeled by the cascade process. This model allows generating a stochastic two-dimensional distribution having scaling of the form (4) with speci-
+fied parameters h and λ2. After appropriate normal-
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+602
+
+MAKARENKOVA, GHERM
+
+ization, the distribution obtained using the model is employed as the phase distribution on the screen.
+The generation algorithm is based on the representation of the desired spatial distribution in the form of a two-dimensional discrete expansion in two-dimensional basis functions of the wavelet transform:
+
+ϕ ( x, y) = cN φN ( x, y)
+
+3 N 2N − j −1
+
+  +
+
+c
+
+ψ α
+
+α
+
+j,m,n j,m,n
+
+(
+
+x,
+
+y
+
+),
+
+(5)
+
+α=1 j =0 m,n=0
+
+} where {φ ( x, y),ψ1j,m,n ( x, y), ψ2j,m,n ( x, y), ψ3j,m,n ( x, y)
+is a compact orthonormal two-dimensional basis of
+wavelet functions. The indices α = 1,2,3 denote horizontal, vertical, and diagonal mother wavelets, respec-
+
+tively. The wavelet coefficients cαj,m,n = ψαj,m,n ϕ are random numbers and are generated using the multiplicative cascade algorithm [9].
+
+The generation algorithm of wavelet coefficients for each realization of a random field distribution ϕ(x, y) consists of two steps. At the first step, the cascade coefficients d j,m,n for successively decreasing scales of 1 < j < N are generated using the cascade algorithm (see below). The wavelet coefficients cαj,m,n
+are related to the cascade coefficients d j,m,n by the following relation:
+
+d j,m,n =
+
+c1j,m,n 2
+
++
+
+c2j,m,n 2
+
++
+
+c3j,m,n
+
+
+
+2
+,
+
+(6)
+
+which is used to determine cαj,m,n at the second step.
+
+In algorithm implementation, the initial cascade
+
+coefficient d0,0,0 corresponding to j = 0 is primarily specified. Then, for each subsequent, more detailed
+
+decomposition level j, the cascade coefficients are determined by the product of the coefficients of the pre-
+
+vious
+
+level
+
+(
+
+j
+
+−
+
+1)
+
+and
+
+random
+
+multipliers
+
+W
+
+: (r1,r2,l1,l2)
+j −1,m,n
+
+d j,m,n
+
+=
+
+W
+
+d (r1)
+j −1,m,n
+
+j −1,m,n
+
+d j,m,n+1
+
+=
+
+W
+
+d (l1)
+j −1,m,n
+
+j −1,m,n
+
+, (7)
+
+d j,m+1,n
+
+=
+
+W
+
+d (r2)
+j −1,m,n
+
+j −1,m,n
+
+d j,m+1,n+1
+
+=
+
+W
+
+d (l2)
+j −1,m,n
+
+j −1,m,n
+
+where j is the number of the decomposition level,
+1 ≤ j ≤ N ; 0 ≤ m, n ≤ 2N − j − 1. Multipliers {W } are
+independent identically distributed random variables. As shown in [8], in order for the scaling of the resulting stochastic distribution to have the form (4), the distribution density of these random variables must correspond to the log-normal law:
+
+PW (x) =
+
+1 2πσ2
+
+x
+
+exp
+
+ 
+
+−
+
+(ln
+
+x− 2σ2
+
+μ)2
+
+ 
+
+,
+
+(8)
+
+where σ2 and μ are the variance and the expectation of a random variable ln(W ).
+
+The next step is the calculation of wavelet coeffi-
+cients {cα} for horizontal, vertical, and diagonal mother wavelets. To ensure the isotropy of the resulting random field ϕ(x, y), it is necessary to ensure the same distribution of all three coefficients:
+
+c1j,m,n = d j,m,n cos(ϕ) sin(θ)
+
+c2j,m,n = d j,m,n sin(ϕ) sin(θ) ,
+
+(9)
+
+c3j,m,n = d j,m,n cos(θ)
+
+where ϕ ∈ [−π, π] and cos(θ) ∈ [−1,1] are independent
+uniformly distributed random variables. Such an
+expansion corresponds to a uniform distribution of
+
+directions of vectors d j,m,n with length coordinates
+( ) c1j,m,n,c2j,m,n, c3j,m,n . Note that the method for specify-
+ing wavelet coefficients (9) presented in this paper differs from that proposed previously [10]. Only a uni-
+form distribution of cos(θ) (but not the θ value itself, as in [10]) ensures the isotropy of the resulting twodimensional stochastic field.
+
+The distribution produced by the inverse wavelet transform in accordance with representation (5) with coefficients (9) has the scaling:
+
+− μq − σ2q2
+Sq(L) ∼ L ln 2 2 ln 2,
+
+(10)
+
+which is theoretically proved in [9]. The scaling of the resulting distribution does not depend on the choice of the family of wavelet functions [9]. The scaling parameters are related to the parameters of the log-normal distribution (8) as follows:
+
+μ = −h ln 2, σ2 = λ2 ln 2.
+
+After appropriate normalization, the two-dimensional random distribution thus generated can be considered as the phase distribution on the screen.
+When numerically implementing this algorithm in the Matlab environment, the Wavelet Toolbox extension package is used. The numerical studies performed here are aimed at revealing how the intermittency of the stochastic phase distribution on the screen affects the statistical characteristics of the field behind the screen. In this case, random two-dimensional realizations of the phase distribution on the screen for various
+values of the intermittency parameter λ2 , but with the same spatial spectrum, are generated in numerical
+experiments. For this purpose, the h parameter value is chosen so that the scaling exponent value of the second-order structure function of the phase on the
+screen ζ(2) = 2(h − λ2) at all λ2 is constant and equal to 5 3. The choice of value of ζ(2) = 5 3 corresponds to the Kolmogorov–Obukhov “2/3 law” for the structure function of density fluctuations in the scattering layer. In this case, at any value of the parameter λ2, the phase fluctuations on the screen have the
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+MODEL OF A MULTIFRACTAL PHASE SCREEN
+
+603
+
+(a) γ1 1.0
+
+(b) γ2
+
+0.5
+
+4
+
+0 2
+–0.5
+
+–1.0
+
+0
+
+0.0001 0.01 0.05 0.1 0.15 λ2
+
+0.0001 0.01 0.05 0.1 0.15 λ2
+
+Fig. 1. Coefficients of (a) skewness γ1 and (b) kurtosis γ2 of the distributions of phase differences between the points spaced by one step on the grid Δx = 10 m for various values of λ2 .
+
+same power spectrum with the exponent of p = –8/3. The phase values are specified on a rectangular grid of
+1024 × 1024, the step is Δx = 10 m, and the field frequency is 1 GHz. As already mentioned, the choice of the family of wavelet functions does not affect the scaling of the resulting distribution. All the results below were obtained using Daubechies wavelets of order 5.
+
+The observed statistical scatter of the values of the
+
+coefficients of skewness γ1 = M3 M23/2 and kurtosis
+
+γ2 = M4
+
+M
+
+2 2
+
+−
+
+3,
+
+where
+
+Mn
+
+indicates
+
+the
+
+central
+
+moment of the order n of the distribution of the phase
+
+differences between the points, separated by the dis-
+
+tance 10 m, which corresponds to one step of the spa-
+
+tial grid are presented using the so-called “box plots”
+
+in Fig. 1. A significant statistical spread is observed
+
+here, and the degree of spread increases with increas-
+
+ing values of the parameter λ2. The distributions of the skewness coefficients appear symmetrical with the
+median in the neighborhood of zero. The median kur-
+tosis of the distributions is positive and grows with the
+
+growth of λ2, and the extreme values of kurtosis are also positive.
+
+Thus, phase difference distributions are symmetric non-Gaussian distributions that are sharper than the normal distribution in the region of small phase differences and are decreasing more slowly than the normal distribution in the region of large phase differences. The deviations of stochastic realizations of phase distributions obtained using the algorithm described above are explicitly shown in Fig. 2. For small values
+
+of the parameter λ2, the logarithm of the probability density of phase differences has a shape close to para-
+bolic, i.e., the distribution is normal. As the parameter
+
+λ2 increases, the probability of large fluctuations increases, and the distribution acquires the so-called
+heavy tails, i.e., becomes non-Gaussian.
+
+The form of the probability distribution densities of phase differences between two spatially separated points varies with the distance between the points. Figure 3a shows the dependence of the kurtosis coefficient of the phase difference distribution at two spatially separated points on the screen as a function of the distance between the points for various values of
+parameter λ2. These dependences on a double logarithmic scale (Fig. 3b) are straight lines located the
+higher, the larger the λ2 parameter value, and their slope coefficient is negative and grows in absolute
+value with the growth of λ2. Thus, the smaller the spatial scale of phase fluctuations defined as the distance between the points and the greater the intermittency
+
+PΔφ
+
+102
+
+1
+
+2
+
+3
+
+100
+
+4
+
+5
+
+10–2
+
+–0.2 –0.1
+
+0
+
+0.1
+
+0.2
+
+Δφ
+
+Fig. 2. Probability distribution functions of phase differences for two spatially separated points for various values
+of parameter λ2 : (1) 0.0001, (2) 0.01, (3) 0.05, (4) 0.1, and (5) 0.15.
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+604 γ2 10 5
+
+MAKARENKOVA, GHERM
+
+(a)
+
+(b)
+
+γ2
+
+1
+
+101
+
+2
+
+3
+
+4
+
+5
+
+100
+
+0
+
+10–1
+
+50 100 150 200 250 300
+
+r, m
+
+102
+
+r, m
+
+Fig. 3. Dependence of the expectation of the kurtosis coefficient of the phase difference distribution at two spatially separated
+points on the distance between the points for various values of parameter λ2 : (1) 0.0001, (2) 0.01, (3) 0.05, (4) 0.1, and (5) 0.15 (a) on a linear scale and (b) on a double logarithmic scale.
+
+parameter λ2, the greater the deviation of the probability density of the distribution of phase differences from the normal distribution. Such a dependence on scale is characteristic of multifractal processes.
+Thus, the proposed model by choosing a single
+parameter λ2 allows modeling various degrees of intermittency, from its complete absence and normal distribution of phase fluctuations on the screen to a strongly intermittent mode and non-Gaussian fluctuation statistics.
+
+2. FIELD FLUCTUATIONS BEHIND THE SCREEN
+The above-described method allows generating on the screen a stochastic spatial phase distribution with the specified scaling characteristics. We assume that a plane wave with a unit amplitude is incident on the screen, and the screen action is reduced to modulating the initially plane phase front of the incident wave by adding to the initial unperturbed phase of the wave the magnitude of the phase perturbation on the screen ϕ(r ) while the wave amplitude is not perturbed and remains equal to unity. Then, the complex field amplitude immediately after passing through the phase screen is equal to exp(iϕ(r )) and behind the screen is determined by the Kirchhoff integral in the Fresnel approximation:
+
+ u(r,z) = − ik 2πz
+
+exp i
+
+ϕ(r ')
+
++
+
+k 2z
+
+r
+
+−
+
+r
+
+'
+
+2
+
+ 
+
+
+
+dr
+
+',
+
+(11)
+
+where k is the wave number, and z is the distance from the screen to the observation plane. The function ϕ(r ) on the screen is set at the nodes of the two-dimen-
+sional spatial grid of 1024 × 1024 with a step of 10 m.
+
+Double integration in (11) is numerically performed using the fast Fourier transform.
+When propagating in free space behind the screen, the complex field u(r, z) evolves in accordance with (11), provided that both its phase arg(u(r, z))
+and amplitude u(r, z) are changed. The statistical properties of phase and amplitude fluctuations behind the screen with a Gaussian phase distribution are well studied for the limiting cases of weak and saturated fluctuations [11, 12]. In particular, in the case of weak phase fluctuations on the screen, the fluctuations of phase and log-amplitude behind the screen were found to have a joint normal distribution while the amplitude is log-normally distributed. If the phase fluctuations on the screen are characterized by a power-law structure function S2(L) ∼ Lζ(2) and, therefore, a decreasing two-dimensional spatial spectrum of a power type ∼ k −(ζ(2)+2), then the structure function and the spectrum of phase fluctuations behind the screen are also power-law functions while the structure function and the spectrum of log-amplitude fluctuations have a similar power-law character only for scales
+smaller than the size of the first Fresnel zone L < LF =
+2πz k (k > kF = 2π LF ). For scales larger than LF (k < kF), the spectrum of log-amplitude fluctuations is a growing function in accordance with the power law of ∼k −2ζ(2)+2 [10].
+In the case of a non-Gaussian multifractal distribution of phase fluctuations on the screen, the second-order structure functions of the phase and level and the corresponding power spectra of phase and log-amplitude fluctuations are of the same form as for the Gaussian screen. However, the probability density
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+MODEL OF A MULTIFRACTAL PHASE SCREEN
+
+605
+
+distributions of their values differ from the normal law. Therefore, the statistical field moments, such as, for example, the field coherence functions, the intensity correlation function, and the scintillation index, will differ from the corresponding values constructed for the normal distribution of phase fluctuations on the screen [13, 14].
+From the viewpoint of solving the inverse problem of determining the parameters of ionospheric turbulence, of considerable interest is the identification and study of the properties of scale invariance (scaling) of stochastic realizations of the receiving field and the relationship of these characteristics with the corresponding properties of electron density fluctuations of the ionosphere. To evaluate the parameters of the scaling exponents of stochastic processes, a number of methods, a detailed description of which is beyond the scope of this paper, have been developed to date. A review of existing approaches and methods and the literature cited can be found, for example, in [15, 16]. One of the most modern and reliable methods is a method based on the analysis of the properties of the discrete wavelet decomposition coefficients of the process under study, which is used in this paper. In particular, the method allows determining the coeffi-
+cients Cp in the representation of the scaling exponent ζ(q) (formulas (3) and (4)) of the process under study in the form of a power series in powers of the parameter q [17]:
+
+ ζ(q) =
+
+p≥1
+
+C
+
+p
+
+q
+
+p
+.
+
+p!
+
+(12)
+
+Note that (12) coincides with (4) if we accept that C1 = h, C2 = −λ2, and C p≥3 = 0.
+Thus, the study of the properties of process scale invariance is reduced to estimating the coefficients C p in representation (12).
+
+In accordance with the method algorithm, a parti-
+tion function Zq( j) composed of q-order moments of the coefficients d j,m,n of the discrete wavelet transform for each decomposition level j corresponding to the
+spatial scale Lj ∼ 2 j Δx is considered instead of generalized structure functions of type (1):
+
+Z j(q) = d j q .
+
+(13)
+
+This partition function may be represented as a generating function of the moments of the distribution of
+the logarithms of the coefficients {d j}, which is then
+written in the form of a cumulant decomposition:
+
+ Z j(q) =
+
+exp(q ln d j )
+
+=
+
+ exp 
+
+
+p≥1
+
+κp(
+
+j)
+
+qp p!
+
+  
+
+,
+
+(14)
+
+where κp(j) are the p-order cumulants (or log-cumulants) of the distribution of the logarithm of the coef-
+ficients d j at the decomposition level j [16]. Logcumulants are estimated directly by the coefficients of the discrete wavelet decomposition of the process under study.
+
+If the dependence of log-cumulants on j in a certain range of j values can be approximated by a linear dependence of the following form:
+
+κ p( j) ≈ C p0 + jCp ln 2,
+
+(15)
+
+then, ln Z j(q) takes the form:
+
+ ln
+
+Z
+
+j (q)
+
+≈
+
+ln
+
+Fq
+
++
+
+  
+
+Cp
+p≥1
+
+qp p!
+
+  
+
+ln
+
+ 
+
+Lj Δx
+
+ 
+
+,
+
+(16)
+
+ where ln Fq =
+
+C
+p≥1
+
+p0
+
+qp p!
+
+does
+
+not
+
+depend
+
+on
+
+a
+
+scale.
+
+A detailed description of the Cp parameter estimation procedure can be found in [17]. Therefore, we present here the main conclusions obtained as a result of the analysis for the weak fluctuation regime.
+(1) An analysis of the stochastic phase distribution
+on the screen with the parameters h and λ2 specified during generation and over the entire range of scales
+Lj leads to parameter estimates of C1 ≈ h, C2 ≈ −λ2, and C3 ≈ 0. This confirms the correspondence of the generated phase distributions on the screen to the specified multifractal model.
+(2) The distribution of phase fluctuations behind the screen is characterized by the same scaling as that on the screen, but only for scales larger than the Fres-
+nel zone size Lj > LF . For scales smaller than the
+Fresnel zone, the parameter C2 takes positive values. In this case, the scaling exponent ζ(q) is no longer a convex function of the parameter q, which does not allow considering phase fluctuations as a multifractal process on these scales. The power-law nature of the process is preserved in this case while the scaling exponent of the second-order structure phase function
+ζ(2) = 2(h − λ2) preserves the specified value of 5/3.
+(3) The distribution of amplitude fluctuations for scales smaller than the Fresnel zone is characterized by the same scaling as the phase distribution for these scales.
+According to the above results, the analysis of large-scale (larger than the Fresnel zone) phase fluctuations allows, in principle, solving the inverse problem of determining the parameters of a multifractal model of stochastic phase fluctuations on the screen based on measurements of signal characteristics
+behind the screen. Indeed, the parameters C1 and C2 of representations of the scaling exponent (12) deter-
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+606
+γ2, ph 2.5 2.0 1.5 1.0 0.5
+0
+
+MAKARENKOVA, GHERM
+
+(a)
+
+γ2, lv
+
+(b)
+
+16
+
+2
+
+3
+
+4 54
+
+2
+
+0
+
+100
+
+200
+
+300
+
+r, m
+
+100
+
+200
+
+300 r, m
+
+Fig. 4. Kurtosis coefficients for differences of phase (a) γ2, ph and log-amplitude (b) γ2, lv on the ground (z = 350 km) for various values of parameter λ2 : (1) 0.0001, (2) 0.01, (3) 0.05, (4) 0.1, and (5) 0.15.
+
+mined for large-scale phase fluctuations behind the screen are estimates of the corresponding parameters
+h and λ2 of the multifractal model of the phase distribution on the screen. This conclusion is explained by the fact that a geometric optics regime, in which the signal phase is practically not distorted when propagating from the screen to the earth’s surface, is implemented for large-scale disturbances. In contrast, the scaling properties of small-scale phase and amplitude fluctuations with scales smaller than the Fresnel zone differ from the corresponding phase characteristics on the screen. Apparently, diffraction for these scales leads to the normalization of initially non-Gaussian processes, which leads to the destruction of specific multifractal scaling.
+Figures 4a and 4b show the dependences of the kurtosis coefficients of the distribution functions of phase differences and the fluctuations of field logamplitude differences behind the screen on the spatial spacing of points (spatial scale of fluctuations). As can be seen in Fig. 4a, for spatial scales of fluctuations
+larger than the Fresnel zone size L > LF, the kurtosis coefficients of the distributions of phase differences behind the screen are close to their values on the screen while, at smaller scales, they decrease with decreasing scales of fluctuations, approaching small values characteristic of processes close to normal.
+As for the kurtosis coefficients of the distribution of log-amplitude fluctuations, then for spatial scales of fluctuations larger than the Fresnel zone size, they
+exceed the γ2 values for fluctuations of phase differences and decrease with increasing scale, while in the range of scales smaller than the Fresnel zone, the kurtosis coefficients of the log-amplitude fluctuations
+
+also tend to zero, which corresponds to the normal distribution.
+Let us now consider how the presence of the intermittency affects such statistical characteristics of fluctuations of the received field as a coherence and scintillation index. The coherence function of the complex field u(r, z) at a distance z from the stochastic phase screen is determined by the following relationships:
+
+Γ(L) = u(r, z)u*(r + L, z)
+
+= exp (i (ϕ(r ) − ϕ(r + L))) .
+
+(17)
+
+The absence of the dependence of the coherence function on z reflects the well-known fact that the coherence function of a plane wave behind a screen does not depend on the distance from the screen. In the case of a normal phase distribution on the screen, the coherence function can be explicitly expressed as the second-order phase function on the screen:
+
+( ) Γ(L)
+
+= exp
+
+−
+
+1 2
+
+S2(L)
+
+.
+
+(18)
+
+If the phase distribution on the screen is different from normal, then relation (18) does not take place and averaging in (17) is performed numerically for various
+values of parameter λ2.
+
+Figure 5 shows the dependences Γ(L) calculated for
+two values of λ2, 0.0001 and 0.15, at the same power spectrum of phase fluctuations. For comparison, Fig. 5 also presents the result of a formal calculation of Γ(L) by formula (18). As can be seen in the figure, the
+coherence radius increases as the parameter λ2 increases.
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+MODEL OF A MULTIFRACTAL PHASE SCREEN
+
+607
+
+Γ
+
+1.0
+
+1
+
+0.8
+
+2
+
+3
+
+0.6
+
+0.4
+
+0.2
+
+0 200 400 600 800
+L, m
+
+Fig. 5. Coherence function Γ calculated for two values of
+parameter λ2 : 0.0001 (curve 1) and 0.15 (curve 2) and by formula (18) (curve 3).
+
+S4 1.0
+
+0.8
+
+0.6
+
+0.4
+
+1
+
+2
+
+0.2
+
+3
+
+0
+
+2
+
+4
+
+6
+
+8 ×105
+
+z, m
+
+Fig. 6. Scintillation index S4 as a function of distance from
+the screen for various values of parameter λ2 : (1) 0, (2) 0.0001, and (3) 0.15.
+
+CONCLUSIONS
+The first results of modeling of transionospheric signal fluctuations during propagation under conditions of intermittent ionospheric turbulence are presented. To simulate field fluctuations, the phase screen method was used. The intermittent phase distribution on the screen was specified by the model of a non-Gaussian multifractal phase screen presented here, which allowed simulating various intermittency modes, from its complete absence to a very significant one. The results of studying the field coherence function behind the screen revealed an increase in the coherence radius with an increase in the degree of intermittency. Calculations of the scintillation index showed a decrease on the ground surface with increasing degree of intermittency and its slower evolution with the distance from the screen. Besides, the analysis of large-scale (larger than the Fresnel zone) phase fluctuations is shown to allow solving the inverse problem of determining the parameters of a multifractal model of stochastic phase perturbations on the screen based on measurements of signal characteristics behind the screen.
+All calculations of the intermittency effects were performed in the study at the same power-law spectrum of the phase distribution on the screen that was especially maintained constant. In this case, the statistical characteristics of the resulting field fluctuations were different for different values of the intermittency. This means that the description of fluctuations at the level of the second moments is in some cases insufficient, and it is necessary to take into account the higher moments of the distributions.
+ACKNOWLEDGMENTS
+The equipment of the Resource Center of the Science Park of St. Petersburg State University Computing Center was partially used in numerical studies.
+
+The amplitude fluctuations behind the screen are
+characterized by a scintillation index S4 that is the standard deviation of the normalized intensity fluctuations:
+
+( ) S4 =
+
+u4 − u2 2
+
+u2
+
+2
+.
+
+(19)
+
+Figure 6 shows the dependence of the scintillation
+index S4 on the distance behind the screen for several values of parameter λ2. For the selected calculation parameters, the scintillation index S4 corresponding to a fixed λ2 increases monotonically with the distance from the screen. In this case, the scintillation index at a fixed distance from the screen is the smaller, the
+larger the value of the parameter λ2.
+
+FUNDING
+This work was supported by the Russian Foundation for Basic Research, project no. 19-02-00274.
+REFERENCES
+1. L. Dyrud, B. Krane, M. Oppenheim, et al., Nonlin. Processes Geophys. 8, 847 (2008).
+2. K. C. Yeh and C. H. Liu, Proc. IEEE 70, 324 (1982). 3. K. R. Sreenivasan, Annu. Rev. Fluid Mech. 23, 539
+(1991). 4. S. Boldyrev and C. R. Gwinn, Astrophys. J. 624 (1), 213
+(2005). 5. A. A. Potapov, Fractals in Radiophysics and Radar (Logos,
+Moscow, 2002) [in Russian].
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+
+608
+
+MAKARENKOVA, GHERM
+
+6. A. A. Potapov, Fractals in Radiophysics and Radar: Topology of a Sample, 2nd Ed. (Universitetskaya Kniga, Moscow, 2005) [in Russian].
+7. V. A. Alimov, F. I. Vybornov, and A. V. Rakhlin, Izv. Vyssh. Uchebn. Zaved. Radiofiz. 51, 485 (2008).
+8. F. I. Vybornov, V. A. Alimov, and A. V. Rakhlin, Sovr. Probl. Distants. Zondir. Zemli iz Kosmosa 8 (1), 295 (2011).
+9. A. Arneodo, E. Bacry, and J. F. Muzy, J. Math. Phys. 39, 4142 (1998).
+10. N. Decoster, S. Roux, and A. Arneodo, Eur. Phys. J. 15 (4), 739.
+11. S. M. Rytov, Yu. A. Kravtsov, and V. I. Tatarskii, Introduction to Statistical Radiophysics, Part 2: “Random Fields” (Nauka, Moscow, 1978) [in Russian].
+12. V. A. Alimov and A. V. Rakhlin, Izv. Vyssh. Uchebn. Zaved. Radiofiz. 48, 563 (2005).
+
+13. E. V. Makarenkova and V. E. Gherm, in Proc. Atlantic Radio Sci. Meeting (AT-RASC), Gran Canaria, Spain. May, 2018 (IEEE, New York, 2018).
+14. E. V. Makarenkova and V. E. Gherm, in Proc. Int. Symp. on Electromag. Theory (EMTS’2019) URSI, San Diego, CA, USA, May 27−31, 2019 (URSI, 2019).
+15. E. Serrano and A. Figliola, Phys. A (Amsterdam) 388, 2793 (2009).
+16. H. Wendt, P. Abry, and S. Jaffard, IEEE Signal Proc. Mag. 24 (4), 38 (2007).
+17. H. Wendt, S. Roux, and P. Abry, in Proc. 14th Eur. Signal Processing Conf. (EUSIPCO), Florence, Italy, Sep. 4−8, 2006. https://hal-ens-lyon.archives-ouvertes.fr/ensl-00144568.
+Translated by A. Ivanov
+
+JOURNAL OF COMMUNICATIONS TECHNOLOGY AND ELECTRONICS Vol. 65 No. 6 2020
+

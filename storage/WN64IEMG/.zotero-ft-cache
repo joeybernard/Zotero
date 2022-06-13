@@ -1,0 +1,10840 @@
+Analytical and numerical results for some classes of nonlinear Schro¨dinger equations
+by
+Xiao Liu
+A thesis submitted in conformity with the requirements for the degree of Doctor of Philosophy Graduate Department of Mathematics University of Toronto
+c Copyright 2013 by Xiao Liu
+
+Abstract
+Analytical and numerical results for some classes of nonlinear Schr¨odinger equations Xiao Liu
+Doctor of Philosophy Graduate Department of Mathematics
+University of Toronto 2013
+This thesis is devoted to the study of nonlinear dispersive partial diﬀerential equations of Schro¨dinger type. The main questions we investigate are long-time behavior or occurrence of a ﬁnite time singularity, as well as stability properties of solitary wave solutions.
+The derivative nonlinear Schr¨odinger (DNLS) equation is a nonlinear dispersive model that appears in the description of wave propagation in plasmas. The ﬁrst part of this thesis concerns a DNLS equation with a generalized nonlinearity (gDNLS). We ﬁrst investigate numerically the possible occurrence of singularities. We show that, in the L2supercritical regime, singularities can occur. We obtain a precise description of the local structure of the solution in terms of the blowup rate and asymptotic proﬁle, in a form similar to that of the nonlinear Schr¨odinger equation (NLS) with supercritical power law nonlinearity. We also show that the gDNLS equation possesses a two-parameter family of solitary wave solutions and study their stability. We fully classify their orbital stability or orbital instability properties according to the strength of the nonlinearity and, in some instances, their velocity.
+In linear quantum mechanical scattering theory, the phenomenon of resonant tunneling refers to the situation where incoming waves are fully transmitted through potential barriers at certain energies. In the second part of this thesis, we consider the onedimensional cubic NLS equation with two classes of external potentials, namely the ‘box’ potential and a repulsive 2-delta potential. We demonstrate numerically that resonant
+ii
+
+tunneling may occur in a nonlinear setting: Taking initial condition as a slightly perturbed, fast moving NLS soliton, we show that, under a certain resonant condition, the incoming soliton is almost fully transmitted. As the velocity of the incoming soliton increases, the transmitted mass of the soliton converges to the total mass.
+iii
+
+Acknowledgements
+I would like to express my sincere gratitude to my advisor, Professor Catherine Sulem, for her continuous support of my graduate study and research with her motivation, enthusiasm, patience and most of all, her immense knowledge and rich experience. Moreover, Catherine helped me a lot in writing papers, making slides and teaching in large classes. She also invited me to her concerts, which are very enjoyable and remarkable.
+I am grateful to Walid Abou Salem and Gideon Simpson, who, as post-doc at the University of Toronto, taught me a tremendous amount of analytical and numerical skills, helped me improve programming techniques and suggested me lots of interesting topics to research.
+I thank my thesis committee members, Adrian Nachman and Mary Pugh, for their help during my PhD study, as well as my external examiner, Dmitry Pelinovsky, all of them, provided insightful suggestions and remarks for my thesis. I would like to thank also Almut Burchard, Jim Colliander, Abe Igelfeld, Robert Jerrard, Robert Mccann, Joe Repka, and Israel Michael Sigal for their guidance and support.
+I would like to thank the staﬀ of the Department of Mathematics at the University of Toronto. Particularly Ida Bulat, our graduate administrator, without whom the life at the University of Toronto would never be easy and joyful.
+I am also grateful to all my friends at the University of Toronto. I deeply cherish my experience in Toronto during the past six years.
+I am hugely indebted to my parents, Daqing Liu and Ping Chen, and my girlfriend Zunwei Du for their endless love, concern and support.
+Finally, I acknowledge that a reﬁned version of Chapter 3 and 4 have been accepted for publication by Journal of Nonlinear Science, doi:10.1007/s00332-012-9161-2, and Discrete and Continuous Dynamical Systems. Series A, doi:10.3934/dcds.2011.29.1637, respectively.
+iv
+
+Contents
+
+1 Introduction
+
+1
+
+1.1 Derivative Nonlinear Schr¨odinger Equation (DNLS) . . . . . . . . . . . . 1
+
+1.2 DNLS with General Power Nonlinearity (gDNLS) . . . . . . . . . . . . . 5
+
+1.3 Main Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+
+1.3.1 Singularity Formation . . . . . . . . . . . . . . . . . . . . . . . . 7
+
+1.3.2 Orbital Stability/Instability of Solitary Waves . . . . . . . . . . . 9
+
+1.4 Nonlinear Schro¨dinger Equation with External Potential . . . . . . . . . 12
+
+2 Focusing Singularity in gDNLS
+
+16
+
+2.1 gDNLS with Quintic Nonlinearity . . . . . . . . . . . . . . . . . . . . . . 16
+
+2.1.1 Dynamic Rescaling Formulation . . . . . . . . . . . . . . . . . . . 17
+
+2.1.2 Singularity Formation . . . . . . . . . . . . . . . . . . . . . . . . 19
+
+2.2 gDNLS with Other Power Nonlinearities . . . . . . . . . . . . . . . . . . 27
+
+2.3 Blowup Proﬁle . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+
+2.3.1 Properties of the Asymptotic Proﬁle . . . . . . . . . . . . . . . . 29
+
+2.3.2 Numerical Integration of the Boundary Value Problem . . . . . . 39
+
+2.4 Numerical Method for Integrating the Time Dependent Equation . . . . 40
+
+2.4.1 Exponential Time Diﬀerencing . . . . . . . . . . . . . . . . . . . . 41
+
+2.4.2 Integrating the Time Dependent Equation . . . . . . . . . . . . . 45
+
+2.5 Numerical Method of the Boundary Value Problem . . . . . . . . . . . . 46
+
+2.5.1 bvp4c solver in MATLAB . . . . . . . . . . . . . . . . . . . . . . 46
+
+2.5.2 Integrating the Boundary Value Problem . . . . . . . . . . . . . . 47
+
+2.6 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+
+3 Stability of gDNLS Solitary Waves
+
+51
+
+3.1 Problem Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+
+3.1.1 Explicit Form of Solitary Wave Solutions . . . . . . . . . . . . . . 51
+
+3.1.2 Linearized Hamiltonian . . . . . . . . . . . . . . . . . . . . . . . . 54
+
+v
+
+3.1.3 Action Functional . . . . . . . . . . . . . . . . . . . . . . . . . . . 58 3.2 Spectral Decomposition of the Linearized Operator . . . . . . . . . . . . 59
+3.2.1 The Negative Subspace . . . . . . . . . . . . . . . . . . . . . . . . 61 3.2.2 The Kernel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63 3.2.3 The Positive Subspace and the Spectral Decomposition . . . . . . 64 3.3 Analysis of the Hessian Matrix . . . . . . . . . . . . . . . . . . . . . . . . 67 3.4 Orbital Stability and Orbital Instability . . . . . . . . . . . . . . . . . . . 72 3.5 Basic Spectral Theorems . . . . . . . . . . . . . . . . . . . . . . . . . . . 75 3.5.1 Weyl’s Essential Spectral Theorem . . . . . . . . . . . . . . . . . 75 3.5.2 Sturm-Liouville Theory . . . . . . . . . . . . . . . . . . . . . . . . 77 3.6 Numerical Illustrations . . . . . . . . . . . . . . . . . . . . . . . . . . . . 78 3.6.1 Numerical Integration of the Spectrum of the Linearized Operator 78 3.6.2 Numerical Simulation with an Initial Condition in the Form of
+Perturbed Soliton . . . . . . . . . . . . . . . . . . . . . . . . . . . 80 3.7 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 82
+
+4 Resonant Tunneling of Fast Solitons
+
+88
+
+4.1 Linear Quantum Mechanical Scattering . . . . . . . . . . . . . . . . . . . 88
+
+4.2 Numerical Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+
+4.2.1 Numerical Evidence of Resonant Tunneling . . . . . . . . . . . . . 92
+
+4.2.2 Resolution of Outgoing Waves . . . . . . . . . . . . . . . . . . . . 94
+
+4.2.3 Limiting Value of the Reﬂection Rates as the Soliton Velocity In-
+
+creases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 97
+
+4.3 Numerical Method . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 98
+
+Bibliography
+
+103
+
+vi
+
+Chapter 1 Introduction
+
+1.1 Derivative Nonlinear Schro¨dinger Equation (DNLS)
+
+In this thesis, we study the derivative nonlinear Schr¨odinger equation with a general power nonlinearity (gDNLS)
+
+i∂tψ + ∂x2ψ + i|ψ|2σψx = 0, x ∈ R, t ∈ R,
+
+(1.1.1)
+
+where σ > 0. This equation can be seen as a generalization of
+
+i∂tψ + ∂x2ψ + i|ψ|2ψx = 0, x ∈ R, t ∈ R
+
+(1.1.2)
+
+which is equivalent to the derivative nonlinear Schr¨odinger equation (DNLS)
+
+i∂tu + ∂x2u + i(|u|2u)x = 0, x ∈ R, t ∈ R,
+
+(1.1.3)
+
+under the Gauge transformation
+
+i ψ(x) = u(x) exp
+
+x
+|u(η)|2dη .
+
+2 −∞
+
+Under a long wavelength approximation,the DNLS equation (1.1.3) is a model for Alfv´en waves in plasma physics, [53, 54, 58, 62]. An Alfv´en wave, named after Hannes Alfv´en, is a type of magnetohydrodynamic wave. It is a low-frequency traveling oscillation of the ions and the magnetic ﬁeld. We brieﬂy present the derivation of the DNLS equation following references [11, 54], using the reductive perturbation method. When the plasma is quasineutral and consists of electrons and one kind of ions, waves propagating in the
+
+1
+
+Chapter 1. Introduction
+
+2
+
+x direction are described by equations in the form of
+
+∂ρ ∂ ∂t + ∂x (ρu1) = 0,
+
+(1.1.4a)
+
+∂u1 ∂t
+
++
+
+u1
+
+∂u1 ∂x
+
+=
+
+1∂ −
+ρ ∂x
+
+β ργ + 1 |b|2 , γ2
+
+(1.1.4b)
+
+∂v ∂v ∂b
+
+ρ
+
+∂t + u1 ∂x
+
+=, ∂x
+
+(1.1.4c)
+
+∂b ∂
+
+1 ∂ 1 ∂b
+
+∂t
+
++
+
+∂x (u1b
+
+−
+
+v)
+
+=
+
+i R
+
+∂x
+
+ρ ∂x
+
+,
+
+(1.1.4d)
+
+where ρ, (b1, b2, b3) and (u1, u2, u3) are the normalized mass density, magnetic ﬁeld and ﬂuid velocity, respectively. R, γ, β and the magnetic ﬁeld along x-axis b1 are constants. The transverse components of velocity and magnetic ﬁeld are synthesized in the complex-
+
+valued quantities,
+
+v = u2 + iu3, b = b2 + ib3
+
+(1.1.5)
+
+By introducing the following stretched space and time variables,
+
+ξ = (x − t), τ = 2t,
+
+(1.1.6)
+
+where 0 < < 1 is a small parameter, the functions have the power expansions in , v = 1/2(v(1) + v(2) + · · · ),
+
+b = 1/2(b(1) + b(2) + · · · ), ρ = 1 + ρ(1) + 2ρ(2) + · · · ,
+ux = u(1) + 2u(2) + · · · . Inserting (1.1.6) and (1.1.7) into (1.1.4), we obtain, at the order O( 3/2),
+b(1) = −v(1),
+
+(1.1.8)
+
+at the order O( 2),
+
+ρ(1) = u(1) =
+
+|b(1)|2 ,
+
+2(1 − β)
+
+and at the order O( 5/2), one ﬁnd the DNLS equation (1.1.3) using (1.1.4c), (1.1.4d) and (1.1.8), where b(1), ξ and τ are replaced by u, x and t, respectively.
+
+Chapter 1. Introduction
+
+3
+
+As we mentioned earlier, there are several equivalent forms for the DNLS equation
+
+(1.1.3). Let u be the solution of (1.1.3). Multiplying (1.1.3) by u¯ and taking the real
+
+part, we obtain
+
+∂t|u|2 + ∂x
+
+2
+
+(u¯ux)
+
++
+
+3 |u|4 2
+
+= 0.
+
+(1.1.9)
+
+Using a Gauge transformation,
+
+x
+ψ = u(x) exp iν |u(η)|2dη , ν ∈ R,
+−∞
+
+(1.1.10)
+
+and (1.1.9), DNLS equation (1.1.3) takes the form
+
+i∂tψ
+
++
+
+ψxx
+
++
+
+2i(1
+
+−
+
+ν)|ψ|2ψx
+
++
+
+i(1
+
+−
+
+2ν)ψ2ψ¯x
+
++
+
+ν(ν
+
+−
+
+1 )|ψ|4ψ 2
+
+=
+
+0.
+
+(1.1.11)
+
+When
+
+ν
+
+=
+
+1 2
+
+,
+
+(1.1.11)
+
+simpliﬁes
+
+to
+
+(1.1.2).
+
+Equation (1.1.2) and some of its gener-
+
+alizations, also appear in the modeling of ultrashort optical pulses [5, 55]. There is a
+
+Hamiltonian form for (1.1.2)
+
+δE ∂tψ = −2i δψ¯
+
+(1.1.12)
+
+with the Hamiltonian
+
+1 E=
+2
+
+∞ −∞
+
+|ψx|2dx
+
++
+
+1 4
+
+∞
+|ψ|2ψ¯ψxdx.
+−∞
+
+(1.1.13)
+
+Equation (1.1.2) also has the mass and momentum invariants:
+
+1 M=
+2 1 P= 2
+
+∞
+|ψ|2dx,
+−∞ ∞
+ψψ¯xdx.
+∞
+
+(1.1.14) (1.1.15)
+
+Furthermore, the DNLS equation (1.1.3) has remarkable property of being integrable by inverse scattering [38], which implies that there exist inﬁnitely many conservation laws.
+The initial value problem of the DNLS equation (1.1.3) has been studied in the Sobolev space Hk, k ≥ 1, with results for both local and global well-posedness. The Sobolev space
+
+Hk ≡ {f ∈ L2(R) : F −1(1 + |ξ|2)k/2F f ∈ L2(R)}
+
+is equipped with the norm
+
+f Hk ≡ F −1(1 + |ξ|2)k/2F f L2(R),
+
+Chapter 1. Introduction
+
+4
+
+where F and F −1 are the Fourier transform and inverse Fourier transform on the real line respectively. Much of the well-posedness analysis relies on a transformation related to (1.1.10) that turns the equation into two coupled semilinear Schr¨odinger equations with no derivative. One of the earliest results is due to Tsutsumi and Fukuda [64], who proved local well-posedness on both the real line R and the unit torus T in the Sobolev space Hs, provided s > 3/2 and the data is suﬃciently small. This was subsequently reﬁned by Hayashi and Ozawa [29], who found that for initial conditions satisfying
+
+√ u0 L2 < 2π,
+
+(1.1.16)
+
+the solution exists for all time in Hs for s ∈ Z+. More recently, the global in time result for data satisfying (1.1.16) was extended to all Hs spaces with s > 1/2 by Colliander et al. [13]. Working in the Schwartz space, Lee [44] used the framework of inverse scattering to show that DNLS is globally well-posed for a dense subset of initial conditions, excluding certain non generic ones. There has also been progress beyond the cubic equation in the aforementioned results. Some studies, such as [17, 57, 63], include additive terms to the cubic nonlinearity with derivative. However, an outstanding problem for DNLS is to determine the fate of large data. At present, there is neither a result on global well posedness, nor is there a known ﬁnite time singularity.
+The DNLS equation (1.1.3) admits a two-parameter family of solitary wave solutions of the form:
+
+uω,c(x, t) = ϕω,c(x − ct) exp
+
+i
+
+c
+
+3
+
+ωt + (x − ct) −
+
+2
+
+4
+
+x−ct
+ϕ2ω,c(η)dη
+−∞
+
+,
+
+(1.1.17)
+
+where ω > c2/4 and
+
+(4ω − c2)
+
+ϕω,c(y) =
+
+√
+
+√
+
+ω(cosh(σ 4ω
+
+−
+
+c2y)
+
+−
+
+√c 2ω
+
+)
+
+(1.1.18)
+
+is the positive solution to
+
+−
+
+∂y2ϕω,c
+
++
+
+(ω
+
+−
+
+c2 4 )ϕω,c
+
++
+
+c 2
+
+|ϕω,c
+
+|2ϕω,c
+
+−
+
+3 16
+
+|ϕω,c|4
+
+ϕω,c
+
+=
+
+0.
+
+(1.1.19)
+
+Guo and Wu [26] showed that these solitary waves are orbitally stable if c < 0 and c2 < 4ω. Colin and Ohta [12] subsequently extended the result, proving orbital stability for all c, c2 < 4ω. We will present more details about those two results in Section 1.3.2.
+
+Deﬁnition 1.1.1. Let uω,c be the solitary wave solution of (1.1.3). The solitary wave
+
+Chapter 1. Introduction
+
+5
+
+uω,c is orbitally stable if, for all > 0, there exists δ > 0 such that if u0 − uω,c H1 < δ, then the solution u(t) of (1.1.3) with initial data u(0) = u0, exists globally in time and satisﬁes
+sup inf u(t) − eiθuω,c(t, · − y) H1 < .
+t≥0 (θ,y)∈R2
+Otherwise, uω,c is said to be orbitally unstable.
+
+1.2 DNLS with General Power Nonlinearity (gDNLS)
+
+In an eﬀort to better understand the properties of DNLS, we study an extension of (1.1.2) with general power nonlinearity (1.1.1). The gDNLS equation (1.1.1) also has a Hamiltonian structure with generalized energy:
+
+1 E=
+2
+
+∞ −∞
+
+|ψx|2dx
+
++
+
+1 2(σ +
+
+1)
+
+∞
+|ψ|2σψ¯ψxdx, (Energy).
+−∞
+
+(1.2.1)
+
+The mass and momentum invariants are the same as (1.1.14) and (1.1.15). Please note that we can not transform (1.1.1) into
+
+i∂tu + ∂x2u + i(|u|2σu)x = 0.
+
+via a Gauge transformation.
+
+For all values of σ, we have the scaling property that if ψ(x, t) is a solution of (1.1.1),
+
+then so is
+
+ψλ(x,
+
+t)
+
+=
+
+λ−
+
+1 2σ
+
+ψ
+
+λ−1x, λ−2t
+
+.
+
+(1.2.2)
+
+It follows that the L2 norm
+
+ψλ
+
+= λ L2
+
+−
+
+1 2σ
+
++
+
+1 2
+
+ψ
+
+L2 .
+
+Hence, (1.1.1) is L2-critical for σ = 1 and L2-supercritical for σ > 1.
+
+For general quasilinear Schr¨odinger equation with polynomial nonlinearities, local well-posedness holds in Sobolev spaces of high enough index [39,40,47]. In dimension one, Hayashi and Ozawa [30] considered the initial value problem for nonlinear Schro¨dinger equation,
+
+i∂tu
+
++
+
+1 2
+
+∂x2u
+
+=F (u,
+
+∂xu,
+
+u¯,
+
+∂xu¯),
+
+u(x, 0) =u0(x), x ∈ R,
+
+(x, t) ∈ R × R+,
+
+(1.2.3)
+
+Chapter 1. Introduction
+
+6
+
+where F denotes a complex valued polynomial deﬁned on C4 such that
+
+F (z) = F (z1, z2, z3, z4) =
+
+aαzα,
+
+ν≤|α|<ρ α∈Z4+
+
+(1.2.4)
+
+and the standard notation for multi-indices is used. They had the following local existence result,
+
+Theorem 1.2.1 ( [30]). If the lowest power in the nonlinear term F (1.2.4) is cubic (ν = 3), then for any u0 ∈ H3, there exists a unique solution u(·) for (1.2.3) deﬁned in the interval [0, T ], T = T ( u0 H3) > 0 with T (θ) → ∞, as θ → 0, satisfying
+
+u ∈ C([0, T ]; H2) ∩ Cw(0, T ; H3),
+
+where, for any interval I of R, C(I; B) and Cw(I; B) denote the space of continuous and weakly continuous functions from I to B, respectively.
+
+In [28], Hao proved that (1.1.1) is locally well-posed in H1/2 intersected with an appropriate Strichartz space for σ ≥ 5/2.
+As the DNLS equation (1.1.3), (1.1.1) admits a two-parameter family of solitary wave solutions,
+
+ψω,c(x, t) = ϕω,c(x − ct) exp
+
+i
+
+c
+
+1
+
+ωt + (x − ct) −
+
+2
+
+2σ + 2
+
+x−ct
+ϕ2ωσ,c(η)dη
+−∞
+
+where ω > c2/4 and
+
+, (1.2.5)
+
+ϕω,c(y)2σ
+
+=
+
+(σ + 1)(4ω − c2)
+
+√
+
+√
+
+2 ω(cosh(σ 4ω − c2y) −
+
+√c 2ω
+
+)
+
+(1.2.6)
+
+is the positive solution of
+
+−
+
+∂y2ϕω,c
+
++
+
+(ω
+
+−
+
+c2 4 )ϕω,c
+
++
+
+c 2
+
+|ϕω,c|2σ
+
+ϕω,c
+
+−
+
+2σ (2σ
+
++1 + 2)2
+
+|ϕω,c|4σ
+
+ϕω,c
+
+=
+
+0.
+
+(1.2.7)
+
+It is convenient to deﬁne
+
+φω,c(y) = ϕω,c(y)eiθω,c(y),
+
+with the traveling phase
+
+c
+
+1
+
+θω,c(y)
+
+≡
+
+y 2
+
+−
+
+2σ
+
++
+
+2
+
+y
+ϕ2ωσ,c(η)dη.
+−∞
+
+(1.2.8) (1.2.9)
+
+Chapter 1. Introduction
+
+Clearly,
+
+ψω,c(x, t) = eiωtφω,c(x − ct),
+
+and the complex function φω,c(y) satisﬁes
+
+− ∂y2φω,c + ωφω,c + ic∂yφω,c − i|φω,c|2σ∂yφω,c = 0, y ∈ R.
+
+7 (1.2.10) (1.2.11)
+
+1.3 Main Results
+
+1.3.1 Singularity Formation
+We will ﬁrst recall the focusing nonlinear Schr¨odinger equation with power law nonlinearity (NLS), and then present our results about gDNLS equation. The NLS equation with an attracting nonlinearity in Rd is
+
+i∂tu + ∆u + |u|2σu = 0, t ∈ [0, T ],
+
+(1.3.1)
+
+where u : Rd × [0, T ] → C. It has a scaling property that if u(x, t) is a solution of (1.3.1) with initial condition u0 for t ∈ [0, T ], then for any λ > 0,
+
+uλ(t,
+
+x)
+
+≡
+
+λ−
+
+1 σ
+
+u(λ−1x,
+
+λ−2t)
+
+also
+
+solves
+
+(1.3.1)
+
+with
+
+initial
+
+condition
+
+u0,λ
+
+≡
+
+λ−
+
+1 σ
+
+u0(λx)
+
+for
+
+t
+
+∈
+
+[0, T /λ2].
+
+we
+
+also
+
+have
+
+the L2 norm
+
+u0,λ
+
+= λ L2
+
+d 2
+
+−
+
+1 σ
+
+u0
+
+L2 .
+
+It follows that three cases arise according to values of the dimension d and the exponent σ.
+
+• σd < 2, L2-subcritical case. Wave dispersion dominates over nonlinear focusing, the solution exists for all time [10, 21, 46, 65].
+
+• σd ≥ 2, L2-critical and super-critical case. Solution may blow up in ﬁnite time [22, 67, 71]. When the initial condition has a negative energy
+
+H = |∇u|2 − 1 |u|2σ+2dx σ+1
+
+and a ﬁnite variance
+
+V (t) = |x|2|u|2dx,
+
+Chapter 1. Introduction
+
+8
+
+a singularity occurs at a ﬁnite time. This result is based on the variance identity,
+
+d2
+
+dσ − 2
+
+V (t) = 8 H −
+
+|u|2σ+2dx .
+
+dt2
+
+2σ + 2
+
+When σd = 2, the problem is well posed globally in time for initial conditions u0
+
+with suﬃciently small mass [68], namely
+
+u0
+
+2 L2
+
+<
+
+R
+
+2 L2
+
+,
+
+where
+
+R
+
+is
+
+the
+
+ground
+
+state of
+
+−∆R + R − R2σ+1 = 0, lim |R(x)| = 0.
+|x|→∞
+
+At the critical mass u0 L2 = R L2, there are exact self-similar solutions [51]. More precisely, let u0 ∈ H1(Rd) and |xu0| ∈ L2(Rd) (ﬁnite variance). Suppose in addition that u0 L2 = R L2 and u(t) blows up in a ﬁnite time t∗, then there exist constants θ, ω, and x1 ∈ Rd such that the solution is expressed in the form
+
+ωd/2 u(x, t) = (t∗ − t)d/2 R0
+
+ω
+
+x − x1 t∗ − t
+
+−
+
+ξ
+
+e . i
+
+θ+
+
+ω2 t∗ −t
+
+−
+
+|4x(−t∗x−1t|2)
+
+On the other hand, the blow up rate for generic initial data has the form (ln | ln(t∗ − t)|/(t∗ − t))1/2, where t∗ is the blowup time [18, 42, 45, 52].
+When σd > 2 and in the case of radially symmetric, the local structure of the singularity is self-similar and has the form [23, 50, 62]
+
+1
+
+u(x, t) ∼
+
+Q
+
+(2a(t∗ − t))1/2σ
+
+|x − x∗| (2a(t∗ − t))1/2
+
+ei(θ+
+
+1 2a
+
+ln
+
+), t∗
+t∗ −t
+
+a
+
+∈
+
+R
+
+where x∗ and t∗ are the location and the time of the blowup. The proﬁle Q satisﬁes
+
+d−1 Qηη + η Qη − Q + ia
+
+Q ηQη + σ
+
++ |Q|2σQ = 0, η > 0
+
+Qη(0) = 0, Q(∞) = 0.
+
+(1.3.2)
+
+When σ = 1, d = 3, the constant a in (1.3.2) is observed to be independent of the initial data and has the value a ∼ 0.917. This precise description of the nature of the focusing singularity is achieved by using an adaptive grid numerical method, called dynamic rescaling. This method is motivated by the scaling invariance of the equation. The dependent and independent variables are rescaled by factors related to a norm of the solution which blows up at the singularity. The rescaled solution exists for all time. The solution of the primitive equation can be in principle computed up to time very close to blow up.
+
+Chapter 1. Introduction
+
+9
+
+Comparing the gDNLS equation (1.1.1) to the NLS equation, a natural question is whether the solutions to gDNLS may blow up in ﬁnite time in the L2-supercritical regime (σ > 1). The ﬁrst result, presented in Chapter 2, is to numerically explore the possibility for singularity formation in (1.1.1), and our simulations and asymptotics indicate that there is indeed collapse when σ > 1. We then give an accurate description of the nature of the focusing singularity with generic “large” data by using the dynamic rescaling method. Up to a rescaling, we observe numerically for σ > 1, the solutions locally blow up like
+
+1
+
+1
+
+4σ
+
+ψ(x, t) ∼ 2α(t∗ − t) Q
+
+x − x∗
+
+β +
+
+ei(θ+
+
+1 2α
+
+ln
+
+, t∗
+t∗ −t
+
+)
+
+2α(t∗ − t) α
+
+(1.3.3)
+
+where t∗ is the singularity time and x∗ is the position of maxx |ψ(x, t∗)|. The function Q(ξ) is a complex-valued solution of the equation
+
+Qξξ
+
+−
+
+Q
+
++
+
+iα(
+
+1 2σ
+
+Q
+
++
+
+ξ Qξ )
+
+−
+
+iβQξ
+
++
+
+i|Q|2σ Qξ
+
+=
+
+0,
+
+(1.3.4)
+
+with amplitude that decays monotonically as ξ → ±∞. The coeﬃcients α and β are real numbers, and our simulations show that they depend on σ but not on the initial condition. We also observe that α decreases monotonically as σ → 1 (Figure 2.19). This observed blowup is analogous to that of NLS with supercritical power nonlinearity in terms of the blowup speed and asymptotic proﬁle [50].
+
+1.3.2 Orbital Stability/Instability of Solitary Waves
+
+The second result of this thesis is about stability of solitary wave solutions (1.2.5) to the gDNLS equation (1.1.1). Before we present our results, we brieﬂy recall the orbital stability properties of the solitary wave solution in the case of σ = 1 (DNLS). In [26], Guo and Wu considered a nonlinear quintic derivative Schro¨dinger equation,
+
+ut = iuxx + i(c3|u|2 + c5|u|4)u + [(s0 + s2|u|2)u]x, x ∈ R,
+
+(1.3.5)
+
+where s0, s2, c3 and c5 are real constants. It is shown in [66] that there exists a solitary waves solution
+
+u(x, t) = φ(x − vt) exp
+
+vξ 3 −iλt + 2 + 4 s2
+
+x−vt
+φ2(ξ)dξ
+−∞
+
+,
+
+(λ, v) ∈ R2.
+
+(1.3.6)
+
+Chapter 1. Introduction
+
+10
+
+Here φ(ξ) is a real function,
+
+√ φ(ξ) = 2α β +
+
+β2
+
++
+
+4 3 αc5
+
++
+
+1 4
+
+αs22
+
+1/2
+
+−1/2
+√
+
+cosh(2 αξ) ,
+
+where
+
+v2
+
+11
+
+α = −λ − > 0, 4
+
+β = 2 c3 + 4 s2v > 0,
+
+(1.3.7)
+
+and
+
+β2
+
++
+
+4 3 αc5
+
++
+
+1 4
+
+αs22
+
+>
+
+0.
+
+(1.3.8)
+
+Using a detailed spectral analysis in the spirit of Grillakis, Shatah and Strauss [24, 25],
+
+Guo and Wu obtained the following stability result:
+
+Theorem 1.3.1 ( [26]). For any real ﬁxed constants c3, c5 and s2, if λ and v satisfy (1.3.7) and (1.3.8), then the solitary wave (1.3.6) is orbitally stable.
+
+When c3 = c5 = s0 = 0, s2 = −1, (1.3.5) becomes DNLS (1.1.3), and (−λ, v) play
+
+the role of (ω, c) in the solitary wave solution (1.1.17). From the condition (1.3.7) and
+
+Theorem 1.3.1, the solitary wave solution of the DNLS equation is orbitally stable when
+
+ω
+
+≥
+
+c2 4
+
+and
+
+c < 0.
+
+Colin and Ohta [12] subsequently prove the orbital stability of the DNLS equation
+
+for all c, c2 < 4ω, using variational methods. Their analysis is based on the second form
+
+of the DNLS equation (1.1.2). Using the three invariants (1.1.13), (1.1.14) and (1.1.15)
+
+of (1.1.2), they obtain that the set of all the solitary waves is the same as the set of all
+
+the minimizer of the minimization problem
+
+µ(ω, c) = inf{Sω,c(u) : u ∈ H1(R)\{0}, Kω,c(u) = 0},
+
+where
+
+1 Sω,c(u) = 2
+
+∂u
+
+2 2
+
++
+
+ω 2
+
+u
+
+2 2
+
+−
+
+c 2
+
+1 R u¯∂xudx + 4
+
+|u|2u¯∂xudx
+R
+
+and
+
+Kω,c(u) =
+
+∂xu
+
+2 2
+
++
+
+ω
+
+u
+
+2 2
+
+−
+
+c
+
+u¯∂xudx +
+
+|u|2u¯∂xudx.
+
+R
+
+R
+
+From this variational characterization of solitary wave solution, they prove the following
+
+result:
+
+Theorem 1.3.2 ( [12]). For any (ω, c) ∈ R2 satisfying c2 < 4ω, the solitary wave solution (1.1.17) of the DNLS equation (1.1.3) is orbitally stable.
+
+Chapter 1. Introduction
+
+11
+
+In Chapter 3, we prove that the orbital stability/ instability of the gDNLS equation
+
+(1.1.1) is determined by both the strength of the nonlinearity σ and the choice of the
+
+soliton parameters, c and ω. These results are conditional in the sense that for σ = 1, we
+
+lack a suitable local well-posedness theory. Throughout our study, we assume that given
+
+σ > 0, and ψ0 ∈ H1(R), there exists a weak solution ψ ∈ C ([0, T ); H1(R)) of (1.1.1), for
+
+T > 0, which satisﬁes
+
+d ψ(·, t), f = E (ψ(·, t)), −Jf
+dt
+
+(1.3.9)
+
+for appropriate test functions f . E is the energy functional, and J is the symplectic
+
+operator. These are deﬁned in Section 3.1.
+
+Subject to this assumption, we have the following results:
+
+Theorem 1.3.3. For any admissible (ω, c) and σ ≥ 2, the solitary wave solution ψω,c(x, t) of (1.1.1) is orbitally unstable.
+
+For σ between 1 and 2, slow solitons, those with suﬃciently low c, are stable, while fast right-moving solitons are unstable.
+
+Theorem 1.3.4. For σ ∈ (1, 2), there exists z0 = z0(σ) ∈ (−1, 1) such that:
+
+(i)
+
+the
+
+solitary
+
+wave
+
+solution √
+
+ψω,c(x,
+
+t)
+
+of
+
+(1.1.1) is orbitally stable for admissible (ω, c)
+
+satisfying c < 2z0 ω.
+
+(ii)
+
+the
+
+solitary
+
+wave
+
+solution √
+
+ψω,c(x, t)
+
+of
+
+(1.1.1) is orbitally unstable for admissible
+
+(ω, c) satisfying c > 2z0 ω.
+
+Our last result concerns σ < 1, where all solitons are stable:
+
+Theorem 1.3.5. For admissible (ω, c) and 0 < σ < 1, the solitary wave solution ψω,c(x, t) of (1.1.1) is orbitally stable.
+
+Theorems 1.3.4 and 1.3.5 are fully rigorous up to the determination of the sign of a function of one variable, which is parametrized by σ. The number z0 in Theorem 1.3.4 corresponds to a zero crossing. This function, deﬁned in (3.3.14), includes improper integrals of transcendental functions.
+Theorem 1.3.4 is particularly noteworthy for distinguishing gDNLS from the focusing NLS equation (1.3.1). As we mentioned before, (1.1.1) is L2-critical for σ = 1, and it is L2-supercritical for σ > 1. While NLS only admits stable solitons in the L2-subcritical regime, gDNLS admits stable solitons not only in the critical regime, but also in the supercritical one.
+
+Chapter 1. Introduction
+
+12
+
+Our results are proven using the abstract functional analysis framework of Grillakis, Shatah and Strauss, [24, 25]; see [8, 69, 70] for related results and [62] for a survey. The test for stability involves two parts: (i) Counting the number of negative eigenvalues of the linearized evolution operator Hφ near the solitary solution of (1.1.1), denoted n(Hφ); (ii) Counting the number of positive eigenvalues of the Hessian of the scalar function d(ω, c) built out of the action functional evaluated at the soliton, denoted p(d ). We give explicit characterizations of Hφ and d(ω, c) in Section 3.1. We then apply:
+
+Theorem 1.3.6 ( [24, 25]).
+
+p(d ) ≤ n(Hφ)
+
+(1.3.10)
+
+Furthermore, under the condition that d is non-degenerate at (ω, c):
+
+(i) If p(d ) = n(Hφ), the solitary wave is orbitally stable;
+
+(ii) If n(Hφ) − p(d ) is odd, the solitary wave is orbitally unstable.
+
+1.4 Nonlinear Schr¨odinger Equation with External Potential
+
+It is well known that the one dimensional cubic NLS equation (equation (1.3.1) with d = σ = 1) admits solitary wave solutions of the form
+
+uφ0 (x,
+
+t)
+
+=
+
+Aeiφ0+ivx+i
+
+A2
+
+−v2 2
+
+t
+
+sech(A(x
+
+−
+
+a0
+
+−
+
+vt)),
+
+(1.4.1)
+
+where a0 ∈ R is the initial center of mass position of the soliton, v ∈ R is its velocity, φ0 ∈ [0, 2π) is the phase, and A ∈ R+. In the last part of this thesis, we study the eﬀect of an external potential on the long time behavior of solitary waves uφ0(x, t). More precisely, we consider the one dimensional cubic NLS equation,
+
+i∂tu
+
+=
+
+−
+
+1 2
+
+∂x2u
+
++
+
+|u|2u
+
++
+
+V
+
+u
+
+u(x, 0) = u0(x),
+
+(1.4.2)
+
+where the external potential V (x) is a double delta potential of height q > 0 and located
+
+at points ±l,
+
+V (x) = q(δ(x + l) + δ(x − l))
+
+(1.4.3)
+
+or it is a box potential, of height q and width 2l,
+
+V (x) = q(Θ(x + l) − Θ(x − l))
+
+(1.4.4)
+
+Chapter 1. Introduction
+
+13
+
+where Θ is the Heaviside step function. We investigate the evolution of the solution u(x, t) of equation (1.4.2) with initial condition u0 = uφ0.
+
+The eﬀective dynamics of coherent structures for NLS equations with or without external potential has been the object of numerous studies in the last twenty years. Typically, in the neighborhood of stable states, the dynamics reduces to the coupling of two systems: a ﬁnite-dimensional system for the evolution of parameters characterizing the soliton, and an inﬁnite-dimensional one governing the radiation of energy to spatial inﬁnity. For a soliton moving in a slowly varying external potential [1, 9, 20, 36], or in the presence of rough yet small (nonlinear) perturbations [2, 35], the long time dynamics of the center of mass of the soliton behaves like a classical particle in an eﬀective potential that corresponds to the restriction of the potential or perturbation to the soliton manifold. On the other hand, there are situations such as the “blind” collision of two fast solitons in an external potential [3], or the scattering of solitons with high velocity by a delta impurity [32], where quantum eﬀects dominate. In the latter reference, the authors show that the incoming soliton splits into two waves, a reﬂected one and a transmitted one, each being a single soliton, and the transmitted rate is well approximated by the quantum transmission rate of linear scattering from a single delta potential.
+
+In [4], Abou Salem and Sulem showed that the phenomenon of resonant tunneling, referring to a well known situation in linear quantum mechanical scattering theory where incoming waves through potential barriers are fully transmitted at certain energies, can occur for nonlinear equations. More precisely, they considered the NLS equation in one dimension
+
+i∂tu
+
+=
+
+−
+
+1 2
+
+∂x2
+
+u
+
++
+
+V
+
+u
+
++
+
+f
+
+(u)
+
+u(x, 0) = u0(x)
+
+(1.4.5)
+
+where V is an external potential. The hypotheses on the nonlinearity are essentially
+
+those suﬃcient for existence of a global smooth solution and existence of (orbitally)
+
+stable solitary wave solutions, which include both Hartree and power nonlinearities. The
+
+assumptions on the potential V is that it has compact support around the origin, and is
+
+such that the Hamiltonian H
+
+=
+
+−
+
+1 2
+
+∂x2
+
++
+
+V
+
+has a positive continuous spectrum with no
+
+bound states. Furthermore, for λ ∈ R\{0}, the equation
+
+(H − λ2)u = 0
+
+Chapter 1. Introduction
+
+14
+
+has unique solutions e±(x, λ) satisfying
+ e±iλx + R(λ)e∓iλx, e±(x, λ) = T (λ)e±iλx,
+
+±x < −l, ±x > l,
+
+(1.4.6)
+
+for some l > 0. The transmission and reﬂection coeﬃcients T (λ) and R(λ) respectively, satisfy the unitary condition
+|T (λ)|2 + |R(λ)|2 = 1,
+and are diﬀerentiable in λ ∈ R\{0}. The key hypothesis concerns resonant tunneling: there exists λ0 ∈ R\{0} that depends on V such that R(λ0) = 0.
+When the potential V (x) is in the form of (1.4.3) or (1.4.4), the resonant tunneling condition is written explicitly in the form of a relation between λ and the parameters q and l entering in the deﬁnition of the potential. We give the detailed expressions in Section 4.1.
+We recall below the precise result of [4] restricted for simplicity to the case of the 2-δ potential.
+
+Theorem 1.4.1 ( [4]). Take as an initial condition a perturbed soliton in the form u0 = uφ0(x, 0) + w0, with initial velocity v 1 and w0 L2 = O(v−1). Assume that l = O(v−1) and q−1 = O(v−1), such that the resonant condition is satisﬁed. Then for v suﬃciently large, there exists positive constants C, C , σ, β and δ that are independent of v, such that
+
+u(t) − uφ0 (t) L2 ≤ Cv−β + C e−δ(|a0+vt−l|+|a0+vt+l|),
+
+(1.4.7)
+
+uniformly
+
+in
+
+the
+
+time
+
+interval
+
+t
+
+∈
+
+[0,
+
+|a0| v
+
++
+
+σ
+
+log
+
+v].
+
+In other words, for special values of v, q, and l, the fast soliton tunnels through the
+
+potential barrier, up to an error term that decreases with increasing velocity v and with
+
+longer times. Notice that the size of the potential q is arbitrarily large, as long as the
+
+resonant condition is satisﬁed. The proof in [4] is based on decomposing the dynamics into
+
+three
+
+regimes:
+
+(i)
+
+the
+
+pre-collision
+
+phase,
+
+corresponding
+
+to
+
+t
+
+∈
+
+[0, t1
+
+=
+
+|a0
+
+|−vξ v
+
+],
+
+(ii)
+
+the
+
+collision
+
+phase
+
+for
+
+t
+
+∈
+
+[t1, t2
+
+=
+
+] |a0|+vξ v
+
+and
+
+(iii)
+
+the
+
+post-collision
+
+phase
+
+[t2, t3
+
+=
+
+t2 +σ
+
+ln v],
+
+for some parameters ξ ∈ (0, 1) and σ > 0. In the pre- and post collision regime, the soliton
+
+is essentially not aﬀected by the potential, and the dynamics approximately follows that
+
+of the NLS equation (without potential). This is shown by using the symplectic and
+
+group-theoretic structure of the soliton manifold and projecting the Hamiltonian ﬂow
+
+Chapter 1. Introduction
+
+15
+
+generated by the NLS equation onto the soliton manifold; see also [3, 20, 36]. In the
+
+intermediate regime, the dynamics is approximated by the linear ﬂow due to the high
+
+velocity v of the moving soliton and consequently short time of interaction. This is shown
+
+by using Strichartz estimates and linear scattering theory, see also [3, 35].
+
+In Chapter 4, we illustrate numerically this phenomenon and investigate the ranges
+
+of various parameters in the context of (1.4.2). In the following calculations, we choose
+
+that the initial condition u0 = uφ0 is centered at a0 velocity v 1.
+
+0 and moves from the left at
+
+Our numerical results agree perfectly with the predictions of the analysis of [4]. To
+
+check the accuracy of our numerical scheme, we performed several tests. In particular,
+
+we check for the precise conservation of mass and energy under the Hamiltonian ﬂow
+
+generated by the NLS equation. We also check the precision and the convergence prop-
+
+erties of our scheme by comparing our numerical solution of the NLS equation (without
+
+potential) with exact explicit solutions (solitons) and calculated the rate of convergence
+
+in O(h2 + (dt)2) in terms of the mesh size and time step. We reproduce the same results
+
+for diﬀerent system sizes and a wide range of parameters (See Section 4.3 for details).
+
+Chapter 2
+Focusing Singularity in a Generalized Derivative Nonlinear Schro¨dinger Equation
+In this chapter, we present a numerical study of a Derivative Nonlinear Schr¨odinger equation with a general power nonlinearity (1.1.1). In the L2-supercritical regime, σ > 1, our simulations indicate that there is a ﬁnite time singularity. We obtain a precise description of the local structure of the solution in terms of blowup rate and asymptotic proﬁle (1.3.3).
+This chapter is organized as follows. In Section 2.1, we consider gDNLS with quintic nonlinearity (σ = 2). We ﬁrst present a direct numerical simulation that suggests there is, indeed, a ﬁnite time singularity. We then reﬁne our study by introducing the dynamic rescaling method. Section 2.2 shows our results for σ ∈ (1, 2). In Section 2.3, we discuss the asymptotic proﬁle of gDNLS. Details of our numerical methods are described in Sections 2.4 and 2.5. In Section 2.6, we discuss our results and mention open problems.
+2.1 gDNLS with Quintic Nonlinearity
+We ﬁrst performed a direct numerical integration of gDNLS with quintic nonlinearity (σ = 2) and initial condition ψ0 = 3e−2x2. We integrate the equation using a pseudospectral method with an exponential time-diﬀerencing fourth-order Runge-Kutta algorithm (ETDRK4), augmenting it with the numerical stabilization scheme presented in [37] to better resolve small wave numbers (See Section 2.4.1 for details). The computation was performed on the interval [−8, 8), with 212 grid points and a time step on the order
+16
+
+Chapter 2. Focusing Singularity in gDNLS
+
+17
+
+5
+
+4
+
+|ψ3|
+
+2 8
+
+1
+
+6
+
+4
+
+x 10−3
+
+0
+
+2
+
+−3 −2 −1
+
+0
+
+1
+
+2
+
+30
+
+t
+
+x
+
+Figure 2.1: |ψ(x, t)| versus x and t.
+
+of 10−6. Figure 2.1 shows that the wave ﬁrst moves rightward and then begins to separate. Gradually, the leading edge of one wave sharpens and grows in time. The norms
+ψx(·, t) L2 and ψxx(·, t) L2 grow substantially during the lifetime of the simulation. The norm ψx(·, t) L2 increases from 4 to about 18 while ψxx(·, t) L2 increases from about 10 to 1720. This growth in norms is a ﬁrst indication of collapse. In contrast, the L∞ norm has only increased from 3 to 4.07. As a measure of the precision of the simulation, the energy remains equal to 7.976, with three digits of precision, up to time t = 0.009.
+
+2.1.1 Dynamic Rescaling Formulation
+
+To gain additional detail of the blowup, we employ the dynamic rescaling method. Based on the scaling invariance of the equation (1.2.2), we deﬁne the new variables:
+
+ψ(x,
+
+t)
+
+=
+
+L−
+
+1 2σ
+
+(t)u(ξ,
+
+τ
+
+),
+
+ξ = x − x0(t)
+
+and τ =
+
+t ds ,
+
+L(t)
+
+0 L2(s)
+
+(2.1.1)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+18
+
+where L(t) is a length scale parameter chosen such that a certain norm of the solution remains bounded for all τ . The parameter x0 will be chosen to follow the transport of the solution. Substituting the change of variables into (1.1.1) gives
+
+iuτ
+
++
+
+uξξ
+
++
+
+ia(τ
+
+)(
+
+1 2σ
+
+u
+
++
+
+ξ uξ )
+
+−
+
+ib(τ )uξ
+
++
+
+i|u|2σ uξ
+
+=
+
+0,
+
+u(ξ,
+
+0)
+
+=
+
+L−
+
+1 2σ
+
+0
+
+ψ(x/L0,
+
+0),
+
+(2.1.2)
+
+where
+
+a(τ ) = −L(t)L˙ (t) = −d ln L, dτ
+
+(2.1.3a)
+
+b(τ ) = L(t) dx0 . dt
+
+(2.1.3b)
+
+There are several possibilities for the choice of L(t). We deﬁne L(t) such that uξ(·, τ ) L2
+
+remains constant. From (2.1.1),
+
+ψx
+
+= L L2p
+
+−
+
+1 q
+
+uξ
+
+, L2p
+
+q=
+
+1 1+
+2
+
+11 −
+σp
+
+−1
+,
+
+and
+
+L(t) =
+
+uξ(·, 0)
+
+q L2p
+
+ψx(·, t)
+
+, −q
+L2p
+
+leading to an integral expression for the function a(τ ) deﬁned in (2.1.3a):
+
+a(τ ) = −q
+
+uξ(·, 0)
+
+−2p L2p
+
+(u¯pξ upξ−1)ξ(iuξξ − |u|2σuξ) dξ,
+
+(2.1.4)
+
+Ideally, we would like to choose x0(t) to follow the highest maximum of the amplitude of the solution. After several attempts, we found that choosing
+
+x0 =
+
+x|ψxx|2pdx |ψxx|2pdx
+
+(2.1.5)
+
+follows the maximum of the amplitude in a satisfactory way. The coeﬃcient b takes the
+
+form
+
+b(τ ) = 2p
+
+{(ξ|uξξ|2p−2u¯ξξ)ξξ(iuξξ − |u|2σuξ)}dξ . |uξξ |2p dξ
+
+(2.1.6)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+19
+
+In summary, we now have a system of evolution equations for the rescaled solution u:
+
+uτ
+
+=
+
+iuξξ
+
+−
+
+a(τ
+
+)(
+
+1 2σ
+
+u
+
++ ξuξ)
+
++ b(τ )uξ
+
+−
+
+|u|2σ uξ
+
+a(τ ) = −q
+
+uξ (0)
+
+−2p L2p
+
+(u¯pξ upξ−1)ξ(iuξξ − |u|2σuξ) dξ,
+
+b(τ ) = 2p
+
+{(ξ|uξξ|2p−2u¯ξξ)ξξ(iuξξ − |u|2σuξ)}dξ . |uξξ |2p dξ
+
+(2.1.7a) (2.1.7b) (2.1.7c)
+
+where
+
+p
+
+∈
+
+N
+
+and
+
+q
+
+=
+
+(1
+
++
+
+1 2
+
+(
+
+1 σ
+
+−
+
+1 p
+
+))−1
+
+.
+
+In practice, we integrate (2.1.7) with p = 1,
+
+and we choose L0 ∈ (0, 1] such that maxτ (a) is not too large. The scaling factor L(τ ) is
+
+computed by integration of (2.1.3a).
+
+We expect u(ξ, τ ) to be deﬁned for all τ and that L(τ ) → 0 fast enough so that τ → ∞ as t → t∗. The behavior of a(τ ) and u(ξ, τ ) for large τ will give us information on the scaling factor L(τ ) and the limiting proﬁle. Under this rescaling, the invariants (3.1.20), (3.1.21) and (3.1.22) become
+
+E(ψ(t))
+
+=
+
+E(ψ(0))
+
+=
+
+L(t)−
+
+1 σ
+
+−1E(u(τ
+
+)),
+
+M
+
+(ψ(t))
+
+=
+
+M
+
+(ψ(0))
+
+=
+
+L(t)−
+
+1 σ
+
++1M
+
+(u(τ
+
+)),
+
+P
+
+(ψ(t))
+
+=
+
+P
+
+(ψ(0))
+
+=
+
+L(t)−
+
+1 σ
+
+P
+
+(u(τ )).
+
+(2.1.8a) (2.1.8b) (2.1.8c)
+
+These relations allow us to compute L(t) in diﬀerent ways and check the consistency of our calculations.
+
+2.1.2 Singularity Formation
+
+Integrating (2.1.7) using the ETDRK4 algorithm, we present our results for two families of initial conditions:
+
+ψ0(x) = A0e−2x2 (Gaussian)
+
+(2.1.9)
+
+and
+
+ψ0(x)
+
+=
+
+1
+
+A0 + 9x2
+
+(Lorentzian).
+
+(2.1.10)
+
+with various values of the amplitude coeﬃcient A0. We observed that for both families, the corresponding solutions present similar local structure near the blowup time.
+
+In these simulations, there are typically 218 points in the domain [−l, l) with l = 1024.
+
+While the exponential time diﬀerencing removes the stiﬀness associated with the second
+
+Chapter 2. Focusing Singularity in gDNLS
+
+20
+
+derivative term, the advective coeﬃcient,
+(aξ − b + |u|2σ)uξ,
+constrains our time step through a CFL condition. Near the origin, where u has initially an amplitude around 3, we have that the coeﬃcient a can be close to 100 in the case of quintic nonlinearity. Far from the origin, aξ is the dominant term, and this coeﬃcient can be ∼ 1000. Consequently, the time step must be at least two to three orders of magnitude smaller than the grid spacing. For the indicated spatial resolution, ∆ξ ∼ 10−2, we found it was necessary to take ∆τ ∼ 10−7 to ensure numerical stability.
+Figure 2.2 shows the evolution of |u(ξ, τ )| with the Gaussian initial condition, A0 = 3 and L(0) = 0.2. The rescaled wave u(ξ, τ ) separates into three pieces. The middle one stays in the center of the domain while the other two waves move away from the origin on each side. Figure 2.3 shows that maxξ |u(ξ, τ )| slightly decreases with τ . Due to our choice of the rescaling factor, uξ(·, τ ) L2 is constant. We also observe that uξξ(·, τ ) L2 remains bounded. Returning to the primitive variables, the maximum integration time τ = 6 corresponds to t = 0.0098, ψx L2 = 334.58 and ψxx L2 = 1.56 × 106. For the Lorentzian initial condition (2.1.10) with A0 = 3 and L(0) = 1, the maximum integration time τ = 0.16 corresponds to t = 0.008, ψx L2 = 109.8 and ψxx L2 = 1.17 × 105.
+
+2
+
+|u|1
+
+0 −100
+
+6
+
+4
+
+0
+
+ξ
+
+100 0
+
+2 τ
+
+Figure 2.2: |u| versus ξ and τ , for initial condition (2.1.9) with A0 = 3, L(0) = 0.2, and nonlinearity σ = 2.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+21
+
+5
+
+maxξ |u(ξ, τ )|
+
+4
+
+uξ L2 uξξ L2
+
+3
+
+2
+
+1
+
+0
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+τ
+
+Figure 2.3: maxξ |u(ξ, τ )|, uξ(·, τ ) L2, and uξξ(·, τ ) L2 versus τ , same initial conditions as in Fig. (2.2).
+
+For a detailed description of singularity formation, we turn to the evolution of the parameters a and b as functions of τ . For both families of initial conditions (2.1.9) and (2.1.10) and amplitudes A0 = 2, 3, 4, we observe that a and b tend to constants A and B as τ gets large. Figures 2.4 and 2.5 respectively display a and b versus τ for initial conditions (2.1.9) and (2.1.10) and A0 = 3.
+Turning to the limiting proﬁle of the solution, we write u in terms of amplitude and phase in the form u ≡ |u|eiφ(ξ,τ), Figure 2.6 shows that |u| tends to a ﬁxed proﬁle as τ increases. Moreover, as shown in Figure 2.7, the phase at the origin is linear for τ large enough, namely φ(0, τ ) ∼ Cτ . The constant C is obtained by ﬁtting the phase at the origin using linear least squares over the interval [τmax/2, τmax] After extracting this linear phase, the rescaled solution u tends to a time-independent function, (Figure 2.8):
+
+u(ξ, τ ) ∼ S(ξ)ei(θ+Cτ) as τ → ∞.
+
+(2.1.11)
+
+To check the accuracy of our computation, we compute the scaling factor L(t) in
+
+Chapter 2. Focusing Singularity in gDNLS
+
+22
+
+4
+
+140
+
+120 3
+100
+
+a2
+
+80 a
+
+60
+
+1
+
+40
+
+20
+
+0
+
+0
+
+0
+
+2
+
+4
+
+6
+
+0
+
+0.04
+
+0.08
+
+0.12
+
+τ
+
+τ
+
+Figure 2.4: Time evolution of a(τ ) , with initial condition (2.1.9) (left) and (2.1.10) (right), A0 = 3.
+
+30 25 20 b15 10
+5 0 0
+
+2
+
+τ
+
+4
+
+140
+
+120
+
+100
+
+80 b
+60
+
+40
+
+20
+
+0
+
+6
+
+0
+
+0.04 0.08 0.12 0.16 τ
+
+Figure 2.5: Time evolution of b(τ ) , with initial condition (2.1.9) (left) and (2.1.10) (right), A0 = 3.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+23
+
+2 1.5 |u| 1
+
+3 2.5 |u| 2 1.5
+
+1
+0.5 0.5
+
+0
+
+0
+
+−5 −4 −3 −2 −1 0 1 2 3 4 5
+
+−2 −1
+
+0
+
+1
+
+2
+
+ξ
+
+ξ
+
+Figure 2.6: |u(ξ, τ )| versus ξ , with initial condition (2.1.9) for τ from 4.05 to 6 with an increment of 0.08. (left) and initial condition (2.1.10) for τ from 0.12 to 0.16 with an increment of 0.002. (right).
+
+2
+
+2
+
+1
+φ(0, τ) 0
+
+1
+φ(0, τ) 0
+
+−1
+
+−1
+
+−2
+
+−2
+
+0
+
+2
+
+τ
+
+4
+
+6
+
+0
+
+0.04
+
+0τ.08
+
+0.12
+
+Figure 2.7: Time evolution of the phase at the origin φ(0, τ ), with initial conditions (2.1.9) (left) and (2.1.10) (right).
+
+Chapter 2. Focusing Singularity in gDNLS
+
+24
+
+1
+
+2
+
+0.5
+0 φ −Cτ
+−0.5
+−1
+−1.5
+
+1 0 −1 φ −Cτ −2 −3 −4
+
+−2
+
+−5
+
+−5 −4 −3 −2 −1 0 1 2 3 4 5
+
+−2 −1
+
+0
+
+1
+
+2
+
+ξ
+
+ξ
+
+Figure 2.8: Time evolution of the modiﬁed phase φ(ξ, τ ) − φ(0, τ ), with initial conditions (2.1.9) for τ from 4.05 to 6 with an increment of 0.08. (left) and (2.1.10) for τ from 0.12 to 0.16 with an increment of 0.002. (right).
+
+diﬀerent ways. Either from the invariant quantities (2.1.8)
+
+E(ψ)
+
+−
+
+σ 1+σ
+
+M (ψ)
+
+−
+
+σ 1−σ
+
+Le = E(u)
+
+, Lm = M (u)
+
+or from integration of (2.1.3a),
+
+La
+
+= L0e−
+
+. τ
+0
+
+a(τ )dτ
+
+(2.1.12) (2.1.13)
+
+Since we have real initial conditions, we cannot use the momentum. Table 2.1 shows the
+values of L(t) obtained in the simulation corresponding to the initial condition ψ0(x) = 3e−2x2 and σ = 2. The results are in good agreement.
+
+Table 2.1: Estimates of L(τ ), calculated using (2.1.12) and (2.1.13), with the initial
+
+condition (2.1.9), A0 = 3.
+
+τ1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+Le 0.03545 0.015233 0.006588 0.002811 0.001196 0.000595 Lm 0.03545 0.015233 0.006588 0.002811 0.001196 0.000555 La 0.035449 0.015233 0.006588 0.002811 0.001196 0.000555
+
+We also checked convergence of our algorithm with respect to the number of grid points. Table 2.2 shows that the L∞-diﬀerence between simulations decreases rapidly as the resolution increases. For these comparisons, lower resolution simulations are spectrally interpolated onto the highest resolution grid.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+25
+
+Table 2.2: Convergence of our algorithm for initial condition (2.1.9) with A0 = 3. u14, u15, u16, and u17 are the solutions with N = 214, 215, 216 and 217 grid points, re-
+spectively.
+
+u14 − u17 L∞ u15 − u17 L∞ u16 − u17 L∞
+
+τ = 0.8 2.3 × 10−1 3.0 × 10−3 3.4 × 10−8
+
+τ = 2.1 3.0 × 10−1 1.5 × 10−3 2.9 × 10−8
+
+τ = 3.4 2.4 × 10−1 8.1 × 10−4 2.7 × 10−8
+
+τ = 4.7 2.1 × 10−1 7.5 × 10−4 3.1 × 10−8
+
+Using (2.1.3) and the fact a(τ ) and b(τ ) tend to constants A and B (Figures 2.4 and
+
+2.5), we conclude
+
+L2 ∼ 2A(t∗ − t),
+
+(2.1.14)
+
+and,
+
+dx0 =
+
+B ,
+
+dt
+
+2A(t∗ − t)
+
+where t∗ is the blowup time. It follows that
+
+x0 ∼ x∗ − B 2(t∗ − t)/A,
+
+(2.1.15)
+
+where x∗ is the position of maxx |ψ(x, t∗)|. Substituting into (2.1.7), we obtain
+
+Sξξ
+
+−
+
+CS
+
++
+
+iA(
+
+1 4
+
+S
+
++
+
+ξ Sξ )
+
+−
+
+iBSξ
+
++
+
+i|S|4Sξ
+
+=
+
+0.
+
+(2.1.16)
+
+Introducing the scaling
+
+√ ξ = Cξ,
+
+Q(ξ)
+
+=
+
+C−
+
+1 8
+
+S(ξ),
+
+and dropping the tildes, we have
+
+(2.1.17)
+
+Qξξ
+
+−
+
+Q
+
++
+
+iα(
+
+1 4
+
+Q
+
++
+
+ξ Qξ )
+
+−
+
+iβQξ
+
++
+
+i|Q|4Qξ
+
+=
+
+0,
+
+with the rescaled constants:
+
+A
+
+B
+
+α≡ , β≡√ .
+
+C
+
+C
+
+(2.1.18)
+
+Like supercritical NLS, we ﬁnd that the coeﬃcients α and β and the function Q are
+
+independent of the initial conditions. Table 2.3 shows that the ratios α and β take the
+
+values α ∼ 1.95 and β ∼ 2.08. In Figure 2.9 and 2.10, we see that the amplitude and
+
+phase of the function Q constructed from the diﬀerent initial conditions coincide.
+
+In conclusion, we have observed that for a large class of initial conditions, solutions
+
+to (1.1.1) with quintic nonlinearity (σ = 2) may blow up in a ﬁnite time. More precisely,
+
+Chapter 2. Focusing Singularity in gDNLS
+
+26
+
+Table 2.3: Limiting values of the parameters for various initial conditions.
+
+u0
+
+C A B αβ
+
+2e−2x2 1.615 3.159 2.639 1.96 2.08
+
+3e−2x2 0.438 0.854 1.385 1.94 2.09
+
+4e−2x2 2.44 4.759 3.29 1.95 2.10
+
+3 (1+(3x)2)
+
+16.52 31.89
+
+8.33
+
+1.93 2.05
+
+from the change of variable in (2.1.1) and (2.1.14), we have
+
+τ=
+
+t 0
+
+ds 2A(t∗ −
+
+t)
+
+=
+
+1 −
+2A
+
+ln(t∗
+
+−
+
+t)
+
+t 0
+
+1
+
+t∗
+
+= ln
+
+,
+
+2A t∗ − t
+
+(2.1.19)
+
+and
+
+ψ = L−1/8(t)u x − x0 , τ L
+= (2A(t∗ − t))−1/8u x − x0 , τ . L
+
+(2.1.20)
+
+Substituting (2.1.11) into the above equation,
+
+ψ ∼ (2A(t∗ − t))−1/8S x − x0 ei(θ+Cτ). L
+
+Using (2.1.17), (2.1.15) and(2.1.19), we have
+
+ψ = (2A(t∗ − t))−1/8C1/8Q
+
+√ C
+
+x
+
+−
+
+x0
+
+ei(θ+Cτ )
+
+L
+
+=
+
+C
+
+1/8
+
+2A(t∗ − t) Q
+
+x − (x∗ − B 2(t∗ − t)/A) 2A(t∗ − t)
+
+ei(θ+Cτ )
+
+C
+
+1/8
+
+= 2A(t∗ − t) Q
+
+√
+
+x − x∗
+
+BC
+
++
+
+2A(t∗ − t)/C A
+
+e ( ) . i(θ+
+
+C 2A
+
+ln
+
+t∗ t∗ −t
+
+)
+
+√ Noting that α = A/C and β = B/ C, we have
+
+1
+
+1
+
+8
+
+ψ(x, t) ∼ 2α(t∗ − t) Q
+
+x − x∗
+
+β +
+
+ei(θ+
+
+1 2α
+
+ln
+
+, t∗
+t∗ −t
+
+)
+
+2α(t∗ − t) α
+
+(2.1.21)
+(2.1.22)
+
+which is the local description of the solution (1.3.3) near the singularity with σ = 2.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+27
+
+The inclusion of the translation parameter is a signiﬁcant diﬀerence from NLS with power law nonlinearity. While later studies on singularity formation in NLS allowed for symmetry breaking [43], the preservation of radial symmetry under the ﬂow strongly simpliﬁes both the computations and the analysis. Due to the mixture of hyperbolic and dispersive terms in gDNLS, no such symmetry preservation is available, and we must be aware of the tendency for the solution to migrate rightwards.
+
+2
+
+ψ0 = 2e−2x2
+
+ψ0 = 3e−2x2
+
+1.5
+
+ψ0 = 4e−2x2
+
+ψ0(x)
+
+=
+
+3 (1+(3x)2 )
+
+|Q| 1
+
+0.5
+
+0
+
+−10
+
+−5
+
+0
+
+5
+
+10
+
+ξ
+
+Figure 2.9: Asymptotic proﬁle |Q(ξ)| for diﬀerent initial data.
+
+2.2 gDNLS with Other Power Nonlinearities
+The following calculations address the question of singularity for solutions of (1.1.1) when the power in the nonlinear term |ψ|2σψx is such that 1 < σ < 2. We recall that σ = 1 corresponds to the usual DNLS equation which is L2-critical. Our calculations cover the values of σ down to 1.1. Computational diﬃculties precluded us from reducing it much further. The initial condition is ψ0(x) = 3e−2x2 when σ = 1.7, 1.5 and 1.3, while ψ0 = 4e−2x2 for σ = 1.1. Our results are similar to that obtained with σ = 2. For convenience, we present the ﬁgures in the same order as Figures 2.4 to 2.8. Figures 2.11 and 2.12 show that a and b tend to constant values as τ gets large. As shown in Figure 2.13, |u| tends to a ﬁxed proﬁle as τ increases. Figure 2.14 indicates that the phase at
+
+Chapter 2. Focusing Singularity in gDNLS
+
+28
+
+0.5
+
+0
+
+−0.5 φ
+
+−1 −1.5
+−2 −10
+
+ψ0 = 2e−2x2
+
+ψ0 = 3e−2x2
+
+ψ0 = 4e−2x2
+
+ψ0(x)
+
+=
+
+3 (1+(3x)2 )
+
+−5
+
+0
+
+ξ
+
+5
+
+10
+
+Figure 2.10: Asymptotic phase φ(ξ) ≡ arg(Q(ξ)) for diﬀerent initial data.
+
+the origin is linear for τ large enough. After extracting this linear phase, the phase of u tends to a time-independent function, Figure 2.15. We also notice that as σ increases, the transient period shortens. Table 2.4 shows that α decreases as σ varies from 2 to 1.1, while β ﬁrst decreases and then increases.
+The main conclusion of our study is that for this range of values of σ, solutions to (1.1.1) may blow up in a ﬁnite time. Their local structure is similar to that of the case σ = 2 discussed in the previous section and given by (1.3.3).
+Table 2.4: Values of α and β as σ approaches to 1. σ 2 1.7 1.5 1.3 1.1 α 1.95 1.31 0.85 0.38 0.04 β 2.08 1.82 1.65 1.61 1.82
+
+2.3 Blowup Proﬁle
+
+This section is devoted to the study of the nonlinear elliptic equation (1.3.4) satisﬁed
+
+by the complex proﬁle function Q.
+
+It is helpful to change variables, letting η
+
+=
+
+ξ
+
+−
+
+β α
+
+,
+
+Chapter 2. Focusing Singularity in gDNLS
+
+29
+
+3
+
+20
+
+2.5 15
+2
+
+a 1.5
+
+a 10
+
+1
+5 0.5
+
+0
+
+0
+
+0
+
+2
+
+4
+
+6
+
+8
+
+0
+
+τ
+
+10
+
+12
+
+8
+
+10
+
+8
+
+6
+
+a
+
+a6
+
+4 4
+
+2
+
+2
+
+0
+
+0
+
+0
+
+1
+
+2
+
+3
+
+4
+
+0
+
+τ
+
+0.5
+
+1
+
+τ
+
+2
+
+4
+
+6
+
+τ
+
+1.5 8
+
+Figure 2.11: Time evolution of a(τ ), for σ = 1.7 (upper left), σ = 1.5 (upper right), σ = 1.3 (lower left), and σ = 1.1 (lower right).
+
+leading to
+
+Qηη
+
+−
+
+Q
+
++
+
+iα(
+
+1 2σ
+
+Q
+
++
+
+η Qη )
+
++
+
+i|Q|2σ Qη
+
+=
+
+0.
+
+(2.3.1)
+
+We seek proﬁles |Q(η)| that decrease monotonically with |η|, satisfying the conditions
+
+Q(η) → 0 as η → ±∞.
+
+This can be viewed as a nonlinear eigenvalue problem, with eigenparameter α, and eigenfunction Q. As the equation is invariant under multiplication by a constant phase, we can assume, in addition, that Q(0) is real (for example).
+
+2.3.1 Properties of the Asymptotic Proﬁle
+
+Proposition 2.3.1. Up to a constant phase, there are two kinds of large-distance behavior (|η| → ∞) of the solutions Q of (2.3.1):
+
+Q1
+
+≈
+
+A1
+
+|η|−
+
+i α
+
+−
+
+1 2σ
+
+(2.3.2)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+30
+
+20
+
+50
+
+15
+
+40
+
+30
+
+b10
+
+b
+
+20
+
+5 10
+
+0 0 30 25 20 b15 10 5 0 0
+
+2
+
+4τ
+
+6
+
+8
+
+0 0
+
+40
+
+30 b20
+
+10
+
+0
+
+1
+
+2τ
+
+3
+
+4
+
+0
+
+0.5 τ
+
+1
+
+2
+
+4τ
+
+6
+
+1.5 8
+
+Figure 2.12: Time evolution of b(τ ), for σ = 1.7 (upper left), σ = 1.5 (upper right), σ = 1.3 (lower left), and σ = 1.1 (lower right).
+
+or
+
+Q2
+
+≈
+
+A2
+
+e−i
+
+α 2
+
+η2
+
+|η|
+
+i α
+
++
+
+1 2σ
+
+−1
+
+where A1, A2 are complex numbers.
+
+(2.3.3)
+
+Proof. We write Q(η) = X(η)Z(η). It follows Qη = XηZ + XZη and Qηη = XηηZ + 2ZηXη + XZηη. After substitution in (2.3.1), we have
+
+1
+
+Xηη Z
+
++
+
+2Zη Xη
+
++
+
+X Zηη
+
+−
+
+XZ
+
++
+
+iα( 2σ
+
+XZ
+
++
+
+η Xη Z
+
++
+
+ηX Zη )
+
++ i|X|2σ|Z|2σ(XηZ + ZηX) = 0.
+
+(2.3.4)
+
+After simpliﬁcation, it becomes
+
+XZηη+(2Xη + iαηX + iX|X|2σ|Z|2σ)Zη
+
++(Xηη
+
+−
+
+X
+
++
+
+α iX 2σ
+
++
+
+iαηXη
+
++
+
+i|X |2σ |Z |2σ Xη )Z
+
+=
+
+0.
+
+(2.3.5)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+31
+
+2
+
+2
+
+1.5 |u| 1
+
+1.5 |u| 1
+
+0.5
+
+0.5
+
+0 −5 −4 −3 −2 −1 0 1 2 3 4 5
+ξ 2
+
+0 −5 −4 −3 −2 −1 0 1 2 3 4 5
+ξ 2
+
+1.5 |u| 1
+
+1.5 |u| 1
+
+0.5
+
+0.5
+
+0 −5 −4 −3 −2 −1 0 1 2 3 4 5
+ξ
+
+0 −5 −4 −3 −2 −1 0 1 2 3 4 5
+ξ
+
+Figure 2.13: |u(ξ, τ )| versus ξ, for σ = 1.7 when τ changes from 6 to 8.7 with an increment of 0.09 (upper left), σ = 1.5 when τ changes from 1.2 to 1.5 with an increment of 0.04 (upper right), σ = 1.3 when τ changes from 3.1 to 4.6 with an increment of 0.16 (lower left), and σ = 1.1 when τ changes from 7.6 to 9 with an increment of 0.12 (lower right).
+
+Choosing
+
+X = e = e −i
+
+α 4
+
+η2
+
+−i
+
+1 2
+
+η 0
+
+|Z |2σ dη
+
+−i
+
+α 4
+
+η2−i
+
+1 2
+
+η 0
+
+|Q|2σ
+
+dη
+
+(2.3.6)
+
+we have and
+
+Xη
+
+=
+
+1 (−iαη
+2
+
+− i|Z|2σ)X,
+
+Xηη =
+
+iα −
+2
+
+−
+
+i 2
+
+(|Z
+
+|2σ
+
+)η
+
++
+
+1 (−iαη
+4
+
+−
+
+i|Z |2σ )2
+
+X.
+
+Zηη +
+
+iα(1 − σ) 2σ
+
+−
+
+1+
+
+(αη)2 4
+
++
+
+|Z |4σ 4
+
++
+
+α η|Z|2σ 2
+
+−
+
+i 2
+
+(|Z
+
+|2σ
+
+)η
+
+Z =0
+
+(2.3.7)
+
+Letting Z = Aeiφ be an amplitude-phase decomposition, equation (2.3.7) is equivalent
+
+to
+
+A − (φ )2 − 1 + α2η2 + αη A2σ + 1 A4σ = 0
+
+(2.3.8a)
+
+A
+
+42
+
+4
+
+Chapter 2. Focusing Singularity in gDNLS
+
+32
+
+2
+
+1.5
+
+1
+φ(0, τ) 0
+
+1
+0.5 φ(0, τ)
+0
+−0.5
+
+−1
+
+−1
+
+−1.5
+
+−2 0
+
+2
+
+4τ
+
+6
+
+8
+
+−2 0
+
+0.5 τ
+
+1
+
+1.5
+
+2
+
+2
+
+1.5 1
+φ(0,0τ.)5 0
+
+1
+φ(0, τ) 0
+
+−0.5
+
+−1
+
+−1
+
+−1.5
+
+−2
+
+0
+
+1
+
+2τ 3
+
+4
+
+5
+
+0
+
+3
+
+τ
+
+6
+
+9
+
+Figure 2.14: Time evolution of the phase at the origin φ(0, τ ), for σ = 1.7 (upper left), σ = 1.5 (upper right), σ = 1.3 (lower left), and σ = 1.1 (lower right).
+
+φ
+
+A + 2φ
+
++ α(1 − σ) − 1 (A2σ)
+
+=0
+
+A
+
+2σ
+
+2
+
+(2.3.8b)
+
+Since A → 0, as η → ±∞, we assume that A = A0|η|c + O(|η|c−1), where A0 = 0 and
+
+c < 0. Denoting θ = φ , equation (2.3.8a) becomes
+
+−
+
+θ2
+
+−
+
+1
+
++
+
+α2η2 4
+
+±
+
+α 2
+
+A20σ
+
+|η
+
+|2cσ+1
+
++
+
+1 4
+
+A40σ
+
+|η|4cσ
+
+=
+
+O(|η|−2)
+
++
+
+O(|η |2cσ )
+
+(2.3.9a)
+
+θ + 2θcη−1 + α(1 − σ) ± σc|η|2σc−1 = O(|η|2σc−2) + O(θ|η|−2). 2σ
+
+(2.3.9b)
+
+In (2.3.9a), since c < 0 and σ > 1, 4cσ < 2cσ + 1 < 1. Thus, only the term (θ )2 can
+
+balance
+
+the
+
+α2 η 2 4
+
+in
+
+the
+
+above
+
+equation.
+
+It
+
+follows
+
+θ
+
+=
+
+±
+
+αη 2
+
++ O(1).
+
+Case
+
+1:
+
+When
+
+θ
+
+=
+
+αη 2
+
++ O(1),
+
+noticing
+
+that
+
+|η|2σc−2
+
+<
+
+|η|−1
+
+=
+
+O(θ|η|−2),
+
+(2.3.9b)
+
+becomes
+
+α
+
++
+
+αc
+
++
+
+1
+
+−
+
+σ α
+
+±
+
+σc|η|2σc−1
+
+=
+
+O(|η|−1),
+
+2
+
+2σ
+
+Chapter 2. Focusing Singularity in gDNLS
+
+33
+
+1
+
+0
+
+0.5
+0 φ −Cτ
+−0.5
+
+−1 φ −Cτ
+−2
+
+−1 −3
+−1.5
+
+−2 −5 −4 −3 −2 −1 0 1 2 3 4 5
+ξ −4
+
+−4 −5 −4 −3 −2 −1 0 1 2 3 4 5
+ξ −18
+
+−4.5 φ −Cτ
+−5
+−5.5
+
+−19 −20 φ −Cτ −21 −22
+
+−6 0
+
+−23
+
+1
+
+−1
+
+−2
+
+−1
+
+0
+
+1
+
+2
+
+ξ
+
+ξ
+
+Figure 2.15: Time evolution of the modiﬁed phase φ(ξ, τ ) − φ(0, τ ), for σ = 1.7 when τ changes from 6 to 8.7 with an increment of 0.09 (upper left), σ = 1.5 when τ changes from 1.2 to 1.5 with an increment of 0.04 (upper right), σ = 1.3 when τ changes from 3.1 to 4.6 with an increment of 0.16 (lower left), and σ = 1.1 when τ changes from 7.6 to 9 with an increment of 0.12 (lower right).
+
+which
+
+implies
+
+c
+
+=
+
+−
+
+1 2σ
+
+.
+
+Hence,
+
+(2.3.9a)
+
+becomes
+
+−
+
+θ2
+
+−
+
+1
+
++
+
+α2η2 4
+
+±
+
+α 2
+
+A20σ
+
+=
+
+O(η−1).
+
+Let
+
+θ
+
+=
+
+α η
+2
+
++ c0
+
++
+
+c−1η−1
+
++
+
+O(η−2),
+
+equation (2.3.10) takes the form
+
+−(
+
+α2 4
+
+η2+c20
+
++
+
+c2−1η−2
+
++
+
+αc0η
+
++
+
+αc−1
+
++
+
+2c0c−1η−1)
+
++
+
+α2 4
+
+η2
+
+−
+
+1
+
+±
+
+α 2
+
+A20σ
+
+=
+
+O(η−1),
+
+(2.3.10) (2.3.11)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+34
+
+which simpliﬁes to
+
+−
+
+αc0η
+
+−
+
+c20
+
+−
+
+αc−1
+
+−
+
+1
+
+±
+
+α 2
+
+A20σ
+
+=
+
+O(η−1).
+
+(2.3.12)
+
+Balancing
+
+the
+
+constant
+
+and
+
+ﬁrst
+
+order
+
+terms
+
+in
+
+η
+
+gives
+
+us
+
+c0
+
+=
+
+0, c−1
+
+=
+
+±
+
+1 2
+
+A20σ
+
+−
+
+1 α
+
+.
+
+Thus,
+
+φ
+
+≈
+
+α η2 4
+
++
+
+(±
+
+1 2
+
+A20σ
+
+−
+
+1 ) ln |η|
+α
+
++ φ0.
+
+Because (2.3.1) is invariant by adding a constant phase, we set φ0 = 0 and get
+
+φ
+
+≈
+
+α η2 4
+
++
+
+(±
+
+1 2
+
+A20σ
+
+−
+
+1 ) ln |η|.
+α
+
+Therefore,
+
+Z1
+
+≈
+
+A0ei(
+
+α 4
+
+η2+(±
+
+1 2
+
+A20σ
+
+−
+
+1 α
+
+)
+
+ln
+
+|η|)
+
+|η
+
+|−
+
+1 2σ
+
+≈
+
+A e |η| 0
+
+i
+
+α 4
+
+η2
+
+i(±
+
+1 2
+
+A20σ
+
+−
+
+1 α
+
+)−
+
+1 2σ
+
+.
+
+(2.3.13)
+
+Recalling
+
+X
+
+=
+
+e−i
+
+α 4
+
+η2
+
+−i
+
+1 2
+
+≈ e |η| , η
+0
+
+|Z |2σ dη
+
+−i
+
+α 4
+
+η2
+
+∓
+
+i 2
+
+A20σ
+
+(2.3.14)
+
+we have
+
+Q1
+
+≈
+
+X Z1
+
+=
+
+A0
+
+|η|−
+
+i α
+
+−
+
+1 2σ
+
+.
+
+(2.3.15)
+
+Case
+
+2:
+
+When
+
+θ
+
+=
+
+−
+
+αη 2
+
++ O(1),
+
+substituting
+
+it
+
+into
+
+(2.3.9b),
+
+we
+
+get
+
+α −
+
+−
+
+cα
+
++
+
+1
+
+−
+
+σ α
+
+−
+
+1 σcη2σc−1
+
+=
+
+O(|η|−1),
+
+2
+
+2σ
+
+2
+
+which
+
+implies
+
+c
+
+=
+
+1 2σ
+
+− 1.
+
+(2.3.9a)
+
+then
+
+becomes
+
+−θ2
+
+−
+
+1
+
++
+
+(αη)2 4
+
+±
+
+α 2
+
+A20σ
+
+|η|2−2σ
+
++
+
+1 4
+
+A40σ
+
+|η|2−4σ
+
+=
+
+O(|η|−2)
+
++
+
+O(|η |1−2σ ),
+
+when σ > 1, |η|2−4σ |η|1−2σ, so we have
+
+(2.3.16)
+
+−
+
+θ2
+
+−
+
+1
+
++
+
+(αη)2 4
+
+±
+
+α 2
+
+A20σ
+
+|η|2−2σ
+
+=
+
+O(|η|−2)
+
++
+
+O(|η |1−2σ ).
+
+(2.3.17)
+
+Furthermore, since |η|1−2σ form
+
+1, |η|−2 1, and |η|1−2σ 1, equation (2.3.17) takes the
+
+− θ2 − 1 + (αη)2 = o(1), 4
+
+(2.3.18)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+35
+
+Let
+
+θ
+
+=
+
+−
+
+α 2
+
+η
+
++
+
+c0
+
++
+
+c−1η−1
+
++
+
+o(|η|−1),
+
+we
+
+get
+
+θ2
+
+=
+
+α2 η2 4
+
++
+
+c20
+
+−
+
+αc0η
+
+−
+
+αc−1
+
++
+
+o(1).
+
+Substituting it into (2.3.18), we obtain
+
+− c20 + αc0η + αc−1 − 1 = o(1),
+
+which
+
+implies
+
+c0
+
+=
+
+0,
+
+and
+
+c−1
+
+=
+
+1 α
+
+.
+
+Hence,
+
+θ
+
+=
+
+α −η
+
++
+
+1 η−1
+
++
+
+o(|η|−1),
+
+2α
+
+and, up to a constant, Therefore
+
+φ = − α η2 + 1 ln |η| + o(1). 4α
+
+Z2
+
+≈
+
+A0ei(−
+
+α 4
+
+η2
+
++
+
+1 α
+
+ln
+
+|η|)
+
+|η|
+
+1 2σ
+
+−1
+
+≈
+
+A0e−i
+
+α 4
+
+η2
+
+|η
+
+|
+
+i α
+
++
+
+1 2σ
+
+−1
+
+and
+
+X = e ≈ e . −i
+
+α 4
+
+η2
+
+−i
+
+1 2
+
+η 0
+
+|Z |2σ
+
+dη
+
+−i
+
+α 4
+
+η2
+
+∓i
+
+1 2(2−2σ)
+
+|η|2−2σ
+
+A20σ
+
+(2.3.19) (2.3.20)
+(2.3.21) (2.3.22)
+
+Since we only consider terms larger than o(1) in the equation of phase (2.3.18), we can simplify the expression of X, using |η|2−2σ O(1), and obtain
+
+X
+
+≈
+
+e−i
+
+α 4
+
+η2
+
+.
+
+Therefore,
+
+Q2
+
+≈
+
+A0e−i
+
+α 2
+
+η2
+
+|η
+
+|
+
+i α
+
++
+
+1 2σ
+
+−1
+
+.
+
+(2.3.23)
+
+Remark 1. In Case 1, we balanced the phase equation (2.3.10) up to the order of O(|η|−1), while in Case 2, we only considered the phase equation (2.3.18) with the reminder term in the order of o(1). We can calculate the phase to the next correction in Case 2, and obtain diﬀerent expressions of Q2, depending on whether 1 < σ ≤ 3/2 or
+
+Chapter 2. Focusing Singularity in gDNLS
+
+36
+
+σ > 3/2. More precisely, when 1 < σ ≤ 3/2, the expression is
+
+Q ≈ A e |η| , 2
+
+2
+
+i(−
+
+α 2
+
+η2
+
+∓
+
+|A2 |2σ (2−2σ)
+
+|η|2−2σ
+
+)
+
+i α
+
++
+
+1 2σ
+
+−1
+
+(2.3.24)
+
+and when σ > 3/2, the expression is the same as (2.3.3)
+
+Q2
+
+≈
+
+A2e−i
+
+α 2
+
+η2
+
+|η
+
+|
+
+i α
+
++
+
+1 2σ
+
+−1
+
+,
+
+(2.3.25)
+
+where A2 is a complex constant, and ∓ corresponds to η → ±∞, respectively. Indeed, we simplify (2.3.17) into two cases:
+
+Case 2.1 When 1 < σ ≤ 3/2, |η|−2 |η|1−2σ. It follows that equation (2.3.18) takes the form of
+
+−θ2
+
+−
+
+1
+
++
+
+(αη)2 4
+
+±
+
+α 2
+
+A20σ
+
+|η|2−2σ
+
+=
+
+O(|η |1−2σ ).
+
+(2.3.26)
+
+Let
+
+θ
+
+=
+
+α −η
+2
+
++
+
+c0
+
++
+
+c−1η−1
+
++
+
+cr|η|r
+
++
+
+O(η−2),
+
+where −2 < r < −1, we have
+
+(2.3.27)
+
+θ2
+
+=
+
+α2 η2 4
+
++
+
+c20
+
++
+
+c2−1η−2
+
++
+
+c2r |η|2r
+
+−
+
+αc0η
+
+−
+
+αc−1
+
+∓
+
+αcr |η |1+r
+
++ 2c0c−1η−1 + 2c0cr|η|r ± 2c−1cr|η|−1+r + O(η−1)
+
+=
+
+α2 η2 4
+
+−
+
+αc0η
+
++
+
+c20
+
+−
+
+αc−1
+
+∓
+
+αcr |η |1+r
+
++
+
+O(η−1).
+
+(2.3.28)
+
+Substituting into (2.3.26) gives
+
+αc0η
+
+−
+
+c20
+
++
+
+αc−1
+
+−
+
+1
+
+±
+
+αcr |η |1+r
+
+±
+
+α 2
+
+A20σ
+
+|η|2−2σ
+
+=
+
+O(η−1).
+
+This
+
+implies
+
+c0
+
+= 0, c−1
+
+=
+
+1 α
+
+,
+
+cr
+
+=
+
+− A20σ 2
+
+and
+
+r
+
+= 1 − 2σ.
+
+Hence
+
+θ
+
+=
+
+α −η
+
++
+
+1 η−1
+
+−
+
+A20σ |η|1−2σ,
+
+2α
+
+2
+
+(2.3.29)
+
+and, up to a constant,
+
+φ
+
+=
+
+− α η2 4
+
++
+
+1 α
+
+ln
+
+|η|
+
+∓
+
+A20σ |η|2−2σ 2(2 − 2σ)
+
++
+
+φ0.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+Therefore,
+Using we obtain
+
+Z = A e |η| 2
+
+i
+
+−
+
+α 4
+
+η2+
+
+1 α
+
+ln
+
+|η|∓
+
+A20σ 2(2−2σ)
+
+|η|2−2σ
+
+0
+
+1 2σ
+
+−1
+
+= A e |η| . i
+
+−
+
+α 4
+
+η2∓
+
+A20σ 2(2−2σ)
+
+|η|2−2σ
+
+0
+
+i α
+
++
+
+1 2σ
+
+−1
+
+X = e ≈ e , −i
+
+α 4
+
+η2
+
+−i
+
+1 2
+
+η 0
+
+|Z |2σ dη
+
+−i
+
+α 4
+
+η2
+
+∓
+
+A20σ 2(2−2σ)
+
+|η|2−2σ
+
+dη
+
+Q = A e |η| e . 2
+
+0
+
+−i
+
+α 2
+
+η2
+
+i α
+
++
+
+1 2σ
+
+−1
+
+∓i
+
+A20σ (2−2σ)
+
+|η|2−2σ
+
+37
+(2.3.30) (2.3.31) (2.3.32)
+
+Case 2.2 When σ > 3/2, |η|1−2σ ≤ |η|−2. Thus , (2.3.17) becomes
+
+−
+
+θ2
+
+−
+
+1
+
++
+
+(αη)2 4
+
+±
+
+α 2
+
+A02−2σ
+
+=
+
+O(|η|−2).
+
+Deﬁning θ as (2.3.27), and using |η|2−2σ < |η|−1, we have
+
+(2.3.33)
+
+αc0η − c20 + αc−1 − 1 ± αcr|η|1+r = O(|η|−1).
+
+It
+
+follows
+
+c0
+
+=
+
+0,
+
+c−1
+
+=
+
+1 α
+
+and
+
+cr
+
+=
+
+0.
+
+Hence
+
+θ
+
+≈
+
+α −η
+
++
+
+1 η−1,
+
+2α
+
+and, up to a constant, Therefore
+
+φ ≈ − α η2 + 1 ln |η|. 4α
+
+Z2
+
+≈
+
+A0ei(−
+
+α 4
+
+η2
+
++
+
+1 α
+
+ln
+
+|η|)
+
+|η|
+
+1 2σ
+
+−1
+
+≈
+
+A0e−i
+
+α 4
+
+η2
+
+|η
+
+|
+
+i α
+
++
+
+1 2σ
+
+−1
+
+and
+
+X = e ≈ e . −i
+
+α 4
+
+η2
+
+−i
+
+1 2
+
+η 0
+
+|Z |2σ
+
+dη
+
+−i
+
+α 4
+
+η2
+
+∓i
+
+1 2(2−2σ)
+
+|η|2−2σ
+
+A20σ
+
+(2.3.34)
+(2.3.35) (2.3.36)
+
+Since we only consider terms larger than O(|η|−1) in the equation of phase (2.3.34), we
+
+Chapter 2. Focusing Singularity in gDNLS
+
+38
+
+can simplify the expression of X, using |η|2−2σ O(|η|−1), and obtain
+
+X
+
+≈
+
+e−i
+
+α 4
+
+η2
+
+.
+
+Therefore,
+
+Q2
+
+≈
+
+A0e−i
+
+α 2
+
+η2
+
+|η
+
+|
+
+i α
+
++
+
+1 2σ
+
+−1
+
+.
+
+(2.3.37)
+
+The next property describes the energy of Q.
+
+Proposition 2.3.2. If Q is a solution of (2.3.1) with Qη ∈ L2(R) and Q ∈ L4σ+2(R), its energy vanishes:
+
+∞ −∞
+
+|Qη |2 dη
+
++
+
+(σ
+
+1 +
+
+1)
+
+∞
+|Q|2σQ¯Qηdη = 0.
+−∞
+
+(2.3.38)
+
+Proof. Multiplying (2.3.1) by Q¯ηη, taking the imaginary parts, and integrating over the whole line gives
+
+α
+
+Q 2σ + ηQη
+
+Q¯ηηdη +
+
+|Q|2σQηQ¯ηηdη = 0.
+
+(2.3.39)
+
+The ﬁrst integral of (2.3.39) can be written
+
+α
+
+Q 2σ + ηQη
+
+Q¯ηηdη =
+
+σ+1 −
+2σ
+
+α
+
+|Qη |2 dη .
+
+Using (2.3.1) to express Q¯ηη, the second integral becomes
+
+|Q|2σ Qη
+
+Q¯
+
++
+
+iα(
+
+1 2σ
+
+Q¯
+
++
+
+ηQ¯η
+
+)
+
++
+
+i|Q|2σ
+
+Q¯η
+
+dη
+
+=
+
+|Q|2σ Qη Q¯
+
++
+
+iα 2σ
+
+|Q|2σ Qη Q¯ dη
+
+1 =
+2
+
+(|Q|2σ Qη Q¯
+
++
+
+|Q|2σ Q¯ η Q)dη
+
+−
+
+α 2σ
+
+|Q|2σ Qη Q¯ dη
+
+α =−
+2σ
+
+|Q|2σ Qη Q¯ dη .
+
+Combining (2.3.40) and (2.3.41), we obtain (2.3.38).
+
+(2.3.40) (2.3.41)
+
+The following property shows that solutions with ﬁnite energy have an inﬁnite L2norm.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+39
+
+Proposition 2.3.3. If Q is a solution of (2.3.1) with σ > 1 and α > 0, and Q ∈ H1(R) L4σ+2(R), then Q ≡ 0.
+
+Proof. Multiplying (2.3.1) by Q¯, taking the imaginary part, and integrating over R, we
+
+get
+
+α1 −1
+2σ
+
+|Q|2dη = 0,
+
+(2.3.42)
+
+thus Q has to be identically zero.
+
+Remark
+
+2.
+
+When
+
+η
+
+→
+
+∞,
+
+By
+
+the
+
+Proposition
+
+2.3.1,
+
+Q1
+
+≈
+
+|η|−
+
+i α
+
+−
+
+1 2σ
+
+=
+
+e
+
+i α
+
+ln
+
+|η||η|−
+
+1 2σ
+
+,
+
+so
+
+we
+
+have
+
+|∂η Q1 |
+
+≈
+
+|η|−
+
+1 2σ
+
+−1
+
+,
+
+this
+
+follows
+
+|∂η Q1 |2
+
+≈
+
+||Q1 |2σ Q¯1 ∂η Q1 |
+
+≈
+
+|η|−
+
+1 σ
+
+−2
+
+.
+
+But
+
+Q2
+
+≈
+
+e |η| , −
+
+iαη2 2
+
++
+
+i α
+
+ln
+
+|η|
+
+1 2σ
+
+−1
+
+hence
+
+we
+
+have
+
+|∂η Q2 |
+
+≈
+
+|η|
+
+1 2σ
+
+.
+
+Therefore
+
+|∂η Q2 |2
+
+≈
+
+|η|
+
+1 σ
+
+,
+
+while
+
+||Q2 |2σ Q¯2 ∂η Q2 |
+
+≈
+
+|η|
+
+1 σ
+
+−2σ
+
+.
+
+This follows that Q2 does not have a ﬁnite Hamiltonian.
+
+Hence, the “admissible solutions” should be in the form of A1Q1.
+
+2.3.2 Numerical Integration of the Boundary Value Problem
+
+The purpose of this section is the numerical integration of the BVP (2.3.1) in order to better understand the asymptotic proﬁle of the singular solutions of gDNLS. We look for solutions that behave like A±1 Q1 as η → ±∞,where A±1 are complex constants, because Q2 does not have ﬁnite energy. It is convenient to rewrite the large η behavior as a Robin boundary condition of the form
+
+1 − Q + iα 2σ Q + ηQη = 0, |η| → ∞.
+
+(2.3.43)
+
+Solutions of (2.3.1) depend on the coeﬃcient α. Since the equation is invariant under phase translation, we need an additional condition; for example, setting the phase to zero at a particular point is satisfactory. This suggests that α needs to take particular values, like in the supercritical NLS problem, [62]. We are particularly interested in the character of the asymptotic proﬁle and of the coeﬃcient α as σ approaches the critical case σ = 1. Our approach is a continuation method in the parameter σ.
+At ﬁrst, we attempted to integrate (2.3.1) with boundary conditions (2.3.43) for values of σ starting from σ = 2 to about σ = 1.2. We observed that the peak of |Q| rapidly moved to the left of the domain as σ decreased, limiting our calculations (Figure 2.16).
+To reach values of σ closer to 1, we returned to (1.3.4) (which is equivalent to (2.3.1) after the translation ξ = η + β/α). Now the parameter β is free and will be chosen so that the maximum of |Q| is at ξ = 0. This adds a condition, namely |Q|ξ(0) = 0 and an additional unknown, the coeﬃcient β. Figure 2.17 shows that the solution of
+
+Chapter 2. Focusing Singularity in gDNLS
+
+40
+
+2.5
+
+2
+
+|Q1| .5 1
+
+0.5
+
+0
+
+−30
+
+−20
+
+−10
+
+0
+
+η
+
+2
+1.8
+1.6
+1.4 σ
+10 1.2
+
+Figure 2.16: Asymptotic proﬁle |Q(η)| for various σ, where β has been translated to zero and the peak is permitted move.
+
+(1.3.4) when σ varies from 2 to 1.08. As σ → 1, we make several observations on Q. The amplitude increases, and the left shoulder becomes lower. Oscillations also appear in the real and imaginary components (Figure 2.18). We observe that the parameter α decreases as σ approaches 1, while β ﬁrst decreases and then increases (Figure 2.19). A detailed analysis of the dependence of these parameters on σ is the subject of a future study.
+In practice, we integrated (1.3.4) in two adjacent domains (−∞, 0] and [0, ∞), using the multipoint feature of the Matlab bvp4c solver, with Robin boundary conditions at ±∞ and continuity conditions on Q and its ﬁrst derivative Qξ at ξ = 0. Additional details are given in Section 2.5.
+
+2.4 Numerical Method for Integrating the Time Dependent Equation
+Since the equation (1.1.3) is the same as the equation (2.1.7) with a(τ ) = 0 and b(τ ) = 0, we use the same code for the direct Fourier transform simulation and the dynamic rescaling simulation (Section 2.1). In order to overcome the diﬃculties introduced by
+
+Chapter 2. Focusing Singularity in gDNLS
+
+41
+
+2.5
+
+2
+
+|Q1| .5 1
+
+0.5
+
+0
+
+−20
+
+−10
+
+2
+
+1.8
+
+1.6
+
+1.4
+
+0
+
+10
+
+1.2 σ 20
+
+ξ
+
+Figure 2.17: Asymptotic proﬁle |Q(ξ)| for various σ, where β is a free parameter and the peak is ﬁxed at the origin.
+
+the combination of nonlinearity and stiﬀness in (1.1.1), we use the modiﬁed fourth order exponential time-diﬀerencing Runge-Kutta scheme (ETDRK4). In this section, we ﬁrst give a description about the ETDRK4 scheme, and then apply it to the gDNLS equation.
+
+2.4.1 Exponential Time Diﬀerencing
+The exponential time-diﬀerencing (ETD) schemes were ﬁrstly introduced by Cox and Matthews, and then improved by Kassam and Trefethen [16, 37]. It can handle certain problems associated with eigenvalues equal to or close to zero, especially when the matrix is not diagonal. More precisely, consider the PDE in the general form,
+
+ut = Lu + N (u, t),
+
+where L and N are linear and nonlinear operators, respectively. Discretizing the spatial part of this equation, we get a system of ODEs:
+
+ut = Lu + N(u, t).
+
+(2.4.1)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+42
+
+1
+
+0 (Q)
+−1
+
+−2
+
+−3
+
+−20
+
+−10
+
+0
+
+10
+
+ξ
+
+1
+
+0.5 (Q)
+
+2
+
+0
+
+1.8
+
+1.6 1.4 1.2 σ 20
+
+−0.5 −20
+−10
+
+0 10 ξ
+
+2 1.8 1.6 1.4 1.2 σ 20
+
+Figure 2.18: Asymptotic proﬁle (Q) (left) and (Q) (right) for various σ.
+
+2
+
+2.2
+
+2.1
+
+1.5
+
+2
+
+α1
+
+β1.9
+
+1.8
+
+0.5
+
+1.7
+
+1.6
+
+0 1
+
+1.2 1.4 σ 1.6 1.8
+
+2
+
+1.5 1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+σ
+
+2
+
+Figure 2.19: Coeﬃcients α (left) and β (right) versus σ.
+
+In order to solve the linear part exactly, we deﬁne
+
+v = e−Ltu,
+
+(2.4.2)
+
+where the term e−Lt is called the integrating factor, well known in the theory of ODEs.
+
+Diﬀerentiating (2.4.2) gives
+
+vt = −e−LtLu + e−Ltut.
+
+(2.4.3)
+
+Multiplying (2.4.1) by the integrating factor, we have
+
+e−Ltu = e−Ltu + e−LtN(u, t).
+
+Chapter 2. Focusing Singularity in gDNLS
+
+43
+
+Substituting (2.4.3) into this equation gives
+
+vt = e−LtN(eLtv, t).
+
+(2.4.4)
+
+The linear term in (2.4.1) involves high frequency that constrains the stability. Introducing the integrating factor allows in principle to use larger time steps. In classical methods, one directly applies a time-stepping method to (2.4.4). For example, at the n-th time step, deﬁning f (vn, tn) = e−LtnN(eLtnvn, tn), the fourth order Runge-Kutta scheme is
+
+a =hf (vn, tn),
+
+b =hf (vn + a/2, tn + h/2),
+
+c =hf (vn + b/2, tn + h/2),
+
+d =hf (vn + c, tn + h),
+
+1
+
+vn+1
+
+=vn
+
++
+
+(a 6
+
++
+
+2b
+
++
+
+2c
+
++
+
+d),
+
+(2.4.5)
+
+where h is the time step. However, in the ETD method, one integrates (2.4.4) over a single time step of length h,
+
+h
+un+1 = eLhun + eLh e−LhN(u(tn + τ ), tn + τ )dτ.
+0
+There are various methods to approximate the integral on the right hand side, Cox and Matthews present a sequence of recurrence formula that provide a high order accuracy approximation. The generating formula is
+
+s−1
+
+m
+
+un+1 = eLhun + h gm (−1)k
+
+m k
+
+Nn−k ,
+
+n=0 k=0
+
+where s is the order of the scheme. The coeﬃcients gm are computed by
+
+Lhg0 = eLh − I,
+
+Lhgm+1
+
++
+
+I
+
+=
+
+gm
+
++
+
+1 2 gm−1
+
++
+
+1 3 gm−2
+
++
+
+·
+
+·
+
+·
+
++
+
+g0 m+
+
+, 1
+
+m
+
+≥
+
+0.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+44
+
+Table 2.5: Computation of g(z) by two diﬀerent methods. All computations are done in
+
+double precision in Matlab.
+
+z Formula (2.4.7) 5-term Taylor
+
+Exact
+
+1 1.71828182845905 1.71666666666667 1.71828182845905
+
+1e-1 1.05170918075648 1.05170916666667 1.05170918075648
+
+1e-2 1.00501670841679 1.00501670841667 1.00501670841681
+
+1e-3 1.00050016670838 1.00050016670834 1.00050016670834
+
+1e-4 1.00005000166714 1.00005000166671 1.00005000166671
+
+1e-5 1.00000500000696 1.00000500001667 1.00000500001667
+
+1e-6 1.00000049996218 1.00000050000017 1.00000050000017
+
+1e-7 1.00000004943368 1.00000005000000 1.00000005000000
+
+1e-8 0.99999999392253 1.00000000500000 1.00000000500000
+
+1e-9 1.00000008274037 1.00000000050000 1.00000000050000
+
+1e-10 1.00000008274037 1.00000000005000 1.00000000005000
+
+1e-11 1.00000008274037 1.00000000000500 1.00000000000500
+
+1e-12 1.00008890058234 1.00000000000050 1.00000000000050
+
+1e-13 0.99920072216264 1.00000000000005 1.00000000000005
+
+Based on the fourth order Runge-Kutta time-stepping, Cox and Matthews give a fourth order exponential time diﬀerencing formula (ETDRK4),
+
+an =eLh/2un + L−1(eLh/2 − I)N(un, tn), bn =eLh/2un + L−1(eLh/2 − I)N(an, tn + h/2), cn =eLh/2an + L−1(eLh/2 − I)(2N(bn, tn + h/2) − N(un, tn)), un+1 =eLhun + h−2L−3{[−4 − Lh + eLh(4 − 3Lh + (Lh)2)]N(un, tn)
++ 2[2 + Lh + eLh(−2 + Lh)](N(an, tn + h/2) + N(bn, tn + h/2)) + [−4 − 3Lh − (Lh)2 + eLh(4 − Lh)]N(cn, tn + h)}.
+
+(2.4.6)
+
+However, this formula suﬀers form numerical instability. To understand this better,
+
+consider the function
+
+ez − 1
+
+g(z) =
+
+.
+
+z
+
+(2.4.7)
+
+Computing this function accurately is a well known problem in numerical analysis (See
+
+[31]). Table 2.5 shows the value of g(z) generated by direct computation of (2.4.7) and
+
+by ﬁve terms of a Taylor expansion. Both methods do not provide correct values for
+
+all z: for large z, the direct computation gives better results than the Taylor expansion
+
+method; on the other hand, for small z, the direct computation fails due to cancellation
+
+errors, but the Taylor expansion method give satisfactory results; especially, for z = 10−2,
+
+Chapter 2. Focusing Singularity in gDNLS
+
+45
+
+neither is accurate. In the ETDRK4 scheme, we need compute three coeﬃcients,
+
+α =h−2L−3[−4 − Lh + eLh(4 − 3Lh + (Lh)2)], β =h−2L−3[2 + Lh + eLh(−2 + Lh)], γ =h−2L−3[−4 − 3Lh − (Lh)2 + eLh(4 − Lh)].
+
+(2.4.8)
+
+Those coeﬃcients are analogues of (2.4.7), in the sense that they all suﬀer cancellation
+
+errors when L has eigenvalues close to zero. In order to compute these coeﬃcients valued
+
+for all z, Kassam and Trefethen [37] use ideas of complex analysis . Consider a function
+
+f (z), which is analytic except for a removable singularity at z = 0, the goal is to ﬁnd the
+
+exact value of f (z) when z is near the singularity. This can be achieved by evaluating f (z)
+
+via an integral over a contour Γ in the complex plane that contains z and is separated
+
+from zero:
+
+1 f (t)
+
+f (z) =
+
+dt.
+
+2πi Γ t − z
+
+When z is a matrix L,
+
+1 f (t)
+
+f (L) =
+
+dt,
+
+2πi Γ tI − L
+
+where Γ is any contour containing the eigenvalues of L. In practice, the contour integral
+
+is computed by the trapezoid rule. Thirty two equally spaced points are usually suﬃcient
+
+to obtain an accurate solution.
+
+2.4.2 Integrating the Time Dependent Equation
+
+To integrate (2.1.2) with ETDRK4, we need to convert the equation into the form of (2.4.4). This is achieved by the Fourier pseudospectral method. After Fourier transform and simpliﬁcation, (2.1.2) becomes
+
+uˆτ
+
++
+
+ik2uˆ
+
+=
+
+a(τ ) − uˆ
+2σ
+
+−
+
+a(τ )ξuξ
+
+−
+
+|u|2σ uξ .
+
+Multiplying both sides by the integration factor eik2τ , we get
+
+(2.4.9)
+
+(eik2τ uˆ)τ
+
+=
+
+−
+
+a(τ ) 2σ
+
+eik2
+
+τ
+
+uˆ
+
+−
+
+a(τ
+
+)eik2
+
+τ
+
+ξ
+
+uξ
+
+− eik2τ |u|2σuξ.
+
+(2.4.10)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+46
+
+Let v = eik2τ uˆ, we have the main equation in our iteration:
+
+vτ = − eik2τ
+
+a(τ ) uˆ
+2σ
+
++
+
+a(τ )ξuξ
+
++
+
+|u|2σ uξ
+
+= − eik2τ F
+
+a(τ ) u
+2σ
+
++
+
+a(τ
+
+)ξuξ
+
++
+
+|u|2σ uξ
+
+,
+
+(2.4.11)
+
+where u = F −1(e−ik2τ v). We then use the ETDRK4 scheme (2.4.6) for time discretization, and choose an integration domain large enough so that u is very small at the extremities.
+
+2.5 Numerical Method of the Boundary Value Problem
+2.5.1 bvp4c solver in MATLAB
+“bvp4c” is a MATLAB solver for ordinary diﬀerential equations. It can integrate systems of ODEs of the form
+y = f (x, y). on an interval [a, b] subject to two-point boundary value conditions
+bc(y(a), y(b)) = 0,
+as presented in [41, 59]. It has the following features:
+• It can integrate problems with unknown parameters, such as
+y = f (x, y, p), a ≤ x ≤ b
+subject to boundary conditions
+g(y(a), y(b), p) = 0.
+The solver provides approximations for the solution y(x) and the unknown parameter p. • It has fourth order accuracy, i.e. y(x) − S(x) ≤ Ch4, where S(x) is the approximate solution, and h is the maximum value of the spatial mesh distance hn = xn+1 − xn.
+
+Chapter 2. Focusing Singularity in gDNLS
+
+47
+
+• It is a method that provides automatically grid reﬁnement.
+
+• It can solve problems with conditions given not only at the boundary points, but also possibly inside the interval.
+
+“bvp4c” is not a shooting method. The latter is based on solutions of initial value problems for ODEs, while “bvp4c” approximates the solution y(x) for all x at the same time. More speciﬁcally, for a spatial discretization a = x0 < x1 < · · · < xn = b, the approximate solution S(x) is generated as a cubic polynomial on each subinterval [xn, xn+1] and is continuous on [a, b]. S(x) satisﬁes
+
+S (xn) = f (xn, S(xn)), S ((xn + xn+1)/2) = f ((xn + xn+1)/2, S((xn + xn+1)/2)),
+S (xn+1) = f (xn+1, S(xn+1)).
+
+(2.5.1)
+
+on both ends and the midpoint of each subinterval. It also meets the boundary conditions
+
+bc(S(a), S(b)) = 0.
+
+The resulting system is composed of nonlinear algebraic equations for the coeﬃcients of S(x), which are solved iteratively by linearization.
+
+2.5.2 Integrating the Boundary Value Problem
+To integrate the nonlinear elliptic equation (1.3.4) for Q, we rewrite it as a ﬁrst order system with the four unknowns, (Q), (Q), (Qξ) and (Qξ). As discussed before, we solve the system in two adjacent domains [−AL, 0] and [0, AR]. The solutions and their ﬁrst order derivatives are matched by continuity at ξ = 0, while the boundary conditions at inﬁnity are of Robin type. We denote
+y1± = (Q), y2± = (Q), y3± = (Qξ), y4± = (Qξ),
+
+Chapter 2. Focusing Singularity in gDNLS
+
+48
+
+where y− and y+ are the solutions in [−AL, 0] and [0, AR] respectively. The system takes the form:
+
+dy1± dξ
+
+=
+
+y3±,
+
+dy2± dξ
+
+=
+
+y4±,
+
+dy3± dξ
+
+=
+
+y1±
+
++
+
+α(
+
+1 2σ
+
+y2±
+
++
+
+ξy4±)
+
+−
+
+βy4±
+
++
+
+(y1±)2 + (y2±)2 σ y4±,
+
+dy4± dξ
+
+=
+
+y2±
+
+−
+
+α(
+
+1 2σ
+
+y1±
+
++
+
+ξy3±) +
+
+βy3±
+
+−
+
+(y1±)2 + (y2±)2
+
+σ y3±.
+
+(2.5.2)
+
+Solving four ﬁrst order ODEs in two regions with two unknown parameters requires imposing ten boundary conditions. From Proposition 2.3.1,
+
+Q1
+
+≈
+
+A1|η|−
+
+i α
+
+−
+
+1 2σ
+
+≈
+
+A1
+
+|ξ
+
+|−
+
+i α
+
+−
+
+1 2σ
+
+,
+
+we have the Robin condition 1
+−Q + iα 2σ Q + ξQξ = 0, |ξ| → ∞.
+
+It follows that four of boundary conditions relating to (Q), (Q), (Qξ) and (Qξ) at ξ = −AL and ξ = AR, respectively are
+
+−y1−
+
+−
+
+α 2σ
+
+y2−
+
+−
+
+αξy4−
+
+=
+
+0
+
+at
+
+ξ
+
+=
+
+−AL,
+
+−y2−
+
++
+
+α 2σ
+
+y1−
+
++
+
+αξy3−
+
+=
+
+0
+
+at
+
+ξ
+
+=
+
+−AL,
+
+−y1+
+
+−
+
+α 2σ
+
+y2+
+
+−
+
+αξy4+
+
+=
+
+0
+
+at
+
+ξ
+
+=
+
+AR,
+
+−y2+
+
++
+
+α 2σ
+
+y1+
+
++
+
+αξy3+
+
+=
+
+0
+
+at
+
+ξ
+
+=
+
+AR.
+
+(2.5.3)
+
+We impose the continuity of the solution at ξ = 0:
+
+y1+(0) = y1−(0), y2+(0) = y2−(0), y3+(0) = y3−(0), y4+(0) = y4−(0).
+
+(2.5.4)
+
+Chapter 2. Focusing Singularity in gDNLS
+
+49
+
+The other two conditions are |Q(0)|ξ = 0 (the maximum value of Q is attained at the origin) and (Q(0)) = 0 (because the equation is invariant by phase translation) :
+
+y1−y3− + y2−y4− = 0 at ξ = 0, y2− = 0 at ξ = 0
+
+(2.5.5)
+
+We proceed using a continuation method with respect to σ, starting from σ = 2 down to σ = 1.08. The MATLAB nonlinear solver bvp4c is used to integrate the system for each σ. The two domains are automatically handled using the multipoint feature, which permits for matching conditions at 0. One needs to provide a well-chosen initial guess. We use the ﬁnal proﬁle from our time-dependent simulation with the initial condition (2.1.9), A0 = 3 and σ = 2, in the domain [−10, 10] to extract the maximum bulk of the solution, (see Figures 2.9 and 2.10). This solution is then extended to a larger domain [−150, 50] with an increment of 10. As shown in Figure 2.18, more and more oscillations occur as σ approaches 1. The calculation becomes very delicate and we use smaller and smaller increments of σ, namely 0.05, 0.01 and 0.005 for σ in the intervals 2 ≥ σ ≥ 1.3, 1.3 ≥ σ ≥ 1.2 and 1.2 ≥ σ ≥ 1.08, respectively. We set the maximum mesh points at 5 × 105 and the tolerance of the diﬀerence between two iterations at 10−6.
+
+2.6 Discussion
+
+We have numerically solved a derivative NLS equation with a general power nonlinearity
+
+and found evidence of a ﬁnite time singularity. We have determined that there is a square
+
+root blowup rate for the scaling factor L(t). This implies that Sobolev norms should grow
+
+as
+
+∂xsψ(x, t)
+
+L2
+
+∼
+
+(t∗
+
+−
+
+t) σ−1 4σ
+
+−
+
+s 2
+
+.
+
+As with supercritical NLS, this equation has a universal blowup proﬁle of the form (1.3.3). Indeed, Q, α and β are solutions of a nonlinear eigenvalue problem, and they do not depend on the initial conditions. They depend on the power nonlinearity σ. Another similarity to supercritical NLS is that the blowup proﬁle, Q, is not in L2 and has zero energy. Note that there are other types of singular solutions to supercritical NLS that were found recently [19] [34].
+To conclude, we present numerical simulations of the DNLS equation with σ = 1 and several Gaussian initial conditions (A0 = 3, 4, 5, 6). In all our simulations, the solution separates into several waves and disperses. None of our simulations have shown any evidence of a ﬁnite time singularity, although the transient dynamics can be quite
+
+Chapter 2. Focusing Singularity in gDNLS
+
+50
+
+violent. Figure 2.20 shows the evolution of |ψ(x, t)| with the Gaussian initial condition: ψ0(x) = 6e−2x2. The maximum value of |ψ| increases slowly in time and then stabilizes. We also integrated DNLS using the dynamic rescaling method. We found that a(τ ) rapidly tends to zero and that the scaling factor L(t) has a lower bound away from zero, (Figure 2.21). This is diﬀerent with the critical NLS, which has a blowup rate at {ln ln[(t∗ − t)−1]/(t∗ − t)}1/2, due to the slow decay rate of a(τ ), [42].
+
+10 |ψ| 5
+
+0.4 0.3 0.2
+
+0
+
+0.1
+
+−5
+
+0
+
+t
+
+5 x
+
+10 0
+
+Figure 2.20: Time evolution of |ψ(x, t)| for σ = 1.
+
+102
+
+1
+
+100 a
+10−2
+
+0.8
+0.6 L
+0.4
+0.2
+
+10−4
+
+0
+
+0
+
+1
+
+2τ 3
+
+4
+
+5
+
+0
+
+1
+
+2τ 3
+
+4
+
+5
+
+Figure 2.21: Time evolution of a (Left) and L (Right) for σ = 1.
+
+Chapter 3
+Stability of Solitary Waves for a Generalized Derivative Nonlinear Schro¨dinger Equation
+
+In this chapter, we prove orbital stability/instability results for the solitary solution of
+
+gDNLS that depend on the strength of the nonlinearity and, in some instances, their
+
+velocity. In Section 3.2, we show that n(Hφ) = 1, and in Section 3.3, we compute the number of positive eigenvalues of the Hessian, d . We give the proofs of Theorems 1.3.3
+
+to 1.3.5 in Section 3.4. Some basic spectral theorems used in Section 3.4 are presented
+
+in Section 3.5. In section 3.6, we illustrate our main theorem with numerical simulations
+
+of both stable and unstable solitons. In Section 3.7, we discuss our results.
+
+Provided there is no ambiguity, we write φ, ϕ for φω,c, ϕω,c respectively. Furthermore,
+
+we
+
+only
+
+consider
+
+admissible
+
+values
+
+of
+
+(ω, c)
+
+satisfying
+
+the
+
+conditions
+
+ω
+
+>
+
+c2 4
+
+,
+
+c ∈ R.
+
+3.1 Problem Setup
+In this section, we calculate explicitly the soliton solution (1.2.5). We then deﬁne the linearized operator, the invariant quantities and the action functional for the soliton.
+
+3.1.1 Explicit Form of Solitary Wave Solutions
+We look for traveling solutions in the form ψ(x, t) = ϕ(x − ct) exp {i (ωt + θ(x − ct))} = ϕ(x − ct)Θ(x, t), 51
+
+(3.1.1)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+52
+
+where ϕ and θ are unknown real valued functions and ω and c are undetermined constants.
+
+We assume that
+
+|ϕ(y)| → 0, as |y| → ∞.
+
+(3.1.2)
+
+It follows
+
+ψx = (ϕ + iθ ϕ)Θ(x, t) ψxx = (ϕ + iθ ϕ + iθ ϕ )Θ(x, t) + iθ (ϕ + iθ ϕ)Θ(x, t)
+= ϕ − (θ )2ϕ Θ(x, t) + i (θ ϕ + 2θ ϕ ) Θ(x, t) ψt = (−cϕ + i(ω − cθ )ϕ)Θ(x, t).
+
+(3.1.3a) (3.1.3b) (3.1.3c)
+
+Substituting them into (1.1.1) and matching real and imaginary parts, we have
+
+ϕ2σϕ − cϕ + 2θ ϕ + θ ϕ = 0
+
+(3.1.4a)
+
+ϕ2σ+1θ + ωϕ − cϕθ + ϕ(θ )2 − ϕ = 0.
+
+Multiplying (3.1.4a) by ϕ, integrating it once and using (3.1.2), we obtain
+
+1 ϕ2σ − c + θ = 0.
+
+2σ + 2
+
+2
+
+It follows, up to a constant,
+
+c
+
+1
+
+θ= y−
+
+y
+ϕ2σ (s)ds.
+
+2 2σ + 2 −∞
+
+Substituting it to (3.1.4b), we get
+
+c ϕ2σ+1 − 2σ + 1 ϕ4σ+1 + (ω − c2 )ϕ − ϕ = 0.
+
+2
+
+(2σ + 2)2
+
+4
+
+Multiplying this equation by ϕ and integrating once,
+
+c 2σ +
+
+ϕ2σ+2 2
+
+−
+
+(2σ
+
+1 +
+
+2)2 ϕ4σ+2
+
++
+
+(ω
+
+−
+
+c2 4
+
+)ϕ2
+
+=
+
+(ϕ
+
+)2.
+
+Let Q(ξ) = αϕ2σ(βξ),
+
+(3.1.4b) (3.1.5) (3.1.6) (3.1.7) (3.1.8) (3.1.9)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+53
+
+where α > 0 and β > 0. It follows Q = 2σαβϕ2σ−1ϕ ,
+
+and
+
+(Q )2 = (2σαβ)2ϕ4σ−2
+
+c ϕ2σ+2 −
+
+1
+
+ϕ4σ+2 + (ω − c2 )ϕ2
+
+2σ + 2
+
+(2σ + 2)2
+
+4
+
+= (2σαβ)2
+
+(ω
+
+−
+
+c2 4
+
+)ϕ4σ
+
++
+
+2σ
+
+c +
+
+ϕ6σ 2
+
+−
+
+(2σ
+
+1 +
+
+2)2
+
+ϕ8σ
+
+= (2σαβ)2
+
+(ω
+
+−
+
+c2 )
+
+1
+
+Q2
+
++
+
+c
+
+1 Q3 −
+
+1
+
+1 Q4 .
+
+4 α2
+
+2σ + 2 α3
+
+(2σ + 2)2 α4
+
+At this point assuming c = 0, 4ω − c2 > 0 and setting
+
+1
+
+β= √
+
+,
+
+σ 4ω − c2
+
+2cσ2β2
+
+2|c|
+
+α=
+
+=
+
+,
+
+σ + 1 (σ + 1)(4ω − c2)
+
+σ2β2
+
+4ω − c2
+
+γ=
+
+=
+
+,
+
+(σ + 1)2α2
+
+4c2
+
+(3.1.10a) (3.1.10b) (3.1.10c)
+
+we obtain
+
+(Q )2 = Q2 + sign(c)Q3 − γQ4,
+
+Substituting
+
+F
+
+=
+
+1 Q
+
++
+
+sign(c)
+2
+
+into
+
+(3.1.11),
+
+we
+
+have
+
+(3.1.11)
+
+(F )2 = F 2 −
+
+1 γ+
+
+,
+
+4
+
+which implies Hence
+
+1 F = γ + 4 cosh(±ξ + c0), c0 ∈ R.
+
+√ 1 + 4γ
+
+sign(c) −1
+
+Q(ξ; γ) =
+
+cosh(ξ) −
+
+,
+
+2
+
+2
+
+(3.1.12)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+54
+
+where we choose c0 = 0 to obtain an even function. From (3.1.9), we obtain
+
+1
+
+1/(2σ)
+
+ϕ(y) = Q(y/β)
+
+α
+
+= αQ(y/β)−1 −1/(2σ)
+
+2|c|
+
+√ ω
+
+√
+
+sign(c)
+
+= (σ + 1)(4ω − c2)
+
+cosh(σ 4ω − c2y) − |c|
+
+2
+
+−1/(2σ)
+
+√ 2ω
+
+√
+
+c
+
+=
+
+cosh(σ 4ω − c2y) − √
+
+(σ + 1)(4ω − c2)
+
+2ω
+
+−1/(2σ)
+.
+
+When c = 0, Q solves the equation
+
+(3.1.13)
+
+(Q )2 = Q2 − γQ4,
+
+with
+
+β
+
+=
+
+1√ 2σ ω
+
+and
+
+γ
+
+=
+
+σ2β2 (σ+1)2α2
+
+=
+
+. 1
+4ω(σ+1)2α2
+
+Let
+
+F
+
+= 1/Q,
+
+we
+
+obtain
+
+(F ) = F 2 − γ,
+
+which implies F = √γ cosh(ξ), and
+
+Q
+
+=
+
+√ (γ
+
+cosh(ξ))−1.
+
+Thus
+
+1
+
+√
+
+−1/(2σ)
+
+ϕ(y) = √
+
+cosh(2σ ωy)
+
+.
+
+2 ω(σ + 1)
+
+(3.1.14)
+
+Combining (3.1.13) and (3.1.14) into a simple expression, we have, for all c ∈ R,
+
+ϕ(y) =
+
+√ 2ω
+
+√ cosh(σ 4ω − c2y) −
+
+c √
+
+(σ + 1)(4ω − c2)
+
+2ω
+
+−1/(2σ)
+.
+
+(3.1.15)
+
+It follows, using (3.1.1) and (3.1.6), the solution of (1.1.1) takes the form of (1.2.5).
+
+3.1.2 Linearized Hamiltonian
+We study the problem in the space X = H1(R), with real inner product
+(u, v) ≡ (uxv¯x + uv¯)dx.
+R
+
+(3.1.16)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+55
+
+The dual of X is X∗ = H−1(R). Let I : X → X∗ be the natural isomorphism deﬁned by
+
+Iu, v = (u, v),
+
+(3.1.17)
+
+where ·, · is the pairing between X and X∗,
+
+f, u = f u¯dx.
+R
+gDNLS can be formulated as the Hamiltonian system
+
+(3.1.18)
+
+dψ = JE (ψ),
+dt
+
+(3.1.19)
+
+where the map J : X∗ → X is J = −i, and E is the Hamiltonian:
+
+1 E≡
+2
+
+∞ −∞
+
+|ψx|2dx
+
++
+
+1 2(σ +
+
+1)
+
+∞
+|ψ|2σψ¯ψxdx. (Energy)
+−∞
+
+(3.1.20)
+
+Two other conserved quantities are:
+
+1 M≡
+
+∞
+|ψ|2dx,
+
+2 −∞
+
+1 P ≡−
+2
+
+∞
+ψ¯ψxdx.
+−∞
+
+(Mass) (Momentum)
+
+(3.1.21) (3.1.22)
+
+Let T1 and T2 be the one-parameter groups of unitary operator on X deﬁned by
+
+T1(t)Φ(x) ≡ e−itΦ(x), Φ(x) ∈ X, t ∈ R T2(t)Φ(x) ≡ Φ(x + t).
+
+(3.1.23a) (3.1.23b)
+
+Then
+
+ψω,c = T1(−ωt)T2(−ct)φω,c(x).
+
+and ∂tT1(ωt)|t=0 = −iω, ∂tT2(ct)|t=0 = c∂x .
+
+We deﬁne the linear operators
+
+B1 ≡ J −1∂tT1(ωt)|t=0 = ω, B2 ≡ J −1∂tT2(ct)|t=0 = ic∂x.
+
+(3.1.24a) (3.1.24b)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+56
+
+The mass and momentum invariants (3.1.21) and (3.1.22) are related to the symmetry groups via:
+
+1
+
+1
+
+Q1 ≡ 2
+
+B1φ, φ
+
+= 2
+
+1
+
+1
+
+Q2 ≡ 2
+
+B2φ, φ
+
+= 2
+
+ωφφ¯dx = ω |φ|2dx = ωM, 2
+
+ic∂xφφ¯dx
+
+=
+
+−
+
+1 2
+
+c
+
+∂xφφ¯dx = cP.
+
+(3.1.25a) (3.1.25b)
+
+Computing the ﬁrst variations of (3.1.20), (3.1.21) and (3.1.22), we have
+
+E (φ) = −∂x2φ − i|φ|2σ∂xφ, M (φ) = φ, P (φ) = i∂xφ.
+
+(3.1.26a) (3.1.26b)
+
+The second variations are:
+E (φ)v = (−∂x2 − iσ|φ|2σ−2φ¯∂xφ − i|φ|2σ∂x)v − iσ|φ|2σ−2φ∂xφv¯,
+M (φ)v = v, P (φ)v = i∂xv.
+
+(3.1.27a) (3.1.27b)
+
+The linearized Hamiltonian about the soliton φ is
+
+Hφu ≡ [E (φ) + M1 (φ) + M2 (φ)] u = [E (φ) + ωM (φ) + cP (φ)] u
+
+(3.1.28)
+
+for u ∈ H2(R). For later use, we give two equivalent expressions of Hφ. First, we decompose it into complex conjugates:
+
+Lemma 3.1.1. For any function u in the domain of Hφ,
+
+Hφu = L1u + L2u¯,
+
+where
+
+L1 ≡ −∂x2 + ω + ic∂x − iσ|φ|2σ−2φ¯∂xφ − i|φ|2σ∂x, L2 ≡ −iσ|φ|2σ−2φ∂xφ.
+
+(3.1.29a) (3.1.29b)
+
+Second, we give the expression of Hφ and the quadratic form it induces, after extraction of the soliton’s phase:
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+57
+
+Lemma 3.1.2. Let u ∈ H1 be decomposed as
+
+u = eiθ(u1 + iu2),
+
+(3.1.30)
+
+where θ is given by (1.2.9), and u1 and u2 are the real and imaginary parts of ue−iθ.
+
+Then
+
+Hφu = eiθ [(L11u1 + L21u2) + i (L12u1 + L22u2)]
+
+(3.1.31)
+
+and
+
+where
+
+Hφu, u = L11u1, u1 + L21u2, u1 + L12u1, u2 + L22u2, u2 ,
+
+L11
+
+≡
+
+−∂yy
+
++
+
+ω
+
+−
+
+c2 4
+
++
+
+c(2σ + 2
+
+1) ϕ2σ
+
+−
+
+4σ2 + 6σ + 4(σ + 1)2
+
+1 ϕ4σ,
+
+L21
+
+≡
+
+− σ
+
+σ +
+
+1 ϕ2σ−1ϕy
+
++
+
+σ
+
+σ +
+
+1 ϕ2σ∂y,
+
+L12
+
+≡
+
+(2σ −
+σ
+
++ +
+
+1)σ 1
+
+ϕ2σ−1ϕy
+
+−
+
+σ
+
+σ +
+
+1 ϕ2σ∂y,
+
+L22
+
+≡
+
+−∂yy
+
++
+
+ω
+
+−
+
+c2 4
+
++
+
+c ϕ2σ 2
+
+−
+
+2σ + 1 ϕ4σ. 4(σ + 1)2
+
+(3.1.32)
+(3.1.33a) (3.1.33b) (3.1.33c) (3.1.33d)
+
+Proof. Using (1.2.9),
+
+θy
+
+=
+
+c 2
+
+−
+
+1 2σ +
+
+ϕ2σ , 2
+
+θyy
+
+=
+
+− σ
+
+σ +
+
+1 ϕ2σ−1ϕy.
+
+(3.1.34)
+
+We can then rewrite the operators L1 and L2 from Lemma 3.1.1 in terms of ϕ as
+
+L1 = −∂y2 + ω + ic∂y − iϕ2σ∂y
+
++
+
+σc ϕ2σ 2
+
+−
+
+σ 2σ +
+
+ϕ4σ 2
+
+−
+
+iσ ϕ2σ−1 ϕy ,
+
+L2 =
+
+cσ ϕ2σ 2
+
+−
+
+σ 2σ +
+
+ϕ4σ 2
+
+−
+
+iσϕ2σ−1ϕy
+
+e2iθ .
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+58
+
+Letting χ = ue−iθ, we have
+
+Hφu =eiθ
+
+−∂yy
+
++
+
+ω
+
+−
+
+c2 4
+
++
+
+c(σ + 2
+
+1) ϕ2σ
+
+−
+
+iσ2 σ+1
+
+ϕ2σ−1ϕy
+
+iσ −
+σ+
+
+1 ϕ2σ∂y
+
+−
+
+2σ2 + 4σ + 4(σ + 1)2
+
+1 ϕ4σ
+
+χ
+
++ eiθ
+
+cσ ϕ2σ 2
+
+−
+
+σ 2σ +
+
+ϕ4σ 2
+
+−
+
+iσϕ2σ−1ϕy
+
+χ¯.
+
+(3.1.35)
+
+Since χ = u1 + iu2, we get (3.1.31) and (3.1.32) by grouping terms appropriately.
+
+3.1.3 Action Functional
+
+Using (1.2.11), we observe that when evaluated at the soliton φ,
+
+E + ωM + cP = 0.
+
+(3.1.36)
+
+For any ω > c2/4, we deﬁne the scalar function
+
+d(ω, c) ≡ E(φω,c) + Q1(φω,c) + Q2(φω,c),
+
+(3.1.37)
+
+which is the action functional evaluated at the soliton. It has the following properties:
+
+Lemma 3.1.3. The Hessian is
+
+d(ω, c) = E(φ) + ωM (φ) + cP (φ), ∂ωd(ω, c) = M (φ) > 0, ∂cd(ω, c) = P (φ).
+d (ω, c) = ∂ωM (φ) ∂cM (φ) . ∂ωP (φ) ∂cP (φ)
+
+(3.1.38) (3.1.39) (3.1.40)
+(3.1.41)
+
+Proof. Using (3.1.25a), (3.1.25b) and (3.1.37), we have (3.1.38). Diﬀerentiating (3.1.38) with respect to ω and c respectively, and using (3.1.36), we obtain (3.1.39) and (3.1.40). The expression for the Hessian follows.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+59
+
+3.2 Spectral Decomposition of the Linearized Operator
+
+This section provides a full description of the spectrum of the linearized operator Hφ. In particular, we prove:
+
+Theorem 3.2.1. For all values of σ > 0 and admissible (ω, c), the space X = H1 can be
+
+decomposed as the direct sum
+
+X = N + Z + P,
+
+(3.2.1)
+
+where the three subspaces intersect trivially and:
+
+(i) N is a one dimensional subspace such that for u ∈ N , u = 0,
+
+Hφu, u < 0.
+
+(3.2.2)
+
+(ii) Z is the two dimensional kernel of Hφ.
+
+(iii) P is a subspace such that for p ∈ P ,
+
+Hφp, p
+
+≥δ
+
+p
+
+2 X
+
+where the constant δ > 0 is independent of p.
+
+(3.2.3)
+
+Corollary 3.2.2. For all values of σ > 0 and admissible (ω, c),
+
+n(Hφ) = 1.
+
+An important ingredient of the proof involves rewriting the quadratic form (3.1.32) induced by Hφ in a more favorable form. This rearrangement, inspired by [26], expresses it as a sum of a quadratic form involving an operator with exactly one negative eigenvalue and a nonnegative term.
+
+Lemma 3.2.3. Let
+
+u = eiθ(u1 + iu2),
+
+where θ, u1, u2 are deﬁned the same as Lemma 3.1.2, then
+
+Hφu, u
+
+=
+
+L11u1, u1
+
++
+
+∞ −∞
+
+ϕ
+
+ϕ−1u2
+
+y
+
++
+
+(σ
+
+σ +
+
+1) ϕ2σu1
+
+2
+dy,
+
+(3.2.4)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+where
+
+L11
+
+≡
+
+−
+
+∂yy
+
++
+
+ω
+
+−
+
+c2 4
+
++
+
+c(2σ + 2
+
+1) ϕ2σ
+
+−
+
+8σ2 + 6σ + 4(σ + 1)2
+
+1 ϕ4σ.
+
+60 (3.2.5)
+
+Proof. Recall the terms in the quadratic form (3.1.33). We ﬁrst examine L11. The relationship between L11 and L11 is
+
+L11
+
+=
+
+L11
+
++
+
+(σ
+
+σ2 ϕ4σ. + 1)2
+
+(3.2.6)
+
+Next, consider L22. From (1.2.7),
+
+L22ϕ = 0.
+
+Letting u˜2 = ϕ−1u2, we write
+
+L22u2, u2 = −∂yyu2, u2 +
+
+(ω
+
+−
+
+c2 4
+
++
+
+c ϕ2σ 2
+
+−
+
+2σ 4(σ
+
++1 + 1)2
+
+ϕ4σ
+
+)u2,
+
+u2
+
+= −ϕyyu˜2 − 2ϕyu˜2y − ϕu˜2yy, ϕu˜2
+
++
+
+(ω
+
+−
+
+c2 4
+
++
+
+c ϕ2σ 2
+
+−
+
+2σ 4(σ
+
++1 + 1)2
+
+ϕ4σ
+
+)ϕu˜2
+
+,
+
+ϕu˜2
+
+= u˜2L22ϕ, ϕu˜2 + −2ϕyu˜2y − ϕu˜2yy, ϕu˜2 = −(ϕ2u˜2y)y, u˜2 = ϕu˜2y, ϕu˜2y ,
+
+(3.2.7) (3.2.8)
+
+where u2y and u2yy denote ∂yu2 and ∂yyu2, respectively. Lastly, we simplify the oﬀ diagonal entries, L21 and L12. Integrating by parts, we have
+
+L12u1, u2 =
+
+(2σ −
+σ
+
++ +
+
+1)σ 1
+
+ϕ2σ−1ϕy
+
+−
+
+σ
+
+σ +
+
+1 ϕ2σ∂y
+
+u1, u2
+
+2σ + 1 =−
+2(σ + 1)
+
+(ϕ2σ)y, u1u2
+
+σ −
+σ+1
+
+ϕ2σu1y, u2
+
+2σ + 1 =
+2(σ + 1)
+
+ϕ2σu2y, u1
+
+2σ + 1 +
+2(σ + 1)
+
+ϕ2σu1y, u2
+
+σ −
+σ+1
+
+ϕ2σu1y, u2
+
+2σ + 1 =
+2(σ + 1)
+
+ϕ2σu2y, u1
+
+1 +
+2(σ + 1)
+
+ϕ2σu1y, u2
+
+.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+61
+
+Similarly,
+
+L21u2, u1 =
+
+− σ
+
+σ +
+
+1 ϕ2σ−1ϕy
+
++
+
+σ
+
+σ +
+
+1 ϕ2σ∂y
+
+u2, u1
+
+1 =−
+2(σ + 1)
+
+(ϕ2σ)y, u1u2
+
+σ +
+σ+1
+
+ϕ2σu2y, u1
+
+1 =
+2(σ + 1)
+
+ϕ2σu2y, u1
+
+1 +
+2(σ + 1)
+
+ϕ2σu1y, u2
+
+σ +
+σ+1
+
+ϕ2σu2y, u1
+
+2σ + 1 =
+2(σ + 1)
+
+ϕ2σu2y, u1
+
+1 +
+2(σ + 1)
+
+ϕ2σu1y, u2
+
+.
+
+The oﬀ diagonal terms then sum to
+
+L12u1, u2
+
++
+
+L21u2, u1
+
+2σ + 1 =
+σ+1
+
+ϕ2σu2y, u1
+
+1 +
+σ+1
+
+ϕ2σu1y, u2
+
+.
+
+Introducing u˜2 = ϕ−1u2 into the above expression, and integrating by parts,
+
+L12u1, u2
+
++
+
+L21u2, u1
+
+2σ =
+σ+1
+
+ϕ2σ+1u˜2y, u1
+
+.
+
+(3.2.9)
+
+Combining (3.2.6), (3.2.8) and (3.2.9),
+
+Hφu, u = L11u1, u1 + ϕu˜2y, ϕu˜2y
+
++
+
+σ
+
+σ +
+
+1
+
+ϕ2σ u1 ,
+
+σ
+
+σ +
+
+1
+
+ϕ2σ u1
+
++
+
+2σ σ+
+
+1
+
+ϕ2σ
+
+u1,
+
+ϕu˜2y
+
+= L11u1, u1
+
++
+
+∞ −∞
+
+ϕu˜2y
+
++
+
+σ
+
+σ +
+
+1 ϕ2σu1
+
+2
+dy.
+
+3.2.1 The Negative Subspace
+Next, we characterize the negative subspace, N . For that, we need the following lemma on L11.
+Lemma 3.2.4. The spectrum of L11 can be characterized as follows:
+• L11 has exactly one negative eigenvalue, denoted −λ211, with multiplicity one, and eigenfunction χ11,
+• 0 ∈ σ(L11), and the kernel is spanned by ϕy,
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+62
+
+• There exists µ11 > 0 such that σ(L11) \ −λ211, 0 ⊂ [µ11, ∞).
+
+Proof. First, we observe that since ϕ is exponentially localized, L11 is a relatively compact
+
+perturbation
+
+of
+
+−∂y2
+
++
+
+ω
+
+−
+
+c2 4
+
+.
+
+By
+
+Weyl’s
+
+theorem,
+
+the
+
+essential
+
+spectrum
+
+is
+
+then
+
+σess(L11)
+
+=
+
+σess(−∂y2
+
++
+
+ω
+
+−
+
+c2 4
+
+)
+
+=
+
+ω
+
+−
+
+c2 4
+
+,
+
+∞
+
+.
+
+Consequently, all eigenvalues below the lower bound of the essential spectrum correspond
+
+to isolated eigenvalues of ﬁnite multiplicity. By diﬀerentiating (1.2.7) with respect to y,
+
+we see that
+
+L11ϕy = 0.
+
+(3.2.10)
+
+Hence, L11 has a kernel. Viewed as a linear second order ordinary diﬀerential equation, L11f = 0 has two linearly independent solutions. As y → −∞, one solution decays exponentially while the other grows exponentially. Thus, up to a multiplicative constant,
+
+there can be at most one spatially localized solution to L11f = 0. Therefore, the kernel is spanned by ϕy.
+
+From Sturm-Liouville theory, this implies that zero is the second eigenvalue of L11, and
+
+L11 has exactly one strictly negative eigenvalue, −λ211, with a L2 normalized eigenfunction
+
+χ11:
+
+L11χ11 = −λ211χ11.
+
+(3.2.11)
+
+If we now let
+
+L11f, f
+
+µ11 ≡
+
+inf
+
+f =0,f ⊥ϕy,f ⊥χ11
+
+f, f
+
+,
+
+(3.2.12)
+
+we see that µ11 > 0, since if it were not, it would correspond to another discrete eigenvalue
+
+less
+
+than
+
+or
+
+equal
+
+to
+
+zero.
+
+It
+
+is
+
+either
+
+a
+
+discrete
+
+eigenvalue
+
+in
+
+the
+
+gap
+
+(0, ω −
+
+c2 4
+
+)
+
+or
+
+the
+
+base of the essential spectrum. Regardless, σ(L11) \ {−λ211, 0} is bounded away from zero.
+
+Using χ11, we construct the negative subspace N .
+
+Proposition 3.2.5. Let
+
+N ≡ span {χ−} ,
+
+(3.2.13)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+63
+
+where
+
+χ− ≡ (χ11 + iχ12)eiθ,
+
+χ12 ≡ ϕ
+
+σ −
+σ+1
+
+y
+ϕ2σ−1(s)χ11(s)ds + k12
+−∞
+
+,
+
+(3.2.14a) (3.2.14b)
+
+and k12 ∈ R is chosen such that
+
+χ12, ϕ = 0.
+
+(3.2.15)
+
+For u ∈ N \ {0},
+
+Hφu, u < 0.
+
+Proof. The function χ12 is in L2. Indeed, the integral in (3.2.14b) is well deﬁned since, as |y| → ∞,
+
+|ϕ(y)| exp − ω − c2/4 |y| , |χ11(y)| exp − ω − c2/4 + λ211 |y| .
+
+Thus the integrand is bounded. From (3.2.4) and (3.2.11),
+
+Hφχ−, χ− = L11χ11, χ11 = −λ211 < 0.
+
+3.2.2 The Kernel
+
+We give an explicit characterization of the kernel of Hφ.
+
+Proposition 3.2.6. Let where
+
+Z = span {χ1, χ2} ,
+
+χ1 =
+
+ϕy
+
++
+
+i(k2
+
+−
+
+1 2σ +
+
+ϕ2σ )ϕ 2
+
+eiθ ,
+
+χ2 = iϕeiθ
+
+with k2 is a real constant such that
+
+k2
+
+−
+
+1 2σ +
+
+ϕ2σ 2
+
+ϕ, ϕ
+
+= 0.
+
+(3.2.16) (3.2.17a) (3.2.17b)
+(3.2.18)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+64
+
+Then Z = ker Hφ.
+
+Proof. We ﬁrst prove that χ1 and χ2 are linearly independent elements of the kernel, and then show that the kernel is at most two dimensional. Applying Hφ (in the form (3.1.31)) to χ2 and using that L21ϕ = 0 and (3.2.7), we get Hφχ2 = 0. For χ1, we compute
+
+L11ϕy
+
++
+
+L21(k2
+
+−
+
+1 2σ +
+
+ϕ2σ )ϕ 2
+
+=
+
+L11ϕy
+
++
+
+(σ
+
+σ2 + 1)2
+
+ϕ4σ
+
+ϕy
+
++
+
+k2L21ϕ
+
+−
+
+1 2σ +
+
+2 L21ϕ2σ+1
+
+=
+
+(σ
+
+σ2 + 1)2
+
+ϕ4σ
+
+ϕy
+
+−
+
+1 2σ +
+
+2
+
+2σ2 σ+1
+
+ϕ4σ
+
+ϕy
+
+=
+
+0
+
+and
+
+L12ϕy
+
++
+
+L22(k2
+
+−
+
+1 2σ +
+
+ϕ2σ )ϕ 2
+
+=
+
+2σ2 + σ −
+σ+1
+
+ϕ2σ−1ϕ2y
+
+−
+
+σ
+
+σ +
+
+1 ϕ2σϕyy
+
+1 −
+2σ + 2
+
+−2σ(2σ + 1)ϕ2σ−1ϕ2y − 2σϕ2σϕyy + ϕ2σL22ϕ
+
+= 0.
+
+Thus, Z ⊂ ker Hφ, and the kernel is at least two dimensional. We now show that it is exactly two dimensional. If we consider the problem
+
+Hφf = 0,
+as a second order system of two real valued functions, we know there are four linearly independent solutions. As y → −∞, two of these solutions decay exponentially, while two grow exponentially. However, only the two exponentially decay solutions are in H1. Thus, there are at most two linearly independent solutions which are spatially localized, and Z = ker Hφ.
+
+3.2.3 The Positive Subspace and the Spectral Decomposition
+We deﬁne the subspace P and prove Theorem 3.2.1. For that, we need the following lemmas about L11 and L22. Lemma 3.2.7. For any real function f ∈ H1(R) satisfying the orthogonality conditions
+
+f, ϕy = f, χ11 = 0,
+
+(3.2.19)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+65
+
+there exists δ11 > 0, such that
+
+L11f, f
+
+≥ δ11
+
+f
+
+2 H
+
+1
+
+.
+
+(3.2.20)
+
+Proof. From Lemma 3.2.4, (3.2.12) holds on the subspace orthogonal to ϕy and χ11, so
+
+L11f, f
+
+≥ µ11
+
+f
+
+2 L2
+
+.
+
+To get the H1 lower bound, let
+
+V1(y)
+
+=
+
+ω
+
+−
+
+c2 4
+
++
+
+c(2σ + 2
+
+1) ϕ2σ
+
+−
+
+8σ2 + 6σ + 4(σ + 1)2
+
+1 ϕ4σ,
+
+so that L11 = −∂yy + V1, with V1 L∞ < ∞. Thus,
+
+L11f, f = −∂yyf, f + V1f, f
+
+≥
+
+−∂yyf, f
+
+−
+
+V1 L∞
+
+f
+
+2 L2
+
+=
+
+∂y f
+
+2 L2
+
+−
+
+1 µ11
+
+V1 L∞ L11f, f .
+
+It follows that
+
+L11f, f
+
+1 ≥ 1 + µ−111 V1 L∞
+
+∂y f
+
+2 L2
+
+.
+
+Taking δ11 suﬃciently small, we have
+
+L11f, f
+
+≥ δ11
+
+f
+
+2 H
+
+1
+
+.
+
+Lemma 3.2.8. For any real function f ∈ H1(R) satisfying
+
+f, ϕ = 0,
+
+(3.2.21)
+
+there exists δ22 > 0, such that
+
+L22f, f
+
+≥ δ22
+
+f
+
+2 H
+
+1
+
+.
+
+(3.2.22)
+
+Proof. As was the case for L11, L22 is a relatively compact perturbation of −∂y2 +ω −c2/4,
+
+so it also has
+
+σess(L22) =
+
+ω
+
+−
+
+c2 4
+
+,
+
+∞
+
+.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+66
+
+Thus, all points in the spectrum below ω − c2/4 correspond to discrete eigenvalues. From
+
+(3.2.7) and ϕ is strictly positive, Sturm-Liouville theory implies that zero is the lowest
+
+eigenvalue. Let
+
+µ22 ≡ inf f =0,f ⊥ϕ
+
+L22f, f f, f
+
+.
+
+(3.2.23)
+
+We know that µ22 > 0, otherwise this would contradict with 0 being the lowest eigenvalue. Therefore
+L22f, f ≥ µ22 f L2 .
+
+Using the same argument as in Lemma 3.2.7, we obtain (3.2.22).
+
+We now prove Theorem 3.2.1.
+
+Proof. Recall N, Z as deﬁned deﬁne by (3.2.13) and (3.2.16). We deﬁne P as
+
+P = {p ∈ X | (e−iθp), χ11 = (e−iθp), ϕy = (e−iθp), ϕ = 0}.
+
+(3.2.24)
+
+We express u ∈ X as
+
+u = a1χ− + (b1χ1 + b2χ2) + p,
+
+where
+
+a1 = u1, χ11 ,
+
+b1 =
+
+u1, ϕy
+
+ϕy
+
+2 L2
+
+,
+
+b2 =
+
+u2, ϕ
+
+ϕ
+2 L2
+
+,
+
+with u1 and u2 are real and imaginary part of e−iθu. Clearly, a1χ− ∈ N and b1χ1 + b2χ2 ∈ Z. It suﬃces to show p ∈ P . We write p = (p1 + ip2)eiθ with p1 and p2 real. Since ϕy is odd and χ11 is even, ϕy, χ11 = 0, and we readily check that p1, χ11 = p1, ϕy = 0. Furthermore, by (3.2.15) and (3.2.18), we also have p2, ϕ = 0. Thus, p ∈ P , and u is indeed decomposed into elements of N , Z and P .
+
+Finally, we show that Hφ is positive on P . Let p˜2 = ϕ−1p2. By (3.2.4),
+
+Hφp, p
+
+=
+
+L11p1, p1
+
++
+
+∞
+(ϕ∂y p˜2
+−∞
+
++
+
+σ
+
+σ +
+
+1 ϕ2σp1)2dy.
+
+(3.2.25)
+
+Lemma 3.2.7 gives the desired lower bound on the ﬁrst term. For the second term, we break it into two cases, depending on how ϕ∂yp˜2 L2 and p1 L2 compare. Let
+
+2σ Cσ ≡ σ + 1
+
+ϕ
+
+2σ L∞
+
+.
+
+(3.2.26)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+67
+
+(a) If ϕ∂yp˜2 L2 ≥ Cσ p1 L2, we estimate the second term in (3.2.25) as follows,
+
+ϕ∂y p˜2
+
++
+
+σ
+
+σ +
+
+1 ϕ2σp1
+
+≥
+L2
+=
+
+σ ϕ∂yp˜2 L2 − σ + 1
+
+ϕ
+
+2σ L∞
+
+p1 L2
+
+1
+
+1
+
+ϕ∂yp˜2 L2 − 2 Cσ p1 L2 ≥ 2 ϕ∂yp˜2 L2 .
+
+From (3.2.8), we have
+
+ϕ∂y p˜2
+
++
+
+σ
+
+σ +
+
+1 ϕ2σp1
+
+2
+
+1
+
+≥
+
+L2 4
+
+L22p2, p2
+
+.
+
+From Lemmas 3.2.7 and 3.2.8, we get
+
+Hφp, p ≥
+
+L11p1, p1
+
+1
+
++ 4
+
+L22p2, p2
+
+≥ δa
+
+p
+
+2 H1
+
+,
+
+for some small enough δa.
+
+(b) Conversely, if ϕ∂yp˜2 L2 < Cσ p1 L2, then,
+
+Hφp, p ≥
+
+L11p1, p1
+
+≥ δ11 2
+
+p1
+
+2 H1
+
++
+
+δ11 2
+
+p1
+
+2 L2
+
+≥ δ11 2
+
+p1
+
+2 H1
+
++
+
+δ11 2Cσ2
+
+ϕ∂y p˜2
+
+2 L2
+
+= δ11 2
+
+p1
+
+2 H1
+
++
+
+δ11 2Cσ2
+
+L22p2, p2
+
+≥ δb
+
+p
+
+2 H1
+
+.
+
+(3.2.27)
+
+Taking the smaller value of δa and δb as δ, we have
+
+Hφp, p
+
+≥δ
+
+p
+
+2 H
+
+1
+
+.
+
+(3.2.28)
+
+It follows that N , Z and P have trivial intersections among one another. Hence X = N + Z + P.
+
+3.3 Analysis of the Hessian Matrix
+In this section, we compute the number of the positive eigenvalues p(d (ω, c)) of the Hessian matrix (3.1.41) of the action functional d(ω, c) deﬁned in (3.1.37). Since the number of negative eigenvalues of Hφω,c is in all cases equal to one, p(d (ω, c)) will determine whether or not the soliton is stable.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+68
+
+To make this assessment, we examine the determinant and the trace of d (ω, c). In √
+the following, we denote κ = 4ω − c2 > 0 and rewrite the solitary solution (1.2.6) as ϕ(x)2σ = f (ω, c)h(ω, c; x)−1, with
+
+(σ + 1)κ2
+
+c
+
+f (ω, c) = √ , h(x; σ; ω, c) = cosh(σκx) − √ .
+
+2ω
+
+2ω
+
+We also rewrite the functionals M , P deﬁned in (3.1.21)-(3.1.22) and their derivatives in terms of h and f :
+
+1 M=
+
+∞
+
+|ϕ|2dx
+
+=
+
+f
+
+1 σ
+
+∞
+
+h−
+
+1 σ
+
+dx,
+
+20
+
+0
+
+c P =−
+
+∞
+ϕ2dx +
+
+1
+
+∞
+ϕ2σ+2dx
+
+20
+
+2σ + 2 0
+
+c1 =− fσ
+
+∞
+
+h−
+
+1 σ
+
+dx
+
++
+
+1
+
+σ+1
+fσ
+
+∞
+
+h−
+
+σ+1 σ
+
+dx.
+
+2
+
+0
+
+2σ + 2
+
+0
+
+(3.3.1) (3.3.2)
+
+1 1−σ
+
+∂cM
+
+=
+
+f σ
+
+σ
+
+fc
+
+1 1−σ
+
+∂ω M
+
+=
+
+f σ
+
+σ
+
+fω
+
+∞
+
+h−
+
+1 σ
+
+dx
+
+−
+
+11 fσ
+
+0
+
+σ
+
+∞
+
+h−
+
+1 σ
+
+dx
+
+−
+
+11 fσ
+
+0
+
+σ
+
+∞
+
+h−
+
+σ+1 σ
+
+hc
+
+dx,
+
+0
+
+∞
+
+h−
+
+σ+1 σ
+
+hω
+
+dx,
+
+0
+
+(3.3.3) (3.3.4)
+
+11
+
+∂cP
+
+=
+
+−
+
+fσ 2
+
+∞ 0
+
+h−
+
+1 σ
+
+dx
+
+−
+
+c f
+2σ
+
+1−σ
+σ fc
+
+∞
+
+h−
+
+1 σ
+
+dx
+
+0
+
+c1 + fσ
+2σ
+
+∞ 0
+
+h−
+
+σ+1 σ
+
+hc
+
+dx
+
++
+
+1 f
+2σ
+
+1
+σ fc
+
+∞
+
+h−
+
+1+σ σ
+
+dx
+
+0
+
+1 1+σ − fσ
+2σ
+
+∞
+
+h−
+
+1+2σ σ
+
+hc
+
+dx,
+
+0
+
+c 1−σ
+
+∂ω P
+
+=
+
+−
+
+f 2σ
+
+σ
+
+fω
+
+∞
+
+h−
+
+1 σ
+
+dx
+
++
+
+c1 fσ
+
+0
+
+2σ
+
+∞
+
+h−
+
+σ+1 σ
+
+hω
+
+dx
+
+0
+
+11 + 2σ f σ fω
+
+∞
+
+h−
+
+1+σ σ
+
+dx
+
+−
+
+1 1+σ fσ
+
+0
+
+2σ
+
+∞
+
+h−
+
+1+2σ σ
+
+hω
+
+dx,
+
+0
+
+(3.3.5) (3.3.6)
+
+where
+
+c(1 + σ)
+
+(1 + σ)(4ω + c2)
+
+fc = −
+
+√ ω
+
+,
+
+fω =
+
+4ω3/2
+
+,
+
+hc
+
+=
+
+σc − x sinh(σκx) −
+κ
+
+1 ω−1/2, 2
+
+hω
+
+=
+
+2σ x sinh(σκx) +
+κ
+
+c
+
+ω−
+
+3 2
+
+.
+
+4
+
+The expressions in (3.3.3)-(3.3.6) involve various integrals. The next lemmas show that
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+69
+
+all of them can be expressed simply in terms of
+
+∞
+
+αn =
+
+h−
+
+1 σ
+
+−n
+
+dx.
+
+0
+
+First, we have
+
+Lemma 3.3.1.
+
+√
+
+4ω
+
+2c ω(2 + σ)
+
+α2 = (σ + 1)κ2 α0 + (σ + 1)κ2 α1
+
+(3.3.7)
+
+Proof. We ﬁrst rewrite α0, and then integrate by parts:
+
+α0 =
+
+∞
+
+h−
+
+1 σ
+
+−1hdx
+
+=
+
+1
+
+0
+
+σκ
+
+0
+
+∞
+
+h−
+
+1 σ
+
+−1
+
+(sinh(σ
+
+κx))
+
+dx
+
+−
+
+α1
+
+c √ 2ω
+
+(σ + 1) =
+σ2
+
+0
+
+∞
+
+h−
+
+1 σ
+
+−2(sinh2
+
+(σκx))dx
+
+−
+
+α1
+
+c √ 2ω
+
+(σ + 1) =
+σ2
+
+∞ 0
+
+h−
+
+1 σ
+
+−2((h
+
++
+
+c √
+
+)2
+
+2ω
+
+−
+
+1)dx
+
+−
+
+c
+
+α1
+
+√ 2ω
+
+.
+
+Regrouping the terms in this last expression, we obtain (3.3.7).
+
+Lemma 3.3.2. We have the following relations:
+
+∞ 0
+
+h−
+
+1 σ
+
+−2
+
+hcdx
+
+=
+
+1 −√
+2ω
+
+α2
+
+−
+
+(σ
+
+cσ + 1)κ2
+
+α1,
+
+∞ 0
+
+h−
+
+1 σ
+
+−1
+
+hcdx
+
+=
+
+1
+
+−
+
+√ 2ω
+
+α1
+
+−
+
+cσ κ2 α0,
+
+∞
+
+h−
+
+1 σ
+
+−2
+
+hω
+
+dx
+
+0
+
+=
+
+c 4ω3/2 α2
+
++
+
+(σ
+
+2σ + 1)κ2 α1,
+
+∞
+
+h−
+
+1 σ
+
+−1
+
+hω
+
+dx
+
+0
+
+=
+
+c 4ω3/2 α1
+
++
+
+2σ κ2 α0.
+
+(3.3.8) (3.3.9) (3.3.10) (3.3.11)
+
+Proof. By integration by parts, and n integer,
+
+∞
+
+h−
+
+1 σ
+
+−n
+
+hcdx
+
+0
+
+=
+
+κ2(−
+
+1 σ
+
+c −
+
+n
+
++
+
+1)
+
+∞
+
+h−
+
+1 σ
+
+−n+1dx
+
+−
+
+√1
+
+0
+
+2ω
+
+∞
+
+h−
+
+1 σ
+
+−n
+
+dx,
+
+0
+
+Choosing n = 2, 1, we get (3.3.8) and (3.3.9). The relations (3.3.10) and (3.3.11) are
+
+2
+
+κ2
+
+obtained
+
+from
+
+(3.3.8),
+
+(3.3.9)
+
+and
+
+hω
+
+=
+
+− c hc
+
+−
+
+. 4ω3/2c
+
+Using Lemmas 3.3.1 and 3.3.2, we have:
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+Lemma
+
+3.3.3.
+
+Denoting
+
+κ˜
+
+=
+
+2−
+
+1 σ
+
+−2σ−1(1
+
++
+
+σ)
+
+1 σ
+
+κ2(
+
+1 σ
+
+−1)ω−
+
+1 2σ
+
+−
+
+1 2
+
+,
+
+we
+
+have
+
+∂cM = 2κ˜ 2c(σ − 2)ω1/2α0 + κ2α1 , ∂ωM = κ˜ω−1 2c2 − 8(σ − 1)ω ω1/2α0 − κ2cα1 , ∂cP = κ˜ 2c2 − 8(σ − 1)ω ω1/2α0 − κ2cα1 , ∂ωP = 2κ˜ 2c(σ − 2)ω1/2α0 + κ2α1 .
+
+From Lemmas 3.1.3 and 3.3.3, the determinant can be expressed as
+
+where
+
+det[d (ω, c)] = ∂ωM ∂cP − ∂cM ∂ωP
+
+=
+
+2−
+
+2 σ
+
+−4σ−2(1
+
++
+
+2
+σ) σ
+
+(4ω
+
+−
+
+c2)
+
+2 σ
+
+ω −1
+
+−
+
+1 σ
+
+−2
+
+×
+
+4(σ
+
+−
+
+1)ωα0
+
+−
+
+√ 2 ωcα0
+
++
+
+(4ω
+
+−
+
+c2)α1
+
+×
+
+4(σ
+
+−
+
+1)ωα0
+
++
+
+√ 2 ωcα0
+
+−
+
+(4ω
+
+−
+
+c2)α1
+
+,
+
+∞
+
+αn(ω, c; σ) ≡
+
+h−
+
+1 σ
+
+−ndx
+
+>
+
+0,
+
+0√
+
+h(x; σ; ω, c) ≡ cosh(σ
+
+4ω
+
+−
+
+c2x)
+
+−
+
+√c 2ω
+
+.
+
+Meanwhile, the trace is
+
+tr[d (ω, c)] = ∂ωM + ∂cP
+
+=
+
+2−
+
+1 σ
+
+−2σ−1(1
+
++
+
+1
+σ) σ
+
+(4ω
+
+−
+
+c2
+
+)
+
+1 σ
+
+−1(1
+
++
+
+ω
+
+)ω
+
+−
+
+1 2σ
+
+−
+
+3 2
+
+× (c(c2 − 4ω)α1 + 2√ω(c2 − 4(σ − 1)ω)α0).
+
+Theorem 3.3.4. If σ ≥ 2, and 4ω > c2, p(d (ω, c)) = 0.
+
+70 (3.3.12) (3.3.13)
+
+Proof. We examine the terms appearing in (3.3.12). The ﬁrst term is clearly positive. The second term is also positive,
+
+4(σ
+
+−
+
+1)ωα0
+
+−
+
+√ 2 ωcα0
+
++
+
+(4ω
+
+−
+
+c2)α1
+
+c
+
+c2
+
+=4ω
+
+(σ
+
+−
+
+1
+
+−
+
+√ 2ω
+
+)α0
+
++
+
+(1
+
+−
+
+4ω
+
+)α1
+
+> 0.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+71
+
+For the third term,
+
+4(σ
+
+−
+
+1)ωα0
+
++
+
+√ 2 ωcα0
+
+−
+
+(4ω
+
+−
+
+c2)α1
+
+≥(4ω
+
++
+
+√ 2 ωc)α0
+
+−
+
+(4ω
+
+−
+
+c2)α1
+
+=4ω(1 + √c )
+
+∞
+
+h−
+
+1 σ
+
+√ −1(cosh(σ 4ω
+
+−
+
+c2x)
+
+−
+
+1)dx
+
+>
+
+0.
+
+2ω 0
+
+Thus det[d (ω, c)] > 0, implying the eigenvalues of d (ω, c) have the same sign. Turning to the trace, c2 − 4(σ − 1)ω ≤ c2 − 4ω < 0 for σ ≥ 2. By (3.3.13), tr[d (ω, c)] < 0. Hence, the two eigenvalues of d (ω, c) are negative.
+
+In order to obtain the positive eigenvalue p(d (ω, c)) for σ ∈ (0, 2), we need the following lemma,
+
+Lemma 3.3.5. For σ ∈ (0, 2) and admissible (ω, c), det[d (ω, c)] has the same sign as
+
+F
+
+(
+
+√c 2ω
+
+;
+
+σ),
+
+where
+
+∞
+
+2
+
+F (z; σ) ≡(σ − 1)2
+
+(cosh
+
+y
+
+−
+
+z)−
+
+1 σ
+
+dy
+
+0
+
+∞
+
+2
+
+−
+
+(cosh
+
+y
+
+−
+
+z)−
+
+1 σ
+
+−1(z
+
+cosh
+
+y
+
+−
+
+1)dy
+
+.
+
+0
+
+(3.3.14)
+
+Proof. We rewrite (3.3.12) as,
+
+det[d (ω, c)]
+
+2−
+
+2 σ
+
+−4σ−2(1
+
++
+
+2
+σ) σ
+
+(4ω
+
+−
+
+c2
+
+)
+
+2 σ
+
+−1
+
+ω−
+
+1 σ
+
+−2
+
+=16(σ − 1)2ω2α02 −
+
+α1(c2
+
+−
+
+4ω)
+
++
+
+√ 2 ωcα0
+
+2
+
+∞
+
+2
+
+=16ω2 (σ − 1)2α02 −
+
+h−
+
+1 σ
+
+−1
+
+√c 2ω
+
+cosh(σ
+
+4ω − c2x) − 1 dx
+
+.
+
+0
+
+√ Letting y = σ 4ω − c2x,
+
+det[d (ω, c)]
+
+16ω2
+
+c
+
+2−
+
+2 σ
+
+−4σ−2(1
+
++
+
+σ)
+
+2 σ
+
+(4ω
+
+−
+
+c2)
+
+2 σ
+
+−1ω−
+
+1 σ
+
+−2
+
+=
+
+σ2(4ω
+
+− c2) F
+
+√ ;σ . 2ω
+
+(3.3.15)
+
+When σ = 1 and z ∈ (−1, 1), we have F (z; σ) = −1 and det[d (ω, c)] = −1/ω. For σ ∈ (0, 1) ∪ (1, 2), we can evaluate the function F (z; σ) numerically, as shown in Figures 3.1 and 3.2. For any ﬁxed σ ∈ (1, 2), F (z; σ) is monotonically increasing in z and has exactly one root z0 in the interval (−1, 1). For ﬁxed σ ∈ (0, 1), F (z; σ) is monotonically
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+72
+
+decreasing in z and strictly negative. It is this numerical computation of F which is used to complete the proofs of Theorems 1.3.4 and 1.3.5. In contrast, for σ ≥ 2, we can prove that F (z; σ) is strictly positive without resorting to computation.
+We thus have the following theorem about p(d (ω, c)):
+Theorem 3.3.6. For admissible (ω, c), √
+(i) when σ ∈ (1, 2) and c = 2z0 ω, det[d (ω, c)] = 0. √
+(ii) when σ ∈ (1, 2) and c < 2z0 ω, det[d (ω, c)] < 0; p(d (ω, c)) = 1. √
+(iii) when σ ∈ (1, 2) and c > 2z0 ω, det[d (ω, c)] > 0; p(d (ω, c)) = 0 or p(d (ω, c)) = 2.
+(iv) when σ ∈ (0, 1),det[d (ω, c)] < 0; p(d (ω, c)) = 1.
+(v) when σ = 1, det[d (ω, c)] = −1/ω < 0; p(d (ω, c)) = 1.
+
+3.4 Orbital Stability and Orbital Instability
+In this section, we complete the proof of orbital stability/instability. Proof of Theorem 1.3.3. From Theorem 3.2.1 and Theorem 3.3.4, n(H) = 1 for any σ > 0, and p(d ) = 0 for σ ≥ 2. Thus n(H) − p(d ) = 1, is odd, and by Theorem 1.3.6, all solitary waves are orbitally unstable. Proof of Theorem 1.3.4. By Theorem 3.3.6, det[d (ω, c)] < 0 for admissible (ω, c) satis-
+√ fying c < 2z0 ω. It follows that d (ω, c) has one positive eigenvalue and one negative eigenvalue. Therefore, p(d ) = 1. Furthermore, from Theorem 3.2.1, n(H) = 1. Hence
+n(H) − p(d ) = 0,
+and solitary waves are orbital stable. √
+When c > 2z0 ω, also by Theorem 3.3.6, det[d (ω, c)] > 0. So the signs of the two eigenvalues of d (ω, c) are the same. If both of eigenvalues were positive, then 2 = p(d ) > n(Hφ) = 1. This would contradict (1.3.10). Hence both eigenvalues are negative and p(d ) = 0. It follows that
+n(H) − p(d ) = 1,
+and solitary waves are orbitally unstable.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+73
+
+10
+
+σ=1
+
+σ = 1.2
+
+5
+
+σ = 1.4 σ = 1.6
+
+σ = 1.8
+
+σ=2
+
+0
+
+F
+
+−5
+
+−10
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+z
+
+2
+
+σ=1
+
+σ = 1.2
+
+1
+
+σ = 1.4 σ = 1.6
+
+σ = 1.8
+
+σ=2
+
+0
+
+F
+
+−1
+
+−2
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+z
+
+Figure 3.1: (a) Function F (z; σ), (3.3.14), for several values of σ ∈ [1, 2]. (b) is a magniﬁed plot near the z-axis.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+74
+
+F
+
+2
+
+0
+
+−2
+
+σ = 0.2
+
+σ = 0.4
+
+−4
+
+σ = 0.6
+
+σ = 0.8
+
+σ=1
+
+−6
+
+−8
+
+−10
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+z
+
+2
+
+σ = 0.2
+
+σ = 0.4
+
+σ = 0.6
+
+1
+
+σ = 0.8 σ=1
+
+0
+
+F
+
+−1
+
+−2
+
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+z
+
+Figure 3.2: (a) Function F (z; σ), (3.3.14), for several values of σ ∈ (0, 1]. (b) is a magniﬁed plot near the z-axis.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+75
+
+We prove Theorem 1.3.5 following the same argument, .
+Proof of Theorem 1.3.5. When σ ∈ (0, 1], from Theorem 3.3.6, det[d (ω, c)] < 0 for admissible (ω, c). Consequently, d (ω, c) has one positive eigenvalue and one negative eigenvalue; p(d ) = 1. By Theorem 3.2.1, n(H) = 1. Hence
+
+n(H) − p(d ) = 0,
+
+and solitary waves are orbitally stable.
+
+3.5 Basic Spectral Theorems
+In this section we establish some basic theorems using in the previous sections. We present some results of spectral theorem in Section 3.5.1, and we discuss the SturmLiouville theory in Section 3.5.2.
+
+3.5.1 Weyl’s Essential Spectral Theorem
+
+In this part, we will prove the Weyl’s essential spectral theorem we use in Chapter 3:
+
+Theorem 3.5.1. If operator L = −∂xx + V (x) + c on L2(R) with V (x) → 0 as |x| → ∞,
+
+then
+
+σess(L) = [c, ∞).
+
+(3.5.1)
+
+We use the following theorems in Chapter 5 of the book by Gustafson and Sigal [27] to proof this theorem. First we need recall the deﬁnition of Weyl sequence for operator A and λ on a Hilbert space H.
+
+Deﬁnition 3.5.2. We say {ψn} ⊂ H is a Weyl sequence for operator A and λ on a Hilbert space H if
+
+(a) ψn = 1 for all n.
+
+(b) (A − λ)ψn → 0 as n → ∞.
+
+(c) ψn → 0 weakly as n → ∞.
+
+We also deﬁne the Weyl spectrum:
+
+Deﬁnition 3.5.3. The Weyl spectrum of an operator A is
+
+σw(A) = {λ|there is a Weyl sequence for A and λ}.
+
+(3.5.2)
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+76
+
+Moreover, we need two theorems Theorem 3.5.4 (Weyl). If A = A∗, where A∗ is the adjoint operator of A. then
+σess(A) = σw(A). Theorem 3.5.5 (Theorem 5.20 in [27]). Let V : R → R be continuous, with V (x) → 0 as |x| → ∞. Then
+1. H = −∂xx + V is self-adjoint on L2(R). 2. σess(H) = [0, ∞). Now we can prove the Theorem 3.5.1.
+
+Proof of the Theorem 3.5.1. If λ ∈ σess(L), then by the theorem 3.5.4 and the Deﬁnition 3.5.2 and 3.5.3, we know there is a Weyl sequence {ψn} for L and λ. It follows
+
+(L − λ)ψn → 0 as n → ∞.
+
+(3.5.3)
+
+Hence
+
+(−∂xx + V + c − λ)ψn → 0 as n → ∞.
+
+(3.5.4)
+
+and
+
+(H − λ˜)ψn → 0 as n → ∞,
+
+(3.5.5)
+
+where H = −∂xx + V and λ˜ = λ − c. Therefore, {ψn} is also the Weyl sequence for H and λ˜. By the theorem 3.5.4 and 3.5.5,
+
+λ˜ ∈ σess(H) = [0, ∞).
+
+Thus
+
+λ = λ˜ + c ∈ [c, ∞).
+
+Conversely, If λ ∈ [c, ∞), then λ˜ ∈ σess(H). Thus, there exists a Weyl sequence {ψn} for H and λ˜. Similar argument as above will give us {ψn} is also a Weyl sequence for L and λ. Therefore
+λ ∈ σess(L).
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+77
+
+3.5.2 Sturm-Liouville Theory
+
+We recall here some basic theories on the Sturm-Liouville problem,
+
+d
+
+dy
+
+− p(x) + q(x)y = λw(x)y,
+
+dx
+
+dx
+
+(3.5.6)
+
+where p(x) > 0, w(x) > 0 and λ is an eigenvalue. If the domain is a bounded interval [a, b], and the boundary conditions are separated, namely
+
+α1y(a) + α2y (a) = 0 β1y(b) + β2y (b) = 0
+
+(α12 + α22 > 0), (β12 + β22 > 0),
+
+we have the existence of eigenvalues and properties of the eigenfunctions,
+
+(3.5.7)
+
+Theorem 3.5.6 ([72]). Consider the equation (3.5.6) with the boundary conditions (3.5.7). If p(x), w(x) > 0, and p(x), p (x), q(x), and w(x) are continuous functions over the ﬁnite interval [a, b], then
+
+• The eigenvalues λ1, λ2, λ3, · · · are real and isolated, i.e.
+
+λ1 < λ2 < λ3 < · · · < λn < · · · → ∞;
+
+• Corresponding to each eigenvalue λn, there is a unique (up to a normalization constant) eigenfunction yn(x) which has exactly n − 1 zeros in (a, b).
+In the proof of Lemma 3.2.4 and Lemma 3.2.8, we consider boundary value problems on the real line. The following theorem gives properties of the ﬁrst two eigenvalues. Theorem 3.5.7 ([8]). Suppose that φ ∈ L2(R) satisﬁes the diﬀerential equation
+−φ + cφ − f (φ) = 0,
+where c > 0, and f (x) : R → R is a smooth function satisfying f (0) = f (0) = 0. If φ has exactly one unique zero, then
+• the diﬀerential operator
+L0ψ ≡ −ψ + [c − f (φ)]ψ deﬁned in L2(R) has exactly one simple negative eigenvalue λ0;
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+78
+
+• the eigenvalue zero is simple with associated eigenfunction φ ;
+• there exists δ > 0 such that every λ ∈ σ(L0) − {λ0, 0} satisﬁes λ > δ, where σ(L0) is the continuous spectrum of L0.
+
+3.6 Numerical Illustrations
+In this section, we present some numerical study of the spectrum of the linearized operator Hφ and the time evolution of the perturbed solution.
+
+3.6.1 Numerical Integration of the Spectrum of the Linearized Operator
+Using Lemma 3.1.1, the self-adjoint operator
+
+acts on (u, u¯)T as
+
+L≡
+
+L1 L2 L¯2 L¯1
+
+(3.6.1)
+
+L
+
+u u¯
+
+=
+
+L1 L2 L¯2 L¯1
+
+u = Hφu .
+
+u¯
+
+Hφu
+
+(3.6.2)
+
+It follows the spectrum of L is the same as Hφ. We compute the spectrum of L using the sinc-collocation spectral method. The sinc-collocation method was introduced by Stenger [60], and it has been used in a wide variety of problems involving diﬀerential equations [48, 49, 61]. The sinc function is deﬁne as
+
+sinc(z) ≡
+
+sin(πz) πz
+
+,
+
+if z = 0;
+
+1,
+
+if z = 0.
+
+(3.6.3)
+
+In the sinc-collocation method, a function f : R → R is approximated using a superposition of shifted and scaled sinc function,
+
+M
+
+GM (f, h)(x) ≡
+
+f (xk)Sk,h(x),
+
+k=−M
+
+(3.6.4)
+
+where
+
+Sk,h(x) = sinc
+
+x − xk h
+
+,
+
+h > 0,
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+79
+
+and xk = kh for k = −M, · · · , M . There are two useful features in this spectral method: • The decay of f to 0 as x → ±∞ is naturally incorporated in the deﬁnition of sinc function. • The shifted and scaled sinc function Sk,h acts like discrete delta functions, 1, j = k; Sk,h(xj) = 0, j = k. where j = −M, · · · , M. It follows
+GM (f, h)(xk) = f (xk).
+
+For suﬃciently smooth functions, the following theory shows that the approximate function GM quickly converges to f as M goes to inﬁnity,
+Theorem 3.6.1 (Theorem 2.16 of [48]). Assume that f is an analytic function on a strip
+
+Dν = {z ∈ C | (z)| < ν}.
+
+If f satisﬁes
+
+f (t + i·) L1(−ν,ν) = O(|t|a), as t → ±∞, with a ∈ [0, 1],
+
+lim f (· + iy) Lp + lim f (· − iy) Lp < ∞.
+
+y→ν−
+
+y→ν−
+
+and the decay estimate
+
+|f (x)| ≤ C exp(−α|x|),
+
+then
+
+√ ∂xnf − ∂xnGM (f, h) L∞ ≤ CM (n+1)/2 exp − πναM ,
+
+where h is selected such that
+
+√ h = πν/(αM ) ≤ min{πν, π/ 2}.
+
+(3.6.5)
+
+In practice, it is non-trivial to check a function satisﬁes all these hypotheses, so we
+
+choose the parameters based on the soliton solution ψω,c (1.2.5) of gDNLS. To make ψω,c
+
+analytic on the strip Dν,
+
+√ cosh(σ 4ω − c2x) =
+
+√c
+
+.
+
+2ω
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+80
+
+It follows when x = iν,
+
+√
+
+√
+
+cosh(σ 4ω − c2x) = cos(σ 4ω − c2ν) =
+
+c √
+
+.
+
+2ω
+
+Hence the largest possibility of ν is
+
+√
+
+arccos (c/(2 ω))
+
+ν= √
+
+.
+
+σ 4ω − c2
+
+(3.6.6)
+
+On the other hand, from (1.2.5),
+
+√ ψω,c ∼ cosh(σ 4ω − c2x)−1/(2σ) ∼ exp
+
+−
+
+1
+
+√ 4ω
+
+−
+
+c2
+
+2
+
+, as |x| → ∞.
+
+√
+
+Thus,
+
+the
+
+decay
+
+rate
+
+of
+
+f
+
+is
+
+1 2
+
+4ω − c2. It follows, from (3.6.6) and (3.6.5), the mesh
+
+distance is
+
+√
+
+2π arccos (c/(2 ω))
+
+h=
+
+.
+
+σ(4ω − c2)M
+
+Table 3.1 shows the values of the ﬁrst four eigenvalues of the operator L, when ω = 1, σ = 2, c = −1, 0, 1 and M = 1024. In all three cases, there are two zero eigenvalues and one negative eigenvalue, which conﬁrms Theorem 3.2.1. Figure 3.3 shows a typical spectrum of L using ω = 1, σ = 2, c = 1 and M = 1024, with one negative eigenvalue, two superposition zero eigenvalues in the graph, and all other eigenvalues bounded away from zero.
+
+Table 3.1: The ﬁrst four eigenvalues of the operator L, when ω = 1, σ = 2, c = −1, 0, 1
+
+and M = 1024.
+
+e1
+
+e2
+
+e3
+
+e4
+
+c = −1 -8.26209 1.63648e-12 2.72519e-12 0.754352
+
+c = 0 -17.0998 -1.33112e-11 2.49993e-13 1.00774
+
+c = 1 -26.5972 -9.21356e-13 1.54734e-12 0.758772
+
+3.6.2 Numerical Simulation with an Initial Condition in the Form of Perturbed Soliton
+From Theorem 1.3.4, there are both orbitally stable and unstable branches for every √
+σ ∈ (1, 2), and they are separated by a turning curve c = 2z0(σ) ω. We take an initial
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+81
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+−0.2
+
+−0.4
+
+−0.6
+
+−0.8
+
+−1
+
+−200
+
+0
+
+200
+
+400
+
+600
+
+x 10−3 1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+
+−0.2
+
+−0.4
+
+−0.6
+
+−0.8
+
+−1
+
+−30 −25 −20 −15 −10
+
+−5
+
+0
+
+5
+
+Figure 3.3: The spectrum of L when ω = 1, c = 1, σ = 2 and M = 1024. The lower ﬁgure is a zoom in of the upper ﬁgure.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+82
+
+condition
+
+ψ0(x, 0) = ψω,c(x, 0) + 0.0001e−2x2
+
+(3.6.7)
+
+√ with c and ω close to the turning curve c = 2z0 ω, and integrate (1.1.1) with σ = 1.5
+
+using the fourth order exponential time diﬀerence scheme [37]. Though the nonlinearity
+
+is not polynomial in its arguments, ψ, ψ¯ and ψx,
+
+|ψ|3 ψx = ψψ¯ |ψ| ψx,
+
+we found that using dealiasing associated to the quintic problem proved robust. Our results are as follows:
+
+1. When ω = 1 and c = 0 < 2z = 0.1236606, Figure 3.4 shows that the solitary wave retains its shape for a long time (t = 100).
+
+2. When ω = 1 and c = 0.2 > 2z = 0.1236606, Figure 3.5 shows that the amplitude of the solitary wave increases rapidly near t = 10 and it is not stable.
+
+Our simulation of the unstable soliton suggests that, rather than dispersing or converging to a stable soliton, gDNLS may result in a ﬁnite time singularity. The potential for singularity formation is studied in Chapter 2.
+
+3.7 Discussion
+We have explored the stability and instability of solitons for a generalized derivative nonlinear Schro¨dinger equation. We have found that for σ ≥ 2, all solitons are orbital unstable. Using a numerical calculation of the function F (z; σ) deﬁned in (3.3.14). we have also shown that for 0 < σ ≤ 1, all solitons are orbital stable. For 1 < σ < 2, our computation of F (z; σ) indicates there exist both stable and unstable solitons, depending on the values of ω and c. In particular, for ﬁxed ω and σ > 1, there are always both stable and unstable solitons for properly selected c. For σ near 1, the unstable solitons are always rightward moving, but, as Figure 3.1 shows, the root, z0, becomes negative as σ approaches 2. Once z0 < 0, unstable solitons can be both rightward and leftward moving.
+Other dispersive PDEs possessing both stable and unstable solitons, such as NLS and KdV with saturating nonlinearities, [14, 15, 49, 56, 62], achieve this when introducing a nonlinearity that breaks scaling. In contrast, gDNLS always has a scaling symmetry, and throughout the regime 1 < σ < 2, the scaling is L2 supercritical. This also implies the
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+83
+
+2
+
+1.5
+
+|ψ|
+
+1
+
+0.5
+
+0
+
+100
+
+−10
+
+−5 0
+
+50
+
+5
+
+10 0
+
+t
+
+x
+
+Figure 3.4: Evolution of a perturbed orbitally stable soliton, ω = 1 and c = 0, with initial condition (3.6.7).
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+84
+
+|ψ|
+
+3.5 3
+2.5 2
+1.5 1
+0.5 0
+−10 −5
+
+0 5
+x
+
+10 0
+
+15 10 5 t
+
+Figure 3.5: Evolution of a perturbed orbitally unstable soliton, ω = 1 and c = .2, with initial condition (3.6.7).
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+85
+
+√ existence of an entire manifold of critical solitons, precisely when c = 2z0 ω. Along this curve, the standard stability results of [24, 25, 69, 70], break down, and a more detailed analysis is required. In this degenerate case, the stability can be obtained provided d(ω, c) remains convex [25]. Given that within any neighborhood of a critical soliton there exist unstable solitons, we conjecture that it is unstable. While there has been recent work on critical one-parameter solitons for NLS type equations, [14, 15, 49, 56], to the best our knowledge, there has not been an analogous work on two-parameter solitons.
+We observe that, in contrast to NLS solitons, not all gDNLS solitons can be obtained from scaling. Indeed, for (1.3.1), all solitons eiλtR(x; λ), solving
+
+−∆R + λR − R2σ+1 = 0
+
+can be obtained from the λ = 1 soliton via the transformation
+
+eiλtR(x;
+
+λ)
+
+=
+
+eiλt
+
+λ
+
+1 2σ
+
+1
+R(λ 2
+
+x;
+
+1).
+
+In contrast, while the gDNLS solitons inherit the scaling symmetry of gDNLS, not all admissible (ω, c) can be scaled to a particular soliton. Instead,
+
+ψω,c(x,
+
+t)
+
+=
+
+eiωtφω,c(x
+
+−
+
+ct)
+
+=
+
+eiωtφ1,c/√ω
+
+√ ( ω(x
+
+−
+
+ct)).
+
+(3.7.1)
+
+Only solitons for which can be scaled into one another.
+
+√c1 = √c2
+
+ω1
+
+ω2
+
+Our results are based on the assumption that a weak solution exists in H1 . While we do not have an H1 theory in general, our results can, in part, be made rigorous as follows. For σ ≥ 2, one should be able to apply the technique of [64] to obtain a local solution in Hs, with s > 1. Alternatively, for σ ≥ 2 and integer valued, [39, 40] can be invoked. Again, this yields a local solution in Hs, s > 1. For s suﬃciently large, the solution will also conserve the invariants.
+
+This is suﬃcient to fully justify the instability of the unstable solitons, since there is suﬃcient regularity such that if the solution leaves a neighborhood of the soliton in H1, it also leaves in Hs, s > 1. However, this is insuﬃcient to prove stability, because even if the solution stays close in the H1 norm, the norm of the solution could grow in a higher Sobolev norm.
+
+There is also the question of the monotonicity of F , for which we relied on numerical
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+86
+
+computation for σ < 2. Looking at Figures 3.1 and 3.2, it would appear that the F (z; σ = 2) is an upper bound on F (z; σ) for 1 < σ < 2. In addition, there appears to be a singularity at z = 1. Likewise, the line F = 0 appears to be an upper bound in the range σ ≤ 1. A more subtle analysis may permit a rigorous justiﬁcation of our work in this regime.
+Finally, the solitary solution φω,c (1.2.5) is only deﬁned when c2 < 4ω. What happens when c2 → 4ω? Computing the integral in the phase of the solitary solution (1.2.5), we get
+
+y
+
+y
+
+ϕ2σdy =
+
+√ 2ω
+
+√ cosh(σ 4ω − c2y) −
+
+√c
+
+−1
+dy
+
+−∞
+
+−∞
+
+(σ + 1)(4ω − c2) √
+
+2ω
+
+√
+
+√
+
+1
+
+c+2 ω
+
+σy 4ω − c2 c + 2 ω
+
+=2(1 + ) arctan(√
+
+) + arctan tanh(
+
+)√
+
+.
+
+σ
+
+4ω − c2
+
+2
+
+4ω − c2
+
+(3.7.2)
+
+√ when c → 2 ω,
+
+√
+
+c+2 ω π
+
+arctan( √
+
+)→
+
+4ω − c2 2
+
+(3.7.3)
+
+and
+
+√
+
+σy 4ω − c2 1
+
+σy
+
+tanh(
+
+)√
+
+→.
+
+(3.7.4)
+
+2
+
+4ω − c2 2
+
+Thus
+
+y
+
+ϕ2σ dy
+
+→
+
+2(1
+
++
+
+1 )
+
+π
+
+√
+
++ arctan(2 ωσy)
+
+.
+
+−∞
+
+σ2
+
+(3.7.5)
+
+It follows that
+
+√ 1π
+
+√
+
+θ → ωy −
+
++ arctan(2 ωσy) .
+
+σ2
+
+(3.7.6)
+
+Furthermore,
+
+ϕ(y)2σ ∼ √ 2ω
+
+(1 + σ)(4ω − c2)
+
+1
+
++
+
+1 2
+
+σ2
+
+y2(4ω
+
+−
+
+c2)
+
+−
+
+√c 2ω
+
+√
+
+√
+
+(1 + σ)(2 ω + c)
+
+4 ω(1 + σ)
+
+=√
+
+√
+
+→
+
+.
+
+1 + ωσ2y2(2 ω + c) 1 + 4ωσ2y2
+
+Therefore, the limiting soliton (lump soliton) is
+
+ψ(y) = =
+
+√ 4 ω(1 + σ) 1 + 4ωσ2y2
+
+1
+
+e ( ) 2σ
+
+√ i(ωt+ ωy−
+
+1 σ
+
+π 2
+
+√ +arctan(2 ωσy)
+
+)
+
+2c(1 + σ) 1 + c2σ2y2
+
+1
+
+e ( ) , 2σ
+
+i(
+
+c2 4
+
+t+
+
+c 2
+
+y−
+
+1 σ
+
+π 2
+
++arctan(cσy)
+
+)
+
+(3.7.7)
+
+and has an algebraic decay as y → ±∞.
+
+Chapter 3. Stability of gDNLS Solitary Waves
+
+87
+
+√ On the other hand, when c → −2 ω,
+
+ϕ(y)2σ ∼ √ 2ω
+
+(1 + σ)(4ω − c2)
+
+1
+
++
+
+1 2
+
+σ2
+
+y2(4ω
+
+−
+
+c2)
+
+−
+
+√c 2ω
+
+√
+
+(1 + σ)(2 ω + c)
+
+=√
+
+√
+
+→ 0.
+
+1 + ωσ2y2(2 ω + c)
+
+Hence, ψ(y) → 0, √
+and there are no nontrivial solutions when c = −2 ω. A natural question is whether the lump soliton (3.7.7) is orbitally stable. A prelimi-
+nary study shows that, when 4ω = c2, the operator L˜11 in (3.2.4) takes the form
+
+L˜ 11
+
+=
+
+−∂yy
+
++
+
+c(2σ + 2
+
+1) ϕ2σ
+
+−
+
+8σ2 + 6σ + 4(σ + 1)2
+
+1 ϕ4σ.
+
+The continuous spectrum of L˜11 is equal to [0, ∞), which is not bounded away from 0. We plan to further study this problem in the future.
+
+Chapter 4
+Numerical Simulation of Resonant Tunneling of Fast Solitons for the Nonlinear Schro¨dinger Equation
+
+In this chapter, we illustrate numerically that the phenomenon of resonant tunneling, described in Section (1.4), occurs in a nonlinear setting, namely, for the one dimensional cubic NLS equation (1.4.2) with two classes of potentials, the ‘box’ potential (1.4.4) and a repulsive 2-delta potential (1.4.3).
+We consider an initial condition in the form of a slightly perturbed, fast moving NLS soliton. Under a certain resonant condition, we show that the incoming soliton almost fully passes trough the potential barrier. We calculate the transmitted mass of the soliton, and show that it converges to the total mass of the solution as the velocity of the soliton increases.
+This chapter is organized as follows. In Section 4.1 we recall some basic facts about linear scattering theory and apply it to the two examples of potential under consideration. In Section 4.2, we give a detailed description of our numerical results. Lastly, we describe the numerical method and some tests to validate the computations in Section 4.3.
+
+4.1 Linear Quantum Mechanical Scattering
+
+In this section, we derive the resonant tunneling condition using the linear scattering theory. Considering the linear Schro¨dinger equation with external potential V (x),
+
+1 iut + 2 uxx − qV (x)u = 0,
+
+(4.1.1)
+
+88
+
+Chapter 4. Resonant Tunneling of Fast Solitons
+
+89
+
+where the potential V (x) is the repulsive 2-δ potential (1.4.3) and the ‘box’ potential (1.4.4). We will refer to the 2-δ potential (1.4.3) as potential (P1), and to the box potential (1.4.4) as potential (P2).
+
+2-δ Potential (P1)
+
+We consider the “eigenvalue” problem related to (4.1.1)
+
+1 βu + 2 uxx − qV u = 0,
+
+(4.1.2)
+
+where
+
+β
+
+∈
+
+R.
+
+On
+
+the
+
+intervals (−∞, −l), (−l, l) √
+
+and
+
+(l, ∞),
+
+this
+
+equation
+
+has
+
+the
+
+general
+
+solution u = e±iλx, where λ = 2β. Thus the solution of (4.1.2) has the form
+
+ u = eiλx + Re−λx,  
+u = Beiλx + Ae−iλx,
+
+ 
+
+u
+
+=
+
+T eiλx,
+
+x < −l; −l < x < l; x > l.
+
+(4.1.3)
+
+where R, A, B, T are coeﬃcients to be determined. Imposing that u(x) is continuous at x = ±l, we have
+
+Beilλ + Ae−ilλ = T eilλ, e−ilλ + Reilλ = Be−ilλ + Aeilλ.
+
+(4.1.4)
+
+In order to solve the four unknown coeﬃcients, we get another two equations by integrating the equation (4.1.2) across the point x = ±l, respectively,
+
+It follows
+
+±l+ 1
+
+lim
+→0 ±l−
+
+− 2 uxx + q(δ(x + l) + δ(x − l))udx
+
+±l+
+
+=β lim
+
+udx = 0.
+
+→0 ±l−
+
+1
+
+−
+
+2
+
+lim
+→0
+
+[ux(l
+
++
+
+) − ux(l −
+
+)] + qu(l) = 0,
+
+1
+
+−
+
+2
+
+lim[ux(−l
+→0
+
++
+
+) − ux(−l −
+
+)] + qu(−l) = 0.
+
+(4.1.5) (4.1.6)
+
+Chapter 4. Resonant Tunneling of Fast Solitons
+
+90
+
+Using
+
+ 
+
+ux
+
+=
+
+iλeiλx
+
+−
+
+iλRe−λx,
+
+
+
+ux = iλBeiλx − ik2Ae−iλx,
+
+ 
+
+ux
+
+=
+
+iλT eiλx,
+
+x < −l; −l < x < l; x > l,
+
+(4.1.7)
+
+equation (4.1.6) becomes
+
+1 [iλT eiλl − iλBeiλl + iλAe−iλl] = qBeiλl + qAe−iλl 2 1 [−iλe−iλl + iλReiλl + iλBe−iλl − iλAeiλl] = qBe−iλl + qAeiλl. 2
+Solving (4.1.4) and (4.1.8)),we get
+
+(4.1.8)
+
+−ie−ilλ(λ(1 + e4ilλ) + iq(1 − e4ilλ))
+
+R =q
+
+λ2 + 2iλq − q2 + e4ilλq2
+
+λ2
+
+T=
+
+.
+
+λ2 + 2iλq − q2 + e4ilλq2
+
+(4.1.9)
+
+The numerator of R(λ) identiﬁes to −2iq(λ cos(2lλ) + q sin(2lλ)). Thus, if λ0 is such that
+
+tan(2lλ0) = −λ0/q, R(λ0) = 0, and resonant tunneling occurs. In the NLS equation,
+
+the role of the wave number λ is played by the velocity, which is assumed to be large.
+
+Therefore, we will choose our parameters so that the velocity v of the initial solitary wave
+
+satisﬁes
+
+v q
+
+=
+
+− tan(2lv).
+
+Box Potential (P2)
+
+Consider the related “eigenvalue” problem
+
+1 βu + 2 uxx − qV u = 0, where β is a constant. When x ∈ (−∞, −l) ∪ (l, ∞), (4.1.10) has the form
+
+1 βu + 2 uxx = 0,
+
+and
+
+u
+
+=
+
+e±iλx,
+
+where
+
+λ
+
+=
+
+√ 2β.
+
+When
+
+−l
+
+<
+
+x
+
+<
+
+l,
+
+(4.1.10)
+
+becomes
+
+1 βu + 2 uxx − qu = 0,
+
+(4.1.10) (4.1.11)
+
+Chapter 4. Resonant Tunneling of Fast Solitons
+
+91
+
+√ which implies u = e±ikx with k = 2β − 2q. Thus, we have the solution of (4.1.10) on
+
+the real line,
+
+ u = eiλx + Re−λx,  
+u = Beikx + Ae−ikx,
+
+ 
+
+u
+
+=
+
+T eiλx,
+
+x < −l; −l < x < l; x > l,
+
+(4.1.12)
+
+where R, A, B, T are constants to be determined by the continuity of u and ux. Imposing that u(x) is continuous at the point x = −l and x = l, we have
+
+e−iλl + Reiλl = Be−ilk + Aeilk, Beilk + Ae−ilk = T eilλ.
+
+(4.1.13)
+
+Using
+
+ 
+
+ux
+
+=
+
+iλeiλx
+
+− iλRe−λx,
+
+
+
+ux = ikBeikx − ikAe−ikx,
+
+ 
+
+ux
+
+=
+
+iλT eiλx,
+
+x < −l; −l < x < l; x > l.
+
+and the continuity of ux at x = ±l, we obtain
+
+iλe−ilλ − iλReilλ = ikBe−ilk − ikAeikl, ikBeilk − ikAe−ilk = iλT eiλl.
+
+(4.1.14) (4.1.15)
+
+Solving (4.1.13) and (4.1.15), we get
+
+e−2ilλ(1 − e4ilk)(λ2 − k2)
+
+R=
+
+,
+
+e4ilk(λ − k)2 − (λ + k)2
+
+4e−2il(λ−k)λk
+
+T=
+
+.
+
+e4ilk(λ − k)2 − (λ + k)2
+
+(4.1.16)
+
+It follows
+
+ie−2ilλ sin(2l λ2 − 2q) R=q
+cos(2l λ2 − 2q)λ λ2 − 2q − i sin(2l λ2 − 2q)(λ2 − q)
+
+(4.1.17)
+
+and
+
+e−2ilλλ λ2 − 2q
+
+T =−
+
+,
+
+cos(2l λ2 − 2q)λ λ2 − 2q − i sin(2l λ2 − 2q)(λ2 − q)
+
+(4.1.18)
+
+by k = λ2 − 2q. We will choose the initial solitary wave with velocity v satisfying sin(2l v2 − 2q) = 0, which corresponds to the resonant tunneling condition.
+
+Chapter 4. Resonant Tunneling of Fast Solitons
+
+92
+
+4.2 Numerical Results
+
+4.2.1 Numerical Evidence of Resonant Tunneling
+
+We now present the results of the numerical simulation of the NLS equation with potential
+
+(P1) and (P2), using the method presented in Section 4.3.
+
+Figure 4.1 shows the evolution of the initial condition (4.3.1) in the case of the po-
+
+tential (P1).
+
+The velocity v is chosen to satisfy the equation
+
+v q
+
+= − tan(2lv), and we
+
+choose v = q = 12.5π, l = 0.03 and dt = 1.7 × 10−4. The ﬁrst panel (a) represents the
+
+initial solitary wave. The second and third (b, c) shows the interaction of the solitary
+
+wave with the barriers, at time t = 0.19975, 0.29975. Finally, the last panel (d) at time
+
+t = 0.5 is the transmitted wave in the post-collision phase. We see that for this choice
+
+of parameters, most of the wave is transmitted, and a small fraction of it is reﬂected. To
+
+describe this dynamics more precisely, deﬁne the transmission rate
+
+and the reﬂection rate,
+
+Tqs(v) =
+
+∞ l
+
+|u(x,
+
+t)|2dx
+
+|u(x, t)|2dx
+
+R
+
+(4.2.1)
+
+Rqs(v) =
+
+−l −∞
+
+|u(x,
+
+t)|2dx
+
+|u(x, t)|2dx
+
+R
+
+(4.2.2)
+
+where the total mass is |u(x, t)|2dx = 2. Although the numerical integration is over R
+a domain with ﬁnite size, the latter is large enough since the contribution away from
+
+the center of mass is exponentially small. This is supported by the fact that we get the
+
+same numerical results for diﬀerent, yet large, domain sizes. We ﬁnd that at time t = 0.5
+
+(corresponding to the last panel of Figure 4.1), Tqs(v) = 0.9866.
+
+Table 4.1 shows that Rqs and Tqs for l = 0.05, q = v and diﬀerent values v =
+
+(n−1/4)π 2l
+
+,
+
+n
+
+∈
+
+Z
+
+for
+
+n
+
+=
+
+1, 2, 3, 4, 5.
+
+As v increases, Tqs tends to 1 and Rqs tends to 0.
+
+In
+
+contrast,
+
+when
+
+v, q
+
+do
+
+not
+
+satisfy
+
+the
+
+relation
+
+v q
+
+=
+
+− tan(2lv),
+
+resonant
+
+tunneling
+
+does not occur. Figure 4.2 shows the time evolution of the solitary wave when v = 8.75π,
+
+q = 40, l = 0.1 and dt ≈ 2 × 10−4. The wave clearly splits into 2 waves and the
+
+transmission rate is Tps(v) = 0.5851.
+
+We repeat this numerical calculation with potential (P2). Choosing v, q such that
+
+2l v2 − 2q = π, namely, q = 10v, v ≈ 42.97, l = 0.05 and dt ≈ 10−5, resonant tunneling
+
+occurs. Figure 4.3 represents the three regimes of the dynamics, at t = 0, t = 0.1976,
+
+Chapter 4. Resonant Tunneling of Fast Solitons
+
+93
+
+1.5
+1
+|u|
+0.5
+0
+1.5
+1
+|u|
+0.5
+0
+
+1.5 (a)
+1
+|u|
+0.5
+0 0 10 20
+x
+1.5 (c)
+1
+|u|
+0.5
+0 0 10 20
+x
+
+(b)
+0 10 20
+x
+(d)
+0 10 20
+x
+
+Figure 4.1: Resonant tunneling (2 − δ potential (P1))
+
+Table 4.1: Transmission and reﬂection rate, Tqs and Rqs, for potential (P1) with parameters l = 0.05 and v = q.
+
+nv
+
+Tqs
+
+Rqs
+
+1 23.5619 0.96557 0.03443
+
+2 54.9778 0.97167 0.02833
+
+3 86.3938 0.97322 0.02678
+
+4 117.809 0.97393 0.02607
+
+5 149.225 0.97435 0.02565
+
+Chapter 4. Resonant Tunneling of Fast Solitons
+
+94
+
+1.5
+1
+|u|
+0.5
+0
+1.5
+1
+|u|
+0.5
+0
+
+1.5 (a)
+1
+|u|
+0.5
+0 0 10 20
+x
+1.5 (c)
+1
+|u|
+0.5
+0 0 10 20
+x
+
+(b)
+0 10 20
+x
+(d)
+0 10 20
+x
+
+Figure 4.2: Splitting of the soliton (2 − δ potential (P1))
+
+Table 4.2: Transmission and reﬂection rate, Tqs and Rqs, for potential (P2) with parameters l = 0.05 and q = 10v.
+
+nv
+
+Tqs
+
+Rqs
+
+1 42.9691 0.99874 1.2583 × 10−3
+
+2 73.6227 0.99923 0.7687 × 10−3
+
+3 104.776 0.99929 0.7107 × 10−3
+
+4 136.061 0.99930 0.6950 × 10−3
+
+5 167.397 0.99931 0.6869 × 10−3
+
+t = 0.26743, and t = 0.4655. At the last time, the transmission rate is Tqs(v) = 0.9987417. In contrast, Figure 4.4 shows the splitting of the wave when the resonant condition is
+
+not met: v = (5π)2 + 400, q = 200, l = 0.05 and dt ≈ 2 × 10−4. The four panels of
+
+Figure 4.4 are the solitary wave at t = 0, 0.319, 0.479, 0.8, and the transmission rate is
+
+Tps(v) = 0.75 in the last panel.
+
+Table 4.2 shows the values of Rqs and Tqs for l = 0.05 and diﬀerent values of v satisfying
+
+the
+
+resonant
+
+tunneling
+
+condition
+
+l
+
+=
+
+√nπ , n
+2 v2−2q
+
+∈
+
+Z.
+
+4.2.2 Resolution of Outgoing Waves
+
+We identify the transmitted wave to a soliton in the form of (1.4.1) corresponding to the
+
+initial condition
+
+u(x, 0) = Aeivxsech(A(x − a0))
+

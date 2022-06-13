@@ -1,0 +1,339 @@
+Aol et al. Earth, Planets and Space (2020) 72:164 https://doi.org/10.1186/s40623-020-01294-z
+
+FULL PAPER
+
+Open Access
+
+Ionospheric irregularities and scintillations: a direct comparison of in situ density observations with ground‑based L‑band receivers
+Sharon Aol1*  , Stephan Buchert2 and Edward Jurua1
+
+Abstract 
+Ionospheric irregularities can affect satellite communication and navigation by causing scintillations of radio signals. The scintillations are routinely measured using ground-based networks of receivers. This study presents observations of ionospheric irregularities by Langmuir probes on the Swarm satellites. They are compared with amplitude scintillation events recorded by the Global Positioning System-Scintillation Network and Decision Aid (GPS-SCINDA) receiver installed in Mbarara (Lat: 0.6◦S , Lon: 30.8◦E , Mag. lat: 10.2◦S ). The study covers the years from 2014 to 2018 when both data sets were available. It was found that the ground-based amplitude scintillations were enhanced when Swarm registered ionospheric irregularities for a large number of passes. The number of matching observations was greater for Swarm A and C which orbited at lower altitudes compared to Swarm B. However, some counterexamples, i.e., cases when in situ electron density fluctuations were not associated with any observed L-band amplitude scintillation and vice versa, were also found. Therefore, mismatches between observed irregularity structures and scintillations can occur just over a few minutes and within distances of a few tens of kilometers. The amplitude scintillation strength, characterized by the S4 index was estimated from the electron density data using the well-known phase screen model for weak scattering. The derived amplitude scintillation was on average lower for Swarm B than for A and C and less in accordance with the observed range. Irregularities at an altitude of about 450 km contribute strongly to scintillations in the L-band, while irregularities at about 510-km altitude contribute significantly less. We infer that in situ density fluctuations observed on passes over or near Mbarara may be used to indicate the risk that ionospheric radio wave scintillations occur at that site.
+Keywords:  Equatorial ionosphere, Ionospheric irregularities, Amplitude scintillation
+
+Introduction Ionospheric irregularities occur near the geomagnetic equator after sunset and multiple studies have observed the extension of irregularity occurrence after midnight (e.g., Dao et al. 2011; Huang et al. 2014). They may be seen as field-aligned structures characterized by plasma density depletions, observed by satellites and radar
+*Correspondence: saol@must.ac.ug 1 Department of Physics, Mbarara University of Science and Technology, Mbarara, Uganda Full list of author information is available at the end of the article
+
+backscatter in the topside ionosphere (Woodman and La Hoz 1976; McClure et al. 1977; Portillo et al. 2008). The spatial scales of equatorial plasma irregularities extend over at least four orders of magnitude (Lühr et al. 2014; Xiong et al. 2016; Rino et al. 2016). An assumed scenario is that larger-scale bubbles are created by a Rayleigh– Taylor instability (RTI) which starts from the bottom side of the ionosphere (Abdu 2005; Kelley 2009; Schunk and Nagy 2009; Portillo et al. 2008). The bubbles then rise and develop spatial gradients triggering further instabilities,
+
+© The Author(s) 2020. This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creat​iveco​ mmons​.org/licen​ses/by/4.0/.
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 2 of 15
+
+which result in a cascade from larger to small-scale structures typically for turbulent phenomena.
+Ionospheric irregularities in the low latitudes may disturb the amplitude and phase of propagating radio signals, an effect called scintillation (Yeh and Liu 1982; Aarons 1982; Kintner et al. 2007). Scintillations depend on many factors, like the irregularity strength and layer thickness, signal frequency, local time, season, solar and magnetic activity, the satellite zenith angle and the angle between the ray path and the Earth’s magnetic field (Aarons 1982; Wernik et al. 2007). Scintillation normally occurs when the Fresnel dimension of the propagating radio wave is of the order of irregularity scales in the ionosphere (Briggs and Parkin 1963). They are expected to originate mainly from medium-scale irregularities between the largest and smallest scales of a typical disturbed equatorial ionosphere, nearer to small scales. It is not clear to what extent the Fresnel theory which considers wave diffraction at hard boundaries gives robust estimates for the turbulent ionosphere. State-of-the-art numerical simulations have recently been able to resolve L1 Fresnel scale irregularities (Yokoyama 2017; Rino et al. 2018). Yokoyama (2017) recommended the need to directly resolve Fresnel scale irregularities so as to quantitatively evaluate scintillations in simulation studies.
+Scintillations may affect the performance of satellite communication and navigation systems, for example, the Global Navigation Satellite System (GNSS). The intensity of the amplitude scintillation can be so strong that a receiver loses lock on an acquired signal. When several paths are affected, a navigation system may fail to give position (Wernik et al. 2007; Kintner et al. 2007; Paznukhov et al. 2012). The ability to evaluate the risk of occurrence of scintillations is useful for accurate navigation applications. Therefore, the study of scintillations and ionospheric irregularities is an interesting scientific topic for plasma turbulence, radio wave propagation and also important when developing applications and systems.
+Previous studies have shown that scintillations recorded on the ground are associated with ionospheric irregularities encountered in situ (Roddy et al. 2010; Nishioka et al. 2011; Akala et al. 2017; Andima et al. 2018). Roddy et al. (2010) and Nishioka et al. (2011) compared ionospheric irregularity observations made by Communication Navigation Outage Forecasting System (C/NOFS) and 250-MHz scintillations over Christmas Island ( 3◦N, 157◦W ). Akala et al. (2017) compared SCINDA GNSS data at Addis Ababa (Lat 9.03◦N , Lon 38.77◦E , Mag. lat 0.18◦N ) with C/NOFS data. Andima et al. (2018) characterized the low latitude ion density irregularities measured by C/NOFS from 2011 to 2013. This was supported by ground-based data from
+
+the SCINDA receivers at Makerere (Lon 32.6◦E , Lat 0.3◦N , and Dip. lat −9.3◦N ) and Nairobi (Lon 36.8◦E , Lat −1.3◦N , and Dip. lat −10.8 ◦N ). However, most of these studies used ionospheric irregularity observations made by C/NOFS. The European Space Agency’s (ESA) Swarm satellite mission has provided an opportunity to compare scintillation occurrences and ionosphere irregularities from a meridional point of view. Olwendo et al. (2019) specifically compared irregularity structures recorded by Swarm at 2 Hz frequency with amplitude scintillation over Pwani (Lon: 39.78◦E , Lat: 3.24◦S ). The Swarm satellites can measure electron density using a faceplate at an even greater frequency of 16 Hz which enables smaller-scale structures to be identified in electron density (Nishioka et al. 2011). The high-resolution density estimates sampled at 16 Hz correspond to a spatial scale of about 500 m, which is of the order of the Fresnel scale relevant for scintillations in the L-band at GNSS frequencies.
+Furthermore, to overcome the limited spatial coverage of ground-based receivers, efforts have been made to derive scintillation for prediction/monitoring purposes from in situ electron density measurements as an alternative. One approach involves the derivation of scintillation from in situ electron density measurements using the weak phase screen model (Basu et al. 1976; Rino 1979; Crane 1977; Wernik et al. 2007; Patel et al. 2011; Liu et al. 2012; Alfonsi et al. 2017). To test the ionospheric scintillation model, coincident observations of electron density in the ionosphere and scintillation signals on the ground is necessary (Liu et al. 2012). The Swarm high-resolution faceplate electron density measurements were recommended by Alfonsi et al. (2017) as input to the Rino’s power law phase screen model to derive scintillation of amplitude.
+Limitations in spacecraft orbital parameters and orientation have meant that C/NOFS, which orbited at a low inclination angle of about 13°, sampled ionospheric irregularities mainly in the zonal direction. As far as we know, no attempt has yet been made in calculating expected scintillation amplitudes from Swarm 16-Hz density data. Therefore, in the present study, we compared measurements of near Fresnel scale resolved irregularities recorded in situ by Swarm with observed scintillations at L1 on the ground to demonstrate whether observed 500-m scale irregularities correspond to detected scintillations. In addition, we also modeled and predicted the expected level of scintillations from the observed density variation using the power–law phase screen model. The 16-Hz Swarm electron density and GPS-SCINDA scintillation measurements were used for the period from 2014 to 2018 when both data sets were available.
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 3 of 15
+
+Data and methods
+Data The Swarm mission is made up of three identical satellites, i.e., Swarm A, B, and C, each with payloads designed to measure the Earth’s magnetic field and space environment (Friis-Christensen et al. 2006). After commissioning and orbit consolidation was completed in mid-March 2014, a polar orbit (inclination ≈ 87.5◦ ), with Swarm A and C orbiting side by side at a longitudinal separation of about 1.4° was reached. By the end of 2018, Swarm A and C altitude, near the equator was about 448 km above sea level near the equator and that of Swarm B was about 512 km. In this study, the Swarm faceplate electron density ( Ne ) measurements at a frequency of 16 Hz were used to identify irregularity structures in the topside ionosphere and these are readily available at http://earth​.esa.int/swarm​. The Swarm pass segments with magnetic latitudes between −30◦ and +30◦ were considered. Only faceplate Ne data acquired during orbits that passed within ±5◦ longitude of the ground site were considered for detailed comparison, similar to Roddy et al. (2010) and Sarkar and Gwal (2014).
+The occurrence of amplitude scintillation was determined using the GPS-SCINDA receiver installed at Mbarara, roughly near the location of the EIA southern crest. The GPS-SCINDA samples raw data at a frequency of 50 Hz. It records the carrier-to-noise ratio (C/No) intensity and phase of GPS L1 and L2 signals, as well as the azimuth and elevation of the visible satellites (Akala et al. 2012). It is a real-time GPS data acquisition and ionospheric analysis system which computes amplitude scintillation (S4) and Total Electron Content (TEC) using the full temporal resolution of the receiver (Groves et al. 1997).
+Data processing Ionospheric irregularity identification from swarm To identify ionospheric irregularities, a similar method used by Huang et al. (2014) and Aol et al. (2020) was applied. The 16-Hz Ne measurements were passed through a 2-s running mean filter corresponding to a wavelength of about 15 km along the satellite track. The running mean N e determined over a 2-s interval
+
+was subtracted from the original observations to obtain the residuals dNe = Ne − N e . The standard deviation of the residuals std (dNe) was then used to represent the density perturbation. We mainly focused on small-
+scale equatorial plasma structures. A threshold value of std (dNe) = 1 × 1010 m−3 , similar to that by Huang et al. (2014) was adopted.
+
+Amplitude scintillation from GPS‑SCINDA
+
+The GPS-SCINDA determines S4 index using the equa-
+
+tion:
+
+S42
+
+=
+
+(�I
+
+2
+�
+
+−
+
+�I
+
+2
+�
+
+)/�I
+
+2
+�
+
+) ,
+
+where
+
+I
+
+represents
+
+the
+
+signal intensity. The S4 index is defined as the normalized
+
+ratio of the standard deviation of signal intensity fluctua-
+
+tions to the mean signal intensity (Groves et al. 1997; Kil
+
+et al. 2002; Nishioka et al. 2011). The S4 index is computed
+
+at 60 s intervals. Processing of the GPS-SCINDA data was
+
+done using the GPS-TEC application software (Seemala
+
+and Valladares 2011). In this study, amplitude scintillations
+
+with S4 > 0.3 were considered as relevant scintillation
+
+events, similar to Akala et al. (2011), Alfonsi et al. (2013),
+
+and Wang et al. (2014). Only S4 data corresponding to ray
+
+path elevations above 30° was considered to avoid the mul-
+
+tipath effects. For comparison with Swarm data, the IPPs
+
+of the GPS satellites were extrapolated to Swarm A and
+
+C heights to judge as accurately as possible how close in
+
+space and time to the GPS signal path a Swarm satellite was
+
+observing the plasma structures. Scintillation data at times
+
+when Swarm was within ±5° longitudinal range from the
+
+longitude of the ground site were considered. Scintillation
+
+data that were close to Swarm passes in terms of latitude
+
+and longitude were selected.
+
+Amplitude scintillation from the phase screen model To derive S4 from the 16-Hz Ne data, using Rino’s phase screen model, the data were first split into 8-s long segments similar to Wernik et al. (2007) and Liu et al. (2012). For each segment, a detrended Ne represented by dNe was determined by subtracting a linear fit to the data segment. A Hanning window was applied to each segment to prevent energy leakage (Liu et al. 2012). Spectral analysis was then carried out for each segment using the Fast Fourier Transform algorithm to obtain the Power Spectral Density (PSD). The power spectra of 8-s long 16-Hz data segments were calculated, corresponding to scale sizes from about 300 m to 1 km along the satellite track. The one-dimensional spectral index p was calculated using log–log leastsquares fit to the PSD. The modeled amplitude scintillation was obtained from the equation (Rino 1979):
+
+S42 = (re )2L sec θ CsZν−0.5
+
+Ŵ[(2.5 − ν)/2] 2π 0.5Ŵ[(ν + 0.5)/2](ν − 0.5)
+
+F,
+
+(1)
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 4 of 15
+
+where Cs = 8π 3/2��Ne2�qo2ν−2Ŵ(ν + 0.5)/ Ŵ(ν − 0.5) is the turbulence strength (Rumsey 1975), the Fresnel zone parameter Z = ZR sec θ /4π , ZR = zzs/z + zs , z is the distance to the phase screen, zs is the distance to the GPS satellite, re = 2.8 × 10−15 m is the classical electron radius, θ is the zenith angle of the signal path, and L is the irregular layer thickness. We have assumed L = 200 km (Basu et al. 1976; Patel et al. 2011). is the wavelength at GPS L1 frequency, qo = 2π/Lo is the outer-scale cut-off number, Lo is the outer scale of the irregularity, Ne2 is the variance of Ne at the satellite location and the angle brackets denote ensemble averaging. Rino (1979) noted that, the in situ spectral index p is one less than the threedimensional phase spectral index ν used in Eq. 1. We, therefore, used the formula p = 2ν − 1 to obtain ν from the spectra of the in situ Ne fluctuations p (Rino 1979). F in Equation 1 is the geometry-dependent Fresnel filter factor defined in Equation (34) of Rino (1979). For isotropic irregularities F = 1 (Wernik et al. 2007). A detailed derivation of the modeled S4 in Eq. 1 can be found in Patel et al. (2011) and references therein.
+Results and discussion
+Correspondence between occurrence of ionospheric irregularities and scintillations This section presents the occurrence of ionospheric irregularities observed by Swarm A, B, and C in comparison with simultaneous measurements of S4 index values on the ground. Figure 1 shows examples of Ne variations for Swarm A, B, and C passes close to Mbarara longitude (≈ 30.8°). The results include variations in Ne in logarithmic
+
+scale and standard deviation of dNe ( std(dNe) ) in panels (a) and (b), respectively. Multi-peak variations in Ne were observed in panel (a) of Fig. 1 due to the sufficient temporal resolution of the 16-Hz measurements. From panel (b) of Fig. 1, it is observed that std(dNe ) clearly captures the fluctuations in Ne between about ±15◦ quasi-dipole latitude (QLat). The depletions are certainly associated with nighttime ionospheric irregularities (Kelley 2009; Pi et al. 1997; Kintner et al. 2007). Radio waves at HF, VHF and higher frequencies are particularly affected by the plasma turbulence generated through the RTI (Yeh and Liu 1982).
+An example of coincident observations for Swarm A and C and GPS-SCINDA on 2015-03-09 is presented in Fig. 2. Panel (i)(a) of Fig. 2 presents the latitudinal variation of Ne and S4 index values, while panel (i)(b) presents the longitudinal variation. The longitude plot serves to identify whether a Swarm satellite pass was close to a signal path where S4 index values could be determined. The S4 for all the GPS IPPs in view are shown with black dots, while the colored IPPs (see legend) correspond to the period when Swarm was in the view near Mbarara. From panel (i), multiple bubble-like Ne bite-outs are seen along especially Swarm A orbit track. The large-scale longitudinal bubble structure is sometimes observed with the two Swarm satellites (Xiong et al. 2016), but for smallscale ionospheric irregularities the separation is too large for a significant correlation between A and C as seen in Fig. 2. Panel (ii) of Fig. 2 shows the Swarm A and C ground track on 2015-03-09 and the ground track of the pseudo-random noise (PRN) number in view assuming
+
+Fig. 1  Examples of Ne variations for Swarm A, B, and C passes near Mbarara longitude of about 30.8◦ . The dashed gray vertical line represents the quasi-dipole latitude of Mbarara GPS-SCINDA (≈  -10.1 ◦ ). The dashed blue horizontal line in panel (b) represents the threshold applied for the detection of ionospheric irregularities
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 5 of 15
+
+Fig. 2  Panel (i): the Ne perturbations for Swarm A and C and S4 at Mbarara on 2015-03-09. The red solid vertical line represents the magnetic equator, the red dashed vertical lines represent the EIA belts at approximately ±15◦ magnetic latitudes, the gray dashed vertical lines represent the Mbarara latitude and longitude. The Ne measurements are shown as colored lines with the y-axis to the right, while the S4 index values from GPS satellites in view are presented as colored dots identified by their PRN with the y-axis to the left. The S4 for all the GPS IPPs in view are shown with black dots in panel (i)(a) and (b). Panel (ii): tracks of PRN 2, 13, 15, 24, and 29 including Swarm A and C tracks on 2015-03-09. The location of Mbarara GPS-SCINDA is indicated with a red triangle. The portions of the Swarm A and C tracks marked in black correspond to regions where ionospheric irregularities were encountered. Points along the GPS satellite tracks corresponding to the average local time when the Swarm satellites were in view are presented with black dots. The blue circle is a projection of the 30° elevation centered at MBAR indicating regions in which scintillations were observed
+
+a piercing height of 460 km corresponding to about the Swarm A and C orbit. Most of the GPS satellites in view showed S4 > 0.3 around the same time when density fluctuations were obtained from Swarm A and C. The IPPs of the GPS signal of PRN 29 were the closest to the irregularity structure observed by Swarm A and C, and the signal showed S4 values > 0.3 . In this event, particularly ionospheric irregularities around a high background density seem to be associated with scintillations observed at the ground in Mbarara. The spatial distribution in panel (ii) of Fig. 2 shows that the ionospheric irregularities encountered by Swarm A and C and the GPS satellites are clustered at a specific volume around the ground GPS-SCINDA. Therefore, coincidental detection of the high S4 and std(dNe ) values correlated with a common volume of ionospheric perturbations is an indication that the std(dNe ) may be used as indicator of potential scintillation occurrence.
+An Example for Swarm B, which orbits at a higher altitude than the lower pair, is presented in Fig. 3: Swarm B encountered ionospheric irregularities, seen as Ne depletions in panel (i), along its track as it orbited near Mbarara. The relative fluctuations along track B on
+
+2015-04-02 follow the typical double-peaked background density across the equator. The obtained std(dNe ) values were up to 0.5 × 1011 m−3 (shown in Fig. 1) which is well above our threshold. S4 > 0.3 , up to 0.45 was recorded by the GPS satellite of PRN 24 in view as seen from panel(i) of Fig. 3. Also, this Swarm B satellite pass on 2015-04-02 demonstrates a good agreement between the increase in the level of S4 and the strength of Ne perturbations for GPS satellite of PRN 24. To examine the spatial distribution of Swarm B track and GPS observations in relation to the location of the ground-based GPS-SCINDA, the ground tracks of Swarm B and PRNs are presented in Fig. 3 panel (ii). From the spatial distribution observed in panel (ii) of Fig. 3, Swarm B and the GPS satellite of PRN 24 in view seem to be sampling overlapping regions of large and perturbed areas, similar to that presented in Figure 2 for Swarm A and C. Therefore, the coincidental observation of relatively high S4 and std(dNe ) at Swarm B altitudes are causally related in the event presented in Fig. 2.
+In a substantial fraction of the Swarm satellite passes, there was no one-to-one correspondence between the occurrence of ionospheric irregularities
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 6 of 15
+
+Fig. 3  Similar to Fig. 2 but for Swarm B on 2015-04-02
+
+Fig. 4  Similar to Fig. 2 but for Swarm A and C on 2014-09-07
+
+and scintillation. An example is presented in Fig. 4 for Swarm A and C on 2014-09-07. Figure 4 shows a case where ionospheric irregularities were observed on Swarm A and C pass with only a mild effect on S4 index for GPS satellites of PRN 4, 7, 8, 28, and 30 at the time of Swarm A and C passes. At least for this event, the ionospheric irregularities encountered by Swarm A and
+
+C seem to be intermittent and patchy such that the GPS signals became only moderately perturbed. Also, for the Swarm passes presented in Fig. 4, the background density was lower compared to the events shown in Figs. 2 and 3. Nishioka et al. (2011) also observed that intense in situ ionospheric irregularities recorded using C/NOFS PLP were accompanied by only mild VHF
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 7 of 15
+
+scintillation on 2008-10-10 Ancon near Jicamarca. Nishioka et al. (2011) concluded that the observed contradiction was due to the dynamics of the EIA, whose development is affected by the duration of the PreReversal Enhancement (PRE). Our study continues by comparing the statistical occurrence of ionospheric irregularities and amplitude scintillation and the results are presented in the following section.
+Statistics of occurrence of ionospheric irregularities and amplitude scintillation Summary plots such as those presented in Figs. 2, 3, and 4 were generated for Swarm nighttime orbits for which S4 data were available over Mbarara. The outputs of the summary plots could be categorized into four cases, similar to those presented by Roddy et al. (2010), considering the presence (or not) of ionospheric irregularities and scintillation. These cases are presented in Fig. 5. In about 41.9% of the cases for Swarm A, 45.3% for Swarm C, and 39.0% for Swarm B, no irregularity structures were detected by the Swarm satellites and no L-band scintillations were recorded by the GPSSCINDA receiver. In about 30.3% of the cases for Swarm A, 27.3% for Swarm C, and 17.3% for Swarm B, irregularity structures were detected and GPS L-band scintillations were also seen. Roddy et al. (2010) and Sarkar and Gwal (2014) also observed a high percentage of agreement considering the presence (absence) of situ ionospheric irregularities and ground-based scintillation. These two categories (i.e., irregularities and scintillation and no irregularities and no scintillation) are consistent with a hypothesis, that irregularities seen by Swarm are associated with ground-based L-band
+Fig. 5  Percentage occurrence of Ne irregularities in each category observed by the Swarm satellites in relation to scintillation events recorded by the GPS-SCINDA installed in Mbarara for the period 2014–2018
+
+scintillations when the signal path is close to the irregularity detection and scintillations are absent or small when no irregularities are seen. However, there were also “negative” detections (irregularities but no scintillation and vice versa). An explanation may be that some scintillations were produced by irregularity structures at lower altitudes which may not have extended to Swarm altitudes (Burke et al. 2003; Roddy et al. 2010). Also, a GPS signal may evade passing ionospheric irregularities due to high intermittency and spatial inhomogeneity of the ionospheric turbulence.
+In terms of a possible risk assessment, with Swarm A data as input (confirm Fig. 5), in 42.6% of the passes, irregularities were detected. At 71.1% of these detections the threshold for scintillations was also exceeded at the receiver in Mbarara, while 28.9% of detections were “false alarms”, i.e., not accompanied by scintillations. 57.4% of the passes had no clear indications of irregularities in the Swarm data. In 72.9% of these passes with no irregularities also no scintillations occurred, but 27.1% did have scintillations at Mbarara. For Swarm C, in 37.2% of the passes, irregularities were detected. At 73.4% of these detections, scintillations was also exceeded at the receiver in Mbarara, while 26.6% of the detections were “false alarms”, i.e., not accompanied by scintillations. 62.7% of the passes had no clear indications of irregularities in the Swarm data. In 72.2% of these passes with no irregularities also no scintillations occurred, but 27.8% did have scintillations at Mbarara. For Swarm B, in 35.8% of the passes irregularities were detected. At 51.4% of these detections the scintillations was also exceeded at the receiver in Mbarara, while 48.6% of detections were “false alarms”, i.e., not accompanied by scintillations. 64.3% of the passes had no clear indications of irregularities in the Swarm data. In 60.7% of these passes with no irregularities also no scintillations occurred, but 39.3% did have scintillations at Mbarara. Therefore, the 16-Hz Swarm data may indicate an unbiased statistical chance/ risk that radio wave scintillations occur at the ground.
+Several parameters, including local time, latitude, longitude and season, affect the development of ionosphere disturbances. Therefore, it was interesting to also compare seasonal and local time dependence of GPS amplitude scintillation to that of ionospheric irregularities observed over Mbarara by Swarm. Figure 6 presents the percentage occurrence of ionospheric irregularities and S4 as a function of local time grouped into bins of 1 h. Even when the events included in Fig. 5 were filtered according to spatial and temporal proximity, the alignment still allowed for differences by a few tens of km and minutes between the Swarm orbit and GPS path. The percentage occurrence of ionospheric irregularities observed by the three Swarm satellites increased
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 8 of 15
+
+Fig. 6  Percentage occurrence of ionospheric irregularities observed by Swarm and amplitude scintillation recorded by GPS-SCINDA as a function of local time for the years from 2014 to 2018
+rapidly between 18:00 LT and 20:00 LT and was highest between 20:00 LT and 22:00 LT. A decrease was detected after 22:00 LT until 06:00 LT. The local time distribution of percentage occurrence of S4 measured by the GPS-SCINDA followed the same trend as that of ionospheric irregularities observed by Swarm. The local time distribution presented in Fig. 6 is similar to that found in previous studies (Burke et al. 2004; Stolle et al. 2006; Akala et al. 2011; Paznukhov et al. 2012; Xiong et al. 2016). The increase in percentage occurrence from 1800 LT to 2100 LT can be attributed to increased eastward electric fields produced by the eastward thermospheric wind’s electrodynamic interaction at the day–night terminator around the dip equator with the geomagnetic field (Rishbeth 1971; Su et al. 2009). The increase in the electric field to the east causes the night-side ionosphere to rise to higher altitudes where RTI is favored and this increases the occurrence of ionospheric irregularities (Rishbeth 1971; Kelley 2009). When the GPS signals propagate through these irregularity structures, they fluctuate in amplitude and phase. The electrodynamics responsible for the formation of ionospheric irregularities which lead to amplitude scintillation decrease towards the morning hours. Close inspection of Fig. 6 shows that the rate of decrease was faster for scintillation activity than for electron density irregularity occurrence. This could be due to the rapid post-midnight decay of the small-scale irregularity structures which are responsible for L-band scintillations (Rao et al. 2005). Figure 6 provides statistical evidence for the association of amplitude scintillation events recorded by the GPS-SCINDA in our study area to ionospheric irregularities observed in situ by Swarm.
+
+Figure 7 presents the seasonal dependence of occurrence of ionospheric irregularities observed by Swarm in panels (a–c) and S4 recorded by the GPS-SCINDA in panel (d). To generate Fig. 7, for each month (y-axis), the std(dNe ) and S4 were averaged over 0.1 hr local time. The highest values of std(dNe ) and S4 were observed during the equinoxes and December solstice. Overall, during June solstice, small values of std(dNe ) and S4 were observed . Similar seasonal distribution of ionospheric irregularities and amplitude scintillation was reported by Akala et al. (2011) and Paznukhov et al. (2012). The seasonal dependence of ionospheric irregularities as well as amplitude scintillation is adequately explained by geomagnetic arguments, i.e., the alignment of the solar terminator and local magnetic meridian (Tsunoda 1985). Ionospheric irregularities and scintillations are most commonly observed during seasons when the solar terminator is best aligned with the geomagnetic meridian (Tsunoda 1985). Figure 7 also offers further proof for the connection of the GPS-SCINDA recorded amplitude scintillation occurrences in our research region with Swarm’s in situ observed ionospheric irregularities.
+Furthermore, we analyzed the relationship between S4 and Ne perturbations associated with plasma bubbles. The results are presented in Fig. 8, combining the data for Swarm A, C, and B (see legend). The results show a linear dependence between S4 and std(dNe ) with moderate positive correlation coefficients (see legend) for the years from 2014 to 2018, although very few data points were available for this analysis. Due to scarcity of Swarm orbital tracks which coincided with the location of the ground GPS-SCINDA during the period of study, we were limited in the number of events where we could directly associate in situ ionospheric irregularity events with the ground-based S4 measurements. Therefore, the moderate positive correlation coefficients between S4 and std(dNe ) can be attributed to this relatively low number of passes and a typically high variability of irregularity strength, indicated by std(dNe ), along satellite tracks. A future larger number of suitable passes will allow to empirically study the relation between ionospheric irregularities and scintillation strengths in more detail. Nevertheless, we modeled the amplitude scintillations from the available Swarm 16-Hz Ne data. The results are presented in the following section.
+Amplitude scintillation from the weak phase screen model In this section, we present model results of amplitude scintillation from Swarm Ne measurements. Conducting spectral analysis of the high-resolution Ne data from Swarm was the first step to estimate the resulting amplitude scintillation. Figure 9 presents arbitrary example
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+a
+
+Page 9 of 15
+b
+
+c
+
+d
+
+Fig. 7  Month and local time (LT) variations of std(dNe ) (panels (a–c) and S4 index (panel (d)) for the years from 2014 to 2018
+
+Fig. 8  Relation between the GPS-SCINDA scintillation intensity and Swarm Ne perturbations for the years from 2014 to 2018
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+(i)
+(ii)
+
+Page 10 of 15
+
+Fig. 9  Examples of the 8-s-long data segment of Ne obtained from the Swarm satellites and their corresponding PSD. The black dotted lines in the top panels represent the mean of the raw data (or the trend line). The middle panels present the segments after detrending
+
+outputs obtained after the spectral analysis procedure. Panels (i) and (ii) of Fig. 9 show the 8-s-long segments of Ne and their corresponding PSDs, respectively, for Swarm A and C on 2015-07-03 and B on 2015-07-25. The PSD is plotted as a function of the wave number k ( k = ω/v , v = 7.5 km s−1 is the speed of the Swarm satellites, ω is the angular frequency) in panel (ii) of Fig. 9. A key parameter to be considered when determining the scintillation level is the spectral index p (Wernik et al. 2007). Therefore, the value of the spectral slope or spectral index p estimated by linear least square fitting are indicated and the uncertainty in the slopes is provided in parenthesis for each slope in panel (ii) of Fig. 9. It is important to recall that the spectrum obtained from in situ Ne data is a one-dimensional scan of the power spectrum of dNe . From panel (ii) of Fig. 9, if we ignore the somewhat flat portion of the PSD at small k values, the regions in the spectra tend to follow a power–law, i.e., P(k) ∝ k−p . The power–law relation has also been
+
+observed for data from other satellite missions (Basu et al. 1980; Wernik et al. 2007; Su et al. 2001; Rodrigues et al. 2009; Lühr et al. 2014).
+The spectral indices p were determined as the slopes of straight lines fitted to log–log power spectra of the Ne irregularities observed for the years from 2014 to 2018. These are presented in Fig. 10 which reveals that most values of the spectral index, p is between about 0.5 and 2.5. A range of p = 2.0 − 2.2 was obtained by Patel et al. (2011) for the Stretched Rohini Satellite Series (SROSSC2) and p = 2.0 had the highest occurrence rate. Lühr et al. (2014) obtained p from the high-resolution Challenging Minisatellite Payload (CHAMP) magnetic field measurements over the frequency range 1–25 Hz and they observed spectral indices between 1.4 and 2.6 with a peak occurrence rate around 1.9, while Wernik et al. (2003) obtained p for the plasma density data recorded by the Dynamic Explorer-2 (DE-2) satellite within the frequency range of 1–20 Hz and a peak in percentage
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 11 of 15
+
+Fig. 10  Percentage occurrence of the spectral indices obtained by a linear fit to the PSD in log–log scale for Swarm A, C, and B for the years 2014–2018
+
+occurrence of p was within the range of 1.0 and 2.5. In general, the highest percentage occurrence of p obtained in Fig. 10 is within the range observed in previous studies. Rino (1979) and Singh et al. (1997) used spectral indices 2.5, 2.6, and 2.66 as inputs to the phase screen model. Crane (1977) reported p = 3 , which seems to be slightly higher than the measured values. Alfonsi et al. (2017) took a value of spectral index = 1.3 . From the results presented by Rino (1979), the 1-GHz amplitude scintillation data fit the model computations to a much better extent using ν = 1.25 . Therefore, in this study we adopted a value of p = 1.5 as input to the model which leads to a value of ν = 1.25 (e.g., Rino 1979; Singh et al. 1997).
+Vats et al. (1981) considered the outer scale length, Lo to be 50 km for F-region irregularities, whereas Rino (1979) took Lo to be 200 km. Patel et al. (2011) varied Lo between 50 km and 200 km and they presented results using Lo = 175 km as the most feasible value. In the present modeling, we also adopted a value of Lo = 175 km. Examples of modeled outputs for Swarm A, B, and C along the satellite tracks are presented in Fig. 11. The figure presents the Ne fluctuations along the satellite track,
+
+Fig. 11  Examples of model results for Swarm A and C on 2015-03-09 and Swarm B on 2015-04-02
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 12 of 15
+
+corresponding std(dNe ), the turbulence strength Cs , and the modeled S4, in that order. The S4 index frequently varied from about 0 to about 1.0 for Swarm A satellite pass on 2015-03-09 and from about 0 to 0.4 for Swarm C satellite pass on 2015-03-09. The calculated S4 for Swarm A and C is in a reasonable agreement with the observed increase of S4 for GPS PRN 29 (see Fig. 2). The weak scattering model seems to produce the amplitude scintillations at about the observed level when using the Swarm A and C Ne measurements. The calculated S4 for Swarm B was between 0 and 1.0 which is in agreement with the observed S4 range (see Fig. 3), particularly for GPS PRN 29.
+We analyzed the relationship between the S4 index values measured by the GPS-SCINDA and modeled S4 index values for the years from 2014 to 2018 and the results are presented in Fig. 12. Swarm satellite passes within a longitude range of ±5◦ of the ground site were considered and the S4 index values recorded by the GPS-SCINDA were determined for each PRN which was in view during a Swarm satellite pass within a longitude range of ±1◦ of the Swarm longitude. To distinguish scintillation phenomena from other noise effects, and to remain within the weak scatter assumption, only observed S4 index values >0.3 were used. Generally, the measured and modeled S4 show moderate positive correlation for Swarm A and C. The results presented in Fig. 12 show that the number of data points available was limited and the moderate positive correlation obtained may be due to low counting statistics. In general, solar cycle 24 was characterized by very low solar activity compared to cycles that preceded it (Basu 2013). Therefore,
+
+we managed to identify very few events where Swarm coincided with GPS satellites over Mbarara. The relatively larger scatter of modeled versus observed S4 is consistent with discrepancies that were found in the analysis of the events above and explained by a high degree of intermittency and spatial localization of small-scale irregularities within larger-scale structures such as equatorial plasma bubbles (EPBs). Small-scale irregularities conglomerate in such an EPB environment, but do not fill it. On the other hand, Swarm B shows no significant or even a negative correlation between measured and modeled S4.
+Nishioka et al. (2011) described how VHF scintillations seemed to originate from bottom-side irregularities that remained undetected by the C/NOFS satellite at an orbit of as low as 400 km. Here, such bottom-side irregularities seem to have a negligible statistical effect for the case of Swarm A and C (where both too high and too low modeled S4 occur). But for Swarm B, the effects of ionospheric irregularities confined to below 500 km seem important. Also, the Swarm B data cover the post-sunset sector at increasingly later LT than A and C (Zakharenkova et al. 2016) which might contribute to the statistical non-agreement between modeled and observed S4. Comparable modeling for the high latitudes had been undertaken using 64-Hz Retarding Potential Analyzer (RPA) data from the DE-2 by Wernik et al. (2007). In the study by Wernik et al. (2007), the modeled S4 was roughly one order of magnitude too low (their Figures 5, 13-16). Furthermore, the DE-2 orbit was on average higher than Swarm A and C and this might have contributed to the low modeled L-band S4 by Wernik et al. (2007). Patel et al. (2011) derived
+
+Fig. 12  Relation between the GPS-SCINDA measured S4 index and modeled S4 index for the years from 2014 to 2018. A best linear fit line is shown with the correlation coefficients, r given for each satellite
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 13 of 15
+
+appropriate relations for S4, and phase variance from the weak scatter theory using Stretched Rohini Satellite Series (SROSS-C2) satellite at VHF. Their modeled results reproduced successfully the observed VHF scintillation intensity monthly and seasonal variations. Alfonsi et al. (2017) extended the phase screen model to strong scattering and modeled S4 at L-band frequency around the equatorial latitudes using ion density measurements collected by the DE-2 RPA. The observed density variations were scaled to a model peak density using the IRI model by Alfonsi et al. (2017).
+In addition to the spatial distribution, other factors related to the modeling may have caused discrepancies between modeled and measured S4 in the results presented in Fig. 12. One factor is the assumption that the ionospheric irregularities are isotropic which leads to an overestimate of turbulence strength (Wernik et al. 2007). Furthermore, in the Rino’s phase screen model, the outer scale of turbulence is assumed to be very high, meaning that the outer-scale wave number is far less than the wave disturbances adding to the amplitude scintillation (Alfonsi et al. 2017). Liu et al. (2012) estimated the outer scale and found that it varies from 1 km to several hundreds of kilometers, with the distribution having maximum at scales less than 25 km for dip latitude < 20◦ and at scales 25–50 km for dip latitudes > 20◦ . Thus, in most cases, the outer scale is much larger than the Fresnel’s scale for frequencies of interest and any effects of the outer scale on the intensity scintillation can be neglected.
+It is well accepted that the scale sizes of the fieldaligned irregularities that are primarily responsible for L-band scintillation are about 400 m. According to the Nyquist theorem, to correctly represent these scale sizes, the medium would have to be sampled at every 200 m or less. Considering the Swarm satellite velocity of 7.5 km s−1 , this would correspond to the sampling frequency of 37.5 Hz. A comparison of calculated S4 based on the simple phase screen model and the observed S4 shows a large scatter, but for the lower Swarm A and C no significant systematic bias. A scaling of the model S4 as it was done for DE-2 seems not needed, probably owing to the lower altitude.
+Conclusions In this study, measurements of Ne variations by the Swarm satellites were compared with L-band scintillation data at the ground over Mbarara. The findings of this study are summarized below:
+1. For selected events, the observed ionospheric irregularities along Swarm tracks could be identified with moderate increases in S4 at the ground. In some cases, ionospheric irregularities were not associated
+
+with significant scintillation or amplitude scintillations were seen without Swarm recording sufficient density variations. Similar disagreements between ground-based scintillation observation and in situ ionospheric irregularities were reported by Roddy et al. (2010) and Sarkar and Gwal (2014). This may be explained by small-scale irregularities arising and disappearing within a few minutes, and having spatial extents of only tens of kilometers (Basu et al. 1978; Saito et al. 2008). Some observed disagreements may also be due to scintillation causing irregularities confined to lower altitudes (Roddy et al. 2010; Burke et al. 2003) and they are therefore not encountered by Swarm at 445 km altitude and above. 2. Statistically, during satellite passes there is a reasonable correspondence between in situ-measured irregularities and L-band scintillations. The distributions of ionospheric irregularities and scintillations over both LT and seasons show similar patterns. This is in agreement with the results obtained in earlier studies (Burke et al. 2003; Andima et al. 2018). Therefore, the similar LT and seasonal trend obtained provide statistical evidence for the association of amplitude scintillation events recorded by the GPS-SCINDA in our study area to ionospheric irregularities recorded in situ by Swarm faceplate. 3. Using the weak phase screen model, the turbulence strength Cs , 1-D spectral index p and S4 were derived from the Swarm 16-Hz Ne data. In general, there were discrepancies between the derived and observed S4 for Swarm. The discrepancies may have risen because of poor spatial distribution and other factors related to the modeling. Despite the limitations associated with the phase screen model in Rino’s formulation, the results presented here act as an initial step to describe weak scintillation at Swarm satellite altitudes and therefore encouraging further studies. Also, while the weak phase screen model gives nearly the correct range of S4 values when using Swarm A and C faceplate Ne data, a more refined two-component model could be tried in future works, when a larger data set is available, and the relative directions with respect to the magnetic field is taken into account.
+While there are no concrete plans to obtain Swarm data in near real-time, this might be a possibility for other missions. In the mean time, the statistics of irregularities seen by Swarm have been analyzed (Wan et al. 2018; Aol et al. 2020), which could be a basis of empirical models for irregularities. With limitations, which are investigated and pointed out in this work a global risk for L-band scintillations can be inferred from the Swarm data,
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 14 of 15
+
+complementing existing scintillation models which are based on ground-based observations. The Swarm data set has good global coverage and therefore, the potential to study irregularities and scintillations over areas where no or very few ground scintillation data are available, over the oceans and parts of central Africa.
+Abbreviations C/No: Carrier-to-noise ratio; C/NOFS: Communication Navigation Outage Forecasting System; CHAMP: Challenging Minisatellite Payload; DE-2: Dynamic Explorer-2; EPBs: Equatorial plasma bubbles; EIA: Equatorial ionization anomaly; ESA: European Space Agency; GNSS: Global Navigation Satellite System; GPS-SCINDA: Global Positioning System-Scintillation Network and Decision Aid; IPPS: Ionospheric pierce points; PRE: Pre-reversal enhancement; PRN: Pseudo-random noise; PSD: Power spectral density; RPA: Retarding potential analyzer; RTI: Rayleigh–Taylor instability; SROSS-C2: Stretched Rohini Satellite Series; TEC: Total electron content; QLat: Quasi-dipole latitude.
+Acknowledgements This study was financially supported by the International Science Program (ISP) of the Uppsala University, Sweden. The official Swarm website is http:// earth​.esa.int/swarm​, and the ftp server for Swarm data distribution is ftp:// swarm-diss.eo.esa.int. The authors acknowledge the ESA Swarm team for the Swarm mission. We are also thankful to the Air Force Research Laboratory (AFRL), USA, for supplying the GPS-SCINDA receiver used in this study. The authors also acknowledge the anonymous reviewers for their careful reading of our manuscript and many insightful comments and suggestions which improved the quality of this paper. The authors acknowledge the ESA European Space Agency and the Technical University of Denmark for financial support (grant 4000109587/13/INB).
+Authors’ contributions SA, SB and EJ designed and conducted the current research and prepared the manuscript. SA and EJ analyzed the GPS-SCINDA scintillation data. SA analyzed the Swarm electron density data, interpreted the results and wrote the manuscript. SB participated in the Swarm data analysis, interpretation of the results, and editing of the draft. EJ was involved in the interpretation and draft editing as well as in applying for grants for the project. All authors read and approved the final manuscript.
+Funding This study was financially supported by the International Science Program (ISP) of the Uppsala University, Sweden (grant no. UGA 02).
+Availability of data and materials The official website of Swarm is http://earth​.esa.int/swarm​ and ftp://swarm​ -diss.eo.esa.int is the server for the distribution of Swarm data.
+Competing interests The authors declare that they have no competing interests.
+Author details 1 Department of Physics, Mbarara University of Science and Technology, Mbarara, Uganda. 2 Swedish Institute of Space Physics, Uppsala, Sweden.
+Received: 10 February 2020 Accepted: 13 October 2020
+References Aarons J (1982) Global morphology of ionospheric scintillations. IEEE Proceed-
+ings 70:360–378 Abdu MA (2005) Equatorial ionosphere thermosphere system: Electrodynam-
+ics and irregularities. Advances in Space Research 35:771–787. https​://doi. org/10.1016/j.asr.2005.03.150
+
+Akala A, Ejalonibu A, Doherty P, Radicella S, Groves K, Carrano C, Bridgwood C, Stoneback R (2017) Characterization of GNSS amplitude scintillations over Addis Ababa during 2009–2013. Advances in Space Research 59:1969–1983. https​://doi.org/10.1016/j.asr.2017.01.044
+Akala AO, Doherty PH, Valladares CE, Carrano CS, Sheehan R (2011) Statistics of GPS scintillations over South America at three levels of solar activity, Radio Science, 46, n/a–n/a, https​://doi.org/10.1029/2011r​s0046​78
+Akala AO, Doherty PH, Carrano CS, Valladares CE, Groves KM (2012) Impacts of ionospheric scintillations on GPS receivers intended for equatorial aviation applications. Radio Science 47: https​://doi.org/10.1029/2012r​ s0049​95
+Alfonsi L, Spogli L, Pezzopane M, Romano V, Zuccheretti E, Franceschi GD, Cabrera MA, Ezquer RG (2013) Comparative analysis of spread-F signature and GPS scintillation occurrences at Tucumán. Argentina, Journal of Geophysical Research: Space Physics 118:4483–4502. https​://doi.org/10.1002/ jgra.50378​
+Alfonsi L, Wernik A, Materassi M, Spogli L (2017) Modelling ionospheric scintillation under the crest of the equatorial anomaly. Advances in Space Research 60:1698–1707
+Andima G, Amabayo EB, Jurua E, Cilliers PJ (2018) Characterization of the low latitude plasma density irregularities observed using C/NOFS and SCINDA data. Advances in Space Research 61:264–273. https​://doi. org/10.1016/j.asr.2017.08.003
+Aol S, Buchert S, Jurua E (2020) Traits of sub-kilometre F-region irregularities as seen with the Swarm satellites. Annales Geophysicae 38:243–261. https​://doi.org/10.5194/angeo​-38-243-2020
+Basu S (2013) The peculiar solar cycle 24–where do we stand?, in: Journal of Physics: Conference Series, vol. 440, p. 012001, IOP Publishing, https​:// doi.org/10.1088/1742-6596/440/1/01200​1
+Basu S, Basu S, Khan BK (1976) Model of equatorial scintillations from in-situ measurements. Radio Science 11:821–832. https​://doi.org/10.1029/ rs011​i010p​00821​
+Basu S, Basu S, Aarons J, McClure JP, Cousins MD (1978) On the coexistence of kilometer- and meter-scale irregularities in the nighttime equatorialFregion. Journal of Geophysical Research 83:4219. https​://doi. org/10.1029/ja083​ia09p​04219​
+Basu S, McClure JP, Basu S, Hanson WB, Aarons J (1980) Coordinated study of equatorial scintillation and in situ and radar observations of nighttime F region irregularities. Journal of Geophysical Research 85:5119–5130. https​://doi.org/10.1029/JA085​iA10p​05119​
+Briggs B, Parkin I (1963) On the variation of radio star and satellite scintillations with zenith angle. Journal of Atmospheric and Terrestrial Physics 25:339–366. https​://doi.org/10.1016/0021-9169(63)90150​-8
+Burke WJ, Huang CY, Valladares CE, Machuzak JS, Gentile LC, Sultan PJ (2003) Multipoint observations of equatorial plasma bubbles, Journal of Geophysical Research (Space Physics), 108, 1221, https​://doi. org/10.1029/2002J​A0093​82
+Burke WJ, Gentile LC, Huang CY, Valladares CE, Su SY (2004) Longitudinal variability of equatorial plasma bubbles observed by DMSP and ROCSAT-1, Journal of Geophysical Research (Space Physics), 109, A12301, https​://doi.org/10.1029/2004J​A0105​83
+Crane RK (1977) Ionospheric scintillation. Proceedings of the IEEE 65:180–199
+Dao E, Kelley MC, Roddy P, Retterer J, Ballenthin JO, de La Beaujardiere O, Su Y-J (2011) Longitudinal and seasonal dependence of nighttime equatorial plasma density irregularities during solar minimum detected on the C/NOFS satellite, Geophysical Research Letters, 38, L10 104, https​:// doi.org/10.1029/2011G​L0470​46, l10104
+Friis-Christensen E, Lühr H, Hulot G (2006) Swarm: A constellation to study the Earth’s magnetic field. Earth, Planets, and Space 58:351–358
+Groves KM, Basu S, Weber EJ, Smitham M, Kuenzler H, Valladares CE, Sheehan R, MacKenzie E, Secan JA, Ning P, McNeill WJ, Moonan DW, Kendra MJ (1997) Equatorial scintillation and systems support. Radio Science 32:2047–2064. https​://doi.org/10.1029/97rs0​0836
+Huang C-S, La Beaujardiere O, Roddy P, Hunton D, Liu J, Chen S (2014) Occurrence probability and amplitude of equatorial ionospheric irregularities associated with plasma bubbles during low and moderate solar activities (2008–2012). Journal of Geophysical Research: Space Physics 119:1186–1199. https​://doi.org/10.1002/2013j​a0192​12
+
+Aol et al. Earth, Planets and Space (2020) 72:164
+
+Page 15 of 15
+
+Kelley M (2009) The Earth’s Ionosphere: Plasma Physics and Electrodynamics, International Geophysics, Elsevier Science, https​://books​.googl​e.co.ug/ books​?id=3GlWQ​njBQN​gC
+Kil H, Kintner PM, de Paula ER, Kantor I (2002) Latitudinal variations of scintillation activity and zonal plasma drifts in South America. Radio Science 37 https​://doi.org/10.1029/2001r​s0024​68
+Kintner PM, Ledvina BM, de Paula ER (2007) GPS and ionospheric scintillations. Space Weather 5:09003. https​://doi.org/10.1029/2006S​W0002​60
+Liu Y-H, Liu C-H, Su S-Y (2012) Global and Seasonal Scintillation Morphology in the Equatorial Region Derived from ROCSAT-1 In-situ Data., Terrestrial, Atmospheric & Oceanic Sciences, 23, https​://doi.org/10.3319/ tao.2011.06.30.01(aa)
+Lühr H, Xiong C, Park J, Rauberg J (2014) Systematic study of intermediatescale structures of equatorial plasma irregularities in the ionosphere based on CHAMP observations. Frontiers in Physics 2:15. https​://doi. org/10.3389/fphy.2014.00015​
+McClure JP, Hanson WB, Hoffman JH (1977) Plasma bubbles and irregularities in the equatorial ionosphere, jgr, 82, 2650–2656, https​://doi.org/10.1029/ JA082​i019p​02650​
+Nishioka M, Basu S, Basu S, Valladares CE, Sheehan RE, Roddy PA, Groves KM (2011) C/NOFS satellite observations of equatorial ionospheric plasma structures supported by multiple ground-based diagnostics in October 2008, Journal of Geophysical Research: Space Physics, 116, n/a–n/a, https​ ://doi.org/10.1029/2011j​a0164​46
+Olwendo J, Cilliers P, Ming O (2019) Comparison of ground based ionospheric scintillation observations with in situ electron density variations as measured by the Swarm satellites., Radio Science, https​://doi. org/10.1029/2018r​s0067​34
+Patel K, Singh AK, Subrahmanyam P, Singh AK (2011) Modeling of ionospheric scintillation at low-latitude. Advances in Space Research 47:515–524. https​://doi.org/10.1016/j.asr.2010.09.017
+Paznukhov VV, Carrano CS, Doherty PH, Groves KM, Caton RG, Valladares CE, Seemala GK, Bridgwood CT, Adeniyi J, Amaeshi LLN, Damtie B, Mutonyi FD, Ndeda JOH, Baki P, Obrou OK, Okere B, Tsidu GM (2012) Equatorial plasma bubbles and L-band scintillations in Africa during solar minimum. Annales Geophysicae 30:675–682. https​://doi.org/10.5194/angeo​ -30-675-2012
+Pi X, Mannucci AJ, Lindqwister UJ, Ho CM (1997) Monitoring of global ionospheric irregularities using the Worldwide GPS Network. Geophysical Research letter 24:2283–2286. https​://doi.org/10.1029/97GL0​2273
+Portillo A, Herraiz M, Radicella SM, Ciraolo L (2008) Equatorial plasma bubbles studied using African slant total electron content observations. Journal of Atmospheric and Solar-Terrestrial Physics 70:907–917. https​://doi. org/10.1016/j.jastp​.2007.05.019
+Rao PVSR, Ram ST, Niranjan K, Prasad DSVVD, Krishna SG, Lakshmi NKM (2005) VHF and L-band scintillation characteristics over an Indian low latitude station, Waltair (1  7.7◦ N, 83.3◦E), Annales Geophysicae, 23, 2457–2464, https​://doi.org/10.5194/angeo​-23-2457-2005
+Rino C, Yokoyama T, Carrano C (2018) Dynamic spectral characteristics of highresolution simulated equatorial plasma bubbles. Progress in Earth and Planetary Science 5: https​://doi.org/10.1186/s4064​5-018-0243-0
+Rino CL (1979) A power law phase screen model for ionospheric scintillation. I - Weak scatter., Radio Science, 14, 1135–1145, https​://doi.org/10.1029/ RS014​i006p​01135​
+Rino CL, Carrano CS, Groves KM, Roddy PA (2016) A characterization of intermediate-scale spread F structure from four years of high-resolution C/NOFS satellite data. Radio Science 51:779–788. https​://doi. org/10.1002/2015r​s0058​41
+Rishbeth H (1971) Polarization fields produced by winds in the equatorial F-region. Planetary and Space Science 19:357–369. https​://doi. org/10.1016/0032-0633(71)90098​-5
+Roddy PA, Hunton DE, Ballenthin JO, Groves KM (2010) Correlation of in situ measurements of plasma irregularities with ground-based scintillation observations, Journal of Geophysical Research (Space Physics), 115, A06303, https​://doi.org/10.1029/2010J​A0152​88
+Rodrigues F, Kelley M, Roddy P, Hunton D, Pfaff R, de La Beaujardiere O, Bust G (2009) C/NOFS observations of intermediate and transitional scale-size equatorial spread F irregularities. Geophysical Research Letters 36
+Rumsey VH (1975) Scintillations due to a concentrated layer with a power-law turbulence spectrum. Radio Science 10:107–114. https​://doi.org/10.1029/ RS010​i001p​00107​
+
+Saito S, Fukao S, Yamamoto M, Otsuka Y, Maruyama T (2008) Decay of 3-m-scale ionospheric irregularities associated with a plasma bubble observed with the Equatorial Atmosphere Radar, Journal of Geophysical Research: Space Physics, 113, n/a–n/a, https​://doi.org/10.1029/2008j​ a0131​18
+Sarkar S, Gwal A (2014) Coordinated in situ measurements of plasma irregularities and ground based scintillation observations at the crest of equatorial anomaly. Advances in Space Research 54:425–434
+Schunk RW, Nagy AF (2009) Ionospheres: physics, plasma physics, and chemistry, 2nd edn. Cambridge Atmospheric and Space Science Series, Cambridge, Cambridge
+Seemala GK, Valladares CE (2011) Statistics of total electron content depletions observed over the South American continent for the year 2008, Radio Science, 46, n/a–n/a, https​://doi.org/10.1029/2011r​s0047​22
+Singh A, Narayan D, Singh R (1997) Weak-scattering theory for ionospheric scintillation. Il nuovo cimento C 20:541–552
+Stolle C, Lühr H, Rother M, Balasis G (2006) Magnetic signatures of equatorial spread F as observed by the CHAMP satellite, Journal of Geophysical Research (Space Physics), 111, A02304, https​://doi.org/10.1029/2005J​ A0111​84
+Su S-Y, Yeh H-C, Heelis R (2001) ROCSAT 1 ionospheric plasma and electrodynamics instrument observations of equatorial spread F: An early transitional scale result, Journal of Geophysical Research: Space Physics, 106, 29 153–29 159, https​://doi.org/10.1029/2001j​a9001​09
+Su S-Y, Chao CK, Liu CH (2009) Cause of different local time distribution in the postsunset equatorial ionospheric irregularity occurrences between June and December solstices, Journal of Geophysical Research: Space Physics, 114, n/a–n/a, https​://doi.org/10.1029/2008j​a0138​58
+Tsunoda RT (1985) Control of the seasonal and longitudinal occurrence of equatorial scintillations by the longitudinal gradient in integrated E region Pedersen conductivity. Journal of Geophysical Research 90:447–456. https​://doi.org/10.1029/JA090​iA01p​00447​
+Vats HO, Booker HG, Majidiahi G (1981) Quantitative explanation of strong multi-frequency intensity scintillation spectra using refractive scattering. Journal of Atmospheric and Terrestrial Physics 43:1235–1241. https​://doi. org/10.1016/0021-9169(81)90145​-8
+Wan X, Xiong C, Rodriguez-Zuluaga J, Kervalishvili GN, Stolle C, Wang H (2018) Climatology of the Occurrence Rate and Amplitudes of Local Time Distinguished Equatorial Plasma Depletions Observed by Swarm Satellite. Journal of Geophysical Research, Space Physics 123:3014–3026. https​:// doi.org/10.1002/2017J​A0250​72
+Wang Z, Shi JK, Torkar K, Wang GJ, Wang X (2014) Correlation between ionospheric strong range spread F and scintillations observed in Vanimo station. Journal of Geophysical Research: Space Physics 119:8578–8585. https​://doi.org/10.1002/2014j​a0204​47
+Wernik AW, Secan JA, Fremouw EJ (2003) Ionospheric irregularities and scintillation. Advances in Space Research 31:971–981. https​://doi.org/10.1016/ S0273​-1177(02)00795​-0
+Wernik AW, Alfonsi L, Materassi M (2007) Scintillation modeling using in situ data, Radio Science, 42, RS1002, https​://doi.org/10.1029/2006R​S0035​12
+Woodman RF, La Hoz C (1976) Radar observations of F region equatorial irregularities. Journal of Geophysical Research 81:5447–5466. https​://doi. org/10.1029/JA081​i031p​05447​
+Xiong C, Stolle C, Lühr H, Park J, Fejer BG, Kervalishvili GN (2016) Scale analysis of equatorial plasma irregularities derived from Swarm constellation. Earth, Planets and Space 68:121. https​://doi.org/10.1186/s4062​ 3-016-0502-5
+Yeh KC, Liu C-H (1982) Radio wave scintillations in the ionosphere. IEEE Proceedings 70:324–360. https​://doi.org/10.1109/proc.1982.12313​
+Yokoyama T (2017) A review on the numerical simulation of equatorial plasma bubbles toward scintillation evaluation and forecasting. Progress in Earth and Planetary Science 4: https​://doi.org/10.1186/s4064​5-017-0153-6
+Zakharenkova I, Astafyeva E, Cherniak I (2016) GPS and in situ Swarm observations of the equatorial plasma density irregularities in the topside ionosphere. Earth, Planets, and Space 68:120. https​://doi.org/10.1186/ s4062​3-016-0490-5
+Publisher’s Note
+Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+

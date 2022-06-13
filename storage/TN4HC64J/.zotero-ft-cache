@@ -1,0 +1,1488 @@
+Space Sci Rev DOI 10.1007/s11214-016-0275-y
+Magnetic Coordinate Systems
+K.M. Laundal1 · A.D. Richmond2
+Received: 29 February 2016 / Accepted: 1 July 2016 © The Author(s) 2016. This article is published with open access at Springerlink.com
+Abstract Geospace phenomena such as the aurora, plasma motion, ionospheric currents and associated magnetic ﬁeld disturbances are highly organized by Earth’s main magnetic ﬁeld. This is due to the fact that the charged particles that comprise space plasma can move almost freely along magnetic ﬁeld lines, but not across them. For this reason it is sensible to present such phenomena relative to Earth’s magnetic ﬁeld. A large variety of magnetic coordinate systems exist, designed for different purposes and regions, ranging from the magnetopause to the ionosphere. In this paper we review the most common magnetic coordinate systems and describe how they are deﬁned, where they are used, and how to convert between them. The deﬁnitions are presented based on the spherical harmonic expansion coefﬁcients of the International Geomagnetic Reference Field (IGRF) and, in some of the coordinate systems, the position of the Sun which we show how to calculate from the time and date. The most detailed coordinate systems take the full IGRF into account and deﬁne magnetic latitude and longitude such that they are constant along ﬁeld lines. These coordinate systems, which are useful at ionospheric altitudes, are non-orthogonal. We show how to handle vectors and vector calculus in such coordinates, and discuss how systematic errors may appear if this is not done correctly. Keywords Magnetic coordinates · Ionospheric electrodynamics
+1 Introduction
+The inﬂuence of Earth’s magnetic ﬁeld extends to approximately 15 RE (RE is the mean Earth radius ≈ 6371.009 km) in the hemisphere facing the Sun, and up to several hundred
+K.M.L. was supported by the Research Council of Norway/CoE under contract 223252/F50. A.D.R. was supported in part by NSF award AGS-1135446. The National Center for Atmospheric Research is sponsored by the National Science Foundation. The authors thank Nils Olsen, Christopher C. Finlay and Astrid Maute for valuable discussions and proofreading of the manuscript.
+B K.M. Laundal karl.laundal@ift.uib.no 1 Birkeland Centre for Space Science, University in Bergen, Bergen, Norway 2 National Center for Atmospheric Research, High Altitude Observatory, Boulder, CO, USA
+
+K.M. Laundal, A.D. Richmond
+RE on the night side. At ionospheric altitudes, the Earth’s main ﬁeld is orders of magnitudes stronger than even the strongest magnetic disturbances created by the interaction with the solar wind. To understand the dynamics of near Earth plasma, electromagnetic ﬁeld disturbances, and even the neutral atmosphere at high altitudes, it is essential to work in a reference frame which takes the geometry of the Earth’s magnetic ﬁeld into account. Exactly how this should be done differs by the application, region, and desired level of precision.
+At large distances from the Earth, the dominating driver is the solar wind ﬂowing roughly radially out from the Sun. The interaction of the solar wind with the magnetosphere in these regions is therefore often best understood in a coordinate system which has the Earth–Sun line along one of the axes. Examples of such coordinate systems include the geocentric solar ecliptic (GSE) and the geocentric solar magnetic (GSM) coordinate systems. The latter also contains the Earth’s magnetic dipole ﬁeld in one of the coordinate planes, making it especially suitable for working with solar wind-magnetosphere interaction processes. Closer to the Earth the relative importance of the Earth’s ﬁeld becomes stronger, so that a more precise alignment with the dipole axis is required. Solar magnetic (SM) coordinates is one such system, having one axis along the dipole axis, and the Earth–Sun line in a coordinate plane.
+At ionospheric heights and on ground, the centered dipole (CD) coordinate system is probably the most commonly used magnetic coordinate system. This system, which is most used as spherical coordinates, represents a shift of the poles from the rotational axis to the dipole axis. At these altitudes however, the Earth’s ﬁeld deviates signiﬁcantly from a centered dipole. To achieve better accuracy with respect to the magnetic ﬁeld, several alternative coordinate systems exist. One example is the eccentric dipole (ED) coordinate system, which is based on a dipole representation which not necessarily has its origin at the center of the Earth.
+Even better accuracy can be achieved by taking the non-dipole features of the Earth’s ﬁeld into account. Corrected geomagnetic (CGM) coordinates (Gustafsson et al. 1992; Baker and Wing 1989; Shepherd 2014, and references therein) and the Magnetic Apex Coordinate systems (Richmond 1995) are based on a more detailed model of the Earth’s ﬁeld, and deﬁned in terms of ﬁeld line tracing. The improved accuracy comes at the expense of simplicity, as the result is a non-orthogonal coordinate system, in contrast to the aforementioned systems which can be deﬁned in terms of Cartesian base vectors and converted between by means of rotation matrices.
+In this review paper, we deﬁne all the above mentioned coordinate systems. The deﬁnitions of the orthogonal coordinate systems are given such that it is possible to implement coordinate conversion routines using only the most basic inputs: The ﬁrst few Gauss coefﬁcients in the International Geomagnetic Reference Field (IGRF) model, and time. The paper differs from other reviews on space physics coordinates (Matsushita and Campbell 1967; Russell 1971; Fraser-Smith 1987; Fränz and Harper 2002; Barton and Tarlowski 1991; Hapgood 1992) most notably by the inclusion of the non-orthogonal coordinate systems, which we also explain how to use with vector quantities.
+In Sect. 2 we describe the geocentric and geodetic coordinate systems. Section 3 contains the deﬁnitions of the orthogonal magnetic coordinate systems, and Sect. 4 the nonorthogonal coordinate systems. Section 5 explains how to handle electrodynamic vector quantities in such systems. Section 6 is about magnetic local time, and the secular variation of magnetic coordinate systems is brieﬂy discussed in Sect. 7. The appendices contain a list of abbreviations (Appendix A), notations (Appendix B), and code to calculate the position of the Sun in geocentric coordinates (Appendix C).
+
+Magnetic Coordinate Systems
+
+2 Geocentric and Geodetic Coordinates
+
+Geocentric spherical coordinates are comprised of the geocentric radial distance r, the colat-
+
+itude θ , and the east longitude φ. A position vector r can be written in geographic Cartesian
+
+coordinates x, y, z as
+
+⎛⎞ x
+
+⎛ r
+
+sin
+
+θ
+
+cos
+
+⎞ φ
+
+r = ⎝y⎠ = ⎝r sin θ sin φ ⎠
+
+(1)
+
+z
+
+r cos θ
+
+so that the spherical coordinates can be expressed in terms of x, y, z as:
+
+r = x2 + y2 + z2
+
+θ = cos−1
+
+z
+
+(2)
+
+x2 + y2 + z2
+
+φ = atan2(y, x).
+
+The term geocentric can refer to any Cartesian coordinate system which has its origin at
+the center of the Earth. In this paper (unless explicitly followed by “solar magnetic” or
+“solar ecliptic”) we take geocentric (abbreviation GEO) coordinates to mean the coordinate system which has its z axis (zˆgeo) along the rotational axis, the x axis (xˆgeo) pointing at the Greenwich meridian and the equator, and the y axis (yˆgeo) completing a right-handed system. The geocentric coordinates at r (1), can be written in terms of these base vectors as
+
+⎛⎞ x
+
+⎛xˆgeo · r⎞
+
+r = ⎝y⎠ = ⎝yˆgeo · r⎠ .
+
+(3)
+
+z
+
+zˆgeo · r
+
+A local Cartesian coordinate system can also be constructed at a point (θ, φ) on r = RE, such that the axes point along meridians towards the North Pole, eastward along circles of latitudes, and upward. We call such a coordinate system ENU (east-north-up), in contrast to the ECEF (Earth-centered Earth-ﬁxed) system described above. The ENU base vectors at (θ, φ) are (in geocentric coordinates):
+
+⎛
+
+⎞
+
+− sin φ
+
+⎛
+
+⎞
+
+− cos θ cos φ
+
+⎛
+
+⎞
+
+sin θ cos φ
+
+eˆ = ⎝ cos φ ⎠ , nˆ = ⎝− cos θ sin φ ⎠ , uˆ = ⎝sin θ sin φ ⎠ .
+
+(4)
+
+0
+
+sin θ
+
+cos θ
+
+If a position vector is given in ECEF coordinates, ENU components can be found by multiplication with a rotation matrix. The rotation matrix for conversion from ECEF to ENU has the transposed ENU base vectors, expressed in geocentric coordinates (4) as rows. We denote this matrix by R :
+ecef →enu
+
+⎛ − sin φ
+
+cos φ
+
+0⎞
+
+[r]enu
+
+=
+
+ecefR→enu[r]ecef
+
+=
+
+⎝− cos θ cos φ sin θ cos φ
+
+− cos θ sin φ sin θ sin φ
+
+sin θ ⎠ [r]ecef cos θ
+
+(5)
+
+where the bracket subscripts denote the coordinate system in which the vector components are represented (r is a position vector without reference to a coordinate system, while [r]ecef
+
+K.M. Laundal, A.D. Richmond
+
+explicitly refers to the components of r in ECEF coordinates). Since the base vectors are orthonormal, the matrix for the inverse operation is given by the transpose:
+
+R = R⊤ .
+
+(6)
+
+enu→ecef ecef →enu
+
+The Earth is slightly oblate, and r is not precisely normal to its surface except at the poles
+and equator. The World Geodetic System 1984 (WGS84) datum deﬁnes a reference Earth
+surface as an ellipsoid with equatorial radius Req = 6, 378, 137.0 m and a reciprocal of ﬂattening 1/f = 298.257223563, giving a polar radius of Rp = 6, 356, 752.3 m. Geodetic (or geographic) coordinates are deﬁned with respect to this surface. Altitude h is the distance of a point from the surface. The gradient of h gives a unit vertical (upward) vector kˆ . Geodetic longitude is identical with geocentric longitude. Geodetic colatitude is the angle between kˆ
+and the Earth’s axis, and differs slightly from geocentric colatitude except at the poles and equator. Geodetic latitude, λgd , is 90◦ minus geodetic colatitude.
+The geocentric Cartesian coordinates at a point deﬁned in terms of geodetic longitude,
+latitude and height, (φ, λgd , h) can be calculated as
+
+x = (ρ + h) cos λgd cos φ
+
+y = (ρ + h) cos λgd sin φ
+
+(7)
+
+z = ρ + h − e2ρ sin λgd
+
+where
+
+ρ = Req 1 − e2 sin2 λgd −1/2
+
+(8)
+
+and e is the eccentricity of the ellipsoid, given by
+
+e2 = 2f − f 2.
+
+(9)
+
+The inverse transformation, from geocentric to geodetic coordinates, is less straightforward, and a large number of different algorithms exist (see e.g., Zhu 1994, and references therein).
+Note that the ENU directions in (4) refer to geocentric coordinates, so that “north” is northward on a spherical Earth, and “up” is radially with respect to the center of the Earth. ENU commonly refers to the corresponding geodetic directions, in which case an additional rotation must be applied, about the east direction, to make the northward vector tangent, and the upward vector (which we then call kˆ ) normal to the ellipsoid.
+Geocentric coordinates are used throughout Sect. 3. Geodetic coordinates are used in Sect. 4.
+
+3 Orthogonal Magnetic Coordinate Systems
+In this section we deﬁne the most common orthogonal magnetic coordinate systems in terms of their origin and Cartesian base vectors represented in geocentric coordinates. When these coordinate vectors are known, it is straightforward to construct matrices to rotate between coordinate systems, and to calculate corresponding spherical coordinates by use of (2). The information given here should be sufﬁcient to write computer software for coordinate transformations between all the orthogonal magnetic coordinate systems and geocentric coordinates.
+
+Magnetic Coordinate Systems
+
+The deﬁnitions of all the orthogonal coordinate systems involve the Earth’s dipole axis. The dipole model which is normally used is that of the IGRF, which is also the standard magnetic ﬁeld model used in the nonorthogonal coordinate systems. The IGRF (Thébault et al. 2015), represents the Earth’s magnetic ﬁeld in terms of a series of spherical harmonic functions:
+
+Nmax
+B(r, θ, φ, t) = −R∇
+n=1
+
+R r
+
+n+1 n
+gnm(t) cos mφ + hmn (t) sin mφ Pnm(cos θ ),
+m=0
+
+(10)
+
+where r is geocentric radius, θ is geocentric colatitude, φ is longitude, and t time. R = 6371.2 km is a reference radius used in geomagnetic modeling, which is close to the mean Earth radius, RE, calculated as (2Req + Rp)/3 ≈ 6371.009 km (using the WGS84 values given in the previous section). Pnm is the Schmidt seminormalized associated Legendre function of order m and degree n, and gnm and hmn are the Gauss coefﬁcients of the internal ﬁeld. Since the Earth’s ﬁeld changes, the Gauss coefﬁcients are time-dependent, and the IGRF is updated every ﬁve years. The latest version, IGRF-12 (Thébault et al. 2015), is used here. For periods in between each model update, the coefﬁcients should be found by linear interpolation between the closest models.
+The truncation level Nmax is 13 for the latest IGRF models, so that the sum contains 195 Gauss coefﬁcients. Prior to 2000, Nmax = 10 (120 coefﬁcients). Only the three ﬁrst coefﬁcients (n = 1) are needed to deﬁne the dipole component of the ﬁeld. A unit vector which is anti-parallel to the dipole axis (the magnetic moment) can be expressed as
+
+mˆ
+
+=
+
+−
+
+1 B0
+
+⎛g11⎞ ⎜⎝h11⎟⎠
+g10
+
+(11)
+
+where
+
+B0 = g10 2 + g11 2 + h11 2
+
+(12)
+
+is a reference magnetic ﬁeld, or reduced moment (see e.g., Fraser-Smith 1987, and references therein). The Earth’s ﬁeld is such that the dipole axis points roughly southward, so that the dipole North Pole is really in the Southern Hemisphere (SH). However convention dictates that the axis of the geomagnetic dipole is positive northward, hence the negative sign in the deﬁnition of mˆ . The intersection of this vector with a unit sphere gives the positions of the centered dipole poles. Writing mˆ in terms of the centered dipole pole coordinates in the Northern Hemisphere (NH), we get
+
+⎛sin ΘN cos ΦN ⎞
+
+mˆ = ⎝sin ΘN sin ΦN ⎠ ,
+
+(13)
+
+cos ΘN
+
+where the geocentric colatitude and longitude of the pole are represented as capital Greek letters. They are related to the Gauss coefﬁcients by:
+
+ΘN = cos−1
+
+− g10 B0
+
+(14)
+
+ΦN = atan2 h11, g11 .
+
+K.M. Laundal, A.D. Richmond
+
+In the SH the location of the dipole pole is ΘS = 180◦ − ΘN , ΦS = ΦN + 180◦. With IGRF12 values for 2015, the pole locations are at ΘN = 9.69◦, ΦN = −72.63◦, and ΘS = 170.31◦, ΦS = 107.37◦.
+The vector mˆ is needed in the deﬁnitions of all the orthogonal magnetic coordinate systems described below. Some of the coordinate systems also depend on the direction of the Sun in the geocentric system. A unit vector, sˆ, pointing in this direction can be expressed in the same way as the components of mˆ in (13), using the geocentric colatitude and longitude of sˆ instead of the pole location. These values of geocentric colatitude and longitude are also the values of geodetic colatitude and longitude of the point on Earth where the Sun is in zenith (the subsolar point), since kˆ at the subsolar point is essentially parallel to sˆ, even if the line between the Earth center and the Sun does not precisely pass through the subsolar
+point owing to the Earth’s oblateness. The subsolar point depends only on the time and date.
+Python code which can be used to calculate its coordinates is given in Appendix C.
+The dipole tilt angle, ψ , describes the orientation of the dipole axis with respect to the Earth–Sun line. It is deﬁned to be 0◦ when they are at right angles, and positive when the centered dipole pole in the north is tilted towards the Sun. When sˆ and mˆ are known, it can be calculated as
+
+ψ = sin−1(sˆ · mˆ ).
+
+(15)
+
+3.1 Centered Dipole (CD) Coordinates
+
+The centered dipole coordinate system is arguably the most commonly used magnetic coordinate system. It is often called geomagnetic, geomagnetic dipole, or simply magnetic coordinates, and abbreviated MAG (e.g., Russell 1971). We use the term centered dipole, and abbreviation CD, which is more descriptive in terms of its deﬁnition, and to distinguish between this and the other magnetic coordinate systems. Earth-ﬁxed magnetic coordinate systems such as centered dipole coordinates are often used for magnetically organized phenomena close to ground, for instance to represent ground magnetic ﬁeld perturbations or to organize measurements of geomagnetic disturbances.
+Centered dipole coordinates are deﬁned so that the Cartesian z axis aligns with the dipole axis, pointing towards the centered dipole pole in the NH (i.e. in the direction of mˆ ). The y axis is perpendicular to the plane containing the dipole axis and the rotation axis of the Earth (zˆgeo). The x axis completes a right-handed system. Mathematically the base vectors are:
+
+zˆcd = mˆ
+
+yˆ cd
+
+=
+
+zˆgeo ∥zˆgeo
+
+× ×
+
+zˆcd zˆcd ∥
+
+(16)
+
+xˆcd = yˆcd × zˆcd .
+
+In the hypothetical case that the dipole and rotational axes align, the denominator in the equation for yˆcd is zero. In that case the CD coordinates can be set equal to geocentric coordinates. Centered dipole coordinates are most often referred to in spherical coordinates (see (2)). A map of centered dipole coordinates is shown in Fig. 1.
+If a position vector is given in geocentric coordinates, the centered dipole components can be found by multiplication with a rotation matrix, as in (5). The rotation matrix for
+
+Magnetic Coordinate Systems
+
+Fig. 1 Map of centered dipole coordinates. Stereographic projection is used for the polar maps, and Miller cylindrical projection for the world map
+
+conversion from geocentric to centered dipole coordinates has the transposed CD base vectors (16), expressed in geocentric coordinates, as rows. We denote this matrix by R :
+geo→cd
+
+⎛[xˆ⊤cd ]geo⎞
+
+[r]cd
+
+=
+
+R
+geo→cd
+
+[r]geo
+
+=
+
+⎜⎝[yˆ⊤cd ]geo⎟⎠ [r]geo [zˆ⊤cd ]geo
+
+(17)
+
+Since the base vectors are orthonormal, the matrix for the inverse operation is given by the transpose:
+
+R = R⊤ .
+cd→geo geo→cd
+
+(18)
+
+An ENU basis in centered dipole coordinates (eˆcd pointing eastward along CD circles of
+
+latitude
+
+and
+
+nˆ cd
+
+pointing
+
+along
+
+CD
+
+meridians)
+
+can
+
+be
+
+found
+
+by
+
+applying
+
+R
+geo→cd
+
+to
+
+eˆ, nˆ ,
+
+and
+
+K.M. Laundal, A.D. Richmond
+
+uˆ as deﬁned in (4). A matrix whose rows are the resulting vectors is the change of coordinate matrix from geocentric ECEF to centered dipole ENU coordinates.
+
+3.2 Local Magnetic Coordinates
+
+Magnetic ﬁeld measurements are often represented by so-called magnetic elements, three of which are H , D and Z, where H is the horizontal ﬁeld strength, D is the declination angle (angle with geodetic north, positive eastward) and Z is the downward component of the ﬁeld. Magnetic perturbations to the main ﬁeld are often presented with an H component with a somewhat different meaning; the component of the perturbation in the direction of the main ﬁeld, i.e. in the compass direction. This direction is often empirically determined using geomagnetic quiet days or other techniques to determine a baseline magnetic ﬁeld. The other components of such a local magnetic coordinate system are often local magnetic east (90◦ clockwise of the H direction, seen from above) and up.
+If bˆ is a unit vector in the direction of B and kˆ is a unit upward vector, then unit vectors in the local magnetic east (eˆm) and north (nˆ m) directions are
+
+eˆm
+
+=
+
+bˆ ∥bˆ
+
+× ×
+
+kˆ kˆ ∥
+
+(19)
+
+nˆ m = kˆ × eˆm.
+
+(20)
+
+A unit vector perpendicular to B in the local magnetic-meridional plane, positive upward/poleward, is
+
+pˆ = eˆm × bˆ .
+
+(21)
+
+The local magnetic ﬁeld is also used to deﬁne the dip latitude:
+
+λdip = tan−1
+
+1 2
+
+tan
+
+I
+
+= tan−1
+
+Z 2H
+
+,
+
+(22)
+
+where I is the downward dip angle, determined from the horizontal magnetic ﬁeld strength H and the downward component Z. If the Earth was perfectly spherical and the magnetic ﬁeld a perfect dipole, the dip latitude would be equal to the CD latitude (e.g., Emmert et al. 2010). In reality however, dip latitude is signiﬁcantly different from CD latitude. Contours of dip latitude, calculated using the IGRF-12, are shown in Fig. 2, which also shows the location of the CD poles as blue dots. The dip poles are located where the horizontal ﬁeld is zero. These are the magnetic poles at which one would arrive by following a compass.
+Local coordinates are easy to determine from local measurements of the ﬁeld, but are not generally conjugate to local coordinates at other places along a ﬁeld line, like the opposite hemisphere. Interhemispheric differences between dip latitudes for high-latitude ﬁeld lines can become quite large, and variations of dip latitude along a meridian are not always monotonic, as near South Africa in Fig. 2.
+
+3.3 Eccentric Dipole (ED) Coordinates
+
+The centered dipole upon which centered dipole coordinates are based depends on the three ﬁrst coefﬁcients in a spherical harmonic representation of the Earth’s magnetic ﬁeld. These coefﬁcients are enough to account for about 95% of the Earth’s magnetic ﬁeld (Lowes 1994). It is possible to have a dipole description of a larger fraction of the ﬁeld by treating its origin
+
+Magnetic Coordinate Systems
+
+Fig. 2 Contours of dip latitude, calculated using (22) and IGRF-12 2015 coefﬁcients. The blue dots mark the CD poles. The projections are similar to Fig. 1
+
+and orientation as free parameters. However, according to Lowes (1994), who described ﬁve different techniques to estimate such a dipole, “there is no optimum eccentric dipole with which to represent the geomagnetic ﬁeld approximately”.
+The most used eccentric dipole, introduced by Schmidt (1934), has the same magnitude and orientation as that of the centered dipole, but its position C is chosen such as to minimize the n = 2 terms in (10) as observed from C. The origin of this eccentric dipole therefore depends on the ﬁrst eight Gauss coefﬁcients. Here we present formulas which can be used to calculate its position, and refer to Fraser-Smith (1987, and references therein) for more details about their derivation. The origin of the Schmidt eccentric dipole is located at (in Cartesian geocentric coordinates):
+
+x = ηRE
+
+(23)
+
+y = ζ RE
+
+(24)
+
+z = ξ RE
+
+(25)
+
+K.M. Laundal, A.D. Richmond
+
+where
+
+η = L1 − g11E /3B02
+
+(26)
+
+ζ = L2 − h11E /3B02
+
+(27)
+
+ξ = L0 − g10E /3B02
+
+(28)
+
+where
+
+L0
+
+= 2g10g20
+
+√ +3
+
+g11g21
+
++ h11h12
+
+(29)
+
+L1
+
+=
+
+−g11g20
+
++
+
+√ 3
+
+g10g21 + g11g22 + h11h22
+
+(30)
+
+√
+
+L2 = −h11g20 + 3 g10h12 − h11g22 + g11h22
+
+(31)
+
+E = L0g10 + L1g11 + L2h11 /4B02
+
+(32)
+
+and B0 is given by (12). With the IGRF-12 coefﬁcients for 2015, the shift of the eccentric dipole away from the
+center of the Earth is
+
+δ = RE η2 + ζ 2 + ξ 2 ≈ 576.8 km.
+
+(33)
+
+Since 1950, the eccentric dipole (as deﬁned by Schmidt) has moved away from the center of the Earth at an almost constant speed of ≈ 2.5 km/year.
+The base vectors in eccentric coordinates are the same as for centered dipole coordinates (16), since the orientation of the dipole axis is kept the same. That means that coordinate
+transformations to ED coordinates amounts to a translation from the CD system by a vector t, whose geocentric components are ( x, y, z), given in (23)–(25). The CD components of t are xcd = t · xˆcd , ycd = t · yˆcd and zcd = t · zˆcd .
+Now the relationship between CD and ED components of a position vector is given by
+
+⎛⎞⎛
+
+⎞
+
+xed
+
+xcd − xcd
+
+⎝yed ⎠ = ⎝ycd − ycd ⎠ .
+
+(34)
+
+zed
+
+zcd − zcd
+
+When the Cartesian ED components of a position vector are known, the corresponding spherical coordinates can be found in the standard way (2). Note that the radius red in general will not be equal to rcd , since the origin has been shifted away from the center of the Earth. Because of the simplicity of converting between ED and CD coordinates, the easiest way to convert between geocentric and ED coordinates is to ﬁrst convert to CD coordinates.
+Sometimes a point is speciﬁed by a mixture of CD and ED coordinates. The ED North Pole for instance is located at θed = 0 and rcd = RE (and φed arbitrary). The same problem applies when an ED coordinate grid is deﬁned on the surface of the Earth. To ﬁnd the CD coordinates in this case, (34) can be used to ﬁnd a quadratic equation for red (which is unknown in this case):
+
+RE2 = (red sin θed cos φed + xcd )2
+
++ (red sin θed sin φed + ycd )2
+
++ (red cos θed + zcd )2.
+
+(35)
+
+Magnetic Coordinate Systems
+Fig. 3 Maps of eccentric dipole coordinates at 1 RE . The projections are similar to Fig. 1
+Solving this equation for red (choosing the positive root), all the Cartesian ED components will be known. The centered dipole components can then be found from (34).
+Using this technique, and IGRF-12 coefﬁcients for 2015, we ﬁnd that the eccentric dipole pole in the NH is at 5.86◦ colatitude and −97.78◦ longitude (geocentric coordinates). In the SH it is at 165.72◦ colatitude and 117.51◦ longitude. Figure 3 shows maps of ED coordinates at 1 RE .
+Fraser-Smith (1987) presents direct relationships between the angular coordinates in centered and eccentric dipole coordinates, based on work by Cole (1963). He also presents expressions for the eccentric dipole pole positions in terms of geocentric coordinates. Apart from an approximation in his expression for pole positions, his formulas give the same results as does the method described above, but computer implementation is more involved, since it requires extra checks to ﬁnd the correct quadrant for the angles in some cases. This is avoided here if the atan2-function is used. 3.4 Geocentric Solar Magnetic (GSM) Coordinates Geocentric solar magnetic (GSM) coordinates are frequently used at high altitudes; in the solar wind, the magnetopause region and in the magnetotail; regions strongly controlled by
+
+K.M. Laundal, A.D. Richmond
+
+the solar wind and the interplanetary magnetic ﬁeld. The x axis in GSM coordinates points from the center of the Earth (the origin) to the Sun. The y axis is perpendicular to both the magnetic dipole axis and the Earth–Sun line, and positive towards dusk. The z axis, which consequently is in the plane containing both the Earth–Sun line and the dipole axis, completes a right-handed system. The GSM base vectors are:
+
+xˆgsm = sˆ
+
+yˆ gsm
+
+=
+
+mˆ ∥mˆ
+
+× ×
+
+xˆ gsm xˆ gs m ∥
+
+(36)
+
+zˆgsm = xˆgsm × yˆgsm.
+
+GSM coordinates have the same x axis as geocentric solar ecliptic (GSE) coordinates. The y- and z axes are deﬁned differently however. In GSE coordinates, which is not a magnetic coordinate system, the y axis is in the ecliptic plane, and the z axis completes the righthanded system (see e.g., Hapgood 1992, for formulas to calculate the GSE axes). Thus in GSE coordinates the dipole axis moves in three dimensions, while in GSM coordinates it moves in only two dimensions, since it is always contained in the xz plane.
+Coordinate transformations from GEO to GSM can be done in the same way as in (5), only that the rows of R are the base vectors in (36). A change of coordinate matrix
+geo→gsm
+from CD to GSM can be constructed by combining the two matrices:
+
+R= R
+
+R⊤
+
+cd→gsm geo→gsm geo→cd
+
+(37)
+
+3.5 Solar Magnetic (SM) Coordinates
+
+Solar magnetic coordinates are much used in regions which are more strongly dominated by the Earth’s magnetic ﬁeld, such as in the inner magnetosphere. Like CD coordinates, the z axis in SM coordinates is the dipole axis. The other axes are deﬁned such that the Sun–Earth line is contained in the xz plane. Thus the difference from CD coordinates is a rotation about the z axis. The y axis, being perpendicular to both the dipole axis and the Sun–Earth line, is the same as in GSM coordinates. The difference between SM and GSM coordinates is thus a rotation about the y axis by the dipole tilt angle (15). In SM coordinates, the dipole axis is static, while the Sun–Earth line moves in the xz plane, in contrast to GSM coordinates, where the Sun–Earth line is static and the dipole axis moves.
+The SM base vectors are:
+
+zˆsm = mˆ
+
+yˆ s m
+
+=
+
+zˆsm ∥zˆsm
+
+× ×
+
+sˆ sˆ∥
+
+(38)
+
+xˆsm = yˆsm × zˆsm
+
+Change of coordinate matrices can be constructed in the same way as in (5), with the SM base vectors in place of the CD base vectors. Rotation to SM coordinates from GSM or CD coordinates can be achieved by combining change of coordinate matrices, as in (37). For GSM to SM the change of coordinate matrix can therefore be written:
+
+R =R
+
+R⊤ .
+
+gsm→sm geo→sm geo→gsm
+
+(39)
+
+Magnetic Coordinate Systems
+Fig. 4 Illustration of the x and z axes of the CD (red), SM (blue), and GSM (green) coordinate systems. The northern half of the prime meridians are also shown. When the axes or meridians of two systems coincide, they are shown in alternating colors. The SM and GSM xz planes are equal, and are spanned by the vectors mˆ (along the dipole axis) and sˆ (pointing to the Sun). Their x and z axes differ by the dipole tilt angle ψ (15). The GSM x axis is along sˆ, and the z axis intersects the sunlight terminator (the dark side of the Earth is shaded). The SM z axis is along mˆ , and the x axis intersects the CD equator, which is also the SM equator (shown by a thin red great circle). The CD z axis is along mˆ , and the x axis is in the plane containing mˆ and the Earth’s rotational axis. CD coordinates only depend on mˆ , and therefore change very slowly with respect to the Earth’s surface. SM and GSM coordinates depend also on sˆ, which changes with the subsolar point. Orthographic projection is used in this plot
+The spherical SM coordinates are similar to spherical CD coordinates apart from a different deﬁnition of longitude. The 0◦ longitude in SM coordinates will contain the subsolar point, and thus represents the centered dipole noon meridian (see Sect. 6 about magnetic local time).
+Figure 4 summarizes the relationships between CD, SM, and GSM coordinates. It shows the x and z axes, and the 90◦ segment of the great circles (meridians) connecting their intersection with the surface.
+4 Nonorthogonal Magnetic Coordinate Systems
+The magnetic coordinate systems deﬁned in the previous section take into account only the ﬁrst few terms in the spherical harmonic representation of the Earth’s magnetic ﬁeld (10). Since each term is proportional to 1/rn+2, the dipole ﬁeld (n = 1) dominates at large distances. Taking into account higher degree terms at high altitudes is therefore often inexpedient. At ionospheric altitudes however, the higher degree terms can be signiﬁcant. In this section we describe some of the coordinate systems which are deﬁned using the IGRF at full resolution (to degree 13 in 2015). They have the common feature that they are nonorthogonal, and that they would reduce to CD coordinates if gnm and hmn in (10) were zero for
+
+K.M. Laundal, A.D. Richmond
+
+n, m > 1 (i.e. a pure dipole ﬁeld), and the Earth were spherical. The inclusion of higher order terms means that the coordinate systems described here can be used to construct models and organize data with a higher precision with respect to the Earth’s magnetic ﬁeld than with e.g. centered dipole coordinates.
+
+4.1 Magnetic Apex Coordinates
+
+The Magnetic Apex coordinate systems (VanZandt et al. 1972; Richmond 1995) are calculated by tracing along magnetic ﬁeld lines of the IGRF, and deﬁned in terms of the highest point above the Earth, the apex, taking the ellipsoidal shape of the Earth into account. The apex longitude is the centered dipole longitude of the apex. The latitude is determined by the apex height, hA, by mapping back to a certain height along a dipole ﬁeld line. In the original deﬁnition (VanZandt et al. 1972), the Magnetic Apex latitude is
+
+λa = ± cos−1
+
+Req Req + hA
+
+(40)
+
+where Req is the equatorial radius of the ellipsoid. The sign of the latitude is positive (negative) north (south) of the dip equator.
+Two types of Magnetic Apex coordinate systems were later deﬁned by Richmond (1995), which essentially differ by the height to which the dipole mapping is done: In Quasi-Dipole (QD) coordinates the latitude is deﬁned by mapping to the geodetic height of the point in question, h. In Modiﬁed Apex coordinates, the latitude is deﬁned by mapping to a reference height hR. Thus the QD latitude is deﬁned as:
+
+λqd = ± cos−1
+
+RE + h RE + hA
+
+,
+
+(41)
+
+and the Modiﬁed Apex (MA) latitude is deﬁned as
+
+λma = ± cos−1
+
+RE RE
+
++ +
+
+hR hA
+
+.
+
+(42)
+
+For both QD and MA coordinates the sign is positive in the Northern magnetic hemisphere and negative for the Southern. It can be seen that Magnetic Apex and Modiﬁed Apex coordinates have the property that any point on the same IGRF ﬁeld line will have the same latitude. The QD latitude, however, depends on the height of that point. Therefore, the QD latitude varies along a ﬁeld line. Equations (41) and (42) can be used to ﬁnd an equation relating QD and MA latitudes:
+
+cos λqd =
+
+RE + h RE + hR
+
+cos λma.
+
+(43)
+
+The QD longitude is constant along a ﬁeld line, and equal to the Modiﬁed Apex longitude. QD coordinates are useful for magnetically organized phenomena that have a speciﬁc
+height distribution, such as ionospheric currents, which are conﬁned to the conducting layer of the ionosphere. The three coordinates in QD coordinates are φqd , λqd and h, whereas in Modiﬁed Apex coordinates the third coordinate is the magnetic potential V , which relates
+
+Magnetic Coordinate Systems
+Fig. 5 Maps of Quasi-Dipole coordinates at 0 km altitude, which are equal to Modiﬁed Apex coordinates with reference height 0. Calculated using code published by Emmert et al. (2010). The projections are similar to Fig. 1
+to the IGRF magnetic ﬁeld (10) as B = −∇V . The third coordinate in Modiﬁed Apex coordinates is rarely explicitly used (in contrast to the third coordinate h in QD coordinates), but it is useful for reasons that we will return to in Sect. 5.
+Maps of Quasi-Dipole coordinates at h = 0 are shown in Fig. 5. These coordinates are the same as Modiﬁed Apex coordinates at h = 0 with hR = 0. Notice that the grid is nonuniform. A global QD grid is also shown in Fig. 6 in a conformal projection, which means that local angles are preserved. It is clear that the coordinate contours in general do not intersect at right angles. The angle between eastward and northward unit vectors are indicated in color in Fig. 6, showing that the angles range from ≈ 60◦ to ≈ 116◦. The deviation from orthogonality is particularly signiﬁcant in the South Atlantic and in the southern parts of Africa.
+Direct calculation of apex coordinates by ﬁeld line tracing is computationally expensive and complicated to implement. Emmert et al. (2010) published Fortran software for computationally compact conversion between apex and geodetic coordinates, using
+
+Fig. 6 Color representation of the angle between eastward and northward unit vectors in the Quasi-Dipole coordinate system. A QD grid is overlaid. The map is shown in Mercator projection, which preserves angles. Computed using software by Emmert et al. (2010) with IGRF-12 2015 coefﬁcients
+
+K.M. Laundal, A.D. Richmond
+
+spherical harmonic analysis. Their code has been used to produce the ﬁgures in this paper.1
+Application of apex coordinates is only possible for planets like Earth whose magnetic ﬁeld is not very distorted. On Mars for example, every point will not have unique MA or QD coordinates, since the same apex height (and consequently latitude), can appear multiple times along a given dipole longitude. This is because Mars lacks a dynamo in the core, so that small-scale magnetic patches in the crust dominate.
+
+4.2 Corrected Geomagnetic Coordinates (CGM)
+
+Corrected geomagnetic coordinates (CGM) are also deﬁned in terms of ﬁeld line tracing using the IGRF. The CGM coordinates of a point P are determined by the location of the intersection of the ﬁeld line at P with the centered dipole equatorial plane. A dipole mapping to 1 RE is applied to ﬁnd the latitude:
+
+λcgm = ± cos−1
+
+RE RE + heq
+
+,
+
+(44)
+
+where heq is the height of the CD equatorial plane intersection. The sign of the latitude is negative when mapping to the SH and positive when mapping to the NH. The CGM longitude is the longitude of the intersection. Since the coordinates are completely determined by a certain point on the coinciding IGRF ﬁeld line, each point on that ﬁeld line will have the same coordinates.
+It is clear from the deﬁnition in (44) that CGM coordinates will be very similar to Modiﬁed Apex coordinates with hR = 0. The difference between these coordinates depends on the difference between the location of the ﬁeld line apex and the intersection with the CD equatorial plane. Figure 7 shows a CGM coordinate grid at h = 0, plotted on top of the QD grid (or MA with hR = 0) from Fig. 5(blue). It can be seen that on these scales, there are only very small differences at polar latitudes. This is not surprising, since at high latitudes the apexes of the ﬁeld lines are at very large altitudes where the dipole terms in the IGRF dominate. Consequently the apexes will be close to the dipole equatorial plane.
+
+1A Python wrapper for this code is available at https://github.com/cmeeren/apexpy (by Christer van der Meeren and Karl M. Laundal, University in Bergen).
+
+Magnetic Coordinate Systems
+Fig. 7 CGM (or AACGM) coordinate grid at zero height (red) plotted on top of the QD grid from Fig. 5 (blue). The CGM equator has been traced to both hemispheres (using the software by Shepherd 2014), and is shown as two bold contours. CGM coordinates are undeﬁned in the shaded regions between these contours. The centered dipole equator is indicated in bright red. All conversions were done with IGRF12 2015 coefﬁcients. The projections are similar to Fig. 1
+At lower latitudes however the differences can be signiﬁcant. In some regions surrounding the QD equator (which is also the dip equator), the CGM coordinates are not even deﬁned, since there are ﬁeld lines which never cross the CD equatorial plane. The CGM equator (λcgm = 0) has been mapped to both hemispheres, and is shown as bold contours in Fig. 7. Between these contours, in the shaded areas, CGM coordinates are undeﬁned. The CD equator, marked with bright red, lies at one of the boundaries and the other is traced by points which are magnetically conjugate (i.e., at the other ﬁeld line intersection with h = 0) to the CD equator. The CD equator is far south of its conjugate points in the Atlantic sector, but the orientation is reversed at some points along the dip equator.
+Early implementations of CGM coordinate conversions were based on lookup tables (see e.g., Gustafsson et al. 1992, and references therein), and conversions were only computed for points at h = 0. Thus CGM coordinates are sometimes described as undeﬁned at h > 0. Later implementations, using spherical harmonics (Baker and Wing 1989), allowed conversion of points at higher altitudes, and has become known as altitude-adjusted corrected
+
+K.M. Laundal, A.D. Richmond
+geomagnetic (AACGM) coordinates. The deﬁnition of AACGM coordinates is mathematically the same as that described above for CGM coordinates. Despite the CGM/AACGM coordinates being undeﬁned in certain regions, computer implementations prior to Shepherd (2014) have provided coordinates in these regions, using interpolation techniques. However Shepherd (2014) found that the interpolation introduced errors affecting also poleward latitudes. His code is more accurate than earlier software in the region where the coordinates are deﬁned. The CGM coordinates in Fig. 7 were calculated by ﬁeld line tracing using the software published by Shepherd (2014), which is available in the C and IDL languages.2 The software also contains code to calculate conversions using spherical harmonics, which is much faster than with ﬁeld line tracing.
+
+5 Vector Quantities in Nonorthogonal Coordinates
+
+The fact that CGM and apex coordinates are nonorthogonal implies that conversion of vectors is more complicated than a multiplication by a rotation matrix. In this section we describe how to do such conversions, starting by brieﬂy reviewing a text-book description on nonorthogonal coordinates. Then we describe the technique introduced by Richmond (1995), which leads to certain very convenient properties for electrodynamic quantities regarding mapping along magnetic ﬁeld lines. This section is partly motivated by the fact that several authors use CGM or apex grids with vectors represented in e.g. CD or local magnetic coordinates. This practice is mathematically unsound, since the vectors, which should be invariant with respect to the coordinate system, are effectively changed. This can lead to systematic errors between longitudes and hemispheres (Gasda and Richmond 1998; Laundal and Gjerloev 2014). In Sect. 5.2 we look at such errors in a quantitative fashion.
+Following the description in Riley et al. (2006, Chap. 21) (see also the book by D’haeseleer et al. 1991), we have that in a general three-dimensional curvilinear coordinate system, with coordinates u1, u2, u3, there exists two sets of base vectors at a point P :
+
+ϵ i = ∇ui
+
+(45)
+
+ϵi
+
+=
+
+∂r ∂ ui
+
+(46)
+
+where i = 1, 2, 3 and r = r(u1, u2, u3) is the position vector of P . These base vectors are reciprocal, meaning that
+
+ϵ i · ϵ j = δij .
+
+(47)
+
+This property means that any vector v can be expressed in terms of either of the bases by:
+
+3
+
+3
+
+v = ϵ i · v ϵ i = (ϵ i · v)ϵ i .
+
+(48)
+
+i=1
+
+i=1
+
+The vectors ϵ i are called the covariant base vectors, and ϵi contravariant base vectors. Similarly, the components ϵ i · v = vi (ϵ i · v = vi ) are called the contravariant (covariant) components of v. Either decomposition is valid, since both keep the vector invariant with respect
+to the coordinate systems.
+
+2A Python wrapper for this code is available at https://github.com/cmeeren/aacgmv2 (by Christer van der Meeren and Karl M. Laundal, University in Bergen).
+
+Magnetic Coordinate Systems
+
+This is a generalization of base vectors in Cartesian coordinate systems, where ϵi = ϵ i , and the base vectors are orthogonal and of unit length. For example, the spherical coordinate
+
+base hand
+
+vectors side of
+
+eˆ, −nˆ , uˆ (1), and
+
+(4) can be derived by ui = r, θ, φ. The same
+
+craelscuulltawtinoguld∂∂urai p/p∥e∂∂aurir
+
+∥, with r given by calculating
+
+on the
+
+the right gradient
+
+of the spherical coordinates (45). Notice the change in sign of nˆ , since ∂r is southward
+
+∂θ
+
+when θ is colatitude. If r was differentiated with respect to the latitude, the result would be
+
+northward.
+
+In a non-Cartesian coordinate system, such as CGM and Magnetic Apex Coordinates, ϵi
+
+is in general not equal to ϵ i . ϵ i is perpendicular to surfaces of constant ui , and its length depends on the spacing between these surfaces. ϵi is tangent to the contours deﬁned by the intersection between the other two coordinate surfaces, and its length depends on the rate of
+
+change of ui along these contours. This formalism can also be used to derive expressions for differential operators in non-
+
+Cartesian coordinate systems. The gradient, divergence, and curl operations for a right-
+
+handed system can be written
+
+3
+
+∇φ = ∂φ ϵi.
+
+(49)
+
+i=1 ∂ ui
+
+∇ · J = 1 3 ∂(Wϵ i · J)
+
+(50)
+
+W i=1 ∂ui
+
+3
+∇ ×B=
+
+ϵi
+
+3 ∂(Wϵ i × ϵ j · B)
+
+(51)
+
+i=1 W j =1
+
+∂ ui
+
+W = ϵ 1 × ϵ 2 · ϵ 3 −1
+
+(52)
+
+5.1 Apex Base Vectors
+
+It is tempting to apply (45) and (46) directly to Modiﬁed Apex coordinates to obtain base vectors for this coordinate system. However, Richmond (1995) presented base vectors which are scaled such that if the Earth’s ﬁeld was a perfect dipole, they would constitute an orthonormal set of vectors on the sphere r = RE + hR. The appropriate scaling factors can be found by evaluating ∥∇ui∥, ui = (λma, φma, V ) for a dipole ﬁeld. The resulting scaled vectors were called di , and are deﬁned as follows:
+
+d1 = (RE + hR) cos λma∇φma
+
+(53)
+
+d2 = −(RE + hR) sin Ima∇λma
+
+(54)
+
+d3
+
+=
+
+−∇ V |∇V |D
+
+=
+
+d1 × d2 ∥d1 × d2∥2
+
+(55)
+
+where
+
+sin Ima = 2 sin λma 4 − 3 cos2 λma −1/2.
+
+(56)
+
+In a dipole d1 would point horizontally eastward. d2 would point equatorward and downward, so that it is perpendicular to the inclined magnetic ﬁeld. sin Ima can be recognized as the equation for the magnetic ﬁeld inclination Ima in a dipole ﬁeld. If the ﬁeld was a dipole
+
+Fig. 8 Illustration of the Modiﬁed Apex base vectors. Left: Base vectors with respect to B, V and contours of constant coordinates. Right: Decomposition of a vector v in terms of di or ei (shown on a surface of constant V )
+
+K.M. Laundal, A.D. Richmond
+
+and the Earth a sphere, Ima would be the inclination at radius RE + hR. d3 is ﬁeld-aligned. The factor D, which would be unity in a dipole ﬁeld at r = RE + hR varies along ﬁeld lines in proportion to the magnetic ﬁeld strength B.
+Since the ﬁeld is not a dipole, d1 in general does not point strictly eastward along contours of constant Modiﬁed Apex latitude. It points perpendicular to Modiﬁed Apex meridians in
+surfaces of constant V . Likewise, d2 points roughly equatorward and downward, exactly perpendicular to contours of constant latitude in surfaces of constant V . Both d1 and d2 are perpendicular to the magnetic ﬁeld. Because of the non-dipole terms, di will in general not have unit length at r = RE + hR, and the vectors will not be perpendicular to each other. The quantity D = ∥d1 × d2∥ can be seen as a measure of the deviation from a dipolar ﬁeld at r = RE + hR. A map of D can be found in the paper by Richmond (1995).
+The second set of base vectors, ei , corresponding to ϵ i (46), are deﬁned in terms of di , so that the two sets are reciprocal (di · ej = δij ):
+
+e1 = d2 × d3
+
+(57)
+
+e2 = d3 × d1
+
+(58)
+
+e3 = d1 × d2.
+
+(59)
+
+The e1 vector is tangent to coordinate contours deﬁned by constant λma and constant V . Thus on a surface of constant V , e1 points eastward along contours of constant λma, and e2 points equatorward along contours of constant φma (magnetic meridians). e3 is aligned with the IGRF magnetic ﬁeld, just as d3. The magnitude of e3 increases with altitude, while the magnitude of d3 decreases, such that the reciprocal property is fulﬁlled (d3 · e3 = 1). e1 and e2 are in general not aligned with d1 and d2.
+The left part of Fig. 8 shows an illustration of the base vectors with respect to B, V and
+contours of constant coordinates. The right part of the ﬁgure, which displays a surface of
+constant V , shows how a vector v can be decomposed in terms of any of the bases, in the
+same way as in (48):
+
+v = ve1 e1 + ve2 e2 + ve3 e3 = (v · d1)e1 + (v · d2)e2 + (v · d3)e3
+
+(60)
+
+v = vd1 d1 + vd2 d2 + vd3 d3 = (v · e1)d1 + (v · e2)d2 + (v · e3)d3
+
+(61)
+
+Which decomposition one should choose depends on the quantity (see Sect. 5.1.1). Richmond (1995) also deﬁned base vectors for Quasi-Dipole coordinates. For a dipole
+ﬁeld and spherical Earth, both sets of QD base vectors would be equal to eˆ, nˆ , uˆ (4). Since the ﬁeld is not a perfect dipole, they are generally nonorthogonal and not of unit length. They are deﬁned as:
+
+g1
+
+=
+
+(RE + F
+
+h) cosλqd ∇φqd
+
+(62)
+
+Magnetic Coordinate Systems
+
+g2
+
+=
+
+RE + F
+
+h ∇λqd
+
+(63)
+
+g3 = F k
+
+(64)
+
+and
+
+f1 = g2 × g3
+
+(65)
+
+f2 = g3 × g1
+
+(66)
+
+f3 = g1 × g2
+
+(67)
+
+where F = ∥f1 ×f2∥ and kˆ is an upward unit vector. gi correspond to ϵ i and fi to ϵ i according to
+
+ϵ1
+
+=
+
+(RE
+
++
+
+F h) cos
+
+λqd
+
+g1
+
+(68)
+
+ϵ2
+
+=
+
+F (RE +
+
+h) g2
+
+(69)
+
+ϵ3
+
+=
+
+1 F
+
+g3
+
+=
+
+k
+
+(70)
+
+ϵ1
+
+=
+
+(RE
+
++
+
+h) cos F
+
+λqd
+
+f1
+
+(71)
+
+ϵ 2 = (RE + h) f2
+
+(72)
+
+F
+
+ϵ 3 = F f3
+
+(73)
+
+and the volume factor W of (52) is
+
+W = (RE + h)2 cos λqd .
+
+(74)
+
+F
+
+f1 and f2 are horizontal vectors (on the surface of constant h) tangent to contours of constant λqd and φqd , respectively. The sign is such that f1 points eastward and f2 points northward.
+As is clear from the deﬁnitions of the base vectors, the gradients of the magnetic coordi-
+nates must be calculated in order to ﬁnd their components. Computer code which provides
+all base vectors (except for gi and f3 which can easily be found when the others are known using relations in Richmond 1995) was published by Emmert et al. (2010).
+
+5.1.1 Decomposing E, j, v and B
+
+Ionospheric electrodynamic quantities can in principle be decomposed in terms of either of the bases. The vector components will be different depending on which decomposition is chosen. In some cases a speciﬁc choice of decomposition leads to convenient mapping properties for the components. For example, if we consider the equation for the gradient in nonorthogonal coordinates (49), we see that it is decomposed in terms of ∇ui , which in the case of Modiﬁed Apex coordinates is parallel to di . Thus, for the electric ﬁeld, which in certain cases can be written as a gradient E = −∇Φ, it makes sense to decompose in terms of di . Using the gradient in Modiﬁed Apex coordinates, E expressed in terms of Φ is
+E = (E · e1)d1 + (E · e2)d2
+
+K.M. Laundal, A.D. Richmond
+
+= Ed1 d1 + Ed2 d2
+
+=
+
+−
+
+RE
+
+1 +
+
+hR
+
+1 cos λma
+
+∂Φ ∂ φm
+
+d1
+
++
+
+1 sin Ima
+
+∂Φ ∂ λm
+
+d2
+
+(75)
+
+where the ﬁeld-aligned component of E has been assumed to be zero. The equation shows
+that, since Φ maps along ﬁeld lines, Ed1 and Ed2 must also be constant along ﬁeld lines. The change in E along ﬁeld lines is contained in the base vectors d1 and d2, which do change. This property can be used to map E along IGRF ﬁeld lines. Because of the scaling of the
+vectors, the magnitude of the electric ﬁeld components can be interpreted as the magnitude
+at r = RE + hR in a dipole ﬁeld. If the main magnetic ﬁeld (IGRF) B is decomposed in terms of e3,
+
+B = (B · d3)e3 = Be3 e3,
+
+(76)
+
+the quantity Be3 is constant along ﬁeld lines. These properties imply that the component of the drift velocity, v = E × B/B2, can also
+be made constant along ﬁeld lines if they are decomposed in terms of ei . That is,
+
+v
+
+=
+
+Ed2 Be3
+
+e1
+
+−
+
+Ed1 Be3
+
+e2
+
+=
+
+(v
+
+·
+
+d1)e1
+
++
+
+(v
+
+· d2)e2
+
+=
+
+ve1 e1
+
++
+
+ve2 e2,
+
+(77)
+
+where ve1 and ve2 are constant along ﬁeld lines. Their magnitude can be interpreted as the drift magnitude at r = RE + hR in a dipole ﬁeld.
+The electric current density J is also conveniently decomposed in terms of the ei base vectors:
+
+J = (J · d1)e1 + (J · d2)e2 + (J · d3)e3 = Je1 e1 + Je2 e2 + Je3 e3.
+
+(78)
+
+Steady-state currents satisfy a force-balance condition
+
+J × B + F′ = 0,
+
+(79)
+
+where F′ is the force per unit volume on the charged particles due to collisions with neutral molecules, to gravity, and to plasma pressure gradients. If F′ is also expressed in terms of
+the ei base vectors, then (79) has the solution
+
+Je1
+
+=
+
+Fe′2 Be3
+
+(80)
+
+Je2
+
+=
+
+− Fe′1 Be3
+
+.
+
+(81)
+
+When the current is force-free, as is approximately the case in the top-side ionosphere and lower magnetosphere, the current components Je1 and Je2 essentially vanish and Je3 is nearly constant along geomagnetic-ﬁeld lines, such that the ﬁeld-aligned current density varies along the ﬁeld lines as e3.
+In the lower ionosphere the constraints that current be continuous and that the vertical current essentially vanish at the bottom of the ionosphere result in the current being predominantly horizontal. It is therefore also useful to express J in terms of scaled QD components:
+
+J = Jf1 f1 + Jf2 f2 + Jf3 f3 = (g1 · J)f1 + (g2 · J)f2 + (g3 · J)f3.
+
+(82)
+
+Magnetic Coordinate Systems
+
+The ﬁrst two components are horizontal, while the third component is approximately, but not precisely, vertical. That is, a small part of the current Jf3 f3 projects onto the horizontal plane, since f3 is not precisely vertical, in general. However, the value of Jf3 is determined solely by the vertical current density, multiplied by the scaling factor F , since g3 is precisely vertical.
+In magnetostatics the current density is proportional to the curl of the magnetic ﬁeld. Since the main ﬁeld is curl-free, J can be related to the curl of the magnetic-perturbation ﬁeld B:
+
+J = ∇ × ( B)/µ0
+
+(83)
+
+where µ0 is the permeability of free space. Applying (49), (51), (68)–(73), (74), and (83) we ﬁnd that
+
+Jf1
+
+=
+
+1 µ0(RE
+
++
+
+h)
+
+∂ Bqr − ∂[(RE + h)
+
+∂ λq d
+
+∂h
+
+Bqλ]
+
+(84)
+
+Jf2
+
+=
+
+1 µ0(RE
+
++
+
+h)
+
+∂[(RE + h) ∂h
+
+Bq φ ]
+
+−
+
+1 cos λqd
+
+∂ Bqr ∂ φq d
+
+(85)
+
+Jf3
+
+=
+
+µ0(RE
+
+F2 + h)
+
+cos
+
+λqd
+
+∂ Bqλ − ∂(cos λqd Bqφ)
+
+∂ φq d
+
+∂ λq d
+
+(86)
+
+Bqφ =
+
+f1 · F
+
+B
+
+(87)
+
+Bqλ =
+
+f2 · F
+
+B
+
+(88)
+
+Bqr = F f3 · B
+
+(89)
+
+In terms of the quantities (87)–(89) B is
+
+B = BqφF g1 + BqλF g2 + Bqr kˆ .
+
+(90)
+
+Note that Bqr is approximately, but not precisely, the vertical component of B, because g1 and g2 have small vertical components, in general.
+Although (84)–(89) can readily be used to calculate J from B in QD coordinates, the inverse calculation to get B from J would be considerably more difﬁcult in QD coordinates than in geocentric spherical coordinates, because the Biot–Savart relation, or a sphericalharmonic representation of it, becomes very complicated in QD coordinates, owing to the complicated calculation of distances and the non-orthonormality of the base vectors.
+Synoptic analyses of satellite or ground magnetic-perturbation data are often organized with respect to magnetic coordinates. Laundal and Gjerloev (2014) showed that calculation of the geomagnetic SML index (Newell and Gjerloev 2011) yields less longitude-dependent variation when computed with Bqλ than when computed with the unscaled magnetic perturbations in the local magnetic-north direction. If satellite magnetic-perturbation data are binned with respect to magnetic latitude and magnetic local time, it can also be convenient to orient and scale them using the components Bqφ, Bqλ, and Bqr as deﬁned in (87)– (89). One reason for this is that scaled current-density components can be calculated from (84)–(86) directly in QD coordinates without the need for longitude-dependent scale factors. Jf1 and Jf2 , as calculated from (84) and (85), represent the scaled horizontal current density components. For the vertical current density, on the other hand, Jf3 as computed from (86)
+
+K.M. Laundal, A.D. Richmond
+
+does not itself make a convenient representation, because it depends not only on the QD coordinates, but also on the geographically varying scale factor F 2. Instead, the appropriate
+scaled vertical current density component is a quantity we can call Jqr , deﬁned by
+
+Jqr = Jf3 /F 2 = Jr /F.
+
+(91)
+
+Jqr equals the quantity Jmr deﬁned by Richmond (1995) at the height of the reference altitude for Modiﬁed Magnetic Apex coordinates.
+While the calculation of the divergence of J as expressed by (82) in QD coordinates is fairly straightforward (and results in identically zero divergence), it is not straightforward to calculate the divergence of B as expressed by (90) in QD coordinates. (One might wish to calculate the divergence of an empirical model of B, for example, to ensure it is zero.) This difference in ease of calculation of the divergence is due to the fact that J in (82) is expressed in components related to covariant base vectors, while B in (90) is expressed in components related to contravariant base vectors.
+Richmond (1995) presented a way to relate magnetic perturbations to three-dimensional currents partially using Modiﬁed Magnetic Apex coordinates, but requiring an additional calculation of a three-dimensional magnetic potential by solving Poisson’s equation in geographic coordinates. That paper pointed out how the source term for the Poisson’s equation can be made relatively small by ﬁrst solving for a suitable two-dimensional function, constant along ﬁeld lines, that minimizes the source term in a region of interest. Apart from the component of the magnetic perturbation associated with the solution of the Poisson’s equation, the remaining portion of magnetic perturbations associated with ﬁeld-aligned currents maps along geomagnetic-ﬁeld lines. ( Bqφ, Bqλ, and Bqr do not map along ﬁeld lines.) We are not aware of any attempt to implement the procedure outlined in that paper with numerical algorithms.
+
+5.2 Applications/Examples
+Modiﬁed Magnetic Apex and Quasi-Dipole coordinates can be useful for examining how plasma velocities vary along a geomagnetic ﬁeld line in the ionosphere.
+An example is shown in Fig. 9. The left half of this ﬁgure answers the following question: if we look at a point in the ionosphere at 250 km altitude at some location on the Earth, and if the E × B/B2 velocity at the conjugate point in the opposite hemisphere at 250 km altitude has a unit value in the magnetic-eastward direction eˆcmonj (as deﬁned in Sect. 3.2), then what are the local velocity components in the magnetic-eastward eˆm and magnetic-meridional pˆ directions? We calculate this by setting vconj = eˆcmonj , computing ve1 and ve2 by taking the scalar products of vconj with dc1onj and dc2onj , mapping ve1 and ve2 along the magnetic ﬁeld to the local point (ve1 and ve2 being constant along ﬁeld lines), computing the local velocity as v = ve1e1 + ve2e2, and then computing the velocity components in the local magneticeastward and magnetic-meridional directions by taking the scalar product of v with the local orthogonal unit vectors eˆm and pˆ . Figure 9(a) shows the resultant magnetic-eastward velocity, and Fig. 9(b) shows the resultant magnetic-meridional velocity. By a similar procedure we can start from a unit velocity in the magnetic-meridional direction pˆ cmonj at the conjugate point, map it along the magnetic ﬁeld to the local point, and calculate the local magneticeastward and magnetic-meridional components. These are shown in Fig. 9(c) and (d). For a purely dipolar geomagnetic ﬁeld on a spherical Earth all the values in Fig. 9(a) and (d) would be 1, and all the values in Fig. 9(b) and (c) would be 0. In Fig. 9 values greater than these idealized dipolar values are plotted with red contours, while values less than the dipolar values are plotted with blue contours.
+
+Magnetic Coordinate Systems
+Fig. 9 Conjugate velocity mapping factors at an altitude of 250 km for the IGRF epoch 2015.0. See the main text for explanation. The contour interval is 0.05
+We can note some of the larger deviations from a purely dipolar mapping. A magneticeastward velocity of 1 m/s at 250 km altitude, 30◦N QD latitude, corresponds at 30◦S QD latitude to a magnetic-eastward velocity ranging from as small as 0.84 m/s in the middle South Atlantic Ocean to 1.51 m/s on the eastern coast of South America [Fig. 9(a)]. Owing to the twist of magnetic ﬂux tubes, a purely horizontal magnetic-eastward velocity at 40◦N QD latitude acquires a magnetic-meridional component that at 40◦S QD latitude can be as large as 0.43 m/s downward/equatorward around −45◦E geographic longitude, or 0.43 m/s upward/poleward around +45◦E geographic longitude [Fig. 9(b)]. A magnetic-meridional velocity of 1 m/s at 250 km altitude, 44◦N QD latitude, and 60◦E QD longitude (the QD longitude line that grazes the coast of West Africa) corresponds at 44◦S QD latitude to about 2.24 m/s in the local magnetic-meridional direction [Fig. 9(d)]. Above about 70◦ magnetic latitude the local magnetic-eastward and magnetic-meridional directions can deviate greatly from those of a tilted dipole, and the mapping factors can differ greatly from the dipole values of 0 or 1.
+6 Magnetic Local Time
+The CD, ED, CGM, QD, and MA coordinates are all ﬁxed with respect to the Earth. It is often appropriate however to introduce a magnetic local time, instead of magnetic longitude, in order to organize data and models with respect to the position of the Sun (Vegard 1912, 1917).
+
+Fig. 10 The rotation rate of the MLT/magnetic latitude grid with respect to an Earth-ﬁxed grid. The apex longitude of the subsolar point (at height = 0) was computed with IGRF-12 2015 coefﬁcients
+
+K.M. Laundal, A.D. Richmond
+
+A common deﬁnition of the magnetic local time is (e.g., Baker and Wing 1989):
+
+MLT = UT + (φ + ΦN )/15
+
+(92)
+
+where φ is the magnetic longitude of the point in question, ΦN is the geographic longitude of the North CD pole (14) and UT is the universal time speciﬁed in hours. Although simple to calculate, this deﬁnition does not generally yield MLT = 12 for the magnetic longitude of the subsolar point, as would Vegard’s original deﬁnition applied to the dipole. Therefore, other deﬁnitions of MLT that take into consideration the magnetic longitude of the subsolar point are commonly used.
+One such deﬁnition of MLT is the hour angle (1 hour is 15◦ magnetic longitude) from the midnight magnetic meridian, positive in the magnetic eastward direction. The midnight magnetic meridian can be deﬁned as the meridian that is 180◦ magnetic longitude away from the subsolar point. The MLT/magnetic latitude coordinate system will then rotate with respect to the Earth at the rate at which the subsolar point crosses magnetic meridians.
+As can be seen in Fig. 7, the spacing between magnetic meridians in CGM and apex coordinates is not constant. That implies that the above deﬁnition of the midnight meridian leads to a varying rotation rate of the MLT/magnetic latitude system with respect to the longitude/latitude system. The rotation rate will vary with the latitude of the track of the subsolar point, which depends on the season (see also Ono 1987). The rotation rate for a full year (2015) is shown in Fig. 10. The ﬁgure shows that the rotation rate can be more than 1.3 hours MLT per hour, and less than 0.8 hours MLT per hour.
+The orientation of the dipole part of the Earth’s ﬁeld is more important for the Sun/Earth interaction than the orientation of the low-altitude non-dipole ﬁeld structures. A recommended deﬁnition of MLT is therefore
+
+MLT = (φ − φcd,sˆ)/15 + 12,
+
+(93)
+
+where φcd,sˆ is the CD longitude of the subsolar point, and the local magnetic longitude φ can be in CD, ED, CGM/AACGM, or QD/MA coordinates, as long as it is made clear which is used. The CD longitude of the subsolar point, REsˆ, is similar to the QD/MA and CGM/AACGM longitude of rsˆ, with r ≫ 1RE. With this deﬁnition, the rotation rate in Fig. 10 reduces to the range 0.94–1.10 hours MLT per hour (for 2015).
+To illustrate the effect that the different deﬁnitions of MLT may have on scientiﬁc results, and the importance of specifying which deﬁnition is used, we look at the magnetic local times of substorm onsets observed by the Imager for Magnetopause-to-Aurora Global Exploration (IMAGE) Far Ultraviolet Imager (FUV) cameras and by the Polar Ultraviolet Imager (UVI) camera. Lists of onset locations from these two satellites have been published
+
+Magnetic Coordinate Systems
+Fig. 11 The monthly median difference between the substorm onset magnetic local time calculated by us and by Liou (2010) (red) and Frey et al. (2004) (blue). The ﬁgure shows that there is a systematic difference in how MLT is calculated in the two papers
+by Frey et al. (2004) and Liou (2010), respectively. The lists have been extensively used for studies of e.g., the inﬂuence of the interplanetary magnetic ﬁeld and dipole tilt angle on the magnetosphere (e.g., Østgaard et al. 2011, and references therein). We have calculated the magnetic local time of all the onset locations, using Modiﬁed Apex coordinates with hR = 130 km, based on the geographic coordinates reported in the lists. We then calculated the monthly median difference between our calculations and those reported by Frey et al. (2004) and Liou (2010). The results are shown in Fig. 11. We see that our results largely match those by Frey et al. (2004), but that there is a signiﬁcant and systematic difference with the MLTs reported by Liou (2010). That is not to say that one is better than the other (neither provide details on how the calculations of MLT were done), only that the calculations of MLT are done differently. The magnitude of the difference is modest, only up to 0.25 h, which rarely matters in studies of single events. However, since the difference is systematic, this may lead to wrong conclusions about the relation of substorm onset location to other parameters. For instance, Liou and Newell (2010) report that the average MLT of substorm onsets changes by 0.1 h for every 10◦ of tilt angle in the NH. This is the same order of magnitude as the differences seen in Fig. 11, and consequently the result might have been different if the MLT was calculated in the same way as in Frey et al. (2004).
+7 Secular Variations
+Each magnetic coordinate system is associated with two magnetic poles. Trajectories for four differently deﬁned magnetic poles, the CD, ED, dip,3 and QD/MA poles, are shown in Fig. 12. Their positions in 1950 are marked with large circles. Later positions are marked at 5 years intervals, ending in 2015. The centered dipole poles mark the intersection of the centered dipole axis with the Earth’s surface. For all the other poles, the axes connecting them will be eccentric with respect to the center of the Earth. We see that the eccentric dipole poles and apex poles do not coincide at the surface. At very high altitudes, all the poles approach the centered dipole poles.
+3The dip pole locations were obtained from http://www.geomag.bgs.ac.uk/education/poles.html.
+
+K.M. Laundal, A.D. Richmond
+
+Fig. 12 Positions of four differently deﬁned magnetic poles. The positions in 1950 are marked by large circles. Smaller circles mark positions at steps of ﬁve years, ending in 2015. Based on IGRF-12. Lambert conformal conic projection is used in these plots
+To further illustrate the time dependence of the magnetic coordinates we show in Fig. 13 QD grids for both 2015 (red) and 1985 (blue). We see that during the 30 year period since 1985, the changes in the ﬁeld have led to signiﬁcant changes in the QD coordinate grid. The entire grid has shifted northward nonuniformly, particularly in the region at 30◦ QD longitude. The magnitude of the change on this meridian is approximately 2◦ latitude at Northern polar latitudes and 5◦ latitude at mid and low latitudes.
+
+8 Closing Remarks
+
+We have presented the deﬁnitions of eight different magnetic coordinate systems: The centered dipole, eccentric dipole, solar magnetic, geocentric solar magnetic, corrected geomagnetic, Quasi-Dipole, and Modiﬁed Apex coordinates, as well as the dip latitude. This is not a complete list of magnetic coordinate systems that are or have been in use. In particular, the B, L coordinate system, deﬁned by McIlwain (1961, 1966) is much used in studies of trapped energetic particles in the inner magnetosphere. In that system B is the magnetic ﬁeld strength, and L is a parameter which depends on B and the longitudinal adiabatic invariant, I . L is deﬁned using a realistic ﬁeld model, but in a dipole ﬁeld L would correspond to the radial distance, in RE, of the ﬁeld line. Thus O’Brien et al. (1962) introduced the invariant latitude Λ, which is based on L, using an equation which is similar to that which deﬁnes CGM coordinates:
+
+Λ = cos−1
+
+1 ,
+
+(94)
+
+L
+
+which is valid in regions where L ≥ 1. There are regions at low latitudes where Λ is undeﬁned.
+
+Magnetic Coordinate Systems
+Fig. 13 QD coordinate grids for epochs 2015 (red) and 1985 (blue). The projections are similar to Fig. 1
+Another magnetic coordinate system, the magnetospheric geomagnetic latitude, was deﬁned by Papitashvili et al. (1997a,b). This system takes into account also the external, highly time varying magnetospheric ﬁeld by means of the Tsyganenko (1989) model.
+The terminology associated with magnetic coordinates can be confusing and sometimes ambiguous. Traditionally, the term “geomagnetic” has been used to signify the poles, z axis, and coordinate system associated with what we have called the centered dipole coordinate system (Vestine 1967; Chapman 1963). The term “magnetic” is often used to refer to the dip latitude, dip equator and dip poles, although it can also signify other systems. The terminology used in this paper is chosen because it is well established, and/or descriptive in terms of the deﬁnition of the coordinate system.
+With at least six differently deﬁned “magnetic latitudes”, and several different deﬁnitions of MLT, it is clearly important to be precise about which coordinate system is used, and how MLT was calculated. Since the coordinate systems change in time, the epoch of the geomagnetic ﬁeld used in the coordinate conversions should also be speciﬁed.
+
+K.M. Laundal, A.D. Richmond
+Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made.
+
+Appendix A: Abbreviations
+
+The following abbreviations are used to denote the various coordinate systems. They are used in uppercase in the text, and lowercase as subscripts in equations. Section number in parentheses.
+
+AACGM Altitude-Adjusted Corrected Geomagnetic Coordinates (Sect. 4.2)
+
+CD
+
+Centered Dipole (Sect. 3.1)
+
+CGM Corrected Geomagnetic Coordinates (Sect. 4.2)
+
+DIP
+
+Dip (latitude) (Sect. 3.2)
+
+ECEF Earth-Centered Earth-Fixed (Sect. 2)
+
+ED
+
+Eccentric Dipole (Sect. 3.3)
+
+ENU East North Up (Sect. 2)
+
+GEO Geocentric (Sect. 2)
+
+GSE Geocentric Solar Ecliptic (Sect. 3.4)
+
+GSM Geocentric Solar Magnetic (Sect. 3.4)
+
+M
+
+Local Magnetic Coordinates (Sect. 3.2)
+
+MA
+
+Modiﬁed Apex (Sect. 4.1)
+
+QD
+
+Quasi-Dipole (Sect. 4.1)
+
+SM
+
+Solar Magnetic (Sect. 3.5)
+
+The following abbreviations are also used repeatedly throughout the paper
+
+IGRF International Geomagnetic Reference Field MLT Magnetic Local Time NH Northern Hemisphere SH Southern Hemisphere UT Universal Time WGS84 World Geodetic System 1984
+
+Appendix B: Notation
+
+The following notations is used for coordinates (with subscripts denoting the coordinate system):
+
+x, y, z Cartesian coordinates
+
+θ
+
+Polar angle (colatitude)
+
+φ Longitude (positive east)
+
+r
+
+Radius
+
+λ Latitude
+
+h Geodetic height
+
+L McIlwain’s L parameter
+
+Λ Invariant latitude associated with L
+
+The following symbols are also used repeatedly:
+
+Magnetic Coordinate Systems
+
+xˆ
+
+Unit vector in x-direction
+
+yˆ
+
+Unit vector in y-direction
+
+zˆ
+
+Unit vector in z-direction
+
+eˆ
+
+Unit vector in east-direction
+
+nˆ
+
+Unit vector in north-direction
+
+uˆ
+
+Unit vector in up/radial direction (geocentric)
+
+kˆ
+
+Unit vector in up-direction (geodetic)
+
+mˆ Unit vector in negative centered dipole axis direction (positive to the north)
+
+sˆ
+
+Unit vector pointing at subsolar point
+
+bˆ
+
+Unit vector in the direction of the magnetic ﬁeld
+
+B
+
+Magnetic ﬁeld vector
+
+gnm, hmn Gauss coefﬁcients in the IGRF
+
+R
+
+Reference Earth radius used in geomagnetic modeling (6371.2 km)
+
+RE Mean Earth radius (≈ 6371.009 km in WGS84)
+
+Req Equatorial radius of the ellipsoid (6378.1370 km in WGS84)
+
+Rp Polar radius of the ellipsoid (6356.7523 km in WGS84)
+
+hR Modiﬁed apex reference height
+
+hA Field line apex height
+
+heq Height at which ﬁeld line crosses dipole equatorial plane
+
+ψ
+
+Dipole tilt angle
+
+H Horizontal magnetic ﬁeld component
+
+Z
+
+Downward magnetic ﬁeld component
+
+D Magnetic declination angle
+
+I
+
+Dip angle
+
+di
+
+Modiﬁed Apex base vector (i = 1, 2, 3)
+
+ei
+
+Modiﬁed Apex base vector (i = 1, 2, 3)
+
+fi
+
+Quasi-Dipole base vector (i = 1, 2, 3)
+
+gi
+
+Quasi-Dipole base vector (i = 1, 2, 3)
+
+ϵi
+
+Contravariant base vector
+
+ϵi
+
+Covariant base vector
+
+Appendix C: The Subsolar Point
+The code below can be used to calculate the subsolar point, the location on Earth where the Sun is in zenith. The output is the co-latitude (sbslcolat) and longitude (sbsllon) of the subsolar point, and the inputs are year (integer, 4 digits), doy (day of year, integer, with doy being 1 on 1 January) and ut (universal time in seconds, possibly including a fraction, since the start of the day). The code can be run in Python, with the following import statement:
+from math import floor , sin , cos , pi , atan2 , asin
+The code is based on formulas in Astronomical Almanac for the year 1996, p. C24.(U.S. Government Printing Ofﬁce, 1994). It is usable for the years 1601–2100, inclusive. According to the Almanac, results are good to at least 0.01 degree latitude and 0.025 degree longitude between years 1950 and 2050. Accuracy for other years has not been tested. Every day is assumed to have exactly 86400 seconds; thus leap seconds that sometimes occur on December 31 are ignored. Their effect is below the accuracy threshold of the algorithm.
+
+K.M. Laundal, A.D. Richmond
+yr = year − 2000 nleap = floor (( year −1601)/4.) nleap = nleap − 99 i f y e a r <= 1 9 0 0 :
+ncent = floor (( year −1601)/100.) ncent = 3 − ncent nleap = nleap + ncent l 0 = − 79.549+( − .238699∗( yr −4∗ n l e a p ) + 3 . 0 8 5 1 4 e −2∗ n l e a p ) g0 = − 2.472+( − .2558905∗( yr −4∗ n l e a p )− 3 . 7 9 6 1 7 e −2∗ n l e a p ) df = ( ut /86400. − 1.5)+ doy lf = .9856474∗ df gf = .9856003∗ df l = l0 + lf g = g0 + gf grad = g∗pi /180. lmbda = l + 1.915∗ sin ( grad ) + .020∗ sin (2.∗ grad ) lmrad = lmbda∗pi /180. sinlm = sin ( lmrad ) n = df + 365.∗ yr + nleap e p s i l o n = 2 3 . 4 3 9 − 4 . 0 e −7∗n epsrad = epsilon∗pi /180. alpha = atan2 ( cos ( epsrad )∗ sinlm , cos ( lmrad )) ∗ 180./ pi delta = asin ( sin ( epsrad )∗ sinlm ) ∗ 180./ pi s b s l c o l a t = 90 − d e l t a etdeg = l − alpha nrot = round ( etdeg /360.) etdeg = etdeg − 360.∗ nrot aptime = ut /240. + etdeg sbsllon = 180. − aptime nrot = round ( sbsllon /360.) sbsllon = sbsllon − 360.∗ nrot
+References
+K.B. Baker, S. Wing, A new magnetic coordinate system for conjugate studies at high latitudes. J. Geophys. Res. 94, 9139–9143 (1989)
+C.E. Barton, C.Z. Tarlowski, Geomagnetic, geocentric, and geodetic coordinate transformations. Comput. Geosci. 17, 669–678 (1991)
+S. Chapman, Geomagnetic nomenclature. J. Geophys. Res. 68, 1174 (1963) K.D. Cole, Eccentric dipole coordinates. Aust. J. Phys. 16, 423–429 (1963) W.D. D’haeseleer, W..N.G. Hitchon, J.D. Callen, J.L. Shohet, Flux Coordinates and Magnetic Field Structure
+(Springer, Berlin, 1991). doi:10.1007/978-3-642-75595-8 J.T. Emmert, A.D. Richmond, D.P. Drob, A computationally compact representation of magnetic apex
+and quasi dipole coordinates with smooth base vectors. J. Geophys. Res. 115 (2010). doi:10.1029/ 2010JA015326 M. Fränz, D. Harper, Heliospheric coordinate systems. Planet. Space Sci. 50, 217–233 (2002) A.C. Fraser-Smith, Centered and eccentric geomagnetic dipoles and their poles, 1600–1985. Rev. Geophys. 25, 1–16 (1987) H.U. Frey, S.B. Mende, V. Angelopoulos, E.F. Donovon, Substorm onset observations by IMAGE-FUV. J. Geophys. Res. 109 (2004). doi:10.1029/2004JA010607 S. Gasda, A.D. Richmond, Longitudinal and interhemispheric variations of auroral ionospheric electrodynamics in a realistic geomagnetic ﬁeld. J. Geophys. Res. 103, 4011–4021 (1998). doi:10.1029/97JA03243 G. Gustafsson, N.E. Papitashvili, N.O. Papitashvili, A revised corrected geomagnetic coordinate system for epochs 1985 and 1990. J. Atmos. Terr. Phys. 54, 1609–1631 (1992) M.A. Hapgood, Space physics coordinate transformations: a users guide. Planet. Space Sci. 40, 711–717 (1992) K.M. Laundal, J.W. Gjerloev, What is the appropriate coordinate system for magnetometer data when analyzing ionospheric currents? J. Geophys. Res. (2014). doi:10.1002/2014JA020484 K. Liou, Polar ultraviolet imager observation of auroral breakup. J. Geophys. Res. 115 (2010). doi:10.1029/ 2010JA015578
+
+Magnetic Coordinate Systems
+K. Liou, P.T. Newell, On the azimuthal location of auroral breakup: hemispheric asymmetry. Geophys. Res. Lett. 37 (2010). doi:10.1029/2010GL045537
+F.J. Lowes, The geomagnetic eccentric dipole: facts and fallacies. Geophys. J. Int. 118, 671–679 (1994) S. Matsushita, W.H. Campbell, Appendix 1, in Physics of Geomagnetic Phenomena, vol. 2 (Academic Press,
+New York, 1967) C.E. McIlwain, Coordinates for mapping the distribution of magnetically trapped particles. J. Geophys. Res.
+66, 3681–3691 (1961) C.E. McIlwain, Magnetic coordinates. Space Sci. Rev. 5, 585–598 (1966) P.T. Newell, J.W. Gjerloev, Evaluation of SuperMAG auroral electrojet indices as indicators of substorms and
+auroral power. J. Geophys. Res. 116 (2011). doi:10.1029/2011JA016779 B.J. O’Brien, C.D. Laughlin, J.A.V. Allen, L.A. Frank, Measurements of the intensity and spectrum of elec-
+trons at 1000-kilometer altitude and high latitudes. J. Geophys. Res. 67, 1209–1225 (1962) T. Ono, Temporal variation of the geomagnetic conjugacy in Syowa–Iceland pair. Mem. Natl. Inst. Polar Res.
+48, 46–57 (1987) N. Østgaard, K.M. Laundal, L. Juusola, A. Aasnes, S.E. Haaland, J. Weygand, Interhemispherical asym-
+metry of substorm onset locations and the interplanetary magnetic ﬁeld. Geophys. Res. Lett. (2011). doi:10.1029/2011GL046767 V.O. Papitashvili, N.E. Papitashvili, J.H. King, Magnetospheric geomagnetic coordinates for space physics data presentation and visualization. Adv. Space Res. 20, 1097–1100 (1997a) V.O. Papitashvili, N.E. Papitashvili, G. Gustafsson, K.B. Baker, A. Rodger, L.I. Gromova, A comparison between two corrected geomagnetic coordinate systems at high-latitudes. J. Geomagn. Geoelectr. 44, 1215–1224 (1997b) A.D. Richmond, Ionospheric electrodynamics using magnetic apex coordinates. J. Geomagn. Geoelectr. 47, 191–212 (1995) K.F. Riley, M.P. Hobson, S.J. Bence, Mathematical Methods for Physics and Engineering, 3rd edn. (Cambridge University Press, Cambridge, 2006). 978-0-521-67971-8 C.T. Russell, Geophysical coordinate transformations. Cosm. Electrodyn. 2, 184–196 (1971) A. Schmidt, Der magnetische Mittelpunkt der Erde und seine Bedeutung. Gerlands Beitr. Geophys. 41, 341– 358 (1934) S.G. Shepherd, Altitude-adjusted corrected geomagnetic coordinates: deﬁnition and functional approximations. J. Geophys. Res. (2014). doi:10.1002/2014JA020264 E. Thébault, C. Finlay, C. Beggan, P. Alken, J. Aubert, O. Barrois, F. Bertrand, T. Bondar, A. Boness, L. Brocco, E. Canet, A. Chambodut, A. Chulliat, P. Coïsson, F. Civet, A. Du, A. Fournier, I. Fratter, N. Gillet, B. Hamilton, M. Hamoudi, G. Hulot, T. Jager, M. Korte, W. Kuang, X. Lalanne, B. Langlais, J.-M. Léger, V. Lesur, F. Lowes, S. Macmillan, M. Mandea, C. Manoj, S. Maus, N. Olsen, V. Petrov, V. Ridley, M. Rother, T. Sabaka, D. Saturnino, R. Schachtschneider, O. Sirol, A. Tangborn, A. Thomson, L. Tøffner-Clausen, P. Vigneron, I. Wardinski, T. Zvereva, International geomagnetic reference ﬁeld: the 12th generation. Earth Planets Space 67 (2015). doi:10.1186/s40623-015-0228-9 N.A. Tsyganenko, A magnetospheric magnetic ﬁeld model with a warped tail current sheet 37, 5–20 (1989) T.E. VanZandt, W.L. Clark, J.W. Warnock, Magnetic apex coordinates: a magnetic coordinate system for the ionospheric F2 layer. J. Geophys. Res. 77, 2406–2411 (1972) L. Vegard, On the properties of the rays producing aurora borealis. Philos. Mag. 23, 211–237 (1912) L. Vegard, Bericht über die neueren Untersuchungen am Nordlicht. Jahrb. Radioakt. Elektron. 14, 383–466 (1917) E.H. Vestine, II-2 Main geomagnetic ﬁeld, in Physics of Geomagnetic Phenomena, vol. 1, ed. by S. Matsushita, W.H. Campbell (Academic Press, New York, 1967) J. Zhu, Conversion of Earth-centered Earth-ﬁxed coordinates to geodetic coordinates. IEEE Trans. Aerosp. Electron. Syst. 30(3), 957–961 (1994). doi:10.1109/7.303772
+

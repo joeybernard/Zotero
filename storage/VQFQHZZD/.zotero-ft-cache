@@ -1,0 +1,1899 @@
+Ain Shams Engineering Journal 9 (2018) 2265–2273
+Contents lists available at ScienceDirect
+Ain Shams Engineering Journal
+journal homepage: www.sciencedirect.com
+Engineering Physics and Mathematics
+Numerical simulation of ﬁfth order KdV equations occurring in magneto-acoustic waves
+Amit Goswami a,⇑, Jagdev Singh b, Devendra Kumar b
+a Department of Physics, Jagan Nath University, Jaipur 303901, Rajasthan, India b Department of Mathematics, JECRC University, Jaipur 303905, Rajasthan, India
+
+article info
+Article history: Received 22 January 2016 Revised 10 February 2017 Accepted 8 March 2017 Available online 29 May 2017
+Keywords: Laplace transform Homotopy perturbation method Fifth order KdV equation Non-homogeneous KdV equation He’s Polynomials
+
+abstract
+In this work, we aim to apply a numerical approach based on Homotopy perturbation transform method (HPTM) for derive the exact and approximate solutions of nonlinear ﬁfth order KdV equations for study magneto-acoustic waves in plasma. The approach is a mixed form of the standard Laplace transform with the classical Homotopy perturbation technique. Nonlinear term can be handled with the aid of He’s Polynomials. In this technique, the solution is calculated in the form of a convergent series and convergence of the HPTM solutions to the exact solutions is shown. The Homotopy perturbation transform method presents a wide applicability to handling nonlinear wave equations in science and engineering. As a novel application of HPTM, the present work shows some essential difference with the existing similar method. Several examples are provided for illustrate the simplicity and reliability of the method and highlighted the signiﬁcance of this work. Ó 2017 Ain Shams University. Production and hosting by Elsevier B.V. This is an open access article under
+the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+1. Introduction
+Nonlinear phenomena appear in many areas of scientiﬁc and engineering ﬁeld such as plasma physics, ﬂuid dynamics, nonlinear optics, quantum mechanics, solid state physics, mathematical biology and chemical kinetics etc. These phenomena are modeled in terms of nonlinear partial differential equations with different higher order. Partial differential equations are widely used to describe physical systems. Most of the important phenomena of physical systems are hidden in their nonlinear nature. The exact solution of these nonlinear phenomena may not be available. These phenomena can only be studied with the appropriate methods to solve these nonlinear systems [1–4].
+In 1895, the Kortweg and De-Vries developed KdV equation to model the Russell’s phenomena of Solitons such as shallow water waves with small and ﬁnite amplitudes. Solitons are stable solitary waves and suggests that these solitary waves behave as a particle. KdV equations are the mathematical model for study the
+⇑ Corresponding author.
+E-mail addresses: optoamit@gmail.com (A. Goswami), jagdevsinghrathore@ gmail.com (J. Singh), devendra.maths@gmail.com (D. Kumar). Peer review under responsibility of Ain Shams University.
+
+dispersive wave phenomena in various ﬁeld of science such as plasma physics, ﬂuid dynamics, optics and quantum mechanics etc. The ﬁfth order KdV type equations used to study various nonlinear phenomena in plasma physics. It has a signiﬁcant role in the wave propagation [5]. The KdV type equation have third and ﬁfth order dispersive term in their study related to the problem of magneto-acoustic wave in cold collision free plasma and dispersive term appear propagation near critical angle [6].
+Plasma is a complex, quasi-neutral and electrically conductive ﬂuid. It consists of electrons, ions and neutral particles. Due to electrical conductive behavior of plasma, it consists of electric and magnetic ﬁelds. Interaction between particles and ﬁeld’s, plasma support different type’s waves. Wave phenomena are important for heating plasmas, instabilities and diagnostics etc. A magnetoacoustic wave is a dispersion less and longitudinal wave of ions in a magnetized plasma propagating perpendicular to the stationary magnetic ﬁeld. In the range of low magnetic ﬁeld, the magnetoacoustic wave behave as ion acoustic wave and in the low temperature range, the magneto-acoustic wave behave as Alfvén wave. Magneto-acoustic waves ﬁnds in solar corona [7].
+The general form of ﬁfth order KdV equation is:
+
+ut À u5x ¼ Fðx; t; u; u2; ux; u2x; u3xÞ
+
+ð1Þ
+
+Production and hosting by Elsevier
+
+This ﬁfth order KdV equations the generic model for the study of magneto-acoustic waves in plasma and shallow water waves with surface tension. Recently, researcher has been investigated
+
+http://dx.doi.org/10.1016/j.asej.2017.03.004 2090-4479/Ó 2017 Ain Shams University. Production and hosting by Elsevier B.V. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/).
+
+2266
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+that the travelling wave solutions of this equation do not vanish at inﬁnity [8,9].
+Consider the four well known forms of the ﬁfth order KdV equation as [10–12]:
+
+ðaÞ ut þ ux þ u2u2x þ uxu2x À 20u2u3x þ u5x ¼ 0
+
+ð2Þ
+
+with
+
+initial
+
+condition
+
+uðx;
+
+0Þ
+
+¼
+
+1 x
+
+ðbÞ ut þ uux À uu3x þ u5x ¼ 0
+
+ð3Þ
+
+with initial condition uðx;0Þ ¼ e x
+
+ðcÞ ut þ uux þ u3x À u5x ¼ 0
+
+ð4Þ
+
+
+
+with
+
+initial
+
+condition
+
+uðx;
+
+0Þ
+
+¼
+
+105 169
+
+sech4
+
+xpÀﬃxﬃ0ﬃﬃ
+2 13
+
+ðdÞ
+
+ut
+
+À
+
+uux
+
+þ
+
+u5x
+
+¼
+
+cosx
+
+þ
+
+2tsinx
+
+þ
+
+t2 2
+
+sin2x
+
+ð5Þ
+
+with initial condition uðx; 0Þ ¼ 0 Eqs. (2) and (3) called ﬁfth order KdV equation, Eq. (4) called
+Kawahara equation and Eq. (5) called non-homogeneous ﬁfth order KdV equation respectively.
+It is very difﬁcult to ﬁnd the analytical solutions of these physical problems when these are highly nonlinear. In recent decade, many researchers have paid attention to study the behavior of these physical problems by using various analytical and numerical schemes which are not described by the common observations. Some important approaches are the Adomian decomposition technique [13], He’s semi-inverse scheme [14], Differential transform technique [15], Inverse scattering algorithm [16], Hirota’s bilinear techniques [17], Laplace decomposition approach [18], Tanh scheme [19], Fractional homotopy analysis transform algorithm [20], Variational iteration technique [21], Homotopy analysis technique [22,23], Homotopy perturbation method [24,25], Modiﬁed homotopy perturbation technique [26], Group analysis method [27] and many more.
+He proposed the Homotopy perturbation method for solving different nonlinear physical problems. This method is combination of the homotopy in topology and well known perturbation method. This provides us with an easy way to found numerical solutions to diverse variety of physical problems occurring in different ﬁelds of science, engineering and ﬁnance [28–31]. The Laplace transform is inadequate of solving the physical systems because of the difﬁculties occurring due to the nonlinear terms. Moreover, Homotopy perturbation method is also merged with the Laplace transformation to give a highly effective technique for handling many nonlinear physical problems. This scheme is known as Homotopy perturbation transform method (HPTM). It is an analytical method for analysis the nonlinear behavior of physical systems [32,33].
+In a recent paper Khan and Wu [34] suggested the Homotopy perturbation transform method (HPTM) for solving the nonlinear partial differential equations. This method is a simple combination of the Laplace transformation, the Homotopy perturbation method and He’s polynomials [35] and is mainly due to Ghorbani [36,37]. The Homotopy perturbation transform method keeps the solution in a rapid convergent series which may lead to the solution in a closed form. The supremacy of this approach is its capability of merging two powerful techniques for obtaining exact solutions for nonlinear equations. In this article, we apply the HPTM for solving the nonlinear partial differential equations such as ﬁfth order KdV equation, Kawahara equation and non-homogeneous ﬁfth order KdV equation to show the simplicity and straight forwardness of the method.
+This paper is organized as follows: in Section 2, we describe the Homotopy perturbation transform method (HPTM). In Section 3, contains the examples of physical systems to show the efﬁciency of method. In Section 4, results of physical systems discussed. In
+
+Section 5, conclusion is given. At the end of conclusion, references are given.
+
+2. Homotopy perturbation transform method (HPTM)
+
+To provide basic idea of this scheme, we have taken up a general nonlinear partial differential equation with the initial conditions of the form:
+
+Duðx; tÞ þ Ruðx; tÞ þ Nuðx; tÞ ¼ gðx; tÞ
+
+uðx; 0Þ ¼ hðxÞ
+
+ð6Þ
+
+utðx; 0Þ ¼ f ðxÞ
+
+In the above equation D is the second order linear differential
+
+operator, R is denoting the linear differential operator of less order
+
+than D, N is representing the general nonlinear differential opera-
+
+tor and g(x, t) is denoting the source term.
+
+Using the same process as presented in a series of papers
+
+[32–34], we get
+X 1 pnunðx;tÞ ¼ Gðx;tÞ À p
+n¼0
+
+""
+
+##!
+
+LÀ1
+
+1 s2
+
+L
+
+X 1
+
+X 1
+
+R pnunðx; tÞ þ pnHnðuÞ
+
+n¼0
+
+n¼0
+
+ð7Þ
+
+where G(x, t) represents the term arising from the source term and the prescribed initial conditions and HnðuÞ represents the He’s polynomials.
+This is the combination of the Laplace transform and the Homotopy perturbation method using He’s polynomials. Comparing the like powers of p, the following approximations are obtained:
+
+p0 : u0ðx; tÞ ¼ Gðx; tÞ
+
+ð8Þ
+
+
+
+
+
+p1 : u1ðx; tÞ ¼ ÀLÀ1
+
+1 s2
+
+L½Ru0
+
+ðx;
+
+tÞ
+
+þ
+
+H0
+
+ðx;
+
+tÞ
+
+ð9Þ
+
+
+
+
+
+p2 : u2ðx; tÞ ¼ ÀLÀ1
+
+1 s2
+
+L½Ru1
+
+ðx;
+
+tÞ
+
+þ
+
+H1
+
+ðx;
+
+tÞ
+
+ð10Þ
+
+
+
+
+
+p3 : u3ðx; tÞ ¼ ÀLÀ1
+
+1 s2
+
+L½Ru2
+
+ðx;
+
+tÞ
+
+þ
+
+H2
+
+ðx;
+
+tÞ
+
+ð11Þ
+
+...
+
+
+
+
+
+pn : unðx; tÞ ¼ ÀLÀ1
+
+1 s2
+
+L½RunÀ1
+
+ðx;
+
+tÞ
+
+þ
+
+HnÀ1
+
+ðx;
+
+tÞ
+
+Finally we get the following series solution X 1
+uðx; tÞ ¼ unðx; tÞ
+n¼0
+
+ð12Þ ð13Þ
+
+3. Numerical applications
+
+In this section, we employ the Homotopy perturbation transform method (HPTM) for solving the generic model of nonlinear ﬁfth order KdV equations for the study of magneto-acoustic waves in plasma.
+
+Example 3.1. Firstly, we consider the following nonlinear ﬁfth order KdV equation
+
+ut þ ux þ u2u2x þ uxu2x À 20u2u3x þ u5x ¼ 0
+
+ð14Þ
+
+with initial condition
+
+uðx;
+
+0Þ
+
+¼
+
+1 x
+
+ð15Þ
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+2267
+
+Applying the Laplace transform on Eq. (14) and using the initial conditions (15), we have
+
+L½uðx;
+
+tÞ
+
+¼
+
+1 x
+
+1 s
+
+À
+
+1 s
+
+L½ux
+
+þ
+
+u2 u2x
+
+þ
+
+ux u2x
+
+À
+
+20u2u3x
+
+þ
+
+u5x 
+
+ð16Þ
+
+Next, making use of the inverse of Laplace transform, it implies
+
+
+
+
+
+uðx;
+
+tÞ
+
+¼
+
+1 x
+
+À
+
+LÀ1
+
+1 s
+
+L½ux
+
+þ
+
+u2 u2x
+
+þ
+
+ux u2x
+
+À
+
+20u2u3x
+
+þ
+
+u5x
+
+ð17Þ
+
+Now, applying the HPM, we get
+
+" "
+
+!
+
+X 1 pnunðx;
+n¼0
+
+tÞ
+
+¼
+
+1 x
+
+À
+
+p
+
+LÀ1
+
+1 s
+
+L
+
+X 1 pnHnðuÞ þ
+!n¼0 ##!
+
+X 1
+
+þ pnunðx; tÞ
+
+n¼0
+
+5x
+
+! X 1
+pnunðx; tÞ
+
+n¼0
+
+x
+
+ð18Þ
+
+In the above expression (18) HnðuÞ are He’s polynomial [35,36] that represents the nonlinear terms. The ﬁrst few components of He’s polynomials, are given by
+
+H0ðuÞ ¼ u20ðu0Þ2x þ ðu0Þxðu0Þ2x À 20u20ðu0Þ3x H1ðuÞ ¼ u20ðu1Þ2x þ 2u0u1ðu0Þ2x
+þ ðu0Þxðu1Þ2x þ ðu0Þ2xðu1Þx À 20u20ðu1Þ3x À 40u0u1ðu0Þ3x H2ðuÞ ¼ u20ðu2Þ2x þ 2u0u1ðu1Þ2x þ 2u0u2ðu0Þ2x
+þ u21ðu0Þ2x þ ðu0Þxðu2Þ2x þ ðu1Þxðu1Þ2x þ ðu0Þ2xðu2Þx À 20u20ðu2Þ3x À 40u0u1ðu1Þ3x À 40u0u2ðu0Þ3x À 20u21ðu0Þ3x H3ðuÞ ¼ u20ðu3Þ2x þ 2u0u1ðu2Þ2x þ 2u0u2ðu1Þ2x þ 2u0u3ðu0Þ2x þ u21ðu1Þ2x þ 2u1u2ðu0Þ2x þ ðu0Þxðu3Þ2x þ ðu1Þxðu2Þ2x þ ðu1Þ2xðu2Þx þ ðu0Þ2xðu3Þx À 20u20ðu3Þ3x À 40u0u1ðu2Þ3x À 40u0u2ðu1Þ3x À 40u0u3ðu0Þ3x À 20u21ðu1Þ3x À 40u1u2ðu0Þ3x H4ðuÞ ¼ u20ðu4Þ2x þ 2u0u1ðu3Þ2x þ 2u0u2ðu2Þ2x þ 2u0u3ðu1Þ2x þ 2u0u4ðu0Þ2x þ u21ðu2Þ2x þ 2u1u2ðu1Þ2x þ 2u1u3ðu0Þ2x þ u22ðu0Þ2x þ ðu0Þxðu4Þ2x þ ðu1Þxðu3Þ2x þ ðu2Þ2xðu2Þx þ ðu1Þ2xðu3Þx þ ðu0Þ2xðu4Þx À 20u20ðu4Þ3x À 40u0u1ðu3Þ3x À 40u0u2ðu2Þ3x À 40u0u3ðu1Þ3x À 40u0u4ðu0Þ3x À 20u21ðu2Þ3x À 40u1u2ðu1Þ3x À 40u1u3ðu0Þ3x À 20u22ðu0Þ2x ...
+ð19Þ
+Comparing the coefﬁcients of like powers of p, we have
+
+p0
+
+:
+
+u0ðx;
+
+tÞ
+
+¼
+
+1 x
+
+p1
+
+:
+
+u1ðx; tÞ
+
+¼
+
+
+
+ÀLÀ1
+
+1 s
+
+L½H0ðuÞ
+
+þ
+
+ðu0 Þx
+
+þ
+
+ ðu0 Þ5x 
+
+¼
+
+t x2
+
+p2
+
+:
+
+u2ðx; tÞ
+
+¼
+
+
+
+ÀLÀ1
+
+1 s
+
+L½H1
+
+ðuÞ
+
+þ
+
+ðu1 Þx
+
+þ
+
+ ðu1 Þ5x 
+
+¼
+
+t2 x3
+
+p3
+
+:
+
+u3ðx; tÞ
+
+¼
+
+
+
+ÀLÀ1
+
+1 s
+
+L½H2
+
+ðuÞ
+
+þ
+
+ðu2 Þx
+
+þ
+
+ ðu2 Þ5x 
+
+¼
+
+t3 x4
+
+p4
+
+:
+
+u4ðx; tÞ
+
+¼
+
+
+
+ÀLÀ1
+
+1 s
+
+L½H3
+
+ðuÞ
+
+þ
+
+ðu3 Þx
+
+þ
+
+ ðu3 Þ5x 
+
+¼
+
+t4 x5
+
+p5
+
+:
+
+u5ðx;
+
+tÞ
+
+¼
+
+
+
+ÀLÀ1
+
+1 s
+
+L½H4ðuÞ
+
+þ
+
+ðu4Þx
+
+þ
+
+ ðu4 Þ5x 
+
+¼
+
+t5 x6
+
+...
+
+Therefore the solution uðx; tÞ is given by X 1
+uðx; tÞ ¼ uiðx; tÞ
+i¼0
+1 t t2 t3 t4 t5 ¼ x þ x2 þ x3 þ x4 þ x5 þ x6 þ Á Á Á
+
+It can be written in closed form as
+
+uðx;
+
+tÞ
+
+¼
+
+x
+
+1 À
+
+t
+
+ð20Þ ð21Þ ð22Þ
+
+Example 3.2. Next, consider the following nonlinear ﬁfth order
+
+KdV equation
+
+ut þ uux À uu3x þ u5x ¼ 0
+
+ð23Þ
+
+with initial condition
+
+uðx; 0Þ ¼ e x
+
+ð24Þ
+
+Appealing to the Laplace transform on both sides of Eq. (23) subject
+
+to the initial conditions (24), we have
+
+L½uðx;
+
+tÞ
+
+¼
+
+ex s
+
+þ
+
+1 s
+
+L½uu3x
+
+À
+
+uux
+
+À
+
+u5x 
+
+ð25Þ
+
+The inversion of Laplace transform results the following equation
+
+
+
+
+
+uðx; tÞ ¼ e x þ LÀ1
+
+1 s
+
+L½uu3x
+
+À
+
+uux
+
+À
+
+u5x 
+
+ð26Þ
+
+Now, applying the HPM, we get
+
+X 1 pnunðx; tÞ ¼ e x þ p
+n¼0
+
+""
+
+##!
+
+LÀ1
+
+1 s
+
+L
+
+X 1
+
+X 1
+
+ð pnHnðuÞÞ À ð pnunðx; tÞÞ
+
+n¼0
+
+n¼0
+
+5x
+
+ð27Þ
+
+In the above Eq. (27) HnðuÞ are He’s polynomial [35–36] that indicates the nonlinear terms. The ﬁrst few components of He’s polynomials, are given by
+
+H0ðuÞ ¼ u0ðu0Þ3x À u0ðu0Þx H1ðuÞ ¼ u1ðu0Þ3x þ u0ðu1Þ3x À u1ðu0Þx À u0ðu1Þx H2ðuÞ ¼ u2ðu0Þ3x þ u1ðu1Þ3x þ u0ðu2Þ3x
+À u2ðu0Þx À u1ðu1Þx À u0ðu2Þx H3ðuÞ ¼ u3ðu0Þ3x þ u2ðu1Þ3x þ u1ðu2Þ3x þ u0ðu3Þ3x
+À u3ðu0Þx À u2ðu1Þx À u1ðu2Þx À u0ðu3Þx H4ðuÞ ¼ u4ðu0Þ3x þ u3ðu1Þ3x þ u2ðu2Þ3x
+þ u1ðu3Þ3x þ u0ðu4Þ3x À u4ðu0Þx À u3ðu1Þx À u2ðu2Þx À u1ðu3Þx À u0ðu4Þx ...
+
+ð28Þ
+
+Comparing the coefﬁcients of like powers of p, we have
+
+p0 : u0ðx; tÞ ¼ e x 
+
+
+
+p1 : u1ðx; tÞ ¼ LÀ1
+
+1 s
+
+L½H0
+
+ðuÞ
+
+À
+
+ðu0
+
+Þ5x
+
+
+
+¼ Àte x
+
+p2
+
+:
+
+u2ðx;
+
+tÞ
+
+¼
+
+
+
+LÀ1
+
+1 s
+
+L½H1ðuÞ
+
+À
+
+ ðu1Þ5x
+
+¼
+
+t2 2
+
+ex
+
+¼
+
+t2 2!
+
+ex
+
+p3
+
+:
+
+u3ðx;
+
+tÞ
+
+¼
+
+
+
+LÀ1
+
+1 s
+
+L½H2ðuÞ
+
+À
+
+ ðu2Þ5x
+
+¼
+
+À
+
+t3 6
+
+ex
+
+¼
+
+À
+
+t3 3!
+
+ex
+
+p4
+
+:
+
+u4ðx;
+
+tÞ
+
+¼
+
+ LÀ1 1
+s
+
+L½H3ðuÞ
+
+À
+
+ ðu3Þ5x
+
+¼
+
+t4 24
+
+ex
+
+¼
+
+t4 4!
+
+ex
+
+2268
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+p5
+
+:
+
+u5ðx; tÞ
+
+¼
+
+
+
+LÀ1
+
+1 s
+
+L½H4ðuÞ
+
+À
+
+ ðu4Þ5x
+
+¼
+
+À t5 ex 120
+
+¼
+
+À
+
+t5 5!
+
+e
+
+x
+
+...
+
+ð29Þ
+
+Therefore the solution uðx; tÞ is given by
+
+uðx;
+
+tÞ
+
+¼
+
+X 1 ui ðx;
+i¼0
+
+tÞ
+
+¼
+
+ex
+
+À
+
+te x
+
+þ
+
+t2 2!
+
+ex
+
+À
+
+t3 3!
+
+ex
+
+þ
+
+t4 4!
+
+ex
+
+À
+
+t5 5!
+
+e
+
+x
+
+þ
+
+Á
+
+Á
+
+Á
+
+It can be written in closed form as
+
+uðx; tÞ ¼ exÀt
+
+ð30Þ ð31Þ
+
+
+
+
+
+p2 : u2ðx; tÞ ¼ LÀ1
+
+1 s
+
+L½ðu1 Þ5x
+
+À
+
+ðu1 Þ3x
+
+À
+
+H1ðuÞ
+
+¼ À 68040 t2sech6x pÀﬃﬃxﬃﬃ0ﬃﬃÀ3 þ 2coshx pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+62748517
+
+2 13
+
+2 13
+
+
+
+
+
+p3 : u3ðx; tÞ ¼ LÀ1
+
+1 s
+
+L½ðu2 Þ5x
+
+À
+
+ðu2 Þ3x
+
+À
+
+H2ðuÞ
+
+¼À
+
+816480 pﬃﬃﬃﬃﬃﬃ t3sech7x pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+Â1À01630s4in4h99x3pÀ73ﬃﬃxﬃﬃ0ﬃﬃ13þ 2sinh32ðxp1Àﬃ3ﬃﬃxﬃﬃﬃ0Þ
+
+2 13
+
+2 13
+
+Example 3.3. Consider the Kawahara equation ut þ uux þ u3x À u5x ¼ 0
+
+ð32Þ
+
+with initial condition
+
+uðx; 0Þ ¼ 105 sech4x pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+ð33Þ
+
+169
+
+2 13
+
+Using the Laplace transform on both sides of Eq. (32) and subject to
+
+the initial conditions (33), we have
+
+L½uðx;
+
+tÞ
+
+¼
+
+105 169
+
+sech4x pÀﬃﬃxﬃﬃ0ﬃﬃ: 2 13
+
+1 s
+
+þ
+
+1 s
+
+L½u5x
+
+À
+
+u3x
+
+À
+
+uux
+
+ð34Þ
+
+The inverse of Laplace transform implies that
+
+
+
+
+
+
+
+
+
+uðx;
+
+tÞ
+
+¼
+
+105 169
+
+sech4
+
+x pÀﬃﬃxﬃﬃ0ﬃﬃ 2 13
+
+þ LÀ1
+
+1 s
+
+L½u5x
+
+À
+
+u3x
+
+À
+
+uux
+
+ð35Þ
+
+
+
+
+
+p4 : u4ðx; tÞ ¼ LÀ1
+
+1 s
+
+L½ðu3 Þ5x
+
+À
+
+ðu3 Þ3x
+
+À
+
+H3ðuÞ
+
+3674160 ¼ À 23298085122481
+ÂÀ49coshx pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+t4sech8x pÀﬃﬃxﬃﬃ0ﬃﬃ þ 4cosh22ðx1pÀ3ﬃﬃﬃxﬃﬃﬃ0
+
+ Þ
+
+þ
+
+ 52
+
+2 13
+
+2 13
+
+
+
+
+
+p5 : u5ðx; tÞ ¼ LÀ1
+
+1 s
+
+L½ðu4 Þ5x
+
+À
+
+ðu4 Þ3x
+
+À
+
+H4 ðuÞ
+
+¼À
+
+13226976 pﬃﬃﬃﬃﬃﬃ t5sech9x pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+Â17319s3in7h3736ð3xp8À5ﬃﬃﬃ6ﬃxﬃﬃ90Þ92À898si1n3h5ðxpÀﬃﬃﬃxﬃﬃﬃ20Þ1À3
+
+661sinh5ðxpÀﬃﬃﬃxﬃﬃﬃ0
+
+ Þ
+
+2 13
+
+2 13
+
+2 13
+
+...
+
+Now, applying the HPM, we get
+
+X 1 pnunðx;
+n¼0
+
+tÞ
+
+¼
+
+105 169
+
+sech4x pÀﬃﬃxﬃﬃ0ﬃﬃ 2 13 !
+
+þ
+
+p
+
+" "
+
+LÀ1
+
+1 s
+
+L
+
+! X 1
+pnunðx; tÞ
+
+n!¼0##!
+
+5x
+
+X 1
+
+X 1
+
+:À
+
+pnunðx; tÞ À
+
+pnHnðuÞ
+
+ð36Þ
+
+n¼0
+
+3x
+
+n¼0
+
+here HnðuÞ are He’s polynomial [35–36] that indicates the nonlinear terms. The ﬁrst few components of He’s polynomials, are given by
+
+H0ðuÞ ¼ u0ðu0Þx H1ðuÞ ¼ u0ðu1Þx þ u1ðu0Þx H2ðuÞ ¼ u0ðu2Þx þ u1ðu1Þx þ u2ðu0Þx H3ðuÞ ¼ u0ðu3Þx þ u1ðu2Þx þ u2ðu1Þx þ u3ðu0Þx H4ðuÞ ¼ u0ðu4Þx þ u1ðu3Þx þ u2ðu2Þx þ u3ðu1Þx þ u4ðu0Þx ...
+
+ð37Þ
+
+Comparing the coefﬁcients of like powers of p, we have
+
+p0
+
+:
+
+u0ðx;
+
+tÞ
+
+¼
+
+105 169
+
+sech4x pÀﬃﬃxﬃﬃ0ﬃﬃ 2 13
+
+
+
+
+
+p1 : u1ðx; tÞ ¼ LÀ1
+
+1 s
+
+L½ðu0Þ5x
+
+À
+
+ðu0Þ3x
+
+À
+
+H0ðuÞ
+
+¼ À 756p0 ﬃﬃﬃﬃﬃﬃ tsech4x pÀﬃﬃxﬃﬃ0ﬃﬃtanhx pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+28561 13
+
+2 13
+
+2 13
+
+ð38Þ
+
+Therefore the solution uðx; tÞ is given by
+
+X 1 uðx; tÞ ¼ uiðx; tÞ
+i¼0
+
+
+
+
+
+
+
+
+
+
+
+uðx; tÞ ¼ 105 sech4 x pÀﬃﬃxﬃﬃ0ﬃﬃ À 756p0ﬃﬃﬃﬃﬃﬃ tsech4 x pÀﬃﬃxﬃﬃ0ﬃﬃ tanh4 x pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+ÀÀ1669267840884510167248t201se3pchﬃﬃ6ﬃﬃﬃﬃ t2x238psÀe5ﬃ1cﬃ6xﬃh3ﬃ0ﬃﬃ713xÀpÀ3ﬃﬃxþﬃﬃ0ﬃﬃ2coÀ2s1h31sx23inpÀhﬃ1ﬃxﬃ3ﬃ0ﬃxﬃpÀﬃﬃxﬃﬃ0ﬃ2ﬃ 13
+
+þ21si0n6h04x4pÀ99ﬃﬃxﬃ3ﬃ0ﬃﬃ73
+
+13 À
+
+2 13 3674160
+
+t4sech8x pÀ2ﬃﬃxﬃﬃ01ﬃﬃ3
+
+ÂÀ49co2sh1x3pÀﬃﬃxﬃﬃ0ﬃﬃ2þ3249c8o0sh85122ðx2p4Àﬃ8ﬃﬃxﬃ1ﬃﬃ0
+
+Þ
+
+þ
+
+2 52
+
+13
+
+À
+
+2 13 13226976
+
+pﬃﬃﬃﬃﬃﬃ
+
+t5
+
+2 sech9
+
+13x
+
+pÀﬃﬃxﬃﬃ0ﬃﬃ
+
+Â3197317si3n7h6338ð5xp6À9ﬃﬃﬃ9xﬃﬃﬃ02Þ89À 183sinh5ðxpÀ2ﬃﬃﬃxﬃﬃﬃ01Þ3
+
+À661sinh5ðx2pÀﬃﬃﬃ1xﬃﬃﬃ30Þ Á Á Á
+
+2 13
+
+ð39Þ
+
+2 13
+
+It can be written in closed form as
+
+
+
+
+
+uðx;
+
+tÞ
+
+¼
+
+105 169
+
+sech4
+
+p1ﬃﬃﬃﬃﬃﬃ 2 13
+
+ðx
+
+þ
+
+36t 169
+
+À
+
+x0
+
+Þ
+
+ð40Þ
+
+Table 1 Comparison of Absolute errors between exact solution and HPTM solution at x ¼ 8:0.
+
+T
+
+E2
+
+E3
+
+E4
+
+0.0
+
+0.00000000
+
+0.00000000
+
+0.00000000
+
+0.1
+
+2.47250000EÀ07
+
+3.10937500EÀ09
+
+5.76171880EÀ11
+
+0.2
+
+2.00320000EÀ06
+
+5.00750000EÀ08
+
+1.24687500EÀ09
+
+0.3
+
+6.84865000EÀ06
+
+2.56853125EÀ07
+
+9.66074220EÀ09
+
+0.4
+
+1.64474000EÀ05
+
+8.22400000EÀ07
+
+4.11500000EÀ08
+
+0.5
+
+3.25520500EÀ05
+
+2.03447188EÀ06
+
+1.27123247EÀ07
+
+E5
+0.00000000 1.94702153EÀ11 2.61718750EÀ11 3.91027845EÀ10 2.08750000EÀ09 7.91395740EÀ09
+
+E6
+0.00000000 1.89933781EÀ12 4.34135567EÀ11 4.34570312EÀ11 1.34375000EÀ10 4.63376803EÀ10
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+2269
+
+Fig. 1. The surface shows the solution u(x, t) for Eq. (14): (a) exact solution, (b) approximate solution and (c) absolute error juexact À uapproximatej for 0 6 t 6 1 and 5 6 x 6 10.
+
+Fig. 2. The surface shows the solution u(x, t) for Eq. (23): (a) exact solution, (b) approximate solution and (c) absolute error juexact À uapproximatej for 0 6 t 6 1 and 5 6 x 6 10.
+
+2270
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+Table 2 Comparison of Absolute errors between exact solution and HPTM solution at x ¼ À6:0.
+
+t
+
+E2
+
+E3
+
+E4
+
+0.0
+
+0.00000000
+
+0.00000000
+
+0.00000000
+
+0.1
+
+4.03001000EÀ07
+
+1.01250000EÀ08
+
+2.04000000EÀ10
+
+0.2
+
+3.14614900EÀ06
+
+1.58853000EÀ07
+
+6.39800000EÀ09
+
+0.3
+
+1.03655950EÀ05
+
+7.88790000EÀ07
+
+4.77890000EÀ08
+
+0.4
+
+2.39942070EÀ05
+
+2.44581700EÀ06
+
+1.98186000EÀ07
+
+0.5
+
+4.57809180EÀ05
+
+5.85975200EÀ06
+
+5.95333000EÀ07
+
+E5
+0.00000000 4.00000000EÀ12 2.13000000EÀ10 2.40600000EÀ09 1.33350000EÀ08 5.01760000EÀ08
+
+E6
+0.00000000 2.00000000EÀ12 8.00000000EÀ12 1.03000000EÀ10 7.66000000EÀ10 3.61500000EÀ09
+
+Table 3 Comparison of Absolute errors between exact solution and HPTM solution at x ¼ 6:0.
+
+t
+
+E2
+
+E3
+
+E4
+
+0.0
+
+0.00000000
+
+0.00000000
+
+0.0000000000
+
+0.1
+
+1.64943800EÀ06
+
+1.43061600EÀ06
+
+1.41912600EÀ06
+
+0.2
+
+6.67437400EÀ06
+
+5.64584100EÀ06
+
+5.55392100EÀ06
+
+0.3
+
+1.51864130EÀ05
+
+1.25340720EÀ05
+
+1.22238400EÀ05
+
+0.4
+
+2.72976520EÀ05
+
+2.19832100EÀ05
+
+2.12478430EÀ05
+
+0.5
+
+4.31168900EÀ05
+
+3.38844600EÀ05
+
+3.24482000EÀ05
+
+E5
+0.00000000 1.41911800EÀ06 5.55362600EÀ06 1.22223490EÀ05 2.12431310EÀ05 3.24367000EÀ05
+
+E6
+0.00000000 1.41910800EÀ06 5.55361200EÀ06 1.22222300EÀ05 2.12426300EÀ05 3.24351600EÀ05
+
+Example 3.4. Finally consider the non–homogeneous ﬁfth order KdV equation as an example of the application of the selfcanceling phenomena [38,39]
+
+ut
+
+À
+
+uux
+
+þ
+
+u5x
+
+¼
+
+cosx
+
+þ
+
+2tsinx
+
+þ
+
+t2 2
+
+sin2x
+
+with initial condition
+
+uðx; 0Þ ¼ 0
+
+ð41Þ ð42Þ
+
+Applying the Laplace transform on both sides of Eq. (41) and using subject to the initial condition (42), we have
+
+L½uðx;
+
+tÞ
+
+¼
+
+uðx; s
+
+0Þ
+
+þ
+
+1 s
+
+ L cosx
+
+þ
+
+2tsinx
+
+þ
+
+t2 2
+
+sin2x
+
+À
+
+u5x
+
+þ
+
+ uux
+
+ð43Þ
+
+The inversion of Laplace transform gives the following result
+
+uðx;
+
+tÞ
+
+¼
+
+
+
+LÀ1
+
+1 s
+
+ L cosx
+
+þ
+
+2tsinx
+
+þ
+
+t2 2
+
+sin2x
+
+À
+
+u5x
+
+þ
+
+ uux
+
+ð44Þ
+
+Now, applying the HPM, we get
+
+X 1
+n¼0
+
+pnunðx;
+
+tÞ
+
+¼
+
+
+
+p
+
+LÀ1
+
+1 s
+
+ L cosx þ
+!
+
+2tsinx
+
+þ
+
+t2 2
+
+sin2x
+
+!##!
+
+X 1
+
+X 1
+
+À
+
+pnunðx; tÞ þ
+
+pnHnðuÞ
+
+n¼0
+
+5x
+
+n¼0
+
+ð45Þ
+
+Where HnðuÞ are He’s polynomial [35,36] that represents the nonlinear terms.
+Recently, Wazwaz suggested that the construction of zeroth component of the series can be deﬁned in a slightly different way. He supposed that if the zeroth component is u0ðx; tÞ ¼ Gðx; tÞ, the function Gðx; tÞ is possible to divide into two parts such as G0ðx; tÞ and G1ðx; tÞ. Then one can construct the recursive algorithm u0ðx; tÞ. The same idea we can use in HPTM. The Eq. (13) general term in a form of modiﬁed recursive scheme as follows:
+
+u0ðx; tÞ ¼ G0ðx; tÞ
+
+
+
+
+
+u1ðx; tÞ ¼ G1ðx; tÞ À LÀ1
+
+1 s2
+
+L½Ru0ðx;
+
+tÞ
+
+þ
+
+H0ðuÞ
+
+
+
+
+
+p2 : unþ1ðx; tÞ ¼ ÀLÀ1
+
+1 s2
+
+L½Run
+
+ðx;
+
+tÞ
+
+þ
+
+Hn
+
+ðuÞ
+
+;
+
+nP1
+
+This type of modiﬁcation is giving more ﬂexibility to HPTM in order to solve complicate nonlinear partial differential equations. In many case the modiﬁcation avoids unnecessary computations such as calculation of the He’s Polynomials. In addition, sometimes we do not need to evaluate He’s Polynomials or if we need to evaluate He’s Polynomials the computation will be reduced very considerably by using modiﬁed recursive scheme.
+Comparing the coefﬁcients of like powers of p, we have
+
+p0 : u0ðx; tÞ ¼ tcosx
+
+p1
+
+:
+
+u1ðx;
+
+tÞ
+
+¼
+
+t2sinx
+
+þ
+
+t3 6
+
+sin2x
+
+À
+
+t2sinx
+
+À
+
+t3 6
+
+sin2x
+
+...
+
+pn : unþ1ðx; tÞ ¼ 0; n P 1
+
+ð46Þ
+
+It is evident that the noise terms appear between the components of u1ðx; tÞ, and these are all cancelled. As seen Eq. (46), the closed form of the solution can be ﬁnd very simply by proper selection of G0ðx; tÞ and G1ðx; tÞ .In the case of right choice of these functions, the modiﬁcation scheme accelerates the convergence of the series solution by computing just u0ðx; tÞ and u1ðx; tÞ terms of the series. The term u0ðx; tÞ provides the exact solution. This can be justiﬁes through substitution and this has been justiﬁed by A. M. Wazwaz [40] and
+M. Hussain [41]. Therefore the solution uðx; tÞ is given by
+
+uðx; tÞ ¼ u0ðx; tÞ
+
+ð47Þ
+
+¼ tcosx
+
+4. Result and discussion
+
+Here, we calculate the numerical results and absolute errors from second to sixth term approximations. The Absolute error is deﬁned as:
+
+Xn En ¼ juexact À uij
+i¼0
+
+ð48Þ
+
+From Table 1, it can also be observed that the accuracy increases as the order of approximation increases. Fig. 1 shows the comparison of the exact solution with approximate solution and presents the absolute error juexact À uapproximatej for ﬁfth order KdV equation for 0 6 t 6 1 and 5 6 x 6 10 for Eq. (14). From Fig. 1, it is observed that the values of the approximate solution of different grid points
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+2271
+
+Fig. 3. The surface shows the solution u(x, t) for Eq. (32): (a) exact solution, (b) approximate solution and (c) absolute error juexact À uapproximatej for 0 6 t 6 1 and 5 6 x 6 10 with x0 = 2.0.
+
+Fig. 4. The surface shows the solution u(x, t) for Eq. (41): (a) exact solution, (b) approximate solution and (c) absolute error juexact À uapproximatej for 0 6 t 6 1 and 5 6 x 6 10.
+
+2272
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+obtained by the HPTM are very close to the values of the exact solution with high accuracy at the sixth-term approximation and revealing a high level of agreement between the two results. It is evident from Table 1 and Fig. 1(a)–(c) that the approximate solution converges very rapidly with the exact solution and the level of convergence between the two results is excellent.
+From Table 2, it can be seen that the accuracy increases as the order of approximation increases. Fig. 2 indicates the correlation of the exact solution with approximate solution and absolute error juexact À uapproximatej for ﬁfth order KdV equation for 0 6 t 6 1 and 5 6 x 6 10 for Eq. (23). From Fig. 2, it is seen that the values of the approximate solution of different grid points obtained by the homotopy perturbation transform method are close to the values of the exact solution with high accuracy at the sixth-term approximation and admitting a high level of compliance between the two results. It is manifest from Table 2 and Fig. 2(a)–(c) that the approximate solution converges very rapidly with the exact solution and the level of convergence between the two results is good argument.
+From Table 3, it can be noticed that the accuracy increases as the order of approximation increases. Fig. 3 displays the analysis of the exact solution with approximate solution and absolute error juexact À uapproximatej for Kawahara equation for 0 6 t 6 1 and 5 6 x 6 10 with x0 = 2.0 for Eq. (32). From Fig. 3, it is noticed that the values of the approximate solution of different grid points gained by the homotopy perturbation transform method are close to the values of the exact solution with high accuracy at the sixthterm approximation and acknowledging a high level of arrangement between the two results. It is noticeable from Table 3 and Fig. 3(a)–(c) that the approximate solution converges very rapidly with the exact solution and the level of convergence between the two results is excellent.
+Fig. 4 shows the comparison of the exact solution with approximate solution and absolute error juexact À uapproximatej for nonhomogeneous ﬁfth order KdV equation for 0 6 t 6 1 and 5 6 x 6 10 for Eq. (41). From Fig. 4, it is observed that the values of the approximate solution of different grid points obtained by the HPTM are close to the values of the exact solution with high accuracy and revealing a high level of agreement between the two results.
+5. Conclusions
+In this paper, we have suggested a combination of the Laplace transform with homotopy perturbation method for solving ﬁfth order KdV equation, non-homogeneous ﬁfth order KdV equation and Kawahara equation. This combination develops a strong method called homotopy perturbation transform method (HPTM). This method has been applied for numerical simulation of nonlinear behavior of magneto-acoustic waves occurring in plasma.
+The Homotopy perturbation transform method (HPTM) has been applied for ﬁnding the exact and approximate solutions of nonlinear ﬁfth order KdV equations with initial conditions to show the signiﬁcance of this method. Thus, it can be used to solve other higher order nonlinear integer and fractional order equations. An important advantage of this new method is its low computational work.
+It may be concluded that the homotopy perturbation transform method is powerful and efﬁcient technique in ﬁnding exact and approximate solutions for wide classes of nonlinear problems. The method is capable of reducing the volume of the computational work and maintaining the high accuracy of the numerical result. The fact that the HPTM solves nonlinear equations without using Adomian’s polynomials is a clear advantage of this technique over the decomposition method. It is predicted that the proposed
+
+algorithm can be widely applied to other nonlinear problems in science and engineering.
+Acknowledgements
+The authors are highly grateful to the reviewers for their valuable suggestions for the improvement of this paper.
+References
+[1] Kazeminia M, Soleimani-Amiri S, Zahedi SA. Exact and numerical solutions for nonlinear higher order modiﬁed KdV equations by using variational iteration method. Adv. Stud. Theor. Phys. 2010;4(9):437–47.
+[2] J. Singh, D. Kumar, S. Kumar, A new fractional model of nonlinear shock wave equation arising in ﬂow of gases, Nonlin. Eng. 3(1) (2014) 43–50.
+[3] A. Goswami, J. Singh, D. Kumar, A reliable algorithm for KdV equations arising in warm plasma, Nonlin. Eng. 5(1) (2016) 7–16.
+[4] Singh J, Kumar D, Kumar S. A reliable algorithm for solving discontinued problems arising in nanotechnology. Scientia Iranica 2013;20(3):1059–62.
+[5] Drazin PG, Johnson RS. Solitons: An Introduction. New York: Cambridge University Press; 1989.
+[6] Kakutani T, Ono H. Weak non-linear hydromagnetic waves in a cold collision free plasma. J. Phys. Soc. Jpn. 1969;26:1305–18.
+[7] Kumar D, Singh J, Kumar S. A fractional model of Navier-Stokes equation arising in unsteady ﬂow of a viscous ﬂuid. J. Assoc. Arab Univ. Basic Appl. Sci. 2015;17:14–9.
+[8] Miansari MO, Miansari ME, Barari A, Ganji DD. Application of He’s Variational Iteration Method to nonlinear Helmholtz and ﬁfth-order KdV equations. J. Appl. Math.– Stat. Inform. 2009;5(1):5–19.
+[9] Abbasbandy S, Zakaria FS. Soliton solutions for the ﬁfth-order KdV equation with the homotopy analysis method. Nonlinear Dyn. 2008;51:83–7.
+[10] Wazwaz AM. Solitons and periodic solutions for the ﬁfth-order KdV equation. Appl. Math. Lett. 2006;19:1162–7.
+[11] Saravi M, Nikkar A. Promising technique for analytic treatment of nonlinear ﬁfth–order equations. World J. Model. Simul. 2014;10(1):27–33.
+[12] Handibag S, Karande BD. Existence the solutions of some ﬁfth–order KdV equation by Laplace Decomposition Method. Am. J. Comput. Math. 2013;3:80–5.
+[13] Almazmumy M, Hendi FA, Bakodah HO, Alzumi H. Recent Modiﬁcation of Adomian Decomposition Method for initial value problem in ordinary differential equations. Am. J. Comput. Math. 2012;2:228–34.
+[14] G. C. Wu, J.H. He, Fractional calculus of variations in fractal spacetime, Nonlin. Sci. Lett. A1 3 (2010) 281–287.
+[15] Soltanalizadeh B. Application of differential transformation method for solving fourth-order parabolic partial differential equations. Int. J. Pure Appl. Math. 2012;78(3):299–308.
+[16] Ablowitz MU, Clarkson PA. Solitions: nonlinear evolution equations and Inverse Scattering. London Mathematical Society Lecture Note Series: Cambridge University Press 1991;149:516.
+[17] Hirota R. Exact solution of the Korteweg-de Vries equation for multiple collisions of solitons. Phys. Rev. Lett. 1971;27:1192–4.
+[18] Khan Y. An effective modiﬁcation of the Laplace decomposition method for nonlinear equations. Int. J. Nonlin. Sci. Numer. Simul. 2009;10:1373–6.
+[19] Wazzan L. A modiﬁed tanh–coth method for solving the KdV and the KdV– Burgers equations. Commun. Nonlinear Sci. Numer. Simul. 2009;14 (2):443–50.
+[20] Kumar S, Rashidi MM. New analytical method for gas dynamics equation arising in shock fronts. Comput. Phys. Commun. 2014;185:1947–54.
+[21] Soltani LA, Shirzadi A. A new modiﬁcation of the variational iteration method. Comput. Math. Appl. 2010;59:2528–35.
+[22] Jafari H, Firoozjaee MA. Homotopy analysis method for solving KdV equations. Surveys Math. Applicat. 2010;5:89–98.
+[23] Kumar S, Singh J, Kumar D. New homotopy analysis transform algorithm to solve volterra integral equation. Ain Shams Eng. J. 2014;5:243–6.
+[24] Ganji DD. The applications of He’s homotopy perturbation method to nonlinear equation arising in heat transfer. Phys. Lett. A 2006;355:337–41.
+[25] Xu L. He’s homotopy perturbation method for a boundary layer equation in unbounded domain. Comput. Math. Appl. 2007;54(7–8):1067–70.
+[26] Yildirim A. An algorithm for solving the fractional nonlinear Schröndinger equation by means of the homotopy perturbation method. Int. J. Nonlin. Sci. Numer. Simul. 2009;10:445–51.
+[27] Wang G, Kara AH, Fakhar K, Guzman JV, Biswas A. Group analysis, exact solutions and conservation laws of a generalized ﬁfth order KdV equation. Chaos, Solitons Fractals 2016;86:8–15.
+[28] He JH. Homotopy perturbation technique. Comput. Methods Appl. Mech. Eng. 1999;178:257–62.
+[29] He JH. Homotopy perturbation method: a new nonlinear analytical technique. Appl. Math. Comput. 2003;135:73–9.
+[30] He JH. Homotopy perturbation method for solving boundary value problems. Phys. Lett. A 2006;350:87–8.
+[31] He JH. Recent developments of the homotopy perturbation method. Topolog. Meth. Nonlin. Anal. 2008;31:205–9.
+
+A. Goswami et al. / Ain Shams Engineering Journal 9 (2018) 2265–2273
+
+2273
+
+[32] Gupta S, Kumar D, Singh J. Analytical solutions of convection-diffusion problems by combining Laplace transform method and homotopy perturbation method. Alexand. Eng. J. 2015;54:645–51.
+[33] Singh J, Kumar D, Kumar S. New treatment of fractional Fornberg-Whitham equation via Laplace transform. Ain Shams Eng. J. 2013;4:557–62.
+[34] Khan Y, Wu Q. Homotopy perturbation transform method for nonlinear equations using He’s polynomials. Comput. Math. Applicat. 2011;61 (8):1963–7.
+[35] Mohyud-Din ST, Noor MA, Noor KI. Traveling wave solutions of seventh-order generalized KdV equation using He’s polynomials. Int. J. Nonlin. Sci. Numer. Simul. 2009;10:227–33.
+[36] Ghorbani A. Beyond adomian’s polynomials: He’s polynomials. Chaos Solitons Fractals 2009;39:1486–92.
+[37] Ghorbani A, Nadjaﬁ JS. He’s homotopy perturbation method for calculating adomian polynomials. Int. J. Nonlin. Sci. Numer. Simul. 2007;8(2):229–32.
+[38] Adomian G, Rach R. Noise terms in decomposition solution series. Appl. Math. Comput. 1992;24(11):61–4.
+[39] Wazwaz AM. Necessary conditions for the appearance of noise terms in decomposition solution series. Appl. Math. Comput. 1997;81(2–3):265–74.
+[40] Wazwaz AM. A reliable modiﬁcation of adomian decomposition method. Appl. Math. Comput. 1999;102(1):77–86.
+[41] Hussain M. Modiﬁed Laplace decomposition method. Appl. Math. Sci. 2010;38 (4):1769–83.
+Amit Goswami is an Assistant Professor in the Department of Physics, Jagan Nath University, Jaipur 303901, Rajasthan, India. His ﬁelds of research include Mathematical Physics, Computational Physics, Nonlinear Physics, Plasma Physics, Photonics, Fluid Dynamics, Nanotechnology, Quantum Mechanics, Analytical and Numerical Methods. His research works have been published in various peerreviewed National and International journals of repute. He has presented several research papers in National and International Conferences. He has also attended various Symposiums, Workshops, Faculty Development Programs, Summer Schools, and Short Terms Programs.
+
+number of National and International Mathematics Conferences and presented several research papers. He has also attended Summer Courses, Short Terms Programs and Workshops. He is member of Editorial Board of various Journals of Mathematics. He has worked as a reviewer of various Journals. He is also life member of various learned bodied.
+Devendra Kumar is an Assistant Professor in the Department of Mathematics, JECRC University, Jaipur303905, Rajasthan, India. His area of interest is Mathematical Modelling, Special Functions, Fractional Calculus, Nonlinear Dynamics, Analytical and Numerical Methods. He has published two books: Engineering Mathematics-I (2008), Engineering Mathematics-II (2013). His works have been published in the Applied Mathematical Modelling, Journal of Computational and Nonlinear Dynamics, Entropy, Advances in Nonlinear Analysis, Romanian Reports in Physics, Ain Shams Engineering Journal, Thermal Science and several other peer-reviewed international journals. His more than 90 research papers have been published in various Journals of repute. He has attained a number of National and International Conferences and presented several research papers. He has also attended Summer Courses, Short Terms Programs and Workshops. He is member of Editorial Board of various Journals of Mathematics. He is reviewer of various Journals.
+
+Jagdev Singh is an Assistant Professor in the Department of Mathematics, JECRC University, Jaipur-303905, Rajasthan, India. His ﬁelds of research include Mathematical Modelling, Special Functions, Fractional Calculus, Fluid Dynamics, Analytical and Numerical Methods. His works have been published in the Applied Mathematical Modelling, Journal of Computational and Nonlinear Dynamics, Entropy, Romanian Reports in Physics, Advances in Nonlinear Analysis, Zeitschrift für Naturforschung A, Thermal Science and several other peer-reviewed international journals. He has published three books: Engineering Mathematics-I (2008), Engineering Mathematics-II (2013) and Advanced Engineering Mathematics-IV (2008). His more than 90 research papers have been published in various Journals of repute. He has attained a
+

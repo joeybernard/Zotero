@@ -1,0 +1,300 @@
+GEOPHYSICAL RESEARCH LETTERS, VOL. 36, L10101, doi:10.1029/2009GL038379, 2009
+
+Collisional/resonance absorption in cold/warm magnetized plasmas of the F-region high-latitude ionosphere
+
+N. A. Gondarenko,1,2 S. L. Ossakow,3,4 and P. A. Bernhardt3
+
+Received 26 March 2009; accepted 10 April 2009; published 20 May 2009.
+
+[1] The collisional/resonance absorption due to linear mode conversion of electromagnetic waves into electrostatic/ plasma waves is studied in cold/warm magnetized plasmas relevant to the F-region of the high-latitude ionosphere. The absorption coefficient is calculated numerically using a fullwave model for high-frequency waves incident normally/ obliquely to the direction of inhomogeneity. The absorption coefficient of collisional cold plasmas is found to be independent of the collision frequency in the small range of incidence angles near the critical angle; whereas, outside this range absorption increases with increasing collisions. In warm collisionless plasmas, the resonance absorption coefficient is shown to be independent of the electron temperature values pertinent to the F-region plasma. We have demonstrated for the first time a strong effect of the external magnetic field arbitrarily oriented in the plane of incidence on the absorption coefficient, which is not pronounced in the limit of weakly magnetized plasmas. Citation: Gondarenko, N. A., S. L. Ossakow, and P. A. Bernhardt (2009), Collisional/resonance absorption in cold/warm magnetized plasmas of the F-region high-latitude ionosphere, Geophys. Res. Lett., 36, L10101, doi:10.1029/2009GL038379.
+1. Introduction
+[2] The process of linear mode conversion (LMC) when the wave energy transferred from one mode to the other in an inhomogeneous magnetized plasma [Stix, 1965; Budden, 1961; Ginzburg, 1970] is of great importance in laboratory and space plasmas. In the magnetized F-region plasmas, LMC of electromagnetic (EM) waves into electrostatic (ES) or electron plasma (Langmuir) waves is very distinctive from the cases of unmagnetized and weakly magnetized plasmas. The resonant/collisional absorption due to LMC greatly affects the linear and non-linear plasma processes occurred in the F region of the ionosphere modified by high-frequency radio waves.
+[3] The conversion of a fast EM wave propagating in an inhomogeneous plasma into a slow ES mode and a collision-free absorption of the slow wave have been first demonstrated by Stix [1965]. The absorption coefficient in a warm plasma for various angles of incidence has been first obtained by Piliya [1966]. Analytical solutions for the mode conversion problem in a cold unmagnetized collisionless plasma for oblique incidence have been derived by Speziale
+1Springfield, Virginia, USA. 2Formerly at Institute for Research in Electronics and Applied Physics, University of Maryland, College Park, Maryland, USA. 3Plasma Physics Division, Naval Research Laboratory, Washington, D. C., USA. 4Retired 3 July 2008.
+Copyright 2009 by the American Geophysical Union. 0094-8276/09/2009GL038379
+
+and Catto [1977]. The reflection and mode-conversion coefficients with finite temperature effects have been obtained analytically for the linear density profile [HinkelLipsker et al., 1989] and for a cold/warm plasma at the peak of the F layer [Hinkel-Lipsker et al., 1991]. The theory and combined analytical and numerical simulations of linear conversion of HF electromagnetic waves into ES waves in a magnetized ionospheric plasma have been discussed by Mjølhus and Fla˚ [1984] and Mjølhus [1984, 1990]. The characteristics of the LMC process relevant to ionospheric heating experiments at Arecibo have been studied by Muldrew [1993] using ray tracing techniques.
+[4] In a magnetized plasma, there are two characteristic waves, the extraordinary (X mode) and the ordinary (O mode). These two EM waves propagating with different velocities are in general elliptically polarized for propagation at an arbitrary angle to the magnetic field. When the O mode is incident on the F layer of the ionosphere it can be partially reflected at cutoff, the critical layer where the wave frequency w is equal to the electron plasma frequency wpe, and converted (or absorbed) at resonances [Budden, 1961; Ginzburg, 1970]. We consider the conversion near the reflection height of the O mode incident on the F layer of slowly varying plasma (k0L ) 1), k0 = w/c, L is the density scale length, and c is the velocity of light. The study of LMC in an inhomogeneous magnetized warm plasma is a complex problem whose analytical treatment becomes cumbersome, and the solution of the full wave equations by numerical simulations is required. The resonant absorption by conversion of EM waves into ES waves has been simulated for a hot unmagnetized laboratory plasma by Forslund et al. [1975]. Most recently, the LMC process has been numerically studied in magnetized cold ionospheric plasmas by Gondarenko et al. [2003].
+[5] In this paper, we numerically investigate linear conversion of EM waves into ES/plasma waves in cold/warm plasmas, using a full-wave model for the propagation of the HF wave incident normally/obliquely on the layer of an inhomogeneous magnetized plasma [Gondarenko et al., 2003, 2004]. For typical F-region plasma parameters of the high-latitude ionosphere, we compute the collisional/resonance absorption coefficient and its dependence on the angle of incidence for a cold/warm plasma model. To demonstrate a strong effect of the external magnetic field arbitrarily oriented in the plane of incidence on the absorption coefficient, the simulations are performed for a wide range of parameters relevant to weakly and strongly magnetized plasmas.
+2. Simulation Results
+[6] To describe the propagation of EM waves in magnetized plasmas with the allowance for thermal motion (spatial
+
+L10101
+
+1 of 4
+
+L10101
+
+GONDARENKO ET AL.: ABSORPTION IN IONOSPHERIC F-LAYER PLASMA
+
+L10101
+
+Figure 1. The dispersion relation for normal incidence with w = 2pf, f = 4 Â 106 sÀ1, Y % 0.34, a = 12.8° in (a) cold plasmas and (b) warm plasmas with Te $ 0.1 eV (bT = 4.3 Â 10À4).
+
+dispersion), we use the quasihydrodynamic approximation approach by including the electron pressure term in the electron momentum equation. We have assumed that pressure is isotropic and an adiabatic pressure law is used. In an isotropic medium, one can obtain a complete agreement between the quasihydrodynamic and kinetic results. In an anisotropic medium, when pressure is a tensor, the dispersion relation produced with the quasihydrodynamic approach differs from the one derived with the kinetic method. Although, this difference may be of the secondary importance. The most important point is that quasihydrodynamic approach does not describe the specific damping associated with collisionless dissipation. Only a kinetic treatment can resolve this problem. To approximate the collisionless absorption in our model, we use the phenomenological collisionless Landau damping rate obtained from the kinetic method [Ginzburg, 1970]. Combining the linearized electron fluid equations with the equation of state and Maxwell’s equations, neglecting the ion motions, we derive the high-frequency wave equation for the electric field vector ~E:
+
+Àr2~E
+
+þ
+
+r~Àr
+
+Á
+
+~EÁ
+
+¼
+
+w2 c2
+
+~E
+
+þ "
+
+i
+
+4pw c2
+
+~J ;
+
+#
+
+~J ¼ i w2pe 4pw
+
+sC
+
+Á
+
+~E
+
+À
+
+gv2e w2pe
+
+sT
+
+Á
+
+r~Àr
+
+Á
+
+~EÁ
+
+;
+
+ð1Þ
+
+where ~J is the current density, g = 3 is an adiabatic constant,
+
+ve2 = (kTe)/me, Te and me are the electron’s temperature and
+
+mass, k is the Boltzmann constant. The thermal motion
+
+gives a correction conductivity tensors
+
+of sC
+
+anthdesToardreerassboT2cia=tedvc2e2wi(th
+
+1. The damping
+
+due to effective electron collisions ne in cold plasmas and with a phenomenological rate nL to represent Landau damping of the plasma waves in warm plasmas, respec-
+
+tively. This partition of the conductivity tensor is due to the
+
+use of nL in the electron pressure term in the electron momentum equation. The use of the phenomenological
+
+damping rate permits large damping of the ES component of
+
+the wave without altering the EM component [Forslund et
+
+al., 1975]. The linear theory of weak collisionless damping
+
+can be used to approximate the damping rapteﬃﬃﬃﬃoﬃﬃﬃfﬃ the
+
+propagating w2)/(bTn3)3
+
+esÀh0o:r5t=ðpblTans3Þm2 a%wpavﬃpeﬃﬃes.ÀW3/2e(kuDse)Àn3Le/Àw(k=D)À2
+
+p=8(wp2e/ obtained
+
+by means of the Boltzmann-equation treatment [Ginzburg,
+
+p197ﬃﬃﬃ0ﬃﬃ]ﬃﬃﬃaﬃﬃnﬃﬃﬃdﬃﬃﬃwﬃﬃﬃﬃiﬃtﬃhﬃﬃﬃﬃwﬃﬃﬃ2ﬃ = wp2e + 3ve2k2, k is the wave number, D =
+
+ðkTeÞ=ð8pNe2 Þ, and N is the background plasma density.
+
+Here, n3 is the index of refraction that one can find from the dispersion equation for a warm-plasma approximation
+
+model.
+
+[7] In the coordinate system we choose, the z axis pointed
+
+vertically upward is along the density gradient, and the constant external geomagnetic field H(0) is in the xz-plane.
+
+The magnetic field is at an angle a with the z axis. In the
+
+case of normal incidence, q = 0°, the HF radio wave is
+
+launched vertically upward along the z axis. In the case of oblique incidence, the wave vector~k is at an angle q with the z
+
+axis. We consider the unperturbed density profile in the form N0(z) = Nmax eðÀððzÀzmaxÞ=LÞ2Þ, where Nmax = 5 Â 105 cmÀ3 and L is the density scale length. Simulations are performed
+
+for the bottom side of the ionosphere in about a ten-
+
+kilometer region near the reflection points of the O mode.
+
+The amplitude and phase of the incident upward-going
+
+O wave are specified at the lower boundary [Gondarenko
+
+et al., 2003].
+
+[8] The dispersion relation can be obtained from equation (1), assuming that the electric field varies as eiðkzzþkx0xÞ,
+
+where kz and kx0 are the components of the wave vector in
+
+the
+
+xz
+
+plane
+
+of
+
+incidence,
+
+kx0
+
+=
+
+w c
+
+sinq.
+
+In
+
+Figure
+
+1,
+
+one
+
+can
+
+see the solutions of cold/warm dispersion equations n1,2,3 =
+
+kz c w
+
+for
+
+normal
+
+and (b) warm
+
+incidence of the plasmas with Te
+
+O $
+
+mode in (a) cold 0.1 eV, bT = 4.3
+
+plasmas Â 10À4.
+
+We use typical F-region parameters at high latitudes: w =
+
+2pf, f = 4 Â 106 sÀ1, we = 2pfe, fe = 1.35 Â 106 sÀ1, where
+
+we is the electron cyclotron frequency, Y = we/w % 0.34, a = 12.8°, ne = 103 sÀ1, and k0L % 2.65 Â 103 with L = 31.6 km.
+
+The solution of the dispersion equation represents the four
+
+modes of wave propagation in cold plasmas, namely, the
+
+upward and the downward propagating O mode and X mode
+
+as shown in Figure 1a. Here, the O wave incident from the
+
+underdense plasma (w > wpe) propagates upward to the critical layer, where it can be transformed into the second
+
+branch of the X mode (the Z mode). In Figure 1, the
+
+reflection points of the O and Z modes are shown with labels V = 1 and V = 1 + Y, V(z) = wp2e(z)/w2, wp2e(z) = 4pN0(z)e2/me. The resonance layer V1 = (1 À U)/(1 À U cos2 a), U = Y2, is near the O-mode reflection point. In
+
+warm plasmas, the allowance for the thermal motion leads
+
+to the appearance of the third root for the squared refractive index n32. The occurrence of the third solution in Figure 1b is
+due to the disappearance of the discontinuity of the function
+
+n1 in Figure 1a, where n1 tends to infinity (kz ! 1, i.e. the wavelength goes to zero).
+
+[9] In Figures 2a – 2c, we show the amplitudes of the
+
+electric field components Ex, Ey, and Ez near the O mode reflection point for normal incidence in cold plasmas (a) without dissipation, ne = 0, (b) with ne = 103 sÀ1, and in a collisionless warm plasma (c) with Te $ 0.1 eV (bT = 4.3 Â 10À4) and nL/w % 4 Â 10À6. The value of nL is enhanced over the Landau value to damp the plasma wave
+
+propagating away from the resonance region. In Figures 2a–
+
+2c, the standing wave pattern is formed when the wave is
+
+reflected from V = 1 layer. In Figure 2a, bT = 0 and ne = 0, one can see a spike, a sharp increase in the electric field
+
+amplitude Ez at the resonance height, slightly above 5 km, due to the generation of ES plasma oscillations. In a cold
+
+collisionless plasma, an infinite value of Ez occurs. The obliquely incident O mode can be coupled into the Z mode
+
+at V = 1 [Ginzburg, 1970; Mjølhus, 1990]. The reflected
+
+2 of 4
+
+L10101
+
+GONDARENKO ET AL.: ABSORPTION IN IONOSPHERIC F-LAYER PLASMA
+
+L10101
+
+Figure 2. The amplitude of the electric fields for simulations with parameters in Figure 1 for cold plasmas, bT = 0, (a) without dissipation, ne = 0, and (b) with ne = 103 sÀ1; (c) for collisionless warm plasmas with Te $ 0.1 eV.
+Z mode propagates back towards a plasma resonance region V1 where it converts into an ES mode. In collisional cold plasmas, ne 6¼ 0, the resonance is resolved as shown in Figure 2b, the spike in the Ez amplitude at V1 is suppressed when compared to that in Figure 2a. In warm plasmas (Figure 2c), the resonance is resolved with bT 6¼ 0, the electric field patterns are similar to the ones in Figure 2b. However, one can note the plasma waves generated near the reflection layer at V1, which decay within a few wavelengths due to the Landau damping of plasma waves.
+[10] Using the simulation results for various angles of incidence of the O mode, we calculate the absorption coefficient. The absorption is defined as the difference between the incident EM energy flux, the reflected one at the lower ingoing boundary, and the transmitted one at the upper outgoing boundary. The flux normalized to the incident EM energy, the absorption coefficients A(q), is plotted in Figures 3a and 3b as a function of q = (k0L)2/3sin2q for cold/ warm plasmas. In Figure 3a we show A(q) for collisional cold plasmas with ne = 2 Â 102 sÀ1 (solid line), 103 sÀ1 (dashed line), and 2 Â 103 sÀ1 (dotted line) for unmagnetized (Y = 0) and magnetized (Y % 0.34) plasmas. In Figure 3b we plot A(q) for magnetized (Y % 0.34) warm plasmas with Te $ 0.1 eV, bT = 4.3 Â 10À4 (solid line) and Te $ 5 keV, bT = 0.096 (dash-dotted line) and for unmagnetized warm plasmas with Te $ 0.1 eV (Y = 0, dashed line). One can see that in a cold magnetized plasma at normal incidence, there is a finite absorption which increases with increasing collisions. For the typical F-region value of ne = 103 sÀ1, the magnitude of A(q) at q = 0° is $9%. The absorption curves arpe pﬃﬃeﬃﬃaﬃﬃkﬃﬃeﬃﬃdﬃﬃﬃﬃaﬃﬃtﬃﬃﬃtﬃhﬃ e critical angle of incidence given by sinqcr = Y =ð1 þ Y Þsin a, qcr = 6.4°, q % 2.4 [Budden, 1961; Ginzburg, 1970].
+[11] In the small range of incidence angles Dq $ 3° near qcr, the absorption curves exhibit negligible dependence on collisions (Figure 3a). For oblique propagation in this range of q, most of the incident O wave energy is transmitted as the Z wave to the reflection layer V = 1 + Y. After reflection, the Z mode propagates back towards the V = 1 layer, and when it approaches the resonance layer, coupling of the Z mode to an ES wave occurs that leads to the absorption process with almost no dependence on collisions. For oblique propagation with q outside of the Dq range, there is partial reflection and partial transmission of the incident
+
+O wave, and since the O mode can directly access the resonance layer where it transferred into ES oscillations, there is also absorption at V1 [Mjølhus, 1990; Gondarenko et al., 2003]. In this case absorption occurs due to collisional damping of the amplitude of the ES oscillations. For an unmagnetized collisional plasma, Y = 0, the absorption curves exhibit a dependence on collisions for all angles of incidence with one exception for the normal incidence case when the field has no component along the density gradient so that A(q = 0) = 0. In the Y = 0 case, the optimum angle of incidence for absorption is q = 3.6° (q % 0.75). The maximum A(q) for a magnetized plasma is almost two times greater and corresponds to a higher q value than that for an unmagnetized plasma, as to be expected due to the effects of the geomagnetic field. This has been also shown in simulations by Mjølhus [1990] for the case with the density gradient perpendicular to the magnetic field. In Figure 3b we show the absorption curve for warm plasmas with finite electron temperature effects. Here, the dependence on temperature is observed only for Te > 1 keV. With higher temperatures, the peak of A(q) moves to higher q, thus the absorption increases with increasing angle of incidence. In warm plasmas with Te < 1 keV, the absorption curve is similar to the one obtained in the cold simulations with a small value of the collision frequency. For both models, with increasing q when an angle of incidence q > qcr, the distance between the O mode reflection layer V(z) = cos2q and the resonance layer increases, so that most of the incident energy is reflected at the O mode reflection layer,
+Figure 3. The absorption coefficient A(q) for (a) cold plasmas with ne = 2 Â 102 sÀ1 (solid line), 103 sÀ1 (dashed line), and 2 Â 103 sÀ1 (dotted line) for unmagnetized/ magnetized plasmas, Y = 0/0.34; (b) collisionless magnetized (Y = 0.34) warm plasmas with Te $ 0.1 eV (solid line), Te $ 5 keV (dash-dotted line), and for unmagnetized plasma, Y = 0 (dashed line); (c) – (d) the absorption coefficient A(p) for warm magnetized plasmas (c) with a = 12.8° and q = 0°/6.4° (solid/dotted line), and (d) for q = 3.5° with a = 0° (solid line) and a = 12.8° (dotted line).
+
+3 of 4
+
+L10101
+
+GONDARENKO ET AL.: ABSORPTION IN IONOSPHERIC F-LAYER PLASMA
+
+L10101
+
+and that results in the rapid falloff of the absorption curves in Figure 3.
+[12] The transition from a magnetized to an unmagnetized plasma has been discussed by Mjølhus [1990] where A(q) has been calculated for different values of p = (k0L)1/3 Y1/2, the parameter used in LMC theory to describe magnetization. The absorption coefficients for p 1 correspond to the case of weakly magnetized plasma that can be relevant to laser plasma experiments. The ionospheric F-region plasma with p $ 8 represents the case of strongly magnetized plasma. The range of p > 1 is relevant to tokamak plasmas. The distinct behavior of A(q) for the ranges p 1 and p > 1 has been demonstrated by Mjølhus [1990] for the density gradient perpendicular to the magnetic field. For a strongly magnetized plasma, the magnitude of A(q) is greater and peaks at a higher q value than that for a weakly magnetized plasma. For the ionospheric E-region plasma, p % 1.63 with k0L = 18.62 and Y = 0.38. Here we note that characteristics of LMC in the E region at middle latitudes can be quite different from those considered in this paper, and the detailed numerical simulations of LMC in a warm magnetized E layer are required.
+[13] In Figures 3c and 3d we show the absorption coefficient as a function of p. Figure 3c shows warm plasma simulations with Te $ 0.1 eV and an arbitrary orientation of the magnetic field with a = 12.8° for normally incident O wave (q = 0°, solid line) and critical incidence (q = 6.4°, dotted line). The oscillating behavior of A(p) is due to the interference between the incident O mode and reflected Z mode. These results are in a good agreement with those obtained by Mjølhus [1990]. In Figure 3d we demonstrate the effect of the magnetic field arbitrarily oriented in the plane of incidence on the absorption coefficient for the simulations when the HF wave is launched near vertically in the magnetic meridian plane with q = 3.5° (q % 0.7) for a = 0° (solid line) and a = 12.8° (dotted line). For a weakly magnetized plasma (the range of p < 1), the absorption coefficient shows no dependence on the orientation of the magnetic field. For the magnetized F-layer plasmas (the range of p > 1), the absorption increases when the external magnetic field is at the angle a = 12.8° to the direction of the inhomogeneity; it is almost twice the absorption of the HF wave incident nearly vertically to both directions of inhomogeneity and the magnetic field (a = 0°).
+[14] In conclusion, we have presented the simulation results on linear conversion of EM waves into ES/plasma waves in cold/warm magnetized plasmas relevant to the F region of the high-latitude ionosphere. We have demonstrated that the absorption coefficient of collisional cold plasmas is independent of the collision frequency in the
+
+small range of incidence angles Dq $ 3° near the critical angle; whereas, outside this range absorption increases with increasing collisions. We have shown that the resonance absorption coefficient of warm collisionless plasmas is independent of the electron temperature values relevant to the F-region plasma. We have demonstrated for the first time a strong effect of the external magnetic field arbitrarily oriented in the plane of incidence that results in the enhanced absorption, which is not pronounced in the limit of weakly magnetized plasmas. These simulation results provide new insight for the theories and experiments relevant to space and laboratory plasmas.
+[15] Acknowledgments. This research was supported by the Office
+of Naval Research.
+References
+Budden, K. G. (1961), Radio Waves in the Ionosphere, Cambridge Univ. Press, Cambridge, U. K.
+Forslund, D. W., J. M. Kindel, K. Lee, E. L. Lindman, and R. L. Morse (1975), Theory and simulations of resonant absorption in a hot plasma, Phys. Rev. A, 11, 679.
+Ginzburg, V. L. (1970), The Propagation of Electromagnetic Waves in Plasmas, Pergamon, New York.
+Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt (2003), Linear mode conversion in inhomogeneous magnetized plasmas during ionospheric modification by HF radio waves, J. Geophys. Res., 108(A12), 1470, doi:10.1029/2003JA009985.
+Gondarenko, N. A., P. N. Guzdar, S. L. Ossakow, and P. A. Bernhardt (2004), Perfectly matched layers for radio wave propagation in inhomogeneous magnetized plasmas, J. Comput. Phys., 194, 481.
+Hinkel-Lipsker, D. E., B. D. Fried, and G. J. Morales (1989), Analytic expression for mode conversion of Langmuir and electromagnetic waves, Phys. Rev. Lett., 62, 2680.
+Hinkel-Lipsker, D. E., B. D. Fried, and G. J. Morales (1991), Conversion of electrostatic and electromagnetic waves in a plasma at the peak of a parabolic density profile, Phys. Rev. Lett., 66, 1862.
+Mjølhus, E. (1984), Coupling to Z mode near critical angle, J. Plasma Phys., 31, 7.
+Mjølhus, E. (1990), On linear conversion in a magnetized plasma, Radio Sci., 25, 1321.
+Mjølhus, E., and T. Fla˚ (1984), Direct access to plasma resonance in ionospheric radio experiments, J. Geophys. Res., 89, 3921.
+Muldrew, D. B. (1993), Characteristics of the coupled Z mode at Arecibo, Radio Sci., 28, 379.
+Piliya, A. D. (1966), Wave conversion in a weakly inhomogeneous plasma, Sov. Phys. Tech. Phys., Engl. Transl., 11, 609.
+Speziale, T., and P. J. Catto (1977), Linear wave conversion in an unmagnetized, collisionless plasma, Phys. Fluids, 20, 990.
+Stix, T. H. (1965), Radiation and absorption via mode conversion in an inhomogeneous collision-free plasma, Phys. Rev. Lett., 15, 878.
+ÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀÀ
+P. A. Bernhardt, Plasma Physics Division, Naval Research Laboratory, 4555 Overlook Avenue, SW, Washington, DC 20375-5320, USA. (paul.bernhardt@nrl.navy.mil)
+N. A. Gondarenko, Springfield, VA 22150, USA. (nagondare@verizon. net)
+S. L. Ossakow, 8920 Periwinkle Blue Court, Lorton, VA 22079-5700, USA. (slossakow@aol.com)
+
+4 of 4
+

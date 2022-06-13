@@ -1,0 +1,1197 @@
+INVITED PAPER
+Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+The authors of this paper summarize multiscale electromagnetic simulation methods in the time domain; such methods may be important for future research.
+By Jiefu Chen, Member IEEE, and Qing Huo Liu, Fellow IEEE
+
+ABSTRACT | Efficient multiscale electromagnetic simulations
+require several major challenges that need to be addressed, such as flexible and robust geometric modeling schemes, efficient and stable time-stepping methods, etc. Due to the versatile choices of spatial discretization and temporal integration, discontinuous Galerkin time-domain (DGTD) methods can be very promising in simulating transient multiscale problems. This paper provides a comprehensive review of different DGTD schemes, highlighting the fundamental issues arising in each step of constructing a DGTD system. The issues discussed include the selection of governing equations for transient electromagnetic analysis, different basis functions for spatial discretization, as well as the implementation of different time-stepping schemes. Numerical examples demonstrate the advantages of DGTD for multiscale electromagnetic simulations.
+KEYWORDS | Discontinuous Galerkin time-domain (DGTD)
+method; domain decomposition method (DDM); finite-difference time-domain (FDTD) method; finite-element time-domain (FETD) method; multiscale analysis; pseudospectral time-domain (PSTD) method; time-domain electromagnetic simulation
+Manuscript received March 24, 2012; revised July 4, 2012; accepted July 19, 2012. Date of publication November 16, 2012; date of current version January 16, 2013. J. Chen is with the Advantage R&D Center, Weatherford, Houston, TX 77060 USA (e-mail: jiefu.chen@weatherford.com). Q. H. Liu is with the Department of Electrical and Computer Engineering, Duke University, Durham, NC 27708 USA (e-mail: qhliu@ee.duke.edu). Digital Object Identifier: 10.1109/JPROC.2012.2219031
+
+I. INTRODUCTION
+Realistic system level electromagnetic problems such as electromagnetic interference (EMI) and electromagnetic compatibility (EMC) are often multiscale. Take the simulation of reverberation chamber shown in Fig. 1 as an example: electrically fine structures with details much smaller than a typical wavelength, such as the thin metallic mode stirrers as well as details of devices under testing, and electrically coarse structures comparable to or larger than a typical wavelength, such as the empty space insider the chamber, coexist in one system. To simulate this type of multiscale problems in time domain is the subject of this contribution.
+Simulating transient multiscale problems can be very challenging for the conventional finite-difference timedomain (FDTD) method and the finite-element timedomain (FETD) method. The FDTD method [1], [2] requires an orthogonal grid. Thus, a high discretization density required to capture the geometric characteristics of electrically fine structures will lead to a large number of wasted unknowns in the electrically coarse domains. The subgridding technique [3] can alleviate this issue of the FDTD method; however, it will spoil the simple data structure of the standard FDTD scheme and greatly increase computational complexity. Stability is another issue for the FDTD method. Based on the Courant–Friedrichs– Levy (CFL) condition [4], very small cells for electrically fine structures will lead to an extremely small time step increment Át, and consequently, an unaffordable number of steps in time integration. The FETD method [5], [6] is more flexible in geometric modeling. However, this
+
+242 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+
+0018-9219/$31.00 Ó2012 IEEE
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+choice. Thus, dozens of DGTD variations have been proposed with different combinations of implementation schemes. In this review, we provide a comprehensive discussion of the fundamental issues of each step, emphasizing the details of one specific scheme based on mixed finite-element discretization and the hybrid implicit– explicit (IMEX) time-stepping scheme.
+
+II. THE DISCONTINUOUS GALERKIN SYSTEM FOR TRANSIENT ELECTROMAGNETIC ANALYSIS
+
+Fig. 1. A typical multiscale problem: A reverberation chamber for electromagnetic interference measurement with a patch antenna having electrically fine structures. The size of this chamber is 1.6 m Â 1.2 m Â 0.8 m. The thicknesses of the metallic stirrer and the patch antenna are 5 and 1 mm, respectively.
+method requires solving matrix equations, either directly or iteratively. A discretized multiscale problem usually has a great number of unknowns, viz. huge system matrices. It can be prohibitively expensive to perform operations with huge matrices during time stepping.
+Discontinuous Galerkin time-domain (DGTD) methods [7]–[24] are promising in solving multiscale problems. First, for geometric modeling, DGTD allows for domain decomposition. A multiscale structure can be divided into several subdomains, and each subdomain can be discretized by a specific mesh density based on its geometric characteristics. Based on the idea of domain decomposition, DGTD is much more flexible than FDTD and FETD in modeling complex structures because large system matrices are split into a bunch of smaller matrices. DGTD can easily handle problems too large to be solved by the conventional FETD method. As for time integration, DGTD allows for different time-stepping schemes to be used in different subdomains. For example, efficient explicit schemes can be applied to subdomains with coarser meshes and relatively large CFL numbers, while unconditionally stable implicit schemes can be employed in subdomains with dense meshes to overcome CFL restrictions. In other words, subdomains with fine details can use as large of a time step increment Át as that of coarse subdomains. These flexibilities in both spatial and temporal discretization make DGTD efficient in multiscale simulations.
+Constructing a DGTD system consists of several key steps: 1) deciding on which governing equations the DGTD method will be based; 2) choosing element shape and corresponding basis functions for the spatial discretization of each subdomain; 3) applying numerical fluxes onto interfaces to stitch all subdomains together; and 4) selecting a time scheme based on properties of a discretized system. Each step of the above procedure has more than one
+
+A. Governing Equations for Time-Domain Electromagnetic Analysis
+The transient electromagnetic problems can be governed by different equations such as first-order Maxwell’s equations or a second-order wave equation. Mathematically, these governing equations are equivalent, however, with different discretization schemes they differ greatly in numerical properties [25].
+One type of governing equations extensively used in implementing computational electromagnetics is the second-order vector wave equation
+
+r
+
+Â
+
+ 1 
+
+r
+
+Â
+
+ E
+
+þ
+
+
+
+@2E @t2
+
+þ
+
+
+
+@E @t
+
+¼
+
+À
+
+@Js @t
+
+(1)
+
+where E is the electric field as a field variable, Js is the electric current density and excitation, and , , and  denote the permittivity, permeability, and conductivity of the medium, respectively.
+One reason to choose (1) (or equivalently, the secondorder vector wave equation for magnetic field H as the field variable) is that the first family of N´ed´elec elements [26], also known as edge elements [27] or the mixed-order curl-conforming elements [28], can be directly used here for spatial discretization. The edge elements are free of spurious modes, which had previously bothered the society of computational electromagnetics for years [29]. Besides, the edge elements facilitate the imposition of boundary conditions at material interfaces and treatment of field singularities near conducting and dielectric wedges and corners [30].
+Despite such advantages, the wave equations have difficulties in constructing the time-domain perfectly matched layer (PML), which is believed to be an allpurpose technique to truncate unbounded regions. This shortcoming makes the wave equations less attractive for practical transient electromagnetic simulations. Moreover, the implementation of numerical fluxes [31]–[33], a critical step in building a DGTD system, is based on both E and H variables. This requirement makes the wave equation with only one variable less suitable for DGTD methods.
+
+Vol. 101, No. 2, February 2013 | Proceedings of the IEEE 243
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+To avoid the above difficulties, the DGTD systems can be based on first-order Maxwell’s equations with both E and H as field variables
+
+@E
+
+ @t þ E À r Â H ¼ À Js
+
+(2)
+
+@H
+
+ þ r Â E ¼ 0: @t
+
+(3)
+
+In Sections II-B and II-D, we will see that it is straightforward to implement numerical fluxes as well as PML for this first-order system.
+
+and
+
+Z
+
+Z 8 Á ðn Â EÞdS ¼
+
+8
+
+Á
+
+n
+
+Â
+
+Y ðiÞ EðiÞ Y ðiÞ
+
+þ þ
+
+Y ðjÞ EðjÞ Y ðjÞ
+
+dS
+
+S
+
+SZ
+
+HðiÞ À HðjÞ
+
+À 8 Á n Â n Â YðiÞ þ YðjÞ dS (7)
+
+S
+
+pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ pw hﬃﬃﬃeﬃﬃrﬃﬃﬃeﬃﬃﬃﬃﬃﬃZðiÞ ¼ 1=YðiÞ ¼ ðiÞ=ðiÞ a n d ZðjÞ ¼ 1=YðjÞ ¼
+ðjÞ=ðjÞ are wave impedances for the ith and jth subdomains, respectively.
+Another popular and even simpler numerical flux is called the averaging operator or central flux [33]
+
+B. Galerkin’s Weak Form and Numerical Fluxes Denote % and 8 as basis functions for E and H, re-
+spectively. With integration by parts, the Galerkin’s weak forms of Maxwell’s equations are
+
+Z
+
+Z % Á ðn Â HÞdS ¼ 1
+
+
+
+
+
+% Á n Â HðiÞ þ HðjÞ dS
+
+(8)
+
+2
+
+S
+
+S
+
+Z
+
+Z
+
+@E
+
+% Á  @t þ E þ Js dV À r Â % Á HdV
+
+V
+
+V
+
+Z
+
+¼ % Á ðn Â HÞdS
+
+(4)
+
+S
+
+Z
+
+Z
+
+8
+
+Á
+
+
+
+@H @t
+
+dV
+
+þ
+
+r Â 8 Á EdV
+
+V
+
+V
+
+Z
+
+¼ À 8 Á ðn Â EÞdS
+
+(5)
+
+S
+
+where V denotes the volume of a subdomain, which contains one or more elements, and n is the unit normal vector located on surface S and pointing to the outside of V. The terms on the right-hand sides of (4) and (5) are integrals over subdomain interfaces. In DGTD methods, they are evaluated by numerical fluxes.
+Choosing different numerical fluxes can lead to different DGTD systems. One commonly used numerical flux is the Riemann solver [31], [32], which is a type of upwind numerical flux and is derived from the physical process of wave propagation and reflection across an interface between two different media
+
+and
+
+Z
+
+Z 8 Á ðn Â EÞdS ¼ 1
+
+
+
+
+
+8 Á n Â EðiÞ þ EðjÞ dS:
+
+(9)
+
+2
+
+S
+
+S
+
+Comparing (6)–(9) we can see that the central flux can be viewed as a special type of Riemann solver with ZðiÞ ! 1, ZðjÞ ! 1, YðiÞ ! 1, and YðjÞ ! 1. Generally speaking, the central flux is a first-order transmission condition, and it is desirable for long time simulations due to its property of energy conservation. On the other hand, the Riemann solver is a second-order operator with a faster convergence rate but has numerical dissipations [15].
+C. Discretized System of Linear Equations Assuming a multiscale structure is divided into N sub-
+domains, the discretized system of equations by the DGTD method will be
+
+MðeieÞ
+
+deðiÞ dt
+
+¼
+
+KðeihÞ hðiÞ
+
+þ
+
+CðeieÞeðiÞ
+
+þ
+
+jðiÞ
+
+þ
+
+XN  LðeiejÞeðjÞ
+
+þ
+
+ LðeihjÞhðjÞ ;
+
+j¼1
+
+i ¼ 1; . . . ; N (10)
+
+Z
+
+Z % Á ðn Â HÞdS ¼
+
+%
+
+Á
+
+n
+
+Â
+
+ZðiÞHðiÞ ZðiÞ
+
+þ þ
+
+ZðjÞHðjÞ ZðjÞ
+
+dS
+
+S
+
+SZ
+
+EðiÞ À EðjÞ
+
+þ % Á n Â n Â ZðiÞ þ ZðjÞ dS (6)
+
+S
+
+and
+
+MðhihÞ
+
+dhðiÞ dt
+
+¼
+
+KðhieÞeðiÞ
+
+þ
+
+XN LðhiejÞeðjÞ
+j¼1
+
+þ
+
+ LðhihjÞhðjÞ ;
+
+i ¼ 1; . . . ; N (11)
+
+244 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+where eðiÞ and hðiÞ are vectors of the discretized electric aCmnaðedietÞrmiiscaetgshn,eaendtidacmjfðipieÞilindsgsa,mvMeactðetrieÞoixra,noKdf tðeM hihÞeaðhdihnÞidsacrKreettðhiiheÞzeeadrmeeatxshcseitmasttaiitofrfnincseeosssf, the ith subdomain. Matrices LðeiejÞ, LðeihjÞ, LðhiejÞ, and LðhihjÞ are obtained from the interface integrations and can be viewed as the couplings between fields of the ith and jth subdomains. Detailed formulations of these vectors and matrices are presented in [34].
+D. PML in DGTD for Open Region Problems The PML [35] plays a critical role in transient simula-
+tion of unbounded problems because of its abilities for absorbing plane waves of all frequencies and incident angles. Several extensions and improvements have been made since it was proposed by Berenger [36]–[39]. Here we introduce the well-posed PML [38], which can be viewed as a complex coordinate stretching form from Maxwell’s equations
+
+
+
+@E" @t
+
+À
+
+r
+
+Â
+
+H"
+
+þ
+
+ðeI
+
+þ
+
+m1ÞE"
+
+þ
+
+ðem1
+
+þ
+
+m2ÞE~
+
+Assuming the ith subdomain contains PML, the discretized system of equations will take the form as
+
+MðeieÞ
+
+de"ðiÞ dt
+
+¼
+
+KðeihÞ h" ðiÞ
+
+þ
+
+C" ðeieÞe"ðiÞ
+
+þ
+
+C~ ðeieÞ~eðiÞ
+
+þ
+
+C ðeieÞeðiÞ
+
+þ
+
+XN  LðeiejÞe"ðjÞ
+
+þ
+
+ LðeihjÞ h" ðjÞ
+
+þ
+
+jðiÞ
+
+j¼1
+
+M" ðeieÞ
+
+d~eðiÞ dt
+
+¼
+
+M" ðeieÞe"ðiÞ
+
+þ
+
+M~ ðeieÞ~eðiÞ
+
+deðiÞ ¼ E~ ðiÞ dt
+
+MðhihÞ
+
+dh" ðiÞ dt
+
+¼
+
+KðhieÞe"ðiÞ
+
+þ
+
+C" ðhihÞh"ðiÞ
+
+þ
+
+C~ ðhihÞ h~ðiÞ
+
+þ
+
+XN LðhihjÞh"ðjÞ
+
+þ
+
+ LðhiejÞe"ðjÞ
+
+j¼1
+
+M" ðhihÞ
+
+dh~ðiÞ dt
+
+¼
+
+M" ðhihÞh"ðiÞ
+
+þ
+
+M~ ðhihÞ h~ðiÞ:
+
+(17) (18) (19)
+(20) (21)
+
+Details of the above formulations can be found in [40].
+
+þ em3E ¼ ÀJs
+
+(12)
+
+
+
+@H" @t
+
+þ
+
+r
+
+Â
+
+E"
+
+þ
+
+m1H"
+
+þ
+
+m2H~
+
+¼
+
+0
+
+(13)
+
+where I ¼ diagf1; 1; 1g, m0 ¼ diagf!x; !y; !zg, m1 ¼
+
+diagf!y þ !z À !x; !z þ !x À !y; !x þ !y À !zg, m2 ¼
+
+diagfð!x À !yÞð!x À !zÞ;
+
+ð!y À !xÞð!y À !zÞ; ð!zÀ
+
+!xÞð!z À !yÞg, m3 ¼ diagf!y!z; !z!x; !x!yg. !x, !y,
+
+and !z are PML attenuation coefficients [36]. In (12) and (13), E" ¼ E þ m0E~ and H" ¼ H þ m0H~ .
+
+The lower order terms E~, H , and H~ satisfy the following
+
+relationships:
+
+dE~ dt
+
+¼E"
+
+À
+
+m0E~
+
+(14)
+
+dE ¼E~
+
+(15)
+
+dt
+
+dH~ dt
+
+¼H"
+
+À
+
+m0H~ :
+
+(16)
+
+Note that the attenuation coefficients !x, !y, and !z are set to 0 and the lower order terms will disappear for physical (non-PML) regions. In other words, (12) and (13) will be degenerated to standard Maxwell’s equations as in (2) and (3) for non-PML subdomains.
+
+III. SPATIAL DISCRETIZATION WITH DIFFERENT BASIS FUNCTIONS
+A. DG–FETD: Discontinuous Galerkin Finite-Element Time-Domain Method
+The discontinuous Galerkin finite-element time-domain (DG–FETD) method is a very popular DGTD scheme with finite elements employed for spatial discretization of subdomains. The DG–FETD method can be viewed as a combination of discontinuous Galerkin method (DGM) and finite-element method (FEM) in time domain. All kinds of finite elements, e.g., nodal or edge elements as basis functions, tetrahedral, prism, or hexahedral elements as element shapes, have been used in constructing different DG–FETD schemes [7]–[19]. Due to their flexibility in geometric modeling, tetrahedral elements with lower interpolation orders, as shown in Fig. 2, are effective in capturing geometric characteristics of complex and fine structures in multiscale simulations. Both nodal elements and edge elements are well studied in previous literatures, and details about how to construct them can be found in [30] and will not be elaborated on here.
+B. DG–SETD: Discontinuous Galerkin Spectral-Element Time-Domain Method
+Despite its meshing flexibility, the lower order DG– FETD scheme suffers from a slow convergence rate and a large numerical dispersion. These issues become more severe in modeling electrically large structures. To make multiscale simulations more efficient, the electrically
+
+Vol. 101, No. 2, February 2013 | Proceedings of the IEEE 245
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+Fig. 3. A curved hexahedron in (a) the physical domain will be mapped into a standard cube in (b) the reference domain by geometric transformation. Second-order geometric mapping is shown in this schematic [42].
+
+Fig. 2. Lower order nodal and edge element built on a tetrahedron. The numbers in circles and with arrows denote the degrees of freedom of nodal and edge element, respectively.
+coarse part can be selected out and discretized by higher order finite elements with a coarser mesh. The spectral elements are special types of higher order finite elements with interpolation points chosen based on spectral polynomials, such as Gauss–Lobatto–Legendre (GLL) polynomials. By doing so the spectral elements will avoid the Runge phenomenon and lead to diagonal or block diagonal mass matrices, which are especially favorable to time-domain computations because inversion of such mass matrices becomes trivial.
+Kopriva et al. proposed the nodal DG–SETD [21], while Cohen discussed two families of vector spectral elements [41]. Due to the convenience of imposing boundary and interface conditions for both electric and magnetic fields, below we give a simple description of the first family of vector spectral elements. For a hexahedron in the reference domain, the basis functions of the vector spectral element are
+
+Here LPðÞ is the Legendre polynomial of degree P, and p is chosen as ð1 À p2ÞL0PðpÞ ¼ 0. ðPÞðÞ and ðPÞðÞ are functions of  and , respectively, and they have similar formulations as ðPÞðÞ. , , and  are the coordinates in the reference domain ½À1; 1 Â ½À1; 1 Â ½À1; 1,
+which is a standard cube mapped from a curved hexa-
+hedron in the physical domain, as shown in Fig. 3 [42].
+To preserve the specific continuities after geometric
+transformation, covariant and contra-variant transfor-
+mation should be employed to basis functions and their
+curl [43], i.e.,
+
+% ¼ JÀ1%^
+
+(24)
+
+r Â % ¼ 1 JT r^ Â %^ jJj
+
+(25)
+
+where J is the Jacobian matrix for coordinate transformation. % and %^ represent the basis functions in physical and reference coordinates, respectively. r^ denotes the Nabla
+operator defined in the reference domain
+
+r^ ¼4 @ ^þ @ ^ þ @ ^:
+
+(26)
+
+@ @ @
+
+8 >><
+
+%^ 
+
+¼
+
+X^ðPÀ1ÞðÞðPÞðÞðPÞðÞ
+
+>>:
+
+%^  %^ 
+
+¼ ¼
+
+H^ðPÞðÞðPÀ1ÞðÞðPÞðÞ Z^ðPÞðÞðPÞðÞðPÀ1ÞðÞ
+
+(22)
+
+where
+
+ðPÞðÞ
+
+¼
+
+PðP
+
+Àð1 À 2ÞL0PðÞ þ 1ÞLPðpÞð À
+
+pÞ
+
+;
+
+p ¼ 0; 1; . . . ; P: (23)
+
+One nice property of DG–SETD is that it can achieve spectral accuracy by increasing interpolation order. Examples can be found in [24].
+C. The FETD/FDTD Hybridization Based on Discontinuous Galerkin Method
+The hybrid FDTD and FETD method is another natural extension for multiscale electromagnetic simulations. It can take advantage of both the efficiency of FDTD method for simpler and electrically coarser structures and the meshing flexibility of FETD method for electrically fine and complex structures.
+Significant efforts on the hybridization of FDTD and FETD have been reported since the first work by Wu [44], and since then several different FETD/FDTD schemes
+
+246 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+Nicholson time integration is used in the FETD part so that electrically fine details can be modeled without the CFL stability condition restriction, while the leapfrog scheme is used in the FDTD time stepping. This hybrid technique is efficient for problems with electrically fine subdomains modeled by FETD and coarser and simpler subdomains modeled by FDTD.
+
+Fig. 4. The hybrid FETD/FDTD scheme: Edges marked by crosses denote FDTD unknowns exported to the FETD region; edges with circles denote FETD unknowns exported to the FDTD region. The buffer zone is shared by both FDTD grid and FETD mesh, and it can be arbitrarily nonconforming to the FETD mesh [51].
+have been proposed [46]–[51]. Here we will briefly state our work on a hybrid FETD/FDTD scheme based on the discontinuous Galerkin method [51]. Special features of this scheme are that it does not require conformity between the FETD mesh and the FDTD grid, and it can handle multiple subdomains in the FETD region. Since both the FDTD formulation and the FETD construction are well studied, we only emphasize the hybridization steps of this FETD/FDTD scheme.
+As shown in Fig. 4, there is a buffer zone shared by both the FDTD region and the FETD region. The buffer zone grid is exactly the same as the corresponding FDTD part with one cell thickness, but it can be arbitrarily nonconforming to the FETD mesh and is glued to the FETD part by the discontinuous Galerkin method. The time-stepping procedure of this scheme contains the following steps.
+1) Update EFD and HFD corresponding to the finitedifference grid by the standard FDTD timestepping procedure.
+2) Pass HFD components, marked by crosses in Fig. 4, from the FDTD grid to the FETD buffer zone as the boundary values. Since in time domain the fields E and H are interlaced in FDTD region, while they are discretized simultaneously in FETD region, interpolation is needed before the exportation of HFD to HFE.
+3) Update EFE and HFE corresponding to the finiteelement mesh by an FETD time-stepping scheme, such as the explicit Runge–Kutta method.
+4) Pass HFE from the FETD mesh to the FDTD buffer.
+5) Go to step 1) and repeat the process until the required time window of simulation is completed.
+The above hybrid explicit FETD/FDTD method can be viewed as a special DGTD scheme. Numerical results demonstrate that it is flexible, efficient, and stable. More recently, an IMEX hybrid FETD/FDTD method has been developed [52], where the unconditionally stable Crank–
+
+D. DG–PSTD: Discontinuous Galerkin Pseudospectral Time-Domain Method
+The pseudospectral time-domain method (PSTD) for electromagnetics was proposed in [53]–[55] by using a fast Fourier transform algorithm for continuous media and, in [56]–[60], by using Chebyshev polynomials for discontinuous media. The PSTD method can be considered as a special type of a higher order FDTD scheme with a much smaller numerical dispersion. This method has the spectral accuracy, i.e., the dispersion error decreases exponentially with sampling density, for smooth inhomogeneous media, if the fast Fourier transform algorithm is used to obtain spatial derivatives in a single-domain scheme, or for piecewise smooth media with the multidomain scheme. Examples show that PSTD only requires two to three points per wavelength for engineering accuracy, and thus is efficient in modeling electrically large problems [53]–[65].
+The discontinuous Galerkin pseudospectral timedomain (DG–PSTD) method was proposed in [66]. The DG–PSTD is essentially a multidomain PSTD patched by Galerkin’s weak form and numerical flux with the Riemann solver. The concept and implementation of DG– PSTD is similar to DG–FETD or DG–SETD, except that scalar basis functions are used for all field components in each subdomain with only one element. As in the multidomain PSTD method, the spatial derivatives inside any subdomain are efficiently obtained by the derivative matrix based on scalar GLL polynomial basis functions; the main distinction in the DG–PSTD is its use of a discontinuous Galerkin method for patching boundaries between adjacent subdomains. It is found that the DG– PSTD method has better accuracy and stability than the multidomain PSTD method based on characteristic conditions [66].
+IV. TIME-STEPPING SCHEMES
+A. Locally Explicit Schemes For a DGTD system, time stepping can be performed
+subdomain by subdomain rather than solving a huge matrix system as in FETD schemes. This advantage of DGTD methods can save a large amount of memory during time stepping, and furthermore, it makes parallel computation straightforward for a DGTD system.
+1) Leapfrog Scheme for DGTD With Central Flux: For DGTD system with central fluxes, the coupling matrices
+
+Vol. 101, No. 2, February 2013 | Proceedings of the IEEE 247
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+LðeiejÞ and LðhihjÞ in (10) and (11) become null matrices. The corresponding discretized DGTD system will take the
+form as
+
+The Butcher tableau [67] of the s-stage explicit RK scheme is
+
+MðeieÞ
+
+deðiÞ dt
+
+¼
+
+KðeihÞhðiÞ
+
+þ
+
+CðeieÞ eðiÞ
+
+þ
+
+XN
+j¼1
+
+LðeihjÞhðjÞ
+
+þ
+
+jðiÞ
+
+(27)
+
+and
+
+0 0 0 ÁÁÁ ÁÁÁ 0
+
+c2
+
+a2;1 0 . . . . . . ...
+
+c3
+
+a3;1 a3;2 0
+
+...
+
+...
+
+...
+
+... ... ... . . . 0
+
+(32)
+
+cs
+
+as;1 as;2 Á Á Á as;sÀ1 0
+
+b1 b2 b3 Á Á Á bs
+
+MðhihÞ
+
+dhðiÞ dt
+
+¼
+
+KðhieÞeðiÞ
+
+þ
+
+XN LðhiejÞeðjÞ:
+j¼1
+
+(28) and the corresponding time stepping of the RKDG scheme is
+
+The above DGTD system shows that only H fields of neighboring subdomains are needed to update E fields of the local subdomain and vice versa. Due to this reason, the simple but efficient leapfrog scheme can be employed to the DGTD system by central flux
+
+vðniþÞ 1
+
+¼
+
+vðniÞ
+
+þ
+
+Xs Át
+
+bkuðkiÞ;
+
+k¼1
+
+where
+
+i ¼ 1; . . . ; N (33)
+
+
+
+
+
+MðeieÞ
+
+À
+
+Át 2
+
+CðeieÞ
+
+eðniþÞ 1
+
+¼
+
+ÁtKðeihÞhðniþÞ 21 
+
+þ
+
+XN
+j¼1
+
+ÁtLðeihjÞhðnjþÞ 21 
+
+þ
+
+MðeieÞ
+
+þ
+
+Át 2
+
+CðeieÞ
+
+eðniÞ þ ÁtjðniþÞ 21;
+
+i ¼ 1; . . . ; N
+
+(29)
+
+and
+XN MðhihÞhðniþÞ 23 ¼ MðhihÞhðniþÞ 21 þ ÁtKðhieÞeðniþÞ 1 þ j¼1 ÁtLðhiejÞeðnjþÞ 1;
+i ¼ 1; . . . ; N: (30)
+
+MðiÞuðkiÞ
+
+¼
+
+XN LðijÞ
+
+j¼1
+
+! vðnjÞ þ Át X kÀ1 ak;luðl jÞ
+l¼1
+
+þ f ðiÞðtn þ ckÁtÞ; i ¼ 1; . . . ; N:
+
+(34)
+
+B. Locally Implicit Schemes When a structure contains fine details and the corre-
+sponding discretized system has small cells, the stability criterion can be very strict and an unaffordable number of time steps is required for explicit time integration methods. Implicit schemes can make the time step arbitrarily large but can also require matrix equations being solved. In DGTD, the implicit schemes can be performed locally, i.e., subdomain by subdomain. This nice property of DGTD can make it capable of solving a much larger system than implicit FDTD or FETD can handle.
+
+One additional benefit of this scheme is that both the central flux and leap-frog time stepping are free of numerical dissipation. Thus, it is very suitable for long time simulation.
+
+1) Crank–Nicholson Discontinuous Galerkin (CNDG) Scheme: The CNDG scheme [68], [69] employs the Crank–Nicholson method, a second-order implicit scheme, for time stepping. In CNDG, the discretized system (31) is rewritten as
+
+2) Runge–Kutta Discontinuous Galerkin (RKDG) Scheme: RKDG scheme works for both central and upwind flux. For concision, we rewrite (10) and (11) as
+
+MðiÞ dvðiÞ ¼ XN LðijÞvðjÞ þ f ðiÞ;
+
+dt
+
+j¼1
+
+i ¼ 1; . . . ; N (31)
+
+!
+
+MðiÞ À 1 Át XN LðijÞ 2 j¼1
+
+vðniþÞ 1
+
+!
+
+¼
+
+Átf
+
+ðiÞ nþ21
+
+þ
+
+MðiÞ þ 1 Át XN LðijÞ 2 j¼1
+
+vðniÞ;
+
+i ¼ 1; . . . ; N:
+
+(35)
+
+248 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+In the above equations, the coupling matrices LðijÞ appear on the left-hand side, which means all subdomains are coupled together and need to be solved simultaneously at each time step. It can be prohibitively expensive to directly solve the CNDG system under this circumstance, and an iterative solver would be a more efficient alternative. Take the block Gauss–Seidel iteration as an example: the pseudocode is as follows:
+
+8
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><
+
+while convergence is not for i ¼ 1 : N qðiÞ ¼ MðiÞvðniÞ þ for j ¼ 1 : N qðiÞ ¼ qðiÞ þ end
+
+reached
+
+f
+
+ðiÞ nþ21
+
+1 2
+
+ÁtLðijÞ
+
+vðnjÞ
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>:
+
+end:
+
+end
+
+for j ¼ 1 : i À 1 and j ¼ i þ 1 :
+
+qðiÞ
+
+¼
+
+qðiÞ
+
+þ
+
+1 2
+
+ÁtLðijÞvðnjþÞ 1
+
+end
+
+solve
+
+ÀMðiÞ
+
+À
+
+1 2
+
+ÁLðiiÞÁuðniþÞ 1
+
+¼
+
+N qðiÞ
+
+(36)
+
+Generally, in CNDG, the convergence rate of each time step depends on the number of subdomains.
+
+2) Block Thomas Algorithm for Tridiagonal Systems: When simulating layered structures, the partition of subdomains can be sequentially ordered layer by layer, and this will lead to a tridiagonal system when an implicit DGTD method is implemented
+
+2 B1
+66666666666664A0... 2
+
+C1 B2 A3 ...
+
+0 C2 B3 ...
+
+ÁÁÁ ... ... ...
+
+0 ... 0 CMÀ1
+
+32 777777777777756666666666664
+
+u1 u2 ... ...
+
+3 7777777777775 ¼
+
+2 6666666666664
+
+q1 q2 ... ...
+
+3 7777777777775:
+
+(37)
+
+0 Á Á Á 0 AM BM uM
+
+qM
+
+The block Thomas algorithm designed for a block tridiagonal system can be used here to accelerate the process of
+
+solving (37). The pseudocode of the block Thomas algorithm is as follows:
+
+8 >>>>>>>>>>>>>>>>>>>>>>>>>><
+
+solve B1C01 ¼ C1 for i ¼ 2 : M À 1
+B0i ¼ Bi À Ai solve B0iC0i ¼
+end solve B1q01 ¼ q1
+
+C0iÀ1 Ci
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>:
+
+for
+
+i¼2:M solve B0iq0i
+
+¼
+
+À qi
+
+À
+
+end
+
+uM ¼ q0M
+
+for i ¼ M À 1 : À1 : 1
+
+ui ¼ q0i À C0iuiþ1
+
+Aiq0iÀ1Á
+
+(38)
+
+end:
+
+In other words, the block Thomas algorithm is an iterationfree time-stepping scheme solving the tridiagonal system in a deterministic number of steps of operation. This method could be faster than the conventional implicit DGTD methods in modeling complex structures with many layers [34].
+C. Local Time-Stepping and Hybrid IMEX Schemes for Multiscale Simulations
+A discretized multiscale DGTD system usually contains electrically coarse subdomains with coarse meshes, which have relatively large CFL numbers when an explicit time integration scheme is used. Meanwhile, the multiscale system also contains electrically fine subdomains with dense meshes, whose CFL numbers may be several orders smaller than those of electrically coarse subdomains. Local time-stepping methods such as the multirate Adams– Bashforth scheme [70]–[74] or hybrid IMEX schemes [75], [76] can be a good fit for a DGTD system under this circumstance.
+Take the hybrid implicit–explicit Runge–Kutta (IMEX–RK) scheme as an example, which consists of two parts. The first part is the explicit Runge–Kutta (ERK) method
+
+0 0 0 ... ... 0
+
+c2
+
+ae2x;1 0 . . . . . . ...
+
+c3
+
+ae3x;1 ae3x;2 0
+
+...
+
+... :
+
+...
+
+... ... ... . . . 0
+
+(39)
+
+cs
+
+aes;x1 aes;x2 . . . aes;xsÀ1 0
+
+b1 b2 b3 . . . bs
+
+Vol. 101, No. 2, February 2013 | Proceedings of the IEEE 249
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review Table 1 Comparisons Between the DGTD Discretization and the FDTD Grid for the Reverberation Chamber Problem
+
+The second part is for the explicit singly diagonally implicit Runge–Kutta (ESDIRK) method
+
+0 c2 c3 ...
+
+ai1m;1 0 Á Á Á ai2m;1 ai2m;2 0 ai3...m;1 ai3...m;2 ai3...m;3
+
+ÁÁÁ ... ... ...
+
+0 ... ... :
+0
+
+cs
+
+aism;1 aism;2 . . . aism;sÀ1 aism;s
+
+b1 b2 b3 Á Á Á bs
+
+(40)
+
+Assuming a discretized multiscale problem contains Nex explicit subdomains and Nim implicit subdomains, the time-stepping formulation for the ith subdomain based on IMEX–RK with s stages is
+
+vðniþÞ 1 ¼ vðniÞ þ Át Xs bkuðkiÞ;
+k¼1
+
+i ¼ 1; . . . ; Nim þ Nex (41)
+
+where
+
+! MðiÞuðkiÞ ¼ X NimþNex LðijÞ vðnjÞ þ Át X kÀ1 aekx;luðl jÞ
+
+j¼Nim þ1
+X Nim þ LðijÞ
+
+l¼1
+
+!
+
+vðnjÞ þ Át Xk aikm;l uðl jÞ
+
+j¼1
+
+l¼1
+
+þ f ðiÞðtn þ ckÁtÞ
+
+(42)
+
+regions. To our understanding, the hybrid IMEX scheme is very desirable for a DGTD system with well-separated CFL numbers, while the local time-stepping scheme may be more suitable for a DGTD system with CFL numbers spanning continuously from a very small value to a relatively large one.
+V. NUMERICAL EXAMPLES AND DISCUSSIONS
+As shown in Fig. 1, a patch antenna is measured in a reverberation chamber with two metallic mode stirrers. The ratio of the largest dimension to the smallest dimension in this case is 1.6 m/1 mm ¼ 1600, which indicates a typical multiscale structure. Here we use both the conventional FDTD method, and the DGTD method with hybrid IMEX– RK scheme, with comparable sampling density for fine geometries, to solve this problem and to extract the antenna’s S-parameter.
+For this simulation, we perform time stepping up to 25 ns. Due to the small cells for electrically fine structures, the maximum Át of the conventional FDTD method is 0.089 ps, i.e., more than 280 000 time steps are required for the FDTD time stepping. For the DGTD method with a fourth-order IMEX–RK scheme, the Át can be set as large as 10 ps, and only 2500 steps are needed for a 25-nslong time window. The comparison between the DGTD method and the FDTD method is listed in Table 1.
+The time-varying received signals and calculated S-parameters by these two methods are shown in Figs. 5 and 6, respectively. Good agreement can be observed
+
+for explicit subdomains, and
+
+
+
+
+
+MðiÞ À Átaikm;kLðiiÞ uðkiÞ ¼ f ðiÞðtn þ ckÁtÞ þ LðiiÞ
+
+! vðniÞ þ Át X kÀ1 aikm;l uðl jÞ
+
+X Nim þNex
+
+þ
+
+LðijÞ
+
+l¼!1 vðnjÞ þ Át X kÀ1 aekx;luðl jÞ
+
+j¼Nim þ1
+
+l¼1
+
+(43)
+
+for implicit subdomains. The hybrid IMEX scheme does not need temporal in-
+terpolation at the interfaces between explicit and implicit
+
+Fig. 5. The time-varying results by two methods.
+
+250 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+Fig. 6. The calculated S-parameters by two methods.
+
+Fig. 8. S-parameters by DGTD and FDTD schemes.
+
+Table 2 Comparison of Computational Costs Between the DGTD Method and the FDTD Method for the Reverberation Chamber Case
+
+Table 3 Comparison of Computational Costs Between the DGTD Method and the FDTD Method for the Microelectronic Package Case
+
+between results by these two methods. Table 2 lists the comparison of computational costs, from which we observe that the DGTD method is more efficient than the conventional FDTD method for this multiscale case.
+As shown in Fig. 7, the second example is a microelectronic package structure with four ports. We used both the DG–FETD method with IMEX–RK scheme and the conventional FDTD method to solve this electronic packaging problem. 50- impedances were assigned to the four ports as lumped elements in both simulations. From Fig. 8, we can find good agreement of the calculated S-parameters by these two methods. The comparison of computational costs of the DGTD method and the FDTD method are shown in Table 3, where obvious advantages of the DGTD method over the FDTD method are observed in both memory cost and central processing unit (CPU) time. It is worth men-
+
+tioning that if the conventional FETD method is used, this problem will be too large to solve on our computer.
+VI. CONCLUSION
+We have reviewed the concepts, the formulations, and the implementation of discontinuous Galerkin time-domain schemes for multiscale electromagnetic simulations. Several different DGTD schemes are discussed in a general DG framework. Although the authors attempt to give a comprehensive review of this emerging and promising method, several important aspects have not been covered in detail and are still in active research. These include DGTD methods for complex media such as dispersive [77], [78] and anisotropic media [79], the coupling of DGTD analysis with thin wires and circuit simulation (hybrid DGTD/SPICE) [80], and the parallel computation [especially graphics processing unit (GPU) accelerated and hybrid-platform parallelized DGTD] [81]–[83]. In addition to current DGTD research topics on complex (dispersive, anisotropic, and nonlinear) media with multiple scales in electromagnetics, we believe these efficient domain decomposition techniques based on the DGTD framework will be also essential for large-scale multiphysics simulations that require massive parallel computation. h
+
+Fig. 7. A microelectronic package structure with four ports.
+
+Acknowledgment The authors would like to thank Dr. H. Braunisch of
+Intel for providing the problem shown in Fig. 7.
+Vol. 101, No. 2, February 2013 | Proceedings of the IEEE 251
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+REFERENCES
+[1] K. Yee, BNumerical solution of initial boundary value problems involving Maxwell’s equations in isotropic media,[ IEEE Trans. Antennas Propag., vol. AP-14, no. 3, pp. 302–307, May 1966.
+[2] A. Taflove and S. C. Hagness, Computational Electrodynamics: The Finite-Difference Time-Domain Method, 3rd ed. Reading, MA: Artech House, 2005.
+[3] C. Sun and C. W. Trueman, BThree-dimensional subgridding algorithm for FDTD,[ IEEE Trans. Antennas Propag., vol. 45, no. 3, pp. 422–429, Mar. 1997.
+[4] R. Courant, K. Friedrichs, and H. Lewy, BOn the partial difference equations of mathematical physics,[ IBM J., vol. 11, no. 2, pp. 215–234, Mar. 1967.
+[5] A. Cangellaris, C. Lin, and K. Mei, BPoint-matched time domain finite element methods for electromagnetic radiation and scattering,[ IEEE Trans. Antennas Propag., vol. AP-35, no. 10, pp. 1160–1173, Oct. 1987.
+[6] J. F. Lee and Z. Sacks, BWhitney elements time domain (WETD) methods,[ IEEE Trans. Magn., vol. 31, no. 3, pp. 1325–1329, May 1995.
+[7] B. Cockburn, F. Li, and C. W. Shu, BLocally divergence-free discontinuous Galerkin methods for the Maxwell equations,[ J. Comput. Phys., vol. 194, no. 2, pp. 588–610, Mar. 2004.
+[8] T. Lu, P. Zhang, and W. Cai, BDiscontinuous Galerkin methods for dispersive and lossy Maxwell’s equations and PML boundary conditions,[ J. Comput. Phys., vol. 200, no. 2, pp. 549–580, Nov. 2004.
+[9] N. Canouet, L. Fezoui, and S. Piperno, BDiscontinuous Galerkin time-domain solution of Maxwell’s equations on locally-refined nonconforming Cartesian grids,[ COMPEL, vol. 24, no. 4, pp. 1381–1401, 2005.
+[10] T. Xiao and Q. H. Liu, BThree-dimensional unstructured-grid discontinuous Galerkin method for Maxwell’s equations with well-posed perfectly matched layer,[ Microw. Opt. Technol. Lett., vol. 46, no. 5, pp. 459–463, Sep. 2005.
+[11] J. S. Hesthaven and T. Warburton, BNodal high-order methods on unstructured grids: I. Time-domain solution of Maxwell’s equations,[ J. Comput. Phys., vol. 181, no. 1, pp. 186–221, Sep. 2002.
+[12] G. C. Cohen, X. Ferrieres, and S. Pernet, BA spatial high-order hexahedral discontinuous Galerkin method to solve Maxwell’s equations in time domain,[ J. Comput. Phys., vol. 217, no. 2, pp. 340–363, Sep. 2006.
+[13] A. Buffa and I. Perugia, BDiscontinuous Galerkin approximation of the Maxwell eigenproblem,[ SIAM J. Numer. Anal., vol. 44, no. 5, pp. 2198–2226, Nov. 2006.
+[14] M. Ainsworth, P. Monk, and W. Muniz, BDispersive and dissipative properties of discontinuous Galerkin finite element methods for the second-order wave equation,[ J. Sci. Comput., vol. 27, no. 1–3, pp. 5–40, Jun. 2006.
+[15] F. Q. Hu, M. Y. Hussaini, and P. Rasetarinera, BAn analysis of the discontinuous Galerkin method for wave propagation problems,[ J. Comput. Phys., vol. 151, no. 2, pp. 921–946, May 1999.
+
+[16] J. S. Hesthaven and T. Warburton, Nodal Discontinuous Galerkin Method. New York: Springer-Verlag, 2008.
+[17] S. Gedney, C. Luo, J. Roden, R. Crawford, B. Guernsey, J. Miller, T. Kramer, and E. W. Lucas, BThe discontinuous Galerkin finite-element time-domain method of Maxwell’s equations,[ ACES J., vol. 24, no. 2, pp. 129–142, Apr. 2009.
+[18] J. Alvarez, L. D. Angulo, M. F. Pantoja, A. R. Bretones, and S. G. Garcia, BSource and boundary implementation in vector and scalar DGTD,[ IEEE Trans. Antennas Propag., vol. 58, no. 6, pp. 1997–2003, Jun. 2010.
+[19] H. Fahs and S. Lanteria, BA high-order non-conforming discontinuous Galerkin method for time-domain electromagnetics,[ J. Comput. Phys., vol. 234, no. 4, pp. 1088–1096, Jun. 2010.
+[20] P. Rasetarinera and M. Y. Hussaini, BAn efficient implicit discontinuous spectral Galerkin method,[ J. Comput. Phys., vol. 172, no. 2, pp. 718–738, Sep. 2001.
+[21] D. A. Kopriva, S. L. Woodruff, and M. Y. Hussaini, BComputation of electromagnetic scattering with a non-conforming discontinuous spectral element method,[ Int. J. Numer. Meth. Eng., vol. 53, no. 1, pp. 105–122, Jan. 2002.
+[22] F. X. Giraldo, J. S. Hesthaven, and T. Warburton, BNodal high-order discontinuous Galerkin methods for the spherical shallow water equations,[ J. Comput. Phys., vol. 181, no. 2, pp. 499–525, Sep. 2002.
+[23] J. S. Hesthaven and T. C. Warburton, BNodal high-order methods on unstructured gridsV1. Time-domain solution of Maxwell’s equations,[ J. Comput. Phys., vol. 181, pp. 186–221, 2002.
+[24] J. H. Lee, J. Chen, and Q. H. Liu, BA 3-D discontinuous spectral element time-domain method for Maxwell’s equations,[ IEEE Trans. Antennas Propag., vol. 57, no. 9, pp. 2666–2674, Sep. 2009.
+[25] N. Marais and D. B. Davidson, BNumerical evaluation of high-order finite element time domain formulations in electromagnetics,[ IEEE Trans. Antennas Propag., vol. 56, no. 12, pp. 3743–3751, Dec. 2008.
+[26] J. C. N´ed´elec, BMixed finite elements in R3,[ Numer. Math., vol. 35, no. 3, pp. 315–341, Sep. 1980.
+[27] A. Bossavit, BA rationale for Fedge-elements_ in 3-D fields computations,[ IEEE Trans. Magn., vol. MAG-24, no. 1, pp. 74–79, Jan. 1988.
+[28] A. F. Peterson, S. L. Ray, and R. Mittra, Computational Methods for Electromagnetics. Piscataway, NJ: IEEE Press, 1998.
+[29] D. Sun, J. Manges, X. Yuan, and Z. Cendes, BSpurious modes in finite-element methods,[ IEEE Antennas Propag. Mag., vol. 37, no. 5, pp. 12–24, Oct. 1995.
+[30] J. Jin, The Finite Element Method in Electromagnetics, 2nd ed. New York: Wiley, 2002.
+[31] V. Shankar, A. H. Mohammadian, and W. F. Hall, BA time-domain, finite-volume treatment for the Maxwell equations,[ Electromagnetics, vol. 10, no. 1, pp. 127–145, Jan. 1990.
+[32] A. H. Mohammadian, V. Shankar, and W. F. Hall, BComputation of electromagnetic scattering and radiation using a time-domain finite-volume discretization procedure,[
+
+Comput. Phys. Commun., vol. 68, no. 1–3, pp. 175–196, Nov. 1991.
+[33] E. Montseny, S. Pernet, X. Ferrieres, and G. Cohen, BDissipative terms and local time-stepping improvements in a spatial high order discontinuous Galerkin scheme for the time-domain Maxwell’s equations,[ J. Comput. Phys., vol. 227, no. 14, pp. 6795–6820, Jul. 2008.
+[34] J. Chen, L. E. Tobon, M. Chai, J. A. Mix, and Q. H. Liu, BEfficient implicit-explicit time stepping scheme with domain decomposition for multiscale modeling of layered structures,[ IEEE Trans. Compon. Packag. Manuf. Technol., vol. 1, no. 9, pp. 1438–1446, Sep. 2011.
+[35] J. P. Berenger, BA perfectly matched layer for the absorption of electromagnetic waves,[ J. Comput. Phys., vol. 115, no. 2, pp. 185–200, Oct. 1994.
+[36] W. C. Chew and W. H. Weedon, B3D perfectly matched medium from modified Maxwell’s equations with stretched coordinates,[ Microw. Opt. Technol. Lett., vol. 7, no. 13, pp. 599–604, Sep. 1994.
+[37] S. D. Gedney, BAn anisotropic PML absorbing media for the FDTD simulation of fields in lossy and dispersive media,[ Electromagnetics, vol. 16, no. 4, pp. 399–415, 1996.
+[38] G. X. Fan and Q. H. Liu, BA strongly well-posed PML in lossy media,[ IEEE Antennas Wireless Propag. Lett., vol. 2, pp. 97–100, 2003.
+[39] T. Rylander and J. Jin, BPerfectly matched layer in three dimensions for the time-domain finite element method applied to radiation problems,[ IEEE Trans. Antennas Propag., vol. 53, no. 4, pp. 1489–1499, Apr. 2005.
+[40] J. Chen, BA hybrid spectral-element/ finite-element time-domain method for multiscale electromagnetic simulations,[ Ph.D. dissertation, Dept. Electr. Comput. Eng., Duke Univ., Durham, NC, 2010.
+[41] G. Cohen and M. Durufle, BNon-spurious spectral like element methods for Maxwell’s equations,[ J. Comput. Math., vol. 25, no. 3, pp. 282–300, 2007.
+[42] J. H. Lee and Q. H. Liu, BAn efficient 3-D spectral element method for Schr¨odinger equation in nanodevice simulation,[ IEEE Trans. Comput.-Aided Design Integr. Circuits Syst., vol. 24, no. 12, pp. 1848–1858, Dec. 2005.
+[43] C. W. Crowley, P. P. Silvester, and H. Hurwitz, BCovariant projection elements for 3D vector field problems,[ IEEE Trans. Magn., vol. MAG-24, no. 1, pp. 397–400, Jan. 1988.
+[44] R. Wu and T. Itoh, BHybridizing FD-TD analysis with unconditionally stable FEM for objects of curved boundary,[ IEEE MTT-S Int. Microw. Symp. Dig., 1995, vol. 2, pp. 833–836.
+[45] T. Rylander and A. Bondeson, BStable FEM-FDTD hybrid method for Maxwell’s equations,[ Comput. Phys. Commun., vol. 125, pp. 75–82, 2000.
+[46] E. Abenius, U. Andersson, and L. Edlvik, BHybrid time domain solvers for the Maxwell equations in 2D,[ Int. J. Numer. Meth. Eng., vol. 53, pp. 2185–2199, 2002.
+[47] N. V. Venkatarayalu, Y. B. Gan, and L. W. Li, BInvestigation of numerical stability of 2D FE/FDTD hybrid algorithm for different hybridization scheme,[ IEICE Trans. Commun., vol. E88-B, pp. 2314–2345, 2005.
+[48] N. V. Venkatarayalu, Y. B. Gan, and L. W. Li, BOn the numerical errors in
+
+252 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+the 2D FE/FDTD algorithm for different hybridization schemes,[ IEEE Microw. Wireless Compon. Lett., vol. 14, no. 4, pp. 168–170, Apr. 2004.
+[49] N. V. Venkatarayalu, R. Lee, Y. B. Gan, and L. W. Li, BA stable FDTD subgridding method based on finite element formulation with hanging variables,[ IEEE Trans. Antennas Propag., vol. 55, no. 3, pt. 2, pp. 907–915, Mar. 2007.
+[50] W. D. Guo, G. H. Shiue, C. M. Lin, and R. B. Wu, BAn integrated signal and power integrity analysis for signal traces through the parallel planes using hybrid finite-element and finite-difference time-domain techniques,[ IEEE Trans. Adv. Packag., vol. 30, no. 3, pp. 558–565, Aug. 2007.
+[51] B. Zhu, J. Chen, W. Zhong, and Q. H. Liu, BA hybrid FETD-FDTD method with nonconforming meshes,[ Commun. Comput. Phys., vol. 9, no. 3, pp. 828–842, Mar. 2011.
+[52] B. Zhu, J. Chen, W. Zhong, and Q. H. Liu, BA hybrid finite-element/finite-difference method with an implicit-explicit time stepping scheme for Maxwell’s equations,[ Int. J. Numer. Model., Electron. Netw. Devices Fields, vol. 25, no. 5–6, pp. 607–620, 2012.
+[53] Q. H. Liu, BThe PSTD algorithm: A time-domain method requiring only two cells per wavelength,[ Microw. Opt. Technol. Lett., vol. 15, no. 3, pp. 158–165, 1997.
+[54] Q. H. Liu, BLarge-scale simulations of electromagnetic and acoustic measurements using the pseudospectral time-domain (PSTD) algorithm,[ IEEE Trans. Geosci. Remote Sens., vol. 37, no. 2, pt. 2, pp. 917–926, Mar. 1999.
+[55] Q. H. Liu, BPML and PSTD algorithm for arbitrary lossy anisotropic media,[ IEEE Microw. Guided Wave Lett., vol. 9, no. 2, pp. 48–50, Feb. 1999.
+[56] B. Yang, D. Gottlieb, and J. S. Hesthaven, BSpectral simulation of electromagnetic wave scattering,[ J. Comput. Phys., vol. 134, no. 2, pp. 216–230, 1997.
+[57] J. S. Hesthaven, BSpectral collocation time-domain modeling of diffractive optical elements,[ J. Comput. Phys., vol. 155, no. 2, pp. 287–306, 1999.
+[58] B. Yang and J. S. Hesthaven, BA pseudospectral method for time-domain computation of electromagnetic scattering by bodies of revolution,[ IEEE Trans. Antennas Propag., vol. 47, no. 1, pp. 132–141, Jan. 1999.
+[59] B. Yang and J. S. Hesthaven, BMultidomain pseudospectral computation of Maxwell’s equations in 3-D general curvilinear coordinates,[ Appl. Numer. Math., vol. 33, pp. 281–289, 2000.
+[60] G. X. Fan, Q. H. Liu, and J. S. Hesthaven, BMultidomain pseudospectral time-domain method for simulation of scattering from buried objects,[ IEEE Trans. Geosci. Remote
+
+Sens., vol. 40, no. 6, pp. 1366–1373, Jun. 2002.
+[61] Y. Zeng, Q. H. Liu, and G. Zhao, BMultidomain pseudospectral time-domain method for acoustic waves in lossy media,[ J. Comput. Acoust., vol. 12, no. 3, pp. 277–299, Sep. 2004.
+[62] G. Zhao and Q. H. Liu, BThe 2.5-D multidomain pseudospectral time-domain algorithm,[ IEEE Trans. Antennas Propag., vol. 51, no. 3, pp. 619–627, Mar. 2003.
+[63] G. Zhao, Y. Q. Zeng, and Q. H. Liu, BThe 3-D multidomain pseudospectral time-domain method for wideband simulation,[ IEEE Microw. Wireless Compon. Lett., vol. 13, no. 5, pp. 184–186, May 2003.
+[64] Q. H. Liu and G. Zhao, BReview of PSTD methods for transient electromagnetics,[ Int. J. Numer. Model., Electron. Netw. Devices Fields, vol. 22, no. 17, pp. 299–323, 2004.
+[65] G. Zhao and Q. H. Liu, BThe unconditionally stable multidomain pseudospectral time-domain method,[ IEEE Microw. Wireless Compon. Lett., vol. 13, no. 11, pp. 475–477, Nov. 2003.
+[66] Q. H. Liu and G. Zhao, BAdvances in PSTD Techniques,[ in Computational Electromagnetics: The Finite-Difference Time-Domain Method, A. Taflove and S. Hagness, Eds. Reading, MA: Artech House, 2005.
+[67] J. C. Butcher, Numerical Methods for Ordinary Differential Equations. New York: Wiley, 2003.
+[68] A. Catella, V. Dolean, and S. Lanteri, BAn unconditionally stable discontinuous Galerkin method for solving the 2-D time-domain Maxwell equations on unstructured triangular meshes,[ IEEE Trans. Magn., vol. 44, no. 6, pp. 1250–1253, Jun. 2008.
+[69] V. Doleana, H. Fahsa, L. Fezouia, and S. Lanteri, BLocally implicit discontinuous Galerkin method for time domain electromagnetics,[ J. Comput. Phys., vol. 229, no. 2, pp. 512–526, Jan. 2010.
+[70] S. Piperno, BSymplectic local time-stepping in non-dissipative DGTD methods applied to wave propagation problems,[ ESAIMVMath. Model. Numer., vol. 40, no. 5, pp. 815–841, Sep. 2006.
+[71] M. Dumbser, M. Kaser, and E. F. Toro, BAn arbitrary high-order discontinuous Galerkin method for elastic waves on unstructured meshesVV. Local time stepping and p-adaptivity,[ Geophys. J. Int., vol. 171, no. 2, pp. 695–717, Sep. 2007.
+[72] N. Godel, S. Schomann, T. Warburton, and M. Clemens, BGPU accelerated Adams-Bashforth multirate discontinuous Galerkin FEM simulation of high-frequency electromagnetic fields,[ IEEE Trans. Magn., vol. 46, no. 8, pp. 2735–2738, Aug. 2010.
+[73] S. Schomann, N. Godel, T. Warburton, and M. Clemens, BLocal timestepping techniques
+
+using Taylor expansion for modeling electromagnetic wave propagation with discontinuous Galerkin-FEM,[ IEEE Trans. Magn., vol. 46, no. 8, pp. 3504–3507, Aug. 2010.
+[74] V. Dolean, H. Fahs, L. Fezoui, and S. Lanteri, BHybrid explicit-implicit time integration for grid-induced stiffness in a DGTD method for time domain electromagnetics,[ Spectral and High Order Methods for Partial Differential Equations. Berlin, Germany: Springer-Verlag, 2011, pp. 163–170, ser. Lecture Notes in Computational Science and Engineering.
+[75] C. A. Kennedy and M. H. Carpenter, BAdditive Runge-Kutta schemes for convection-diffusion-reaction equations,[ Appl. Numer. Math., vol. 44, no. 1–2, pp. 139–181, Jan. 2003.
+[76] A. Kanevsky, M. H. Carpenter, D. Gottlieb, and J. S. Hesthaven, BApplication of implicit-explicit high order Runge-Kutta methods to discontinuous-Galerkin schemes,[ J. Comput. Phys., vol. 225, no. 2, pp. 1753–1781, Aug. 2007.
+[77] T. Lu, W. Cai, and P. Zhang, BDiscontinuous Galerkin time-domain method for GPR simulation in dispersive media,[ IEEE Trans. Geosci. Remote Sens., vol. 43, no. 1, pp. 72–80, Jan. 2005.
+[78] J. Xia, C. Wei, and P. Zhang, BHigh-order DGTD methods for dispersive Maxwell’s equations and modelling of silver nanowire coupling,[ Int. J. Numer. Methods Eng., vol. 69, pp. 308–325, 2007.
+[79] M. Konig, K. Busch, and J. Niegemann, BThe discontinuous Galerkin time-domain method for Maxwell’s equations with anisotropic materials,[ Photon. Nanostruct., Fundam. Appl., vol. 8, no. 4, pp. 303–309, 2010.
+[80] B. Zhao, BThe application of discontinuous Galerkin finite element time-domain method in the design, simulation and analysis of modern radio frequency systems,[ Ph.D. dissertation, Dept. Electr. Comput. Eng., Univ. Kentucky, Lexington, KY, 2011.
+[81] M. Bernacki, L. Fezoui, S. Lanteri, and S. Piperno, BParallel discontinuous Galerkin unstructured mesh solvers for the calculation of three-dimensional wave propagation problems,[ Appl. Math. Model., vol. 30, no. 8, pp. 744–763, Aug. 2006.
+[82] A. Klockner, T. Warburton, J. Bridge, and J. S. Hesthaven, BNodal discontinuous Galerkin methods on graphics processors,[ J. Comput. Phys., vol. 228, no. 21, pp. 7863–7882, Nov. 2009.
+[83] N. Godel, N. Nunn, T. Warburton, and M. Clemens, BScalability of higher-order discontinuous Galerkin FEM computations for solving electromagnetic wave propagation problems on GPU clusters,[ IEEE Trans. Magn., vol. 46, no. 8, pp. 3469–3472, Aug. 2010.
+
+Vol. 101, No. 2, February 2013 | Proceedings of the IEEE 253
+
+Chen and Liu: Discontinuous Galerkin Time-Domain Methods for Multiscale Electromagnetic Simulations: A Review
+
+ABOUT THE AUTHORS
+Jiefu Chen (Member, IEEE) received the B.S. degree in engineering mechanics and the M.S. degree in dynamics and control from Dalian University of Technology, Dalian, China, in 2003 and 2006, respectively, and the Ph.D. degree in electrical engineering from Duke University, Durham, NC, in 2010.
+He was with the Department of Electrical and Computer Engineering, Duke University, as a Research Assistant from September 2007 to December 2010. Since 2011, he has been a Staff Scientist with the Advantage R&D Center, Weatherford, Houston, TX. His research interests include computational mechanics and electromagnetics, inversion, and optimization.
+
+Qing Huo Liu (Fellow, IEEE) received the B.S. and M.S. degrees in physics from Xiamen University, Xiamen, China, in 1983 and 1986, respectively, and the Ph.D. degree in electrical engineering from the University of Illinois at Urbana-Champaign, Urbana, in 1989.
+His research interests include electromagnetics, acoustics, inverse problems, geophysical subsurface sensing, nanophotonics, and biomedical imaging. He has published over 200 papers in refereed journals in these areas. He was with the University of Illinois at Urbana-Champaign as a Research Assistant from September 1986 to December 1988, and as a Postdoctoral Research Associate from January 1989 to February 1990. He was a Research Scientist and Program Leader with Schlumberger-Doll Research, Ridgefield, CT, from 1990 to 1995. From 1996 to May 1999, he was an Associate Professor with New Mexico State University, Las Cruces. Since June 1999, he has been with Duke University, Durham, NC, where he is now a Professor of Electrical and Computer Engineering.
+Dr. Liu is a Fellow of the Acoustical Society of America; a member of Phi Kappa Phi and Tau Beta Pi; and a full member of the U.S. National Committee of the International Union of Radio Science (URSI) Commissions B and F. Currently, he serves as the Deputy Editor in Chief of Progress in Electromagnetics Research, an Associate Editor for the IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING, and an Editor for the Journal of Computational Acoustics. He is also a Guest Editor for a Special Issue on Large-Scale Computational Electromagnetics of the PROCEEDINGS OF THE IEEE, scheduled to be published in 2013. He received the 1996 Presidential Early Career Award for Scientists and Engineers (PECASE) from the White House, the 1996 Early Career Research Award from the Environmental Protection Agency, and the 1997 CAREER Award from the National Science Foundation.
+
+254 Proceedings of the IEEE | Vol. 101, No. 2, February 2013
+

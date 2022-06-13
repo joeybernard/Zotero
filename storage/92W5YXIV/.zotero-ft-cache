@@ -1,0 +1,1602 @@
+Physica Scripta
+
+Role of Trapped Particles and Waves in Plasma Solitons-Theory and Application
+To cite this article: Hans Schamel 1979 Phys. Scr. 20 306
+View the article online for updates and enhancements.
+
+Related content
+- The dynamics of cavitons induced by the soliton flash H Schamel and K Elsasser
+- Soliton experiments in plasmas K E Lonngren
+- Kinetic Theory of Phase Space Vortices and Double Layers H Schamel
+Recent citations
+- Comment on “Symmetry in electron and ion dispersion in 1D Vlasov-Poisson plasma” [Phys. Plasmas 25, 112102 (2018)] Hans Schamel
+- 3D Burgers Equation in Relativistic Plasma in the Presence of Electron and Negative Ion Trapping: Evolution of Shock Wave M. Kr. Deka and A. N. Dev
+- Electron hole instability as a primordial step towards sustained intermittent turbulence in linearly subcritical plasmas Debraj Mandal et al
+
+This content was downloaded from IP address 131.202.65.42 on 19/02/2020 at 18:18
+
+Physica Scripta. Vol. 20,306-316, 1979
+Role of Trapped Particles and Waves in Plasma Solitons -Theory and Application
+Hans Schamel Theoretical Physics I, Ruhr-University Bochum, FRG
+Received June 7, 1 9 78
+
+Abstract
+
+In the present paper we avoid this restriction. The price is a
+
+Role of trappedparticles and waves in plasma solitons - theory and application. Hans Schamel (Theoretical Physics I, Ruhr-University Bochum, FRG). Physica Scripta (Sweden) 20, 306-316,1979.
+
+loss of flexibility with respect to temporal and spatial changes. A fully nonlinear analysis demands almost necessarily the use of a steady state and of a homogeneous unperturbed medium. The advantage of taking the nonlinear behaviour into account com-
+
+In this tutorial and review paper, we investigate the influence of trapped particles on the propagation of ion acoustic solitons and the role of trapped waves on the propagation of Langmuir solitons. The classical potential method allows us to construct finite amplitude soliton solutions, and trapping phenomena are found to retard the motion of solitons. Thus, ion acoustic solitons have minimum speed when they are based on an isothermal electron equation of state since this corresponds to “maximum electron trapping”. In the small amplitude regime, deviations from the Boltzmann law lead to a new nonlinear term. Subsequently, the dynamics of the soliton is governed by a modified KdVequation [e.g., (23)]. For Langmuir solitons an existence diagram is found and exhibits the comparison between experimentally observed localized structures and theory. The connection with the various small amplitude soliton solutions is also pointed out. Moreover, the inclusion of a pump and of dissipative terms in the coupled nonlinear Schrodinger-ion equation gives rise t o a
+
+pletely is a broader range of applicability, when compared with experimental and numerical measurements. A fully nonlinear theory also provides a standard for checking approximations, made in a more involved analysis.
+This article is, therefore, devoted mainly to stationary solitons and the study of trapping effects related with them. This includes particle trapping in ion acoustic solitons (Section 2) and field trapping in Langmuir solitons (Section 3) as well. Comparisons with experiments are made and possible applications are discussed. Deviating from the main line, we also study a more transient phenomenon called soliton flash because of its practical importance in laser fusion, and mention numerical schemes to solve nonlinear wave equations (Section 4).
+
+transient phenomenon called soliton flash, whose implication to the lab-
+
+oratory experiments is discussed. Finally, as an application in numerical analysis the propagation of solitons is followed by solving the KdVequation in Fourier-space. This turns out to be an excellent tool to test stability and accuracy of numerical schemes. Our results reveal that the
+
+2. Particle trapping in ion acoustic solitons
+2.1. Finite amplitude solitons
+
+so-called aliasing interactions lead to erroneous solutions. The conser- In this section, we investigate finite amplitude soliton solutions
+
+vation of invariants does not guarantee the accuracy of a numerical algo- and study the effect of trapped particles by means of the
+
+rithm, although it is needed for its stability.
+
+“classical potential method”.
+
+The basic equations we solve are
+
+1. Introduction
+
+a a
+
+-ni+-niui = 0
+
+The theory of solitons (solitary waves) has received special a t ax
+
+(continuity)
+
+attention in the past decade mainly due to two facts: Firstly, solitons appear in many fields of our life ranging from classical
+
+-au i + u i - u ia
+
+fluids, solid state and elementary particle physics to biophysics at
+
+ax
+
+a
+= --($ ax
+
+(Euler)
+
+as reflected in the articles published in this volume. Secondly, it
+
+was the soliton theory from which a new branch in mathematics
+
+originated, namely, the inverse scattering method to solve initial value problems. These rapidly developing fields with many applications in science are by no means exhausted at the present
+
+0
+
+=
+
+_a@-
+ax
+
+_nI_eaaxpe
+
+(force balance)
+
+(Id)
+
+time, despite a large number of papers already published. Several where the notation is standard. The dependent and independent
+
+excellent monographs [l-41 provide a profound insight into the quantities, t ,x, ui,ni, n e , @ and p e are normalized by the recipro-
+nature of this nonlinear phenomenon and review the present cal ion plasma frequency up!, the Debye length AD = (We/
+
+state of art.
+
+47rn0e2)”2, the ion sound speed c, = (kTe/mi)1’2, the unper-
+
+Physically, single humped waves exist due to the balance turbed density no, kTe/e and nokTe,respectively. In the hydro-
+
+between nonlinear steepening and dispersive spreading of the dynamic equation for the ions we have neglected the ion pressure
+
+wavepackets, propagating in a weakly dispersive medium. They term and the electrons are assumed to be inertialess.
+
+are termed solitons because their shape and speed are preserved Equation (Id) is satisfied by an electron equation of the after a collision. From a mathematical point of view the analy- form pe = p,(@) (rather than pe = p,(n,)), which is related to
+
+sis of classical solitons is usually based on the Korteweg-de the electron density by
+
+Vries equation (or on analogous equations like the nonlinear
+
+Schrodinger-equation for the case of envelope solitons) which is
+
+derived from. basic equations by means of a small amplitude
+
+expansion.
+
+Note that the electron trapping effects enter through ne(@).The
+
+Physica Scripta 20
+
+Role of Trapped Particles and Waves in Plasma Solitons - Theory and Application 307
+
+latter follows from the stationary Vlasov equation as shown later. Now we look for stationary wave solutions and transform the system into the wave frame by a Galilei transformation
+(x,t , U -+x- M t , t , U -M), M is the Mach-number or normal-
+ized wave velocity. Integrating the first two equations, we get
+
+niui = --M
+
+(34
+
+U 3 2 + @= M y 2
+
+(3b)
+
+where we assumed an unperturbed state at infinity (n = 1, @ = 0 U = -M) corresponding to localized perturbations. From (3a, b) it follows that
+
+where $ = (2(E1)”2 sgn v . However, as shown in [6], the freedom in choosing f o e , fet must be restricted if we demand that with vanishing amplitude the nonlinear solution approaches a familiar linear wave solution which is in the present case the ion acoustic wave solution. There are two requirements which must be fulfilled
+
+ui = - (M2 - 2@)”2
+
+(4a)
+
+ni = (1 - 2@/M2)-”2
+
+(4b)
+
+showing that the ion velocity decreases and the density increases with increasing @. The applicability of the present analysis demands that
+
+expressing the fact that at the transition point between free and trapped particles the distribution function must be continuous (1 la), and the slope of the trapped electron distribution function in the velocity space must be finite (1 1b).
+Both requirements are satisfied if we choose Maxwellians
+
+2@/M2< 1.
+
+(5) foe(E) = ( 2 ~ I - l ~’ ~X P[- t2/21
+
+(1 2a)
+
+Knowing n e , ai as functions of 4, we can integrate Poisson’s
+equation (1c) once, and find
+
+o‘(x)2/2+ V ( @ )= 0
+
+(6)
+
+where V(@i)s given by
+
+V(@)= 1 - p e ( @ ) + M 2 [ 1 - (1 - 2@/M’)”2]
+
+(7)
+
+f e t ( t ) = (2n)-’l2 ~ X P[- Pi2/21
+
+(12b)
+
+The introduction of the parameter 4, allows for a different temperature in the Maxwellian for the trapped electrons, = 0 corresponding to a flat-topped electron distribution. Note, that a hole in the trapped region, corresponding to an underpopu-
+lation of trapped electrons, is represented by negative p’s.
+With these distributions we get [7]
+
+The integration constant has been chosen such that V(0)= 0. Equation (6) is analogous t o the energy equation of a classical particle, V(@r)epresenting the potential energy. Stationary wave solutions are obtainable if a second zero of V denoted by $, i.e..
+U $ )= 0, exists besides @ = 0, and if V is negative in the inter-
+val 0 <@ < $. $ is the amplitude of the wave whose spatial
+dependence is entirely determined by V(@)T. he existence condition V ( $ )= 0 is nothing else but the nonlinear dispersion relation re!ating the phase velocity or Mach-number M of the wave with its amplitude $. We obtain
+
+j ne(@>=
+
++-
+-_
+
+fe(x, v> dv
+
+=
+
+exp ($1erfc (41’2)
+
+and for the electron equation of state we readily obtain
+
+Hence, the Mach-number of the wave is affected by the electron equation of state. At the “turning points” V(@b)ehaves like
+
+where W(x)is the Dawson integral. This general law includes the two equations of states known
+in the literature, namely,
+(i) the isothermal equation of state (0= 1) [8]
+
+From the above we see that the solution is of soliton-type, provided the expressions in the square brackets are negative. To be more specific we now construct appropriate electron pressure laws and densities.
+Since the temporal change of the plasma quantities during the passage of the wave occurs on the ion plasma period w i t , the electron quantities being affected on the shorter wiA-timescale, can be considered as quasi-stationary. To get solutions of the stationary Vlasov equation we have to distinguish between free and trapped electrons. Their range is given by the constant of motion E = v2/2 - @ where the electron velocity v is now normalized by the electron thermal speed (kTe/me)1’2P.articles are
+free (trapped:) if their total energy E > 0 (E <0). In principle,
+two distribution functions can be described independently [5]
+
+P d @ > = exp (6)
+
+(15a)
+
+(ii) the state for flat-topped distributions (P = 0) [9]
+
+Pe(@> = exp ($1erfc ( 4 ~ ” ~i- )2(1 + 2@/3)(@/n)’12 (15b)
+
+the latter often erroneously referred t o as “maximum-densitytrapping”. Figure 1 shows the amplitude dependence of the Mach-number equation (8), plotted for both equations of state (15a, b). A flattened electron distribution carrying a smaller amount of trapped electrons gives rise t o a higher Mach-number. The maximum velocity given by the wave breaking condition M = (214)”’ [see eq. (5)1 increases from M = 1.59 ($ = 1.26)
+for P = I to M = 3.1 ($ = 4.8) for 0= 0, and still higher Mach-
+numbers are accessible if (3 is further decreased. It follows that trapped electrons introduce some kind of inertia on the propagating wave.
+
+Physica Scripta 20
+
+308 Hans Schamel
+I
+’i
+---i
+
+-s 10
+
+I
+
+I
+
+C
+
+I
+
+2
+
+3
+
+1
+
+J.--.
+
+Fig, 1. Machnumber M versus amplitude j , , p = 1 corresponds to the iso-
+thermal equation of state for the electrons whereas p = 0 represents flat
+trapped electron distributions. The dashed line marks the wave-breaking condition.
+
+! C
+
+Cl
+
+02
+
+* - 03
+
+!31
+
+Fig. 3. M vs. j , for various trapping parameters. oi ( p ) characterizes the
+trapped ion (electron) distribution. A zero corresponds to a flat distri-
+bution for trapped Particles, whereas for a (0)equal unity, the trapped Particles are described by a Maxwellian, having the same temperature
+
+than the untrapped ones.
+
+If finite ion temperature is considered, some of the ions will Then the Mach-number (8) becomes
+
+be trapped, and one should adopt a Vlasov description for the ions, too. We d o not bring the analysis here and refer t o the
+
+M2
+
+=
+
+1 +gb$1/2
+
++ [3+225265b2 I $ + .
+
+..
+
+(18)
+
+original paper [7] for details. Two results are to be noted:
+
+and the “classical potential energy” (7) can be written as
+
+(i) with increasing Ti the range of possible soliton solutions
+
+v(4) -
+
+= ~ ~ @ 2 ( $ 1 /-2 $112) + ;$2($
+
+shrinks, below 9 = Te/Ti< 3.5 no ion acoustic soliton can
+
++
+
+propagate (Fig. 2),
+
+Integrating (6) with V(@),given by (19) yields the generalized
+
+(ii) the number of trapped ions, described by a,the analogue soliton solution [71
+
+to the parameter p , has a relatively strong influence on the M-$-
+relation (Fig. 3). Again, trapped ions hinder the propagation of solitons since M and the maximum $ increase with decreasing a.
+
+[ @(XI = $ 1 + - th2y -2 sech4y 1+Ql
+
+(20)
+
++ where y = (x/2)[(1 Q)$/6] ‘ I 2 and Q = 9 b$-’12 > - 1. This
+
+2.2. The Kd V-limit
+
+solution contains the well-known isothermal soliton (p = 1;
+
+In this section we discuss the small amplitude limit and derive = = 0)
+
+an extended KdVequation.
+
+@(x)= $ sech2[($/6)1’2x]
+
+For small amplitudes, $ Q 1, the expressions derived above,
+
+simplify. By Taylor-expansion of (13) and (14) we get
+
+M = 1 + $13.
+
+as well as the soliton solution for nearly flat-topped electron
+
+(16a) distributions (IPI Q 1; Q % 1)
+
+(1 6b)
+@(x)= $ sech4
+
+112 1/2
+x]
+
+Physica Scripta 20
+
+wave train with negative @, Using the usual stretching of variables
+
+Role of TrappedParticles and Waves in Plasma Solitons - Theon’ and Applicatiorz 309
+
+The deviation of the electron equation of state from the
+
+a
+
+a2
+
+2 i e - E + 3 7 E = (ni-l)E
+
+isothermal law introduces an additional nonlinearity which at
+
+ax
+
+(24a)
+
++ dominates if b becomes of order unity. As shown in [ I O ] , soli- a
+
+a
+
+tary waves satisfying this equation are preserved after collisions -ni -(niui) = 0
+
+and deserve the notation soliton.
+
+at
+
+ax
+
+2 .3. Applicatioi7s
+
+a
+
+a
+
+-ui+ui--ui
+
+a
+= --((Inni+
+
+IEI’)
+
+at
+
+ax
+
+ax
+
+(24b) (24c)
+
+From the analysis given above it follows that by studying the
+
+soliton propagation one can, in principle, infer on the collisionless nature of the electrons and especially on the strength of the diffusion in the trapped electron region. Collisions in the reson-
+
+where e = (me/mi)li2E. represents the slowly varying amplitude of a Langmuir wave-packet and is normalized by (4nnokT,)1’2,
+x ,t ,ni ,and ui are normalized as before.
+
+ance region are unavoidable and. in fact, necessary to establish distributions like (12) [11. 121.
+
+The nonlinear Schrodinger-equation (24a) is derived from the linear wave equation for Langmuir waves which in the dimen-
+
+A similar method, the launching of small amplitude test sional form can be written as
+
+waves, is frequently used t o find unperturbed plasma quantities like T,, n e , etc. In the present case, the intrinsic nonlinear
+
+30:,
+
+a2
+7 Eo
+
++
+
+~
+
+~
+
+e
+
+o
+
+E= o 0
+
+ax
+
+(25)
+
+character of electron trapping demands a propagating nonlinear
+
+wave for its investigation. Non-isothermal equations of states, discussed above, are evi-
+
+Here, U;, = KTe/m,. and eo is the cold plasma linear dielectric constant
+
+dent in particle simulations [9, 13-15], in bow shock measurements [I61 or 1.n laboratory experiments [17]. However, none o f them are directly related to solitoli formation. The experiments either deal with ion acoustic shock waves, in which two different asymptotic states are linked. or with the generation o f BGK-waves which are periodic rather than solitary-like. (In laminar or weakly turbulent shockwaves where the number of retleited ions (precursor ions) is small, the moving shock-front is usually described by one half of a soliton solution [18] .}
+On the other hand. the solitons generated by Ikezi and collaborators find an explanation within the usual soliton theory. e.g.. as mentioned in [19]. the deviation of the Mach-number and soliton width from the isothermal, cold ion prediction (21a. b) found by Ikezi [20] is probably an effect of the finite ion temperature.
+
+eo = 1 - w:.,~/w2
+
+(26)
+
+~
+
+Thereby, the total electric field is given by E = Eo(x)e-iwf +
+
+C.C. If we allow for temporal changes of the amplitude on a slow
+
+time scale, we can replace w 2 in (25) b y [w - i(a/at)12 and
+
+neglect the second time derivative. We work at resonance with
+
+the unperturbed plasma, i.e., w2= 4nnoe2/m, and let w i e
+
+depend on the actual density which may be different from no
+
+because of the excitation of low-frequency perturbations.
+
+Assuming quasi-neutrality, we then readily obtain the dimen-
+
+sional form of (24a). It is coupled through the right-hand side
+
+with the ion motion given by (24b>c). In the equation o f motion
+
+(24c) the low frequency electric potential has been replaced by
+
+an expression which satisfies the electron momentum equation
+
+averaged over one plasma period 2niw
+
+This is different to the observations made by Means et al.
+
+[211 in connection with shock-experiments, where finite ion
+
+(27)
+
++ temperature corrections to the isothermal M-G-law (21b) can- Equation (27) is analogous t o eq. ( I d ) and includes the action of
+not x c o u n t for the discrepancy in the relationship M = 1 0.6$ the hf waves on the slow electron motion. Here, u0 is the ampliexperimentally obtained. A Mach-number,based on the equation tude of the rapid oscillating electron velocity (U,= U,,e-iwf +
+
+of state (15b), [I = 0. together witlia distribution of the reflected C.C.) and is related to E o ( x ,t ) by ions turbulently flattened, was found to fit the experimental
+
+curve best. In my opinion, the linear character of their M-$ relaiion suggests a less pronounced deviation from the isothermal
+
+, U, = - eE0 1111 w
+
+(28)
+
+law and can be described equally well by (18) with b = O ( $ ’ ” ) . We also assume an isothermal equation of state for the slowly
+
+Closing this section, we state that a direct verification of this varying pressure: p s = nsKTe,T , = const. (subscript s denotes
+
+nonisothernial soliton is still lacking but that observations exist slowly varying quantities). Deviations from the isothermal law, which may encourage experimentalists t o look for this structure. like the generalized equation of state (14) of the previous chap-
+ter, can easily be incorporated in (27) [24].
+
+3 . Field trapping in Langmuir solitons
+The second branch of wave solutions in an unmagnetized infinite plasma does not exhibit soliton solutions of the type discussed
+
+We now look for the stationary solutions of (24) in the form
+
+E ( x , t ) = w ( x - M t ) exp {i[O(t) + r(x)]}
+
+(2Ya)
+
+ni(x, t ) = n(x -Mt)
+
+(29b)
+
+in the previous section. Langmuir waves are strongly dispersive u ~ ( xt,) = U(X -Mt) + M
+
+(2Yc)
+
+and cannot be concentrated in a single wave packet for long
+
+time. Through wave coupling process, however, they can couple Substituting (29) in (24) we get from the imaginary part of (24a)
+
+with the slow background plasma motion producing a density r(X) =
+
+(30)
+
+cavity which in turn, trap them. This entity is called Langmuir-
+
+or envelope soliton and is the subject of this section.
+
+The real part gives
+
+3 ~ , ~= , ( n + A l ) ~
+
+3.1. Finite amplitude envelope solitons
+
+First, we discuss the existence of finite amplitude envelope where the nonlinear frequency shift A is
+
+solitons. The appropriate equations are [ 2 2 ] ,[ 2 3 ]
+
++ A = 2eOt e Z M 2 / 3 (subscript means differentiation) (32)
+
+Physica Scripta 20
+
+3 10 Hans Schamel
+
+The integrated ion equations now become
+
+nu = - M
+
++ + U”
+- Inn w = M2/2 2
+
+(33b)
+
+where we used an unperturbed state at infinity (n = 1, U = -M) as boundary conditions, corresponding to a localized solution we are looking for. The last two equations are combined to yield
+
+w2 ’i
+
+w2 = M2(1-n-2)/2-1nn
+
+(34)
+
+Using this relation we integrate eq. (31) once and find
+
++ + 3w; (1 -A)w2 n(1 +M2/n2) = 1 + M 2
+
+(35)
+
+where the boundary conditions are again used.
+
+We now look for a solitary wave solution centered at the Fig. 4. The existence region of Langmuir solitons. Here, W 2= l E l b ~ ~ / origin, i.e., a bell shape for the electric field quantity w and an 4 n n , ~ T , and 6N = 1 -N,where N = n M I N / n o . Also lines of the coninverted bell shape for density n , which turns out to be always stant Machnumber are plotted. Solitons can exist between the lines M = 0
+
+less than unity (density dip). Accordingly, we let W = w(0) to and M = N . The dashed line marks a vanishing frequency shift which is be the maximum of w ( x ) , and N = n(0) to be the minimum of negative above the line. The Roman numbers represent experimental data.
+
+n . The nonlinear dispersion relation, evaluated from (34) at
+
+x -Mt = 0 ,now becomes
+
+the W 2 ,6N plane (SN = 1 -N). From this diagram we can draw
+
++ M 2 = 2(W2 lnN)/(l - N - 2 )
+
+two interesting conclusions: (36) (1) The more field is trapped in a given density trough, the
+
+Note, that the limiting case W 2 = 0 does not directly lead to the slower the soliton moves.
+
+dispersion relation (8) of ion acoustic solitons (with p,($) = (2) High speed (M 2 1) solitons have necessarily small ampli-
+
+n e ( $ ) = e$) because quasi-neutrality was used in deriving (36). tudes.
+
+We will return back to this point later.
+
+It follows that the adiabatic (M = 0) soliton has the largest
+
+The frequency shift A is obtained from eq. (35) by setting amount of trapped field. Hence, the hf field trapped in the den-
+
+w, = 0, at w = W , andn = N
+
+sity trough hinders the motion of the soliton, similar to the
+
+A = 1 + ( N - 1)(1 -M2/N)W-2
+
+retarding effect of trapped particles in an ion acoustic soliton. (37) No soliton of the type assume above exists for values of W 2
+
+Using (34) we can rewrite (35) in terms of n, and n to obtain and SN lying below the line M = N . As we will see, near this line
+
+the analog to eq. (6)
+
+the assumption of quasi-neutrality is violated, and a new type of
+
+n 3 2 + V ( n ; N ,W ) = o
+
+soliton appears. (38)
+
+We have included N and W in the argument of V to indicate that 3.2. Small amplitude Langmuir solitons
+
+the solution depends on two independent parameters. The We now derive the small amplitude limit by letting
+
+“potential energy” is given by
+
+(SW2< W 2 < 6N < 1
+
+(41)
+
+2n2w2 V ( n ; N ,W ) = 3(1 - M /n ) [(I -A)w’
+
++ (n - 1)(1 - ~ ’ / n ) ] We obtain by Taylorexpansion
+
+(39) M 2 = 1 - W2/6N-6N
+
+(42)
+
+where w2 is related to II by eq. (34).
+
+To see whether (38) admits soliton solutions, we expand V
+
+around n =N and n = 1 (note, that it holds N <n < 1), and
+
+2
+
+(43)
+
+obtain
+
+V(n:N , W )
+
+and the classical potential energy becomes
+
+V(Sri;SN, W 2 )
+
+=
+
+-
+
+- S r i 2 (SN
+3
+
+-
+
+Sri)
+
+(44)
+
+l-n<l
+(40)
+Thus V behaves properly at the boundaries and represents soli-
+tons if it is negative in the range N <n < 1. This gives the condition N 2 > M 2 from which A > 0 follows. The frequency shift
+of the hf waves 6w = - (A/2)w is always negative. The region outside the density trough is, therefoke, overdense for the waves, which are localized at the underdense cavity region.
+The range of existence of the two parametric solitons is shown in Fig: 4. It lies between the two curves labelled M = 0 and M =N . Also curves of constant Machnumber are plotted in
+
+where 6ri = 1 - n . It follows that
+[[Ti SA = 6Nsech2 6N li2(x --Aft)]
+w2 = W 2 sech’ [r+rz(x -Mt)] and
+The solution for the real electric field in dimensional form becomes
+
+Physica Scripta 20
+
+Role o f Trapped Particles and Waves in Plasma Solitons - Theory and Application 3 11
+
+where the group velocity v g ,the soliton width L , the wave num-
+
+(52)
+
+ber k and frequency wk of the internal oscillation are given by where the electron trapping parameter b is again given by for-
+
+L = ( 6 / 6 N ) ’ / * h ~ ;V g = MC,; khD = &/3
+
+mula (17). (48a) It can be shown that soliton solutions of the system (49a),
+
+= + 0’[1 3(khD)*-6N/2 + O(6N2)]
+
+(48b) (52) exist if
+
+w 2 The frequency relation shows that the hf wave packet is com- p - l =- 4-b 6- N3/*< 1
+
+posed on Langmuir waves (wz = 4nnoe2/me)which are, how-
+
+3
+
+(53)
+
+ever, frequency-downshifted due t o the presence of the density This condition sets an upper bound for the trapping parameter dip. The effective density for these waves is no(l - 6N/2). The b The Mach-number is given by waves can, therefore, only exist in the cavity and are evanescent
+
+outside. This is expressed by the sech profile. The soliton (45) satisfies
+
+W2
+
+M = 1 --(1
+
+-p-1)
+
+26N
+
+(54)
+
+a
+2ie -E
+
++
+
+3
+
+a2
+-E
+
+= SnE
+
+at
+
+ax2
+
+Analytic explicit solutions of the soliton exist only in special ( 4 9 4 cases. For p - l = 213, we find
+
+?in = - 6N[1 - 4 sinh2(z) exp (- 2z)l
+
+(55a)
+
+[El = W exp (- z)t(2 - exp (- 22))(1 - 9 ~ i n h ~ ( z ) ) ] ”(~55b)
+
+where ?in= - F r i . The ion equations (24b, c) reduce in the small where amplitude limit t o the wave equation of ion acoustic waves in the infinite wave-length limit, driven by the ponderomotive z = 0 . 3 2 S N ” 2 [ -~Mt[
+
+force.
+
+In the isothermal limit p-’ + 0 the three-parametric soliton
+
+Depending on the relative strength of W2/6N. the soliton reduces t o that obtained by Karpman.
+
+(45) represents
+
+(i) the soliton of Rudakov [25] if 6N2Q W2 5 6 N Q 1 and 3.3. Langmuir-solitons in experiments
+
+(ii) the soliton of Karpman 1261 if 6 N 2 W2 Q 6N Q 1.
+
+Now we compare our analytical results with existing exper-
+
+The sonic soliton of Karpman,e.g.,prevails if W 2 = 0(6N3”). iments. For envelope solitons in order t o exist we note that two
+
+Its velocity, M 2 = 1 -0(6N”*), lies above the critical line basic requirements have to be satisfied. Firstly, there must be a
+
+M 2 = N 2 = 1 -SN in Fig. 4. If we lower W 2 further, so that source of hf Langmuir waves. This can be an electron beam which
+
+W 2 = 0(6N2), we pass the line M * = 1 - 6 N , and the above excites Langmuir waves via the two-stream instability, an electric
+
+theory breaks down. The reason is that terms in the ion equation, field at resonance applied externally in a capacitor experiment.
+
+neglected up to now, become of the same order than the retained or the mechanism of linear mode conversion of electromagnetic
+
+ones and must be kept. These are the lowest order nonlinear waves into Langmuir waves at the resonance layer of an inhomo-
+
+term and the dispersion term, so that instead of (49b) we get geneous plasma. Secondly, the processes which may destroy
+
+soliton formation have to be weak or balanced by additional
+
+arrangements. Damping, linear and nonlinear instability of a
+
+soliton, multidimensionality and plasma-nonuniformity causing
+
+Soliton solutions of the system (49a), (50) have been found wave convection and acceleration are examples. Last not least,
+
+by Makhankov [27]and Nishikawa et al. [28] and read
+
+there enters the problem of the accessibility and the develop-
+
+ment of the soliton leading to a stationary state.
+
+6n = -FNsech*[z]
+E = - 326’/N2 sech [ z ]tanh [ z ] exp [i($(t) + I‘(x)]
+
+(5 1a) (51b)
+
+Before mentioning the experimental results, we present some ideas how a soliton can be formed from an initially unperturbed state. As an example, we consider an electron beam penetrating an unmagnetized plasma 1291. For a cold and relativistic beam.
+
+where
+
+the collective modes follow the linear dispersion relation
+
+z = ( 6 N / 1 8 ) ” 2 ( ~- M t ) ; M = 1 -56N/9;
+
+a(t) = s ~ t / ( 1 2 ~ )r:(x) = & ~ / 3
+This is a one-parametric family of solitons, distinguished by a node of the electric field at the center. In the language of quanturn mechanics this soliton represents the first excited state whereas the former soliton can be considered as the ground
+state. Note, that for this soliton M 2 = 1 - y 6 N < M 2 = N 2 21
+1 -6N. Let us close this section by describing the three-parametric
+soliton which arises if deviations of the isothermal equation of state for the electrons are taken into account [24]. These lead to an ion equation of the form
+
+where no is the beam velocity, w t = 4mbe2/me with nb being the beam density and yo = (1 - vi/^')-"^ is the relativistic factor. Equation (56) has unstable solutions, the fastest growing
+mode is given by
+
+w = ape1[- (p/2)(1 - 3l’*i)]; k o = wpe/vO
+
+(57)
+
+where 1-1 = yi’(nb/2no)”3 is assumed to be small. Nonlinear effects such as the trapping of beam particles. halt the growth, and an oscillatory state of the wave amplitude sets in, which is described by the well-known SINGLE WAVE MODEL [ 3 0 , 311. This state is characterized by the motion of trapped electrons sloshing back and forth in the potential well of the wave. In the
+
+Physica Scripta 20
+
+3 12 Hans Schamel
+
+average the single mode has a frequency below the electron formation takes place. If an excess of wave energy, compared to
+
+plasma frequency. This mode acts like a pump and excites hf W z 6N is present, it can be convected away into the per-
+
+sidebands and ion oscillations via the oscillating two-stream pendicular direction and/or balances the loss of energy due to
+
+instability OTSI [32], Numerical solutions [33] of the coupled wave damping, This might explain the tendency towards one-
+
+system consisting of the single wave model and the sidebands dimensional solitons, although the physics involved is inherently
+
+show a hydrodynamic decoupling of the beam at later times. three-dimensional.
+
+The beam which has gained a finite thermal spread only weakly Furthermore, one can also restrict the sytem to evolve only
+
+interacts with the excited waves. In the final stage, the waves in one-dimension, This is achieved, e.g., by applying an external
+
+representing a finite energy content produce through mode magnetic field in the plasma [411 or by using devices with large
+
+coupling process higher harmonics and approach an ensemble of cross dimensions. In this case, it turns out that an abundant
+
+solitons. This strong turbulence phenomenon is not restricted to wave energy cannot be convected away effectively, and the
+
+the cold beam approximation and occurs under wide conditions evolution of the system basically becomes time dependent. Such
+
+for warm beams as well [34].
+
+a process is investigated next.
+
+In a series of experiments performed in a double plasma
+
+device at the UCLA, Wong and Quon [35] distinguished three different cases for the development of the system depending on
+- the beam strength with typical values nb/no 0.05-0.1 and - vO/vte 5-10. For a weak beam, the maximum amplitude of
+
+4. Miscellaneous
+Here we discuss a transient phenomenon which we refer to as soliton flash. Furthermore, we present an example to show how
+
+the beam mode was below the threshold of OTSI, and hence no stationary solitons can be used to test the accuracy of numerical
+
+modulation was observed. For values just above the threshold, schemes in the nonlinear regime.
+
+the parametric process set in and an ion wave with k = 2ko grew. What follows, is wave trapping in the density troughs and a 4.1. The soliton flash
+
+chain of soliton-like structures which became stationary after Following the idea expressed at the end of the previous section,
+
+several ion plasma periods. For a stronger beam, the develop- we extend the coupled system (49) in three ways [42-441:
+
+ment was essentially the same except that the localized struc- (1) Include an external driver in the Schrodinger equation
+
+tures had finally larger amplitudes and their formation time was (49a). It may represent an electron beam or the transverse mag-
+
+shorter. Three cases of stationary solitons were observed with netic field of a p-polarized wave, obliquely incident onto an
+
+properties (i) they were not propagating in space and (ii) the inhomogeneous plasma.
+
+normalized maximum field in each of them was nearly equal to ( 2 ) Take into account various damping processes, e.g.,
+
+the normalized depth of the cavity. When plotted in the exist- Landau-collisional as well as damping originating from nonlinear
+
+ence diagram Fig. 4 , labelled by I, 11,111,these values lie exactly effects in both equations (49a, b).
+
+on the curve for a non-propagating, i.e.,M = 0, soliton.
+
+(3) Describe the linear low-frequency response correctly by
+
+On the other hand, in the experiments of Ikezi et al. [36], an making use of the correct dispersion relation of the ion-acoustic
+
+ion acoustic test wave was launched and the density modification waves.
+
+by switching on the beam was studied. The result was a chain of These generalizations are best formulated in Fourier space.
+
+stationary localized structures moving with v g = 0 . 6 ~ ~Th.e Let E(k, t ) and 6A(k, t ) be the Fourier transform of E ( x , t ) and
+values w 2 = l E ~ ~ ~ 1 ~ / 4 7 r n oaKndT ,6 N = I6n~,,l/no of these 6n(x,t ) ,then we define the following collective variables
+
+structures lie on the curve M = 0.6 in Fig. 4, identifying them as solitons. In this experiment, the stationarity was supported by the presence of the beam which balanced the loss of the field energy perpendicular to the beam direction. When the beam was switched off, the field diminished whereas the density cavities
+
+-&(I?, t ) &
+’ a ( k , t ) = (27rno~ T,) ”ape
+
+a@?(k, t)/no+ i(a/at)sA(k, t)/no
+
+b(k,t) =
+
+2’’’I kc, I
+
+were longer stable and attained higher speed. This corresponds to the motion of a point in the existence diagram (Fig, 4) on a
+
+where 0:
+
+and w i are the Bohm-Gross
+
+frequency and ion
+
+vertical line downward. Hence, as stated before, the trapped acoustic frequency, respectively,
+
+field corresponds to the “mass of a particle” which increases its
+
+speed when mass is lost.
+
+Finally, standing spikes were also observed in the capacitor
+
+experiments of Kim et al. [37] at the resonance layer of an Using Hamiltonian formalism described in [42], we obtain the
+
+inhomogeneous plasma. The observed values at saturation following set of coupled mode equations [43] :
+
+W z = 0.26 and 6N = 0.25, not plotted in Fig. 4, again satisfy the Mach-number relation (36) of a standing soliton. In this
+
+a
+-a(k, t ) = - i [;(kx,)2w,,
+
+strong field case, the soliton is not strictly stationary, but breaks a t
+
+-iYk]e(k,t )
+
+up later on into isolated components which propagate down the
+
+density gradient carrying the density cavity with it. This corre-
+
+sponds to the studies of soliton propagation on linear density
+
+profiles [38-401, in which a similar behaviour is found.
+
+Although in most of the experiments the one-dimensionality
+
+is not well established, the observed localized structures carry the properties of Langmuir solitons so that we may identify
+
+a
+-b(k,t) at
+
+= -i[~i--iI’~]b(k,t)
+
+them. The interpretation is as follows: Through the beam or the
+
+density gradient a preferred direction is given where soliton
+
+Physica Scripta 20
+
+Role of Trapped Particles arid Waves in Plasma Solitons - ll?eoo!and Application 3 13
+where Yk and r k are appropriately chosen damping rates [441, and 6w = W O- apew,here w o is the frequency of the external pump. For resonance absorption, 6w vanishes at the resonance point and Eext = B(x,) sin B o , where B(x,) is the magnetic field of the transverse wave at the critical density, and B o is the angle of incidence.
+For a moment let us neglect dissipation and transform the equations back into real space, so we have
+
+1 + E e x t e-i6wt
+
+(6 1a)
+
++ A 2D - -
+
+(61b)
+
+from which the extensions with respect to (49) become obvious.
+
+PIS 5
+
+Using the numerical algorithm, described in more detail in
+
+the second part of this section. we solve the full system (60)
+
+numerically. We apply an external field \Eex1t 2 / 4 ~ n ~ K=T e
+
+during interval
+
+Wpit 13,5 and 6 w = - zwpi. The sol- Fig 6. The space-time history of the ion density perturbation corre-
+
+ution is displayed in Figs. 5 and 6 . The graphs exhibit the spatial sponding to 1ip. 5.
+
+~~
+
+dependence of tlie normalized field intensity and ion density However, after the field has dropped to a small value, the cavity
+
+perturbation at equidistant time steps. We recognize the electric splits into two streamers propagating apart with ion acoustic
+
+field to be localized in space and time. The field intensity velocity.
+
+strongly overshoots the value of a stationary soliton for given 6 N at wpit = 14 and decays rapidly afterwards. Here, the decay
+
+This feature can easily be understood in terms of the dr~ven ion wave equation. Approximating the normalized electric field
+
+is enforced by switching off the pump. We note, that this over- by a Gaussian profile [451.
+
+shooting is. to a lesser extent. also observable for a continuous
+
+pump injection. Although a numerical instability produced by
+
+the strong field cannot be excluded, the observation of this
+
+phenomenon in laboratory experiments and particle simulations which corresponds t o Fig. 5 , we can solve the ion equation proves, as shown later. that it is realistic. It is called soliton flash (49b). A particular solution is given by to remind of the shape of transient state of the wave packet.
+
+On the other hand, the density pattern shows at the right
+
+place the cavity with density barriers on both sides. This pertur-
+
+bation is standing and growing as long as field trapping occurs. where ti lies in the remote past where tlie perturbations are neg-
+
+7-
+
+ligible. Inserting (62) in (63) and changing the order of inte-
+
+gration, after some algebra one finds
+
+Fig. 5. The space-time history of the normalized field intensity.
+
++ where U' = (1 x:/t:).
+The first term on the right hand side of (64) describes the
+cavity which appears at x = 0 with maximum depth at t = 0. Note, that the maximum of (El2expressed in t e r m of 6iV. namely IEILAx = 026N exceeds IEI&Ax= 6iV. the correspond-
+ing quantity for a stationary standing (adiabatic) soliton. The second term represents the left and right yopagating streamers depending on the sign. They move with ion sound speed and have the form of a leading density hump followed by a density dip as in Fig. 6. These streamers carry the information about the
+actual field and allow to estimate the strength W and widths xo
+and to of the field by measuring the maximum density perturbation and the distance between both extrema of a streamer.
+Experimentally, the overshooting of ]El2 and the related
+Pizysica Scripta 20
+
+3 14 Hans Schamel
+
+streamers are evident in the microwave experiments of Wong and B, = {x Ix = n/N 0 <n < N )
+
+collaborators as summarized in [46]. This is especially seen in BK = ( k l k = 2rrm - K < m < K } Figs. 7 , 8 and 11 of that paper (see also [47]). The conditions for
+
+(66)
+
+the occurrence of a flash-like behaviour of the total electric field, and 2K = N , and are integers. It has the
+
+together with the splittingof the cavity in these resonance adsorp-
+
+> 1 tion experiments are a gentle density gradient ( k d 500;L is N-'
+
+exp (ikx) = 6k,ZneN
+
+(67)
+
+the density scale length and kD = A;)' and a pump duration of
+
+XEB,
+
+U p i t 5 50. It is worthy to mention that the streamers Produced instead of 6 k , o for infinite Fourier transformation. Here 6 is the
+in a non-uniform plasma propagate subsonic (supersonic) UP Kronecker symbol and e = 0> -+ 1, f 2 , . . . . From this property
+(down) the density profile. The r e a m is a plasma drift which is it follows that the Fourier transform of the local product
+due to an acceleration of the plasma towards the vacuum by the F ( ~=) u ( ~ ) v ( w~h)ic, h stands, e.g., for hydrodynamic nonlin-
+
+ambipolar field, and which superimposes on the streamer earities, becomes
+
+motion. We mention that computer experiments [48-501 have also revealed the ingredients of the soliton flash and the induced development of cavities.
+Finally, the soliton flash is expected to occur at the initial
+
+F(k) =
+
+c(p)z(q)6 c + p+q-k,O
+
+g(p)z(q)6p+q-k,ZneN
+
+Pv4
+
+p,q,e=f 1
+
+(68)
+
+stage of profile modification in laser driven fusion when the den- where k, ps 4 E B K * In the convolution sum the last term rep-
+xo. sity scale length exceeds the vacuum wave length The perpen- resents the aliasing interactions resulting from the inability of
+
+dicular extension of the laser beam will be much larger than ho, the grid Point values to distinghish between the wave number
+
+so that the system will evolve
+
+or less one-dimensionaland and its aliases k + 2neN. How these additional terms enter will
+
+give rise to non-stationary plasma behaviour, as discussed here. become apparent
+
+Let us consider the KdV-Burgers' equation
+
+4.2. Solitons in numerical experiments
+Nonlinear wave equations which possess exact solutions are good candidates to check various kinds of numerical algorithms. The KdVequation and the Burgers equation which admit soliton
+and shock-like solutions, respectively, are examples and widely used in this respect.
+The work of Arakawa [ 5 11 demonstrates that finite difference schemes could be valuable, provided nonlinear equations are written in a conservative form. Several attempts were made to reduce phase errors which originate from the discretization of space derivatives [52-601. These phase errors can be minimized
+
+a @ + (1
+
+$1-aa$x--v2 7 aax2$+
+
+1
+
+-a3=$ o
+ax3
+
+(69)
+
+and its second order
+
+az$ a 2
+
+az a4
+
+at2
+
+axz
+
+(
+
+$
+
++
+
+$
+
+Z
+
+)
+
+-
+
+v
+
+7$ ax
+
+-
+
+-
+
+$
+
+ax4
+
+= 0
+
+(70)
+
+where v is a constant viscosity, and solve the corresponding Fourier equations. In periodic systems, as mentioned before, this is the best way to represent the various derivatives. For both equations the Fourier transformed version can be written as
+
+or even eliminated if space derivatives are treated exactly by
+
+means of Fast Fourier Transform techniques (FFT). The latter
+
+(71)
+
+are now generally available in subroutine form. An example is
+
+the split-time Fourier method [61-631. Here, in the first step
+
+the nonlinear convective term is treated by means of finite difference approximation, and in the second step the linear terms
+
+are handled meanSOf FFT.A further
+
+is the Accurate
+
+Derivative method
+
+[63, 641 where a Tay1or
+
+expansion is used to perform the time stepping, and for the
+
+remaining calculations FFT is applied. Treating nonlinear terms (or linear terms with variable coefficients) by FFT means, that
+
+where c k is the Fourier transform of $
+
++==
+
+4(x, t ) = Ck(t) exp (ikx)
+
+(72)
+
+k=--
+
+and the expressions for w k ,v-k,p,qand Dk are given in [691.
+Thematrix element P-k,p,q is thereby proportional to &-k+p+q,O.
+Introducing a cut-off in the Fourier-space, Ikl < 2nK, the calcu-
+lation of the convo~utionsum would demand NZ ( N Z d in ddimensions) operations instead of N (Nd) operations if the
+
+one faces with the problem of aliasing interactions or, what is
+
+with the distinction between
+
+(SM) and
+
+pseudo-spectral (PSM) method [65-671.
+
+In this last section, we report on numerical experiments in
+
+connection with soliton propagation in which both methods, SM and PSMj are further analyzed [68, 691. FirstlY,we discuss the origin of aliasing interactions and then present the numerical results.
+In one dimension finite discrete Fourier transformation is defined by the transformation pair
+
+calculations were performed in real space. onecircumvents
+
+this ineffective procedure by transforming back into real space,
+
+performing there the local product and by returning then to
+
+k-space. Using FFT
+
+the number of operations is,
+
+thereby, reduced to the order of rNd l o g z ~ dw, here is the
+
+number of Fourier transformations involved. In the last step,
+
+however, the
+
+terms appear and introduce additional
+
+terms in the truncated version of (71). If these terms are not
+
+eliminated, the corresponding numerical algorithm will be called
+
+pseudospectral method (PSM), otherwise one refers t o SM. In
+
+the latter, additional shifted grids, corresponding to a nonlocal
+
+u(x) =
+
+2(k)exp(ikx)
+
+x EB,
+
+representation of the nonlinear term, provide an elimination
+
+kEBK
+
+procedure [70], whereas the PSM uses the local representation
+
+directly and is, therefore, also referred to as collocation method.
+
+u"(k) = N-'
+
+U(X) eXp (- ikX) k EB K
+
+xEB,
+
+where
+
+Clearly, PSM is simpler and less time consuming, and the ( 6 5 ) question arises whether the dealiasing procedure is necessary.
+Our answer will be in favour of SM. We follow the soliton solution (v = 0) in time
+
+Physica Scripta 20
+
+Role of Trapped Particles and Waves in Plasma Solitons - Theory and Application 315
+
+@(x,t ) = @o + $ ~ech'[($/6)"~(x-Aft)]
+
+(73) f I
+
+[ 1 + 0 0 + $13
++ M = (1 2@0+ 2$/3)'"
+
+for eq. (69) for eq. (70)
+
+"I 1
+
+-51
+
+\ \
+
+t
+
+5M
+ai : 1 2 5
+
+and compare the result with the analytic solution (73). As an
+
+-'t
+
+additional check, we also calculate the first three invariants of
+
+(69), respectively (71), w h c h in the continuous version, are
+
+-gt
+
+j c 1 2 = dx @2(xt,) = ICh(t)I2 h
+
+13, LI3
+
+\
+
+- 23 K/2?
+
+25
+
+1
+- xk21Ck12
+2h
+
+Fig. 8. The spectral energy density, i ( k ) vs. k at ten equidistant time steps (AWPif = 12.5) calculated with SM (N = 64).
+(74) PSM with twice the number of modes. Since both need com-
+
+In [69] it is shown that equivalent invariants exist also for parable computation time SM is, therefore, more efficient.
+
+the truncated forms of (71), provided the cut-off term is set to In all runs the invariants 1 2 , 1 3 were conserved within a rela-
+be zero. We have chosen qb0 such that COis zero for all times and tive error of 0.2 Per cent and 11= CO= 0 was conserved, since
+
+the word invariant is meant in the sense of semi-conservation CO= 0.This shows that the integral conservating property of a
+
+where the error made by time-differencing is disregarded,
+
+scheme does not automatically guarantee its accuracy.
+
+Figure 7 showsthe solitonwith = 0.2 after 125 ion plasma In Fourier space the runs are seen in the next two figures
++ periods. Initially, it was centred at X = - 50,SO that it has where the spectral energy density f(k) = I c h 1' 1C-k 1' is shown
+x moved once through the periodicity interval 0< < 100 (from as a function of k at ten equidistant time steps (At = 12.5).
+which only the right half is plotted). The solid curve, @dyt, is Figure is Obtained by SM (64 modes) and Fig. 9 by PSM. the analytical solution ( 7 3 ) $ the dotted curve, @num.l, is Whereas in the former case the stationarity of the soliton is nearly obtained with the alias-free SM (N=64), the dashed curve, perfect, its nonstationarity is obvious in the latter example.
+
+@num.2,is computed with PSM (N = 64), and the crosses denote Note, that the Spectrum at Cut-off is ten orders of magnitude the solution obtained by SM with haif the number of ~~~~i~~ below the most energetic Component. This shows that in the modes (1V = 32). We see that only the alias-free solutions agree regime Of low Cut-OffS and large computation times the dealias-
+with the analytical solution, whereas the PSM-solution deviates ing procedure cannot be avoided by including more modes. The
+
+remarkably. The aliasing interactions weaken the nonlinearity, deviation from the correct spectrum sets in at high wave num-
+
+as seen by the decay of the original soliton into a smaller soliton bers and propagates to lower
+
+in the
+
+Of time.
+
+and a dispersive ion acoustic wave packet, N ~ that~ the~dela,y Similar results are obtained with the smoothed sawtooth
+
+of the PSM-soliton results from its smaller amplitude and is not which 1s a nonstationary Solution Of Burgers' equation, and the
+
+related with linear phase errors which are absent here. Further- results are not different if the Boussinesq-tYPe equation (70)is
+
+more, if the number of grid points is halved (N = 32), SM still
+
+instead Of (69).
+
+gives the correct answer. Thus, SM is much
+
+accurate than We conclude with the remark that the aliasing interactions
+
+are false interactions and should be avoided for long term runs.
+
+In addition, the conservation of quadratic and higher order
+
+)O!X '! 0 2-
+
+integral constraints which ensure the stability of a given scheme is not decisive for its accuracy.
+
+I
+$=C2 f ='25
+1
+:1 -
+
+A
+
+;--.J oI, snovj
+
+/I .
+
+S!
+
+1
+
+3+', , 05. t,
+
+O">*.
+
+i
+
+-'- ' , ,
+
+,
+
+- ~ - _ - ~ _ ~ x 10-7
+
+"\:\ "+v-<--_/ --;175L .;c--'247?:%!
+
+,._* ,
+
+-82 1 I
+
+Fig. 7. The KdV-soliton as a function of space at wpif = 125. The solid
+
+curve, labelled
+
+represents the analytical solution (73), the other
+
+curves are obtained numerically: the dotted curve, Q n u m , , is calculated
+
+by means of the spectral method (SM), and the dashed curve, Qnum2 , by
+
+means of the pseudo-spectral method (PSM), both with N = 64 Fourier-
+
+modes. Crosses denote the solution obtained by SM with N = 32.
+
+' -3!
+
+!:s
+
+1 :
+
+'
+
+l
+
+k
+
+I
+
+I
+
+-.,
+
+,
+-7.
+
+I
+-4'
+
+I -',I,
+
+PSM U =5L
+A! = I 2 5
+
+-13
+
+I
+
+___
+
+IO
+
+IC
+
+- ..". 4 2"
+
+25
+
+..
+
+Fig. 9. The spectral energy density as a function of k at ten equidistant time steps performed with PSM ( N = 64).
+
+Physica Scripta 20
+
+316 Hans Schamel
+
+5. Summary
+
+17. Wong, A. Y., Quon, B. H. and Ripin, B. H., Phys. Rev. Lett. 30,
+
+1299 (1973).
+
+Trapped Particles and waves have Proven to Play a key role in 18. Moiseev, S. S. and Sagdeev, R. Z., J. Nucl. Energy C 5 , 4 3 (1962).
+
+soliton behaviour because in a broad range both control the vel- 19. Ichikawa, Y. H. and Watanabe, S., Journal de Physique, Colloque,
+
+ocity and shape of solitons. Nonisothermal ion acoustic solitons
+
+C6-15 (1977).
+
+with a smaller fraction of trapped electrons are found to move
+
+2210..
+
+IMkeezain3s,'*?
+
+R.PWhy.,s*Coroniti1,6F,
+
+1668 . V., Wong,
+
+A.
+
+Y.
+
+and
+
+White,
+
+R.
+
+B.,
+
+Phys.
+
+faster than the isothermal ones. However they are not yet
+
+Fluids 16, 2304 (1973).
+
+explored experimentally. On the other hand, the localized 22. Zakharov, v. E., SOV. Phys.-JETP 35,908 (1972).
+
+structures consisting of Langmuir waves trapped in density 23. Schamel, H., Yu, M. Y. and Shukla, P. K., Phys. Fluids 20, 1286
+
+cavities are observed in microwave- and beam experiments (1g77). and seem to coincide with the theoretically predicted Langmuir 2245., SRcuhdaamkeolv, ,HL.,aIn.,dsoSvh.ukPlhay,sP.-.DKo.k,l.Phy1s7., R1e1v6.6L(e1t9t7. 33)6. , 9 6 8 (1976).
+
+solitons. For ion acoustic solitons the analysis was based on the 26. Karpman, v, I,,
+
+Phys. 13, 477 (1971).
+
+time-independent equations where the non-linearities were 27. MaLankov, v. G., Phys. Lett. A50,42 (1974).
+
+taken into account comdetelv. Stationary envelope solitons 28. Nishikawa, K., Hojo, H., Mima, K. and Ikezi, H., Phys. Rev. Lett.
+
+were constructed by making use of the full ion dynamics but
+
+333 148 (1974).
+
+neglecting electron nonlinearities. A non-stationary process has
+
+29.
+
+Schamel, H., Preprint 77-L 2-013, Ruhr-University Bochum, (1977, in German)
+
+then been studied by
+
+pump and dissipation in the 30. Onishchenko. I. N.. Linetskii. A. P., Matsiborko, N. G., Shapiro,
+
+coupled nonlinear Schrodinger-ion equation. If the System
+
+v. D. and Shevchenko, V. I., JETP Lett. 1 2 , 2 8 1 (1970).
+
+was allowed to evolve in one-dimension only, the hf wave 31. O'Neill, T. M., Winfrey, J. H. and Malmberg, J. H., Phys. Fluids 14,
+
+energy passed a flash-like state and forced the cavity to split into
+
+1204 (1971).
+
+streamers. Several experimental and numerical examples have 32. NI ,i~shik~awa*, K,., J. Phys. Soc. Japan 24, 916 (1968) and 24, 1152
+
+(17UOJ.
+
+shown to support this point of view on the development of a 33. Schamel, H., Lee, Y. C. and Morales, G. J., Phys. Fluids 19, 849
+
+caviton. In numerical analysis, the study of soliton propagation
+
+(1976).
+
+turned out t o be a excellent technique to check numerical algo- 34. Papadopoulos, K., Phys. Fluids 18, 1769 (1975).
+
+rithms. As an example, the pseudo-spectral method (collocation- 35. WOW, A. y. and Quo% B. H.3 PhYS. Rev. Lett. 34, 1499 (1975).
+
+method) was found to be erroneous in the nonlinear regime
+
+36.
+
+Ikezi, H., Chang, R. P. H. and Stern, R. A., Phys. Rev. Lett. 36, 1047 (1976).
+
+whereas the spectral method gives adequate results.
+
+37. Kim, H. C., Stenzel, R. L. and Wong, A. Y., Phys. Rev. Lett. 33, 886
+
+Of course, several problems in soliton theory such as stability, (1974).
+
+formation, other non-stationary processes, etc. were excluded 38. Morales, G . J. and Lee, Y. C., Phys. Fluids 20, 1135 (1977).
+
+in this article and definitely deserve more attention.
+
+39. Chen, H. H. and Liu, C. S., Phys. Rev. Lett. 39, 1147 (1977).
+
+In summary, we have attempted to study specific aspects of 40. Shukla, P. K. and Spatschek, K. H., to appear in J. Plasma Phys.
+(1978).
+"liton behaviour more explicitly,Some Of which are being Over- 41. Injeyan, H,, Leung, P, L, and Wong, A, Y., Bull, Am. Phys. SOC.21,
+
+looked occasionally in this attractive branch of nonlinear
+
+1093 (1976).
+
+physics.
+
+42. Elsasser, K. and Schamel, H., J. Plasma Phys. 1 5 , 4 0 9 (1976).
+
+43. Elsasser, K. and Schamel, H., Plasma Phys. 19, 1055 (1977).
+
+44. Schamel, H. and Elsasser, K., to be published (1978).
+
+Acknowledgements
+
+45. Peratt, A. L. and Watterson, R. L., Phys. Fluids 20, 1911 (1977).
+
+46, Wong, A. Y., in H. J. Schwarz and H. Hora (eds.), Laser Interaction
+
+The author is grateful to Professor K. Elsasser and Drs. P. Shukla and M.
+
+and Related Plasma Phenomena, Vol. 4B, Plenum Press, New York
+
+Yu for their fruitful collaboration, the results of which are the basis for
+
+and London (1977).
+
+part of the present review. He also thanks Mrs. B. Malik for her commend- 47. Wong, A. Y . and Stenzel, R. L., Phys. Rev. Lett. 34, 727 (1975).
+
+able typing of this manuscript. This work was sponsored by the Sonder- 48. De Groot, J. S. and Tull, J . E., Phys. Fluids 1 8 , 6 7 2 (1975).
+
+forschungsbereich Plasmaphysik Bochum/Jiilich.
+
+49. Sigov, Y. S. and Khodirev Y. V., Soviet Phys. Dokl. 2 1 , 4 4 4 (1976).
+
+50. Pereira, N. R., Sudan, R. N. and Denavit, J., Phys. Fluids 20, 936
+
+References
+1. Jeffrey, A. and Kakutani, T., SIAM Rev. 1 4 , 5 8 2 (1972). 2. Scott, A. C., Chu, F. Y. F. and McLaughlin, D. W., Proceeding of
+the IEEE 61,1443 (1973). 3. Karpman, V. I., Nonlinear Waves in Dispersive Media, Pergamon
+Press, Oxford (1975). 4. Makhankov, V. G., Physics Reports 35, C(1) 1-128 (1978). 5. Bernstein, I. B., Greene, J. M. and Kruskal, M. D., Phys. Rev. 108,
+546 (1957). 6. Schamel, H., J. Plasma Phys. 13, 139 (1975). 7. Schamel, H., Plasma Phys. 14, 905 (1972). 8. Sagdeev, R. Z., Rev. Plasma Phys. 4 , 2 3 (1966). 9. Forslund, D. W. and Freidberg, J. P., Phys. Rev. Lett. 27, 1189
+(1971). 10. Schamel, H., J. Plasma Phys. 9 , 3 7 7 (1973). 11. Zakharov, V. E. and Karpman, V. I., JETP 16,351 (1963). 12. Auerbach, S. P., Phys. Fluids 20, 1836 (1977). 13. Morse, R. L. and Nielson, C. W., Phys. Rev. Lett. 23, 1087 (1969). 14. Morse, R. L. and Nielson, C. W., Phys. Rev. Lett. 26, 3 (1971). 15. Forslund, D. W.and Shonk, C. R., Phys. Rev. Lett. 25,1699 (1970). 16. Montgomery, M. D., Asbridge, J. R. and Bame, S. J., J. Geophys.
+Res. 75, 1217 (1970).
+
+(1977). 51. Arakawa, A., J. of Comp. Phys. 1 , 119 (1966). 52. Zabusky, N. J. and Kruskal, M. D., Phys. Rev. Lett. 15, 240 (1965). 53. Pergrine, D. H., J. Fluid Mech. 25, 321 (1966). 53. Vliegenthart, A. C., Journ. of Eng. Math. 5 , 137 (1971). 55. Johnson, R. S., J. Fluid Mech. 54, 81 (1972). 56. Hammack, J. L., J. Fluid Mech. 60, 769 (1973). 57. Eilbeck, J. C. and McGuire, G. R., J . Comp. Phys. 19, 43 (1975). 58. Goda, K., J. Phys. Soc. Japan 39, 229 (1975). 59. Greig, I. S. and Morris, J. LL., J. Comp. Phys. 20, 64 (1976). 60. Eilbeck, J. C., and McGuire, G. R., J. Comp. Phys. 23, 63 (1977). 61. Tappert, F. D., Invited Paper, Annual Meeting of the American
+Society, Las Vegas (1972). 6 2. Hardin, R. H. and Tappert, F. D., SIAM Rev. 1 5 , 4 2 3 (1973). 63. Gazdag, J., J. Comp. Phys. 13, 100 (1973). 64. Canosa, J. and Gazdag, J., J. Comp. Phys. 23, 393 (1977). 65. Orszag, S. A., J. Fluid Mech. 49, 75 (1971). 66. Orszag, S. A., Studies in Appl. Math. 50, 293 (1971). 67. Fox, D. G. and Orszag, S. A., J. Comp. Phys. 11,612 (1973). 68. Schamel, H. and Elsasser, K., Proc. of the 2nd European Conference
+on Computational Phys., Contributed Papers E 4, (1976). 69. Schamel, H. and Elsasser, K., J. Comp. Phys. 22, 501 (1976). 70. Patterson, G. S. and Orszag, S. A . , Phys. Fluids 14, 2538 (1971).
+
+Physica Scripta 20
+

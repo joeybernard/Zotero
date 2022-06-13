@@ -1,0 +1,383 @@
+Physics Letters B 810 (2020) 135814
+Contents lists available at ScienceDirect
+Physics Letters B
+www.elsevier.com/locate/physletb
+
+Eigenvector continuation as an eﬃcient and accurate emulator for
+uncertainty quantiﬁcation
+S. König a,b,c,∗, A. Ekström d, K. Hebeler a,b, D. Lee e, A. Schwenk a,b,f
+a Institut für Kernphysik, Technische Universität Darmstadt, 64289 Darmstadt, Germany b ExtreMe Matter Institute EMMI, GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany c Department of Physics, North Carolina State University, Raleigh, NC 27695, USA d Department of Physics, Chalmers University of Technology, SE-412 96 Göteborg, Sweden e Facility for Rare Isotope Beams & Department of Physics and Astronomy, Michigan State University, MI 48824, USA f Max-Planck-Institut für Kernphysik, Saupfercheckweg 1, 69117 Heidelberg, Germany
+
+article info
+Article history: Received 5 May 2020 Received in revised form 22 September 2020 Accepted 25 September 2020 Available online 30 September 2020 Editor: W. Haxton
+
+a b s t r a c t
+First principles calculations of atomic nuclei based on microscopic nuclear forces derived from chiral effective ﬁeld theory (EFT) have blossomed in the past years. A key element of such ab initio studies is the understanding and quantiﬁcation of systematic and statistical errors arising from the omission of higher-order terms in the chiral expansion as well as the model calibration. While there has been signiﬁcant progress in analyzing theoretical uncertainties for nucleon-nucleon scattering observables, the generalization to multi-nucleon systems has not been feasible yet due to the high computational cost of evaluating observables for a large set of low-energy couplings. In this Letter we show that a new method called eigenvector continuation (EC) can be used for constructing an eﬃcient and accurate emulator for nuclear many-body observables, thereby enabling uncertainty quantiﬁcation in multi-nucleon systems. We demonstrate the power of EC emulation with a proof-of-principle calculation that lays out all correlations between bulk ground-state observables in the few-nucleon sector. On the basis of ab initio calculations for the ground-state energy and radius in 4He, we demonstrate that EC is more accurate and eﬃcient compared to established methods like Gaussian processes.
+© 2020 The Author(s). Published by Elsevier B.V. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/). Funded by SCOAP3.
+
+1. Introduction
+In recent years signiﬁcant progress has been achieved in the theoretical and algorithmic development of sophisticated manybody methods that allow the study of atomic nuclei up to mass number A 100 (see, e.g., Refs. [1–6] and references therein) based on nucleon-nucleon (NN) and three-nucleon (3N) interactions derived from chiral EFT [7–10]. Given these many-body advances, the development of novel and more accurate nuclear interactions is a very active ﬁeld of research. In addition to the theoretical work towards understanding how nuclei emerge from EFTs of the strong interaction, much effort is spent on the calibration of model parameters, e.g., low-energy constants (LECs) in EFT descriptions of nuclear interactions. In principle, calculations based on such interactions allow for a rigorous quantiﬁcation of theoret-
+* Corresponding author.
+E-mail addresses: skoenig@ncsu.edu (S. König), andreas.ekstrom@chalmers.se (A. Ekström), hebeler@theorie.ikp.physik.tu-darmstadt.de (K. Hebeler), leed@frib.msu.edu (D. Lee), schwenk@physik.tu-darmstadt.de (A. Schwenk).
+
+ical uncertainties stemming both from the parameter-estimation procedure as well as from truncating the EFT expansion at a given order. A rigorous uncertainty analysis is certainly possible and requires a careful determination of relevant covariances [11–13] and subsequent error propagation in all model predictions. Recently, Bayesian inference has been identiﬁed as a powerful and versatile tool for statistical analysis of EFTs, see for example Refs. [14–21].
+Both parameter estimation and the calculation of posterior probability distributions for nuclear EFT or model predictions typically require extensive numerical sampling in a high-dimensional parameter space. Except for the simple two-nucleon sector, repeated calculation of nuclear many-body observables quickly becomes prohibitively expensive to allow for sample sizes suﬃciently large to be meaningful. This work presents a solution to overcome this obstacle.
+There are clear indications that many-body observables contain useful information for calibrating nuclear forces. For example, a ﬁt of LECs to nuclear data including binding energies and radii of selected oxygen and carbon isotopes [22] showed that exploiting the information content of complex observables is phenomenolog-
+
+https://doi.org/10.1016/j.physletb.2020.135814
+0370-2693/© 2020 The Author(s). Published by Elsevier B.V. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/). Funded by
+SCOAP3 .
+
+S. König, A. Ekström, K. Hebeler et al.
+
+Physics Letters B 810 (2020) 135814
+
+ically important. In a similar spirit, input from α-α scattering data
+has been used to constrain two-nucleon forces [23,24]. In addition, it is clear that at least three-nucleon forces are necessary for an accurate theoretical description of nuclear systems based on EFT interactions. The LECs that enter for multi-nucleon forces need to be determined using calculations of light nuclei (typically A = 3, 4 are used), and already such calculations can incur a significant computational cost when a large number of them is needed.
+This signiﬁcant computational cost highlights the importance of developing fast and accurate methods that make it possible to sample large parameter spaces using emulators, i.e., calculations that sacriﬁce the accuracy of an exact calculation for a signiﬁcant gain in speed. The simplest such method, polynomial interpolation between a set of points within the parameter space, is usually not a viable option for a lack of both accuracy and eﬃciency. Gaussian processes (GP) [25] are useful for leveraging expensive statistical analyses in nuclear theory [21,26]. As a machine-learning method they can be advantageous for systematically exploring large parameter spaces and by design provide uncertainties of the emulator output, but like polynomials they are still limited to interpolation within a set of training data and cannot be used for reliable extrapolations. In this Letter, we explore eigenvector continuation (EC), introduced in Ref. [27], as an alternative to overcome this limitation while at the same time being signiﬁcantly more accurate than GP at reduced numerical cost. We ﬁnd that EC performs accurate extrapolations in multi-dimensional parameter domains even to points far outside the training data set used to construct the emulator, and that it provides a signiﬁcantly more eﬃcient and accurate emulator of nuclear systems than a Gaussian process.
+2. Formalism
+Eigenvector continuation is based on the fact that when a Hamiltonian depends smoothly on some real-valued control parameter, any eigenvector of the Hamiltonian is a smooth function of that parameter as well. Furthermore, the eigenvector trajectory traced out as the parameter is varied can be well approximated by a ﬁnite-dimensional manifold [27]. This last statement can be turned into a variational method for computing the eigenvector for any value of the control parameter.
+Consider a Hamiltonian H(c) that varies smoothly with real parameter c. The ground-state eigenvector |v0(c) can be well approximated as some linear combination of the ground-state eigenvectors |v0(c[1]) , · · · , |v0(c[N]) at “training points” c[1], · · · , c[N]. In order to determine the desired linear combination that best approximates |v0(c) , we simply ﬁnd the ground state of H(c) projected onto the subspace spanned by |v0(c[1]) , · · · , |v0(c[N]) . In Ref. [27] the applications of EC focused mainly on extrapolation in cases where the direct calculation of |v0(c) was not possible due to computational issues such as the Monte Carlo sign problem. In this work we will use EC for both interpolation and extrapolation. We also consider, for the ﬁrst time, the extension of EC to Hamiltonians that depend on more than one control parameter.
+Speciﬁcally, we explicitly demonstrate the advantages of using EC for constructing a fast and accurate emulator for nonrelativistic calculations of the 4He nucleus. While this application is a benchmark case that is particularly relevant for nuclear physics, the very general mathematical underpinnings of EC enable the emulation of expensive problems across several disciplines also outside of physics provided only that they can be formulated as an eigenvalue problem. Eigenvector continuation moreover supports full reconstruction of the emulated eigenvector (wavefunction). To demonstrate this we consider both the ground-state energy E and radius r of 4He nucleus, as functions of the 16 LECs c in a particular chiral potential V (c) for the strong interaction [13], entering the Schrödinger equation H(c)|ψ(c) = E|ψ(c) .
+
+Training the EC emulator consists of building a basis to span
+
+an eigenvector subspace. For this we must obtain exact eigenvectors (wavefunctions) |ψ (c[i]) for a set of NEC points c1, . . . , cNEC across the chosen 16-dimensional parameter domain of the LECs. We formulate the Schrödinger equation for 4He as an eigenvalue
+
+equation using the no-core shell model (NCSM) [28]. This is a
+
+variational basis-expansion method, also known as “conﬁguration
+
+interaction” in quantum chemistry. The exact wave function of the
+
+Hamiltonian H(ci ) is expanded in eigenfunctions of the harmonicoscillator (HO) potential, yielding a Hamiltonian represented as a
+
+matrix in this HO basis that is subsequently diagonalized. Consid-
+
+ering low-energy states motivates a truncation of this expansion
+
+based on a maximum number of oscillator quanta Nmax. Another parameter characterizing the basis is the oscillator frequency h¯ .
+
+For Nmax → ∞, the choice of frequency is arbitrary, but for each truncated basis there is a residual dependence of results on h¯
+
+that has to be assessed [29,30]. The underlying many-body prob-
+
+lem is translationally invariant and thus preferably expressed in relative coordinates. For few-body systems like 4He it is possible
+
+to proceed this way, which includes an exact evaluation of the
+
+four-fermion antisymmetrizer. For systems with more than four
+
+nucleons, it is however computationally more eﬃcient to antisym-
+
+metrize in single-particle coordinates [31]. To leverage a compari-
+
+son between the EC emulator and exact solutions we truncate the
+
+HO basis expansion at Nmax = 16 for a frequency h¯ = 36 MeV,
+which typically gives sub-percent accuracy for the ground-state energy and radius of 4He. With this choice the HO basis consists of
+
+2775 antisymmetric and translationally invariant four-body states.
+
+The nuclear potential that we employ is additive in the d =
+
+16 LECs, i.e., we can express the Hamiltonian as H(c) = H0 +
+
+d i=1
+
+ci
+
+H
+
+i
+
+,
+
+where
+
+H0
+
+includes
+
+the
+
+kinetic
+
+energy.
+
+Any
+
+Hamilto-
+
+nian with more than one interaction parameter can be written in
+
+this form, where each ci in general may be depend nonlinearly on other parameters. Furthermore, each term Hi for i = 1, . . . , 16 can be projected onto the EC subspace once and then used for an
+
+arbitrary number of emulations. Each of these corresponds to a
+
+straightforward solution of the NEC × NEC-dimensional generalized eigenvalue problem. Unless NEC is very small, it can in practice happen quite easily that the EC subspace contains vectors which
+
+are almost linearly dependent, leading to a nearly singular norm
+
+matrix. This problem can be avoided by running an orthogonal-
+
+ization on the EC vectors that stabilizes the subsequent numeri-
+
+cal steps and reveals the effective dimension of the EC subspace.
+
+Since this step leads to a unit norm matrix, it also reduces the
+
+per-sample evaluation cost at the price of additional preprocessing
+
+effort (see Appendix A).
+
+3. Results
+
+To systematically investigate the quality of the EC emulator, we
+consider several different cases for the number of LECs that we
+vary simultaneously, amounting to sampling Hamiltonians in a ddimensional parameter space, where d = 1, . . . , 16. We select the set of training points T = {c[i]}iN=E1C using a space-ﬁlling Latin Hypercube design [32]. For simplicity we deﬁne a parameter domain for each LEC between −2 and 2 in appropriate units of inverse energy, see, e.g., Ref. [22]. Validation data is drawn randomly from a uniform distribution U (−2, +2). Each validation point c corresponds to either interpolation or extrapolation from the set of
+training points, with the former being deﬁned as the case where
+c lies within the convex hull of T . By randomly generating a co-
+eﬃcient vector α with αk ≥ 0 for k = 1, . . . , d and k αk = 1 it is possible to alternatively sample only points k αkc[k] correspond-
+ing to interpolation. We present results as a cross-validation plots
+where we consider emulated values as a function of the exact
+ones. In these plots we include results for polynomial interpolation
+
+2
+
+S. König, A. Ekström, K. Hebeler et al.
+
+Physics Letters B 810 (2020) 135814
+
+Fig. 1. Comparison of different emulators for the 4He ground-state energy using 12 training data points to explore a space where three LECs are varied. The left panel includes samples for both interpolation (solid symbols) and extrapolation (semi-transparent symbols). See main text on how these are deﬁned. The right panel shows the same data restricted to interpolation samples (note the smaller axis range).
+
+Fig. 2. Comparison of different emulators for the 4He ground-state energy using 64 training data points to explore a space where all 16 LECs are varied.
+and a Gaussian process for comparison. The Gaussian process is constructed using a standard squared exponential kernel with hyperparameters estimated from the maximum of the marginal loglikelihood of the calibration data. A Python script able to run calculations of this type is provided as Supplemental Material along with this Letter, with a brief description given in the appendix.
+A representative example is shown in Fig. 1. In this case, calculations for the 4He ground-state energy are emulated as a function of three LECs using 12 training data points obtained in an Nmax = 16, h¯ = 36 MeV NSCM model space. Eigenvector continuation is seen to work exceptionally well (the difference to exact calculations for each point is negligibly small and cannot be resolved in the plot), whereas polynomial interpolation and the Gaussian process struggle to provide accurate results even when we consider only validation points corresponding to interpolation within the convex hull of the set of training points (right panel in Fig. 1).
+In fact, EC can achieve excellent results even with fewer than 12 training data points in this particular case. Furthermore, EC requires only a moderate increase in the number of training data as the dimension of the parameter space is increased. In Fig. 2 we show results for the 4He energy with all 16 LECs varied, using the same Nmax = 16, h¯ = 36 MeV NSCM model space as before. It is evident how EC can still provide accurate results while polynomial interpolation and the Gaussian process fail completely to emulate the data, even though only interpolation is considered in Fig. 2.
+To fully appreciate the eﬃciency gain provided by the EC method, it is important to compare the overall computational cost
+
+Fig. 3. Speedup factor (ratio of estimated required ﬂoating-point operations) of EC emulation compared to direct calculation as function of the number of samples, i.e., number of calls to the emulator. The curve shows the result corresponding to the setup as in Fig. 2, i.e., varying 16 LECs and using an EC subspace constructed from 64 training data points. The assumed number of matrix-vector products required for a Lanczos diagonalization in the full Nmax = 16 space is Nmv = 80 for this case (see appendix and main text for details). The theoretical limit indicates the max speedup reached asymptotically in the number of samples, which is 614 in the present case.
+of the different methods considered above. The cost of emulating with EC is not severe because all relevant matrix operations, i.e., setting up the target Hamiltonian and solving a generalized eigenvalue problem, need only be performed in the small EC subspace. Besides the requirement of carrying out NEC exact calculations there is a one-time cost of matrix-matrix-matrix multiplications coming from projecting the Hamiltonian to the EC subspace. Thus, the beneﬁt of emulating with EC will improve with the number of calls to the emulator. Asymptotically in the number of emulator calls, the speedup of using EC is proportional to (M/NEC)2, where M is the dimensionality of the full-space problem. Typically, we ﬁnd NEC ≈ 10 − 100 for problems with M ≈ 10000, thus easily yielding a speedup factor ∼ 104 or more. In Fig. 3 we show the speedup we achieved for the 4He problem benchmarked here. In this particular case the maximum speedup is limited to “only” a factor 614, stemming from the still comparatively small model space that suﬃces for the 4He calculation; it grows rapidly once one considers heavier nuclei. A detailed analysis of the computational cost is provided in the appendix.
+With EC emulation we can eﬃciently sample all nuclear observables accessible by, e.g., the NCSM method across a relevant domain of LEC values with unprecedented eﬃciency. In Fig. 4 we present a proof-of-principle application by correlating selected observables in 2H and 4He across 104 LEC samples at NNLO [13,22]. Without EC emulation this would be an expensive analysis due to
+
+3
+
+S. König, A. Ekström, K. Hebeler et al.
+
+Physics Letters B 810 (2020) 135814
+
+Fig. 5. Cross validation for the 4He ground-state radius squared using 128 training data points to explore a space where all 16 LECs are varied. The thicker uncertainty bars indicate 68.2% intervals obtained by considering distributions obtained from 32 additional training data sets in addition to the original sample, while the faint thinner ones indicate the full range of results for each point.
+
+Fig. 4. Energy-radius correlation between 2H and 4He based on 104 different values of the 16 LECs that govern the NN+3N interaction at NNLO. One-dimensional distributions of the emulated values for each observable are shown on the diagonal. The LECs were varied within a 10% of the nominal NNLOsat [22] values. The set of panels in the ﬁgure is symmetric with respect to the diagonal. Remarkably, the entire set of EC evaluations takes less than one minute on a standard laptop, a 100-fold speedup compared to exact calculations.
+the large number of three- and four-body calculations. The significance of EC emulation increases dramatically for heavier nuclei and enables important but otherwise prohibitively expensive studies [33]. The known energy-radius correlation in 4He stands out. The results also indicate that the radius of 2H only sets a lower bound on energy and radius of the 4He. This type of study shows the complementary information content in different observables. Additional observables, including 3H, as well as further details about this analysis are provided in the appendix.
+Although GP interpolation cannot deliver the observed subpercent accuracy of EC emulation, the GP method provides an uncertainty estimate of the output value. For EC, a ﬁrst detailed analysis of its rate of convergence as the number of training points is increased has been performed in Ref. [34]. However, even without a fully developed theory for EC uncertainties, we can make the following remarks: First, EC is a variational method. This can be seen directly by noting that it is based on constructing a subspace: considering the original Hamiltonian in diagonalized form, it is clear that removing any of the basis vectors can only increase the lowest eigenvalue of the remaining operator. Therefore, EC-emulated (energy) eigenvalues will always be larger than or equal to the true result, i.e., resulting in one-sided error bars. Note, however, that this argument does not apply to other operators evaluated in the EC subspace. Second, the fact that EC provides remarkably accurate results with only a small amount of training data, as well as the beneﬁt that it can reliably both interpolate and extrapolate, can be exploited in order to estimate the uncertainty based on removing different points from the training set, giving a range of values for each emulation target point. For many applications, this may be an eﬃcient strategy to assess how converged the EC-emulated values are. For a more thorough analysis one can use various training sets of the same size and analyze the distribution of results. We have used this strategy to obtain the results for the 4He ground-state radius squared shown in Fig. 5. Speciﬁcally, the ﬁgure shows un-
+
+certainty bars obtained by considering 32 additional training data sets of 128 points each. The thicker uncertainty bars correspond to 68.2% intervals obtained from the distribution of these results, while the faint thinner ones indicate the full range of results for each point. The results indicate that the size of the resulting uncertainty bars correlates well with the degree of deviation from the exact results and hence serve as a possible reasonable estimate for the uncertainties.
+4. Conclusion and outlook
+We have demonstrated how EC can be used to construct an eﬃcient and accurate emulator of eigenvalue problems with continuous and high-dimensional parametric dependencies. Moreover, for systems with a matrix representation that linearly depends on a set of parameters, the EC method enables a substantial computational speedup while maintaining high-accuracy outputs compared to exact solutions of the original problem. This is achieved by constructing a tailored low-dimensional subspace spanned by exact eigenvectors for a set of “training” points in the parameter space. We constructed an eﬃcient and accurate emulator of the quantum-mechanical solution of the 4He nucleus, considering its ground-state and squared radius as concrete observables. The computational speedup offered by the EC emulator is essential for sampling high-dimensional regions in the parameter domain of any model with the purpose of, e.g., optimization and uncertainty quantiﬁcation, where the required large number of exact calculations would be prohibitively expensive. For nuclear physics, the EC method can be a key ingredient to facilitate large-scale MarkovChain Monte Carlo evaluations of relevant Bayesian posteriors of the parameters in EFTs or models of the nuclear forces. Applications to this and related studies are already under way.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have appeared to inﬂuence the work reported in this paper.
+Acknowledgements
+This work was supported by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Project-ID 279384907 – SFB 1245, The U.S. Department of Energy (DE-SC0018638 and DE-AC52-06NA25396), and the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation
+
+4
+
+S. König, A. Ekström, K. Hebeler et al.
+
+Physics Letters B 810 (2020) 135814
+
+Fig. 6. Emulated sample of how selected observables in 2H, 3H, and4He co-vary with each other at 104 different values of the 16 LECs that govern the NN+3N interaction at NNLO. The set of panels in the ﬁgure is symmetric with respect to the diagonal. Remarkably, the entire set of EC evaluations less than two minutes on a standard laptop.
+
+programme (Grant agreement No. 758027). This material is based upon work supported by the U.S. Department of Energy, Oﬃce of Science, Oﬃce of Nuclear Physics, under the FRIB Theory Alliance award DE-SC0013617. We thank the Institute for Nuclear Theory at the University of Washington for hospitality during program INT 19-2a Nuclear Structure at the Crossroads.
+
+Appendix A. Cost comparison
+
+For the following analysis, we let M = M(Nmax) denote the actual dimension of the model space considered in a given calculation (suppressing the dependence on the number of nucleons). Furthermore, NEC is the number of training data points, i.e., the number of states spanning the EC subspace, while N denotes the number of requested samples. We assume that suﬃcient memory is available to store intermediate results as necessary and we limit the analysis to basic estimates for the required operations, not taking into account speciﬁc optimizations that may be used in practice.
+
+• We ﬁrst consider the cost of performing a single calculation
+
+in the full M-dimensional space. Setting up the Hamiltonian,
+
+given by a part independent of LEcs plus a linear combination
+
+of terms for each individual LEC, H = H0 +
+
+NLEC
+α=1
+
+c
+
+α
+
+H
+
+α
+
+,
+
+costs
+
+a total of 2NLEC M2 ﬂoating-point operations. Subsequently cal-
+
+culating the ground-state energy with a Lanczos-like algorithm
+
+has a complexity that is dominated by performing Nmv Mdimensional matrix-vector multiplications, each of which costs M2 operations. Note that the speciﬁc value of Nmv depends on the desired accuracy of the calculation as well as on the prop-
+
+erties of the Hamiltonian. In particular, Nmv typically grows with increasing M. Neglecting other aspects of the diagonalization procedure, we arrive at a total cost of M2 × (2NLEC + Nmv) operations.
+
+• Multiplying the above by N gives the cost for a direct sampling
+
+within the full space. • Setting up an emulator has a base cost of NEC × M2 × (2NLEC +
+Nmv). For polynomial interpolation and Gaussian process emulation we take this as the total cost and assume the subse-
+
+quent cost for obtaining samples is negligible.
+
+• Setting up sampling based on EC requires some additional
+
+work.
+
+1. Given the training set {ci }iN=E1C , calculating the norm matrix
+
+involves
+
+(neglecting
+
+symmetry)
+
+N
+
+2 EC
+
+M -dimensional
+
+vector-
+
+vector products, amounting to a cost of 2NE2C M operations.
+
+2. Similarly, reducing the individual Hamiltonian terms to the
+
+training subspace costs NEC M-dimensional matrix-vector
+
+multiplications
+
+plus
+
+another
+
+N
+
+2 EC
+
+vector-vector
+
+multiplica-
+
+tions, amounting to a total cost of (NLEC + 1) × (2NEC M2 +
+
+2NE2C M).
+
+• For each point sampled using EC, the Hamiltonian setup
+
+then only needs to be performed in the subspace, amounting
+
+5
+
+S. König, A. Ekström, K. Hebeler et al.
+
+Physics Letters B 810 (2020) 135814
+
+to 2NLEC NE2C operations per sample. Solving the generalized
+
+eigenvalue
+
+problem
+
+costs
+
+another
+
+14N
+
+3 EC
+
+operations
+
+[35].
+
+• The sampling cost can be reduced by performing an ini-
+
+tial orthogonalization of the {ci}iN=E1C (which we assume to
+
+be achieved through a singular-value decomposition costing
+
+about 6M NE2C + 11NE3C operations [35]), leaving only the solu-
+
+tion of a standard symmetric eigenvalue problem and thus a
+
+cost
+
+of
+
+26N
+
+3 EC
+
+/3
+
++
+
+O(N
+
+2 EC
+
+)
+
+operations
+
+per
+
+sample
+
+[36].
+
+Appendix B. Emulating the relation between selected few-body observables
+
+Fig. 6 presents the results from sampling the mutual codependence of a larger set of observables in 2H, 3H, and 4He. The
+LECs were drawn using lating hypercube sampling within a param-
+eter domain deﬁned from a 10% variation of the nominal NNLOsat values. This represents a typical size of a relevant parameter do-
+main of a chiral interaction. Given the small numerical value of the LEC cE ≈ −0.04 in NNLOsat, the limit of this particular LEC is multiplied with a factor of 20. This makes the resulting domain limit
+in this direction comparable with the other LEC limits.
+As expected, the results from the sampling show a strong correlation between all observables in 2H. The same observation can be made between the observables in 3H and 4He. The lack of correlation between A = 2 and A = 3, 4 observables clearly indicates the effect of the 3N interaction that is not present in the A = 2 system.
+
+Appendix C. Python code
+
+We provide the Python code ec_xval.py as Supplemental Material. This program is a simpliﬁed version of the script that was used to generate the cross-validation plots shown in the main text. Matrices required as input data (NCSM Hamiltonian along with corresponding representation of radius squared operator) are provided as well. Due to storage limitations, these matrices are restricted to rather small NCSM model spaces, but they nevertheless provide representative examples. It is our hope that this code will facilitate applications of eigenvector continuation to a variety of cases where eﬃcient and accurate emulators are required. Making use of freely available Python packages, the code generates cross validation plots that compare EC to both a Gaussian process and simple polynomial interpolation.
+Running a cross validation is as simple as typing
+
+$ python3 ex_xval.py -d 3 -n 6
+
+in the terminal. This will generate a cross-validation plot for a three-dimensional parameter space, using 6 EC basis vectors. By default, the cross validation is run using only eigenvector continuation. In order to compare at the same time to polynomial interpolation and a Gaussian process, as shown in the main text, -pge can be given as an option to enable all emulators. A number of further aspects can be controlled by passing command-line options, a full list of which, along with explanations, is printed to the terminal by running:
+
+$ python3 ex_xval.py --help
+
+Appendix D. Supplementary material
+
+Supplementary material related to this article can be found online at https://doi.org/10.1016/j.physletb.2020.135814.
+
+References
+[1] G. Hagen, T. Papenbrock, M. Hjorth-Jensen, D.J. Dean, Rep. Prog. Phys. 77 (2014) 096302, arXiv:1312.7872 [nucl-th].
+[2] K. Hebeler, J.D. Holt, J. Menéndez, A. Schwenk, Annu. Rev. Nucl. Part. Sci. 65 (2015) 457, arXiv:1508.06893 [nucl-th].
+[3] H. Hergert, S.K. Bogner, T.D. Morris, A. Schwenk, K. Tsukiyama, Phys. Rep. 621 (2016) 165, arXiv:1512.06956 [nucl-th].
+[4] A. Tichai, P. Arthuis, T. Duguet, H. Hergert, V. Somá, R. Roth, Phys. Lett. B 786 (2018) 195, arXiv:1806.10931 [nucl-th].
+[5] C. Barbieri, A. Carbone, Self-consistent green’s function approaches, in: M. Hjorth-Jensen, M.P. Lombardo, U. van Kolck (Eds.), An Advanced Course in Computational Nuclear Physics: Bridging the Scales from Quarks to Neutron Stars, Springer International Publishing, Cham, 2017, pp. 571–644, arXiv:1611.03923 [nucl-th].
+[6] T.D. Morris, J. Simonis, S.R. Stroberg, C. Stumpf, G. Hagen, J.D. Holt, G.R. Jansen, T. Papenbrock, R. Roth, A. Schwenk, Phys. Rev. Lett. 120 (2018) 152503, arXiv: 1709.02786 [nucl-th].
+[7] E. Epelbaum, H.-W. Hammer, U.-G. Meißner, Rev. Mod. Phys. 81 (2009) 1773, arXiv:0811.1338 [nucl-th].
+[8] R. Machleidt, D.R. Entem, Phys. Rep. 503 (2011) 1, arXiv:1105.2919 [nucl-th]. [9] H.-W. Hammer, A. Nogga, A. Schwenk, Rev. Mod. Phys. 85 (2013) 197, arXiv:
+1210.4273 [nucl-th]. [10] K. Hebeler, arXiv:2002.09548 [nucl-th], to appear in Phys. Rep. [11] A. Ekström, B.D. Carlsson, K.A. Wendt, C. Forssén, M. Hjorth-Jensen, R. Mach-
+leidt, S.M. Wild, J. Phys. G 42 (2015) 034003, arXiv:1406.6895 [nucl-th]. [12] R. Navarro Pérez, J.E. Amaro, E. Ruiz Arriola, Phys. Rev. C 89 (2014) 064006,
+arXiv:1404.0314 [nucl-th]. [13] B.D. Carlsson, A. Ekström, C. Forssén, D.F. Strömberg, G.R. Jansen, O. Lilja, M.
+Lindby, B.A. Mattsson, K.A. Wendt, Phys. Rev. X 6 (2016) 011019, arXiv:1506. 02466 [nucl-th]. [14] R.J. Furnstahl, D.R. Phillips, S. Wesolowski, J. Phys. G 42 (2015) 034028, arXiv: 1407.0657 [nucl-th]. [15] R.J. Furnstahl, N. Klco, D.R. Phillips, S. Wesolowski, Phys. Rev. C 92 (2015) 024005, arXiv:1506.01343 [nucl-th]. [16] S. Wesolowski, N. Klco, R.J. Furnstahl, D.R. Phillips, A. Thapaliya, J. Phys. G 43 (2016) 074001, arXiv:1511.03618 [nucl-th]. [17] E.A. Coello Pérez, T. Papenbrock, Phys. Rev. C 92 (2015) 064309, arXiv:1510. 02401 [nucl-th]. [18] X. Zhang, K.M. Nollett, D.R. Phillips, Phys. Lett. B 751 (2015) 535, arXiv:1507. 07239 [nucl-th]. [19] J.A. Melendez, S. Wesolowski, R.J. Furnstahl, Phys. Rev. C 96 (2017) 024003, arXiv:1704.03308 [nucl-th]. [20] S. Wesolowski, R.J. Furnstahl, J.A. Melendez, D.R. Phillips, J. Phys. G 46 (2019) 045102, arXiv:1808.08211 [nucl-th]. [21] A. Ekström, C. Forssén, C. Dimitrakakis, D. Dubhashi, H.T. Johansson, A.S. Muhammad, H. Salomonsson, A. Schliep, arXiv:1902.00941 [nucl-th], 2019. [22] A. Ekström, G.R. Jansen, K.A. Wendt, G. Hagen, T. Papenbrock, B.D. Carlsson, C. Forssén, M. Hjorth-Jensen, P. Navrátil, W. Nazarewicz, Phys. Rev. C 91 (2015) 051301, arXiv:1502.04682 [nucl-th]. [23] S. Elhatisari, D. Lee, G. Rupak, E. Epelbaum, H. Krebs, T.A. Lähde, T. Luu, U.-G. Meißner, Nature 528 (2015) 111, arXiv:1506.03513 [nucl-th]. [24] S. Elhatisari, N. Li, A. Rokash, A.J. Manuel, D. Du, N. Klein, B.-n. Lu, U.-G. Meißner, E. Epelbaum, H. Krebs, T.A. Lähde, D. Lee, G. Rupak, Phys. Rev. Lett. 117 (2016) 132501, arXiv:1602.04539 [nucl-th]. [25] C.E. Rasmussen, C.K.I. Williams, Gaussian Processes for Machine Learning, The MIT Press, 2006. [26] L. Neufcourt, Y. Cao, W. Nazarewicz, E. Olsen, F. Viens, Phys. Rev. Lett. 122 (2019) 062502, arXiv:1901.07632 [nucl-th]. [27] D. Frame, R. He, I. Ipsen, D. Lee, D. Lee, E. Rrapaj, Phys. Rev. Lett. 121 (2018) 032501, arXiv:1711.07090 [nucl-th]. [28] B.R. Barrett, P. Navratil, J.P. Vary, Prog. Part. Nucl. Phys. 69 (2013) 131. [29] S. König, S.K. Bogner, R.J. Furnstahl, S.N. More, T. Papenbrock, Phys. Rev. C 90 (2014) 064007, arXiv:1409.5997 [nucl-th]. [30] R.J. Furnstahl, G. Hagen, T. Papenbrock, K.A. Wendt, J. Phys. G 42 (2015) 034032, arXiv:1408.0252 [nucl-th]. [31] P. Navratil, G.P. Kamuntavicius, B.R. Barrett, Phys. Rev. C 61 (2000) 044001, arXiv:nucl-th/9907054 [nucl-th]. [32] M.D. McKay, R.J. Beckman, W.J. Conover, Technometrics 21 (1979) 239. [33] A. Ekström, G. Hagen, Phys. Rev. Lett. 123 (2019) 252501, arXiv:1910.02922 [nucl-th]. [34] A. Sarkar, D. Lee, arXiv:2004.07651 [nucl-th]. [35] G.H. Golub, F. van Loan Charles, Matrix Computations, John Hopkins University Press, 1996. [36] J.W. Demmel, Applied Numerical Linear Algebra, SIAM, 1997.
+
+6
+

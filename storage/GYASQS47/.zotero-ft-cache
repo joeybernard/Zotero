@@ -1,0 +1,676 @@
+Radio ScienceV, olume 33, Number 6, Pages1901-1913,November-December1998
+Three-dimensional nonlinear simulations of the gradient drift instability in the high-latitude ionosphere
+P. N. Guzdar, N. A. Gondarenko, and P. K. Chaturvedi Institutefor PlasmaResearchU, niversityof Maryland,CollegePark
+
+Air ForceResearchLaboratory,Hanscom,MA
+
+Abstract. Nonlinearthree-dimensiona(l3-D) simulationsof the gradientdrift instability (GDI) arepresentedfor a two-dimensionaelquilibriumdensitygradientrepresentinga polar cap plasma patch. The overall evolution of structuring of the plasma patch is influenced markedly by the effects caused by dynamics parallel to the geomagnetic field. The !ong wavelengths(kLn•_l) are stronglystabilizedin the 3-D case,and the nonlinearstate is dominatedby smallermesoscale(skLn>>l) (where k and Ln are the mode number and densitygradientscalelength, respectively). The resultsprovidean interpretation to the observationsat the high-latitude ionosphereindicating a generation of mesoscale irregularities associatedwith the polar cap patcheswhen the interplanetary magnetic field ([MF) Bz is southwardand antisunwardconvectionprevailsoverthe polar cap. The polar cap patchesare observedto convectto largedistances(•3000 km) undergoingstructuring while maintaining their distinct identity. Thus we suggest here that the inclusion of three-dimensional effectsis key to a successfulinterpretation of high-latitude irregularities, as well as a prerequisite for a credible simulation of these processes.
+
+1. Introduction
+The ionosphericplasma at high latitudes is known to display plasma density and electric field structure whichencompasseaswiderangeof both spatial(hundredsof kilometersto metersor less) and temporal (hoursto minutes)scales[Tsunoda1, 988;Kelley, 1989;Crowley,1996](seealsothe specialsectionon coupling, energetics, and dynamics of atmospheric regionsR, adioScience2, 9(1), 155-405,1994).These irregularities have been studied using ground-based radio and optical techniques, in situ spacecraft measurements, and scintillation techniques, among others. The large or macroscales(hundredsof kilometers) are obviouslyof global origin and have been characterizedas "patches"(in the polar cap), or "blobs"(at aurorallatitudes) [Weberet al., 1984, 1986; Basu et al., 1990; Basu et al., 1994]. The mediumscales(alsoreferredto as "mesoscale")in, the range of 0.1 km to a few kilometers, may be the result o[ a local processsuch as a plasma instability. The observations[Weber et al., 1986; Basu et al., 1994]and modelingstudies[Sojkaet al., 1993] indicate that the patchesconvectto long distances, --•3000km [Weberet al., 1986]and for long periods
+oftime (hours)whileretainingtheirdistinctidentity.
+Copyrigh1t 998bytheAmericanGeophysicUalnion.
+Paper nmnber 98RS01703.
+0048-6604/98/98RS-01703$11.00
+
+The polar cap patches in effect very much resemble a plasma cloud, as they drift from the cusp region to the polar cap (in the antisunwarddirection at speeds•100-1000 m/s). Mesoscaleirregularitiesare observed in association with these patches throughout the polar cap region [Weber et al., 1984, 1986; Tsunoda,1988;Basu et al., 1990;Basu et al., 1994], with irregularities often being more intense on the trailing edgethan on the leadingedge[Weberet al., 1984], suggestingthat the gradientdrift instability
+(GDI) is a likelygenerationmechanism. In this paper, three-dimensiona(l3-D) nonlinear
+simulations are presented for the gradient drift instability (GDI). The 3-D analytical treatments in the collisionalregime for the GDI [Drake et al., 1988; Chaturvedi and Huba, 1987] show that dynamics parallel to the geomagnetic field are stabilizing at long wavelengths. We first present numerical results of the role of the parallel electric field on the linear growth rate of the nonlocal GDI for a two-dimensional density equilibrium with variation transverse to the ambient magnetic field and variation along the field. We then present a simulation of the nonlinearevolutionof the patches/blobsat late times. Numerically, a code for the nonlocal GDI, including the parallel dynamics, is developedfor an equilibrium transversedensity gradient profile more realistic than the ones hitherto considered, as well as one with a variation along the field line. Numer-
+
+1901
+
+1902
+
+(;[•ZDAR ET AL.- SIMULATIONS OF (;RADIENT DRIFT INSTABILITY
+
+ical siInulations show that with the inclusion of 3-D tential, temperature in energy units, and the neu-
+
+effects, nonlinear evolution is dolninated by a gener- tral wind velocity, respectively. Furthermore, Dñi-
+
+ation of lnesoscales,and the deleterio•s long wave- •2i,•cTi/•ieBDoi,i- T•/m•%,V•- me•/e/hea2nd
+
+lengths are suppressed. The evolution takes place • -- e,Bo/m•c (e• -- •e) is the cyclotronfre-
+
+on timess:alescomparable to observation. The ex- q•mncyof speciesc•(c,i). Also, u• - • + • is
+
+tent of smaller-scalegeneration is determined by the the s•m• of the electron-ion and electron-neutral col-
+
+ambient parameters and the characteristic parallel lision frequencies,and •i,• is the ion-neutral collision
+
+s(:alesize of the systeln (s•mhas the parallel size frequen{:y. In the above set, ion inertia effectshave
+
+of polar ca, p patch/auroral blob). This presentsa not been incl•lded. For the coordinate system rep-
+
+natural explanation of the observation of polar cap resentingthe high-latit•lde ionosphere,Earth's field
+
+patches traveling large distances while undergoing lines are nearly vertical and assumed aligned with
+
+stntct•ring, but still retaining their identity. In the the z axis, the x axis points so•lthward, and the y
+
+two-dimensiona(l2-D) fluid simulations(transverse axis is in the west-east direction. In the frame of
+
+to the ambientmagneticfield) [Mitchellet al., 1985] reference of the patch, the flow velocity is in the x
+
+due to the lack of stabilization by parallel electron direction. As a consequencein the stationary Earth
+
+dynamics, the instability is very strong, thus break- frame, the patch moves in the negative x direction,
+
+ing up the original patch into smaller patches in a which is the northward direction. Thus the left side
+
+very short period of time, less than an hour.
+
+of the 1)at(:hwith the positive density gradient is the
+
+2. Equations for the Gradient Drift Instability
+
+leading edge, and the right side of the patch with the negative density gradient is the trailing edge. A set of typical parameters at the high-latitude ionosphere
+
+The starting equations are the continuity and moment•un transfer equations for electrons and ions, and, the (:•rrent-conservation equation. The derivation of eq•mtions describing the (;DI with parallel effectsis as follows. For the GDI modes the primary
+
+is T• • 7} • 0.1 eV; L,• • 50 kin; V• • 500 m/s;
+70- V,•/L,•• l0-2 s-•; • • l07 rad/s;•i • 102 tad/s;•:•i• 5 x l03 s- •}' and•:,• • 0ß 1 s-•
+Next, we distresssome well-known limits of the
+linear gradient drift instability from the above set
+
+motion acrossthe magnetic field is the E x B drift, of eq•mtions,with specialattention to the effectsof
+
+and the inclusion of parallel dynamics introduces the parallel dynamics and its application to polar cap
+
+resistive electron motion. The current conservation
+
+patch/auroral blob. In the mesoscalesizelimit, we
+
+equation, also known as the "potential" or "vortic- can do a simple local linear theory analysis by asity" equation, has contrib•tions from differential col- suming all the perturbed quantities to be of the
+
+lisional lnotion between ions and electrons in a di- form exp(7t + ikzz + ikvy). The growthrate for
+
+rection re:rossthe magnetic field and from the paral- the gradientdrift instability (GDI) with finite k• is lel resistive electron motion. The two coupled equa- [Chaturvediand Huba,1987]
+
+tions, for a {:ollisionalplasma in a •miforin magnetic field along the z direction, describing these modes are thus the electron continuity equation and the vorticity equation [Drake e•tal., 19881,
+
+k 2 - _
+2 kv+ k• •,•
+
+1 dno
+
+c9n
+
+c
+
+c9t B0
+
+c9 1
+c9z
+
+c9½ T•. c9n
+
++DñiXq7O21ezn•]eOz enOz (2)
+where most of the symbolshave their standard meanings: ?•,,c, e, 4•, T, and V• refer to plasma density, velocity of light, electronic charge, electrostatic po-
+
+Here •0 is the equilibrium density. The neutral wind flow velocity was asstuned to be in the posi-
+tive x direction. The above expression shows that finite k• has a strong stabilizing influence, especially
+for k2 << k•2•i/•.•2i•. This is sobecauseof the largevahmof the factor(•e•i/l•el•in) = 106-108
+in the F region. Th•s long wavelengths satisfying
+h_]>_2(•.&2i/•4..••,/•2)arestrongslytabilizeHde. re
+L• is the characteristicscalesizeof the patch/blobin the parallel direction, 500-1000 kin. However, for a
+realistic eq•filibri•un, which has variations along the field, the choice of k• is not arbitrary and is deter-
+
+GUZDAR ET AL.: SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+1903
+
+mined by the nat•tral variation of the eq•filibrium dissipation,the given profile can be viewed as a equi-
+
+density. Therefore in the next section we first inves- lil)ri•un based on the timescale arguments. Thus our
+
+tigate, using a two-dimensional linearized code, the two-dimensional patch model is an improvement on
+
+linear growth and the three-dimensional mode str•m- the previm•sanalysesof the GDI, especiallyin its ap-
+
+ture of these lnodes. This is then followed by a fifily plication to the high-latit•de environment consisting
+
+nonlinear three-dimensional sim•fiation of the GD[ of polar cap patches/auroralblobs.
+
+instability.
+
+To {:learly show the effect of the third dimen-
+
+sion along the field lines, we first comp•xte the lin-
+
+3, Numerical
+
+Results
+
+earized growth rates and typical mode structure for
+
+the GDI modesobtained by linearizing the systemof
+
+We rewrite the set (1)-(2)
+fOTlll as
+
+in
+
+their dilnensionless
+
+eq•xations(4)
+
+and (5).
+
+A
+
+2-D
+
+finite differencetime-
+
+dependent code has been developed to numerically
+
+solve the linearized e(pmtions. The number of grid
+
+Lo
+
+pointsin x and z are N.•=101 and N•----51.An initial
+
+pert•rbation,?•- O.001sin(27rmy/Lsvi)n(7rx/L•),
+
+v.
+
++ --- o.
+
+(5) was introd•(:ed, with m the mode nmnber in the V
+direction. The diff•sion coet•cients chosen for these
+
+r•msareDñ--10-a and•ll:10 -5 Thebmmdary
+
+where the following norrealizations have been used:
+
+t
+
+z • z/L•, x • x/Lo, and, where Lo is the patch
+
+scale length, No is the •mdist•irbed ambient density
+
+of the backgro•mdionosphereawayfrom patch/blob
+
+(independenot f x); andthe dimensionlespsarameter
+
+/• is
+
+9•9• L2o
+
+-
+
+(7)
+
+conditions •sed for the pert•xrbed density and potential are the following.In the x direction,O(0,•, z) 4,(L:•,V,z) = n(0, V,z) = n(L.•,,V,z) = 0. For the bo•mdary conditions in the z direction we choosethe Neumann conditions for both the perturbed density
+and the potential. In Figure 2a we show the growth rate as a fimction of the mode number m for •=0, 10, 50, and 500. What is clearly seenis the reduction of the growth rate as the parameter/3 is increased. The red•tctionin the growth rate occurspreferentially for
+
+In Fig•re la we display the computation box. The the lower vahxesof m. The nmnerically computed size of the box in the x, y directions transverse to the growth rates for the fifily nonlocal case are in quali-
+
+direction z of the geomagnetic field is 8w, whereas tative agreementwith the local theory growth given
+
+the size of the box along z is 4w. In Figure lb, the in equation(3). However,for this nonlocalcaseboth
+
+variation of the density profile in the x direction is the k.• and k• are determined by the variation in the
+
+shown. The density gradually decreasesto the ambi-
+ent levels,awayfromthe patch/blobboundary.This is clearly a fairly realistic representation of the density gradient likely to exist at the trailing edge of a
+convecting polar cap patch. Previous work on the gradient drift instability for 3-D perturbations, ac-
+
+equilibrium density profile. Also, sincethis is a timedependentcode, it is the fastest-growingeigenmode for a given m that the code convergesto. In Figure 21) we show the isosurface for the eigenmode for m=5 and /•=200. The mode has localized on the •mstable density gradient side of the plasma patch.
+
+counting for the parallel dynamics, consideredeither Along the geomagneticfield (z direction),there is a
+
+a simpleexponentialgradient [Chaturvediand Huba, finite lo½:alizationof the mode. The initial perturba-
+
+1987]or the "water-ba•' model(whichwas applied tion did not have any variation along the field line.
+
+to plasmacloudstudies)[Drake et al., 1988]. The The structure developed along the field line in the
+
+variation of the density profile along the direction region of the patch where the instability growth is
+
+of the geomagneticfield (z axis)is shownin Figure the strongest. This natural creation of parallel elec-
+
+l c. In the absenceof any dissipation, this is a true tric field in the patch is responsible for the reduc-
+
+equilibrium. In the presence of the small dissipa- tion of the growth rates. The parallel electric field
+
+tion, this profile changesvery slowly due to diffusion tries to short out the transverse electric field caused
+
+on the timescale of the instability and the nonlin- by the instability, thereby reducing the growth rate.
+
+ear structuring. Therefore, even in the presenceof Also, since the fastest-growing modes are obtained
+
+1904
+
+GUZDAR ET AL.- SIMULATIONS OF GRADIENT [)RIFT INSTABILITY
+• B
+
+0
+b) 1.30
+1.20
+1.10 1.00
+4•
+c)
+
+8•: x
+x
+
+1.0
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2.0
+
+n(x,z)
+
+Figure1. (a) Geometrayndsizeofthethree-dimenscioonmputatiobnox;(b)equilibrium densityprofilein thex directiona; nd(c) equilibrimndensityprofilein thez direction.
+
+(•IUZI)AR. ET AL.: SIMULATIONS
+
+OF GRADIENT DRIFT INSTABILITY
+
+1905
+
+a)
+
+0.7
+
++ •---o
+
+0.4
+
+--l-- •=.•o
+
+•
+
+•=5o
+
+•
+
+•=soo
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+nl
+
+b)
+
+Figure 2. (a) Growth rate as a functionof modenumberm for fi=0, 10, 50, and 500, and
+(b) isosurfacoef thepotentiaflorm=5, fi=200,andDñ=Dii--10-'•.
+
+1906
+
+GUZ1-)AR ET AL.: SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+with the time-dependent code, it is also clear that
+the lowest mode number in the x direction as well as
+the z direction is the most unstable. This is consis-
+tent with the localgrowthrate in equation(3), which
+shows that the smallest values of k.•,and kz give the largestgrowthfor a givenk..qT. h•s we havedemonstrated that the inclusion of the dynamics along the field leads to significant reduction of the growth rates for the gradient drift instability in plasmas patches and as a consequencemust be included to shed light on the observedstructuring of the patches. Another important consequenceof this study is that there a nat•ral parallel electric field that developsdue to the gradient drift instability.
+We now proceed to the solution of the system of
+nonlinearequations(4) and (5). A fully nonlinear
+three-dimensional finite difference code has been de-
+veloped to solve these coupled equations. As shown in Figure 1 for a characteristic scale length of L0 of 20 kin, the size of the computation box in tim x, and y directions is 160x kin. In the z direction
+we choose L•:1000 kin. We use a value of the parameter/•=200. Typically, larger values of/• would be more realistic for the bigger patches. However, d•m to available computer resources, this choice of /• is reasonable and would be valid for the smaller-
+sizedpatchesT. he transversdeiffusionDñ----2x 10-3
+Once again, as in the caseof the linearized systemof eq•mtions,we use the Dirichlet boundary conditions for the perturbed density and potential at x=0 and L:•;. Similarly, in the z direction we use the Neumann boundary conditions at z=0 and z=L• for the pert•rbed density and potential. We initialize the perturbed density as a superpositionof re=l-70 sine modes in the y direction with random phases. The variationin the x directionis sin(7rx/L:•)for eachof the modes. Finally, as in the linear case, we do not introduce any variations for the initial perturbations in the z direction. The amplitude of each of the harmonics is assumedto be inversely proportional to the
+transverse wavenumber of the mode. The number of
+grid points used in these simluations are N•--101,
+Ny:260, and N•:51. The initial amplitudemulti-
+plier for each of the modes was assumedto be 0.001. For this set of parameters, the normalized timescale t0=200 s for a wind velocityof 100 m/s.
+In Figures 3a-3d we show the evolution of the density in the xy plane near the peak of the density profile in z, at four different instants of time, t=8, 24, 40, and 66. As in the linear case, the instability
+
+growson the unstablesideof the densitygradient. In the early nonlinearphase(t=8), the modesdevelop. However, they are not large enough in amplitude to modify the ambient density gradient. The structuring is dominated at the short wavelengthsin the y direction. As time progresses, the modes grow to large enoughamplitude to modify the original density, and the structuring leads to the formation of very fine scaledfingerspenetrating the bulk of the density gradient. This is clearly seen at the times t=24 and 40. Finally, at t=66, the fingershave penetrated to the stable side of the density gradient. What is clearly seenis that there is a significantextention of the average density gradient on the unstable side of the original density gradient, while the original density gradient on the left side, is not that significantlymodified. This is consistentwith some of the observations[Basuet al., 1990],whichshowa strong asymmetry in the gradient scale lengths between the leading and trailing edgesof the patch. In terms of the real time this corresponds to approximately 4 hmxrs.We hasten to add that the absolute
+timescale sho•xld not be taken as final since it de-
+pendson the dissipation•xsedin our code. What really matters is the relative timescalefor two different values of/J. [n a second run we used/•=10. For this case the struct•xring is very similar in spatial character to the/•J--200 case. This is to be expected since in both the cases the shorter wavelengths are the fastest growing, as shown in Figure 2a. However, the structuring occurred on a much faster timescale. It reached the level of structuring shown in Figure 3d in
+about one third the time. In earlier two-dimensional
+simulationsby Mitchell et al. [1985],the patch had disintegratedinto smaller-sizedpatchesin lessthan an ho•r due to the severity of the instability in two dimensions. In Figures 4a-4d we display the poten-
+tial (:ontours at the same instants of time as the den-
+sity in Figure 3. Since the equilibrium potential is zero for the chosen2-D density equilibrium, even at t=8, the potential perturbation localized on the unstable gradient is clearly seen. With the passageof time one sees the rapid expansion of the structure along the x direction as the fingers penetrate into the bulk of the plasma patch. The rapid acceleration of the fingering process in the nonlinear phase can be understood as follows. As the perturbation develops,very steeplocalizeddensitygradientsdevelopin the fingers. Since the growth rate of the instability is inverselyproportional to the densitygradientscale length L,•, the fingeringproceedsfaster. However,we
+
+GUZDAR ET AL.: SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+1907
+
+...0
+
+1•
+
+0
+
+•
+
+0
+
+•
+
+0
+
+•
+
+•
+
+,-4
+
+,-4
+
+1908
+
+G'UZDAR, ET AL.- SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+I2> 0 0
+'/ 'i
+
+0
+
+.- :•:•s•:::•.:.•.•.:.,•.
+
+•..
+
+:.:•.
+
+..........
+.:..•.:.. •
+
+.......
+•:.• ..
+
+tl•
+
+o
+
+•
+
+o
+
+•
+
+o
+
+z.
+
+tD
+
+0
+
+tD
+
+0
+
+•
+
+0
+
+GUZDAR, ET AL.: SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+1909
+
+have found that as we go to higher/•, the timescale lar cap patches/auroralblobs),with a realisticden-
+
+for the processincreasesbecauseof the stabilizing in- sity gradient profile. There is compelling evidence
+
+fiuenceoflarge/•, asseenin thelinearstudies(Figure of str•cturing associatedwith the gradients in the
+
+2a). In Figures5a-5dand 6a-6dwe showthe density data [Tsunoda,1988; Basu et al., 1990]. However,
+
+and potential contoursin the xz plane at t-8, 24, 40, the existing theories and simulations have not been
+
+and 66. What is seenis that in the very early phase able to explain the fact that the observed fluctua-
+
+the loc•fiization of the potential in the z direction is tion scale lengths approximately kilometers are sig-
+
+very strong. This is also consistent with our linear nificantly shorter than the ambient density •adient
+
+steadiewshichshowthis feature(Figure2b). At later scalelength (•20 kin)[Basu et al., 1990]. In addi-
+
+timeswe find that there is somenonlinearspreading tion, the polar cap patches appear to traverse large
+
+of the str•cture of the potential along the field lines. distan{:es(•3000 kin) [Weberet al., 1986], involv-
+
+One of the most interesting aspectsof the simula- ing long timescalesapproximatelyhours [Swka et
+
+tions is the generation of parallel electric fields along al., 1993; Basu et al., 1995],retainingtheir identity
+
+the field line d•e to the gradient drift instability. The even tho•gh the sci.ntillation measurements suggest
+
+potential has been norlnalized to LoVnBo/c. This that all along they were undergoing mesoscalestruc-
+
+can be viewed as an upper bound on the potential turing. This implies that the generation of mesoscale
+
+drop alongthe field lines. For Lo--20 km and Vn--lO0 structureby the GDI on the wallsof patches/blobsis
+
+m/s, this correspondsto about 100V. In o•r simu- limited soasnot to destroythe integrity of the parent
+
+lations the maximum potential is about 0.05-0.1 of patch (blob). Lineartheoriesof the 2-D E x B insta-
+
+this maximum vah•e. Thus these potentials can have bility do indicate that shorter wavelengths are more
+
+interesting consequenceson both the precipitating •mstal)le than the longer wavelengthscomparable to
+
+electrons[Rosenbe•e:qt al., 1993]andthe ionospheric the densitygradientscalelengths Isee,e.g., Guzdar
+
+oxygenionsin the high-latitude ionosphere. The ions •t al., 1982,Figure la]. However,2-D nonlinearsim-
+
+can be acceleratedout of the lower ionospherefrom •fiations•Mitahell et al., 1985]indicatethat at late
+
+the peak of the potential in the F region, to heights where other transverse heating mechanisms can efficiently accelerate them to much larger energies and into the magnetosphere. Low-energy precipitating electrons can be deflected by the potential, thereby red•tcing the number density of precipitating electrons during the occ•rrence of plasma patches. This will be investigated more thoroughly in the future by using the field-aligned potential obtained from the code and studying the dynamics of test particles (electrons)precipitatingalongthe field line or
+
+times the longer w•velengt• dominate and break
+•p the plasmainto smallerblobs. Tsunoda[1988] has suggestedthe possibility of "freezing' scalesin the high-latitudeobservations(roughlybetweenhundredsof metersto • fewkilometers),in analo• with observationsof freezingscalesin the artificial plasma
+clouds released in the ionosphere. We have clearly demonstrated by analytic ar•ments and have verified by numerical simulations that the 3-D effects ca•se a stabilization of the long wavelengths. The
+short scale sizes are stable due to diffusion. The ob-
+
+the dynamics of test oxygen ions distributed along the field line in accordancewith a hydrostatic equi-
+librium model.
+Finally, in Figure 7 we show the density as a function of x, y at z--L•/4. The ambient densitygradient on the trailing edge is shallower than the density gradient on the leading edge. The structuring process is like an anomalousdiffusionwhich causesan asymmerry in the plasma patch gradients.
+
+served density gradient scale length on the unstable sideof the patches/blob(trailingedge)isfoundto be longer than the scalelength of the blob on the stable side IBasu et al., 1990]. This suggeststhat the presenceof the small-scaledensity fluctuations manifests itself as anomalous particle transport, which leads to a preferential flattening of the density •adient on the unstable side. This aspect of observations has been clearly reproducedin our simulations(Figure
+
+4. Discussion
+
+The present study is only a first step in model-
+
+We have presented both linear two-dimensional ing the structuring of polar cap patches. Clearly,
+
+and nonlinearthree-dimensiona(l3-D) simulations there is a need to build more realistic models of the
+
+of the gradientdrift instability (GDI), applicableto patch as well as to introduce more physics into the
+
+the high-latitudeplasmadensityenhancements(po- model for the structuring. One undesireable feature
+
+1910
+
+(_;UZDAR ET AL.: SIMULATIONS OF GRADIENT DRI?T INSTABILITY
+
+0 '-,.4
+
+,.-o
+
+•o
+
+I•
+
+o
+
+•
+
+0
+
+I•Q
+
+0
+
+(:UZI)AR ET AL.- SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+1911
+
+..... :............................
+
+o o o o
+o
+::
+:
+o o o o
+o
+
+o
+
+..
+
+: ß
+
+•.;
+
+o -I....... ! i i•....
+
+o
+
+•
+
+o
+
+•
+
+o
+
+i.D
+
+o
+
+o
+
+1912
+
+C,UZDAR. ET AL.- SIMULATIONS
+
+OF GRADIENT DRIFT INSTABILITY
+
+1.50
+
+z
+
+1.25
+
+... •}.•...•.•.....•:..?:
+
+•..•.:??......"•.,:.•...-..'.:.'•..:•:•'•::½••:"-:-••:-•r-.½"•..-'."•--.:'."•.;;.i•''.!".-•"?.-.b'i"-•:':.,•.-'•'•.-?•.•..:•--:';:i-'½:•••:ii•I!•'••½:•:,.:•'"-"•'-•"i;:•,•':;
+
+1.00
+
+0.0
+
+.........
+
+:1.2.5
+
+....
+
+25.0
+
+x
+
+1.00
+
+1.11
+
+1.22
+
+1.34
+
+1.45
+
+1.56
+
+Figure 7. Density in the xy plane at z=L•/4 for t=66. The parameters used are/•=200
+andDñ:Dii=2 x 10-3.
+
+of our simulations is the dependenceof the smallscale structure size and timescale of structuring on
+the diffusion used in the code. This can be reme-
+died by introducing ion inertial effects as discussed below. Another unrealistic aspectof the presentsimulations is the amplitude and asymmetry of the x and y structures of the density irregularities. Although the structuring with our 3-D model shows that the very short scales dominate, it is important to realize that the simulated elongated fingers are not consis-
+tent with observations. There is no clear evidence
+of such strong asymmetry in the x and y directions in the fluctuation spectrum. Also, the large levels of density fluctuations of the order of 100% are not consistent with the observations, where density flucutationsare more in the rangeof 10% (R. Heelis et al., private communication,1997). One important physics aspect that has been neglected in these
+simulations is the role of the linear and the nonlinear
+
+inertial effects. For the short wavelength modesthese are important sincethe nonlinearinertial effectscan lead to breakup of the fingers, thereby removing the strong asymmetry. Furthermore, the breakup of the fingers will invariably prevent fluctuation levels as high as those obtained in our present simulations. Also, it is quite possiblethat the breakul) scalelength rattmr than dissipation will determine the shortest scale lengths allowed. Another important consideration is the fact that as the polar cap patch moves antisunward, there is a distortion of the patch as well as a time-dependence to the flow velocity, both of which can influence the evolution of the development of the gradient drift instability and the subsequent structuring. These issueswill be the systematically
+addressed in future studies.
+Acknowledgments. We acknowledgeuseful discussionswith Sunanda Basu. This researchwas sup-
+
+(-;UZDAR ET AL.: SIMULATIONS OF GRADIENT DRIFT INSTABILITY
+
+1913
+
+ported by the NSF •mder grant ATM-9416078. The
+
+sphereionosphereco•pling, Ceophys. Res. Lett.,
+
+work at Phillips Laboratory was partially supported
+
+12, 283, 1985.
+
+by AFOSR under task 2310G9.
+
+Rosenberg,T. J., Z. Wang, A. S. Rodger, J. R. Du-
+
+dehey,and K. B. Baker, hnaging Riometer and HF
+
+References
+
+Radar Measurementsof Drifting F regionElectron
+
+Ba's•, S., Su. Bas•x, P. K. Chaturvedi, and (•,. M. Bryant .lr., Irregularitystruct•xresin the cusp/cleft and polar cap regions, Radio Sci., 29, 195, 1994.
+Bas•, S., S•. Bas•, J. J. Sojka, R. W. Schunk, and E. MacKenzie, Macroscale modeling and mesoscale observations of plasma density structures in the polar (:ap, (7eophys. Res. Lett., 22, 881, 1995.
+Bas•, S•., S. Bas•, E. MacKenzie, W. R. Coley, J. R. Sharber, and W. R. Hoegy, Plasma structuring by the gradient drift instability at high latit•xdes and
+
+Density Str•mt•res in the Polar Cap, J. Geophys. Res., 98, 7757, 1993. Sojka, J. J., M.D. Bowline, R. W. Schunk, D. T. Decker, (•,. E. Voiladares, R. Sheehan, D. N. Anderson, and R. A. Heelis, Modeling polar cap F region patches •sing time varying convection, (Tcc•pl•.y._Rse. s. Lett., 20, 1783, 1993. Ts•moda, R. T., High-latitude F region irregularities: A review and synthesis, Rev. Ceophys., 26, 719, 1988. Weber, E. J., J. Buchau, J. G. Moore, J. R. Sharber,
+
+comparison with velocity shear driven processes, J. (Teophys. Res., 95, 7799, 1990. (½haturvedi,P. K., and J. D. H•fi)a, The interchange
+
+R. (•,. Livingston, J. D. Winningham, and B, W. Reinisch, F layer ionization patches in the polar cap, J. (7eophys. Res., 89, 1683, 1984.
+
+instabiliinthyigh-latitt•)xldasembalobJs.,CeophyWs.ebeEr,.,l.,J.A.Klob•mhJa.Br,•chaHu,.C.Carl-
+
+Re:s9.,2,33571, 987.
+
+son,Jr.R, .C.LivingstoOn.,delaBeaujardiere,
+
+C,rowley, G., (Jritical Review on Ionospheric Patches
+
+M. Mc.Cready, J. (;. Moore, and G. J. Bishop, Po-
+
+and Blobs, The: R•:viaw of Radio Sci., Oxford
+
+lar cap F layer patches' Structure and dynamics,
+
+University Press, 1, 1996.
+
+J. Ceophys. Res., 91, 12121, 1986.
+
+Drake, J. F., M. Mulbrandon, and J. D. Huba, Three-
+
+dimensional eq•filibrium and stability of ionospheric plasma clo•xds,Phys. Fluids, 31, 3412, 1988. (h•zdar, P. N., P. Satyanarayana, J. D. Huba, and S. L. Ossakow, [nfl•xenceof velocity shear on the Rayleigh-Taylor instability, (7eophys. Res. Lett., 9, 547, 1982. Kelley, M. ('•., The Earth's Ionosphere, Academic, San Diego, Calif., 1989.
+
+S. Basu, Air Force Research Laboratory, 29 Randolph Road, Hanscom,MA 01731. (e-mail: santimay@aol.com)
+P. K. Chaturvedi, N. A. Gondarenko, and P. N. Guzdar, Institute for Plasma Research,University of Maryland, CollegePark, MD 20742. (e-mail: guzdar@ipr.umd.edu)
+
+Mitchell, H., ,Jr. J. A. Fedder, M. J. Keskinen,
+
+and S. T. Zalesak, A simulation of high-latitude (Received January 19, 1998; revised May 8, 1998;
+
+F layer instabilities in the presence of magneto- ac(:eptedMay 20, 1998.)
+

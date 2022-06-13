@@ -1,0 +1,1294 @@
+University of Birmingham
+EMPIRE-PIC
+Bettencourt, Matthew T.; Brown, Dominic A.S.; Cartwright, Keith; Cyr, Eric; Glusa, Christian; Lin, Paul; Moore, Stan; McGregor, Duncan; Pawlowski, Roger ; Phillips, Edward; Roberts, Nathan; Wright, Steven A.; Maheswaran, Satheesh; Jones, John P.; Jarvis, Stephen
+DOI: 10.4208/cicp.OA-2020-0261 License: None: All rights reserved
+Document Version Peer reviewed version Citation for published version (Harvard): Bettencourt, MT, Brown, DAS, Cartwright, K, Cyr, E, Glusa, C, Lin, P, Moore, S, McGregor, D, Pawlowski, R, Phillips, E, Roberts, N, Wright, SA, Maheswaran, S, Jones, JP & Jarvis, S 2021, 'EMPIRE-PIC: a performance portable unstructured particle-in-cell code', Communications in Computational Physics, vol. 30, no. 4, pp. 12321268. https://doi.org/10.4208/cicp.OA-2020-0261
+Link to publication on Research at Birmingham portal
+Publisher Rights Statement: First published in: Journal of Computational Physics in 30(4) published by Global Science Press, © 2021 Global-Science Press
+General rights Unless a licence is specified above, all rights (including copyright and moral rights) in this document are retained by the authors and/or the copyright holders. The express permission of the copyright holder must be obtained for any use of this material other than for purposes permitted by law. •Users may freely distribute the URL that is used to identify this publication. •Users may download and/or print one copy of the publication from the University of Birmingham research portal for the purpose of private study or non-commercial research. •User may use extracts from the document in line with the concept of ‘fair dealing’ under the Copyright, Designs and Patents Act 1988 (?) •Users may not further distribute the material nor use it for the purposes of commercial gain. Where a licence is displayed above, please note the terms and conditions of the licence govern your use of this document. When citing, please reference the published version. Take down policy While the University of Birmingham exercises care and attention in making items available there are rare occasions when an item has been uploaded in error or has been deemed to be commercially or otherwise sensitive. If you believe that this is the case for this document, please contact UBIRA@lists.bham.ac.uk providing details and we will remove access to the work immediately and investigate.
+Download date: 04. Jan. 2022
+
+Higher-Order Particle Representation for Particle-in-Cell Simulations
+Dominic A. S. Browna,∗, Matthew T. Bettencourtb, Steven A. Wrightc, Satheesh Maheswarand, John P. Jonese, Stephen A. Jarvisf
+aDepartment of Computer Science, University of Warwick, UK bSandia National Laboratories, Albuquerque, NM
+cDepartment of Computer Science, University of York, UK dDiamond Light Source Ltd, Diamond House, Harwell Science and Innovation Campus, Didcot, UK
+eAtomic Weapons Establishment, Aldermaston, UK fCollege of Engineering and Physical Sciences, University of Birmingham, UK
+
+Abstract In this paper we present an alternative approach to the representation of simulation particles for unstructured electrostatic and electromagnetic PIC simulations. In our modiﬁed PIC algorithm we represent particles as having a smooth shape function limited by some speciﬁed ﬁnite radius, r0. A unique feature of our approach is the representation of this shape by surrounding simulation particles with a set of virtual particles with delta shape, with ﬁxed oﬀsets and weights derived from Gaussian quadrature rules and the value of r0. As the virtual particles are purely computational, they provide the additional beneﬁt of increasing the arithmetic intensity of traditionally memory bound particle kernels. The modiﬁed algorithm is implemented within Sandia National Laboratories’ unstructured EMPIRE-PIC code, for electrostatic and electromagnetic simulations, using periodic boundary conditions. We show results for a representative set of benchmark problems, including electron orbit, a transverse electromagnetic wave propagating through a plasma, numerical heating, and a plasma slab expansion. Good error reduction across all of the chosen problems is achieved as the particles are made progressively smoother, with the optimal particle radius appearing to be problem-dependent. Keywords: Particle-in-Cell, high-order, unstructured, particle representation, shape function
+
+1. Introduction The behaviour of plasmas within various environments and conditions is studied extensively within the scientiﬁc
+community. In particular, there is signiﬁcant interest in the ﬁeld of fusion energy research, which seeks to realise fusion power via Inertial Conﬁnement Fusion (ICF) or Magnetic Conﬁnement Fusion (MCF) devices. Examples of such devices include the National Ignition Facility (NIF), located at Lawrence Livermore National Laboratory (LLNL), and the International Thermonuclear Experimental Reactor (ITER), located in France, which attempt ICF and MCF, respectively. Another major interest is the area of pulsed power systems and magnetically insulated transmission lines (MITL). The Z Pulsed Power Facility, otherwise known as the ‘Z machine’, located at Sandia National Laboratories (SNL) is one notable example of such a system. Additional ﬁelds of study include the behaviour of magnetrons in microwave generation systems, charged particle beams, laser-plasma interaction [1], astrophysical plasmas [2], and applications in biomedicine [3]. However, conducting such experiments can be both extremely time consuming and/or prohibitively expensive, leading researchers to use simulation to model such phenomena on computer systems. The Particle-in-Cell (PIC) method is a common approach used to carry out such simulations [4, 5].
+Electrostatic and electromagnetic PIC methods are commonly used to simulate high power devices, and the behaviour of plasmas under various physical conditions. Traditionally, PIC algorithms employ structured computational
+
+UK Ministry of Defence c Crown Owned Copyright 2021/AWE ∗Corresponding author Email addresses: Dominic.Brown@warwick.ac.uk (Dominic A. S. Brown), mbetten@sandia.gov (Matthew T. Bettencourt)
+
+Preprint submitted to Journal of Computational Physics
+
+2021-03-02
+
+grids – representing the electric and magnetic ﬁelds on a staggered Yee grid [6] – and model particles as discrete Lagrangian points moving through the problem space [5, 7]. Notable examples of structured PIC codes include the Extendable PIC Open Collaboration (EPOCH) [1], OSIRIS [8], the Plasma Simulation Code (PSC) [9] and VPIC [10, 11]. Gyrokinetic PIC algorithms have also been applied to the challenge of plasma simulation in ﬁvedimensional phase space, where rapid movement about the magnetic ﬁeld lines allows a velocity dimension to be ignored in the simulation. One such code is GTC-P, the Gyrokinetic Toroidal Code developed at Princeton University [12]. The performance of the code at scale has been demonstrated on a number of notable HPC systems, including Sequoia, Piz Daint, Titan and Tianhe-2 [13, 14].
+However, traditional structured meshes are poorly suited to representing problems that make use of high ﬁdelity geometries, where they typically exhibit, at best, ﬁrst-order convergence. There are multiple approaches to resolving this complication. One such method is proposed by Dey and Mittra [15], which adapts the commonly used Finite Diﬀerence Time Domain (FDTD) algorithm to use locally distorted cells that accurately model a curved geometry with simple changes to the FDTD scheme. Another conformal scheme proposed by Zagorodnov et al. [16] also models curved boundaries and does not require time-step sizes that are signiﬁcantly smaller than a staircasing approach. Additionally, the algorithm results in convergence between ﬁrst- and second-order, depending on the problem. Other notable examples that maintain the use of a structured mesh include the application of cut-cell algorithms which ‘cut’ bodies out of the background mesh [17], and Adaptive Mesh Reﬁnement (AMR) methods that reﬁne the mesh only in high interest areas [18]. The use of AMR-PIC has previously been explored for electrostatic and electromagnetic problems by Vay et al. [19, 20].
+Alternatively, one can achieve high geometric ﬂexibility through the use of fully unstructured meshes, which avoid the requirement of an impractically high grid resolution imposed by the structured approach. Like AMR, this provides the ﬂexibility of reﬁning the problem in areas of key interest, but without the restriction that the grid cells themselves retain their structured properties. Examples of such PIC codes include PTetra [21] and the open-source Spacecraft Plasma Interaction Software (SPIS) [22].
+In addition to unstructured or adaptively reﬁned meshes, many domain scientists have also experimented with the use of higher-order methods. While these have previously been seen as prohibitively computationally intensive, the extreme levels of parallelism oﬀered by modern supercomputers is causing a revival of such methods. This is due to the increased arithmetic intensity of these methods improving the amount of ﬂoating point operations (FLOPs) performed per byte moved from RAM, providing an advantage in situations where limited memory capacity and bandwidth poses an obstacle to performance. The additional computational cost is also accompanied with improved simulation accuracy and convergence. Such methods have the beneﬁt of enabling the use of coarser computational grids and reduced simulation constraints, while still reaching an acceptable solution due to the increased accuracy that they can provide. However, higher-order methods also require smoother particle shape functions in order to achieve the desired convergence, as in a higher-order Galerkin ﬁnite element scheme there is an assumption of smoothness in the source terms. The use of smooth particles also increases simulation accuracy by improving the sampling of the surrounding ﬁelds when interpolating from the mesh to the particles, and by reducing the eﬀects of aliasing as particles move between elements.
+Structured PIC codes generally implement higher-order PIC by using smooth particle shapes extending over multiple cells [1], combined with higher-order ﬁeld solvers. One example of such a particle shape can be achieved by implementing the cloud-in-cell (CIC) representation proposed by Birdsall and Fuss [23]. Unfortunately, such methods are non-trivial to implement in practice for unstructured PIC codes as evaluating a higher-order basis often becomes intractable when spanning multiple elements.
+Jacobs and Hesthaven present a discontinuous Galerkin PIC method that incorporates both higher-order time domain solution of Maxwell’s equations and smooth particle shapes [24, 25]. Essex and Edwards also show a higherorder PIC algorithm, HOPIC, that extends the PIC method to fourth-order accuracy for transport problems [26].
+Stindl et al. have also investigated higher-order methods within an electromagnetic discontinuous Galerkin PIC code, with a particular focus on the coupling of the particles and the unstructured grid [27]. Speciﬁcally, the authors compare ﬁrst- and third-order B-spline interpolation functions to a reference Cell Mean Value (CMV) approach which distributes the charge of all particles in a cell equally to all cell nodes.
+In this paper we propose modiﬁcations to the core PIC algorithm by representing particles as having a smooth quadratic shape, with compact support on a ﬁxed radius, which is numerically integrated against the test function representing the weak form of the currents or charge densities. This integration is performed by numerical cubature
+2
+
+where the cubature points are represented by virtual particles surrounding each super-particle. Each virtual particle has an associated oﬀset and weight derived from Gaussian quadrature rules and the chosen radius. This approach also has the advantage of requiring little extension to the core PIC kernels. This builds on the work of Pinto et al. [28] where representation of smooth particle shapes using numerical quadrature rules was proposed. Speciﬁcally we consider the implementation of a speciﬁc shape function in a production PIC code using this method, and examine its eﬀects on the solution to various benchmark problems.
+The algorithm has been implemented within Sandia National Laboratories’ unstructured EMPIRE-PIC1 code for electrostatic and electromagnetic problems, in both two and three dimensions using periodic boundary conditions. The eﬀect of the algorithm on simulation solutions is explored using four representative benchmark problems. This greatly extends our previous work [29] where we presented only initial exploratory computational performance results for two-dimensional electrostatic problems, where simulation error was not considered. The work presented in this paper includes both electrostatic and electromagnetic simulations, considers both two- and three-dimensional particle shapes, and quantiﬁes the increased accuracy gained through the use of the proposed particle representation.
+While smooth particle shapes have been explored previously by other authors, the use of virtual particles is a unique feature of our implementation. This diﬀers from the approach used by Jacobs and Hesthaven [24] where particles in a discontinuous Galerkin PIC code are represented as a cloud of constant size with particles weighted to all elements within the cloud radius. We instead examine weighting each virtual particle to/from its associated element in a continuous Galerkin code. The work presented in this paper also diﬀers from the charge-conserving PIC scheme proposed by Squire et al. [30] as a Delaunay triangular grid is not required – our method can be applied to arbitrary unstructured meshes. Similarly to Moon et al. [31], in electromagnetic simulations the ﬁelds are expanded using the Whitney basis functions. Speciﬁcally, the Whitney 1-forms are used for the electric ﬁeld, and the 2-forms for the magnetic ﬁeld.
+The virtual particle approach also has the advantage of being able to tune the oﬀsets and weights of the virtual particles to reproduce a given shape function for the particle cloud with relative ease. Finally, as the virtual particles are computational, we obtain the additional beneﬁt of adding increased arithmetic intensity to traditionally memory bound particle kernels within the PIC method.
+In summary, we make the following contributions: • We propose representing particles in the unstructured PIC algorithm as having a smooth shape that is limited
+by some ﬁnite radius; • This shape is represented as a collection of delta shape virtual particles surrounding each delta shape super-
+particle in order to eﬀectively give the super-particle a smoother shape. The virtual particles have ﬁxed oﬀsets and weights obtained from Gaussian quadrature rules and the chosen radius; • The algorithm is implemented in SNL’s unstructured EMPIRE-PIC code, for both electrostatic and electromagnetic problems with periodic boundary conditions; • We compare the accuracy of the proposed algorithm to the base implementation of EMPIRE-PIC using four representative benchmark problems. The remainder of this paper is structured as follows: Section 2 provides a summary of the PIC algorithm; Section 3 introduces our new higher-order particle shape representation and algorithm modiﬁcations, and how the core PIC components can be adapted to implement it; Section 4 examines the accuracy and convergence of the method on a set of benchmark problems; ﬁnally, in Section 5 we conclude the paper, and highlight areas of interest for future research.
+2. The Particle-in-Cell Method The PIC method is a commonly used technique to simulate the motion of charged particles, in which particles are
+tracked in a Lagrangian manner on an Eulerian mesh that represents the problem domain. The particles move freely through the domain, and the mesh is used to calculate ﬁelds and approximate interactions between particles. While the
+1A reference paper detailing the capabilities and speciﬁcations of EMPIRE-PIC is currently under review at another journal.
+3
+
+charge and current density are calculated from the particles, these values are needed on the grid, requiring deposition to the grid at each step. Although the procedure has been detailed extensively in other works [4, 5, 31], we reiterate relevant parts of it here for completeness. The method applies an operator split approach, which can essentially be thought of as two coupled solvers, where one updates the values of the electric and magnetic ﬁelds, and the other updates the particle positions and velocities. This is typically accomplished via leapfrog integration, where variables are updated at interleaved points in time such that they ‘leapfrog’ over one another.
+The time evolution of electric and magnetic ﬁelds is governed by Maxwell’s equations, given below. Note that here we use the E/B formulation of Maxwell’s equations instead of the D/H version. This provides the advantages of being easier to couple to the Klimontovich equation [32, 33], allowing the use of a compatible discretisation, and facilitating the strong preservation of the magnetic divergence constraint, (2). A further beneﬁt is that the E and B terms are present in the Lorentz force law, meaning that our simulation ﬁelds can be used directly to compute this force.
+
+∇·E = ρ
+
+(1)
+
+0
+
+∇·B=0
+
+(2)
+
+∂B ∂t
+
+=
+
+−∇
+
+×E
+
+(3)
+
+∂E ∂t
+
+=
+
+1 ∇×B− µ0 0
+
+1J
+0
+
+(4)
+
+Where E and B are the electric and magnetic ﬁelds, ρ is the charge density, J is the current, and µ0 and 0 are the permeability and permittivity of free space, respectively. The force felt by charged particles in the presence of these ﬁelds is deﬁned by the Lorentz force law. This can then be applied to update the velocity v and position x of the particles, resulting in the equations of motion shown below, assuming a particle mass m and charge q.
+
+dv q dt = m
+
+E+v×B
+
+(5)
+
+dx dt
+
+=
+
+v
+
+(6)
+
+This update is typically handled through the use of the particle pusher proposed by Boris [34]. Note that the particles in a PIC simulation are not individual physical particles, as this would be computationally infeasible. Instead, superparticles that represent the phase space density are used. These super-particles follow the same equations of motion as their physical counterparts due to possessing the same charge-to-mass ratio.
+The particles and ﬁelds (represented by Maxwell’s equations) can then be assembled into the Klimontovich equation for plasma dynamics, which can be used to fully describe the time evolution of the system [32, 33].
+In general, PIC simulations execute a loop that is made up of four key steps, and repeated for each simulation time-step. The four steps are as follows:
+
+1. Solving Maxwell’s equations to update the electric and/or magnetic ﬁelds. 2. Calculate the value of the electric and magnetic ﬁelds at each particle, by interpolating these values from the
+mesh. 3. Accelerating and moving the particles. 4. Interpolating charge/current contributions from the particles back to the mesh.
+
+These steps are common to PIC codes in general, but production applications often merge these in various ways, e.g., current deposition is sometimes carried out during the particle move step. One should also note that the steps listed here are not exhaustive – diagnostic collection and particle injection can also be part of the main simulation loop.
+
+2.1. Updating the Fields Beginning with the ﬁeld update, we must solve Maxwell’s equations ((1)-(4)) for the new values of E and B.
+Typically, the electric and magnetic ﬁelds are advanced in time using an FDTD method on a structured rectilinear
+4
+
+grid [6]. However, in the unstructured PIC code considered in this paper we instead employ a ﬁnite element method (FEM) to solve for the ﬁelds at each time-step [35], using edge- and face-based elements for the electric and magnetic ﬁelds, respectively, thus matching the Yee FDTD method.
+A key point is that for electrostatic problems we need only solve Gauss’ law (1), while for electromagnetic simulations we instead consider Ampe`re’s and Faraday’s laws ((3)-(4)). One should also note that the magnetic divergence constraint (2) is implicitly maintained in the FEM formulation from ﬁrst principles due to the use of a compatible discretisation, meaning that we do not need to enforce it directly during the solve step. The equations can then be put into their respective weak forms [35] and integrated by parts in order to form mass and/or stiﬀness matrices, allowing them to be solved for the updated ﬁelds via various iterative or direct numerical methods.
+
+2.2. Weighting Fields to Particles During a PIC simulation the values of the ﬁelds are known only on speciﬁc locations inside the spatial grid, i.e.,
+the interpolation points of the ﬁnite elements. Therefore, in order to correctly advance the particles in time during the simulation we must determine the values of the electric and magnetic ﬁelds at the precise location of each particle via interpolation. Given that we know the values of both ﬁelds at some arbitrary time-step n, the ﬁelds can be evaluated at a particular particle position xi as follows, where eˆ are the Ne´de´lec edge elements [36], bˆ are the Raviart-Thomas [37] face elements, and Nedge and Nface are the number of edges and faces of the containing element, respectively. This interpolation can be carried out from either the raw edge-/face-based ﬁelds, or from values that have been projected to the mesh nodes as is sometimes done in FDTD-PIC schemes.
+
+Nedge
+
+E(xi) = E jeˆ j(xi)
+
+(7)
+
+j=0
+
+Nface
+
+B(xi) = B jbˆ j(xi)
+
+(8)
+
+j=0
+
+2.3. Particle Acceleration and Movement In the simulation, the locations of the computational particles must also be advanced in time along with the ﬁelds
+by updating their individual velocities and positions. This step is commonly known as the ‘particle push’. A detailed comparison of various particle movers has been conducted by other authors [38].
+We update the particle velocities via solving for the force on the particles due to the electric and magnetic ﬁelds as deﬁned by the updates given in (5) and (6), and the couplings given in (7)–(8). To determine the new velocity we employ the well known Boris method, which has become the de facto standard for pushing particles in PIC codes [34]. Once the new velocity is obtained it is then trivial to update the particle position.
+
+2.4. Weighting of Particles to Grid Particles are required to deposit their charge and/or current contribution back to the spatial grid via interpolation,
+prior to the beginning of the next ﬁeld solve. For an electrostatic simulation it is suﬃcient for the particles to deposit charge contributions at the end of the particle move to the nodes of their newly containing element. This coupling is deﬁned below, where vˆi represents the nodal basis functions, j is the element index, Ω is the element volume, and NP is the number of particles. As each computational particle represents multiple physical particles, we deﬁne the particle weight W such that Wk is the number of physical particles represented by the kth computational particle.
+
+NP
+
+ρ jvˆi dV = Wkqkvˆi(xk)
+
+(9)
+
+Ωj
+
+k=1
+
+Electromagnetics require a diﬀerent interpolation scheme in order to deposit current, this commonly occurs during
+
+the particle move step and can be The particle trajectory must also
+
+beveaslpulaittesduacthththeamt eidapchoienlte, mxkenn+1t/v2,isaistesdhobwy na
+
+in (10), where u is particle in a given
+
+the particle velocity. step has the correct
+
+5
+
+(0.000, 0.775) 0.10567
+
+(0.648, 0.648) 0.01804
+
+r 0=1
+
+(0.000, 0.000) 0.50517
+
+(0.775, 0.000) 0.10567
+
+(0.000, 0.906) 0.01178
+
+(0.874, 0.413) 0.00574 (0.696, 0.696) 0.00035
+
+(0.000, 0.538) 0.11382
+
+(0.04.9086,100.64498)(0.401.030, 507.8474)
+
+r 0=1
+
+(0.000, 0.000) 0.20643
+
+(0.906, 0.000) (0.538, 0.000) 0.01178
+0.11382
+
+(a) Circular virtual particle layout using 3 quadrature points.
+
+(b) Circular virtual particle layout using 5 quadrature points.
+
+Figure 1: Image showing two example virtual particle layouts of diﬀering orders. Surrounding virtual particles are grey with dashed borders, with the physical location of the simulation particle represented by the central virtual particle (solid border). Virtual particles are sized proportionally to their weights.
+
+proportion of current accrued to it. Note that here we use the edge basis, eˆ, instead of the nodal basis, and that each edge carries all components of the current.
+
+NP
+
+(n+1)∆t
+
+NP
+
+J
+
+n+1/2 j
+
+eˆi
+
+dV
+
+=
+
+Ωj
+
+k=1
+
+Ωj
+
+n∆t
+
+Wkqkuk · eˆi dt dV = Wkqkuk · eˆi xkn+1/2
+k=1
+
+(10)
+
+Note that this method is only charge conserving for simplices. For non-simplex elements the basis functions used in
+
+EMPIRE-PIC are non-linear within the point Gaussian quadrature using points
+
+ealtem1en±ts,1s/o√a3hi/g2h,eera-ocrhdewritihnteagwraetiigohntisofre1q/u2i.reTdh–esine
+
+this case we use twoquadrature points are
+
+the standard Gaussian quadrature points with the interval adjusted to [0, 1]. This reduces to the charge conservation
+
+method presented by Villasenor and Buneman [39].
+
+3. Higher-Order Particle Shapes
+
+Let us ﬁrst consider the electrostatic formulation of the standard PIC algorithm due to its simplicity, as the scheme can be later expanded to electromagnetics. As discussed previously we must formulate the weak form of Gauss’ Law such that we can integrate the electric potential with a given test function and generate a stiﬀness matrix. Solving Gauss’ Law also requires the charge density ρ to be computed from the computational particles. These particles are generally represented as shape functions S in space and velocity. In the standard FEM-PIC algorithm, the shape function is generally the Dirac delta function, δ. The charge density can then be integrated with the test function. One should note that integrating δ with the linear nodal basis is equivalent to piecewise linear interpolation in FDTD-PIC. This results in a summation at the particle locations when S = δ.
+
+NP
+
+NP
+
+ρ jvˆi dV =
+
+S x − xk qkvˆi dV = Wkqkvˆi(xk)
+
+(11)
+
+Ωj
+
+k=1 Ω j
+
+k=1
+
+This simple integration is valid, independent of the order of the test function. However, the use of the Dirac delta function results in a particle shape that is not a smooth representation due to its nature. In the following section, we show how δ can be replaced with a smooth shape function, and how this can be implemented through the use of virtual particles.
+
+6
+
+Point 0 1 2
+
+Position xi
+
+−
+
+3 5
+
+0
+
+3 5
+
+Weight wi
+5 9 8 9 5 9
+
+Table 1: Positions and weights for three-point Gaussian quadrature.
+
+3.1. Smooth Particle Shape Function
+
+In order to solve the problem of a non-smooth particle shape we now propose representing particles as having
+
+some deﬁned ﬁxed size. Speciﬁcally, we assume that particles possess some radius r0, and have a parabolic shape subject to the following shape function – replacing the usual Dirac delta function. In (12) we also have normalisation
+
+constant c = 2/πr02.
+
+S (x − x0)
+
+=
+
+c 0
+
+1−
+
+r r0
+
+2
+
+if r ≤ r0 otherwise
+
+(12)
+
+The exact integral of the shape function with the test function in two dimensions is given below in (13). Equation (14) shows how this can extended to handle a three-dimensional case. However, integration of this shape function with the test function is generally computationally intractable when spanning more than a single element. We therefore handle the integration of this function via the application of Gaussian numerical quadrature.
+
+r0 0
+
+2π
+S x − x0 vˆi dθ dr =
+0
+
+r0 0
+
+2π  0 rc 1 −
+
+r r0
+
+2  vˆi(r, θ) dθ dr
+
+(13)
+
+r0 0
+
+2π 0
+
+π
+S x − x0 vˆi dφ dθ dr =
+0
+
+r0 0
+
+2π 0
+
+π 0 rc 1 −
+
+r r0
+
+2  vˆi(r, θ, φ) dφ dθ dr
+
+(14)
+
+3.2. Implementation The smooth particle shapes described above are implemented by taking a given simulation particle, and surround-
+ing it with a set of computational virtual particles. This allows one to move the quadrature weights from the mesh onto the virtual particles themselves. In this representation the particle radius is ﬁxed independently of the size of its current element, and the central particle is used to track the physical location of the particle in the simulation space. The virtual particles represent quadrature points for the particle; each has a ﬁxed associated position oﬀset ov and weight factor wv, where the weight incorporates Gaussian quadrature weights and the shape function. It should be noted that the sum over the set of virtual particle weights must be equal to one to ensure the correct total contribution once all virtual particles are processed. Example particles represented in this way are shown in Figure 1. While this particular arrangement could give rise to azimuthal modes due to mesh imprinting, we do not believe this to be a signiﬁcant issue in this paper. One method of addressing this biasing could be randomly rotating the shape of each loaded particle, thus reducing the bias towards the coordinate axes.
+We now derive virtual particle weights and oﬀsets using a shape represented by mapping a square to a circular shape. For 3D problems we instead map a cube to a sphere. The choice of a circular/spherical shape has certain beneﬁts. Firstly, this symmetrical shape prevents the grid biasing/mesh imprinting that would occur with the use of a square/cube layout. Secondly, such a shape captures the notion of the Debye sphere [40, 41] and allows for a better representation of this concept in a simulation.
+Given Gaussian quadrature of an arbitrary order, let r0 be the chosen particle radius, and x and y be the positions of the Gaussian quadrature points. We can now calculate x and y which together make up the oﬀset for the virtual particle being mapped. Additionally, let wx and wy be the weights of these points and |J| be the determinant of the Jacobian for the mapping at these points, which we include in order to correctly map from the reference volume to the mapped volume. For convenience, Table 1 shows the positions and weights for three-point Gaussian quadrature.
+We can now calculate x and y which together make up the oﬀset for each virtual particle being mapped, and we can also determine the values of wv. Each permutation (with repetition) of the Gaussian quadrature points used
+7
+
+maps to a single virtual particle; in the case of three-point Gaussian quadrature this results in a total of 32 = 9 virtual particles. Equation (15) shows the mapping used for 2D problems, and (16) shows the weight calculation. As a ﬁnal step, the weights must be normalised to sum to one.
+
+ov =
+
+x y
+
+= yx
+
+1− 1−
+
+y2 2 x2 2
+
+ 
+
+(15)
+
+wv = wxwy 1 − x 2 + y 2 |J|
+
+(16)
+
+ δx δx 
+
+|J| =
+
+
+
+δx δy δx
+
+δy δy δy
+
+
+
+(17)
+
+For 3D problems we additionally deﬁne z, z , and wz and carry out the mapping as shown below in (18) and (19). Each permutation (with repetition) of the Gaussian quadrature points continues to map to a single virtual particle, which for three-point quadrature results in a total of 33 = 27 virtual particles. As before, the weights are normalised to sum to one.
+
+ov
+
+=
+
+yxz
+
+ 
+
+=
+
+zyx
+
+1
+
+−
+
+y2 2
+
+1
+
+−
+
+z2 2
+
+1−
+
+x2 2
+
+−
+
+z2 2
+
+−
+
+x2 2
+
+−
+
+y2 2
+
++ + +
+
+y2 z2 3
+x2 z2 3
+x2 y2 3
+
+ 
+
+(18)
+
+wv = wxwywz 1 − x 2 + y 2 + z 2 |J|
+
+(19)
+
+ δx δx δx 
+
+|J| =
+
+
+
+δx δy δx δz δx
+
+δy δy δy δz δy
+
+δz δy δz δz δz
+
+
+
+(20)
+
+While the shape function of a particle is usually represented by a delta function when this is put into the weak form it
+
+has an action on all the bases of the element it occupies thus being equivalent to using piecewise linear shape functions
+
+in FDTD-PIC. As described above the delta function is extended to a quadratic shape with compact support on the
+
+speciﬁed radius r0 which is numerically integrated against the test function representing the weak form of the currents or charge densities. As long as it is guaranteed that the weights sum to unity then the properties of charge conservation
+
+will continue to be maintained. Errors in the cubature can eﬀectively be thought as deviations to the shape function
+
+tSh(er)sh=apce(1f−unrc2/tiro02n+wift(hr)t)hwe hbearseis
+
+is the cubature function and of
+
+error. Figure 2 shows the integration using
+
+the the
+
+absolute error between proposed method. We
+
+the see
+
+exact integral of that for a single
+
+element converges to on the order of machine precision – the increase in noise at higher numbers of quadrature
+
+points can be explained by accumulated ﬂoating-point errors. However, much slower convergence is observed once a
+
+particle spans of a class C0
+
+multiple function.
+
+elements. This is unsurprising as we As long as is below the statistical
+
+do not expect convergence
+
+rcaotnevoefrg√en(1ce/Nfo)rtthhies
+
+polynomial integration error is expected to be
+
+small when compared to other terms.
+
+Given the oﬀsets and weights deﬁned above, the implementation of the PIC algorithm can now be modiﬁed to
+
+leverage this new particle shape. As the oﬀsets and weights are shared by all virtual particles, the additional memory
+
+required to store this extra data is minimal. Assuming a three-dimensional case and double precision ﬂoating-point
+
+numbers, this results in an additional 8Nv bytes for the weights and 24Nv additional bytes for the oﬀsets, where Nv represents the number of virtual particles used per simulation particle. In the case of ﬁve-point Gaussian quadrature
+
+this amounts to approximately four kilobytes. One should note that the positions of the virtual particles do not need to
+
+be stored, it is suﬃcient to track the physical particle location and apply the assigned oﬀset. The extension to virtual
+
+particles only changes the coupling between the particles and the mesh, making the extensions to the particle move
+
+trivial. The modiﬁcations made to the PIC algorithm are now described in the subsequent sections.
+
+8
+
+Absolute Error
+
+101 10−1 10−3 10−5 10−7 10−9 10−11 10−13 10−15 10−17
+
+Single Element Two Element
+Machine
+0 10 20 30 40 50 60 70 80 90 100 Quadrature Points per Dimension
+
+Figure 2: Graph showing how the absolute error of the modiﬁed integration converges with the number of quadrature points for a single element, and when spanning two elements.
+
+3.2.1. Weighting Fields to Particles As the electric and magnetic ﬁelds are only known on the computational mesh, they must be interpolated from
+the mesh to the particles in order to be able to update the particle forces and velocities. PIC usually accomplishes this through the use of basis functions to determine the ﬁeld values at speciﬁc particle locations. In our algorithm we use the same approach to calculate these values at the position of the replicated virtual particles, and multiplying the ﬁeld value by the virtual particle’s associated weight. This can be expressed mathematically as shown in (21) and (22), where xi is the physical position of particle i, and Nv continues to represent the number of virtual particles used per simulation particle. As before, wi represents the weighting of virtual particle i as speciﬁed in (16) and (19) for two-dimensional and three-dimensional problems, respectively. Once this has been done for all virtual particles it is then trivial to accumulate each individual contribution to the central particle via summation.
+
+Nv Nedge
+
+E(xi) =
+
+E jeˆ j(xi + ov)wv
+
+v=0 j=0
+
+Nv Nface
+
+B(xi) =
+
+B jbˆ j(xi + ov)wv
+
+v=0 j=0
+
+(21) (22)
+
+One should note that it is not necessary to carry out a neighbour search in order to determine which edges/faces/nodes will be interpolated from as the containing element of each virtual particle is updated during the particle move step. This discussed further in Section 3.2.2.
+
+3.2.2. Particle Acceleration and Movement Implementing a particle mover using the proposed modiﬁcations to the particle shapes as described is a relatively
+simple matter. This is due to the oﬀset of each virtual particle used being ﬁxed relative to the position of the central particle that is used to track the physical location. As in the standard PIC algorithm we apply the typical Boris Pusher in order to update the velocities of the central particles in the simulation. Additionally, we specify that the surrounding virtual particles share the same velocity as their associated central particle, meaning that they do not need to be processed during the acceleration step. The central particle position can then be updated as in the standard algorithm. Finally, we apply the same position update to the virtual particles, advancing them in lock-step with their associated central particle. This allows us to track the containing element of each virtual particle, thus removing the need for neighbour searches when interpolating values to and from the spatial grid. This choice results in storing a single 32-bit integer per virtual particle per simulation particle, i.e., 4NPNv extra bytes in total.
+9
+
+3.2.3. Weighting of Particles to Grid As described in Section 2, the particles are coupled to the grid and must therefore make contributions back to the
+grid prior to the ﬁeld solve that will take place at the beginning of the next time-step. This can be thought of as each constituent virtual particle making its own separate charge or current contribution, scaled by its pre-calculated weight factor. These couplings take place as deﬁned in (9) and (10) for charge and current, respectively. The implementation of the charge weighting for electrostatic problems using the extension to virtual particles is simple. As the virtual particle weights sum to 1, the total amount of charge deposited will remain unchanged. We deﬁne this modiﬁed coupling below, using the same notation as deﬁned previously.
+
+NP
+
+Nv
+
+ρ jvˆi dV = Wkqk wvvˆi xk + ov
+
+Ωj
+
+k=1
+
+v=1
+
+(23)
+
+A similar approach to that employed above can also be applied to the current weighting procedure with the diﬀerence that each virtual particle will make a contribution during its individual move, instead of all virtual particles making a deposit at the end of the move step. Additionally, deposits will be made to all elements crossed by the virtual particle during the move step. Speciﬁcally, the trajectory of each virtual particle is individually split as it passes through each element, which is crucial for a charge-conserving current deposition scheme. The particle to grid coupling for current deposition using virtual particles is given below in (24). This remains analogous to each virtual particle making a separate weight-scaled current contribution to the grid. Along with the base code, we continue to use two-point Gaussian quadrature in the case of non-simplex elements. As the virtual particle weights sum to one and our base implementation conserves charge, this current deposition is also charge conserving.
+
+NP
+
+Nv
+
+J jeˆi dV = ∆tWkqk wvuk · eˆi xkn+1/2 + ov
+
+Ωj
+
+k=1
+
+v=1
+
+(24)
+
+4. Results In the following section we present results for four numerical experiments. These have been selected to be broadly
+representative of the problems that can be solved with EMPIRE-PIC. First, a simple 2D electrostatic electron orbit problem is examined. Second, the 3D simulation of a transverse electromagnetic (TEM) wave propagating through plasma is discussed. Third, we analyse the eﬀect of our higher-order particle shapes on the amount of numerical heating observed. Finally, we look at a more complex electrostatic problem – the 1D expansion of a neutral plasma slab into a vacuum. For the results collected in the following experiments we used a virtual particle layout as deﬁned in Section 3. We used 5-point Gaussian quadrature resulting in 25 virtual particles for the 2D problems, and 125 virtual particles for the 3D problem. For the electrostatic problems we also examine the eﬀects of particle smoothing when second-order basis functions are used. This analysis was not conducted for electromagnetics as higher-order basis functions are not currently available in EMPIRE-PIC for electromagnetic problems.
+
+4.1. 2D Orbit Problem
+
+We ﬁrst consider the behaviour of our algorithm on a very basic electrostatic problem, consisting of a stationary
+
+H+ ion being orbited by a single electron for one period. This electron is treated as a test particle that does not make
+
+charge contributions back to the spatial grid. Using this simple test case we examine the eﬀect of varying particle
+
+radius on the accuracy of the tracking of basic particle motion. The particles are situated on a quadrilateral mesh, the
+
+ion positioned at the centre, and the electron has an orbit radius of rorbit = 5.291 × 10−8 m. The length of the domain
+
+in both x and y directions is equal to 3.0 × rorbit, with initial Nx = Ny = 14, resulting in 196 elements in total. We
+
+also specify the problem boundary conditions to an analytical value deﬁned as the exact value of the potential at the
+
+bounTdhaeryin:itφia=l c2oπqn0diltniorn−s1o,f
+
+using an ion the problem
+
+charge can be
+
+of q = +e, where e derived as follows.
+
+is the Given
+
+elementary charge. the electrostatic assumption,
+
+we
+
+can
+
+reduce
+
+the Lorentz force to F = qE. Then, from centripetal force and Gauss’ Law we can write the following to obtain an
+
+10
+
+10−2
+
+x−xexact | |1 |x |1
+
+10−3
+
+10−4
+
+Basis Order = 1 Basis Order = 2
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+r0/∆x
+
+Figure 3: Graphs showing results for the 2D electron orbit experiments on the structured mesh. Error bars represent one standard deviation in the L1 norm due to variation in the starting locations.
+
+expression for the electric ﬁeld:
+
+qE (r) = mω2r
+
+(25)
+
+E · nˆ dA = ρ
+
+(26)
+
+V
+
+We are using a test electron that does not deposit charge to the mesh in order to simplify the boundary conditions, due to being treated as having zero charge, but ﬁnite charge-to-mass ratio. Therefore, as the ﬁelds are not changed, the above can be simpliﬁed. We can now rewrite and substitute (25) and (26) in order to derive an expression for the angular velocity ω, and also velocity v which can then be resolved into its x and y components.
+
+E
+
+(r)
+
+=
+
+1 2πr
+
+q
+0
+
+(27)
+
+ω2
+
+=
+
+q2 2πr2m
+
+0
+
+(28)
+
+v = ωr
+
+(29)
+
+Therefore we can deﬁne angular velocity ω = q2/2πr2m 0 . With x = rorbit cos (ωt) and y = rorbit sin (ωt) it is now trivial to compare the simulated orbit to every point on the trajectory deﬁned by the analytical solution.
+For the base case of this test we place the hydrogen ion at the centre of the mesh, directly on top of an element vertex. In order to avoid the special case (a particle will almost never occupy this position in an actual problem), we repeat the test placing the central particle at 100 randomised positions within the element quadrant. As a result of all cell quadrants being identical, we can obtain data that consider a representative range of possible particle positions within an element. In the remainder of this section we examine the eﬀects of increasing particle radius on the L1 error of the position of the orbiting electron against the analytical solution (normalised via the orbit radius), and also consider these eﬀects at increased levels of problem reﬁnement, where we hold the ratio ∆x/∆t ﬁxed in order to maintain a constant CFL value.
+We ﬁrst examine the eﬀects of increasing particle radius for the base level of mesh reﬁnement, consisting of 14 elements in both dimensions as deﬁned above. In order to deﬁnitively rule out the inﬂuence of time integration on the orbit error due to large time-step size, we present data collected using a reﬁned ∆t to ensure that the improvement due to smoothing is visible. In this case, we use 320 time-steps per electron orbit. Figure 3 shows how the L1 error varies as particle radius, r0, is increased over various fractions of the cell size ∆x. The error bars are used to represent the
+11
+
+standard deviation in the error due to the position of the hydrogen ion in the element quadrant. After the initial radii,
+
+it is clear to see that as the particle radius is increased the computed answer moves closer to the analytical solution,
+
+with a radius value of 0.9 × ∆x appearing to be optimal in this case.
+
+We also observe a signiﬁcant reduction in the standard deviation due to altering the position of the central H+ ion
+
+within its quadrant, i.e., the level of statistical noise is lower as when using smooth particles the diﬀerence in the force
+
+felt at the centre of the element versus at the element vertex is lower than in the base code. This results in less variation
+
+in the result due to altering the position of the central ion. However, this improvement in error and statistical variation
+
+is reversed as particle radius continues to increase beyond the cell size, as using a large radius essentially means that
+
+a diﬀerent problem is being solved. From this we can conclude that some smoothing of the charge distribution of the
+
+particle improves the ability of the PIC algorithm to track basic particle motion, whereas excessive smoothing results
+
+in reduced beneﬁts.
+
+Using second-order basis functions results in a 50% improvement over the base code in terms of error and standard
+
+deviation when no smoothing is applied. When smoothing is applied the results follow a similar trend to the ﬁrst-order
+
+basis data, with an optimal radius value of 0.8 × ∆x. This error value is signiﬁcantly lower than the equivalent data
+
+point for the ﬁrst-order basis. In the best case the electron position error is approximately 85% lower than the base
+
+code, of 25
+
+and the standard more simulation
+
+deviation particles,
+
+in the result is reduced assuming scaling of 1/
+
+b√yNaPn.
+
+order of magnitude. This is comparable to using a factor This shift in compute intensity versus memory footprint
+
+is the main beneﬁt in this test case – a key motivation for the work presented in this paper.
+
+We now examine the eﬀect of mesh reﬁnement on this problem via a convergence study, with a base level of
+
+∆x = 1.13 × 10−8 m, ∆t = 4.615 × 10−11 s and Nx = Ny = 14 grid elements. This results in a CFL condition
+
+value of v∆t/∆x ≈ 0.0004675. Figure 4 shows the results of this study for various particle radii, using the L1 norm of the electron position as the error metric, as in the previous test. For clarity, we additionally include a reference
+
+line demonstrating theoretical second-order convergence. As seen in Figure 4a, a particle radius of approximately
+
+0.9 × ∆x appears to be optimal for the majority of reﬁnement levels used for the convergence study when considering
+
+the ﬁrst-order basis. Figure 4b shows that when using a second-order basis the optimal radius remains consistent as
+
+the problem is reﬁned. These results show a consistent improvement in the L1 norm across a wide range of ∆x values,
+
+consistent with the previous results for the coarse mesh. The error reduction appears to be approximately a stable
+
+factor of 2 when comparing results for the vanilla code against runs using the optimal radius value for the ﬁrst-order
+
+basis, and a factor of 5 for the second-order basis. It is also evident from these results that, for a ﬁxed ﬁeld, the use
+
+of smoother particles causes earlier solution convergence then the standard FEM-PIC algorithm, indicating that this
+
+may provide acceptable convergence rates while allowing the use of coarser meshes which are less computationally
+
+expensive.
+
+Finally, in order to assess the beneﬁts of particle smoothing for non-regular grids, we carried out an additional
+
+parameter scan over r0/∆x using an unstructured mesh of 2272 triangular elements. This mesh and its dimensions are
+
+shown in 7 × 10−9
+
+Figure 5a, with the m, calculated as ∆x
+
+b=ase√oVr/bNitelterma,jewchtoerrye
+
+shown in red. The mesh has an average V is the volume of the mesh, and Nelem
+
+∆x value of approximately is the number of elements.
+
+As with the previous experiments, data was collected for each input using 100 randomised starting locations, this time
+
+varying the starting position by at most ±0.5 × rorbit in each dimension. In this way we can determine the variation in the result due to the electron travelling through various levels of mesh distortion. We continue to use a reﬁned time-
+
+step of 320 steps per orbit in order to rule out time integration error. Figure 5b shows the results of this experiment,
+
+with error bars again representing one standard deviation in the error due to the variation in orbit position. As in
+
+the radius scan experiment that was conducted for the structured mesh we again see a smooth reduction in average
+
+error as particle radius is increased. In this case we have an optimal value of r0/∆x = 1.3, suggesting that greater
+
+amounts of smoothing may be beneﬁcial on a distorted mesh. However, due to the high level of mesh distortion the
+
+improvements in the standard deviation are less signiﬁcant. A similar trend is observed for the second-order basis
+
+where improvements are visible, but more pronounced than for the ﬁrst test. Using the second-order basis causes the
+
+optimal amount of smoothing to become similar to the results in Figure 3. In the best case both the electron position
+
+error and standard deviation are reduced by an order of magnitude. From these results it is clear to see that the altered
+
+algorithm is capable of coping with such varying distortion, particularly when using a second-order basis.
+
+12
+
+10−2
+
+10−2
+
+10−3
+
+10−3
+
+10−4
+
+10−4
+
+x−xexact | |1 |x |1
+x−xexact | |1 |x |1
+
+10−5 10−6 10−7
+
+r0/∆x = 0.0 r0/∆x = 0.2 r0/∆x = 0.4 r0/∆x = 0.6 r0/∆x = 0.8 2nd Order
+10−1 ∆x Factor
+(a) Basis Order = 1
+
+r0/∆x = 0.1 r0/∆x = 0.3 r0/∆x = 0.5 r0/∆x = 0.7 r0/∆x = 0.9
+100
+
+10−5 10−6 10−7
+
+r0/∆x = 0.0 r0/∆x = 0.2 r0/∆x = 0.4 r0/∆x = 0.6 r0/∆x = 0.8 2nd Order
+10−1 ∆x Factor
+(b) Basis Order = 2
+
+Figure
+
+4:
+
+Convergence
+
+study
+
+results
+
+for
+
+the
+
+2D
+
+orbit
+
+problem,
+
+v
+
+∆t ∆x
+
+=
+
+0.0004675
+
+r0/∆x = 0.1 r0/∆x = 0.3 r0/∆x = 0.5 r0/∆x = 0.7 r0/∆x = 0.9
+100
+
+4.2. 3D Transverse Electromagnetic Wave Problem To test the performance of our algorithm for 3D and electromagnetic problems we now consider an inﬁnite, planar
+TEM wave propagating through an inﬁnite neutral plasma made up of H+ ions and electrons. This problem was chosen as an electromagnetic case study and has an analytical solution, given certain assumptions. The solution is given in Section 4.12 of Chen [40], which derives the diﬀerences between a TEM wave in a vacuum and a TEM wave in a plasma where the wave vector is held constant.
+In this problem we choose the key controlling parameters as follows: we have the plasma number density as n0 = 1015 m−3, initial temperature of 0 K, with a maximum electric ﬁeld magnitude of Emag = 100 V/m, and the vacuum frequency is the frequency of the hydrogen line, i.e., fv ≈ 1.420 GHz, and ωv = 2π fv. The kinetic energy of the wave follows a sine-squared pattern, with maxima and minima that increase slowly over time due to numerical heating eﬀects, which can be reduced with smaller time-step sizes and grid spacing, and higher numbers of simulation particles. We discuss numerical heating eﬀects in greater detail in Section 4.3.
+Next, we assume that the electromagnetic wave is of such a high frequency that the ions within the plasma remain stationary throughout the simulation, and also that the J × B forces on the particles are negligible. This has the eﬀect that electrons are assumed to only oscillate linearly in the plane of the electric ﬁeld. We have the plasma frequency and actual wave frequency as follows:
+
+ωpe =
+
+n0q2 me 0
+
+≈
+
+1.784 ×
+
+109
+
+rad/s
+
+(30)
+
+ωpi =
+
+n0q2 mi 0
+
+≈
+
+4.163 × 107
+
+rad/s
+
+(31)
+
+f
+
+=
+
+ω 2π
+
+=
+
+1 2π
+
+ω2p + ω2v ≈ 1.448 GHz
+
+(32)
+
+As the wave is an inﬁnite, steady wave, we can derive the constant phase velocity:
+
+vp =
+
+f fv
+
+c
+
+≈
+
+1.02c
+
+>
+
+c
+
+(33)
+
+13
+
+10−2 10−3
+
+Basis Order = 1 Basis Order = 2
+
+240 * 10-9 m
+x−xexact | |1 |x |1
+
+240 * 10-9 m (a) Mesh used for unstructured orbit tests. The orbit base case is shown in red.
+
+10−4
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+r0/∆x
+
+(b) Parameter scan of particle radius for the unstructured orbit tests
+
+Figure 5: A parameter scan where (a) represents the geometry being studied and (b) shows the L1 norm of the error in the electron position.
+
+This gives the maximum initial electron velocity as deﬁned below, which is then initialised in phase with the electric ﬁeld. The values of vx and vz are initialised to zero.
+
+vy
+
+=
+
+qEmag meω
+
+≈
+
+1932.5 m/s
+
+(34)
+
+The velocity u of a given particle can now be calculated as follows, where p is the z component of the particle position:
+
+u = v sin
+
+p
+
++
+
+π 2
+
+m/s
+
+(35)
+
+Finally, we deﬁne the maximum magnitude of the magnetic ﬁeld such that it is congruous with the magnitude of the
+
+electric ﬁeld.
+
+Bmag
+
+=
+
+λ 2π
+
+Emag c2
+
+n0q2 me 0ω
+
++
+
+ω
+
+≈ 3.53 × 10−7 T
+
+(36)
+
+Using the derivation above it is simple to formulate a computational description of the problem. We set up the problem on a 3-dimensional grid of hexahedral ﬁnite elements with periodic simulation boundaries in all directions, eﬀectively creating inﬁnite space for the TEM wave, which we simulate for one wave period. The wave is deﬁned to travel in the z dimension of the computational mesh, with the majority of grid elements also in the z dimension. The x and y dimensions are each deﬁned to have a constant 4 elements, while the z dimension has 24 elements. As we assumed the ions to be stationary in our derivation, we force them to remain immobile during the simulation. The computational particles are placed randomly within each element and weighted in order to achieve our previously speciﬁed plasma number density. Each cell is loaded with an equal amount of particles of each species, with the immobile ions being used to provide a positive background in order to maintain neutrality. We additionally ensure that the initial electron velocity is conﬁned to the transverse direction in the plane of the electric ﬁeld.
+We now present results for this problem for a variety of particle per cell counts, showing the average of 100 runs using random initial particle loads, using error bars to represent the standard deviation in the data. Figure 6 shows the eﬀect of increased particle radius on the average L1 error of the simulated electric and magnetic ﬁelds at the end of the simulation, presented as a breakdown of the ﬁeld components. As the problem is set up with plane wave polarisation with only non-zero Ey and Bx, we refer to these components as the signal components, and the remaining components as non-signal components. As each of the non-signal components for a given ﬁeld behave in the same manner, we
+
+14
+
+2.5 ·10−2
+
+NPcell = 1 NPcell = 8
+
+NPcell = 2 NPcell = 16
+
+NPcell = 4 NPcell = 32
+
+2.5 ·10−2
+
+2
+
+2
+
+Ey| −Ey,exact|1 Ey,exact | |1
+
+Ex| −Ex,exact|1 Ey,exact | |1
+
+1.5
+
+1.5
+
+1
+
+1
+
+0.5
+
+0.5
+
+Bx| −Bx,exact|1 Bx,exact | |1
+
+0 0 0.5 1 1.5 2 2.5 3 r0/∆x
+(a) Ex component
+2.5 ·10−2
+2
+1.5
+
+0 0 0.5 1 1.5 2 2.5 3 r0/∆x
+(b) Ey component
+·10−4 1
+0.8
+0.6
+
+By| −By,exact|1 Bx,exact | |1
+
+1
+
+0.4
+
+0.5
+0 0 0.5 1 1.5 2 2.5 3 r0/∆x
+(c) Bx component
+
+0.2
+0 0 0.5 1 1.5 2 2.5 3 r0/∆x
+(d) By component
+
+Figure 6: Graphs showing variation in L1 norm of electric/magnetic ﬁeld components as particle radius is increased.
+
+choose to show data for Ex and By for these components, and Ey and Bx for the signal components. At ﬁrst it is clear that we observe a smooth reduction in the L1 error of the electric ﬁeld which is reﬂected in the results shown for both the signal and non-signal components. This improvement continues to occur beyond the previously optimal value of r0 = 0.9 × ∆x observed in the orbit problem, continuing to improve as r0/∆x exceeds one. Additionally, we see a slight overall reduction in the variation from the initial seeds, but this eﬀect appears to be negligible. Also of interest is that the error reduction due to smoothing for the non-signal ﬁeld components is much greater than that observed in the component that contains the wave itself, suggesting that the noise in the wave is more sensitive to the particle distribution used. These diﬀerences are apparent in Figures 6a and 6b. Of particular note is that the Ey error converges to an approximate value of 0.014, whereas the other components continue to improve by tending towards
+15
+
+KEFinal/KE0
+
+100.3 100.2 100.1
+
+∆x/λD = 1, NPcell = 16 ∆x/λD = 2, NPcell = 16 ∆x/λD = 4, NPcell = 16 ∆x/λD = 1, NPcell = 32 ∆x/λD = 2, NPcell = 32 ∆x/λD = 4, NPcell = 32 ∆x/λD = 1, NPcell = 64 ∆x/λD = 2, NPcell = 64 ∆x/λD = 4, NPcell = 64
+
+100
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+r1/∆x
+
+Figure 7: Ratio of ﬁnal kinetic energy to starting kinetic energy for various particle radii.
+
+zero at higher particle counts. We therefore conclude that the remaining Ey error is due to error in the scheme, and can be reduced by reﬁning the problem further in space and/or time. This was veriﬁed through additional convergence tests, where the expected second-order convergence was observed.
+Secondly, we examine the eﬀects of particle smoothing on the computed result for the magnetic ﬁeld. In accordance with the electric ﬁeld data, we see a smooth reduction in L1 error for both the signal and non-signal magnetic ﬁeld components as particle radius is increased. There is good reduction in the Bx error, particularly as increasing the number of computational particles per cell has a negligible eﬀect when compared to smoothing. However, the same does not hold true for the non-signal components where both smoothing and increasing particle count show good results, with smoothing performing particularly well at low particle counts. At higher particle counts smoothing reduces the error in these components to near zero. Regarding the statistical noise shown by the error bars, the Bx component shows almost no reduction in noise, in keeping with the trend observed regarding the electric ﬁeld. Interestingly, the opposite holds true for the By component, showing a large reduction in statistical noise as radius is increased.
+In general we conclude that, for this problem, the application of particle smoothing has the primary eﬀect of reducing the noise in the solution for both the electric and magnetic ﬁelds in various ways. Speciﬁcally, where the solution should be zero there is a large reduction in the error in these components, and where the solution should be non-zero the errors converge to a seemingly constant value representing the space and time errors.
+As a ﬁnal note, we also examined the eﬀect of smoothing on the frequency distribution of the error in the ﬁnal result by applying a Fast Fourier Transform (FFT) to the Ey component of the electric ﬁeld. However, we do not show these results in this paper as there appears to be little to no observable eﬀect, beneﬁcial or otherwise, on the resultant frequency distribution for this problem. 4.3. Numerical Heating
+It is well documented that PIC codes are particularly susceptible to a phenomenon known as ‘numerical heating’, which leads to a growth in the kinetic energy of the system over the course of a simulation. This has previously been studied in detail by various authors [42, 43, 44], and is particularly prevalent in momentum conserving schemes such as that employed in EMPIRE-PIC [4]. This heating is typically controlled by three factors: (i) cell size, (ii) time-step size, and (iii) the number of computational particles used in the simulation. It has also been shown that the use of higher-order weighting schemes can signiﬁcantly suppress such heating, even in cases where the Debye length is not completely resolved by the spatial grid [45, 46]. We now present our ﬁndings from numerical heating experiments within EMPIRE-PIC, with and without using the implemented higher-order particle shapes presented in this paper. To this end we examine the total kinetic energy (KE) of a neutral plasma consisting of electrons and hydrogen ions over 1000 plasma periods, at an initial temperature of 1.0 eV. Therefore we derive the key parameters of this problem
+16
+
+100.3 100.2
+
+∆x/λD = 1, r0/∆x = 0.0 ∆x/λD = 4, r0/∆x = 0.0 ∆x/λD = 1, r0/∆x = 1.0 ∆x/λD = 4, r0/∆x = 1.0
+
+100.3 100.2
+
+∆x/λD = 1, r0/∆x = 0.0 ∆x/λD = 4, r0/∆x = 0.0 ∆x/λD = 1, r0/∆x = 1.0 ∆x/λD = 4, r0/∆x = 1.0
+
+KEi/KE0 KEi/KE0
+
+100.1
+
+100.1
+
+100
+
+100
+
+0 200 400 600 800 Plasma Period
+(a) Using 16 particles per cell
+
+1,000
+
+0 200 400 600 800 Plasma Period
+(b) Using 64 particles per cell
+
+1,000
+
+Figure 8: Graphs showing kinetic energy change over time for the vanilla code vs the optimal particle radius, for resolved and under-resolved λD.
+
+as follows. We chose a number density of n0 = 1015 m−3 resulting in a plasma frequency ωp ≈ 1.784 × 109 rad/s, assuming the thermal motion of the electrons can be ignored.
+Computationally, we use a 16 × 16 mesh of triangular elements with periodic boundaries in x and y, 10 time-steps per plasma period, with various amounts of particles per grid element and a range of particle radii. We also keep the amount of grid elements ﬁxed, instead altering the size of the problem domain in order to determine the ratio between the Debye length and the cell size, ∆x. Figure 7 shows the variation of the growth in simulation kinetic energy as the ratio of particle radius relative to ∆x is increased, for problems using 16, 32, and 64 computational particles per cell. Additionally, the ratio of ∆x to the Debye length is set at one of three levels: 1, 2, or 4. As expected, when the Debye length is severely under-resolved we observe large increases in the overall kinetic energy at the end of the simulation against that at the beginning. However, we see that such growth rapidly decreases as the particles are made smoother, particularly for the ∆x/λD = 4 case. Interestingly, as we approach the radius of r0 = ∆x, we observe very little diﬀerence in the growth of kinetic energy for the problems with ∆x/λD ≤ 2 at both 16 and 32 particles per cell. This is promising in terms of performance, as we can maintain similar kinetic energy stability while using less grid cells and super-particles, reducing both computational requirements and load on the memory system.
+The results are further validated in Figure 8, which shows the growth of the system kinetic energy at each simulated plasma period for values of ∆x/λD of 1 and 4, for the vanilla code and the optimal radius value of r0 = ∆x, using 16 and 64 particles per grid cell. Where the Debye length is under-resolved we observe extremely rapid growth in the kinetic energy of the system, increasing by 50% in approximately 300 periods for the 16 particle per cell case. In the case where ∆x/λD = 1, the smoothed particles all but eliminate the numerical heating eﬀects, with only mild kinetic energy growth throughout the simulation – 0.6% and 0.1% when 16 and 64 particles are used per grid cell, respectively, in contrast to the increases of 22.8% and 3.8% observed when using the base code. The beneﬁts are also signiﬁcant for the under-resolved case, with optimal particle smoothing resulting in a heating trend similar to that of the base code with a resolved mesh. Additionally, these results remain consistent for Figure 8b, exhibiting good reduction in heating eﬀects. Again, the smooth particles almost eliminate self heating where λD is resolved, and continue to show good performance on an under-resolved mesh – on par with the r0/∆x = 0 results in the resolved case.
+4.4. Electrostatic Plasma Slab Problem In order to properly assess the behaviour of our algorithm for electrostatic PIC simulations it is prudent to examine
+a more complex test case than the simple orbit discussed in Section 4.1. We now consider the 1D expansion of a collisionless slab of plasma into a vacuum, a benchmark problem that has previously been used for verifying PIC
+17
+
+1cm Domain
+
+Boundary Condition φ=0
+n0 =N1e*u1tr0al18Plasma m -3
+Boundary Condition φ=0
+
+• φ = Electric Potential • Periodic in y direction
+
+2mm Slab
+
+y x
+
+Figure 9: Image showing the setup of the plasma slab expansion problem.
+
+simulations [47]. As EMPIRE-PIC is a 2D/3D PIC code, it cannot be used to directly simulate an entirely 1D problem. We therefore set up a 2D mesh with ﬁxed Ny = 2, using periodic simulation boundaries for the y direction, and quadrilateral elements. We use a Dirichlet boundary condition in the x direction, setting the electric potential to zero in order to ensure that the problem is well posed. The problem starts with a charge neutral slab with a thickness of 2 mm placed at the centre of a domain of length 1 cm, allowed to expand for a total time of 2.5 × 10−9 s. The ions are initialised cold, whereas the electrons are assigned a ﬁnite initial temperature of 1 eV. Additionally, the ions have a mass of 10 × me. We choose such an artiﬁcially low ion to electron mass ratio in order to accelerate the expansion of the plasma slab. This setup is shown pictorially in Figure 9. Each grid cell of the simulation that contains plasma is initially loaded with 8000 particles of both species, weighted such that we achieve a plasma number density of n0 = 1 × 1018 m−3. Given these parameters, we can now derive the plasma frequencies and Debye length as follows. ωpe ≈ 5.641 × 1010 rad/s, ωpi ≈ 1.317 × 109 rad/s, and λD ≈ 6.89 × 10−6 m. This allows us to choose a base Nx such that ∆x/λD ≈ 1, and ∆t such that ωp∆t < 0.1. We now have Nx = 1600, Ny = 2, and N∆t = 250.
+We now show results for the simulated cell-centred ion density for this problem for the base code, and for the smooth particle implementation with r0/∆x = 1. As the density solution output by the vanilla code is extremely noisy, we ﬁlter the data using a one-dimensional Gaussian ﬁlter with σ = 3∆x. We display the error in the ion density as a shaded area, which shows the standard deviation in the raw data in both cells in the y dimension for the given point, and the six surrounding pairs of cells in the x dimension, speciﬁcally three pairs on each side of the point.
+Figure 10 shows the results of these experiments. It is clear to see from Figure 10a that the vanilla code exhibits a very high amount of noise in the simulated ion density, with most of this noise building up at the interface between the slab of plasma and the vacuum, with an RMSE value of 0.1402 (normalised by the number density). It is also evident that the use of a second-order basis can reduce this noise, with RMSE of 0.0288. Figure 10b shows the results of the same experiment for the smoothed particle representation. The magnitude of the noise in the solution is greatly reduced by particle smoothing, both at the interface and in the centre of the plasma slab to the point of being only marginally visible (RMSE = 0.0127). Close inspection reveals that the second-order basis continues to outperform the ﬁrst-order basis (RMSE = 0.0074).
+These experiments were also repeated using 800 particles per cell. These results are shown in Figures 10c and 10d. When comparing Figure 10a to Figure 10d we can see that using 800 smoothed particles produces a result that is signiﬁcantly less noisy than when 8000 traditional particles are used for both basis orders – RMSE = 0.0469 and 0.0207 for ﬁrst- and second-order bases, respectively. This is signiﬁcant as we can use an order of magnitude less particles while also maintaining a greatly improved solution over the base code. This resulted in a runtime approximately 2.5 times slower than the base code runs using 8000 traditional particles per cell – as expected given that Nv = 25 and PPC = 800 for the smoothed particle tests. This is a positive result as, for a ﬁrst-order basis, the smoothed particle tests result in an RMSE approximately three times lower than that achieved with the base code. Additionally, the purely computational nature of the virtual particles means that the memory footprint of the smoothed particle tests is lower by comparison.
+We also examined the error in simulated electric potential for both a resolved and under-resolved Debye length. This error did not appear to be sensitive to particle smoothing in this case. This result is interesting as it suggests that the large reduction in density noise has negligible eﬀect on the simulated potential.
+
+18
+
+·1018 1.5
+1
+
+Clean Data Basis Order = 1 Basis Order = 2
+
+·1018 1.5
+1
+
+Clean Data Basis Order = 1 Basis Order = 2
+
+Ion Density / m−3
+
+Ion Density / m−3
+
+0.5
+
+0.5
+
+0
+
+−4 −2 0
+
+2
+
+4
+
+x Position / m
+
+·10−3
+
+(a) Vanilla code, using 8000 particles per cell
+
+·1018 1.5
+
+Clean Data Basis Order = 1 Basis Order = 2
+
+0
+
+−4 −2 0
+
+2
+
+4
+
+x Position / m
+
+·10−3
+
+(b) Smoothed particles, r0/∆x = 1, 8000 particles per cell
+
+·1018
+
+Clean Data
+
+1.5
+
+Basis Order = 1 Basis Order = 2
+
+1
+
+1
+
+Ion Density / m−3
+
+Ion Density / m−3
+
+0.5
+
+0.5
+
+0
+
+−4 −2 0
+
+2
+
+x Position / m
+
+(c) Using 800 particles per cell, r0/∆x = 0
+
+4 ·10−3
+
+0
+
+−4 −2 0
+
+2
+
+x Position / m
+
+(d) Using 800 particles per cell, r0/∆x = 1
+
+4 ·10−3
+
+Figure 10: Graphs showing the noise in the simulated ion density for the vanilla code and smoothed particle shapes.
+
+5. Conclusion As the need to simulate the behaviour of plasmas within devices under various conditions using complex geome-
+try continues to grow, PIC algorithms must adapt to these changing requirements. As a result, both higher-order PIC methods and the use of unstructured FEM-PIC has become an area of great interest to the plasma simulation community. While higher-order unstructured meshes show promise, they also impose the additional requirement that the particles being simulated possess some smooth shape instead of the usual Dirac delta function due to the assumption that the source terms are smooth.
+In this paper, we have proposed a higher-order representation of particles in PIC algorithms, where each particle has a smooth shape function that is limited by a speciﬁed ﬁnite radius. A unique feature of our approach is that the implementation of this smooth representation is achieved by surrounding super-particles with delta shape computational virtual particles that have ﬁxed oﬀsets and weights. As this moves the quadrature from the mesh to a set of points
+19
+
+surrounding the particle we can use the same PIC procedures as the base code with minimal modiﬁcations. While we derive the oﬀsets and weights from Gaussian quadrature rules, the applications of this representation are broad as the oﬀsets and weights may be tuned to represent any desired shape of the particle cloud.
+We show how the proposed changes to the core PIC algorithm are implemented within SNL’s unstructured PIC code, EMPIRE-PIC, using periodic boundary conditions for both electrostatic and electromagnetic problems. The accuracy and convergence of the modiﬁed algorithm was examined using a set of representative benchmark problems and contrasted to the behaviour of the base EMPIRE-PIC code. Our results show approximately 70% improvement in the tracking of basic particle motion on a distorted mesh, with this increasing to an order of magnitude improvement when a second-order basis is used. We additionally show extremely successful suppression of self-heating for both resolved and under-resolved grids, and a signiﬁcant reduction in noise of the simulated ion density in an electrostatic plasma slab expansion while being able to use an order of magnitude fewer super-particles.
+The work in this paper represents a step towards more accurate PIC applications, enabling improved simulations of plasma phenomena. Our method additionally increases the computational intensity of the PIC algorithm, without drastically raising the burden on the memory system, possibly being beneﬁcial on new architectures, where the memory sub-system becomes a bottleneck. 5.1. Future Work
+The work presented in this paper opens up a number of avenues for further research. As the algorithm implementation theoretically allows for particles of arbitrary shapes to be represented, further work could examine the eﬀects of a multitude of particle shapes on the results of a PIC simulation.
+Finally, signiﬁcant work must also be undertaken to implement the more advanced non-periodic simulation boundary conditions to enable behaviour such as particle scattering and absorption. A method of handling such boundaries while using higher-order charge weighting has previously been shown by Pointon [48], where the charge weighting is smoothly transitioned back to ﬁrst-order as the particle approaches a boundary. In the case of our algorithm, this would be analogous to gradually reducing the radius of smooth particles back towards zero as simulation boundaries are approached. Implementing such a variable radius remains charge-conserving as long as the virtual particle weights to sum to one and all element crossings continue to be tracked. However, such a method is likely to exhibit the energy conservation issues present in structured and AMR-PIC codes.
+6. Acknowledgements This work was supported by the UK Atomic Weapons Establishment (AWE) under grant CDK0724 (AWE Tech-
+nical Outreach Programme). Professor Stephen Jarvis is an AWE William Penney Fellow. Computing facilities were provided by the Scientiﬁc Computing Research Technology Platform (SCRTP) of the University of Warwick.
+Sandia National Laboratories is a multimission laboratory managed and operated by National Technology and Engineering Solutions of Sandia, LLC., a wholly owned subsidiary of Honeywell International, Inc., for the U.S. Department of Energy’s National Nuclear Security Administration under contract DE-NA-0003525. This paper describes objective technical results and analysis. Any subjective views or opinions that might be expressed in the paper do not necessarily represent the views of the U.S. Department of Energy or the United States Government.
+References
+[1] T. D. Arber, K. Bennett, C. S. Brady, A. Lawrence-Douglas, M. G. Ramsay, N. J. Sircombe, P. Gillies, R. G. Evans, H. Schmitz, A. R. Bell, C. P. Ridgers, Contemporary particle-in-cell approach to laser-plasma modelling, Plasma Physics and Controlled Fusion 57 (11) (2015) 113001.
+[2] M. A. Riquelme, E. Quataert, D. Verscharen, Particle-in-cell simulations of continuously driven mirror and ion cyclotron instabilities in high beta astrophysical and heliospheric plasmas, The Astrophysical Journal 800 (1) (2015) 27.
+[3] G. Fridman, G. Friedman, A. Gutsol, A. B. Shekhter, V. N. Vasilets, A. Fridman, Applied plasma medicine, Plasma Processes and Polymers 5 (6) (2008) 503–533.
+[4] C. K. Birdsall, A. B. Langdon, Plasma Physics via Computer Simulation, Plasma Physics Series, Institute of Physics Publishing, Bristol BS1 6BE, UK, 1991.
+[5] J. M. Dawson, Particle simulation of plasmas, Reviews of Modern Physics 55 (1983) 403–447. [6] K. S. Yee, Numerical solution of initial boundary value problems involving maxwell’s equations in isotropic media, IEEE Transactions on
+Antennas and Propagation 14 (3) (1966) 302–307.
+20
+
+[7] A. B. Langdon, C. K. Birdsall, Theory of plasma simulation using ﬁnite-size particles, The Physics of Fluids 13 (8) (1970) 2115–2122. [8] R. A. Fonseca, L. O. Silva, F. S. Tsung, V. K. Decyk, W. Lu, C. Ren, W. B. Mori, S. Deng, S. Lee, T. Katsouleas, J. C. Adam, OSIRIS: A
+three-dimensional, fully relativistic particle in cell code for modeling plasma based accelerators, in: P. M. A. Sloot, A. G. Hoekstra, C. J. K. Tan, J. J. Dongarra (Eds.), Computational Science ICCS 2002, Springer Berlin Heidelberg, Berlin, Heidelberg, 2002. [9] K. Germaschewski, W. Fox, S. Abbott, N. Ahmadi, K. Maynard, L. Wang, H. Ruhl, A. Bhattacharjee, The plasma simulation code: A modern carticle-in-cell code with patch-based load-balancing, Journal of Computational Physics 318 (2016) 305 – 326. [10] K. J. Bowers, B. J. Albright, L. Yin, B. Bergen, T. J. T. Kwan, Ultrahigh performance three-dimensional electromagnetic relativistic kinetic plasma simulation, Physics of Plasmas 15 (5) (2008) 055703. [11] K. J. Bowers, B. J. Albright, B. Bergen, L. Yin, K. J. Barker, D. J. Kerbyson, 0.374 PFLOP/s trillion-particle kinetic modeling of laser plasma interaction on roadrunner, in: Proceedings of the 2008 ACM/IEEE Conference on Supercomputing, SC’08, IEEE Press, Piscataway, NJ, USA, 2008, pp. 63:1–63:11. [12] B. Wang, S. Ethier, W. Tang, T. Williams, K. Z. Ibrahim, K. Madduri, S. Williams, L. Oliker, Kinetic turbulence simulations at extreme scale on leadership-class systems, in: Proceedings of the International Conference on High Performance Computing, Networking, Storage and Analysis (SC’13), 2013, pp. 1–12. [13] W. Tang, B. Wang, S. Ethier, G. Kwasniewski, T. Hoeﬂer, K. Z. Ibrahim, K. Madduri, S. Williams, L. Oliker, C. Rosales-Fernandez, T. Williams, Extreme scale plasma turbulence simulations on top supercomputers worldwide, in: Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis (SC’16), 2016, pp. 502–513. [14] E. Wang, S. Wu, Q. Zhang, J. Liu, W. Zhang, Z. Lin, Y. Lu, Y. Du, X. Zhu, The Gyrokinetic Particle Simulation of Fusion Plasmas on Tianhe-2 Supercomputer, in: 2016 7th Workshop on Latest Advances in Scalable Algorithms for Large-Scale Systems (ScalA), 2016, pp. 25–32. [15] S. Dey, R. Mittra, A locally conformal ﬁnite-diﬀerence time-domain (FDTD) algorithm for modeling three-dimensional perfectly conducting objects, IEEE Microwave and Guided Wave Letters 7 (9) (1997) 273–275. [16] I. Zagorodnov, R. Schuhmann, T. Weiland, Conformal FDTD-methods to avoid time step reduction with and without cell enlargement, Journal of Computational Physics 225 (2) (2007) 1493 – 1507. [17] G. Yang, D. M. Causon, D. M. Ingram, R. Saunders, P. Battent, A cartesian cut cell method for compressible ﬂows part a: Static body problems, The Aeronautical Journal (1968) 101 (1002) (1997) 47–56. [18] M. J. Berger, J. Oliger, Adaptive mesh reﬁnement for hyperbolic partial diﬀerential equations, Journal of Computational Physics 53 (3) (1984) 484 – 512. [19] J.-L. Vay, P. Colella, J. W. Kwan, P. McCorquodale, D. B. Seraﬁni, A. Friedman, D. P. Grote, G. Westenskow, J.-C. Adam, A. He´ron, I. Haber, Application of adaptive mesh reﬁnement to particle-in-cell simulations of plasmas and beams, Physics of Plasmas 11 (5) (2004) 2928–2934. [20] J.-L. Vay, A. Almgren, J. Bell, L. Ge, D. Grote, M. Hogan, O. Kononenko, R. Lehe, A. Myers, C. Ng, et al., Warp-X: A new exascale computing platform for beam–plasma simulations, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment 909 (2018) 476–479. [21] R. Marchand, PTetra, a tool to simulate low orbit satellite–plasma interaction, IEEE Transactions on Plasma Science 40 (2) (2012) 217–229. [22] J. Roussel, F. Rogier, G. Dufour, J. Mateo-Velez, J. Forest, A. Hilgers, D. Rodgers, L. Girard, D. Payan, SPIS open-source code: Methods, capabilities, achievements, and prospects, IEEE Transactions on Plasma Science 36 (5) (2008) 2360–2368. [23] C. K. Birdsall, D. Fuss, Clouds-in-clouds, clouds-in-cells physics for many-body plasma simulation, Journal of Computational Physics 3 (1969) 494–511. [24] G. Jacobs, J. Hesthaven, High-order nodal discontinuous galerkin particle-in-cell method on unstructured grids, Journal of Computational Physics 214 (1) (2006) 96–121. [25] J. Hesthaven, T. Warburton, Nodal high-order methods on unstructured grids: I. time-domain solution of maxwell’s equations, Journal of Computational Physics 181 (1) (2002) 186–221. [26] E. Edwards, R. Bridson, A high-order accurate particle-in-cell method, International Journal for Numerical Methods in Engineering 90 (9) (2012) 1073–1088. [27] T. Stindl, J. Neudorfer, A. Stock, M. Auweter-Kurtz, C.-D. Munz, S. Roller, R. Schneider, Comparison of coupling techniques in a high-order discontinuous galerkin-based particle-in-cell solver, Journal of Physics D: Applied Physics 44 (19) (2011) 194004. [28] M. C. Pinto, S. Jund, S. Salmon, E. Sonnendru¨cker, Charge-Conserving FEM–PIC Schemes on General Grids, Comptes Rendus Mecanique 342 (10–11) (2014) 570–582. [29] D. A. S. Brown, S. A. Wright, S. A. Jarvis, Performance of a second order electrostatic particle-in-cell algorithm on modern many-core architectures, Electronic Notes in Theoretical Computer Science 340 (2018) 67–84. [30] J. Squire, H. Qin, W. M. Tang, Geometric Integration of the Vlasov-Maxwell System with a Variational Particle-in-Cell Scheme, Physics of Plasmas 19 (8) (2012) 084501. [31] H. Moon, F. L. Teixeira, Y. A. Omelchenko, Exact Charge-Conserving Scatter-Gather Algorithm for Particle-in-Cell Simulations on Unstructured Grids: A Geometric Perspective, Computer Physics Communications 194 (2015) 43–53. [32] Y. L. Klimontovich, The Statistical Theory of Non-Equilibrium Processes in a Plasma: International Series of Monographs in Natural Philosophy, Vol. 9, Elsevier, 2013. [33] T. H. Dupree, Kinetic Theory of Plasma and the Electromagnetic Field, Physics of Fluids (1958-1988) 6 (12) (1963) 1714–1729. [34] J. Boris, Relativistic plasma simulation: Optimization of a hybrid code, in: Proceedings of the Fourth Conference on Numerical Simulation of Plasmas, Naval Research Laboratory, Washington, D.C, 1971, pp. 3–68. [35] J. Jin, The Finite Element Method in Electromagnetics, 3rd Edition, Wiley-IEEE Press, 2014. [36] J.-C. Ne´de´lec, Mixed ﬁnite elements in R3, Numerische Mathematik 35 (3) (1980) 315–341. [37] F. Brezzi, M. Fortin, Mixed and Hybrid Finite Element Methods, Vol. 15, Springer Science & Business Media, 2012. [38] B. Ripperda, F. Bacchini, J. Teunissen, C. Xia, O. Porth, L. Sironi, G. Lapenta, R. Keppens, A comprehensive comparison of relativistic particle integrators, The Astrophysical Journal Supplement Series 235 (1) (2018) 21. [39] J. Villasenor, O. Buneman, Rigorous charge conservation for local electromagnetic ﬁeld solvers, Computer Physics Communications 69 (2)
+21
+
+(1992) 306 – 316. [40] F. F. Chen, Introduction to Plasma Physics and Controlled Fusion, 3rd Edition, Springer, 2016. [41] J. A. Bittencourt, Fundamentals of Plasma Physics, 3rd Edition, Springer, 2004. [42] A. Langdon, Eﬀects of the spatial grid in simulation plasmas, Journal of Computational Physics 6 (2) (1970) 247 – 267. [43] R. Hockney, S. Goel, J. Eastwood, Quiet high-resolution computer models of a plasma, Journal of Computational Physics 14 (2) (1974) 148
+– 158. [44] R. Hockney, Measurements of collision and heating times in a two-dimensional thermal computer plasma, Journal of Computational Physics
+8 (1) (1971) 19 – 44. [45] M. Shalaby, A. E. Broderick, P. Chang, C. Pfrommer, A. Lamberts, E. Puchwein, SHARP: A spatially higher-order, relativistic particle-in-cell
+code, The Astrophysical Journal 841 (1) (2017) 52. [46] P. Rambo, Numerical heating in hybrid plasma simulations, Journal of Computational Physics 133 (1) (1997) 173 – 180. [47] B. I. Cohen, A. B. Langdon, D. W. Hewett, R. J. Procassini, Performance and optimization of direct implicit particle simulation, Journal of
+Computational Physics 81 (1) (1989) 151 – 168. [48] T. Pointon, Second-order, exact charge conservation for electromagnetic particle-in-cell simulation in complex geometry, Computer Physics
+Communications 179 (8) (2008) 535–544.
+22
+

@@ -1,0 +1,3110 @@
+Vector potential-based MHD solver for non-periodic ﬂows using Fourier continuation expansions
+Mauro Fontanaa, Pablo D. Mininnia, Oscar P. Brunob, Pablo Dmitruka
+aUniversidad de Buenos Aires, Facultad de Ciencias Exactas y Naturales, Departamento de F´ısica, & IFIBA, CONICET, Ciudad Universitaria, Buenos Aires 1428, Argentina.
+bComputing and Mathematical Sciences, Caltech, Pasadena, CA 91125, USA.
+
+arXiv:2107.07077v1 [physics.comp-ph] 15 Jul 2021
+
+Abstract
+A high-order method to evolve in time electromagnetic and velocity ﬁelds in conducting ﬂuids with non-periodic boundaries is presented. The method has a small overhead compared with fast FFT-based pseudospectral methods in periodic domains. It uses the magnetic vector potential formulation for accurately enforcing the null divergence of the magnetic ﬁeld, and allowing for diﬀerent boundary conditions including perfectly conducting walls or vacuum surroundings, two cases relevant for many astrophysical, geophysical, and industrial ﬂows. A spectral Fourier continuation method is used to accurately represent all ﬁelds and their spatial derivatives, allowing also for eﬃcient solution of Poisson equations with diﬀerent boundaries. A study of conducting ﬂows at diﬀerent Reynolds and Hartmann numbers, and with diﬀerent boundary conditions, is presented to study convergence of the method and the accuracy of the solenoidal and boundary conditions. Keywords: MHD; Non-periodic boundary conditions; Fourier continuation; Magnetic vector potential; Direct numerical simulations.
+
+1. Introduction
+Numerical solutions to partial diﬀerential equations (PDEs) have been a cornerstone of engineering and physics research in the last decades, and their ubiquity has grown as computational power has increased. Numerical treatment is particularly relevant when dealing with problems modeled by non-linear PDEs, which are often impossible to treat analytically even for simple settings. The development of algorithms to yield improved numerical solutions, and to make a more eﬃcient use of computational resources, remains to the present day an important research topic. In the particular case of ﬂuid dynamics and plasma physics, if periodic boundary conditions can be used (e.g., when considering the bulk ﬂow dynamics), employing Fourier representations is a well established method, as it tends to be optimal when considering the accuracy and computational eﬃciency of the numerical scheme [1, 2].
+There is, nevertheless, a plethora of physical scenarios that cannot be successfully modeled employing PDEs with periodic boundary conditions. In those situations the zoology of numerical techniques is plentiful, and the method of choice is usually problem dependent [3, 4, 5, 6, 7, 8, 9, 10, 11]. One strategy among many possible is to employ Fourier representations and adjust boundary conditions, most commonly, using either penalization methods [12, 13], or periodic extensions of the non-periodic ﬁelds
+Email address: mfontana@df.uba.ar (Mauro Fontana)
+Preprint submitted to Elsevier
+
+[14, 15]. However, the former tend to result in low order methods, whereas the latter can become prohibitively computationally expensive and hence, historically, Fourierbased methods have not seen much use for non-periodic problems, resulting in the use of other bases (in many cases more expensive to transform), or of lower-order methods for many applications.
+In recent years, an eﬃcient Fourier representation for ﬁelds with arbitrary boundary conditions was introduced, which uses Gram polynomials (sometimes referred to as discrete Chebyshev polynomials) to obtain high-order periodic extensions at a marginal computational cost, resulting in the so-called FC-Gram method [16, 17]. Besides yielding high order accuracy, this technique produces spatially dispersionless derivatives [18] — in view of its reliance on Fourier expansions — and hence phase speed propagation errors might arise solely as a result of the time stepping strategy. Another advantage of the FC-Gram method is that Poisson equations, which are common in some formulations of the incompressible hydrodynamic equations, can be easily and eﬃciently solved in bounded domains [19]. As a result, to the present day the FC-Gram method has been successfully employed in a wide range of PDE problems [17, 20, 21, 19].
+Magnetohydrodynamic (MHD) equations, and related equations of electromagnetism and plasma physics, have many features in common with hydrodynamics but also their own complexities, and as a result have remained so far unexplored using FC-Gram methods. These nonlinear equations, which model conducting ﬂuids and the low
+July 16, 2021
+
+frequency regime of plasmas [22], are of major relevance to numerous research topics such as planetary and celestial magnetic ﬁelds [23, 24, 25, 26, 27, 28], stellar atmospheres [29, 30], non-mechanical pumps [31, 32], and fusion research, to name a few. However, boundary conditions for the electromagnetic ﬁelds can be numerically harder to deal with, and the magnetic ﬁeld must be kept solenoidal or otherwise measurable diﬀerences in the numerical solutions can be found [33, 34]. Moreover, the MHD equations present a purely magnetic invariant, the magnetic helicity, whose deﬁnition involves the magnetic vector potential [35]. It is, therefore, also important for MHD research to be able to conﬁdently rely on numerical methods which produce an accurate vector potential and, by proxy, are reliable for computing all the known ideal invariants of the system including the magnetic helicity. As a result, methods which evolve equations for the vector potential instead of the magnetic ﬁeld are of particular relevance, as they have the beneﬁts of explicitly enforcing the solenoidal condition on the magnetic ﬁeld and of allowing direct computation of the magnetic helicity.
+In this paper we present an algorithm (and a publicly available numerical code) for the solution of the incompressible MHD equations in the vector potential formulation, for a single non-periodic dimension along which FC-Gram representations are employed to evaluate derivatives. In particular, the highly relevant scenarios where the boundary conditions correspond to either perfectly conducting walls or vacuum surroundings are considered, as often used in simulations of the geodynamo or in industrial applications. Use of an explicit time integration scheme is proposed, as we will focus on the moderate and low diﬀusivity regime, where turbulent behaviour takes place and hence the Courant–Friedrichs–Lewy (CFL) constraint is dominated by ﬁeld advection (i.e., by non-linearities). As indicated above, for simplicity, the method presented in this work is restricted to cases with a single non-periodic direction. It is however straightforward to extend the method presented here to additional non-periodic dimensions and to general non-rectangular domains, as well as to the compressible case and to other physical systems such as Hall-MHD ﬂows, two-ﬂuid plasma descriptions, or other MHD problems including systems with thermal convection or in rotating frames. Convergence of the method and the accuracy in satisfying the solenoidal and boundary conditions will be illustrated considering the Hartmann ﬂow.
+The main results are: (1) The method retains all the advantages of spectral methods for dealing with strongly non-linear systems, including being dispersionless and fast (as its based on FFTs). (2) Being a high-order method, and based on a high-order representation of the vector potential, it satisﬁes the solenoidal condition on the magnetic ﬁeld down to an error of the order of ﬂoating point arithmetic limitations. (3) Solving Poisson equations (e.g., to impose the Coulomb gauge) is easy and well conditioned. (4) The proposed method can accommodate diﬀerent types
+
+of boundary conditions for the magnetic ﬁeld, and in particular, cases relevant for geophysical, astrophysical and industrial ﬂows are explicitly treated. And ﬁnally, (5) a modiﬁed FC-Gram method allows for ﬂexible and eﬃcient numerical treatment of boundary conditions on second derivatives of the ﬁelds, and on boundary conditions prescribed by diﬀerential equations as in the case of Robin boundary conditions.
+The paper is organized as follows. In Section 2 we introduce the equations and geometry of interest. In Section 3 we derive appropriate boundary conditions for the vector potential. In Section 4, an overview of the standard FCGram method is presented, and appropriate generalizations for the boundary conditions in question are discussed. In particular, we point the reader to Section 4.3 which introduces the modiﬁed FC-Gram approach for Robin boundary conditions — without which the applicability of the FCGram method in this context would be compromised, in view of its ubiquity in electromagnetic problems and of its potentially high computing costs. Then, in Section 5 a full time stepping algorithm is proposed for evolving the MHD equations. As an application, in Section 6 we consider the Hartmann ﬂow scenario from a physical standpoint, while in Section 7 the numerical performance of the algorithm is evaluated. Finally, the conclusions are presented in Section 8.
+
+2. Governing equations
+
+The standard ﬁeld formulation for the MHD approximation of an incompressible conducting ﬂuid is encompassed in the set of equations
+
+∇ · u = 0,
+
+(1)
+
+∂u ∂t
+
++
+
+(u
+
+·
+
+∇)u
+
+=
+
+−∇p
+
++
+
+j
+
+×
+
+b
+
++
+
+ν∇2u,
+
+(2)
+
+∇ · b = 0,
+
+(3)
+
+∂b ∂t
+
+=
+
+∇
+
+×
+
+(u
+
+×
+
+b)
+
++
+
+η∇2b.
+
+(4)
+
+Here u, p, b, and j = ∇ × b are the velocity, the pressure per unit mass density, the magnetic ﬁeld, and the current density, respectively. The kinematic and magnetic diﬀusivities are ν and η, and the mass density is assumed to be homogeneous. The magnetic ﬁeld b is written in velocity (Alfv´enic) units. The magnetic permeability µ is equal to 1, a reasonable choice in most optical, geophysical, and astrophysical contexts. In this approximation the electric ﬁeld E is reduced to a secondary role as a result of the quasineutrality hypothesis, although it can be recovered a posteriori from the non-relativistic Ohm’s law
+
+ηj = E + u × b.
+
+(5)
+
+Equation (3) implies that the magnetic ﬁeld is always solenoidal, and imposes a condition on advection and stretching of magnetic ﬁeld lines [22]. In low-order methods, or in approximate methods, it has been shown that
+
+2
+
+solutions are sensitive to the way this condition is enforced, or on how well it is satisﬁed [33]. In particular, measurable diﬀerences in physical quantities were reported for diﬀerent methods [34]. When treating problems analytically, the condition ∇ · b = 0 can be enforced by representing the magnetic ﬁeld via the vector potential a which is deﬁned by the relation ∇ × a = b. This latter expression, however, does not deﬁne a unique vector potential, as adding a gradient to a results in the same magnetic ﬁeld. To properly deﬁne a vector potential both ∇ · a and boundary conditions compatible with those for the magnetic ﬁeld must be prescribed. In non-relativistic MHD, the most common choice is to use the Coulomb gauge, ∇ · a = 0.
+Besides guaranteeing ∇ · b = 0, the vector potential is also important to deﬁne the magnetic helicity density hm = b · a. The volumetric integral of this quantity measures the topological complexity of magnetic ﬁeld lines, and is the only purely magnetic ideal invariant of the MHD equations, the other two known invariants involving also the velocity ﬁeld being the total energy and the volumetric integral of the cross helicity density hc = u · b [22, 36]. It is therefore desirable in the numerical study of MHD to ensure an accurate computation of the magnetic helicity, for which the vector potential is needed.
+If the magnetic ﬁeld is represented via a vector potential in the Coulomb gauge, integrating Eq. (4) results in the following set of equations for the MHD approximation of an incompressible ﬂow in terms of a,
+
+∇ · u = 0,
+
+(6)
+
+∂u ∂t
+
++
+
+(u
+
+·
+
+∇)u
+
+=
+
+−∇p
+
+−
+
+∇2a
+
+×
+
+(∇
+
+×
+
+a)
+
++
+
+ν∇2u,
+
+(7)
+
+∇·a=0
+
+(8)
+
+∂a ∂t
+
+=
+
+u
+
+×
+
+(∇
+
+×
+
+a)
+
++
+
+η∇2a
+
+−
+
+∇φ.
+
+(9)
+
+where we used j = −∇2a. The scalar potential φ results
+
+from the integration of Eq. (4), and must fulﬁll the gauge
+
+condition ∇ · a = 0. A close look at Eq. (5) reveals that
+
+φ is no other than the standard electric scalar potential,
+
+recovering the usual expression for the electric ﬁeld
+
+E
+
+=
+
+−∇φ
+
+−
+
+∂a ∂t
+
+.
+
+(10)
+
+It should also be noted that, under this standard formulation of the incompressible MHD equations, both the pressure and the electric potential must fulﬁll seldom Poisson equations, since taking the divergence of Eqs. (7) and (9) and considering the solenoidality condition yields
+
+∇2p = −∇ · (u · ∇) u ,
+
+(11)
+
+∇2φ = ∇ · u × (∇ × a) .
+
+(12)
+
+The numerical method presented in this work can compute solutions for Eqs. (7), (9), (11) and (12) after boundary conditions for the physical ﬁelds are provided. We will consider a (0, 0, 0) × (Lx, Ly, Lz) cuboid domain, and a uniform spatial discretization in each direction consisting of Nx × Ny × Nz gridpoints (see Fig. 1).
+
+3. Boundary conditions for the vector and scalar potentials
+
+3.1. Perfectly conducting boundary conditions
+A relevant scenario for astrophysical and geophysical applications is that of a magnetoﬂuid that is conﬁned by a perfectly conducting medium. This is the situation encountered, e.g., in many simulations of the geodynamo when treating the boundary with the inner core [25]. In this case the electric ﬁeld must vanish inside the conductor, and there cannot exist a time-varying magnetic ﬁeld in its interior. Considering now a stationary conductor (u = 0), the continuity of the normal component of the magnetic ﬁeld, and Ohm’s law, the magnetic boundary conditions that the system must fulﬁll are
+
+j|∂Ω × nˆ = 0,
+
+(13)
+
+∂tb|∂Ω · nˆ = 0,
+
+(14)
+
+where ∂Ω denotes the boundary surface and nˆ is a normal unit vector at ∂Ω. Note that if b · nˆ = 0 at t = 0, then b · nˆ = 0 ∀t > 0. For simplicity we consider this latter scenario from here onwards.
+Assuming now periodic boundary conditions in the xˆ and yˆ directions and the presence of a conducting wall at z = 0, it follows that a vector potential satisfying the Coulomb gauge constraint, a|z=0×zˆ = 0, and (∂2a/∂z2)|z=0× zˆ = 0 at t = 0 veriﬁes the boundary conditions given by Eqs. (13) and (14). Note that the normal component of the vector potential, a⊥ = az, is not directly involved in the determination of any of the physical boundary conditions. For this to be the case, however, the Coulomb gauge must be maintained at all times and thus it is reasonable for az at the boundary to explicitly enforce the interface gauge condition, resulting in the set of conditions
+
+a|z=0 × z = 0,
+
+(15)
+
+∂2a ∂z2
+
+× zˆ = 0,
+
+(16)
+
+z=0
+
+∂a ∂z
+
+z=0
+
+· zˆ = 0,
+
+(17)
+
+φ|z=0 = 0,
+
+(18)
+
+which guarantee the physical boundary conditions are maintained at all times. Even more, choosing φ = 0 in the boundary is in full agreement with the fact that the perfect conductor must be an equipotential surface. Although the boundary conditions above appear at ﬁrst sight to overdetermine the problem, it should be noted that some choices are made using the gauge freedom, and that if they are enforced exactly the dynamical equations imply that a |z=0 = 0 acts only as an initial condition (with the subindex indicating the components parallel to the boundary), and that together with (∂2a /∂z2)|z=0 = 0, which is the physical boundary condition, suﬃce to enforce the conditions on the magnetic ﬁeld and the current density.
+
+3
+
+Figure 1: a):Illustration of the explored geometry, a cuboid domain, discretized employing a uniform grid in each of xˆ, yˆ, and zˆ directions. For simplicity, the only non-periodic direction is zˆ. The actual physical domain is represented in light blue, whereas the spaced used to compute the FC-Gram continuations is shaded in red. b) Sketch of the magnetic ﬁeld lines inside the domain when considering perfectly conducting boundary conditions, together with the appropriate boundary conditions. c) Sketch of the magnetic ﬁeld inside and outside the domain occupied by the ﬂuid for the case of vacuum boundary conditions.
+
+3.2. Vacuum boundary conditions
+Another relevant astrophysical and geophysical scenario is that of a magnetoﬂuid which is surrounded by vacuum. As mentioned before, we assume for this work that in the magnetoﬂuid µ = 1, and hence the magnetic ﬁeld at the interface must be continuous, that is
+
+[b]∂Ω = 0
+
+=⇒
+
+bI|∂Ω = bII|∂Ω,
+
+(19)
+
+where I and II denote quantities in the ﬂuid and vacuum
+media respectively, ∂Ω is the boundary between them, and
+[q]S denotes the jump in ﬁeld q across S. Expanding both ﬁelds in terms of the respective vector potentials bi = ∇ × ai it is straightforward to get the corresponding bulk equations for aII in the vacuum domain, as the current
+density must necessarily vanish there. Due to the absence of electric charge, the vacuum electric potential φII must
+be harmonic. The respective equations are
+
+∇2φII = 0,
+
+(20)
+
+∇2aII = 0,
+
+(21)
+
+∇ · aII = 0,
+
+(22)
+
+where, as before, the Coulomb gauge was chosen for the vector potential.
+The physical boundary condition, Eq. (19), implies that a must obey
+
+(∇ × aI)∂Ω = (∇ × aII)∂Ω,
+
+(23)
+
+whereas regularity conditions on b require a to be continuous at the boundary, that is, aI = aII.
+To address the physical boundary conditions for the scalar potential, we start by formulating appropriate boundary conditions for the electric ﬁeld, which are
+
+EI × nˆ |∂Ω = EII × nˆ |∂Ω,
+
+(24)
+
+I
+EI · nˆ |∂Ω = II EII · nˆ |∂Ω,
+
+(25)
+
+with i the electrical permittivity of medium i, and nˆ a normal unit vector pointing from I towards II. For a sizeable class of conducting ﬂuids the permittivity can be approximated by that of vacuum, and hence the normal component
+
+of the electric ﬁeld is continuous in the boundary, which expressed in terms of the potentials reads
+
+∂ aI ∂t
+
+·
+
+nˆ
+
++
+
+∂ φI ∂n
+
+=
+
+∂ aII ∂t
+
+·
+
+nˆ
+
++
+
+∂ φII ∂n
+
+. (26)
+
+∂Ω
+
+∂Ω
+
+Considering the continuity of the vector potential across the boundary, the latter equation reduces simply to the continuity of the normal derivative of the scalar potential. Analyzing a similar equation for the parallel electric ﬁeld leads to the continuity of the electric potential itself.
+For the case of periodic boundary conditions in xˆ and yˆ, assuming vacuum is present in the semispace z > 0 and considering only bounded solutions for z → ∞, the harmonic equations for aII and φII admit the solutions
+
+∞
+aII(x, y, z) =
+
+∞
+aˆInImei(knx x+km y y)−γnmz ,
+
+m=−∞ n=−∞
+
+∞
+φII(x, y, z) =
+
+∞
+φˆInImei(knx x+km y y)−γnmz ,
+
+m=−∞ n=−∞
+
+(27) (28)
+
+where knx (resp. kmy ) is the n-th (resp. m-th) wavenumber in the xˆ (resp. yˆ) direction and γnm = [(knx)2 + (kmy )2]1/2. For the vector potential, the condition
+
+aznImI
+
+=
+
+i γmn
+
+(knx
+
+axnImI
+
++ kmy aynImI ),
+
+(29)
+
+corresponds to enforcement of the Coulomb gauge. On the basis of this solution boundary conditions for
+the vector potential aI can be obtained easily on the base of its continuity, the physical boundary conditions in Eq. (23) and the gauge continuity across the boundary, leading to the set of conditions
+
+daInm dz
+
++ γnmaI
+
+= 0,
+z=0
+
+(30)
+
+which represents an homogeneous Robin boundary condition for each wavenumber component of the vector potential in the ﬂuid medium. In a similar way, the continuity of
+
+4
+
+both ∂zφ and φ itself leads to a fully analogous Robin condition
+
+dφInm dz
+
++
+
+γnmφI
+
+= 0.
+z=0
+
+(31)
+
+It is worth emphasizing that these boundary conditions
+
+assume vacuum is present in the semispace z > 0. Nat-
+
+urally, if vacuum is instead in the semispace z < 0, the corresponding harmonic solution has a factor eγnmz (note
+
+the absence of the minus sign), and the resulting boundary
+
+conditions for this case would be
+
+d dz
+
+− γnm
+
+= 0,
+
+(32)
+
+z=0
+
+for φ and each cartesian component of a. Robin boundary conditions are common in many elec-
+tromagnetic problems, and as a result, we now present a generalization of the FC-Gram method to deal with such conditions, as well as with the boundary conditions discussed before for the case of a perfect conductor.
+
+4. Generalization of FC-Gram to boundary conditions in MHD
+4.1. FC-Gram with Dirichlet boundary conditions
+In order to have an accurate but computationally efﬁcient representation of the ﬁelds and their derivatives, all the relevant variables are projected onto a Fourier representation basis. As both the xˆ and yˆ directions have periodic boundary conditions, the transformation to the wavenumber domain can be directly computed via standard FFT operations. That is not the case, however, for the non-periodic z dimension, as the well known Gibbs ringing phenomenon [37] would severely degrade accuracy in the representation of the ﬁelds’ derivatives. To circumvent this limitation we employ a computationally eﬃcient continuation methodology, known as FC-Gram, ﬁrst introduced in [38, 16] and recently utilized in [19] for a hydrodynamic Navier-Stokes solver.
+The idea behind a Fourier Continuation (FC) technique can be summarized as follows for the one dimensional case. Let f (z) be a non-periodic function deﬁned over the discrete grid zi = i∆z, with ∆z the (uniform) grid spacing and i = 0, . . . N − 1, resulting in f = f (z0), . . . , f (zN−1) . The method generates an eﬃcient continuation spanning the domain zN , . . . , zN+C−1, where C is the number of points used for the extension operation and is a parameter of the method. The resulting quantities f c = f (zN ), . . . , f (zN+C−1) can then be appended to the values of the function over the original grid, as depicted in Fig. 2, and a Fourier representation can be computed for f ∪ f c over the interval [z0, zN+C ). Any derivatives estimated in the wavenumber domain can then be inverse Fourier transformed to get accurate representations over the original [z0, zN−1] grid.
+
+To obtain f c in a computationally eﬃcient manner, the
+
+FC-Gram method uses only information near the boundary to estimate f c. To this end, lets ﬁrst consider the simpler
+
+case where we have d values at the end of the domain
+
+f
+
+e dir
+
+=
+
+f (zN−d), . . . , f (zN−1) , and we wish to compute
+
+a continuation that smoothly transitions from f (zN−1) to 0.
+
+The subindex “dir” is used to denote a Dirichlet boundary
+
+condition on the endpoint, i.e., that f (zN−1) is known.
+
+The resulting extension will hence have a d-th order of
+
+approximation at the boundary. Note d (the number of
+
+points near the boundary used to compute the continuation)
+
+is an additional parameter of the FC-Gram technique.
+
+Fixing d deﬁnes a set of discrete polynomials orthogonal
+
+with respect to the inner product
+
+d−1
+
+g|h = g(xi)h(xi),
+
+(33)
+
+i=0
+
+i.e., the Gram polynomials. Note that xi is used in this equation as the inner product deﬁnition is unrelated to
+
+the grid zi introduced before. An operator of length C that smoothly transitions each Gram polynomial to zero
+
+(i.e., a blend to zero operator) can be numerically obtained,
+
+resulting in the C × d blend-to-zero matrix Adir [20]. The subindex “dir” again denotes the fact that this matrix is
+
+for Dirichlet boundary conditions. Similarly, an operator
+
+that projects arbitrary function values at d grid points onto
+
+each of the Gram polynomials can be obtained, resulting
+
+in a certain matrix Qdir (see [20, 19] for more details). The computation of operators Adir and Qdir must be
+performed utilizing arbitrary precision linear algebra rou-
+
+tines, as it requires decomposing ill-conditioned matrices.
+
+However, it is worth noting that these computations, which
+
+require only a few minutes in a single modern CPU core
+
+(although its computation can be parallelized), must be
+
+performed only one time for a given selection of C and
+
+d, with the resulting operators being utilized henceforth.
+
+Additional details about obtaining these operators can be
+
+found in [38, 16], and also in [19] for a case with a very
+
+similar scope to the one proposed in this work.
+
+With the Adir and Qdir operators at hand, ﬁnding a continuation that smoothly transitions f to 0 is straight-
+
+forward, requiring only a projection of the boundary end
+
+values
+
+f
+
+e dir
+
+onto
+
+the
+
+Gram
+
+space,
+
+and
+
+blending
+
+each
+
+of
+
+those
+
+polynomials to zero. The resulting smooth extension to zero ˜f c is computed as
+
+˜f c = AdirQdirf edir.
+
+(34)
+
+It is now possible to consider the original problem in
+
+which at the
+
+we want a beginning
+
+somf othoethdtormanasinitifobdnirfr=omff(edzi0r)t,o.
+
+the d values . . , f (zd−1) ,
+
+to get a periodic extension. This can be easily solved now by adding to ˜f c a set of values which smoothly transition from
+
+0 to f (z0). A suitable continuation which transitions from f (zN−1) to f (z0) and which has d − 1 smooth derivatives at the endpoints can thus be constructed as
+
+fc
+
+=
+
+AdirQdirf
+
+e dir
+
++
+
+A‡dirQΠdirf bdir,
+
+(35)
+
+5
+
+where ‡ and Π denote the row-reversing and column-reversing
+
+operations, respectively. The underlying concept in Eq. (35),
+
+which can be easily appreciated in Fig. 2, is the superposi-
+
+tion of values which smoothly transition from f (zN−1) to
+
+zero
+
+(given
+
+by
+
+AdirQdirf
+
+e dir
+
+),
+
+and
+
+from
+
+zero
+
+to
+
+f (z0)
+
+(pre-
+
+scribed by A‡dirQΠdirf bdir), resulting in the overall smooth
+
+periodic extension.
+
+It is worth pointing out that, as mentioned earlier, Adir
+
+and Qdir depend only on the choice of d and C, and not
+
+on
+
+the
+
+data
+
+to
+
+be
+
+continued
+
+f
+
+b dir
+
+,
+
+f
+
+e dir
+
+.
+
+This means that
+
+the ill-conditioning usually found when trying to compute
+
+suitable periodic extensions is encapsulated in the estima-
+
+tion of those matrices. This is specially important for 3D
+
+problems, as the fastest way to obtain the values on the
+
+extended volume (as depicted in Fig. 1) is to simply apply
+
+Eq. (35) to each xy-line (i.e., by computing Nx × Ny 1D continuations). Another detail worth noting is that the
+
+same Adir and Qdir operators can accurately continue both
+
+the
+
+real
+
+and
+
+imaginary
+
+parts
+
+in
+
+case
+
+the
+
+vectors
+
+f
+
+bdir,
+
+f
+
+e dir
+
+are
+
+complex valued, allowing to commute FFTs and FC-Gram
+
+operations (which is important for eﬃcient parallelization
+
+of the method, see [39, 19]). It is also worth mentioning
+
+that, depending on the problem at hand, great accuracy is
+
+obtained when considering d in the range of 4 to 10 and C
+
+in the range of 15 to 33. This has the added beneﬁt that
+
+consequently both Adir and Qdir ﬁt easily in the L1 cache of modern CPU cores.
+
+Within the context of PDE solvers, the FC-Gram pic-
+
+ture described above is useful when the function values are
+
+known everywhere, that is, both at every interior point as
+
+well as at the boundary. For the case of having the normal
+
+derivative prescribed at one end of the domain, a solution
+
+within the framework of FC-Gram which is both accurate
+
+and eﬃcient was introduced in [20]. A treatment for the
+
+case in which second normal derivatives are prescribed at
+
+the boundary is introduced next in Section 4.2. A straight-
+
+forward extension of these methods to Robin boundary
+
+conditions is not eﬃcient, as in electromagnetism a large
+
+number of such conditions may arise simultaneously with
+
+diﬀerent Robin coupling parameters for each mode (as, e.g.,
+
+in Eq. 30). Thus, a new FC-Gram algorithm for the Robin
+
+problem that allows quick computation for diﬀerent Robin
+
+coupling parameters is presented in Section 4.3.
+
+4.2. Modiﬁed FC-Gram method for prescribing the second
+normal derivative
+We are once again interested in ﬁnding a suitable blend to zero procedure using the information at the end of the domain, but now for the case where d − 1 values at the interior points and the second derivative at the last grid point are known. Once found, that blend to zero procedure can be easily employed to compute a periodic extension, as it was previously discussed. Therefore, in a similar way to the ideas introduced for the Dirichlet case, one possible strategy to deal with this problem within the framework of the FC-Gram method is to project the last d − 1 interior
+
+a)
+
+f
+
+fb
+
+AQf e
+
+2
+
+f
+
+c rob
+
+fe
+
+A‡QΠ f b
+
+f
+
+c neu2
+
+1
+
+0
+
+−1
+
+−2
+
+−3
+
+2.5×10 6
+
+0.0
+
+−4
+
+-2.5×10 6 0
+
+0.0 0.2 0.4 0.6
+
+b)
+50
+
+f
+
+f rob
+
+0.8
+f neu2
+
+0.93359 0.93357 0.93355
+1
+1.0
+
+0
+
+−50 0.0 0.2 0.4 0.6 0.8 1.0
+c)
+10−3
+
+|f − f |
+
+10−5
+
+f rob
+
+f neu2
+
+4th order FD
+
+0.0 0.2 0.4 0.6 0.8 1.0 z
+
+Figure 2: Example of a 4th order (d = 5) FC-Gram procedure applied
+
+to the function f (z) = J0(25z)e3z − 1 for N = 113 grid points in the
+
+[0, 1] domain and C = 15 continuation points. Panel a) shows the
+
+function over the discrete grid (in blue) together with the periodic
+
+continuations computed using the second (in green with × markers) and the Robin
+
+normal derivative condition f + 5f
+
+f ,
+
+c
+nfecruob2
+
+(in orange with + markers), as the boundary condition at both
+
+endpoints. Also displayed are the matching values used to perform
+
+the continuations, f b (in yellow circles) and f e (in pink squares), as
+
+well as the blend to zero continuations associated to f e (AQf e) with
+
+a red dotted line, and f b (A‡QΠ f b) with a red dashed-dotted line.
+
+Insets show f (0) and f (1) together with the values reconstructed
+
+from the boundary conditions. Panel b) shows the exact derivative
+
+f (in blue using circle markers) together with the ones computed
+
+spectrally
+
+from
+
+f
+
+c neu2
+
+(in
+
+green
+
+with
+
+×
+
+markers)
+
+and
+
+f
+
+c rob
+
+(in
+
+orange
+
+with + markers) over the [0, 1] grid. Panel c) shows the absolute
+
+error in the derivative
+
+markers)
+
+and
+
+f
+
+c rob
+
+(in
+
+estimation for orange with +
+
+both
+
+f
+
+c neu2
+
+(in
+
+green
+
+with
+
+×
+
+markers). For comparison, a
+
+same order ﬁnite diﬀerence error is also exhibited (with a dashed
+
+black line). Note that for display purposes marker spacing is larger
+
+than grid spacing in the whole ﬁgure, except for the quantities f b
+
+and f e for which grid and marker spacing are the same.
+
+6
+
+values plus the prescribed second normal derivative onto a space of modiﬁed Gram polynomials, ones which are orthogonal with respect to the inner product
+
+d−2
+g|h = g (xd−1)h (xd−1) + g(xi)h(xi). (36)
+i=0
+Analogously to the procedure described in [16, 20], given an arbitrary uniform grid x0, . . . , xd−1 with spacing ∆x, a set of such modiﬁed Gram polynomials can be obtained employing the modiﬁed Vandermonde matrix
+
+ 1 x0
+
+x20 . . .
+
+xd0−1
+
+
+
+1 
+
+x1
+
+x21 . . .
+
+xd1−1
+
+ 
+
+Pneu2
+
+=
+
+ 
+
+...
+
+...
+
+... . . .
+
+...
+
+ 
+
+,
+
+
+
+
+
+1 
+
+xd−2
+
+x2d−2
+
+...
+
+xdd−−12
+
+ 
+
+00
+
+2 . . . (d − 1)(d − 2)xdd−−31
+
+(37)
+
+via its QR decomposition Pneu2 = Qneu2 Rneu2 (the subindex “neu2” here stands for the case with Neumann conditions on
+
+the second derivative). It is then possible to proceed and
+
+construct blend-to-zero operators for this set of polynomi-
+
+als in an analogous way to the Dirichlet case, obtaining an
+
+operator Aneu2 . From these matrices a blend-to-zero continuation can be computed given interior values and the respec-
+
+tive second derivative, n = f (x0), . . . , f (xd−2), f (xd−1) ,
+
+directly as Aneu2 Qneu2 n. One comparably accurate and more computationally
+
+convenient procedure is to obtain the function value at
+
+xd−1 employing the known function values at x0, . . . , xd−2
+
+and the second derivative at the endpoint. Once f (xd−1)
+
+is known, continuation values can be computed using the
+
+Dirichlet blend to zero operator A by means of Eq. (35).
+
+For this purpose it is useful to ﬁrst introduce the standard
+
+Vandermonde matrix
+
+ 1 x0
+
+x20 . . . xd0−1
+
+1 
+
+x1
+
+x21 . . . xd1−1
+
+Pdir
+
+=
+
+ 
+
+...
+
+...
+
+...
+
+...
+
+...
+
+ 
+
+,
+
+
+
+
+
+1 
+
+xd−2
+
+x2d−2
+
+...
+
+xdd−−12
+
+1 xd−1 x2d−1 . . . xdd−−11
+
+(38)
+
+with an associated QR factorization Pdir = QdirRdir. The corresponding function end value can be obtained from the relations
+
+Pneu2 c = nT ,
+
+(39)
+
+P c = dT ,
+
+(40)
+
+with c the coeﬃcient of each monomial term on the respective Gram basis and d = f (x0), . . . , f (xd−2), f (xd−1) . Solving for c using the QR factorizations of the respective P matrices results in
+
+QdirRdirRn−e1u2 QTneu2 nT = dT ,
+
+(41)
+
+and hence the end value f (xd−1) is given by
+
+f (xd−1) = q˜neu2 nT ,
+
+(42)
+
+where q˜neu2 is the last row of QdirRdirRn−e1u2 QTneu2 , that is (q˜neu2 )i = (QdirRdirRn−e1u2 QTneu2 )d−1,i.
+It should be noted that the order of accuracy in the
+
+reconstruction of f (xd−1) is still d, independently of the fact that a second derivative is prescribed instead of the value of
+
+f at xd. Thus, if the reconstruction is performed utilizing dneu2 values at the end of the domain (dneu2 − 1 function values and the prescribed second derivative) after which
+a C × ddir Dirichlet blend to zero operator Adir is used to compute continuation values, the choice dneu2 = ddir should be favored to have a consistent order in the approximation
+
+of all quantities at the boundaries. To see that prescribing d − 1 points plus some deriva-
+
+tive (resulting in d data points) yields the aforementioned
+
+order for the approximation, both a quick argument and
+
+a more formal proof, can be given. As a ﬁrst qualitative
+
+argument, let’s assume we know the value of a function f (x) at 0 with an error of order hd, and its ﬁrst derivative with error hd−1. Then, replacing in its Taylor expansion,
+f (x) ≈ f (0) + f (0)h, it is straightforward to see the error in both terms is of order hd. More formally, we can
+
+use Lagrange’s mean value theorem to see that there are d − 2 intermediate points where the derivatives of the diﬀer-
+
+ence between the function and an interpolating polynomial
+
+vanish. Thus, the derivative of this polynomial is an in-
+
+terpolating polynomial of the derivative of the function on a set of d − 1 points. Then the theorem that gives the
+
+polynomial interpolation error can be applied, and it will give order hd−1. Integrating between 0 and (d − 1)h gives
+
+the error between the polynomial and the function, giving an error of order hd. Similar arguments can be written for
+
+the case in which the second derivative is prescribed, or for
+
+the case of Robin boundary conditions.
+
+Finally, it is worth pointing out that in the Dirichlet
+
+case operators Adir and Qdir could be used for any grid, irrespective of the grid spacing used for generating them.
+
+However, when the second derivative is prescribed, care
+
+should be taken to correctly account for the diﬀerence in
+
+the spacings when utilizing q˜neu2 . Returning now to the
+
+original grid z0, . . . , zN−1 with spacing ∆z, and consid-
+
+ering that a q˜neu2 operator is available and was computed
+
+using a spacing ∆x, the value f (zN−1) can be computed
+
+from f (zN−1) by simple application of the chain rule, that
+
+is
+
+f
+
+(zN −1 )
+
+=
+
+q˜neu2
+
+f
+
+T neu2
+
+,
+
+(43)
+
+with
+
+f neu2 = f (zN−d), . . . , f (zN−2), f (zN−1)(∆z/∆x)2 . (44)
+
+4.3. Modiﬁed FC-Gram method for Robin boundary conditions
+When faced with Robin boundary conditions the function values f (zi) at every interior point are known and the
+
+7
+
+value of a certain linear combination between the function
+
+and its derivative at one end of the domain is prescribed,
+
+that is
+
+f (zN−1) + λf (zN−1) = g.
+
+(45)
+
+The ﬁrst procedure discussed in the preceding subsection can be also applied for this case. That is, from the discrete inner product
+
+g|h = g (xd−1) + λg(xd−1)
+
+h (xd−1) + λh(xd−1) +
+d−2
++ g(xi)h(xi), (46)
+i=0
+
+a set of modiﬁed Gram polynomials is deﬁned and a related projector Qrob and blend to zero operator Arob can be obtained from the following modiﬁed Vandermonde matrix
+
+
+
+1
+
+x0
+
+...
+
+xd0−1
+
+
+
+1
+
+Prob
+
+=
+
+  
+
+...
+
+x1 ...
+
+... ...
+
+xd1−1 ...
+
+
+
+
+
+ 
+
+.
+
+
+
+
+
+1 
+
+xd−2
+
+...
+
+xdd−−12
+
+ 
+
+1 1 + λxd−1 . . . (d − 1)xdd−−21 + λxdd−−11
+
+(47)
+
+The C blend to zero values can then be obtained from
+
+the vector r = f (x0), . . . , f (xd−2), f (xd−1) + λf (xd−1) as ArobQrobr.
+
+It is also possible, and more convenient, to evaluate the
+
+solution value at the endpoint xd−1 employing the known values at x0, . . . , xd−2 and the boundary condition at xd−1. Once again, this can be attained from the relations
+
+Probc = rT ,
+
+(48)
+
+Pdirc = dT ,
+
+(49)
+
+which has the solution
+
+QdirRdirRr−o1bQTrobrT = dT ,
+
+(50)
+
+where Rrob is the upper triangular matrix resulting from
+
+the QR factorization of Prob. The end value f (xd−1) is
+
+then given by
+
+f (xd−1) = q˜robrT .
+
+(51)
+
+(Hq˜reorbe)iq˜=rob(QidsirtRhdeirRlar−sot1bQroTrowb)do−f 1Q,i.dirRdirRr−o1bQTrob, that is Although more convenient than the method ﬁrst pro-
+
+posed, this latter algorithm has the limitation that the matrices Qrob and Rrob depend on the speciﬁc value of λ in the Robin boundary condition, requiring a diﬀerent high
+
+precision QR factorization for each value of λ. This would make this approach prohibitive for the problem considered
+
+in Section 3.2, where a diﬀerent value of the Robin coupling
+
+parameter λ is satisﬁed by each Fourier mode, and hence O(NxNy/4) diﬀerent operators are required. Changing the spatial resolution or the domain size would also forbid
+
+reusing operators, as the change in grid spacing also results
+
+in a modiﬁcation in the value of λ. This can be seen from the chain rule relation
+
+df (x) dx
+
++
+
+λf
+
+(x)
+
+=
+
+g
+
+⇐⇒
+
+df (x dx
+
+)
+
++
+
+dx dx
+
+λf (x
+
+)
+
+=
+
+dx dx
+
+g.
+
+λ
+
+g
+
+(52)
+
+Thus, using a diﬀerent grid spacing requires not only scaling
+
+of the boundary value g, as it was in the case of Section 4.2,
+
+but also of the Robin coupling coeﬃcient.
+
+However, the aforementioned limitation can be circumvented by proposing the decomposition Prob = Pneu + λPˆdir,
+
+with Pneu the matrix Prob for the special case λ = 0 (corresponding to a Neumann boundary condition on the ﬁrst derivative), and Pˆdir the Vandermonde matrix Pdir but
+
+replaced with zeros in all but its last row. Substituting
+
+this decomposition in Eqs. (48) and (49) and solving for c
+
+leads to the equivalent relation
+
+(QneuRneu + λPˆdir)Rd−i1r QTdirf = f rob,
+
+(53)
+
+where, naturally, QneuRneu is the QR factorization of Pneu. Noting that Pˆdir can be also represented as QˆdirRdir with Qˆ the QR factorization of Pdir but with zeros in all but its last row, this last expression is reduced to
+
+(QneuRneuRd−i1r QTdir + λIˆ)f = f rob,
+
+(54)
+
+where Iˆ is a matrix whose only non-zero element is Iˆd−1,d−1 = 1. This relation can then be inverted by considering aIˆ = uT v with u = (0, . . . , 0, λ) and v = (0, . . . , 0, 1) and using the Sherman-Morrison formula [40, 41]
+
+A + uvT
+
+−1
+
+=
+
+A−1
+
+−
+
+A−1uvT A−1 1 + vT A−1u
+
+,
+
+(55)
+
+which when applied to Eq. (54) and after deﬁning (q˜der)i = (QdirRdirRn−e1uQTneu)d−1,i, leads to
+
+fd−1 =
+
+1
+
+−
+
+1
+
+aq˜d−1 + λq˜d−1
+
+q˜derf Trob.
+
+(56)
+
+The obtained value fd−1 is a d-th order approximation to f (xd−1), a fact that can be rigorously demonstrated using the same arguments provided in Section 4.2.
+This allows eﬃcient computation of FC-Gram trans-
+forms with Robin boundary conditions with a few pre-
+computed coeﬃcients, and without extra costs when do-
+main sizes or spatial resolutions are changed. The methods
+for a non-periodic function are illustrated in Fig. 2, where 5th order (d = 5) FC-Gram continuations are applied to the function J0(25z)e3z − 1 over a grid of N = 113 points spawning the [0, 1] domain.
+
+8
+
+Algorithm 1: Schematization of the solver for the perfectly conducting walls scenario.
+Starting from the ﬁeld values at time t, (at, ut, pt, φt), do: 1: Obtain intermediate variables a∗t+∆t, u∗t+∆t from the pressureless momentum equation and the induction equation without the scalar potential. 2: Apply conditions to the intermediate ﬁelds: a. homogeneous boundary conditions for a∗t+∆t;
+b. set the mean value of a⊥∗t+∆t to zero; c. non-slip compatible boundary conditions for the velocity. 3: Solve two Poisson equations to remove the non-solenoidal components in u∗t+∆t, a∗t+∆t: a. for the scalar potential φt+∆t with homogeneous Dirichlet boundary conditions; b. for the pressure pt+∆t with Neumann boundary conditions in order
+to cancel the normal velocity at the boundary at projection time. 4: Perform a solenoidal projection to obtain the ﬁelds at the next timestep; that is:
+a. subtract ∇φt+∆t to a∗t+∆t; b. subtract ∇pt+∆t to u∗t+∆t. 5: Apply homogeneous boundary conditions to ∂z2zat+∆t and ∂zat⊥+∆t. End of iteration
+
+5. A new numerical method for the incompressible MHD equations with boundaries
+
+We now present a pseudo-spectral method for evolving the incompressible MHD equations
+
+∂u ∂t
+
++
+
+(u
+
+·
+
+∇)u
+
+=
+
+−∇p
+
+−
+
+∇2a
+
+×
+
+(∇
+
+×
+
+a)
+
++
+
+ν∇2u,
+
+(57)
+
+∇2p = −∇ · (u · ∇) u ,
+
+(58)
+
+∂a ∂t
+
+=
+
+u
+
+×
+
+(∇
+
+×
+
+a)
+
++
+
+η∇2a
+
+−
+
+∇φ,
+
+(59)
+
+∇2φ = ∇ · u × (∇ × a) ,
+
+(60)
+
+with the boundary conditions previously discussed. It should be noted that a Fourier representation is specially convenient for solving Eqs. (58) and (60), as inverting the Laplacian in the Fourier domain is attained by simply inverting a diagonal matrix, contrary to the denser representations found in other schemes, such as ﬁnite diﬀerences or other spectral methods such as in classic Chebyshev polynomial decompositions [10].
+In all cases, boundary conditions for the velocity ﬁeld are periodic in x and y, and no-normal velocity, no-slip in z (i.e., u = 0 in impermeable boundaries).
+
+5.1. Perfectly conducting boundary conditions
+We consider the case with two periodic coordinates (x and y), and a perfect conductor at z = 0 and Lz. The perfect conductor boundary conditions for the vector potential were discussed in Eqs. (15) to (18), and are repeated here
+
+for convenience:
+
+a
+
+= 0,
+
+z=0,Lz
+
+∂2a
+
+∂z2
+
+= 0,
+
+z=0,Lz
+
+∂ az
+
+= 0.
+
+∂z z=0,Lz
+
+(61) (62) (63)
+
+As it was explained in Section 3, Eqs. (61) and (62)
+are required to represent the physical boundary condition j |z=0,Lz = 0, which reduces to ∇2a |z=0,Lz = 0 when the gauge condition ∇ · a = 0 is ﬁxed. Equation (63) is just a
+gauge choice whose role is to help in maintaining the error
+in the gauge at the boundary small. Moreover, it should be noted that an error in the condition (∂z2za )|z=0,Lz leads to a non-zero value for a |z=0,Lz , as it can be seen for the evolution equation for a at the boundaries,
+
+∂a
+
+= η ∇2a
+
+.
+
+∂t z=0,Lz
+
+z=0,Lz
+
+(64)
+
+The latter being a difussion equation, it is hence the case that any numerical error that might arise in the imposition of Eq. (62) remains bounded and controlled when the MHD equations are evolved in time.
+To impose Eqs. (61) to (63) we now propose an explicit time-splitting integration method that imposes boundary conditions on both the tangential components of a and its second normal derivative, while also utilizing a time-split scheme for the velocity ﬁeld as described in [19], based on a method presented in [42, 43]. For simplicity, it will be described for a ﬁrst order forward Euler time stepping, but it can be generalized to any order Runge-Kutta methods in a way fully analogous to that previously described in [19] (examples in Section 6 were integrated with such a second order time-splitting Runge-Kutta method).
+
+9
+
+The details of the method are schematized in Algorithm 1. In particular, starting from the wavenumber representation of the ﬁelds (obtained via FC-Gram to circumvent Gibbs phenomenon, and indicated with a hat), the pressureless momentum equation and the induction equation without the scalar potential can easily be evolved in time as
+
+uˆ∗ntm+l∆t = uˆtnml + ∆t
+
+ut · ∇ ut
+
+− νkn2mluˆtnml ,
+
+nml
+
+(65)
+
+Then, at the third step, Poisson equations
+
+∇2pt+∆t
+
+=
+
+1 ∆t
+
+∇
+
+·
+
+u∗t+∆t,
+
+∇2φt+∆t
+
+=
+
+1 ∆t
+
+∇
+
+·
+
+a∗t+∆t,
+
+(69) (70)
+
+for the pressure and electric scalar potential are solved. The inhomogeneous solutions for both φ and p, φI and pI ,
+respectively, can easily be obtained in the 3D wavenumber
+domain as
+
+aˆ∗ntm+l∆t = aˆtnml + ∆t
+
+ut × (∇ × at)
+
+− νkn2mlaˆtnml ,
+nml
+(66)
+
+φIntm+l∆t
+
+ 
+
+pIntm+l∆t 
+
+=
+
+−
+
+iknml kn2 ml
+
+·
+
+aˆ ∗ntm+l∆t
+
+ 
+
+uˆ ∗ntm+l∆t 
+
+(71)
+
+where ∗ denotes an intermediate ﬁeld (note that these ﬁelds are not solenoidal), nml denote the indices of the discrete wavenumbers knx, kmy , klz, and kn2ml = (knx)2 + (kmy )2 + (klz)2. The non-linear terms are computed eﬃciently with pseudospectral calculations, that is, determining derivatives in Fourier space, products in real space and then returning to 3D wavenumber domain. After estimating the nonlinear terms an exponential high cut ﬁlter is applied to reduce the mode aliasing arising from the eﬀects of circular convolution, serving a purpose analogous to that of the well known 2/3 rule in 3D periodic solvers. This ﬁlter described in greater detail in [20, 19] rejects frequencies that would generate an aliasing error greater than the one associated to the time stepping while conserving enough high frequencies so that the periodic extension is still accurately represented, without degradation in the order of accuracy [16].
+As a second step, a 1D inverse FFT is performed to recover the ﬁelds in their (kx, ky, z) representation, after which the boundary values
+
+a∗t+∆t
+
+= 0,
+
+z=0,Lz
+
+(67)
+
+can be set by strong imposition, that is, simply setting the appropriate array values at the boundary. Regarding the velocity ﬁeld, the boundary condition
+
+which are, naturally, deﬁned up to constants φI0,0,0, pI0,0,0. On the other hand, in this geometry, the homogeneous solutions φH , pH can be easily constructed from an explicit
+representation in the (kx, ky, z) domain, that is
+
+φˆHnmt+∆t
+
+ (z)
+
+=
+
+ Anm
+
+
+
+eγnm
+
+(z−Lz
+
+)
+
+Bnm +
+
+
+
+e−γnm z
+
+pˆHnmt+∆t(z) Anm
+
+Bnm
+
+
+
+
+
+ C + Dz 
+
++
+
+. (72)
+
+C + D z
+
+The non-primed coeﬃcients in the former expression are derived from the boundary conditions φ|z=0,Lz = 0 as
+
+Amn
+
+=
+
+φIntm+∆t(z
+
+=
+
+0)e−γnmLz − φIntm+∆t(z 1 − e−2γnmLz
+
+=
+
+Lz) ,
+
+Bmn
+
+=
+
+φIntm+∆t(z
+
+=
+
+Lz )e−γnmLz − φIntm+∆t(z 1 − e−2γnmLz
+
+=
+
+0) ,
+
+C = −φI0,t0+∆t(z = 0),
+
+D
+
+=
+
+1 Lz
+
+φI0,t0+∆t(z = 0) − φI0,t0+∆t(z = Lz) ,
+
+(73)
+(74) (75) (76)
+
+whereas (∂zp)|z=0,Lz = u∗zt+∆t/∆t (to cancel the wall normal velocity) leads to the similar relations
+
+u∗t+∆t
+
+= ∆t∇ p,
+
+z=0,Lz
+
+(68)
+
+is enforced, which leads to an O(∆t) (or, more generally, O(∆to) for an o-th order time integration) error in the slip
+velocity after the projection step (see [42, 43, 19]). As will
+be seen in Sections 6 and 7, this leads to good slip velocity
+accuracy for the time integration schemes and timesteps
+used in typical turbulent MHD simulations.
+Following the imposition of the boundary conditions for
+the intermediate ﬁelds, the variables are transformed back to their (kx, ky, kz) representation, after which the condition a∗zt+∆t(kx = 0, ky = 0, kz = 0) = 0 is also enforced for improved stability in very long time integrations. Note
+that this corresponds to ﬁxing a constant in az (i.e., to a gauge freedom) and has no eﬀect on the magnetic ﬁeld.
+
+with
+
+Amn = tnm − bnme−γnmLz , Bmn = tnme−γnmLz − bmn,
+C = 0,
+
+D
+
+=
+
+1 ∆t
+
+b00
+
+=
+
+1 ∆t
+
+t00,
+
+(77) (78) (79)
+(80)
+
+bnm = zˆ ·
+
+uˆ ∗ntm+∆t (z ∆t
+
+=
+
+0)
+
+−
+
+∇pˆIntm+∆t(z
+
+=
+
+0)
+
+Γ,
+
+(81)
+
+tnm = zˆ ·
+
+uˆ ∗ntm+∆t (z ∆t
+
+=
+
+Lz )
+
+−
+
+∇pˆIntm+∆t(z
+
+=
+
+Lz )
+
+Γ, (82)
+
+Γ
+
+=
+
+γnm(1
+
+−
+
+1 e−2γnm Lz
+
+)
+
+.
+
+(83)
+
+10
+
+Algorithm 2: Schematization of the solver for a magnetoﬂuid surrounded by vacuum.
+Starting from the ﬁeld values at time t, (at, ut, pt, φt), do: 1: Obtain intermediate variables a∗t+∆t, u∗t+∆t from the pressureless momentum equation and the induction equation without the scalar potential. 2: Apply conditions to the intermediate ﬁelds: a. set the mean value of a⊥∗t+∆t to zero; b. non-slip compatible boundary conditions for the velocity. 3: Solve two Poisson equations to remove the non-solenoidal components in u∗t+∆t, a∗t+∆t: a. for the scalar potential φt+∆t with Robin boundary conditions; b. for the pressure pt+∆t with Neumann boundary conditions in order to cancel the normal velocity at the boundary at projection time. 4: Perform a solenoidal projection to obtain the ﬁelds at the next timestep; that is: a. subtract ∇φt+∆t to a∗t+∆t; b. subtract ∇pt+∆t to u∗t+∆t. 5: Apply Robin boundary conditions to at+∆t.
+End of iteration
+
+The homogeneous solutions to the scalar potential and
+the pressure, along with their derivatives along z (whose
+exact expressions are easily obtained), can be FC-Gram transformed to the kx, ky, kz domain, obtaining the full pressure and electrostatic potential as pˆnml = pˆInml + pˆHnml and φˆnml = φˆInml + φˆHnml respectively. The intermediate ﬁelds can be therefore projected at the fourth step onto
+the solenoidal space simply as
+
+aˆtn+m∆l t = aˆ∗ntm+l∆t − ∆t∇φˆtn+m∆l t, uˆtn+m∆l t = uˆ∗ntm+l∆t − ∆t∇pˆtn+m∆l t.
+
+(84) (85)
+
+At this point the velocity ﬁeld at the next time step is fully determined. To complete the calculation of at+∆t, the
+ﬁfth and ﬁnal step is carried out, so that its boundary values must be still adjusted, namely such that (∂z2za )|z=0,Lz = 0 and (∂zaz)|z=0,Lz = 0. This can be easily accomplished by returning to the (kx, ky, z) domain and applying the method introduced in Section 4.2 to obtain the appropriate
+boundary values for a , whereas the related Neumann pro-
+jector described in Section 4.3 (Robin boundary conditions
+with λ = 0) is employed to adjust az at the endpoints. In all the cases the computed values are set using strong
+imposition. A ﬁnal FC-Gram transformation of a in the zˆ
+direction leaves the ﬁelds ready for the calculations of the
+next time step.
+
+5.2. Vacuum boundary conditions
+A very similar approach to the one introduced in the previous subsection can be employed for the case of a magnetoﬂuid periodic in x and y and surrounded by vacuum on two sides in z. The electromagnetic and velocity boundary
+
+conditions are repeated here for practicality
+
+daInm dz
+
++
+
+γnmaI
+
+= 0,
+z=0,Lz
+
+dφInm dz
+
++ γnmφI
+
+= 0,
+
+z=0,Lz
+
+u|z=0,Lz = 0.
+
+(86) (87) (88)
+
+Contrary to the conducting case, there is no consistency condition to impose, and the simplest possible approach is to directly enforce Eqs. (86) and (87) at the end of each time step, whereas Eq. (88) is enforced, as before, at the intermediate step. As a result, and as it can be easily noted in Algorithm 2, the scheme is essentially the same as that discussed in the previous subsection, with the exception that there is no need to Fourier transform the intermediate magnetic potential. The only condition imposed in a∗t+∆t is a∗zt+∆t(kx = 0, ky = 0, kz = 0) = 0, for the same considerations mentioned in the previous section. As will be shown in Section 7, the procedure works well and errors are seen to decrease rapidly as spatial resolution is increased, and as the time step is decreased.
+Solving the Poisson equation for pt+∆t is an identical process to the one described in Eqs. (71), (72) and (77) to (82). Similarly, the inhomogeneous electric scalar potential is again obtained from Eq. (71) while the homogeneous contribution satisfying homogeneous Robin boundary conditions can be obtained from the closed form solution
+
+φˆHnmt+∆t(z) = Anmeγnm(z−Lz)+Bnme−γnmz +C+Dz, (89)
+
+11
+
+where
+
+Anm
+
+=
+
+−
+
+1 2γnm
+
+∂zφIntm+∆t(z = Lz) + γnmφIntm+∆t(z = Lz) , (90)
+
+Bnm
+
+=
+
+1 2γnm
+
+∂zφIntm+∆t(z = 0) − γnmφIntm+∆t(z = 0) , (91)
+
+C = 0,
+
+(92)
+
+D = ∂zφI0,t0+∆t(z = 0).
+
+(93)
+
+After adding the homogeneous and inhomogeneous solutions, the projections onto the respective solenoidal spaces are carried out utilizing Eqs. (84) and (85).
+Finally, similarly to the perfectly conducting case, the boundary conditions in the ﬁfth step are imposed by obtaining the (kx, ky, z) representation of the magnetic vector potential, but then instead using the method introduced in Section 4.3 to eﬃciently and accurately obtain the appropriate boundary values for the Robin case. Finally at+∆t is transformed back to the kx, ky, kz domain with a FC-Gram operation, at which point the computation of variables at the next time step can begin.
+6. Application to a Hartmann ﬂow scenario
+As an application we consider the study of a Hartmann ﬂow [22, 44], which will also serve as a validation case of the numerical method, as well as the accuracy of the boundary conditions (see more details in Section 7). For that purpose the solvers presented in Section 5 were implemented atop the FC-Gram based PDE solver SPECTER (freely available at https://www.github.com/mfontanaar/SPECTER), which uses a hybrid MPI-OpenMP-CUDA parallelization for eﬃciently running in computer clusters [39, 45]. Simulations were carried out inside a dimensionless xy-periodic box of size Lx × Ly × Lz = 2π × π × 1 and for varying resolutions and parameters. In the zˆ direction both conducting and vacuum boundaries were explored.
+6.1. Theoretical and experimental background
+The Hartmann problem consists of a ﬂow driven by a mean pressure gradient G between the open ends of a channel, and with a stationary uniform magnetic ﬁeld B0 applied perpendicular to the channel walls. In particular, we consider the mean pressure gradient to be in the −xˆ direction, whereas B0 = b0zˆ. The total magnetic ﬁeld is then given by B = B0 + b, with the dynamic magnetic ﬁeld b = ∇ × a satisfying the boundary conditions described before depending on the wall properties at z = 0 and z = Lz. This problem was ﬁrst experimentally studied by Hartmann and Lazarus [46, 47], and is a setting that remains relevant to the present day in industrial applications as well as a benchmark for numerical methods in MHD [48, 49, 50, 51, 52, 53, 54, 55].
+
+Figure 3: Rendering of the region (0, 0, 1/2)×(π, π/2, 1) for simulation C24 at t = 162. The volume rendering displays the streamwise velocity ux and also shown are ﬁeld lines for b colored using |b| to denote the local magnetic ﬁeld intensity. Note that the induced magnetic ﬁeld in this case is conﬁned inside the domain.
+
+The evolution equations for u and a are given by
+
+∂u ∂t
+
+=
+
+−∇p − (u
+
+· ∇)u − ∇2a ×
+
+(∇ × a) + B0
+
+(94)
+
++ν∇2u + Gxˆ,
+
+∂a ∂t
+
+=
+
+−∇φ
+
++
+
+u
+
+×
+
+(∇ × a) + B0
+
++ η∇2a.
+
+(95)
+
+It is convenient to characterize the system in terms of the dimensionless Hartmann number Ha, centerline Reynolds number Re0, and the magnetic Prandtl number P m, which are deﬁned respectively as
+
+Ha = √b0ηδν ,
+
+Re0
+
+=
+
+u0δ , ν
+
+Pm
+
+=
+
+ν η
+
+,
+
+(96)
+
+where u0 is the characteristic ﬂow speed at the center of the
+
+channel, and δ = Lz/2 is the box half-height. Physically, Ha and Re0 represent the inverse of weighing the viscous
+
+eﬀects to those produced by the Lorentz force and inertia,
+
+respectively, whereas P m is an estimate of the ratio between
+
+mechanical and ohmic diﬀusion timescales. Additionally, a
+
+magnetic Reynolds number Rm can be deﬁned as Rm =
+
+Re0/P m, which is a ratio between the advection of the
+
+magnetic ﬁeld against the ohmic diﬀusion.
+
+Numerically speaking, the most challenging regime to
+
+explore is the one where both the velocity and induced
+
+magnetic ﬁelds contain signiﬁcant energy across a large
+
+range of scales, i.e., when both ﬁelds are turbulent. This
+
+regime is attained for Re0 1 and Rm 1. It should
+
+be noted that, traditionally, the Hartmann channel is nu-
+
+merically studied in the Rm 1 limit [49, 54]. For this
+
+regime, a quasistatic approximation to the MHD equations
+
+is employed, which reduces the problem stiﬀness. However,
+
+one advantage of our method is that it will allow us to
+
+evolve in time the turbulent behavior of the magnetic ﬁeld.
+
+Consequently, to test the method in this challenging regime
+
+without requiring prohibitive computational resources, the
+
+case P m = 1 will be considered henceforth.
+
+For the case of a non-conducting ﬂuid (a = B0 = 0),
+
+that is, a plane Poiseuille ﬂow, the dynamics encompassed
+
+12
+
+in Eq. (94) are well understood. A laminar parabolic proﬁle is found up to a critical Reynolds number Rec. For Re0 > Rec a turbulent ﬂow develops except in a mechanical boundary layer, whose thickness shrinks as Re0 increases[56, 57]. For a conducting ﬂuid, however, the externally imposed magnetic ﬁeld induces currents in the spanwise direction, which in turn increase drag in the ﬂuid via ohmic dissipation, a phenomenon sometimes called magnetic braking [22, 44]. Then, if the magnetic ﬁeld is strong, or more precisely, if Ha 1, the ﬂow develops a core motion (which might or might not be turbulent in nature) and a magnetic boundary layer forms. This last region is commonly known as the Hartmann layer, and its thickness δHa scales as Ha−1.
+Also when Ha 1, and contrary to the hydrodynamic case, the presence of turbulence in the bulk of the ﬂow is not directly controlled by the classical Reynolds number nor by the interaction number N = Ha2/Re, but by the modiﬁed Reynolds number R deﬁned as
+
+R
+
+=
+
+Re0 Ha
+
+.
+
+(97)
+
+It should be noted that R is none other than the Reynolds number at the Hartmann scale. For the case with P m 1 (i.e., Rm 1), linear stability analysis suggests a subcritical transition to turbulence at Rec ≈ 5 × 104 [58, 44]. However, experiments and simulations at Ha 1 and Rm 1 place this limit in the 200 < Rec < 400 region [59, 54], and thus ﬁnite amplitude perturbations must be considered when analyzing stability.
+In the laminar case with Rm 1, a closed-form solution to the Hartmann ﬂow is given by the streamwise velocity u = ux(z)xˆ, with
+
+ux(z) = u0
+
+cosh 1−
+
+(z − δ)/δHa
+
+cosh δ/δHa
+
+,
+
+(98)
+
+for a channel whose walls are at z = 0 and at z = 2δ. As before, u0 is the velocity at the center of channel.
+
+6.2. Simulations with perfectly conducting walls
+We now report the simulations performed for the case in which the walls are made of a perfectly conducting material. A summary of all the simulations performed for this case can be found in Table 1. A graphical representation of the 3D ﬁelds, obtained using the software VAPOR [60, 61], is shown in Fig. 3. Note magnetic ﬁeld lines correspond to the b ﬁeld, i.e., to the ﬁeld induced by the ﬂuid motion, and not to the total magnetic ﬁeld B0 + b.
+We ﬁrst consider simulations C0 to C4, for which both the pressure gradient and the diﬀusivities were kept constant and only b0 was varied. Even more, values for G and ν were selected in order to achieve a centerline velocity u0 of O(1) for the case b0 = 0. Initial conditions for this set of simulations consist of random velocity and vector potential ﬁelds whose energy is concentrated at the largest scales of
+
+a)
+1.0
+
+z
+
+0.8
+
+Ha = 0
+
+0.6
+
+Ha = 1
+
+Ha = 2.5
+
+Ha = 5
+
+0.4
+
+Ha = 10
+
+Exact solution
+
+0.2
+
+0.0
+
+10−3
+
+10−2
+
+10−1
+
+100
+
+ux x,y
+
+b)
+
+Ha = 0
+
+0.4
+
+Ha = 1
+
+Ha = 2.5
+
+0.2
+
+Ha = 5
+
+Ha = 10
+
+z
+
+0.0 10−8
+
+10−7
+
+10−6
+
+10−5
+
+uexxact − ux x,y ∞/u0
+
+10−4
+
+Figure 4: Results for simulations C0 to C4 after 200 eddy turnover times. a) Mean vertical proﬁle for the streamwise velocity ux x,y, alongside black dashed lines which represent the corresponding closedform laminar solution for each value of Ha. b) Relative maximum diﬀerence between the mean proﬁles and the closed-form solution as a function of z. In both cases, proﬁles for varying values of Ha are denoted employing diﬀerent colors and markers.
+
+13
+
+Run ID Nx × Ny × Nz Ha Re0 R
+
+C0
+
+128 × 64 × 231 0 125 ∞
+
+C1
+
+128 × 64 × 231 1 88 88
+
+C2
+
+128 × 64 × 231 2.5 33 13
+
+C3
+
+128 × 64 × 231 5 10
+
+2
+
+C4
+
+128 × 64 × 231 10 2.50 0.25
+
+C21 128 × 64 × 231 2.5 67 27
+
+C22 128 × 64 × 231 2.5 168 67
+
+C23 128 × 64 × 231 2.5 916 366
+
+C24 256 × 128 × 487 2.5 2885 1154
+
+C31 128 × 64 × 231 5 20
+
+4
+
+C32 128 × 64 × 231 5 49 10
+
+C33 128 × 64 × 231 5 200 40
+
+C34 128 × 64 × 231 5 822 164
+
+C35 128 × 64 × 231 5 2178 436
+
+C36 256 × 128 × 487 5 4877 975
+
+b0
+0 1 × 10−2 2.5 × 10−2 5 × 10−2 1 × 10−1 1.25 × 10−2 5 × 10−3 1.25 × 10−3 5 × 10−4 2.5 × 10−2 1 × 10−2 2.5 × 10−3 1 × 10−3 5 × 10−4 2.5 × 10−4
+
+G
+5 × 10−2 5 × 10−2 5 × 10−2 5 × 10−2 5 × 10−2 2.5 × 10−2 1 × 10−2 2.5 × 10−3 1 × 10−3 2.5 × 10−2 1 × 10−2 2.5 × 10−3 1 × 10−3 5 × 10−4 2.5 × 10−4
+
+ν=η
+5 × 10−3 5 × 10−3 5 × 10−3 5 × 10−3 5 × 10−3 2.5 × 10−3 1 × 10−3 2.5 × 10−4 1 × 10−4 2.5 × 10−3 1 × 10−3 2.5 × 10−4 1 × 10−4 5 × 10−5 2.5 × 10−5
+
+Table 1: Summary of the simulations performed for the perfectly conducting case. In all the cases a number of continuation points C = 25 was employed, as well as 9th order FC-Gram extensions (d = 10). In all the simulations the ﬂuid spawns the domain Lx × Ly × Lz = 2π × π × 1. “Run ID” labels each run, Nx × Ny × Nz gives the linear resolution, Ha is the Hartman number, Re0 the Reynolds number, R the modiﬁed Reynolds number, b0 the amplitude of the external uniform magnetic ﬁeld, G the external pressure gradient, and ν = η are the dimensionless kinematic viscosity and magnetic diﬀusivity.
+
+the system and equal to 10−2. The idea is to have a small
+
+perturbation to see if the laminar proﬁle establishes, or if
+
+the system develops other solution instead. Additionally,
+
+these initial ﬁelds are solenoidal and satisfy the appropriate
+
+boundary conditions.
+
+In Fig. 4 we present the results obtained for the set of
+
+simulations C0 to C4 after 200 eddy turnover times. More
+
+precisely, the mean vertical proﬁle for the streamwise veloc-
+
+ity ux x,y (where the subindices in the brackets indicate
+
+averages are performed over the x and y coordinates) is
+
+shown for each run, alongside the relative maximum error
+
+between the simulated proﬁle and the closed-form solution
+
+as a function of z. In particular, for C0 (with b0 = Ha = 0) the plane Poiseuille ﬂow solution u(z) = Gz(Lz −z)/(2ν) is recovered [62, 19]. Instead, simulations C1 to C4, in all the
+
+cases, accurately ﬁt the closed-form solution in Eq. (98),
+
+while also satisfying the theoretical prescription for the
+
+centerline velocity
+
+u0
+
+=
+
+Gν b20
+
+,
+
+(99)
+
+given in [22] for the case of conducting walls. It should be mentioned, however, that Eq. (99) is derived for the limit of high magnetic diﬀusivity (Rm and P m 1), and care should be taken when considering it as the exact laminar solution for moderate values of Rm. In spite of this, note the solution is statisﬁed with small errors, and that the no-slip boundary condition for the velocity in the walls is also well satisﬁed (more on these errors will be discussed in Section 7). Moreover, for all these simulations, the standard deviation in the streamwise and spanwise directions is of order 10−8 at t = 200, indicating the solutions are signiﬁcantly homogeneous in the xˆ and yˆ directions, as expected in this regime.
+
+We then proceed to select two distinct values of Ha, namely Ha = 2.5 (run C2) and Ha = 5 (run C3), in order to test the ﬂow stability at ﬁxed Ha as Re0 and R increase. These values for Ha were chosen because they correspond to two qualitatively diﬀerent streamwise velocity proﬁles: whereas in C2 it still resembles a parabola (δHa = 2δ/5), run C3 already has a clear uniform core in the streamwise velocity (δHa = δ/5). To study the ﬂow stability, a 10% of random noise in the largest scales is added to the last output of the velocity ﬁeld of simulations C2 and C3. These perturbed velocity ﬁelds, together with the last output of a in each run, are used as initial conditions for simulations C21 and C31 respectively. The new set of parameters (ν , G , and b0) are obtained from the previous ones (ν, G and, B0) by keeping constant both Ha and the analytical prediction for u0, so that ﬁxing ν = ν/2 results in G = G/2 and b0 = b0/2. An analogous procedure is employed to initialize simulations C22 and C32 respectively from the last states of C21 and C31, and so on for simulations C23, C24, C33, and C34.
+In Fig. 5 the mean streamwise velocity proﬁles at ﬁxed Ha are shown, normalized by the theoretical centerline velocity in Eq. (99). It can be readily observed that for the C2X runs (Ha = 2.5) a departure from the laminar solution is found for Rc in the range 67–366, which is compatible with the critical values for R reported in [59, 54] for the quasistatic regime (P m 1). A similar behavior is seen for the C3X simulations (Ha = 5) where the same kind of transition is observed but for 40 < Rc < 164. Moreover, and as expected from the theoretical discussion in Section 6.1, Fig. 5 shows that the solutions for R > Rc present higher velocity values than those expected for the laminar case, as magnetic braking is no longer the
+
+14
+
+a)
+1.0
+
+Ha = 2.5
+
+a)
+1.0
+
+Ha = 2.5
+
+b)
+1.0 Ha = 2.5
+
+z
+
+0.8
+
+R = 13
+
+0.6
+
+R = 27
+
+R = 67
+
+0.4
+
+R = 366
+
+R = 1154
+
+0.2
+
+0.0 0.0
+b)
+1.0
+
+0.5
+
+1.0
+
+b20 ux x,y/(νG)
+
+0.8
+
+R=2
+
+R=4
+
+0.6
+
+R = 10
+
+R = 40
+
+0.4
+
+R = 164
+
+R = 436
+
+0.2
+
+R = 975
+
+1.5 Ha = 5
+
+z
+
+0.0 0.0 0.5 1.0 1.5 2.0 2.5 b20 ux x,y/(νG)
+Figure 5: a) Mean vertical proﬁle for the streamwise velocity normalized by the analytical prescription for u0, b20 ux x,y/(νG), as a function of z for the set of simulations C2X (Ha = 2.5). b) Same for simulations C3X (Ha = 5). In all the cases, proﬁles for diﬀerent values of R are diﬀerentiated by their colors and markers.
+
+dominating dissipation mechanism. For the values of R > Rc explored, up to a doubling of the centerline velocity is observed when compared to the analytical solution.
+For the same simulations, a change is observed with R in both the streamwise magnetic ﬁeld as well as the spanwise current density, as seen in Fig. 6 (note also in this ﬁgure how the boundary conditions are satisﬁed as jy goes to zero in the boundaries; see errors in Section 7). In this ﬁgure, the streamwise magnetic ﬁeld monotonically diminishes as a function of R for R > Rc. The decrease is more pronounced for larger Ha; it is of ≈ 60% for Ha = 5 and R = 872, whereas for Ha = 2.5 and R = 1185 it diminishes by ≈ 33% with respect to the laminar value. For the spanwise current density we observe a parabolic proﬁle for R < Rc, whereas the transitional regime is characterized by a sharp drop in the current for |z −δ| > δHa, that is, outside the Hartmann boundary layer. This latter phenomenon also showcases that the induced current in the core of the
+
+z
+
+0.8
+
+0.6
+
+0.4
+
+R = 13
+0.2 R = 27
+R = 67 R = 366
+0.0 R = 1154
+
+−0.5 0.0 0.5 bx x,y
+
+c)
+
+1.0
+
+Ha = 5
+
+z
+
+0.8
+
+R = 13
+
+0.6
+
+R = 27
+
+R = 67
+
+0.4
+
+R = 366
+
+R = 1154
+
+0.2
+
+0.0
+
+−1
+
+0
+
+jy x,y
+
+d)
+
+1.0 Ha = 5
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+z
+
+z
+
+R=2
+0.4 R = 4
+R = 10
+0.2 R = 40
+R = 164 R = 436
+0.0 R = 975
+
+R=2
+0.4 R = 4
+R = 10
+0.2 R = 40
+R = 164 R = 436
+0.0 R = 975
+
+−0.5
+
+0.0
+
+0.5
+
+bx x,y
+
+−1
+
+0
+
+jy x,y
+
+Figure 6: Left column: mean vertical proﬁle for the streamwise induced magnetic ﬁeld bx x,y as a function of z for simulations C2X (a) and C3X (c). Right column: mean vertical proﬁle for the spanwise current density jy x,y as a function of z for simulations C2X (b) and C3X (d). In all cases proﬁles for diﬀerent values of R are diﬀerentiated by their colors and markers.
+
+ﬂow cannot produce enough magnetic braking in order for ux to obey Eq. (98). Even more relevant for evaluating the robustness of the proposed solver, for R > Rc all ux, bx and jy present standard deviation values comparable to their characteristic values.
+Finally, we also consider the 1D spectra for every component of the ﬁeld as a function of both the streamwise as well as spanwise wavenumbers, deﬁned for the velocity ﬁeld as
+
+Eiui(kx, z) =
+ky
+Eiui(ky, z) =
+kx
+
+uˆi(kx, ky, z) 2, uˆi(kx, ky, z) 2,
+
+(100) (101)
+
+and with a similar expression for the magnetic spectra
+
+15
+
+a)
+10−1
+
+10−9
+
+10−17
+
+10−25
+
+Exux Exbx
+
+Eyuy Eyby
+
+Ezuz Ezbz
+
+100
+b)
+100
+
+101
+
+102
+
+kx
+
+kx−5/3
+
+10−3
+
+Exux
+
+Eyuy
+
+Ezuz
+
+10−6
+
+Exbx
+
+Eyby
+
+Ezbz
+
+100
+
+101
+
+102
+
+kx
+
+c)
+
+10−1
+
+10−5
+
+10−9
+
+Exux Exbx
+
+Eyuy
+
+Ezuz
+
+Eyby
+
+Ezbz
+
+101
+
+102
+
+ky
+
+d)
+101
+
+ky−5/3
+
+10−3
+
+Exux
+
+Eyuy
+
+Ezuz
+
+10−7
+
+Exbx
+
+Eyby
+
+Ezbz
+
+101
+
+102
+
+ky
+
+Figure 7: Kinetic and magnetic spectra for simulation C24 after 160 eddy turnover times. Panels a) and b) show the spectrum for all x, y and z components of both the velocity and magnetic ﬁeld as a function of the streamwise wavenumber kx. Spectra both near the wall (a) and at the center of the channel (b) are shown, computed at distances z = 0.01 and z = 0.5 of the bottom wall, respectively. Similarly, panels c) and d) show the spectrum for all the components of the velocity and magnetic ﬁelds as a function of the spanwise wavenumber ky. Spectra both near the wall (c) and at the center of the channel (d) are shown, computed at distances z = 0.01 and z = 0.5 of the bottom wall, respectively. In all the panels distinct markers and line colors are used to diﬀerentiate spectra.
+
+Eibi. The results are shown in Fig. 7 for run C24, at two qualitatively distinct vertical slices: one near the bottom wall (z = 5∆z = 0.01) and the other in the center of the channel (z = 0.5). First and foremost, it should be noted that in both cases the spectra seems to be appropriately resolved, with no noticeable aliasing. Although near the walls the spectra is sharper, especially as a function of
+
+Figure 8: Rendering of the region (0, 0, 0)×(π, π/2, 1/2) for simulation V44 at t = 12. The volume rendering displays the streamwise velocity ux, and also shown are ﬁeld lines for the total ﬁeld B = B0 + b colored using |B| to denote the local magnetic ﬁeld intensity. Note that there is a ﬂux of magnetic ﬁeld across the boundary.
+the streamwise wavenumber, in the center of the channel inertial range regions compatible with a k−5/3 spectrum can be observed. The method can thus capture solutions with the proper boundary conditions even in the turbulent regime with small-scale ﬁeld ﬂuctuations.
+6.3. Simulations with vacuum boundary conditions
+We now consider the simulations performed for the case of vacuum surroundings. A summary of all the simulations performed for this case can be found in Table 2. Also, a graphical representation of the 3D ﬁelds, obtained using the software VAPOR [60, 61], is shown in Fig. 8. Note that in this case ﬁeld lines correspond to the total magnetic ﬁeld B = b0zˆ + b and that the induced magnetic ﬁeld b is non-zero outside the computational domain.
+As before, we start by studying laminar scenarios, in which Ha is of order 1, and modest values of the Reynolds number are considered. In this region of parameter space, the eﬀect of varying Ha from 1 to 7.5 is explored by changing the magnitude of the externally imposed magnetic ﬁeld, resulting in runs V1 to V5. Also as before, we start the system from an initial state of random velocity and vector potential ﬁelds whose energy is 10−2, and is concentrated at the largest scales of the system. In Fig. 9 we show the mean streamwise velocity proﬁle after 200 eddy turnover times for this set of simulations, and compare it to the analytical solution given by Eq. (98). Note, however, that contrary to the conducting case a theoretical expression for u0 is not available, and hence the laminar proﬁle is normalized so that its maximum matches the one obtained from the simulations. Similarly to the conducting case, we ﬁnd a very good agreement between the normalized analytical solution and the obtained proﬁles. This is also quantiﬁed in Fig. 9, where panel b) shows the average absolute diﬀerence between analytical and simulated proﬁles, obtaining relative errors in the range 10−6–10−4, comparable to those obtained for the conducting case. For all the simulations, standard deviations in the x and y directions
+
+16
+
+Run ID Nx × Ny × Nz Ha Re0 R
+
+V1
+
+128 × 64 × 231 1 116 116
+
+V2
+
+128 × 64 × 231 2.5 85 34
+
+V3
+
+128 × 64 × 231 3.75 64 17
+
+V4
+
+128 × 64 × 231 5
+
+49 10
+
+V5
+
+128 × 64 × 231 7.5 33
+
+4
+
+V21 128 × 64 × 231 2.5 170 68
+
+V22 128 × 64 × 231 2.5 405 162
+
+V23 128 × 64 × 231 2.5 1648 659
+
+V24 256 × 128 × 487 2.5 3198 1279
+
+V41 128 × 64 × 231 5 91 18
+
+V42 128 × 64 × 231 5 215 43
+
+V43 128 × 64 × 231 5 824 165
+
+V44 256 × 128 × 487 5 2170 434
+
+b0
+1 × 10−2 2.5 × 10−2 3.75 × 10−2 5 × 10−2 7.5 × 10−2 1.25 × 10−2 5 × 10−3 1.25 × 10−3 5 × 10−4 2.5 × 10−2 1 × 10−2 2.5 × 10−3 1 × 10−3
+
+G
+5 × 10−2 5 × 10−2 5 × 10−2 5 × 10−2 5 × 10−2 2.5 × 10−2 1 × 10−2 2.5 × 10−3 1 × 10−3 2.5 × 10−2 1 × 10−2 2.5 × 10−3 1 × 10−3
+
+ν=η
+5 × 10−3 5 × 10−3 5 × 10−3 5 × 10−3 5 × 10−3 2.5 × 10−3 1 × 10−3 2.5 × 10−4 1 × 10−4 2.5 × 10−3 1 × 10−3 2.5 × 10−4 1 × 10−4
+
+Table 2: Summary of the simulations performed for the vacuum boundary conditions case. All the runs employ a number of continuation points Cz = 25, as well as 9th order FC-Gram extensions (dz = 10). In all the cases the ﬂuid spawns the domain Lx × Ly × Lz = 2π × π × 1. As in Table 1, “Run ID” labels each simulation, Nx × Ny × Nz gives the linear resolution in all directions, Ha is the Hartman number, Re0 the Reynolds number, R the modiﬁed Reynolds number, b0 the amplitude of the external uniform magnetic ﬁeld, G the external pressure gradient, and ν = η are the dimensionless kinematic viscosity and magnetic diﬀusivity.
+
+are of order 10−8, indicating the homogeneity of the ﬂow in the streamwise and spanwise directions.
+We now focus our attention on simulations V2X and V4X, where we gradually increase the values of Re0 and R at ﬁxed Ha. As before, we consider the cases Ha = 2.5 and Ha = 5, as they represent qualitatively diﬀerent Hartmann boundary layer thickness for the chosen geometry. To explore distinct values of R, starting from runs V2 and V4, we add 10% of random noise to the last output of the available simulation with the highest R value while decreasing the viscosity, the forcing, and the applied magnetic ﬁeld. As it was the case for simulations with conducting walls, each time the new parameters obey ν = ν/2, G = G/2 and b0 = b0/2, where primed variables denote quantities for the larger R simulation. This allows for easy comparison between simulations with conducting walls and with vacuum surroundings.
+In Fig. 10 we show the proﬁles obtained for the mean streamwise velocity, now normalized by b0/(νG)2/3. This normalization follows from dimensional analysis and from the observation that u0 ∝ b−0 1 in [63, 52] for insulating boundaries at P m 1, a situation somewhat closer to the vacuum surroundings we consider here than the theoretical predictions for a perfect conductor. Figure 10 shows normalized velocity proﬁles which display larger centerline values as R is increased. Interestingly, not only the intensity of the streamwise velocity is modiﬁed, but also its proﬁle, with more parabolic proﬁles as R increases. This could suggest that in the Ha ≈ 1 and P m = 1 regime, a more Poiseuille-like solution is recovered for Re0 > 1 in the case of vacuum surroundings, although further research is required to conﬁrm this observation.
+Finally, Figure 11 displays the vertical mean proﬁles obtained for the streamwise magnetic ﬁeld and the spanwise current. Note the diﬀerences in the values of the ﬁelds in
+
+the boundaries when compared with the perfectly conductor. In panels a) and c) it can be seen that, as it was for the conducting case, the maximum value of the streamwise magnetic ﬁeld diminishes as Ha increases, although contrary to the ﬁndings of Section 6.2, that maximum value is not attained at the walls. For the spanwise current density, shown in panels b) and d), the vertical proﬁle showcases a similar shape to the one found for the conducting case. However, as boundary conditions do not require j × zˆ = 0, a signiﬁcant positive current is found near the walls, which diminishes towards the core and becomes negative suﬃciently far away from the Hartmann layer. Minimum values for the current density are similar for both sets of boundary conditions.
+How well the boundary conditions are satisﬁed, and how these numerical solutions converge as spatial resolution is increased or the time step is decreased, is considered in detail in the next section.
+7. Error estimation and convergence
+For the two Hartmann setups presented in the previous section we now study the numerical performance of the method. As we use a standard Fourier pseudo-spectral method in the periodic xˆ and yˆ directions, the results follow the well known exponential convergence when spatial resolution (Nx and Ny) is varied in those directions [8]. Hence, we focus instead on varying the resolution in the zˆ direction (Nz), and on the eﬀect of changing the time step (∆t). Let’s summarize what we will show in this section: First, we remind the reader that we have physical ﬁelds, and auxiliary ﬁelds that depend on the gauge freedom. Second, we will consider two types of errors: errors in the bulk solution of the physical ﬁelds as Nz or ∆t is changed, and errors in the boundary conditions also as the
+
+17
+
+z
+
+a)
+1.0
+
+0.8
+
+Ha = 1
+
+0.6
+
+Ha = 2.5
+
+Ha = 3.75
+
+Ha = 5
+
+0.4
+
+Ha = 7.5
+
+Adjusted exact solution
+
+0.2
+
+0.0
+b)
+
+10−1
+
+100
+
+ux x,y
+
+Ha = 1
+
+0.4
+
+Ha = 2.5
+
+Ha = 3.75
+
+0.2
+
+Ha = 5
+
+Ha = 7.5
+
+0.0 10−8
+
+10−7
+
+10−6
+
+10−5
+
+uexxact − ux x,y ∞/u∗0
+
+10−4
+
+z
+
+z
+
+a)
+1.0 0.8 0.6 0.4 0.2
+
+R = 34 R = 68 R = 162 R = 659 R = 1279
+
+Ha = 2.5
+
+0.0 0
+b)
+1.0
+
+5
+
+10
+
+b0 ux x,y/(νG)2/3
+
+0.8
+
+R = 10
+
+0.6
+
+R = 18
+
+R = 43
+
+0.4
+
+R = 165
+
+R = 434
+
+0.2
+
+15 Ha = 5
+
+0.0 0
+
+5
+
+10
+
+15
+
+20
+
+b0 ux x,y/(νG)2/3
+
+z
+
+Figure 9: Results for simulations V1 to V5 after 200 eddy turnover times. a) Mean vertical proﬁle for the streamwise velocity ux x,y, alongside black dashed lines which represent the corresponding closedform laminar solution for each value of Ha, with u0 adjusted so that the proﬁle’s centerline value is matched. b) Relative maximum diﬀerence between the mean proﬁles and the laminar solution as a function of z. The scaled value u∗0 is used as normalization. For both panels, proﬁles for varying values of Ha are denoted employing diﬀerent colors and markers.
+two parameters are changed. Both kinds of errors will be considered using mean squared values. Third, we will see there are three types of behaviors that follow directly from the implementation of the method: some errors scale with Nz, some with ∆t, and some conditions are either auxiliary or so well satisﬁed that they are very small and constant, in many cases of the order of the machine truncation error.
+In particular, for both types of boundary conditions, the convergence of the solution as the resolution increases is analyzed by considering a simulation at large resolution as a reference ﬁeld, and estimating mean squared errors for lower resolution solutions. The resulting error decreases very fast, especially as a function of the spatial resolution. We look into the accuracy to which the method preserves the physical restrictions ∇ · u = ∇ · b = 0, which are seen to be tiny in all the cases, particularly for ∇ · b for which the error is kept O(10−28) or smaller in all cases. This is important as small numerical violations of this condition were shown to have a measurable impact in the physical solutions of the MHD equations [33, 34]. The
+
+Figure 10: a) Mean vertical proﬁle of the streamwise velocity normalized by a prescription for u0, u0 ∝ (νG)2/3/b0, as a function of z for the set of simulations V2X (Ha = 2.5). b) Same for simulations V4X (Ha = 5). In all the cases, proﬁles for diﬀerent values of R are diﬀerentiated by their colors and markers.
+gauge condition ∇ · a = 0 is also seen to remain overall small.
+Finally, we consider the accuracy in the boundary conditions. Regarding the boundary conditions for the velocity ﬁeld, we obtain results comparable to [19], as both the tangential and normal velocity remain very small and controlled by the time integration. Concerning electromagnetic boundary conditions, in the perfect conductor the error in (∂z2za )|∂Ω = 0 decreases fast with increasing Nz, and the error in (a )|∂Ω = 0 remains small and O(10−10). All other conditions associated to gauge freedoms, even though they don’t aﬀect the physical solution, remain O(10−12) or smaller. Finally, for vacuum surroundings, the error in the physically relevant boundary condition (∂za + γmna )|∂Ω = 0 decreases with Nz, while the error in the gauge condition (∂za⊥ +γa⊥)|∂Ω = 0 is controlled by the temporal resolution. All these dependencies of errors with Nz or ∆t are to be expected from the implementation of the conditions in the split time stepping, depending on whether they are applied at either the intermediate step, the Poisson solver and spectral projection, or the ﬁnal step.
+The details of the errors for the perfectly conducting solver are reported in Fig. 12. In the ﬁgure, panels a) and
+
+18
+
+a)
+1.0
+
+Ha = 2.5
+
+b)
+1.0 Ha = 2.5
+
+z
+
+0.8
+
+0.6
+
+0.4
+
+R = 34
+
+R = 68
+
+0.2
+
+R = 162 R = 659
+
+R = 1279
+
+0.0
+
+−0.2 0.0 0.2 bx x,y
+
+c)
+
+1.0
+
+Ha = 5
+
+z
+
+0.8
+
+R = 34
+
+0.6
+
+R = 68
+
+R = 162
+
+0.4
+
+R = 659
+
+R = 1279
+
+0.2
+
+0.0
+
+0
+
+2
+
+jy x,y
+
+d)
+
+1.0 Ha = 5
+
+z
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+z
+
+0.4
+
+R = 10
+
+0.4
+
+R = 18
+
+0.2
+
+R = 43 R = 165
+
+0.2
+
+R = 434
+
+0.0
+
+0.0
+
+−0.2 0.0 0.2 bx x,y
+
+R = 10 R = 18 R = 43 R = 165 R = 434
+
+0
+
+2
+
+4
+
+jy x,y
+
+Figure 11: Left column: mean vertical proﬁle for the streamwise magnetic ﬁeld bx x,y as a function of z for simulations V2X (a) and V4X (c). Right column: mean vertical proﬁle for the spanwise current density ﬁeld jy x,y as a function of z for simulations V2X (b) and V4X (d). In all the cases proﬁles for diﬀerent values of R are diﬀerentiated by their colors and markers.
+
+a) 10−13 10−15
+
+(u − urNefz )2 (b − brNefz )2
+
+b) 10−12
+
+10−13
+
+10−14
+
+500
+
+1000
+
+1500
+
+103
+
+c)
+
+d)
+
+10−9
+
+a2 |∂ Ω (∂zza )2|∂Ω
+
+(∇ · a)2
+
+10−10
+
+(u − ur∆eft)2 (b − br∆eft)2
+2 × 103 4 × 103
+
+10−11
+
+10−13 e)
+10−21
+
+1000
+
+10−22
+
+10−23
+
+10−24
+
+g) 10−34
+
+1000
+
+10−11 10−12
+
+a2 |∂ Ω (∂zza )2|∂Ω
+
+(∇ · a)2
+
+2000
+
+103
+
+f)
+
+10−18
+
+104
+u2 |∂ Ω (∇ · u)2
+
+u2 |∂ Ω (∇ · u)2
+
+10−20
+
+10−22
+
+2000
+
+103
+
+h)
+
+u2⊥|∂Ω (∇ · b)2
+
+10−34
+
+104
+u2⊥|∂Ω (∇ · b)2
+
+10−35
+
+10−35
+
+b) show the mean pointwise square error when comparing u
+
+and b to those obtained from the simulation at the highest
+
+resolution, that is (u − uref)2 x,y,z (with the analogous
+
+expression for b). When analyzing spatial convergence
+
+the
+
+reference
+
+ﬁelds
+
+(denoted
+
+with
+
+ref Nz
+
+)
+
+employ
+
+Nz
+
+=
+
+2023
+
+vertical grid points, whereas the reference to study the
+
+eﬀect of varying the time resolution (denoted r∆etf) utilizes ∆t = 10−4. A clear convergence for increasing resolution
+
+is observed in both cases. In particular, note that when
+
+varying Nz by only a factor of ≈ 3, a decrease in the error by
+
+almost 3 orders of magnitude is observed, compatible with
+
+the fast convergence reported for a purely hydrodynamic
+
+FC-Gram pseudo-spectral method in [19].
+
+In Fig. 12 c) and d), the mean square values of both a
+
+and ∂z2za at the wall are shown. As expected, (∂z2za )2 is seen to rapidly decrease with increasing Nz (note it is
+
+10−36
+
+10−36
+
+1000
+
+2000
+
+103
+
+104
+
+Nz
+
+1/∆t
+
+Figure 12: Errors for the perfectly conducting solver for varying the spatial vertical (ﬁrst column, in semilog scale) and temporal (second column, in log-log scale) resolutions. In a) and b) the bulk error for u and b is shown, considering the solution at the highest (space or time) resolution as reference. Panels c) and d) display, as a function of the spatial or temporal resolution, the mean square error of both the boundary conditions for a and its gauge imposition. Similarly, in e) and f ) the error in ∇ · u is exhibited, together with error in the tangential velocity at the wall. In the bottom row, g) and h) show the accuracy of ∇ · b and the normal velocity at the wall. All quantities reported are mean squared errors. Simulations with varying vertical resolution where carried out with ∆t = 1 × 10−4, whereas Nz = 487 was employed for runs with changing time steps.
+
+19
+
+a) 10−8
+
+(u − urNefz )2 (b − brNefz )2
+
+b) 10−8
+
+10−9
+10−10 500 c)
+10−9
+10−10
+10−11
+e) 10−12 10−14
+
+10−9
+
+1000
+
+1500
+
+103
+
+d)
+
+(∂za + γa )2|∂Ω (∂za⊥ + γa⊥)2|∂Ω (∇ · a)2
+
+10−9 10−10
+
+10−11
+
+1000
+
+10−12
+
+2000
+
+103
+
+f)
+
+u2 |∂ Ω (∇ · u)2
+
+10−12
+
+10−14
+
+(u − ur∆eft)2 (b − br∆eft)2
+2 × 103
+
+4 × 103
+
+(∇ · a)2 (∂za + γa )2|∂Ω (∂za⊥ + γa⊥)2|∂Ω
+104
+
+10−16 10−18
+
+1000
+
+10−16
+
+u2 |∂ Ω
+
+10−18
+
+(∇ · u)2
+
+2000
+
+103
+
+104
+
+g)
+
+h)
+
+10−28
+
+u2⊥|∂Ω (∇ · b)2
+
+10−30 10−32
+
+10−29
+
+u2⊥|∂Ω (∇ · b)2
+
+10−34
+
+10−30
+
+1000
+
+2000
+
+103
+
+104
+
+Nz
+
+1/∆t
+
+Figure 13: Errors for the vacuum solver for varying spatial vertical (ﬁrst column, in semilog scale) and temporal (second column, in loglog scale) resolutions. In a) and b) the bulk error for u and b solutions is shown, considering the solution at the highest (spatial or temporal) resolution as reference. Panels c) and d) display, as a function of the spatial and temporal resolution, the average error of both the boundary conditions for a and its gauge imposition. Similarly, in e) and f ) the error in ∇ · u is exhibited, together with the error in the tangential velocity at the wall. In the bottom row, g) and h) show the accuracy of ∇ · b and the normal velocity at the wall. All quantities reported are mean squared errors. Simulations with varying vertical resolution where carried out with ∆t = 1 × 10−4, whereas Nz = 487 was employed for runs with changing time resolution.
+
+FC-Gram imposed at the end of each time step), while it remains approximately constant with ∆t. Meanwhile, a2 remains small albeit independent of Nz and ∆t (the condition is enforced in the middle of the time step, over a∗, and aﬀected by the later gauge imposition). Also
+in c) and d) we show the mean square value of ∇ · a, which decreases as a function of Nz down to O(10−13), and remains constant when varying ∆t. The remaining magnetic boundary condition, (∂za⊥)|∂Ω = 0, which is only imposed to favor the stability of the method as well as to help enforce ∇ · a = 0 at the wall, remains accurately enforced, with typical mean quadratic values of 10−14.
+Panels e) and f ) in Fig. 12 display the average quadratic errors (∇ · u)2 x,y,z, and u2 x,y at the wall. The ﬁrst one decreases about two orders of magnitude when increasing Nz from 487 to 2023 (and independent of ∆t), while the latter remains essentially constant and O(10−21) as Nz is increased, and decreases as (1/∆t)−4 when the time resolution is varied. Finally, panels g) and h) show the mean square error in the wall-normal velocity and in ∇ · b everywhere. As both are strictly imposed (the former by the Neumann boundary conditions in the Poisson equation for the pressure, and the latter by construction as b = ∇ × a), errors are O(10−34) or smaller. It can be readily observed that both conditions are satisﬁed to the accuracy allowed by double precision arithmetic. As previously mentioned, this is one of the main advantages of our method, as mass conservation and keeping the magnetic ﬁeld solenoidal are relevant for properly capturing the physics of the problem [34].
+The same analysis for the vacuum solver is shown in Fig. 13. As before, panels a) and b) display the mean pointwise square error in u and b everywhere in the domain for increasing resolutions. The reference solutions employ Nz = 2023 vertical grid points for examining the dependence on the spatial resolution, and ∆t = 10−4 for studying the eﬀect of the timestep size. In both cases a steep convergence is found for increasing resolution. Also, a (1/∆t)−4 trend is observed when varying ∆t, compatible for the quadratic errors of a 2nd order Runge-Kutta method. For the vertical spacing, a decrease of the errors by two orders of magnitude is found when spatial resolution is changed by a factor of ≈ 3. As before, for the solenoidal and boundary conditions we see in the rest of the panels the dependence of errors on either Nz or ∆t characteristic of time splitting methods. More precisely, in panels c) and d), the mean squared error of (∂za +γa )2 x,y at the wall is observed to decrease by two orders of magnitude when increasing Nz, whereas both (∂za⊥ + γa⊥)2 x,y at the wall and (∇ · a)2 x,y,z everywhere decrease with decreasing ∆t, with a uniform (1/∆t)−2 convergence rate.
+Also in Fig. 13, panels e) and f ) exhibit the same behavior than for the conducting solver, with the slip velocity at the wall being regulated by the timestep size, and the error in the divergence of the velocity ﬁeld depending on Nz. A detail worth pointing out is the contrasting behavior
+
+20
+
+between (∇ · u)2 and (∇ · a)2. The ﬁrst one is lower overall and regulated by the spatial resolution, whereas the latter is dependent on the temporal discretization. This diﬀerence is by design, as ∇ · u is of greater physical signiﬁcance, being the divergence of a physical ﬁeld, while the condition on a is a choice of gauge. Finally and more importantly, as it was also the case for the conducting solver, panels g) and h) show that the errors in the wall normal velocity and in ∇ · b everywhere are very small, of O(10−28) or smaller.
+8. Discussion
+A novel parallel pseudo-spectral method was presented, based on FC-Gram transforms to evolve the incompressible MHD equations in cuboid non-periodic domains. The method can be easily generalized to other (e.g., compressible) MHD systems, as well as to other geometries, as e.g., the case of the radial coordinate in a sphere or a spherical shell as often considered in geodynamo simulations. As a result, it can be relevant for multiple problems found in geophysics, industrial cooling systems, and space physics.
+Being Fourier-based, and due to the resulting dispersionless computation of spatial derivatives, the method is high-order and it has no spurious dispersion (nor “pollution”) errors that usually arise in ﬁnite diﬀerences or ﬁnite element methods. Additionally, the Fourier base allows for fast and eﬃcient solution of Poisson equations, as those arising when imposing solenoidal conditions for the ﬁelds, or when solving for the electric scalar potential in other formulations of plasma ﬂows. Also, as a result of the properties of the FFTs, is computationally eﬃcient (with O(N log N ) operations per Fourier transform) and can be eﬀectively parallelized to run in computer clusters. Overall, the method inherits many of the properties of classical pseudo-spectral solvers in periodic domains, with a small computational overhead to compute continuations at the boundaries and impose boundary conditions. The method is also well conditioned: diﬀerential operators are diagonal and easy to invert (compared with other spectral methods using, e.g., Chebyshev bases [10]), and all ill-conditioning reduces to the computation of small tables which can be computed beforehand with arbitrary precision, and stored.
+An important feature of the method is that it evolves the vector potential (allowing direct computation of physically relevant quantities such as the magnetic helicity), and that it keeps the solenoidal condition on the magnetic ﬁeld with errors of O(10−28) or smaller, of physical relevance as small errors in this condition in low order numerical methods have been shown to have a measurable impact in physical solutions [33, 34].
+In particular, two boundary conditions relevant in geophysics and astrophysics were explicitly considered: perfectly conducting walls, and vacuum surroundings. These conditions arise, e.g., in geodynamo simulations when considering respectively the interface of the liquid core with the inner solid core, and the interface of the liquid core with
+
+the outter mantle [24, 25]. Boundary conditions for the vector and electrostatic potentials where derived for these scenarios, resulting in Robin and second normal derivative conditions on the ﬁelds. The case of Robin boundary conditions is of practical interest as it also arises in many other electromagnetic problems. As a result, we derived a FC-Gram method to deal with these boundary conditions with high precision and minimal overhead.
+An explicit time-splitting technique was presented for the temporal integration, allowing for imposition of either solenoidality, intermediate, or physical boundary conditions at every substep. Explicit time stepping strategies as the ones presented here are particularly suitable for high Reynolds regimes [42, 43], as the time step is dominated by the CFL condition on the advection term, specially in uniform grids. For cases with very thin boundary layers, locally reﬁned meshes could be easily employed, as the FC-Gram method allows matching continuously spectral approximations for diﬀerent spatial regions.
+The full numerical method was implemented in an existing fully parallelized and ﬂuid-oriented PDE solver, SPECTER, and made openly available. This implementation was used to validate the method and study its convergence and numerical errors considering a paradigmatic wall-bounded MHD problem, namely a Hartmann ﬂow. Both types of boundary conditions were tested, obtaining results compatible with previous studies. Errors were shown to remain small in all cases, and to decrease either with increasing spatial resolution or time resolution depending on the implementation of the diﬀerent conditions in the time-splitting method. For the future, we plan to extend SPECTER to provide other electromagnetic solvers of interest for geophysics and astrophysics using the FCGram pseudo-spectral method, including MHD ﬂows with convection, or compressible MHD solvers.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have appeared to inﬂuence the work reported in this paper.
+Acknowledgments
+The authors acknowledge support from CONICET and ANPCyT through PIP, Argentina Grant No. 11220150100324CO, and PICT, Argentina Grant No. 2018-4298. This work was also supported by National Science Foundation, USA through contract DMS-1714169, and by the NSSEFF Vannevar Bush Fellowship, USA under contract number N00014161-2808. We also thank the Physics Department at the University of Buenos Aires for providing computing time on its Dirac cluster.
+
+21
+
+References
+[1] S. A. Orszag, G. S. Patterson, Numerical simulation of threedimensional homogeneous isotropic turbulence, Physical Review Letters 28 (2) (1972) 76–79. doi:10.1103/PhysRevLett.28.76.
+[2] a. Pouquet, G. S. Patterson, Numerical simulation of helical magnetohydrodynamic turbulence, Journal of Fluid Mechanics 85 (02) (1978) 305. doi:10.1017/S0022112078000658.
+[3] A. T. Patera, A spectral element method for ﬂuid dynamics: Laminar ﬂow in a channel expansion, Journal of Computational Physics 54 (3) (1984) 468 – 488.
+[4] X. Shan, D. Montgomery, H. Chen, Nonlinear magnetohydrodynamics by Galerkin-method computation, Physical Review A 44 (10) (1991) 6800–6818.
+[5] B. Fornberg, A Practical Guide to Pseudospectral Methods (Cambridge Monographs on Applied and Computational Mathematics), Cambridge University Press, 1998.
+[6] S. K. Lele, Compact ﬁnite diﬀerence schemes with spectral-like resolution, Journal of Computational Physics 103 (1) (1992) 16 – 42. doi:https://doi.org/10.1016/0021-9991(92)90324-R.
+[7] W. Y. Kwok, R. D. Moser, J. Jim´enez, A critical evaluation of the resolution properties of B-spline and compact ﬁnite diﬀerence methods, Journal of Computational Physics 174 (2) (2001) 510 – 551. doi:https://doi.org/10.1006/jcph.2001.6919.
+[8] C. Canuto, M. Y. Hussaini, A. Quarteroni, T. A. Zang, Spectral Methods, Scientiﬁc Computation, Springer Berlin Heidelberg, Berlin, Heidelberg, 2006. doi:10.1007/978-3-540-30726-6.
+[9] D. Rosenberg, A. Pouquet, P. D. Mininni, Adaptive mesh reﬁnement with spectral accuracy for magnetohydrodynamics in two space dimensions, New Journal of Physics 9 (2007). arXiv:0703024, doi:10.1088/1367-2630/9/8/304.
+[10] K. Julien, M. Watson, Eﬃcient multi-dimensional solution of PDEs using Chebyshev spectral methods, Journal of Computational Physics 228 (5) (2009) 1480–1503.
+[11] M. Fontana, P. D. Mininni, P. Dmitruk, Magnetic structure, dipole reversals, and 1/f noise in resistive mhd spherical dynamos, Physical Review Fluids 3 (12) (Dec 2018).
+[12] C. S. Peskin, Flow patterns around heart valves: A numerical method, Journal of Computational Physics 10 (2) (1972) 252–271. doi:10.1016/0021-9991(72)90065-4.
+[13] A. Wirth, A non-hydrostatic ﬂat-bottom ocean model entirely based on Fourier expansion, Ocean Modelling 9 (1) (2005) 71–87. doi:10.1016/j.ocemod.2004.04.003.
+[14] J. P. Boyd, A comparison of numerical algorithms for fourier extension of the ﬁrst, second, and third kinds, Journal of Computational Physics 178 (1) (2002) 118–160. doi:https: //doi.org/10.1006/jcph.2002.7023.
+[15] O. P. Bruno, Fast, High-Order, High-Frequency Integral Methods for Computational Acoustics and Electromagnetics, Springer Berlin Heidelberg, Berlin, Heidelberg, 2003, pp. 43–82. doi: 10.1007/978-3-642-55483-4_2.
+[16] N. Albin, O. P. Bruno, A spectral FC solver for the compressible Navier-Stokes equations in general domains I: Explicit timestepping, Journal of Computational Physics 230 (16) (2011) 6248–6270. doi:10.1016/j.jcp.2011.04.023.
+[17] N. Albin, O. P. Bruno, T. Y. Cheung, R. O. Cleveland, Fourier continuation methods for high-ﬁdelity simulation of nonlinear acoustic beams, The Journal of the Acoustical Society of America 132 (4) (2012) 2371. doi:10.1121/1.4742722.
+[18] O. P. Bruno, A. Prieto, Spatially dispersionless, unconditionally stable FC-AD solvers for variable-coeﬃcient PDEs, Journal of Scientiﬁc Computing 58 (2) (2014) 331–366. doi:10.1007/ s10915-013-9734-8.
+[19] M. Fontana, O. P. Bruno, P. D. Mininni, P. Dmitruk, Fourier continuation method for incompressible ﬂuids with boundaries, Computer Physics Communications 256 (2020) 107482. doi: https://doi.org/10.1016/j.cpc.2020.107482.
+[20] F. Amlani, O. P. Bruno, An FC-based spectral solver for elastodynamic problems in general three-dimensional domains, Journal of Computational Physics 307 (2016) 333–354. doi: 10.1016/j.jcp.2015.11.060.
+
+[21] O. P. Bruno, M. Cubillos, E. Jimenez, Higher-order implicitexplicit multi-domain compressible Navier-Stokes solvers, Journal of Computational Physics 391 (2019) 322–346. doi:10.1016/ j.jcp.2019.02.033.
+[22] P. A. Davidson, An Introduction to Magnetohydrodynamics, Vol. 70, Cambridge University Press, 2001. arXiv:9809069v1, doi:10.1017/CBO9780511626333.
+[23] A. Brandenburg, K. Subramanian, Astrophysical magnetic ﬁelds and nonlinear dynamo theory, Physics Reports 417 (1-4) (2005) 1–209. arXiv:0405052, doi:10.1016/j.physrep.2005.06.005.
+[24] C. A. Jones, P. H. Roberts, Convection-driven dynamos in a rotating plane layer, Journal of Fluid Mechanics 404 (2000) 311–343. doi:10.1017/S0022112099007363.
+[25] P. Roberts, G. Glatzmaier, Geodynamo theory and simulations, Reviews of Modern Physics 72 (4) (2000) 1081–1123. doi:10. 1103/RevModPhys.72.1081.
+[26] A. S. Brun, M. S. Miesch, J. Toomre, Global-scale turbulent convection and magnetic dynamo action in the solar envelope, The Astrophysical Journal 614 (2) (2004) 1073–1098. doi:10. 1086/423835.
+[27] Y. Fan, F. Fang, A simulation of the convective dynamo in the solar convective envolope: maintenance of the solar–like diﬀerential rotation and emerging ﬂux, The Astrophysical Journal 789 (1) (2014) 35. doi:10.1088/0004-637x/789/1/35.
+[28] F. Cattaneo, T. Emonet, N. Weiss, On the Interaction between Convection and Magnetic Fields, The Astrophysical Journal 588 (2) (2003) 1183–1198. doi:10.1086/374313.
+[29] M. L. Goldstein, D. A. Roberts, W. H. Matthaeus, Magnetohydrodynamic turbulence in the solar wind, Annual Review of Astronomy and Astrophysics 33 (1) (1995) 283– 325. arXiv:https://doi.org/10.1146/annurev.aa.33.090195. 001435, doi:10.1146/annurev.aa.33.090195.001435.
+[30] R. J. Leamon, W. H. Matthaeus, C. W. Smith, G. P. Zank, D. J. Mullan, S. Oughton, MHD-driven kinetic dissipation in the solar wind and corona, The Astrophysical Journal 537 (2) (2000) 1054–1062. doi:10.1086/309059.
+[31] G. B. Kliman, Large electromagnetic pumps, Electric Machines & Power Systems 3 (2) (1979) 129–142. arXiv: https://doi.org/10.1080/03616967908955333, doi:10.1080/ 03616967908955333.
+[32] P. Rodriguez Imazio, C. Gissinger, Instability in electromagnetically driven ﬂows. ii, Physics of Fluids 28 (3) (2016) 034102. arXiv:https://doi.org/10.1063/1.4942448, doi:10. 1063/1.4942448.
+[33] J. Brackbill, D. Barnes, The eﬀect of nonzero divergence b on the numerical solution of the magnetohydrodynamic equations, Journal of Computational Physics 35 (1980) 426–430.
+[34] D. S. Balsara, J. Kim, A comparison between divergence-cleaning and staggered-mesh formulations for numerical magnetohydrodynamics, The Astrophysical Journal 602 (2004) 1079–1090.
+[35] W. H. Matthaeus, M. L. Goldstein, Measurement of the rugged invariants of magnetohydrodynamic turbulence in the solar wind, Journal of Geophysical Research: Space Physics 87 (A8) (1982) 6011–6028. arXiv:https://agupubs.onlinelibrary. wiley.com/doi/pdf/10.1029/JA087iA08p06011, doi:https:// doi.org/10.1029/JA087iA08p06011.
+[36] S. Galtier, Introduction to Modern Magnetohydrodynamics, Cambridge University Press, Cambridge, 2016. doi:10.1017/ CBO9781316665961.
+[37] M. Bocher, Introduction to the theory of fourier’s series, Annals of Mathematics 7 (3) (1906) 81–152.
+[38] O. P. Bruno, M. Lyon, High-order unconditionally stable FC-AD solvers for general smooth domains I. Basic elements, Journal of Computational Physics 229 (6) (2010) 2009–2033. doi:10.1016/ j.jcp.2009.11.020.
+[39] P. D. Mininni, D. Rosenberg, R. Reddy, A. Pouquet, A hybrid mpi–openmp scheme for scalable parallel pseudospectral computations for ﬂuid turbulence, Parallel Computing 37 (2011) 316–326.
+[40] Prof. W. J. Duncan D.Sc. M.I.Mech.E., LXXVIII. Some devices for the solution of large sets of simultaneous linear
+
+22
+
+equations, The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science 35 (249) (1944) 660–670. arXiv:https://doi.org/10.1080/14786444408520897, doi:10. 1080/14786444408520897. [41] J. Sherman, W. J. Morrison, Adjustment of an Inverse Matrix Corresponding to a Change in One Element of a Given Matrix, The Annals of Mathematical Statistics 21 (1) (1950) 124 – 127. doi:10.1214/aoms/1177729893. [42] J. Kim, P. Moin, Application of a fractional-step method to incompressible Navier-Stokes equations, Journal of Computational Physics 59 (2) (1985) 308–323. doi:10.1016/0021-9991(85) 90148-2. [43] S. A. Orszag, M. Israeli, M. O. Deville, Boundary conditions for incompressible ﬂows, Journal of Scientiﬁc Computing 1 (1) (1986) 75–111. doi:10.1007/BF01061454. [44] R. Moreau, S. Molokov, Julius Hartmann and His Followers: A Review on the Properties of the Hartmann Layer, in: Applied Mathematics and Computation, Vol. 80, Springer, 2007, pp. 155–170. doi:10.1007/978-1-4020-4833-3_9. [45] D. Rosenberg, P. D. Mininni, R. Reddy, A. Pouquet, Gpu parallelization of a hybrid pseudospectral geophysical turbulence framework using cuda, Atmosphere 11 (2020) 178. [46] J. Hartmann, Hg-Dynamics I: Theory of the Laminar Conductive Liquid in a Homogeneous Magnetic Field, Det Kgl. Danske Videnskabernes Selskab. Mathematisk-fysiske Meddelelser 15 (6) (1937) 1–28. [47] J. Hartmann, F. Lazarus, Hg-dynamics II: Experimental investigations of the ﬂow of mercury in a homogeneous magnetic ﬁeld, Mathematisk-fysiske Meddelelser 15 (7) (1937) 1–45. [48] J. A. Shercliﬀ, Steady motion of conducting ﬂuids in pipes under transverse magnetic ﬁelds, Mathematical Proceedings of the Cambridge Philosophical Society 49 (1) (1953) 136–144. doi:10.1017/S0305004100028139. [49] S. Cuevas, B. F. Picologlou, J. S. Walker, G. Talmage, Liquidmetal MHD ﬂow in rectangular ducts with thin conducting or insulating walls: Laminar and turbulent solutions, International Journal of Engineering Science 35 (5) (1997) 485–503. doi: 10.1016/s0020-7225(96)00126-7. [50] D. S. Krasnov, E. Zienicke, O. Zikanov, T. Boeck, A. Thess, Numerical study of the instability of the Hartmann layer, Journal of Fluid Mechanics 504 (504) (2004) 183–211. doi:10.1017/ S0022112004008006. [51] I. E. Sarris, S. C. Kassinos, D. Carati, Large-eddy simulations of the turbulent Hartmann ﬂow close to the transitional regime, Physics of Fluids 19 (8) (2007) 1–10. doi:10.1063/1.2757710. [52] S. Vantieghem, X. Albets-Chico, B. Knaepen, The velocity proﬁle of laminar MHD ﬂows in circular conducting pipes, Theoretical and Computational Fluid Dynamics 23 (6) (2009) 525–533. doi: 10.1007/s00162-009-0163-0. [53] O. Zikanov, D. Krasnov, T. Boeck, A. Thess, M. Rossi, Laminarturbulent transition in magnetohydrodynamic duct, pipe, and channel ﬂows, Applied Mechanics Reviews 66 (3) (2014). doi: 10.1115/1.4027198. [54] D. Krasnov, O. Zikanov, T. Boeck, Numerical study of magnetohydrodynamic duct ﬂow at high Reynolds and Hartmann numbers, Journal of Fluid Mechanics 704 (2012) 421–446. doi:10.1017/jfm.2012.256. [55] V. J. Llorente, A. Pascau, Numerical simulations of magnetorheological ﬂuids ﬂowing between two ﬁxed parallel plates, Applied Mathematical Modelling 74 (2019) 151–169. doi: 10.1016/j.apm.2019.04.047. [56] J. Kim, P. Moin, R. Moser, Turbulence statistics in fully developed channel ﬂow at low reynolds number, Journal of Fluid Mechanics 177 (1987) (1987) 133–166. doi:10.1017/ S0022112087000892. [57] M. Lee, R. D. Moser, Direct numerical simulation of turbulent channel ﬂow up to Reτ ≈ 5200, Journal of Fluid Mechanics 774 (2015) 395–415. doi:10.1017/jfm.2015.268. [58] R. C. Lock, P. R. S. L. A, The stability of the ﬂow of an electrically conducting ﬂuid between parallel planes under a transverse magnetic ﬁeld, Proceedings of the Royal Society of
+
+London. Series A. Mathematical and Physical Sciences 233 (1192) (1955) 105–125. doi:10.1098/rspa.1955.0249. [59] P. Moresco, T. Alboussi`ere, Experimental study of the instability of the hartmann layer, Journal of Fluid Mechanics 504 (2004) 167–181. doi:10.1017/S0022112004007992. [60] J. Clyne, P. Mininni, A. Norton, M. Rast, Interactive desktop analysis of high resolution simulations: application to turbulent plume dynamics and current sheet formation, New Journal of Physics 9 (8) (2007) 301–301. [61] S. Li, S. Jaroszynski, S. Pearse, L. Orf, J. Clyne, Vapor: A visualization package tailored to analyze simulation data in earth system science, Atmosphere 10 (9) (2019). doi:10.3390/ atmos10090488. [62] S. B. Pope, Turbulent Flows, Cambridge University Press, 2000. doi:10.1017/CBO9780511840531. [63] C. C. Chang, T. S. Lundgren, Duct ﬂow in magnetohydrodynamics, Zeitschrift fu¨r angewandte Mathematik und Physik ZAMP 12 (2) (1961) 100–114. doi:10.1007/BF01601011.
+
+23
+

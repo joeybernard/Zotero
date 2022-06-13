@@ -1,0 +1,568 @@
+Physica Scripta
+Computer and Solitons
+To cite this article: V G Makhankov 1979 Phys. Scr. 20 558 View the article online for updates and enhancements.
+
+Related content
+- Interaction of Relativistic Gaussons V G Makhankov, I L Bogolubsky, G Kummer et al.
+- Many Dimensional U (1) Solitons, Their Interactions, Resonances and Bound States V G Makhankov, G Kummer and A B Shvachka
+- Soliton-Like Solutions in One-Dimensional Systems with Resonance Interaction V K Fedyanin and V G Makhankov
+Recent citations
+- Consolidation of Utility Rights-of-Way Brett C. Flower
+- The bionic anticipation of natural disasters Helmut Tributsch
+- Application of catastrophe theory to molecules and solitons F.V. Kusmartsev
+
+This content was downloaded from IP address 131.202.65.42 on 19/02/2020 at 18:18
+
+Physica Scripta. Vol. 20, 558-562, 1979
+Computer and Solitons
+V. G. Makhankov
+Head Post Office, P.O. Box 79,101000 Moscow, USSR Received June 7,1978
+
+Abstract
+
+Thus, the investigation of the general properties of the
+
+Computer and solitons. V. G. Makhankov (Head Post Office, P.O. BOX classical solitons (CS) may be carried out, to some extent,
+
+79, 101000 Moscow, USSR). Physica Scripta (Sweden)20, 558-562, 1979.
+
+forgetting their physical interpretation. As we shall see below there are possible stable solitons to exist in four-dimensional
+
+The properties of one and more space dimensional solitons are discussed on the basis of the works performed mainly in Dubna at the Joint Institute for Nuclear Research, Laboratory of Computing Techniques and Automation. The conception of near integrable systems is formulated. As an example of interaction of Langmuir solitons it is shown that the Hamiltonian system is able to transform continuously its properties
+
+(x, y , z, t ) one-field models with a so-called saturable nonlinearity. Undoubtedly, being of interest within the first class, they might be rejected for the second class theories because of renormalizability conditions.
+We consider below non-linear phenomena in the systems
+
+from a deep inelastic state up to the complete integrable one, depending on a physical parameter.
+The stability and existence problem of manydimensional solitons is discussed, The results of numerical experiments are given on the dynamics of formation and interaction of many dimensional solitons and pulsons.
+
+allowing stochastization, i.e., in non-integrable systems. The behaviour of such systems may be governed by the degree of
+
+their proximity to Some
+
+In this
+
+sense the integrable models can be considered as a zero order (non-linear!) approximation to the description of the real
+
+physical systems, and further study can be performed with all There are two large classes of physical Phenomena, which may discretion as a perturbation series in this small deviation.
+be reduced to the equations possessing Soliton and soliton-like Note, that at present only conlplete integrable models may
+
+solutions. They differ in their problems as well as in the inter- be strictly analytically investigated by various methods, But
+
+PetatioOfnthe
+
+they come together at the analytical methods are, as a rule, practically helpless (at least,
+
+classical level.
+
+at present) in studying the evolution of non-integrable systems.
+
+The problems Of studying non-1inear wave phenomena in Therefore, with rare exceptions, all the results on the evolution
+
+real continuous media are of the first class and field theoretic problems are of the second one.
+In the first case the investigation used to go through the
+following stages: it starts at the classical or quantum discrete
+
+of ergodic (even one-dimensional) systems were obtained by computer experiments.
+wh2ic.hmcraeatteIdsthhoeulFd eprrimmariily-Pstraessst, aipsr-tohubalatemimt (waabsoautc2o3mpyueatersr
+
+level, then with some degree of rigour, the study Proceeds to ago) and then discovered solitons. As a result of numerical the classical or quasi-classical continuum limit, that defines experiments on the dynamics of KdV nonlinear waves, a concept
+
+the form of the resulting equations. As the final result of such of the solitons (Zabusky) appeared to be solitary
+
+which
+
+a transformation, we have the soliton or quasi-soliton classical solutions (to which through an inverse transformation may,
+
+in principle, be given a quantum meaning).
+
+In the second case the models under investigation are con-
+
+structed with the help of a Lagrangian formalism and allowance
+
+for certain requirements come from the general physical con-
+
+ceptions and laws (invariance under the PoincarC group, global
+
+Or gauge
+
+'ymmetries Some Of which may be broken
+
+and so on). In this case classical wave equations appear at the
+
+initial stage and their solutions become the basis for construct-
+
+ing
+
+quantum Objects
+
+that Of a "liton type
+
+(extended particles)'. Here, unlike conventional atomic physics,
+
+the quantum soliton properties are determined by classical solutions as A + 0. All this defines the form of the second class
+
+emerged from the collision without changing their shapes and
+
+velocities, Somewhat earlier Perring and Skyrme have found
+
+via a computer the analogous effects in the framework of the
+
+sine-Gordon equation, but for rather different
+
+It is interesting to note, that ~ ~ t w o ~ s o l i t osonl,u,tions (biens)
+
+have been obtained a decade earlier (Seeger, Donth and
+
+Kochendorfer). Then Ooyama and Saito (1970) have found
+
+solitons on "Toda lattice" nearing the FPU
+
+Finally,
+
+solitons in the framework of the Schrodinger equation with
+
+cubic nonlinearity (s3) were discovered by Yajima and Outi in 1971. references may be found in the review by Scott,
+
+Chu and McLaughlin .
+
+nonTlihnuesa,rthpearctioaml pduitfeferrecnretiaatlingeqauanteiwonbs rafenlclhbienhitnhde. A booomf
+
+of equations. These directions come together in the intermediate stage of
+
+tHimame ilotofnidainscosvyesrtienmgs
+
+and and
+
+sthtuedyrienlagtetdhemceothmopdlsetoelfythineteignrvaebrlsee
+
+the investigation of the localized (soliton) solutions of the finite
+
+energy to the classical wave equations
+
+Here I
+
+mention Some 'pinions about the importance
+
+of studying the soliton solution properties occurring in papers
+
+scattering problem, Hirota and BBcklund transformations began. Developing and formalizing these techniques being of an international competition character displayed, that integrable equations may be generated in the unlimited amount, All
+
+of both directions. However, it seems to be purposeless after this gave rise to the view, that the majority (if not all) of the
+
+- the aforesaid.
+' The so-called non-perturbative approach in quantum field theory.
+
+Lagrangian systems are completely integrable, The first impact on this outlook was done again by a com-
+
+Physica Scripta 20
+
+Computer and Solitons 559
+
+puter. The inelastic interaction of the Langmuir solitons in work of the KG3 equation). Many papers, especially in plasma plasma was discovered at Dubna in 1974 [ 2 ];analogously, for theory, were devoted in recent years to studying the stability
+
+solitons of the “improved” versions of Boussinesq and KdV equations, of the Higgs and Klein-Gordon equations [ 3 ] . It turned out, that even a “small” alteration of the equation may render it non-integrable. Moreover, as it was shown, certain particular properties of the integrability disappeared under transformation from the plane (x, t ) geometry to the spherically
+
+of plane (x, t ) solitons with respect to transverse perturbations [3, l o ] . Note, that the solitons of the two well-known integrable equations, the KdV and S3. are in this sense different. The KdV solitons may be stable, that allowed to solve the two space dimensional problem (the Kadometzev-Petviashvili equation); the S3 solitons are unstable that pointed? once again, at the
+
+(or cyllindrically) symmetric (Y, t ) one [ 4 ] .
+
+existence of the Langmuir wave collapse in plasmas.
+
+The conception of near integrable systems, for which, as A discouraging theorem was established by Derrick and
+
+has been pointed out, integrable equations may serve as some- Hobart 1963-64 that implied there were n o stable time-
+
+what original zero order approximation, appeared. The role of independent soliton-like solutions in more, than one spatial
+
+the interaction parameter in an investigation can play the dimension world, in the framework of conventional relativistic
+
+deviation from an appropriate integrable equation. It may be non-linear theories (without internal symmetries). Let us define
+
+done most easily, if such a deviation may be isolated as a right the soliton in many dimensional worlds. As the author knows
+
+hand side of the equation with a small parameter [SI. The no integrable systems in non-one-dimensional Minkovski worlds
+
+consequent approximation methods can work in this case. have been obtained as yet (with the exception for the non-
+
+However, we should stress, that such a procedure has to be relativistic KdV equation and similar ones). Our definition
+
+done with all possible cautions, since acting in this way one therefore. practically coincides with that of quasi-particle
+
+could obtain “solutions”. which d o not subject to the initial solution : the soliton is a solution of certain nonlinear equation.
+
+equation. A lengthy report on these topics will be delivered by which has finite energy, momentum, “charge.” “correct”
+
+Prof. Fedyanin on this Symposium.
+
+asyniptotics at infinity and safety interaction factor.
+
+In addition, even in the case of small parameter theory. 4. The Derrick-Hobart theorem states. in fact, that in
+
+there are possible soliton-like solutions cardinally different the stationary case the Hamiltonian of a given system. as a
+
+from that to integrable equations [ 6 ] . Sometimes it fails t o get functional of field 9,H [ p ] determines a surface, which cannot
+
+such a deviation in a pure form: for example, in the case of the be a valley. To stabilize the system additional constraints
+
+Boussinesq equation, we have pxPxxtitnstead of pxxxx.The (integrals of motion) have to be. There are possible two ways:
+
+“nearness” of the Higgs and KG3 equations t o the sineGordon (a) Constructing the system with non-trivial topology
+
+equation is still more non-trivial [ 3 ] .
+
+Faddeev, Polyakov, t’Hooft and many others: there is, in
+
+It should be emphasized that the numerical experiments are addition, a very excellent review by (S. Coleman [ 191).
+
+now one of the most powerful tools t o investigate Hamiltonian (b) Considering theories with internal global or gauge
+
+systems, especially to answer if a given system is the complete symmetries. Later we d o not deal with the first approach.
+
+integrable. The elastic collision of solitons can imply the positive In the second case the soliton provides the Hamiltonian with
+
+answer (recall KdV). The inelastic interaction of solitons would a conditional extremum that may lead to the soliton stability
+
+make searching for the integrability consequences. in particular, (Zastavenko, Lee and Makhankov). Let us show this in the
+
+many-soliton formulas to be fruitless [7].
+
+example of the global U(1) symmetry. $ + $ e l H .Then we
+
+Nevertheless, the concept of a nearness between a given have an additional conservation law
+
+system and some integrable one somewhat helps to discover
+
+pulsating (bound states) solitons, bions, both in the plane (x, t )
+
+(1)
+
+[ 8 ] geometry and in a spherically symmetric (Y, t ) one [ 9 ] ,
+
+for the KG3 and Higgs equations. If in the plane case one can still find an approximate analytical solution for the pulsons (pulsating solitons), on the contrary, in the (r, t ) geometry, the discovery of the pulsons as well as the investigation of
+
+here and later D is the number of Euclidean coordinates. The solution time-dependence of the form $s = 9e - r w t .
+minimizes the energy functional. H . Hereat, the stability condition of soliton solution becomes (Vakhitov and Kolokolov.
+
+their properties are only due to a computer (the conventional Friedberg. Lee and Sirlin, Makhankov [3])
+
+analytical methods turned out to be powerless because of the actual nonlinearity and the absence of a small parameter).
+The transformation of a “physical” system, describing the interaction of Langmuir and ion-acoustic waves in plasmas, from the strong non-integrable one when colliding solitons
+~
+are slow (their fusion is possible) up t o the integrable system,
+at ‘L‘ + 1 [ I S ] ,have been firstly displayed via a computer in [2] .
+It is interesting t o note here. that the non-linear description of ion-acoustic oscillations (e.g., with the help of the Boussinesq equation) makes the system non-integrable again. The system of two coupled integrable equations is non-integrable! [3]
+3. As a result of a great deal of work all over the world, the properties of solitons in the plane (x, t ) world have been learned quite well. It was time to proceed to more real and intricate many-dimensional worlds2. This transition as should be ex-
+
+de < 0, (Q-theorem) relativistic case
+
+dw
+
+(-?,\
+
+1 d S
+-
+
+<
+
+0,
+
+S =
+
+p2 d D x ,
+
+w <0
+
+non-relativistic case
+
+do
+
+In [ l 11 (see also [ 3 ] , p. 100) it was shown, that in the systems with so-called saturable non-linearity, there exist stable Qsolitons in a certain region of w . In the framework of the one-
+field & theory, there are no stable solutions at D > 2.
+Note, that in all the cases considered, we dealt with the complex field (1) that implies the exact conservation law taking place.
+One can search for a soliton-like solution, in the case of real scalar field theory, in the following form
+
+pected, was non-trivial. Here the stability problem went ahead, -
+
+when we proceed from one t o many space dimensions (unstable Note, that there appeared nearly 350 papers regarding solitons only
+
+solitons were found, in the plane (x, t ) world, only in the frame- in 1911.
+
+Physica Scripta 20
+
+560 V . G. Makhankov
+
+x = Recpe-iwt (pulson)
+
+(3) where
+
+The approximate conservation law
+
+V,(cp) = j(p' - 1)2, V,(cp) = 2(1 -cos
+
+d-S E O dt
+may arise, under certain conditions, with the exponential accuracy (Bogolubsky and Makhankov [8] Manakov [121).
+5. Consider the coordinate dependence, cp(r), of solitons. We restrict ourselves by spherically symmetric solutions, in
++ D-dimensional Euclidean space or in (D 1)-dimensional
+Minkowski world (in the latter case the mass term is renormalized), to the following equation of quite a general type with polynomial Lagrangian.
+
+As has been pointed out, stable Q-solitons (dQ/do < 0) for the
+KG3 equation do not exist, when D = 3. The computer experiments carried out at Dubna exhbit the same situation for pulsating solutions of type (3) to eq. (8.3). The KG3-pulsons as well as the KG3 Q-solitons decay by two instability modes
+- dissipative and singular [3] .
+Solutions to eqs. (8.1) and (8.2) have non-trivial asymptotics (the vacuum values) at infinity (r + w)
+
+Having used the "virial theorem" and integrating eq. (5) with
+weight cprP-' over r , we come to the necessary conditions
+of soliton-like solution existence [13]
+
+[1-.F)up > [Pq%)Uq
+
+(6)
+
+0)-2)Up > (4-2)Uq
+
+(7)
+
+1- Here
+
+Up = g-2
+
+cpPP-Idr,
+
+aUq = - l 0 q q # ) - ' dr
+
+PO
+
+4
+
+to which minima of potentials (10) correspond (function V3(cp) has only one relative minimum V3(0)= 0). Fixation of one of these vacua as a boundary condition may lead to the quasi-
+stable (i.e., weakly radiating linear waves) pulsons to occur. Their lifetime is of the order of l o 3 oscillation periods (adiabatic invariant (4)!), Note, that the decay time of a KG3-pulson is of the order of several (3-4) oscillations (for details see [3]).
+It should be stressed as well, that no nonradiating objects
+similar to the bions in plane (x, r ) world, were found for the
+SG equation. We chose the following boundary conditions
+
+Note that for the instanton solutions (xz = a = 0), the condition (6) coincides with the renormability condition of the theory. A similar situation takes place for vector fields
+
+A , =J'(x)x,/luI. For example, when p = 4 , q = 6 , D = 3, we have a set of
+solutions cpn (n numbers nodes of the field function) stable in a certain area of parameters w ,gz,a.
+The existence theorem for D = 3 and quite a general non-
+linearity was proved in [ 141 .
+At the end of this section we note, that static properties of solitons were studied for more complex scalar and vector gauge theories such as SU(2) X SU(2), SU(3) X SU(3), as well as including colour spinor (quark) fields, i.e., SU(3) X SU(3) X SU(3) [15] (one of the authors of these investigations, Prof. Lee, has spoken on them).
+6. To justify somewhat the title of this report let us proceed again to a computer. The dynamics of solitons in many-dimensional worlds is, so far, almost completely an eparchy of the computer. With its help pulsons-quasi-bions in spherical three-dimensional space have been discovered, and their properties investigated [4]. The ss-solutions of a soliton type were studied for the following equations describing real scalar fields3
+
++ cptt - Arrcp-cp cp3 = 0
++ cptt - A r r p sin ip = 0
+
+GLH
+
+(8.1)
+
+SG (integrable in x , t world) (8.2)
+
++ ptt - A r r p cp -cp3 = 0 KG3
+
+(8'3)
+
+The constants of motion are respectively
+
+J + + E = 471 3CrZdr, 3c = $[cp: cp: K(cp)]
+-
+
+(9)
+
+According to the Derrick-Hobart theorem there exkt no stable time-
+
+independent solitons in the framework of such theories.
+
+cp%LH = - 1, cp& = 0
+and obtained long-lived pulsons (with a bell-shape coordinate dependence) under quite an arbitrary initial conditions, only if [8]
+cp(0, 0) > const, > 1 GLH cp(0,O) > const, > 271 SG
+Somewhat later analogous objects were found by the group
+from ITEP (Moscow) [ 161.
+Quasi-stable pulsons of greater and greater field amplitudes in the origin, ~ ( 00,)>2nn might be expected to exist for many-vacuum sineGordon theory. Such objects have been found (although they have no analog in the plane (x, t ) world); their amplitudes lie in the region p(0, t )E (377,477). Then in the region (2n, 3n), these pulsons become unstable. As a result, we have a cascade process: irradiating slightly a heavy pulson diminishes its amplitude inside the interval (3n,4n), rapidly
+goes through the interval (2n, 3n),and then, in the area ( n ,2n),
+we have again a weakly radiating pulson, which becomes unstable in (0, n).It is easy to notice, that such a pulson behaviour is intimately connected to a potential shape V(q)(Bogolubsky).
+To shorten computer run time the initial conditions were taken in the quasi-bion form
+p(r, 0) = 4x arctg [tg CY sech (sin w ) ]
+with changing parameters a and x . We have just considered the dynamical properties of solitons,
+which relate their formation and instability. But a real dynamics, in which particular properties of solitons may be exhibited, indeed, is their interaction.
+Let us now proceed to discussing the results known to the author, on collisions Of two space-dimensional cylindrically symmetric ((CS) in each rest frame) solitons. We mention here
+
+Physica Scripta 20
+
+Fig. 1. Bound state (“resonance”) of two Q solitons at v = 0.2, p = 0.95.
+I‘igures with isohypses correspond to plane cioss sections of Fig. 2. H = K/Kmax, TCmax = 2.28 = K ( t = 120).
+
+only two numerical experiments carried out at Dubna. con- is conserved, at v > vcr, where they live approximately for the
+
+cerning the interaction of (a) unstable KG3-pulsons [ 171 and same time as they d o in free states. This takes place, despite
+
+(b) Q-solitons of the KG equation with the saturable non- the pulson collision bringing about a great. although self-
++ linearity of 1$12(1 1 $ 1 2 ) - ’ type. It should be noticed, that consistent, perturbation of the order of unity for each of
+
+there are already very impressive movies by Tappert on inter- them. Here, in two space-dinientional world we observe, appar-
+
+action of CS solitons in the framework of the Schrodinger ently, the exhibition of soliton-like (in Zabusky sense) properties
+
+equation with exponential nonlinearity (saturable)
+
+by unstable pulsons.
+
+1
+
+The second series of calculations (Kumnier, Shvachka and
+
+the author) was undertaken to study head-on collisions of
+
+stable Q-solitons in the model
+
+wliich models the behaviour of Langmuir wave packets, in the
+
+1
+
+I $I2
+
+vicinity of a stationary state.
+
+r Q t t - $ r r --+r + $ - 1~ + I L l I 2 = 0
+
+To proceed further we would note that all the pulsons o f
+
+the KG3, GLH and SG equations turned out to be stable against
+
+small angle perturbations 6p(8) [17]. In the first series of
+
+computations (Bogolubsky, Shvachka and the author). the
+
+head-on collision of two unstable KG3-pulsons of type
+
+p(x, Y ,t ) = A p ( u , J y : ( x - s t y + y 2 )
+
+x cos (dl -- u2,yi(t - Z,i.Y))
+
+have been studied. Here vi is a velocity of ith pulson in light velocity units. v1 = - v 2 = Z, = 0.2,03,04,06. yr2 = 1 -U;
+and q(r) is a soluton of the following boundary problem
++ 1
+p r r 1- -rpr - p p3 = 0. qr(Oj = p(-) = 0
+
+r=w 360
+
+The collision time was taken less than the instability rate.
+
+The behaviour of‘ pulsons resembles that of the one-dimensional
+
+’1s-solitons discussed above [ 2 ] .When the velocity of pulsons,
+
+is greater than a
+
+One ‘v 0.3>pulsons emerge from
+
+collision and, only then, decay by dissipative Or singular modes.
+As Z, < 0.3, pulsons coalesce into one collapsing afterwards. A
+
+significant fact is that the number of unstable “quasi-particles”
+
+Fig. 2. Bound state (“resonance”) of two Q solitons at v = 0.2, p = 0.95;
+(a) crosssection in y-axis the point ,Y. where H ( x , y = 0 ) is m&yimal, (b) crosssection in x-axis, The life time of bound state is approximately
+2 x 102, it means that the system oscillates several times (= 4) before
+decaying.
+
+PhJJsicaScripta 20
+
+562 V. G. Makhankov
+
+I
+
+I
+
+-51
+b ' -is ' -1'0 ' -5
+
+0
+
+5
+
+Fig. 3. Elastic interaction of Q-solitons at w = 0.9, /J = 0.7. Figures with isohypses correspond t o plane cross-section of Fig. 4. H = K/K,,,
+X,,, = 69.4 = H ( t = 12).
+
+The behaviour of Q-solitons in these collisions is very similar to the pure soliton one (when z, +, 1): an interaction turns out to be nearly elastic, and a certain shift in their positions have been observed. In the region of small V z 0.2, we have observed an oscillating bound state of two solitons, apparently, slight radiating. The results of two such experiments are depicted in Figs. 1-4.
+References
+1. Scott, A., Chu, F. and McLaughlin, D., Proc. IEEE 61, 1443 (1973). 2. Abdulloev, Kh., Bogolubsky, I. and Makhankov, V., Phys. Lett.
+48A, 161 (1974); Nuclear Fusion 1 5 , 2 1 (1975).
+1.26 16
+
+3. Makhankov$v.3 Phys. RePorts35C,
+
+(lg78).
+
+4. BogolubskY, 1. and Makhankov, V.3 J E W Lett. 24312 (1976).
+
+5. Karpman, V. and Maslov, E., Phys. Lett. 60A, 307 (1977); ZhETF
+
+73, 537 (1977).
+
+6. Makhankov, V. and Fedyanin, V., Sov. Phys. Doklady 22, No. 10
+
+(1977); Preprint JINR E17-10507, Dubna (1977).
+
+7. Abdulloev, Kh., Bogolubky, 1. and Makhankov, V., Phys. Lett.
+
+56A, 427 (1976).
+
+8. Kudryavtsev, E., JETP Lett. 22, 8 3 (1975); Getmanov, B., ibid. 24,
+
+291 (1976).
+
+9. Bogolubsky, I. and Makhankov, V., JETP Lett. 25,107 (1977).
+
+10. Katyshev, Yu., Makhaldiani, N. and Makhankov, V., JINR, P5-
+
+11438, Dubna (1978); Phys. Lett. 66A, 456 (1978).
+
+11. Makhankov, V., JINR, P2-10362, Dubna (1977).
+
+12. Manakov, S., JETP Lett. 25 (1977).
+
+13. Makhankov, V., Phys. Lett. 61A, 431 (1977).
+
+14. Nehari, Z., Proc. Roy Irish Acad. 62A, 118 (1963); Zhydkov, E. &
+
+Shirikov,V., Z. Vych. Mat. i Mat. Fiz. 4, 804 (1964); Vazquez,
+
+L., J . Phys. A. Math. Gen. 10, 1361 (1977); see also Strauss, W.,
+
+Commun. Math. Phys. 55, 149 (1977).
+
+15. Friedberg, R., Lee, T. D. and W i n , A., Phys. Rev. D13, 2739
+
+(1976); Nucl. Phys. B115, 32 (1976); Friedberg, R. and Lee, T. D.,
+
+Phys. Rev. D15, 1694 (1977); Preprint CO-2271-89 Columbia Univ.
+
+N.Y. (1977).
+
+16. Belova, T., Voronov, N., Kobzarev, I. and Konyukhova, N., ZhETF
+
+73, 1611 (1977).
+
+17. Bogolubsky, I., Makhankov, V. and Shvachka, A., Phys. Lett. 63A,
+
+225 (1977); Makhankov, V., Kummer, G. and Shvachka, A. Report
+
+on XIX Int. Conf. on High Energy Phys., Tokio, August 1978 JINR
+
+E2-11579, Dubna (1978).
+
+18. Yajima, N. and Oikawa, M., Progr. Theor. Phys. 56, 1719 (1976).
+
+19. Coleman,S., "New Phenomena in Subnuclear Physics", ed. by
+
+A. Zichichi (Plenum Press, NY, 1977).
+
+Fig.4 . Elastic interaction of Q solitons at w = 0.9, /J = 0.7.
+
+Note in proof: The detailed results o n the investigation of stable Qsoliton interactions have been submitted t o Physica Scripta in October
+1978.
+
+Physica Scripta 20
+

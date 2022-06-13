@@ -1,0 +1,991 @@
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING
+
+1
+
+Ionospheric Irregularity Layer Height and Thickness Estimation With a GNSS Receiver Array
+Seebany Datta-Barua , Member, IEEE, Yang Su , Aurora López Rubio , and Gary S. Bust
+
+Abstract— This work develops a method by which a kilometer-spaced array of Global Navigation Satellite System (GNSS) scintillation receivers can be used to estimate the ionospheric irregularity layer height and thickness and associated uncertainties on those estimates. Spectra of ﬁltered signal power and phase data are used to estimate these quantities by comparing the observed ratio of the log of the power spectrum to the phase spectrum with the Rytov weak scatter theoretical ratio. A Monte Carlo simulation of noise on the input signal and the irregularity drift velocity is used to quantify the error in estimates of height and thickness. The method is tested using data from the Scintillation Auroral Global Positioning System (GPS) Array (SAGA) sited in the auroral zone at Poker Flat Research Range, Alaska. For the 30-min scintillation period studied, the technique identiﬁes ionospheric scattering from a thick F layer, which correlates well with on-site incoherent scatter radar measurements of peak electron density, for an event previously identiﬁed in the literature as likely due to F layer.
+Index Terms— Geophysical signal processing, Global Navigation Satellite System (GNSS), Global Positioning System (GPS), ionosphere, measurement uncertainty, radiowave propagation, scintillation.
+I. INTRODUCTION
+
+Fig. 1. Illustration of scattering by ionospheric irregularities. A satellite sv at zenith transmits a signal that arrives as a plane wave at the top of the
+scattering layer of plasma irregularities located at height z with thickness L. The electron density ﬂuctuations Ne have some spatial power spectral density SN as a function of the horizontal components κx , κy of the 3-D wave vector. After scattering through the layer, the wave emerges no longer
+planar and is received on the ground by receivers r xi .
+
+R ANDOM variations in plasma density in the ionospheric layer of the atmosphere can cause transionospheric Global Navigation Satellite System (GNSS) signals to undergo rapid amplitude and phase ﬂuctuations known as scintillation when received [1]. For navigation purposes, scintillation can lead to an increase in tracking error, and in the case of deep fades, loss of lock on a satellite [2]. For this reason, understanding the causes underlying the formation of irregularities is of great interest.
+In general, irregularities may form at a variety of scale sizes, but those most effective at scattering GNSS are due to irregularities at the Fresnel scale of about 300 m [2]. At high latitudes, the irregularities may form rapidly if there is enhanced particle precipitation or polar cap patches with
+Manuscript received October 5, 2019; revised July 21, 2020; accepted September 1, 2020. This work was supported by the National Science Foundation Awards under Grant AGS-1651465, Grant AGS-1352602, and Grant AGS-1261369. (Corresponding author: Seebany Datta-Barua.)
+Seebany Datta-Barua is with the Department of Mechanical, Materials, and Aerospace Engineering, Illinois Institute of Technology, Chicago, IL 60616 USA (e-mail: sdattaba@iit.edu).
+Yang Su is with Ford Motor Company, Dearborn, MI 48120 USA. Aurora López Rubio is with the Illinois Institute of Technology, Chicago, IL 60616 USA. Gary S. Bust is with Johns Hopkins University Applied Physics Laboratory, Laurel, MD 20723-6099 USA. Color versions of one or more of the ﬁgures in this article are available online at http://ieeexplore.ieee.org. Digital Object Identiﬁer 10.1109/TGRS.2020.3024173
+
+favorable conditions for instability [3]. They may also convect rapidly due to strong electrodynamic forcing [4]. Scintillation may occur on the dayside, particularly near the cusp, or the nightside in the auroral zone. In some cases, scintillations are correlated with aurorae. The ionospheric irregularities in density may lie within the E region (100–150 km altitude) and/or the F region (150–800 km) [5]. The altitude and thickness of the scattering layer are of scientiﬁc interest because they determine which physical processes might be involved in the formation of the irregularities that cause scintillation.
+Interestingly, scintillating signals, which are themselves a result of scattering, can be used as a sensor to probe exactly those irregularities that scattered the signal, as shown in Fig. 1. A radio signal transmitted from a GNSS satellite arrives at the ionosphere as a plane wave (arriving from zenith in the cartoon). Due to variations in size and distribution of irregularities, the plane wave emerges from the scattering layer as a distorted wavefront. However, the distortions are spatially and temporally correlated due to the scattering medium through which the wave passed. These correlations are detectable by multiple receivers on the ground.
+Previous researchers have used GPS or GNSS scintillation receivers in single locations [6] or arrays spaced over longer distances for statistical studies [7]. A few notable exceptions are at high latitudes [8], [9] and at low latitudes, [2]; these were
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License. For more information, see https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+2
+
+IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING
+
+typically used in time-limited data campaigns. Jayachandran et al. [10] maintained a multiyear record at high latitudes with a nationwide array. More recently, at high latitudes, Wang and Morton [11] established an array with which to examine GNSS receiver processing techniques in the presence of scintillation.
+We have operated the scintillation auroral GPS array (SAGA), an array of six receivers, at Poker Flat Research Range, Alaska, since December 2013 to study the possibility of using scintillation receivers placed over kilometer or shorter baselines as a sensing device on a continuous basis [12]. The correlation of 100-Hz phase data between spaced receivers from SAGA was previously analyzed to derive ionospheric drift and anisotropy estimates [13]. These compared favorably to incoherent scatter radar measurements of plasma drift from the Poker Flat Incoherent Scatter Radar (PFISR) located at the same site.
+In this article, we propose a way to use scintillating signals to estimate the height of the ionospheric layer containing the irregularities and its thickness [14], quantifying the uncertainties on those estimates. The method is based on the Rytov weak scatter inverse theory [15], which states that both the phase and log-amplitude spectra can be described as a “ﬁlter function,” a function of wavenumber as well as height and thickness of the irregularity layer, multiplied with the spectrum of the irregularity distribution themselves. Given an irregularity drift velocity, in this case from the method of [13], a single receiver’s measurements can be interpreted as scanning through the irregularity structures along the direction of the drift.
+Section II reviews the theoretical formulation as shown in the literature. Section III shows how to apply the Rytov weak scatter spectrum theory to signals received from a GNSS array to estimate scattering layer height and thickness. Section IV describes the SAGA data and the signal processing used to test this technique. Section V discusses the results and Section VI contains the concluding remarks.
+
+3-D spatial variations projected along speciﬁc directions. Let SN (κ) represent the spectrum of the 3-D density ﬂuctuations at different spatial sizes.
+In the Rytov approximation (i.e., a weakly scattered signal) [22], we consider χ, the natural log of the amplitude A, and φ, the phase of the received complex signal ψ from a single GNSS satellite to a single receiver
+
+ψ = Ae jφ + ν
+
+(1)
+
+= eχ+ jφ + ν, χ = ln A.
+
+(2)
+
+Note that A and φ are themselves ﬂuctuations about some mean value due to the irregularity, whereas ν is the random noise from other sources. In the theoretical derivation in this section, we will idealize as ν = 0 and address it in Section III-C. Scattering of a signal ψ incident at an oblique angle upon a horizontal scattering layer, such as GNSS, was
+derived in [22]. In this section, we summarize the results
+derived therein. The incident GNSS signal has a wavenumber k = 2π/λ,
+e.g., λ = λL1 = 19 cm for GPS L1 frequency used in this work. The GNSS signal traveling along the direction zˆr is oblique to the scattering layer, arriving with azimuth angle β and nadir angle γ (see Fig. 9(a) and the Appendix more generally for relevant coordinate systems used in this derivation). An xˆ, yˆ, zˆ coordinate system is oriented such that the propagation direction zˆr is in the xˆ zˆ plane, with zˆ pointing downward. Writing κ in these coordinates
+
+κ = κx xˆ + κy yˆ + κz zˆ
+
+(3)
+
+where κx is the horizontal component in the plane of the raypath, κz is the vertical component in the plane, and κy is the component normal to the plane of propagation. To account
+for effective raypath distances through the irregularity slab for oblique propagation, deﬁne Le, ze
+
+Le = L sec γ , ze = z sec γ .
+
+(4)
+
+II. BACKGROUND THEORY: PROPAGATION OF AN OBLIQUE WAVE
+The problem of 3-D, time-evolving electromagnetic propagation through an arbitrary anisotropic, inhomogeneous random medium has been studied by many authors [15]–[21]. Typically, one starts with the electrodynamic wave equation and makes the assumptions that the temporal variations of the irregularities are much slower than the wave period (i.e., irregularities are “frozen in” to the background plasma) and the characteristic size of the irregularities is much greater the wavelength.
+Consider a horizontal ionospheric irregularity layer meeting these criteria. An electromagnetic wave traveling from the satellite through the ionosphere to a receiver on the ground will propagate through the irregularity slab. Let L be thickness and z be the height of the top of this irregularity layer (see Fig. 1). Let κ represent a 3-D wave vector. Since there are three spatial dimensions of the irregularity layer, density variations in space can be Fourier transformed into a spatial frequency distribution of the irregularities, along the vector components of κ. The wavevector κ (in units of rad/m) lets us examine
+
+In [22], the log-amplitude and phase ﬂuctuation spectra in the horizontal plane are given with an integral over the zˆ-direction. Then, it is shown that for a uniform layer of thickness L, this can be integrated from z = 0 to a ﬁnal altitude z to give the log-amplitude spatial spectrum Sχ and phase spatial spectrum Sφ in the horizontal xˆ-yˆ plane for a thick uniform isotropic layer [22, eq. (31)]
+
+Sχ (κ) = B[1 − g]SN (κ)
+
+(5)
+
+Sφ(κ) = B[1 + g]SN (κ)
+
+(6)
+
+where we have deﬁned the following terms for brevity:
+
+B = π k2 Le sec γ
+
+(7)
+
+α = κx2 sec2 γ + κy2
+
+(8)
+
+g = − k sin (ze − Le) α + k sin ze α
+
+(9)
+
+αLe
+
+k αLe
+
+k
+
+=
+
+2k αLe
+
+sin
+
+Leα 2k
+
+cos
+
+α ze − Le
+
+k
+
+2
+
+.
+
+(10)
+
+≡p
+
+≡q
+
+The terms in B, other than the thickness L, are constants for a given signal and geometry. The term α describes the square
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+DATTA-BARUA et al.: IONOSPHERIC IRREGULARITY LAYER HEIGHT AND THICKNESS ESTIMATION
+
+3
+
+of the magnitude of the wave vector components in the plane perpendicular to the propagation direction, i.e., orthogonal to zˆr . The form of g given in (9) appears in [22], which [15] simpliﬁed using a sum-to-product trigonometric identity to obtain the form in (10).
+In (5) and (6), the quantities in the brackets are known as the “spatial ﬁlter functions” by which the spectrum of plasma density variations SN is transformed into the spectrum of signal log-amplitude and phase variations, respectively. This derivation makes no distinction between diffractive and refractive effects; all ionospheric scattering is modeled for the assumptions stated.
+
+III. APPLICATION OF THEORY TO GNSS SIGNALS FOR SCATTERING LAYER ESTIMATION
+
+A. Theoretical Ratio of the Spectra
+
+For a GNSS signal, k and γ are known. Suppose that the
+
+horizontal components of the wave vector κx , κy needed for α in (8) are known. Then, the ratio of the log-amplitude spectrum
+
+in (5) to the phase spectrum (6) gives a theoretical Rytov
+
+spectral ratio Rr
+
+Rr (z, L) =
+
+Sχ Sφ
+
+=
+
+1 − sinc( p) cos(q) 1 + sinc( p) cos(q)
+
+(11)
+
+where sinc ≡ sin(x)/x is the unnormalized sinc function. The ratio does not depend on the spectrum of the irregu-
+larities SN but on the thickness L and top height z of the scattering layer and wavevector κ. In the limit, as κ goes to zero, sinc( p) → 1, which makes Rr → 0. As κ → ∞, the sinc function limit is 0 such that Rr → 1. For low wavenumbers, the ratio approaches 0, and for high wavenumbers, the ratio
+approaches the limit of 1.
+The method presented in this work computes an observa-
+tional ratio of the spectra and compares it to this theoretical
+ratio Rr for different choices of z and L to ﬁnd the best ﬁt zˆ and Lˆ . We also generate an ensemble of simulations with noise to estimate the uncertainties σz and σL .
+In order to compare the observed ratio with theoretical spectra ratios, we must ﬁrst estimate the κx and κy needed for α in (8) from the scintillating signals obtained at a single receiver on the ground from a single satellite at a known
+geometry. If we assume that the irregularities are frozen into
+the background plasma and drifting with horizontal velocity v = vvˆ, then as the irregularities drift past one receiver, a received signal over time will sample the spatial variations κ of amplitude and phase along the direction of the drift vˆ. Therefore, for the horizontal components of κ, with one receiver, we observe the component κv that is aligned along the irregularity drift velocity direction vˆ
+
+κv = κ · vˆ.
+
+(12)
+
+Using the detrended, ﬁltered signal ψ(t) from one receiver,
+
+the full κx and κy are not independently observable, but only
+
+the components κx and κy along the direction of vˆ
+
+⎡⎤
+
+κx κy
+
+=
+
+100 010
+
+κv xyz RNEDNED Rvwu ⎣ 0 ⎦
+0
+
+(13)
+
+= κv
+
+sin(θ + β) cos(θ + β)
+
+(14)
+
+where the rotation matrices xyz RNED and NED Rvwu are deﬁned in the Appendix. The angle θ is the irregularity drift direction measured counterclockwise from east and β is the azimuth
+direction of the satellite measured clockwise from north (see Fig. 9). Substituting these expressions κx and κy for κx and κy into the observable part of α which we deﬁne as α , we ﬁnd
+
+α
+
+≡
+
+κx2
+
+sec2
+
+γ
+
++
+
+κ
+
+2 y
+
+(15)
+
+= κv2 sin2(θ + β) sec2 γ + cos2(θ + β) . (16)
+
+In (11), we replace α with the observable α . The drift speed v
+
+and direction θ of the irregularities can be estimated from the
+
+method shown by [13]. With the speed v known, variations
+
+in frequency space f are related to wavenumber κv along the direction of drift as
+
+κv
+
+=
+
+2π f v
+
+.
+
+(17)
+
+This κv can be substituted into (16) for use in (11).
+
+B. Observed Ratio of Spectra
+Our objective is to estimate thickness L and height z by comparing the theoretical ratio Rr in (11) to an observed ratio Ro. Obtaining Ro requires a detrended, ﬁltered time series ψ(t) from a single receiver-satellite pair containing the observed log amplitude χˆ and phase φˆ , where the hat symbol denotes observed rather than theoretical quantity. The power spectrum of each is computed by taking the Fourier transform of the autocorrelation of χˆ and φˆ. This gives the observed spectra Sˆ as a function of frequency f
+Sˆχ = F {ρ < χˆ (t), χˆ (t) >}, Sˆφ = F {ρ < φˆ (t), φˆ (t) >}.
+(18)
+
+We transform the spectra from frequency space f to wavenumber space κv using (17). Then, the ratio of the observed spectra is computed to form
+
+Ro(κv )
+
+=
+
+Sˆχ Sˆφ
+
+(κv (κv
+
+) )
+
+.
+
+(19)
+
+Given a received scattered signal whose observed spectrum
+
+ratio Ro we compute, we can then compare the Rytov model ratio Rr to the observed ratio Ro of log-amplitude to phase
+
+power spectrum for different choices of thickness L and height
+
+z. To select the best ﬁt ratio, we will minimize the mean
+
+squared error between an observed spectrum ratio and the
+
+theoretical ratio via iteration to determine the best estimates
+
+for L and z
+
+2
+
+=
+
+1 nκ
+
+nκ
+( Rr
+j =1
+
+−
+
+Ro)2
+
+(20)
+
+For this study, the values for v and θ are estimated from a previous step [13]. These are used to compute κv in (17). This is used to compute α in (16) and substitute into (11) to generate a Rytov model ratio Rr . In the expressions, k, γ , and β are known. We test different values of L and z over a
+search space to minimize (20).
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+4
+
+IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING
+
+C. Estimation of Uncertainty
+
+For the signal introduced in (2), we ignored the noise to derive the theoretical Rytov spectral ratio Rr in (11). The theoretical treatments do not model nonionospheric effects: satellite range and velocity effects on the phase, satellite and receiver clock errors, multipath, and thermal noise. Detrending and ﬁltering observational data help to reduce these effects in a measured signal. Traditionally, GPS receivers have used a 0.1-Hz ﬁlter cutoff [23]. A signiﬁcant amount of recent ionospheric research has focused on the appropriate ﬁltering of GNSS measurements to separate refractive from diffractive ionospheric effects [6], [24], [25]. For scientiﬁc investigations interested in separating refractive from diffractive effects, setting a ﬁltering cutoff frequency dependent on the Fresnel frequency may be useful [6]. This work relies on the Rytov weak scatter theory summarized by Yeh and Liu [15], which makes no distinction in the scatter. For this reason, a standard cutoff frequency is still reasonable for use as long as there is some power ﬂuctuation above the noise level.
+Actual GNSS signals are noisy and introduce uncertainty into our estimates of scattering layer height and thickness. However, the transformations of that signal that yield the observed Rytov spectrum ratio Ro are nonlinear (e.g., a ratio of Fourier transforms). In addition, the transformation from frequency to wavenumber κv relies on an estimate of the speed v, and the relationship of κv to components κx and κy depends on an estimate of the drift direction θ , both of which will have measurement uncertainty.
+To estimate the uncertainty in our estimate given the nonlinear processing, we create an ensemble of N simulations of noise ν we add to our complex signals. For each ensemble member n, we take the complex signal ψi from the i th receiver of the number of receivers nrx in the array and add simulated noise to it
+
+ψ˜ in = ψi + νin
+
+(21)
+
+ν = Aν exp( j φν)
+
+(22)
+
+Aν ∼ N (0, σA)
+
+(23)
+
+φν ∼ N (0, σφ)
+
+(24)
+
+where N (μ, σ ) indicates a Gaussian distribution with mean μ and standard deviation σ . For a strong signal with A Aν, each of the random amplitude Aν and the random phase φν may be considered normally distributed [26]. We also assume stationarity for the duration of the data segment (typically 30–60 s).
+The height and thickness estimation relies on some knowledge of the drift velocity and its uncertainty. In this work, we use the spaced receiver method mentioned in [13]. Since that method also relies on an ensemble of simulated noise, we use the complex form of noise simulation as given by (21)–(24), to compute a best estimate of speed d v p and direction dθ p and their uncertainties σv , σθ . Then, for the height and thickness estimation, we generate simulated velocities as a random variable whose mean and uncertainty are those estimated by the spaced receiver method
+
+vin = N (d v p, σv )
+
+(25)
+
+θin = N (d θ p, σθ ).
+
+(26)
+
+Alternatively, if the velocity is known or estimated by some
+
+other means (e.g., radar measurements), the random variables
+
+of speed vin and direction θin may be generated from that.
+
+These
+
+velocities
+
+are
+
+used
+
+to
+
+generate
+
+κv
+
+n i
+
+,
+
+which
+
+is
+
+used
+
+to
+
+transform an observed Rytov ratio R˜on,i (created by Fourier
+
+transforming the log amplitude and the phase of ψ˜ in) into a
+
+function of wavenumber.
+
+Meanwhile, each theoretical Rytov ratio R˜rn,i depends on
+
+the
+
+wavenumber
+
+κv
+
+n i
+
+and
+
+also
+
+the
+
+drift
+
+direction
+
+θ.
+
+For
+
+each
+
+ensemble
+
+member
+
+simulation,
+
+the
+
+wavenumber
+
+array
+
+κv
+
+n i
+
+over
+
+which the spectral ratios are computed and the observable
+
+direction α given by (16) will slightly differ due to the
+
+distribution of the velocity estimate. The raypath geometry β
+
+and γ and signal wavelength k are known and ﬁxed for each
+
+simulation. A cost function is minimized between each R˜on,i
+
+and
+
+R˜rn,i
+
+to
+
+produce
+
+estimates
+
+of
+
+the height ⎛
+
+zin
+
+and
+
+thickness ⎞
+
+L
+
+n i
+
+.
+
+L
+
+n i
+
+,
+
+zin
+
+= argmin
+
+L ,z
+
+in 2
+
+= argmin⎝ 1
+
+L ,z
+
+nκ
+
+nκ
+( R˜rn,i − R˜on,i )2⎠
+j =1
+
+(27)
+
+The estimated height and thickness zˆ and Lˆ can be found
+
+by taking the mean over all receivers i and ensemble members
+
+n and the sample standard deviations over all i and n
+
+zˆ
+
+=
+
+1 N · nrx
+
+nrx i =1
+
+N
+zin
+n=1
+
+(28)
+
+σz =
+
+N
+
+1 · nrx
+
+−1
+
+nrx i =1
+
+N
+
+(z
+
+n i
+
+n=1
+
+− zˆ)2
+
+Lˆ
+
+=
+
+1 N · nrx
+
+nrx i =1
+
+N
+
+L
+
+n i
+
+n=1
+
+(29) (30)
+
+σL =
+
+N
+
+1 · nrx
+
+−1
+
+nrx i =1
+
+N
+
+(
+
+L
+
+n i
+
+n=1
+
+−
+
+Lˆ )2.
+
+(31)
+
+IV. METHOD: APPLICATION TO SAGA POWER AND PHASE DATA
+To test these methods, we use data from SAGA on 8 December 2013, during which scintillation was observed on satellite pseudo-random number (PRN) 23. SAGA consists of up to seven connected autonomous space environment sensors (CASES) scintillation receivers sited at baseline distances ranging from about 200 m to 3 km apart [12]. An arraywide interval of scintillation received from GPS satellite PRN 23 at L1 was detected from about 03:43–04:17 UT using scintillation indices [13], [27]. These 100-Hz measurements are then processed for the time periods identiﬁed by techniques detailed in [28] to obtain detrended and ﬁltered high-rate amplitude/phase observations. In effect, the phase measurements of a possibly scintillating channel and nonscintillating channel are differenced to reduce receiver clock effects, and a sixth-order high-pass Butterworth ﬁlter with 0.1-Hz ﬁlter cutoff is applied to the differenced phase. For power observations, the raw power is ﬁltered by a low-pass Butterworth ﬁlter to produce low-pass-ﬁltered power. Dividing raw power by the ﬁltered product gives the ﬁnal power. Note that the phase ﬁltering technique does not detect or correct cycle slips, and therefore, the ﬁnal phase value may be more than a complete cycle (> 2π rad).
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+DATTA-BARUA et al.: IONOSPHERIC IRREGULARITY LAYER HEIGHT AND THICKNESS ESTIMATION
+
+5
+
+Fig. 2. Time series of SAGA L1 measurements from PRN 23 of (a) detrended ﬁltered power and (b) phase. Estimated drift (c) speeds and (d) directions based on the data shown in (b) using method mentioned in [13]. The dark purple estimates marked with “x” are discarded and not used in the subsequent analysis.
+The time series of the detrended, ﬁltered power and phase over time ψ(t) from each receiver in the array is shown in Fig. 2(a) and (b). While power ﬂuctuations at 03:50 and 03:55 UT are on the order of 5 dB, the weak ﬂuctuation assumption may still be considered reasonable (see [29] for examples and a deﬁnition of deep fading). Segments of 100-Hz data that are continuous array-wide are identiﬁed. Any phase or time discontinuities are discarded from the estimation process. As a result, any strong scintillations that lead to measurement discontinuities are discarded, which implicitly helps keep the data considered in the weak-ﬂuctuation regime.
+We follow the processing described in the ﬂowchart in Fig. 3. We start with a detrended, ﬁltered signal ψi (t) between one receiver-satellite pair, of duration between 30 and 60 s continuously without any missing data. The signal has associated log amplitude χ(t) and phase φ(t). We add normally distributed complex noise to the signal for each of N = 10 simulations, for the i th receiver of the nrx = 5 receivers to create ψ˜ in. The noise is zero mean on both amplitude and phase, and we use σχ = 0.1 and σν = 6.7°. For ease of implementation we add the noise after detrending and ﬁltering the original signal. As a result our estimated uncertainties are expected to be conservative, since the ﬁltering would otherwise remove some of the simulated noise. For each ψ˜ in we compute the power spectrum of the log amplitude
+
+Sˆχin ( f ) and the phase Sˆφin ( f ) via Fourier transform, as given by (18). Speciﬁcally, using Welch’s method [30] with a
+
+Hamming window of duration 1/8 the data segment, with 50%
+
+overlap, the spectrum is computed as a function of frequency
+
+over the interval f = [0, 0.5 fs ], where fs = 100 Hz is the
+
+sampling frequency.
+
+The 100-Hz phase data are used to estimate drift velocities
+
+given by d v p and d θ p of the irregularities via the spaced-
+
+receiver method assuming motion of ionospheric pierce points
+
+at 250 km altitude [13]. The velocity estimates and uncer-
+
+tainties are shown in Fig. 2(c) and (d). Using v = dv p
+
+and θ = d θ p as the mean drift speed and direction with
+
+associated standard deviations σv and σθ , we generate normally
+
+distributed estimated velocities vin and θin to transform the
+
+frequencies
+
+of
+
+the
+
+Fourier
+
+transforms
+
+to
+
+wavenumber
+
+κv
+
+n i
+
+according
+
+to
+
+(17),
+
+resulting
+
+in
+
+Sˆχin
+
+(κv
+
+n i
+
+)
+
+and
+
+Sˆφin
+
+(κv
+
+n i
+
+).
+
+We
+
+take
+
+the ratio to obtain R˜on,i .
+
+Meanwhile,
+
+we
+
+use
+
+κv
+
+n i
+
+from
+
+(17)
+
+and
+
+θin
+
+to
+
+compute
+
+α
+
+in (16), which is substituted in for α in (11). This gives us a
+
+theoretical ratio R˜rn,i for which we test different values of L
+
+and
+
+z
+
+(indexed
+
+by
+
+m
+
+and
+
+s
+
+in
+
+Fig.
+
+3)
+
+to
+
+ﬁnd
+
+the
+
+choices
+
+L
+
+n i
+
+,
+
+zin
+
+that minimize the mean-squared error between the theoretical
+
+and observed ratios, R˜rn,i and R˜on,i , for each simulation n and
+
+receiver i .
+
+For the nonlinear ﬁtting of the theoretical ratio to the
+
+observed ratio, heights are tested from z = [90, 1000] km
+
+with a step size of 5 km and L = [5, 500] km at 5 km step
+
+size and subject to the requirement that z − L ≥ 80 km. The
+
+limit on thickness enforces that the scattering layer does not
+
+extend all the way to the ground but must end at the bottom
+
+of the ionosphere in order to remain physically realistic.
+
+We select the best ﬁt spectrum as the one that minimizes the
+
+mean-squared error in (27) between the observed and mea-
+
+sured ratios. Considering that the Rytov approximation tends
+
+to be smoother than the actual signal spectra [15], the mean-
+
+squared errors 2 are computed for the portion of the spectral
+
+ratios between κv corresponding to the minimum value of the ratio and κv three times larger than the lowest wavenumber at
+
+which the ratio exceeds 1. This captures the limit approaching
+
+κv → 0 and the sinc · cos product within a couple of cycles,
+
+without weighting the noisier high wavenumbers too highly.
+
+This is repeated for all N simulations for a single receiver and all nrx receivers. A mean thickness and height Lˆ and zˆ and the standard deviation σL and σz are obtained from the complete set of all nrx · N simulations.
+
+In this work, we illustrate the method with one 45-s data
+
+sample and show the cost function over the search space.
+
+We show the best ﬁts for each receiver’s N signal simulations
+
+during this time interval. Then, we will summarize the mean
+
+and uncertainties in the estimates made by the array over the
+
+30 min during which scintillation was observed.
+
+V. RESULTS
+A. Case Study With 45-s Signal
+Fig. 4 shows the measured signal power and phase from one GPS satellite (PRN 23) to one SAGA receiver (IIT-1) over 45 s of time, in blue. All of the N simulations of noise added to
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+6
+
+IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING
+
+Fig. 3. Processing ﬂow for scattering layer height and thickness estimation with a GNSS array.
+
+Fig. 4. Time series of IIT-1 site PRN 23 L1 original measurements of (a) detrended ﬁltered power and (b) phase in blue. Ten instances of noise-added simulations are shown in green.
+the signal are shown with the green scatter plot. Fig. 5 shows the power spectrum of the log amplitude Sˆχ and phase Sˆφ of the original signal (blue and black lines, respectively), along with their ratio Ro (red) as a function of κv .
+From κv = 7 × 10−4 rad/m where the phase spectrum peaks, the ratio of spectra rises, peaking at about κmax = 10−2 rad/m. For κv > κmax, the ratio tends to drop slightly and oscillate and ﬂatten out at a value of about 1, but is noisier. This can be explained by the theoretical ratio of (11), which approaches 1 because the sinc function decreases with increasing argument (in this case, wavenumber) and magnitude of cosine lies within interval [−1, 1]. The observed ratio appears to be 1 at high wavenumber as well, although due
+
+Fig. 5. Power spectra of original signal’s log-amplitude Sˆχ (blue) and phase Sˆφ (black) along with the observed ratio Ro (red) versus wave vector κv along the drift velocity direction for satellite PRN 23, receiver IIT-1 during 2615–2660 s after 0300 UT, December 8, 2013. Power spectra of one noise-added simulation of log amplitude (cyan) and phase (green), and observed noisy ratio Ro (magenta). Both axes are log scaled.
+to high-frequency noise, it does not asymptotically approach 1. Physically, this means that while the spectra follow power laws, at high frequencies, random variations mean that there is no power-law scaling. The effects of the signal noise and the uncertainty in the velocity estimate on the spectra and ratio are shown for one simulation in Fig. 5. The noise simulation gives the log-amplitude spectrum (cyan), phase (green), and ratio (magenta). At low wavenumber, the log-amplitude spectral power is reduced by nearly an order of magnitude. The phase
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+DATTA-BARUA et al.: IONOSPHERIC IRREGULARITY LAYER HEIGHT AND THICKNESS ESTIMATION
+
+7
+
+Fig. 6. Color-scaled mean-squared error 2 as a function of (L and z) for the ﬁt for satellite PRN 23, receiver IIT-1 magenta circle indicates the location of the error minimum.
+
+is not signiﬁcantly altered in this wavenumber regime. At high
+wavenumber, the noise simulation increases the power in both
+of the spectra, relative to the “noise-free” spectra, above about 3 × 10−2 rad/m by about one order of magnitude. However, the ratio for the noisy simulation is close to the same order
+of magnitude as the ratio of the original signal. The effect of
+adding noise to the signal in a simulation reduces the ratio
+between the peak of the phase spectrum and the peak of the
+log-amplitude spectrum but maintains the same trend, rolling
+off toward 0 with decreasing wavenumber. Fig. 6 shows the cost 2 as color, over the L and z search
+space for ﬁtting the theoretical Rytov ratio to the one simulated observed ratio R˜on,i shown in magenta in Fig. 5. The estimated thickness and top height of the irregularity slab for this one
+simulation for one receiver, circled in magenta, are 30 and
+110 km, respectively, with a minimum mean-squared error of m2 in = 0.73 for this simulation. The error values in the search space fall into two distinct areas, one yellow (2 ≥ 5) and the other blue (2 ≤ 2). Within the blue error regions, there are two local minima, one the global minimum at (L, z) = (30, 110) km and the other a local minimum as a thick F layer around (L, z) = (400, 500) km.
+The best theoretical ﬁts Rr (cyan) with minimized mean-squared errors m2 in and the observed ratios Ron,i have been plotted for each receiver’s ﬁrst simulation (red) in Fig. 7. Vertical dashed lines bound the range of κv over which the ﬁt is performed. Each of the cyan curves was generated for
+the choice of L and z that minimized the cost function.
+The optimal theoretical ratios (cyan) are, as expected, much
+smoother than the observed ratios (red) obtained through Welch’s method. Although the ﬁts appear poor over κv = [10−3, 10−2] rad/m since the two curves are offset because the spectra are plotted on a log scale, differences are only of
+the order of the higher curve. At low wavenumbers, this is of order 10−3. The important features to match are the ﬁrst
+peak and the ﬁrst oscillation in the theoretical curve, where
+the ratio is of order 1.
+
+Fig. 7. Rytov ratio Rrn,i (cyan) ﬁt to observed ratio Ron,i (red) for PRN 23, from receivers IIT-1, −3, −11, −13, and −15 during 2615–2660 s after 03:00 UT, 8 December 2013 for each receiver and each simulation. Axes are log scaled. Horizontal grid lines are spaced one order of magnitude apart.
+The best ﬁt for the cost function shown in Fig. 6 for IIT-1 does not appear to match the ﬁrst peak and oscillation well. However, the best ﬁts for all the other receivers in this simulation tend toward a better ﬁt, matching the ﬁrst peak and oscillation with a thicker, higher scattering layer. Taking the mean and standard deviation of all ten simulations and ﬁve receivers, we obtain Lˆ = 410 km with standard deviation of σL = 65 km and height zˆ = 540 km, σz = 57 km.
+B. Estimation Over an Extended Period
+The ﬁtting process is extended to the whole scintillation period that occurred 03:43–04:17 UT [13]. Each receiver’s data is divided into continuous time series typically 30–60 s in duration, and all receivers are used to make estimates of Lˆ and zˆ. If the prior drift velocity estimation fails to return a valid velocity [as indicated by the dark purple “x” in Fig. 2(c)] [13], no estimates Lˆ and zˆ are made.
+Fig. 8(a) and (b) shows the error bar plots of estimated thickness Lˆ and height zˆ, respectively. Over time, the estimated thickness Lˆ ﬂuctuates between 100 and 500 km, while the top height zˆ ranges from 400 to 700 km. Uncertainties are generally on the order of 100 km.
+For evaluation purposes, SAGA irregularity slab estimates are compared to PFISR measured electron density Ne as a function of altitude and time, shown in Fig. 8(c). As in [27] PFISR long pulse measurements are plotted above 195 km and alternating code measurements are plotted below 195 km altitude. The color indicates an F region density enhancement;
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+8
+
+IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING
+
+Fig. 8. SAGA estimates during 03:43–04:17 UT, 8 December 2013. (a) Thickness Lˆ . (b) Top height zˆ. (c) Color-coded PFISR measured electron density Ne versus altitude and time over 03:43–04:17 UT, 8 December 2013. The radar beam closest to PRN 23 is used, long pulse data are plotted above 195 km, and alternating code measurements are plotted below 195 km. SAGA irregularity slab estimate overlap boxes are plotted on top in black.
+temperatures are enhanced during this period as well (not shown), attributed to energetic particle precipitation [12]. Most of the SAGA estimates of the scattering layer appear to encompass the F layer. Interestingly, layer estimates from 03:55 to 04:05 UT happen to fall inside the most dense region over the 34 min, descending during that time into the lower F layer and possibly the E layer, just as the PFISR densities increase at lower altitudes. The ﬁrst couple of estimates around 03:43– 03:45 UT does also, but at this time, there are no alternating code measurements (i.e., PFISR data below 195 km). There are layer estimates 0345–0350 UT that seem to extend into the E layer despite low densities measured by PFISR there.
+There are a few factors regarding the cost function and search process worth considering. First, the optimal ﬁt is somewhat dependent on the techniques by which signal spectra are computed. In this work, Welch’s method is implemented with zero padding and overlapping ﬁltering windows, making the observed ratio smoother than what a basic periodogram would achieve. Redeﬁning the cost function to minimize the difference between the log of the spectral ratios affects the estimates of height and thickness. Given the effect of the simulated noise amplitude on the log-amplitude spectrum, the difference of the logarithms would need to be used carefully. These details are under further investigation.
+
+The lack of observability of the component of κ orthogonal to the drift direction in the horizontal plane makes κx and κy incomplete observations of κx and κy. We have partly addressed that by accounting for variations in drift direction but have no direct observability in the orthogonal direction. The limit in which there is no variation with wavenumber in the velocity-perpendicular direction corresponds to irregularities that are inﬁnitely long in the horizontal drift-perpendicular direction. For such a case, there is a strong anisotropy in the length scale of irregularities in one direction versus the other. The magnitude and orientation of anisotropy of the irregularities are estimated in the drift estimation step [13], so it might be possible to leverage that information toward a better estimate of height and thickness in the future.
+The velocity estimation method used in this work [13] accounted for GNSS satellite motion by assuming scattering occurs at 250 km and removing satellite raypath motion at that altitude. The estimate of height zˆ obtained here could be fed back to reﬁne the velocity estimate, iteratively improving the SAGA array estimates of irregularity properties.
+There were a number of assumptions made in this work that may also impact the outcome. We assumed a strong signal to justify Gaussian noise on phase. However, for a weak signal, the distribution approaches a uniform distribution over the interval [−π/2, π/2], as shown analytically and by simulation [26]. While possible to conﬁrm with data in principle, in practice, fades are unlikely to last long enough for the distribution to be stationary. During scintillation, in which the signal power may be fading, it is possible that the uniform distribution becomes necessary, particularly in the case of deep fades (more than 25 dB) such as might be encountered for GNSS receivers at low latitudes [31]. More generally, the noise distribution used in the simulation might need to be a function of the power ﬂuctuation. A weak signal might also imply strong scatter in which case this method’s initial assumptions would need to be reconsidered; Rytov theory does not apply to cases of strong scatter.
+VI. CONCLUSION
+In this work, we compare the Rytov weak scatter ﬁlter function model to the spectrum of high-rate scintillation power and phase data segments to make estimates of the scattering layer altitude and thickness. The data are obtained from the Scintillation Auroral GPS Array (SAGA) sited at Poker Flat Research Range, Alaska [12]. While the method is based on well-documented weak scatter theory, to our knowledge, this method has not been used before because scintillating signals are not typically colocated with a measurement of the associated drift speed and direction.
+A 45-s time series from one single receiver is analyzed and illustrated as a case study of this process. The ﬁtting procedure is then applied to an extended period during which scintillation is detected. We compared the SAGA estimates of scattering layer top height and thickness to the nearby incoherent scatter radar that provides independent means of sensing the ionospheric plasma density. It is worth noting in this comparison that the incoherent scatter radar beams are not typically collocated with the GPS line of sight. In light of
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+DATTA-BARUA et al.: IONOSPHERIC IRREGULARITY LAYER HEIGHT AND THICKNESS ESTIMATION
+
+9
+
+Fig. 9. Coordinate system depictions. (a) Incident ray unit vector zˆr in the xˆ zˆ plane of propagation. (b) Relationship between NED, xyz, and vwu systems.
+
+The component κv in (13) is related to full wavevector
+
+components κx and κy through the rotation matrices vwu RNED
+
+and NED Rxyz
+
+⎡⎤
+
+κx
+
+κv = 1 0 0 vwu RNEDNED Rxyz ⎣κy ⎦
+
+(34)
+
+κz
+
+= κx sin(β + θ ) + κy cos(β + θ )
+
+(35)
+
+where β is the azimuth angle of zˆr measured clockwise from north nˆ and θ is the drift direction of the irregularities, measured counterclockwise from east. Other components κw and κu could be computed similarly, but these are not observable
+by the array.
+
+these caveats, the SAGA estimates compare favorably and may be another means of estimating the altitude of the scattering layer. In addition to incoherent scatter radar data, SAGA as a single instrument can be compared to auroral all-sky images, for which the intensity of different emissions gives an indirect indication of altitude. In particular, in the F region, though, the 630.0-nm (red) emission can be occurring at a wide range of altitudes. Such estimates can inform physics-based phase screen modeling of scintillation such as SIGMA [32], reducing the dimensionality of the parameter space over which the model must be run to simulate scintillation conditions.
+
+APPENDIX
+
+The incoming signal has raypath given by a line-of-sight
+
+unit vector zˆr [see Fig. 9(a)]. In Section II, a coordinate system xˆ, yˆ, and zˆ was deﬁned with zˆ downward such that the raypath
+
+direction of the wave, given by the unit vector zˆr , lays in the xˆ zˆ
+
+plane. Now, let there be a local north, east, and down (NED) frame with the corresponding nˆ, eˆ, and dˆ components [see
+
+Fig. 9(b). Then, zˆr is a unit vector with azimuth β and nadir angle γ with respect to the NED coordinate system, as shown
+
+in Fig. 9(a) and (b).
+
+The xˆ, yˆ, and zˆ coordinate system relates to the local NED
+
+system through a rotation matrix with azimuth β measured
+
+clockwise from geographic north nˆ
+
+⎡
+
+⎤
+
+cos β sin β 0
+
+xyz RNED = ⎣− sin β cos β 0⎦.
+
+(32)
+
+0
+
+01
+
+Another coordinate system is relevant to this work. Assum-
+
+ing the ionospheric irregularities to be “frozen in,” they drift
+
+along with the general ionospheric ﬂow at a horizontal velocity
+
+v. The ﬁnal coordinate system is one deﬁned by the irregularity
+
+drift direction in the horizontal plane vˆ, the orthogonal direc-
+
+tion in the horizontal plane wˆ , and the local up direction uˆ.
+
+For a given drift direction angle θ measured counterclockwise
+
+from east [see Fig. 9(c)], we write the transformation between
+
+vˆ, wˆ , and uˆ coordinates and NED coordinates
+
+⎡
+
+⎤
+
+sin θ cos θ 0
+
+vwu RNED = ⎣cos θ − sin θ 0 ⎦.
+
+(33)
+
+0
+
+0 −1
+
+Interestingly, vwu RNED is an involutory matrix (i.e., it is its own inverse).
+
+ACKNOWLEDGMENT
+The Scintillation Auroral GPS Array receiver data on which this work is based are available online at http://apollo.tbc.iit.edu/~spaceweather/live/?q=SAGA. PFISR data are publicly available at http://isr.sri.com/madrigal/ cgi-bin/gSimpleUIAccessData.py. PFISR is operated by SRI International on behalf of the U.S. NSF under cooperative agreement AGS-1133009.
+The authors thank collaborators Kshitija B. Deshpande and Donald L. Hampton for discussions of ongoing and follow-on work and Boris Pervan and David Stuart for discussions about this article. Seebany Datta-Barua dedicates this work to Maria Olayo de Perez in appreciation of her continued childcare before and during the COVID-19 pandemic.
+REFERENCES
+[1] S. Basu, E. MacKenzie, and S. Basu, “Ionospheric constraints on VHF/UHF communications links during solar maximum and minimum periods,” Radio Sci., vol. 23, no. 3, pp. 363–378, May 1988.
+[2] P. M. Kintner, B. M. Ledvina, and E. R. de Paula, “GPS and ionospheric scintillations,” Space Weather, vol. 5, no. 9, Sep. 2007, Art. no. S09003.
+[3] H. C. Carlson, “Sharpening our thinking about polar cap ionospheric patch morphology, research, and mitigation techniques,” Radio Sci., vol. 47, no. 4, Aug. 2012, Art. no. RS0L21.
+[4] R. D. Hunsucker and J. K. Hargreaves, The High-Latitude Ionosphere and Its Effects on Radio Propagation. Cambridge, U.K.: Cambridge Univ. Press, 2003.
+[5] T. F. Tascione, Introduction to the Space Environment. Malabar, FL, USA: Krieger Publishing Company, 1994.
+[6] G. De Franceschi, L. Spogli, L. Alfonsi, V. Romano, C. Cesaroni, and I. Hunstad, “The ionospheric irregularities climatology over svalbard from solar cycle 23,” Sci. Rep., vol. 9, no. 1, p. 9232, Dec. 2019.
+[7] J. Aarons, “Global positioning system phase ﬂuctuations at auroral latitudes,” J. Geophys. Res., Space Phys., vol. 102, no. A8, pp. 17219–17231, 1997.
+[8] M. Grzesiak and A. W. Wernik, “Dispersion analysis of spaced antenna scintillation measurement,” Annales Geophysicae, vol. 27, no. 7, pp. 2843–2849, Jul. 2009.
+[9] A. M. Smith et al., “GPS scintillation in the high arctic associated with an auroral arc,” Space Weather, vol. 6, no. 3, Mar. 2008, Art. no. S03D01.
+[10] P. T. Jayachandran et al., “Canadian high arctic ionospheric network (CHAIN),” Radio Sci., vol. 44, no. 1, Feb. 2009, Art. no. RS0A03.
+[11] J. Wang and Y. T. Morton, “High-latitude ionospheric irregularity drift velocity estimation using spaced gps receiver carrier phase time– frequency analysis,” IEEE Trans. Geosci. Remote Sens., vol. 53, no. 11, pp. 6099–6113, Nov. 2015.
+[12] S. Datta-Barua et al., “First light from a kilometer-baseline scintillation auroral GPS array,” Geophys. Res. Lett., vol. 42, no. 10, pp. 3639–3646, May 2015. [Online]. Available: http://dx.doi.org/10.1002/ 2015GL063556
+
+This article has been accepted for inclusion in a future issue of this journal. Content is final as presented, with the exception of pagination.
+
+10
+
+IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING
+
+[13] Y. Su, S. Datta-Barua, G. S. Bust, and K. B. Deshpande, “Distributed sensing of ionospheric irregularities with a GNSS receiver array,” Radio Sci., vol. 52, no. 8, pp. 988–1003, Aug. 2017.
+[14] Y. Su, G. S. Bust, K. B. Deshpande, and S. Datta-Barua, “Estimating height and thickness of an ionospheric irregularity layer with a closelyspaced GNSS receiver array,” in Proc. 30th Int. Tech. Meeting Satell. Division Inst. Navigat. (ION GNSS+), Nov. 2017, pp. 3375–3388.
+[15] K. Chie Yeh and C.-H. Liu, “Radio wave scintillations in the ionosphere,” Proc. IEEE, vol. 70, no. 4, pp. 324–360, Apr. 1982.
+[16] V. I. Tatarskii, The Effects of the Turbulent Atmosphere on Wave Propagation. Springﬁeld, VA, USA: Nat. Tech. Inform. Service, 1971.
+[17] C. L. Rino, “A power law phase screen model for ionospheric scintillation: 1. weak scatter,” Radio Sci., vol. 14, no. 6, pp. 1135–1145, Nov. 1979.
+[18] C. L. Rino, “A power law phase screen model for ionospheric scintillation: 2. strong scatter,” Radio Sci., vol. 14, no. 6, pp. 1147–1155, Nov. 1979.
+[19] C. L. Rino, R. C. Livingston, and R. T. Tsunoda, “Recent studies of the structure and morphology of auroral zone F region irregularities,” Radio Sci., vol. 18, no. 6, pp. 1167–1180, Nov./Dec. 1983.
+[20] V. I. Tatarskii, A. Ishimaru, and V. U. Zavorotny, Wave Propagation in Random Media (Scintillation). Bellingham, WA, USA: SPIE, 1993.
+[21] C. L. Rino, The Theory of Scintillation with Applications in Remote Sensing. Hoboken, NJ, USA: Wiley, 2011.
+[22] L. S. Taylor, “Effects of layered turbulence on oblique waves,” Radio Sci., vol. 10, no. 1, pp. 121–128, Jan. 1975.
+[23] A. J. V. Dierendonck and Q. Hua, “Measuring ionospheric scintillation effects from GPS signals,” in Proc. 57th Annu. Meeting Inst. Navigat., 2001, pp. 391–396.
+[24] A. M. McCaffrey and P. T. Jayachandran, “Determination of the refractive contribution to GPS phase ‘scintillation,”’ J. Geophys. Res. Space Phys., vol. 124, no. 2, pp. 1454–1469, 2019. [Online]. Available: https://doi.org/10.1029/2018JA025759
+[25] H. Ghobadi et al., “Disentangling ionospheric refraction and diffraction effects in GNSS raw phase through fast iterative ﬁltering technique,” GPS Solutions, vol. 24, no. 3, p. 85, Jul. 2020.
+[26] S. Stevanovic, “Characterizing GPS phase lock loop performance in wideband interference using the discriminator output distribution,” Ph.D. dissertation, Dept. Mech., Mater., Aerosp. Eng., Illinois Inst. Technol., Chicago, IL, USA, May 2018.
+[27] V. Sreenivash, Y. Su, and S. Datta-Barua, “Automated ionospheric scattering layer hypothesis generation for detected and classiﬁed auroral global positioning system scintillation events,” Radio Sci., vol. 55, no. 1, Jan. 2020, Art. no. e2018RS006779.
+[28] K. B. Deshpande et al., “Initial GPS scintillation results from CASES receiver at South Pole, Antarctica,” Radio Sci., vol. 47, no. 5, pp. 1–10, Oct. 2012.
+[29] J. Seo, T. Walter, T.-Y. Chiou, and P. Enge, “Characteristics of deep GPS signal fading due to ionospheric scintillation for aviation receiver design,” Radio Sci., vol. 44, no. 1, Feb. 2009, Art. no. RS0A16.
+[30] P. Welch, “The use of fast Fourier transform for the estimation of power spectra: A method based on time averaging over short, modiﬁed periodograms,” IEEE Trans. Audio Electroacoustics, vol. 15, no. 2, pp. 70–73, Jun. 1967.
+[31] J. Seo and T. Walter, “Future dual-frequency GPS navigation system for intelligent air transportation under strong ionospheric scintillation,” IEEE Trans. Intell. Transp. Syst., vol. 15, no. 5, pp. 2224–2236, Oct. 2014.
+[32] K. B. Deshpande et al., “Satellite-beacon Ionospheric-scintillation Global Model of the upper Atmosphere (SIGMA) II: Inverse modeling with high-latitude observations to deduce irregularity physics,” J. Geophys. Res., Space Phys., vol. 121, pp. 9188–9203, May 2016.
+
+Seebany Datta-Barua (Member, IEEE) received a B.S. degree in physics and M.S. and Ph.D. degrees in aeronautics and astronautics from Stanford University, Stanford, CA, USA, in 2000, 2002, and 2008, respectively.
+She is an Associate Professor of mechanical and aerospace engineering at the Illinois Institute of Technology, Chicago, IL, USA. Previously, she was a Research Engineer with Atmospheric and Space Technology Research Associates (ASTRA), LLC, Louisville, CO, USA, and an Assistant Professor of aviation and technology with San Jose State University, San Jose, CA, USA. She researches the use of Global Navigation Satellite Systems (GNSS) for remotely sensing the atmosphere and Earth’s surface, tomography, and data assimilation for ionospheric and thermospheric prediction of dynamics, and in mitigating upper atmospheric effects on Global Positioning System (GPS)based navigation systems. Dr. Datta-Barua is a member of the American Geophysical Union, Institute of Navigation (ION), and the American Institute of Aeronautics and Astronautics (AIAA). She is an Early Career Representative for Commission G of the International Union of Radio Scientists (URSI). She has received the NSF CAREER Award (2015) and the Institute of Navigation’s Per Enge Early Achievement Award (2019) for outstanding contributions to the understanding of the dynamics of the ionosphere and its impacts on satellite-based navigation integrity. She was recognized as an Outstanding Reviewer for Space Weather and Navigation, Journal of the Institute of Navigation. She has served as a Reviewer for the IEEE TRANSACTIONS ON AEROSPACE AND ELECTRONIC SYSTEMS and the IEEE TRANSACTIONS ON GEOSCIENCE AND REMOTE SENSING.
+Yang Su received the Ph.D. degree in mechanical and aerospace engineering from the Illinois Institute of Technology, Chicago, IL, USA. His thesis researched the estimation of ionospheric irregularities using GNSS signals.
+He is an Advanced Driver Assist System (ADAS) Feature Owner Engineer with Ford Motor Company, Dearborn, MI, USA.
+Aurora López Rubio is pursuing the Ph.D. degree in mechanical and aerospace engineering with the Space Weather Laboratory, Illinois Institute of Technology, Chicago, IL, USA.
+She has worked on ionospheric irregularity monitoring with GNSS data. She is working on data assimilation methods for the estimation of physical drivers of Earth’s ionosphere, also using GNSS observations.
+Gary S. Bust is a Senior Research Scientist with Johns Hopkins University Applied Physics Laboratory, Laurel, MD, USA. Previously, he was a Senior Research Scientist with ASTRA, LLC, Louisville, CO, USA, and Applied Research Laboratories, The University of Texas at Austin, Austin, TX, USA. He is an expert on ionospheric data assimilation algorithms.
+

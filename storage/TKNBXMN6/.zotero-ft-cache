@@ -1,0 +1,262 @@
+RESEARCH ARTICLE
+10.1029/2019JA027020
+Key Points: • A tool named TEC keogram is
+introduced for continuously monitoring the dynamics of large‐scale structures in the polar region • Inspired by auroral keogram, the TEC keogram is developed from a time series of TEC lines obtained from long‐term TEC maps • With this tool, case and statistical studies are carried out to infer the average moving speed and formation mechanism of polar patches
+Supporting Information: • Supporting Information S1
+Correspondence to: Q.‐H. Zhang, zhangqinghe@sdu.edu.cn
+
+Polar Ionospheric Large‐Scale Structures and Dynamics Revealed by TEC Keogram Extracted From TEC Maps
+Y. Wang1,2, Q.‐H. Zhang1, Y.‐Z. Ma1, P. T. Jayachandran2, Z.‐Y. Xing1, N. Balan1, and S.‐R. Zhang3
+1Shandong Provincial Key Laboratory of Optical Astronomy and Solar‐Terrestrial Environment, Institute of Space Sciences, Shandong University, Weihai, China, 2Physics Department, University of New Brunswick, Fredericton, New Brunswick, Canada, 3Haystack Observatory, Massachusetts Institute of Technology, Westford, MA, USA
+Abstract A method named total electron content (TEC) keogram is introduced for surveying the
+large‐scale irregularities continuously in the polar ionosphere. The TEC keogram is developed from a movie of TEC maps along various meridian lines from the dayside to the nightside across the magnetic pole, trying to identify and track several types of ionospheric structures. Through two examples, a clear train of polar cap patches are identiﬁed from TEC keogram and conﬁrmed by SuperDARN radar observations. The motion speed of these patches estimated from this tool agrees with SuperDARN radar measurements. Then, the motions of patches relative to the background convection through the whole polar cap are statistically studied for the ﬁrst time. Moreover, the occurrence dependence of fully tracked patches on months, UT hours, and interplanetary magnetic ﬁeld conditions is generally consistent with previous reports. These results suggest that the TEC keogram offers a power tool for continuous monitoring and studying of large‐scale plasma irregularities in the polar ionosphere.
+
+Citation: Wang, Y., Zhang, Q.‐H., Ma, Y.‐Z., Jayachandran, P. T., Xing, Z.‐Y., Balan, N., & Zhang, S.‐R. (2020). Polar ionospheric large‐scale structures and dynamics revealed by TEC keogram extracted from TEC maps. Journal of Geophysical Research: Space Physics, 125, e2019JA027020. https://doi.org/ 10.1029/2019JA027020 Received 9 JUN 2019 Accepted 25 DEC 2019 Accepted article online 30 DEC 2019
+©2019. American Geophysical Union. All Rights Reserved.
+
+1. Introduction
+The conjugate polar ionospheres are highly dynamic regions where geomagnetic ﬁeld lines are nearly vertically upward and downward and possibly connecting to the outer space directly. They are therefore considered as key regions in the solar‐terrestrial energy coupling system. Due to the frequent intrusion of particles and energy from solar wind through the interplanetary magnetic ﬁeld (IMF), large number of high‐density structures are often generated in this region. The density structures include storm enhanced density (SED; e.g., Foster, 1993; Foster & Rideout, 2007; Zou et al., 2013, 2014; Thomas et al., 2013), tongue of ionization (e.g., Foster et al., 2005; ), and polar cap patches (e.g., Carlson et al., 2004; Crowley, 1996; Lorentzen et al., 2010; Zhang, Zhang, Lockwood, et al., 2013). SED is a plume of very high density plasma around the noon sector. It usually extends from lower latitudes to higher latitudes in the afternoon sunlit sector, possibly enters into the polar cap, and ﬁnally develops into tongue of ionizations or patches (e.g., Foster, 2008). Polar cap patches are deﬁned as large‐scale (approximately hundreds to thousands of kilometers) plasma structures of density 2 or more times greater compared to the surrounding region in the polar cap. The patches move along antisunward directions and follow dynamic convection patterns (e.g., Carlson, 2012; Moen et al., 2013; Oksavik et al., 2006, 2010; Zhang et al., 2011, 2015; Zhang, Zhang, Lockwood, et al., 2013). In technological applications, the large‐scale plasma irregularities often degrade the applications of Global Navigation Satellite System especially when combined with simultaneous particle precipitation (e.g., Jin et al., 2014, 2016; Moen et al., 2013; Oksavik et al., 2015).
+In order to mitigate the above‐mentioned negative effect, a large number of instruments have been put into service to investigate the various structures in the polar ionosphere. Recently, measurement of total electron content (TEC) has become a very popular tool due to its capability of continuous monitoring and global coverage (e.g., Foster, 1993; Foster et al., 2005; Oksavik et al., 2006; Pi et al., 1997; Prikryl et al., 2016; Thomas et al., 2013; Zhang et al., 2017; Zhang, Zhang, Lockwood, et al., 2013; Zhang, Zhang, Moen, et al., 2013; Zou et al., 2013). For example, Pi et al. (1997) created the ﬁrst global maps of the irregularities. Following this, Zhang, Zhang, Lockwood, et al. (2013) reported the full cycle of convection ﬂow by tracking the movement of polar cap patches from a time series of TEC maps. By using the TEC maps, the large‐scale structures were identiﬁed and their scintillation behaviors were unveiled (e.g., Wang et al., 2016). The statistical ratios of patch‐to‐background density were also obtained from the plentiful of TEC maps, which help identifying
+
+WANG ET AL.
+
+1 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+the possible mechanisms of the patch formation (e.g., David et al., 2016). The TEC map has thus become a popular and useful tool.
+In order to exploit the potential of TEC maps, a powerful method named TEC keogram is developed from a time series of TEC maps for investigating the polar ionosphere. This paper describes the methodology of creating the TEC keogram. The paper also validates the TEC keogram by using it for successfully capturing the large‐scale plasma structures in the polar ionosphere. Two case studies are presented comparing TEC keograms with their original TEC maps, as well as with SuperDARN radar observations. The speed of movement of the polar cap patches on average is also estimated using the TEC keogram. In addition, the dependence of the patch occurrence on months, UT hours, and IMF conditions is investigated in detail. It will be shown that the TEC keogram is a powerful tool for investigating the high‐latitude ionosphere.
+
+2. Methodology of TEC Keogram
+
+Figure 1. An example of TEC map at 10:07:30 UT on 16 March 2016 projected on MLat/MLT coordinates. The black dotted line represents the day‐night terminator. The storm‐enhanced density (SED), polar cap patch, polar cap, auroral oval, and middle‐latitude trough from noon sector to
+
+In this section, we brieﬂy describe the method of developing the TEC keogram from TEC maps.
+2.1. The TEC Map
+
+nightside are, respectively, highlighted by magenta solid circle, magenta dashed circle, black dashed circle, yellow dashed curve, and black dashed curve.
+
+The TEC data are usually obtained by measuring the dispersion of the satellite signal passing through the ionosphere by ground‐based dual‐ frequency receivers. The slant TEC data therefore contain the integrated
+
+electron content along the line of sight from the receiver to the satellite.
+
+In the process of obtaining the slant TEC data, the measurement errors involving the biases due to
+
+pseudo‐range and initial (or raw) phase of the signal transmitted by satellites are removed, calibrated, and
+
+quality controlled. The slant line‐of‐sight TECS can be converted to the equivalent vertical TECV by multiplying TECS by a function containing cosθ of the angle θ between the line‐of‐sight and vertical directions.
+
+We obtained the vertical TEC data from the madrigal online database (http://www.openmadrigal.org/), which were collected from the global network of ground receivers and processed by the MIT Automated Processing of GPS software (Rideout & Coster, 2006; Vierinen et al., 2015). At present, the number of ground receivers is greater than 5,000, providing a dense enough global coverage even in the arctic. The TEC data are binned into the grids of spatial size 1° geographic latitude × 1° geographic longitude at 5‐min time resolution (Figure S1 in the supporting information). For the present purpose of focusing on the arctic, the TEC maps can be used since 2011. The TEC data are projected on the Altitude Adjustment Corrected Geomagnetic coordinates.
+
+Figure 1 presents an example of the TEC map in magnetic latitude (MLat) and magnetic local time (MLT) grids around 10:07 UT on 16 March 2016, where the noon is at the top and dusk is on the left, in which the MLat is shown from 50° with an interval of 10°. The white areas are TEC data gaps. For improving the performance of these maps, a median‐ﬁltering method of smoothing techniques is applied to ﬁll the small data gaps. Note that the solar wind and IMF conditions on this day are mentioned in section 3. It may be noted that Figure S1 shows the TEC data before applying this improvement technique. As shown in Figure 1, several types of plasma structures can be identiﬁed in terms of TEC values. The plasma structures include highest TEC in the dayside sunlit region, pole with the lowest TEC, auroral oval with relatively higher TEC in lower MLat than in the polar cap, and midlatitude trough in the nightside around 50° MLat extending from 20:00 MLT to 06:00 MLT. A SED is marked by the solid magenta circle around the noon sector, probably created by the combined effect of ionospheric rotation and convection pattern. In the middle of the dial, the ﬁne black dotted curve suggests the day‐night terminator. Further, looking at the meridian TEC line of 12–0 MLT from the dayside solar illuminated region to nightside lower latitude, several kinds of large‐scale structures appear in sequence, consisting of the SED (magenta solid circle), polar cap patch (magenta dashed circle), polar cap (black dashed circle), auroral oval (above yellow dashed curve), and midlatitude trough (over black thick dashed curve). If one puts a time series of such TEC lines in sequence, the resulting schematic diagram would illustrate the potential of making a method (or the TEC
+
+WANG ET AL.
+
+2 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+keogram) to monitor the evolution of the polar ionosphere, instead of skimming into too many individual TEC maps.
+
+Figure 2. The MLat/MLT coordinate frame of TEC maps with spatial size of 2° MLat × 00:08 MLT. Three meridian TEC lines along 12–0 MLT (red), 15–3 MLT (magenta), and 9–21 MLT (blue) are outlined by the color strips from (top) dayside to (bottom) nightside above 50° MLat. These TEC lines are discussed in section 2.2.
+
+2.2. TEC Keogram Frame
+Figure 2 illustrates the MLat/MLT basic coordinate frame of grid size 2° MLat × 00:08 MLT adopted for the TEC keogram development. In this dial, the evenly distributed black circles represent MLat at interval of 2° in the 50°–90° range in the northern hemisphere as marked on the right‐hand side. In this map, the lines radiating from the center indicate MLTs, which are noted by the colored numbers outside. In Figure 2, the three strips colored in red, magenta, and blue, respectively, correspond to the TEC lines at 12–0 MLT, 15–3 MLT, and 9–21 MLT. To improve the appearance of the TEC lines, these strips are extended in MLT and then averaged. Following this method, three TEC lines in different directions can be extracted from a TEC map, which is inspired by the widely used auroral keogram (e.g., Hosokawa, Kashimoto, et al., 2009; Hosokawa, Shiokawa, et al., 2009; Jin et al., 2014). Extending this method, when we use a time series of TEC lines in the three directions together, the TEC keogram is developed, which can be used to identify and continuously track the motion of large‐scale structures in the polar ionosphere. Note that the speciﬁc directions of these TEC lines are deliberately determined to follow the dynamics of the convection pattern better.
+
+3. TEC Keogram
+This section presents two case studies to describe the capability of TEC keogram, which are, respectively, carried out through comparisons with the corresponding original TEC maps and SuperDARN Rankin Inlet (RKN) radar observations.
+3.1. Solar Wind Parameters
+The solar wind and IMF data and geomagnetic indices are available on the OMNI‐2 website (https://omniweb.gsfc.nasa.gov/html/HROdocum.html#1a); the data have been obtained from ACE and Wind satellite measurements (King & Papitashvili, 2005). On 14 March 2016, a possible magnetic cloud with signiﬁcant solar wind and IMF ﬂuctuations struck the dayside magnetopause at ~17:20 UT, making a moderate geomagnetic storm (not shown here). The time period of our interest falls in the recovery phase of this storm. Figure 3 shows an overview of the IMF By and Bz components, solar wind dynamic pressure PDyn, geomagnetic indices AU/AL, and SYM‐H during 06:00–21:00 UT on 16 March 2016. The IMF and solar wind parameters are time shifted by 7 min for the bow shock nose to dayside magnetopause distance. During the interval of interest, the solar wind and IMF conditions are highly disturbed. In Figure 3a, the shaded period emphasizes a time interval of 13:30–17:45 UT. During this interval, the IMF Bz is almost positive (northward) with slight short excursions below 0 nT at around 14:15 UT. Before this interval, the IMF Bz was generally negative (southward) with several peaks up to −5 nT. After this interval, beginning at 17:45 UT, IMF Bz turned steadily southward. The direction of IMF Bz determines the dayside reconnection rate, negative for preference and positive for suppression. Meanwhile, the IMF By component is always negative, except for a few weak positive excursions, potentially indicating the rotation of the convection pattern. The PDyn ﬂuctuates but does not exceed above 4 nPa (Figure 3b). The AU/AL indices undergo gradual ﬂuctuations and reach 1,000/−1,000 nT at around 21:00 UT (Figure 3c), suggesting a possible substorm occurred. As shown in Figure 3d, the SYM‐H index wanders around −25 nT, illustrating the recovery phase of a magnetic storm. The time between the two of vertical red dashed lines in Figure 3 corresponds to the time interval of interest in section 3.2.
+3.2. Large‐Scale Structures
+Figure 4 summarizes the TEC maps on MLat/MLT grids at selected times. Figures 4a and 4f include the convection patterns obtained from SuperDARN radars (Chisham et al., 2007; Greenwald et al., 1995; Ruohoniemi & Baker, 1998). The convection patterns are usually interpreted as black closed curves (solid
+
+WANG ET AL.
+
+3 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+WANG ET AL.
+
+Figure 3. An overview of the solar wind and IMF conditions and geomagnetic indices during 06:00–21:00 UT on 16 March 2016, consisting of (a) the GSM IMF components of By (black) and Bz (red), (b) solar wind dynamic pressure (PDyn), (c) auroral electrojet (AU/AL) indices, and (d) SYM‐H (Dst) index. The red vertical lines indicate the time interval adopted for Figure 4. The shaded region in Figure 3a highlights a period when the IMF Bz component is almost positive. The IMF conditions and solar wind data are 7 min delayed for the bow shock nose‐dayside magnetopause distance.
+for negative equivalent potential and dashed for positive potential), referring to plasma drift from noon sector to nightside along antisunward direction in the polar cap and then return back in both morning/afternoon cells. On the right‐hand side of each panel, there is a color bar representing TEC scale of 0–16 TECu (1 TECu = 1016 ele/m2).
+In Figure 4, at least four types of large‐scale structures are identiﬁed by the TEC values and density gradients associated with the convection pattern, consisting of SEDs, polar cap patches, middle‐latitude trough, and contracted auroral oval. In Figures 4a–4c, the SED (solid magenta circle) with high‐density plasma (~12 TECu) drifts from the low‐latitude afternoon sector to high‐latitude noon sector, and enters the polar cap forming a patch. Around 13:02 UT (Figure 4c), a clear polar cap patch (solid magenta circle, ~10 TECu) is chopping off from the former SED plume (magenta dashed circle) probably by the sunward ﬂow at subauroral latitude. After the patch is created, it enters into the polar cap and moves across the pole from dayside to nightside (the solid magenta circles in Figures 4d and 4e). Meanwhile, near the segmented region, a fresh stagnant SED is formed on the noon sector. It stays around its generated region for a long time duration when TEC decreases (the magenta dashed circles in Figures 4c–4f), which is probably due to the contracted convection pattern under northward IMF Bz (please ﬁnd the IMF Bz in Figure 3a; e.g., Cowley & Lockwood, 1992; Lockwood & Carlson, 1992). Further, in Figure 4a, a clear middle‐latitude trough (region of low TEC values ~3 TECu around 52°–62° MLat) lies from the premidnight to the dawn sector, which can be inferred from the lower latitude region of the convection pattern. Comparing Figures 4a and 4f, the auroral oval contracted in less than 2 hr (see the region of sunward return ﬂow from the convection pattern). It could be possibly caused by the gradual changing of IMF Bz component from southward to weak northward (Figure 3a). Besides, as understood from the northward Bz conditions (highlighted by the shaded region in Figure 3a), this fossil SED may be lasting until the IMF Bz changes its sign. In addition, the enhanced density fragments (seen as scattering in 23–17 MLT sectors around 65°–75° MLat) are likely formed by the former polar cap patch that broke into the auroral oval and drifted by the duskside sunward return ﬂows (e.g., Figure 4a). The signiﬁcant features seen in TEC maps (Figure 4) are well captured by the TEC keogram shown in the next section.
+4 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+Figure 4. Selected examples of TEC maps elaborated by the method of median ﬁlter on 16 March 2016. The magenta circles, including both dashed and solid, mark the enhanced density structures. The black circled curves in Figures 4a and 4f suggest the convection pattern obtained using SuperDARN radars. The color bars represent the TEC scale 0–16 TECu.
+
+WANG ET AL.
+
+3.3. Results From TEC Keogram
+Figure 5 shows a TEC keogram as a function of UT and MLat during 06:00–21:00 UT on 16 March 2016 (same day of the TEC map in Figure 4). The keogram is extracted from the time series of modiﬁed TEC maps in the 50°–90° MLat range along the TEC meridian lines of 12–0 MLT (Figure 5a), 15–3 MLT (Figure 5b), and 9–21 MLT (Figure 5c), respectively. The white areas are data gaps. The color bar provides the TEC scale 0–16 TECu (same as Figure 4).
+In Figure 5, ﬁve clear polar cap patches are observed, which are marked by the red backslashes and labeled A–E. They almost move continuously from dayside lower latitudes to nightside lower latitudes. The black vertical dashed lines identify the time interval of the TEC map in Figure 4. During this speciﬁc period, a long‐duration SED is clearly observed (horizontal magenta dashed line; Figure 5a) at about 70° MLat on noon sector, which is consistent with the structure in Figures 4a–4f. Moreover, after being chopped off from this SED, the polar cap patch D drifts poleward and reaches the nightside, which was observed in Figures 4a– 4e. Note that the patch D is simultaneously captured by all three TEC lines (the black dashed squares in Figures 5b and 5c), when it moves across the pole. Considering the whole MLats and related time interval, the averaged cross‐cap transit speed of patch D is ~400 m/s. To further check the TEC keogram, the phenomenon of slightly enhanced density scatters in the duskside at 17–23 MLT around 70 MLat (Figures 4a–4f) is also observed in Figure 5c (black dashed oval). Comparing Figures 5a and 5c, it seems possible that these irregularities are probably created from the former patches (e.g., patches B, C, E) broken inside the auroral oval. It may be noted that the contracted auroral oval is not well captured by the TEC keogram due to the data gap.
+Outside of the addressed time interval, there are several clear structures such as the patches A, B, C, and E and full SEDs. The ﬁrst sector beginning at 10:07 UT is associated with the patches B, C, and E (Figure 1). It also contains the above mentioned fossil SED until ~19:00 UT and the auroral oval in the nightside sector around 70° MLat with higher TEC values (~7 TECu) compared to the surrounding region (<4 TECu; Figure 5c). The gradually equatorward expanding auroral oval (marked by the black dashed backslash in
+5 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+WANG ET AL.
+
+Figure 5. An overview of TEC keogram along three directions (a) 12–0 MLT, (b) 15–3 MLT, and (c) 9–21 MLT obtained using a large number of TEC maps as a function of UT and MLat during 06:00–21:00 UT on 16 March 2016. The time interval between the two black vertical dashed lines corresponds to that in Figure 4. The red solid lines identify the high‐density irregularities noted by the letters A to E. The red dashed line in Figure 5a suggests a long‐lasting SED. In Figure 5c, the black oval circles the slightly enhanced density fragments on the nightside region, and the black dashed line indicates an expanded boundary of auroral oval.
+Figure 5c) also starts at 18:20 UT agreeing with the substorm (Figure 3c). Figure 5b grabs the enhanced density structures less clearly than the other two. This supports the function of the TEC keogram; that is, it responds to the speciﬁc IMF By component (e.g., Zhang et al., 2011). The SuperDARN RKN radar data are used in the next section to validate and extend the capability of TEC keogram.
+4. TEC Keogram With SuperDARN Data
+Figure 6 provides a good example illustrating the capability of TEC keogram when comparing with SuperDARN RKN radar. Figure 6a shows a series of TEC lines along 12–0 MLT from the TEC keogram during 12:00–24:00 UT on 17 December 2015. The black dashed frame marks the time interval of interest. Inside this frame, four clear polar cap patches move from dayside (top) to nightside (middle), which are noted by black solid backslashes. Note that outside this frame, there are several patches not marked, that is, at ~14:00 UT and ~15:00 UT and 16:30 UT and 18:00 UT. From the slopes of these lines, the average speed of cross‐cap transit of these patches are obtained (~500 m/s), which can be regarded as the mean speed of convection pattern in antisunward direction. Note that the black horizontal solid line is at 90° MLat (the magnetic pole). For comparison, the time series during 19:10–22:10 UT of the power and velocity observed by beam 7 of SuperDARN RKN radar are presented in Figures 6b and 6c, respectively, as a function of UT and MLat in the dayside. Note that the MLat scales (y axis) of Figures 6b and 6c are opposite to that of Figure 6a. The four clear poleward moving backscatter patches (mostly >30 dB) observed by the radar (Figure 6b) conﬁrm the polar cap patches detected by the TEC keogram (Figure 6). The relative locations of these enhanced density structures in the ﬁeld of view of the SuperDARN RKN radar are also indicated as black sectors in Figure S2. Within the ﬁeld of view of the radar, the beam 7 is marked by the two black solid lines. The calculated velocity of these patches (Figure 6c) is ~500 m/s in the poleward direction (red represents away from the radar), which is quiet similar to the estimated speed from the TEC keogram (Figure 6a).
+6 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+Figure 6. (a) A TEC line of TEC keogram along 12–0 MLT during 12:00–24:00 UT on 17 December 2015. The black solid horizontal line sits on 90° MLat. The black dashed frame outlines the selected period. Inside this interval, the backslashes mark the identiﬁed polar cap patches. The time series of measurements of SuperDARN RKN radar by beam 7, (b) power, and (c) line‐of‐sight velocity (red represents away from radar). The black solid lines in (b) and (c) highlight the poleward moving structures. Note that the y axis scale in Figure 6a is opposite to those in Figures 6b and 6c.
+
+5. Statistics of Patch Occurrence
+5.1. Month and UT Dependence
+
+In the year 2015, 511 polar cap patches were manually detected from the TEC keogram, which were recorded by following these two criteria simultaneously: (1) the density of moving structures in TEC should be at least twice greater than their background and (2) these structures are fully captured from leaving the dayside segmented region to the nightside auroral oval by one TEC line. In this study, the TEC values of these structures are identiﬁed from the 12–0 MLT TEC line of TEC keogram by eyes. Their background is considered as the neighbor region outside these patches especially at the left or right side from the time series of TEC line, almost sharing the same MLat with each identiﬁed structures.
+
+The monthly and UT distributions of these selected structures are shown in Figure 7. With months (Figure 7a), the patch occurrence follows the seasonal dependence of the ionospheric density with maxima at equinoxes (March–April and September–October) and winter‐solstice (December–February) and minimum in the summer season (May–August). Note that the unexpected low number of patches in November is due to the extremely quiet condition in this month after checking with the corresponding TEC maps. The maximum patch occurrence at equinoxes and in winter‐solstice was reported earlier (e.g., Coley & Heelis, 1998; Sojka et al., 1994). However, in Figure 7a, the number of patches at equinoxes is slightly greater than in winter‐solstice, which is not consistent with Coley and Heelis (1998) who reported that the peak was just in the winter season. Further check is required on this aspect involving much more data. Moreover, the minimum in the summer season can be explained by that during these months the background of polar cap in the northern hemisphere is much denser due to the daylight. Then, compared to other seasons, the criteria (1) is more difﬁcult to fulﬁll for selecting the structures with a density twice or greater than the background by TEC keogram.
+
+Figure 7. The distributions of the detected 511 patches on (a) months and (b) UT hours during the whole year 2015. The patches leaving from the dayside to entering the nightside auroral oval are fully detected by TEC keogram.
+
+In Figure 7b, the UT distribution of patches is highest in the afternoon UT sector peaking at 18–21 UT due to the inclination of the magnetic pole relative to the geographic north pole as reported earlier
+
+WANG ET AL.
+
+7 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+(e.g., Foster, 1993; Foster et al., 2005). This is also generally consistent with the earlier results of Sojka et al. (1994), Coley and Heelis (1998), and David et al. (2016) carried out using simulation and space/ground‐ based observations. However, an afternoon sector at 21–1 UT for the peak was reported by Ren et al. (2018), which is slightly later than our results. It may be noted that when counted from the TEC line of 12–0 MLT of TEC keogram, there are two speciﬁc regions of UT, where the statistical number of patches are inevitably smaller due to the TEC data gap in Russian sector centered at 4 UT (dayside gap) and 16 UT (nightside gap). Therefore, the number distributions in Figure 7b on the two UT regions of 2–5 UT and 13–17 UT are deﬁnitely reduced due to the TEC data gaps when following the criteria (2). For better studying the patch occurrence, a long‐term data set will be adopted to further investigate the patch occurrence on day of year and UT from a large number of increasing TEC maps.
+
+Figure 8. The dependence of patch occurrence on IMF conditions binned in 5.2. IMF Dependence
+
+3‐nT intervals, (a) IMF Bx, (b) IMF By, and (c) IMF Bz.
+
+In order to discuss the possible generation mechanism of the patches, the
+
+dependence of the patch occurrence on IMF conditions is presented. The
+
+IMF conditions correspond to the starting time of a patch in the dayside.
+
+The dependence of the cross‐cap transit periods of the patches on IMF conditions is investigated to deter-
+
+mine the possible effect of IMF conditions on the moving speed of the patches (e.g., Hosokawa et al.,
+
+2006; Hosokawa, Shiokawa, et al., 2009). Based on the statistical study above, the average cross‐cap transit
+
+period of polar cap patches can be obtained (~2 hr), simultaneously implying their mean cross‐cap transit
+
+speed because they were basically travelling from dayside noon sector to nightside auroral oval over a close
+
+distance. The shorter average period corresponds to the faster moving speed. Similarly, longer period sig-
+
+niﬁes slower moving speed.
+
+Figure 8 presents the dependence of patch occurrences on IMF conditions binned in 3‐nT intervals, (a) for IMF Bx, (b) for IMF By, and (c) for IMF Bz. Note that the percentage scales in the three vertical axes of Figure 8 are the ratios of the patch numbers for each IMF component within 3‐nT intervals to the total number of patches in the corresponding IMF component. In Figures 8a and 8b, the patches distribute almost symmetrically centered around −3 nT, probably suggesting a symmetric contribution of IMF Bx/By on the patch formation (e.g., Hosokawa, Shiokawa, et al., 2009; Jin et al., 2019; Zhang et al., 2011). However, in Figure 8c, the distribution of patches is almost on the negative IMF Bz, indicating the signiﬁcant preference of southward IMF Bz on the transportation of patches (e.g., Hosokawa et al., 2006). These patches are actually linked to the convection pattern, which generally preferred antisunward direction under southward IMF Bz rather than under northward IMF Bz. Note that the direction of adopted TEC line of 12–0 MLT in TEC keogram is also pointing to the antisunward direction. A similar behavior of patch occurrences on IMF conditions was reported by Jin et al. (2019) with the symmetric distributions on IMF Bx and IMF By but centered on 0 nT and also preference on the negative IMF Bz. Furthermore, the southward IMF Bz has been widely reported to trigger the magnetic reconnection in the dayside magnetopause, not only driving the antisunward convection pattern but also possibly producing polar cap patches (e.g., Carlson, 2012; Lockwood & Carlson, 1992; Wang et al., 2016; Zhang, Zhang, Moen, et al., 2013). Therefore, the appearance of patches on the southward IMF Bz in Figure 8c can be reasonably explained by the dayside magnetic reconnection.
+
+Nevertheless, the less number of patches on the northward IMF Bz in Figure 8c could not be simply explained by the suppression effect from this speciﬁc IMF condition due to the natural bias raised by using the TEC keogram. Under the northward IMF Bz, the convection pattern would probably change into much variable cells rather than the uniform antisunward direction, which is frequently out of the observing direction of TEC keogram. Then, the possible patches generated under the northward IMF Bz are also not easily recorded by the TEC keogram.
+
+Figure 9 shows the dependence of the average cross‐cap transit time of the detected patches on IMF conditions binned in 3‐nT intervals, (a) for IMF Bx, (b) for IMF By, and (c) for IMF Bz. The red lines represent the
+
+WANG ET AL.
+
+8 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+mean cross‐cap transit times within each 3‐nT interval and blue bars represent their standard deviations. It is interesting to discuss the mean time in Figure 9c. When IMF Bz become stronger from −3 to −15 nT gradually, the average cross‐cap transit time decreases from ~2 to ~1.77 hr smoothly. In other words, the moving speed of the patches is likely controlled by the IMF Bz component, stronger the southward of IMF Bz faster the moving speed, which is not only consistent with the previous works (e.g., Hosokawa et al., 2006; Hosokawa, Shiokawa, et al., 2009) but also extends to the full polar cap. In addition, it is also a further proof to support the main role of magnetic reconnection on patch formation.
+
+Figure 9. The dependence of average cross‐cap transit period of the detected
+patches on IMF conditions binned in 3‐nT intervals, (a) IMF Bx, (b) IMF By, and (c) IMF Bz. The red lines indicate the average times of those patches within 3‐nT interval and blue bars correspond to their standard deviations.
+
+Additionally, it is worth noting that in the statistical studies of patch occurrence, the state of motion of the patch through the full polar cap is conducted for the ﬁrst time in this paper. While earlier such studies were focusing on the patch density (e.g., Coley & Heelis, 1998; David et al., 2016; Jin et al., 2019; Moen et al., 2007, 2015; Ren et al., 2018; Sojka et al., 1994). Hence, our results from TEC keogram could in future answer further questions regarding the relationships between the patches and their background plasma convection.
+6. Conclusions
+
+Acknowledgments This research was supported by the National key R&D Program of China (2018YFC1407304, 2018YFC1407303), the National Natural Science Foundation of China (grants 41874170, 41574138, 41604139, 41774166, 41831072, 41431072), the Chinese Meridian Project, and the Specialized Research Funds of the National Key Laboratory of Electromagnetic Environment. The GPS TEC acquisition effort is led by A.J. Coster at MIT Haystack Observatory from worldwide network. We sincerely thank the MIT Haystack Observatory for processing GPS TEC data and making them available through the Madrigal Database (http://madrigal.haystack. mit.edu/). We also acknowledge the NASA OMNI Web for IMF and solar wind data (http://omniweb.gsfc.nasa. gov/html/sc_merge_data1.html), WDC C1, Kyoto for the AE/AL and SYM‐H indices (http://wdc.kugi.kyoto‐u.ac.jp/ wdc/Sec3.html). The effort of Virginia Tech. is very appreciated for providing SuperDARN radar data through website (http://vt.superdarn.org/tiki‐ index.php). SuperDARN is a collection of radars funded by national scientiﬁc funding agencies of Australia, Canada, China, France, Japan, South Africa, United Kingdom, and United States of America. SuperDARN RKN radar is run by the University of Saskatchewan.
+
+In this paper, the development of a powerful tool named TEC keogram is presented. The TEC keogram is developed using the time series of TEC maps along three meridian TEC lines in 12–0 MLT, 15–3 MLT, and 9–21 MLT, respectively, all in the MLat ranges of 50°–90°N. This new tool (TEC keogram) is validated and its capability is demonstrated by comparing the large‐scale plasma structures in the polar ionosphere presented in the keograms with those in the original TEC maps and SuperDARN RKN radar observations. In addition, the statistics of the patch occurrences on months and UT hours obtained from TEC keogram agree well with those reported earlier from direct patch observations. The dependence of the patch occurrence on IMF conditions obtained using TEC keogram also agree with previous such studies using direct patch observation, which seems to conﬁrm that dayside magnetic reconnection is a factor involved in the generation of polar cap patches. TEC keogram technique is used for statistically studying the patch motion by considering the plasma movement relative to the background in the full polar cap for the ﬁrst time, which may probably answer further questions on their relationships in future.
+However, this tool has some limitations. When the plasma structures drift along the selected TEC lines, the TEC keogram works very well. However, this condition is not always met due to the dynamic variation of the convection pattern. For example, in Figure 5a, the patches B/C are actually tongue of ionizations, which are moving toward the duskside. Unfortunately, they are beyond the detecting scope of the TEC line of 12–0 MLT because of the rapid northward pulsations of IMF Bz (Figure 3a). To overcome this limitation to some extend, three TEC lines have been employed in the TEC keogram, trying to accommodate the shifting of convection pattern better under highly dynamic IMF conditions. Moreover, the TEC data gap is also an inevitable problem especially in the polar region (e.g., patch E in Figure 5c), although the median ﬁlter has been applied to overcome this problem.
+In short, proper use of the tool of TEC keogram can efﬁciently pre‐check and track the large‐scale irregularities in the polar ionosphere, instead of rushing into excessive TEC maps directly. Furthermore, the use of TEC keogram can support case studies and statistical studies of patch occurrence and its physical mechanism. Based on the development of this tool, the endeavor to fulﬁll the goals of automatic monitoring the large‐scale structures as well as estimating their size will be continued in the near future. An advancement to determine the patch velocity vector by combining multiple keograms will be carried as well.
+References
+Carlson, H. C. (2012). Sharpening our thinking about polar cap ionospheric patch morphology, research, and mitigation techniques. Radio Science, 47, RS0L21. https://doi.org/10.1029/2011RS004946
+
+WANG ET AL.
+
+9 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+WANG ET AL.
+
+Carlson, H. C., Oksavik, K., Moen, J., & Pedersen, T. (2004). Ionospheric patch formation: Direct measurements of the origin of a polar cap patch. Geophysical Research Letters, 31, L08806. https://doi.org/10.1029/2003GL018166
+Chisham, G., Lester, M., Milan, S. E., Freeman, M. P., Bristow, W. A., Grocott, A., et al. (2007). A decade of the Super Dual Auroral Radar Network (SuperDARN): scientiﬁc achievements, new techniques and future directions. Surveys in Geophysics, 28(1), 33–109. https://doi. org/10.1007/s10712‐007‐9017‐8
+Coley, W. R., & Heelis, R. A. (1998). Seasonal and universal time distribution of patches in the northern and southern polar caps. Journal of Geophysical Research, 103(A12), 29,229–29,237. https://doi.org/10.1029/1998JA900005
+Cowley, S. W. H., & Lockwood, M. (1992). Excitation and decay of solar wind‐driven ﬂows in the magnetosphere‐ionosphere system. Annales Geophysicae, 10, 103–115.
+Crowley, G. (1996). Critical review of ionospheric patches and blobs. In W. R. Stone (Ed.), Review of Radio Science 1992‐1996 (pp. 619–648). Oxford, UK: Oxford University Press.
+David, M., Sojka, J. J., Schunk, R. W., & Coster, A. J. (2016). Polar cap patches and the tongue of ionization: A survey of GPS TEC maps from 2009 to 2015. Geophysical Research Letters, 43, 2422–2428. https://doi.org/10.1002/2016GL068136
+Foster, J. C. (1993). Storm time plasma transport at middle and high latitudes. Journal of Geophysical Research, 98(A2), 1675–1689. https:// doi.org/10.1029/92JA02032
+Foster, J. C. (2008). Ionospheric‐magnetospheric‐heliospheric coupling: Storm‐time thermal plasma redistribution. In P. M. Kintner, Jr., A. J. Coster, T. Fuller‐Rowell, A. J. Mannucci, M. Mendillo, & R. Heelis (Eds.), Midlatitude Ionospheric Dynamics and Disturbances (Vol. 181, pp. 121–134). Washington, DC: American Geophysical Union. https://doi.org/10.1029/181GM12
+Foster, J. C., Coster, A. J., Erickson, P. J., Holt, J. M., Lind, F. D., Rideout, W., et al. (2005). Multiradar observations of the polar tongue of ionization. Journal of Geophysical Research, 110, A09S31. https://doi.org/10.1029/2004JA010928
+Foster, J. C., & Rideout, W. (2007). Storm enhanced density: Magnetic conjugacy effects. Annales de Geophysique, 25, 1791–1799. https:// www.ann‐geophys.net/25/1791/2007/
+Greenwald, R. A., Bristow, W. A., Sofko, G. J., Senior, C., Cerisier, J. C., & Szabo, A. (1995). Super dual auroral radar network radar imaging of dayside high‐latitude convection under northward interplanetary magnetic ﬁeld: Toward resolving the distorted two‐cell versus multicell controversy. Journal of Geophysical Research, 100(A10), 19661. https://doi.org/10.1029/95JA01215
+Hosokawa, K., Kashimoto, T., Suzuki, S., Shiokawa, K., Otsuka, Y., & Ogawa, T. (2009). Motion of polar cap patches: A statistical study with all‐sky airglow imager at Resolute Bay, Canada. Journal of Geophysical Research, 114, A04318. https://doi.org/10.1029/ 2008JA014020
+Hosokawa, K., Shiokawa, K., Otsuka, Y., Nakajima, A., Ogawa, T., & Kelly, J. D. (2006). Estimating drift velocity of polar cap patches with all‐sky airglow imager at Resolute Bay, Canada. Geophysical Research Letters, 33, L15111. https://doi.org/10.1029/2006GL026916
+Hosokawa, K., Shiokawa, K., Otsuka, Y., Ogawa, T., St‐Maurice, J.‐P., Sofko, G. J., & Andre, D. A. (2009). Relationship between polar cap patches and ﬁeld‐aligned irregularities as observed with an all‐sky airglow imager at Resolute Bay and the PolarDARN radar at Rankin Inlet. Journal of Geophysical Research, 114, A03306. https://doi.org/10.1029/2008JA013707
+Jin, Y., J. I. Moen, W. J. Miloch, L. B. N. Clausen, and K. Oksavik (2016). Statistical study of the GNSS phase scintillation associated with two types of auroral blobs, Journal of Geophysical Research: Space Physics, 121. https://doi.org/10.1002/2016JA022613
+Jin, Y., Moen, J., & Miloch, W. J. (2014). GPS scintillation effects associated with polar cap patches and substorm auroral activity: Direct comparison. Journal of Space Weather and Space Climate, 4, A23. https://doi.org/10.1051/SWSC/2014019
+Jin, Y., Xing, Z., Zhang, Q., Wang, Y., & Ma, Y. (2019). Polar cap patches observed by the EISCAT Svalbard radar: A statistical study of its dependence on the solar wind and IMF conditions. Journal of Atmospheric and Solar‐Terrestrial Physics, 192, 104768. https://doi.org/ 10.1016/j.jastp.2018.01.011
+King, J. H., & Papitashvili, N. E. (2005). Solar wind spatial scales in and comparisons of hourly Wind and ACE plasma and magnetic ﬁeld data. Journal of Geophysical Research, 110, A02104. https://doi.org/10.1029/2004JA010649
+Lockwood, M., & Carlson, H. C. (1992). Production of polar cap electron density patches by transient magnetopause reconnection. Geophysical Research Letters, 19(17), 1731–1734. https://doi.org/10.1029/92GL01993
+Lorentzen, D. A., Moen, J., Oksavik, K., Sigernes, F., Saito, Y., & Johnsen, M. G. (2010). In situ measurement of a newly created polar cap patch. Journal of Geophysical Research, 115, A12323. https://doi.org/10.1029/2010JA015710
+Moen, J., Gulbrandsen, N., Lorentzen, D. A., & Carlson, H. C. (2007). On the MLT distribution of F region polar cap patches at night. Geophysical Research Letters, 34, L14113. https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2007GL029632
+Moen, J., Hosokawa, K., Gulbrandsen, N., & Clausen, L. B. N. (2015). On the symmetry of ionospheric polar cap patch exists around magnetic midnight. Journal of Geophysical Research: Space Physics, 120, 7785–7797. https://agupubs.onlinelibrary.wiley.com/doi/pdf/ 10.1002/2014JA020914
+Moen, J., Oksavik, K., Alfonsi, L., Daabakk, Y., Romano, V., & Spogli, L. (2013). Space weather challenges of the polar cap ionosphere. Journal of Space Weather and Space Climate, 3, A02. https://doi.org/10.1051/SWSC/2013025
+Oksavik, K., Barth, V. L., Moen, J., & Lester, M. (2010). On the entry and transit of high‐density plasma across the polar cap. Journal of Geophysical Research, 115, A12308. https://doi.org/10.1029/2010JA015817
+Oksavik, K., Ruohoniemi, J. M., Greenwald, R. A., Baker, J. B. H., Moen, J., Carlson, H. C., et al. (2006). Observations of isolated polar cap patches by the European Incoherent Scatter (EISCAT) Svalbard and Super Dual Auroral Radar Network (SuperDARN) Finland radars. Journal of Geophysical Research, 111, A05310. https://doi.org/10.1029/2005JA011400
+Oksavik, K., van der Meeren, C., Lorentzen, D. A., Baddeley, L. J., & Moen, J. (2015). Scintillation and loss of signal lock from poleward moving auroral forms in the cusp ionosphere. Journal of Geophysical Research: Space Physics, 120, 9161–9175. https://doi.org/10.1002/ 2015JA021528
+Pi, X., Mannucci, A. J., Lindqwister, U. J., & Ho, C. M. (1997). Monitoring of global ionospheric irregularities using the worldwide GPS network. Geophysical Research Letters, 24(18), 2283–2286. https://doi.org/10.1029/97GL02273
+Prikryl, P., Ghoddousi‐Fard, R., Weygand, J. M., Viljanen, A., Connors, M., Danskin, D. W., et al. (2016). GPS phase scintillation at high latitudes during the geomagnetic storm of 17–18 March 2015. Journal of Geophysical Research: Space Physics, 121, 10,448–10,465. https:// doi.org/10.1002/2016JA023171
+Ren, J., Zou, S., Gillies, R. G., Donovan, E., & Varney, R. H. (2018). Statistical characteristics of polar cap patches observed by RISR‐C. Journal of Geophysical Research: Space Physics, 123, 6981–6995. https://doi.org/10.1029/2018JA025621
+Rideout, W., & Coster, A. (2006). Automated GPS processing for global total electron content data. GPS Solutions, 10, 219–228. https://doi. org/10.1007/s10291‐006‐0029‐5
+Ruohoniemi, J. M., & Baker, K. B. (1998). Large‐scale imaging of high‐latitude convection with SuperDARN HF radar observations. Journal of Geophysical Research, 103(A9), 20,797–20,811. https://doi.org/10.1029/98JA01288
+10 of 11
+
+Journal of Geophysical Research: Space Physics
+
+10.1029/2019JA027020
+
+Sojka, J. J., Bowline, M. D., & Schunk, R. W. (1994). Patches in the polar ionosphere: UT and seasonal dependence. Journal of Geophysical Research, 99(A8), 14,959–14,970. https://doi.org/10.1029/93JA03327
+Thomas, E. G., Baker, J. B. H., Ruohoniemi, J. M., Clausen, L. B. N., Coster, A. J., Foster, J. C., & Erickson, P. J. (2013). Direct observations of the role of convection electric ﬁeld in the formation of a polar tongue of ionization from storm enhanced density. Journal of Geophysical Research: Space Physics, 118, 1180–1189. https://doi.org/10.1002/jgra.50116
+Vierinen, J., Coster, A. J., Rideout, W. C., Erickson, P. J., & Norberg, J. (2015). Statistical framework for estimating GNSS bias. Atmospheric Measurement Techniques Discussions, 8(9), 9373–9398. https://doi.org/10.5194/atmd‐8‐1‐2015
+Wang, Y., Zhang, Q. H., Jayachandran, P. T., Lockwood, M., Zhang, S. R., Moen, J., et al. (2016). A comparison between large‐scale irregularities and scintillations in the polar ionosphere. Geophysical Research Letters, 43, 4790–4798. https://doi.org/10.1002/2016GL069230
+Zhang, Q.‐H., Lockwood, M., Foster, J. C., Zhang, S. R., Zhang, B. C., McCrea, I. W., et al. (2015). Direct observations of the full Dungey convection cycle in the polar ionosphere for southward interplanetary magnetic ﬁeld conditions. Journal of Geophysical Research: Space Physics, 120, 4519–4530. https://doi.org/10.1002/2015JA021172
+Zhang, Q.‐H., Ma, Y. Z., Jayachandran, P. T., Moen, J., Lockwood, M., Zhang, Y. L., et al. (2017). Polar cap hot patches: Enhanced density structures different from the classical patches in the ionosphere. Geophysical Research Letters, 44, 8159–8167. https://doi.org/10.1002/
+2017GL073439 Zhang, Q.‐H., Zhang, B. C., Liu, R. Y., Dunlop, M. W., Lockwood, M., Moen, J., et al. (2011). On the importance of interplanetary magnetic
+ﬁeld|By|on polar cap patch formation. Journal of Geophysical Research, 116, A05308. https://doi.org/10.1029/2010JA016287 Zhang, Q.‐H., Zhang, B. C., Lockwood, M., Hu, H. Q., Moen, J., Ruohoniemi, J. M., et al. (2013). Direct observations of the evolution of
+polar cap ionization patches. Science, 339(6127), 1597–1600. https://doi.org/10.1126/science.1231487 Zhang, Q.‐H., Zhang, B. C., Moen, J., Lockwood, M., McCrea, I. W., Yang, H. G., et al. (2013). Polar cap patch segmentation of the tongue of
+ionization in the morning convection cell. Geophysical Research Letters, 40, 2918–2922. https://doi.org/10.1002/grl.50616
+Zou, S., Moldwin, M. B., Ridley, A. J., Nicolls, M. J., Coster, A. J., Thomas, E. G., & Ruohoniemi, J. M. (2014). On the generation/decay of the storm‐enhanced density plumes: Role of the convection ﬂow and ﬁeld‐aligned ion ﬂow. Journal of Geophysical Research: Space Physics, 119, 8543–8559. https://doi.org/10.1002/2014JA020408
+Zou, S., Ridley, A. J., Moldwin, M. B., Nicolls, M. J., Coster, A. J., Thomas, E. G., & Ruohoniemi, J. M. (2013). Muti‐instrument observations of SED during 24‐25 October 2011 storm: Implications for SED formation processes. Journal of Geophysical Research: Space Physics, 118, 7798–7809. https://doi.org/10.1002/2013JA018860
+
+WANG ET AL.
+
+11 of 11
+

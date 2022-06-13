@@ -1,0 +1,1433 @@
+JID: CAF
+
+ARTICLE IN PRESS
+Computers and Fluids xxx (xxxx) xxx
+Contents lists available at ScienceDirect
+Computers and Fluids
+journal homepage: www.elsevier.com/locate/compfluid
+
+[m5G;June 15, 2021;7:2]
+
+A high-order stochastic Galerkin code for the compressible Euler and Navier-Stokes equations
+Jakob Dürrwächter a,∗, Fabian Meyer b, Thomas Kuhn a, Andrea Beck a, Claus-Dieter Munz a, Christian Rohde b
+a Institute of Aerodynamics and Gas Dynamics, University of Stuttgart, Pfaffenwaldring 21, 70569 Stuttgart, Germany b Institute of Applied Analysis and Numerical Simulation, University of Stuttgart, Pfaffenwaldring 57, 70569 Stuttgart, Germany
+
+article info
+Article history: Received 4 November 2019 Revised 5 May 2021 Accepted 2 June 2021
+Keywords: Stochastic Galerkin Discontinuous Galerkin Uncertainty quantiﬁcation Compressible Navier-Stokes equations Unstructured grids Computational ﬂuid dynamics
+
+a b s t r a c t
+We present a Stochastic Galerkin (SG) scheme for Uncertainty Quantiﬁcation (UQ) of the compressible Navier-Stokes and Euler equations. For spatial discretization, we rely on the high-order Discontinuous Galerkin Spectral Element Method (DGSEM) in combination with an explicit time-stepping scheme. We simulate complex ﬂow problems in two- and three-dimensional domains using curved unstructured hexahedral meshes. The dimension of the stochastic space can be arbitrarily large. In order to treat discontinuities and to ensure hyperbolicity, we employ a multi-element approach in combination with a hyperbolicity-preserving limiter in the stochastic domain and a Finite Volume subcell shock capturing scheme in physical space. Special emphasis is put on code performance and massive parallel scalability. We demonstrate the versatility and broad applicability of our code with various numerical experiments including the supersonic ﬂow around a spacecraft geometry. By this, we wish to contribute to the path of the Stochastic Galerkin method towards practical applicability in research and industrial engineering.
+© 2021 Elsevier Ltd. All rights reserved.
+
+1. Introduction
+In addition to classical laboratory experiments, deterministic high-resolution numerical simulations have become a main pillar of research and development in academia and industry. In numerous cases deterministic numerical simulation results provide good agreement with experimental data. Though, whenever uncertainty about the experimental setting or uncertainties due to unknown model parameters enter the often non-linear governing equations, deterministic simulations fail to capture the whole picture. It is therefore necessary to quantify the inﬂuence of uncertain model input on numerical simulation results and derived quantities. Uncertainty Quantiﬁcation (UQ) provides different mathematical tools to do so. It can thus help to uncover hidden regimes in the underlying systems.
+A major class of UQ methods rely on the generalized Polynomial Chaos expansion (gPC) introduced by Xiu and Karniadakis [1], whose roots go back to the seminal work of Wiener [2]. In gPC the underlying random ﬁeld is developed into a generalized Fourier series where the approximating polynomials are orthogonal with respect to an inner product induced by the probability
+∗ Corresponding author. E-mail address: jd@iag.uni-stuttgart.de (J. Dürrwächter).
+
+density function of the uncertain input. The deterministic modes in this Fourier series representation can either be computed via numerical quadrature [3–5] or using a least-squares ﬁt [6, Section 3.5]. These approaches are called non-intrusive because essentially deterministic versions of the random equation have to be solved. Hence, existing deterministic numerical solvers can readily be used. In contrast to non-intrusive methods, the intrusive spectral projection method, also known as Stochastic Galerkin (SG) approach, considers a weak formulation of the random equation with respect to the random variables and derives a modiﬁed deterministic systems of equations which is solved for the ﬁnite number of unknown modes. The adaption of existing numerical solvers to this modiﬁed system is in this case inevitable.
+There exist different numerical schemes for the SG systems resulting from the compressible Euler and Navier-Stokes equations, cf. [6–16] and references therein. These works build on earlier applications to ﬂow problems with different governing equations, cf. [3,17,18]. Due to its high computational cost, most applications of SG for compressible ﬂow problems are restricted to spatially one-dimensional domains, or simpliﬁed equations. Moreover, the majority of existing numerical schemes for SG are based on basic ﬁnite volume solvers, relying on Cartesian grids and limited to ﬁrst or second order accuracy and parallelization limited to a few cores. We would like to show that an SG exten-
+
+https://doi.org/10.1016/j.compﬂuid.2021.105039 0045-7930/© 2021 Elsevier Ltd. All rights reserved.
+
+Please cite this article as: J. Dürrwächter, F. Meyer, T. Kuhn et al., A high-order stochastic Galerkin code for the compressible Euler and Navier-Stokes equations, Computers and Fluids, https://doi.org/10.1016/j.compﬂuid.2021.105039
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+sion can also be introduced to a state-of-the-art industrially applied code with high order accuracy and massive parallel scalability. We aim to achieve this with our software framework SGFLEXI, which is open source and can be retrieved from GitHub1. It relies on the SG method in combination with the Discontinuous Galerkin Spectral Element (DGSEM) method [19,20] and an explicit Runge-Kutta time-stepping scheme [21]. Thanks to its compact stencil and the explicit time-stepping scheme the DGSEM method allows for a massively parallel implementation and is therefore well-suited for applications on high-performance computing systems [19,20,22,23]. Our highly eﬃcient implementation allows us to overcome the aforementioned limitations and perform UQ of complex ﬂow problems in two and even three spatial dimensions. Moreover, our numerical scheme is able to handle an arbitrary number of random dimensions.
+The rest of the paper is organized as follows: In Section 2 we present our equations of interest, the random Euler and random Navier-Stokes equations. Section 3 is concerned with the space, time and stochastic discretization of the governing equations. We present the SG approach and review the multi-element SG method, which decomposes the stochastic space into disjoint random elements and performs a local approximation on each random element. Furthermore, we present the DGSEM discretization of the resulting SG system. Our novel software framework SG-FLEXI is presented in Section 4, where we also evaluate code performance. Finally, in Section 5 we demonstrate the broad applicability of our framework by performing UQ of many different challenging ﬂow problems for the compressible Euler and Navier-Stokes equations.
+
+2. Random Navier-Stokes and Euler equations
+
+We start with a description of our deterministic problem of interest, the three-dimensional compressible Navier-Stokes equations written in conservation form
+
+∂t u + ∇x · (G(u) − H(u, ∇xu)) = 0 in D × R+.
+
+(1)
+
+In (1) u = u(x, t ) : D × R+ → U ⊂ Rnvar denotes the vector of the nvar = 5 conserved quantities and ∂t represents the derivative with respect to time, ∇x is the gradient operator in physical space
+D ⊂ R3. G and H describe the convective and viscous ﬂux ten-
+sors, respectively, which we summarize for brevity as F (u, ∇xu) := G(u) − H(u, ∇xu). The deterministic conserved quantities are u = (ρ, m1, m2, m3, ρe)T = (ρ, ρv1, ρv2, ρv3, ρe)T , where ρ is the mass density, mi and vi are the momentum and velocity in i-direction,
+respectively, and e is the total energy. The ith column of the con-
+vective and viscous ﬂuxes is given by
+
+⎛ ρvi ⎞
+
+⎛ 0 ⎞
+
+G i
+
+=
+
+⎜⎜⎝ρρρ
+
+v 1 v 2 v 3
+
+v i v i v i
+
++ + +
+
+δ1 i δ2 i δ3 i
+
+pp⎟⎟⎠
+p
+
+and
+
+Hi = ⎜⎜⎝
+
+τ1 i τ2 i τ3 i
+
+⎟⎟⎠,
+
+ρevi + pvi
+
+τi jv j − Qi
+
+i = 1, 2, 3. (2)
+
+Here, δi j is the Kronecker Delta, p = p(u) is the pressure given by
+the ideal gas equation
+
+p = ρRT = (γ − 1)ρ
+
+e
+
+−
+
+1 2
+
+v
+
+·
+
+v
+
+,
+
+(3)
+
+with temperature T . Furthermore, τi j denote the entries of the vis-
+cous stress tensor
+
+τ=μ
+
+∇ x v
+
++
+
+( ∇ x v ) T
+
+−
+
+2 3
+
+( ∇ x
+
+·
+
+v ) I
+
+,
+
+(4)
+
+1 https://github.com/ﬂexi- framework/sg- ﬂexi
+
+and Qi are the components of the heat ﬂux vector Q = −k∇xT .
+Fluid dependent variables used above are the speciﬁc gas constant
+R, the adiabatic coeﬃcient γ , the kinematic viscosity μ and the
+heat conductivity k. They are all assumed to be constant in space and time. By neglecting viscous effects and the heat ﬂux i.e. H = 0, we immediately obtain the Euler equations in conservation form from (1). The equations can easily be reduced to two space dimensions by setting all derivatives with respect to the third dimension as well as the third velocity component to zero.
+In reality, due to measurement or modeling errors, it is often not possible to prescribe model parameters or initial and boundary conditions exactly. We model these uncertain parameters as random variables and propagate them through space and time using (1). To this end we consider a M-dimensional real-valued random
+vector ξ = (ξ 1, ..., ξ M ) deﬁned on a probability space ( , F, P)
+which represents various uncertainties, for example an uncertain viscosity, uncertain initial data, or uncertain boundary conditions. We denote the image of the random vector , which will also be dubbed the stochastic domain in the following. We assume that the entries of the random vector are independent of each other. Consequently, the solution u depends not only on space and time,
+but also on ξ, i.e.
+
+u = u(x, t, ξ) : D × R+ × → U ⊂ Rnvar .
+
+(5)
+
+Hence, our equations of interest are the following random NavierStokes equations in conservation form,
+
+∂t u(x, t, ξ)+∇x · (G(u(x, t, ξ), ξ) − H(u(x, t, ξ), ∇xu(x, t, ξ)), ξ) = 0, (6)
+
+or shortly
+
+∂t u(x, t, ξ) + ∇x · F (u(x, t, ξ), ∇xu(x, t, ξ), ξ) = 0.
+
+(7)
+
+We augment (7) with suitable (random) boundary and initial condition, which we denote by
+
+u(x, 0, ξ) = u0(x, ξ), B(u) = g(x, ξ).
+
+The boundary operator B, the boundary data g and the initial condition u0 will be speciﬁed when we describe the numerical experiments in Section 5.
+Our goal is to approximate the solution of (7) using a Stochastic Galerkin (SG) discretization in the stochastic domain and a Discontinuous Galerkin Spectral Element Method (DGSEM) method for the space-time discretization of (7). A detailed description of the resulting SG-DGSEM discretization is the content of the following section.
+
+3. Space-time-stochastic discretization
+
+In this section we describe the spatio-temporal and stochastic discretization of (7). In Section 3.1, we start with the SG method used for stochastic discretization, including details on elemental operations, the multi-element approach, and a hyperbolicitypreserving limiter. In Section 3.2, we brieﬂy present the DGSEM method used for discretization in space and time, including remarks on Riemann solvers for the SG system.
+
+3.1. The stochastic Galerkin method
+
+The Stochastic Galerkin (SG) method goes back to Ghanem and Spanos [24] and relies on the seminal work of [1,2] which states that the solution of (7) can be developed into a generalized Fourier series using a suitable orthogonal polynomial basis. We consider an approximation uK in a ﬁnite-dimensional ansatz space given by
+
+uK(x, t, ξ) := uκ (x, t ) κ (ξ) = uT ,
+
+(8)
+
+κ ∈K
+
+2
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+with coeﬃcients u ∈ Rnvar×|K|. The ansatz functions { κ (ξ)}κ∈K in
+(8) are chosen to be orthonormal with respect to the joint prob-
+ability density function of the uncertain input, i.e. κ , ι = δκ,ι
+with the inner product
+
+g(ξ), h(ξ) = g(ξ)h(ξ) f (ξ) dξ,
+
+(9)
+
+ξ∈
+
+where f (ξ) : → R+ is the joint probability density function of
+
+the random vector. In the multivariate case M > 1, a set of one-
+
+dimensional orthonormal polynomials
+for each random variable ξ s, s = 1, .
+
+{
+. .
+
+,
+
+κs (ξ s )}∞ κs=0 is considered
+M. The multivariate or-
+
+thonormal basis functions i(ξ) are constructed as the product
+
+M
+
+κ (ξ) =
+
+κs (ξ s ).
+
+(10)
+
+s =1
+
+We restrict the multivariate basis to polynomials with combined polynomial degree less or equal to Nstoch as introduced in [24], i.e. we consider the complete polynomial space described by the following index set, cf. [18,25].
+
+M
+
+κ ∈ K := κ = (κ1, . . . , κM )T ∈ NM0
+
+κs ≤ Nstoch .
+
+(11)
+
+s =1
+
+We suppose that the coeﬃcients in (8) are determinied such that
+
+∂t uT , k + ∇x · F uT , ∇xuT , ξ , k = 0,
+
+(12)
+
+holds for all k ∈ K, i.e., uk is the Galerkin projection to span { k}
+in the stochastic space. Due to orthonormality of the polynomial
+basis, the ﬁrst term reduces to ∂t uk. If we write the entries of the
+rank-2 tensor u into a vector, we are able to write the whole dis-
+cretized system as the following modiﬁed deterministic conserva-
+tion law
+
+∂t u + ∇x · F (u, ∇xu, ξ) = 0.
+
+(13)
+
+Here, u ∈ Rnvar·|K| and F : Rnvar·|K| → Rnvar·|K|, where |K| =
+
+M+Nstoch M
+
+−1
+
+is
+
+the
+
+number
+
+of
+
+basis
+
+polynomials
+
+of
+
+(11) .
+
+The
+
+modiﬁed system (13) is a strongly coupled system of conservation
+
+laws with nvar · |K| unknowns, which can now be solved using
+
+the DGSEM method. The discretized system is deterministic in the
+
+sense that the dependence on the random vector ξ is eliminated
+
+by integration.
+
+The unknowns are the stochastic moments uk of the solution u. Thus, mean and variance can be retrieved via
+
+E(u) ≈ u0 and Var(u) ≈
+
+u2κ .
+
+κ ∈K\(0,...,0)T
+
+(14)
+
+3.1.1. Elementary operations and the pseudo-spectral method
+For highly nonlinear ﬂux functions F (u, ∇xu, ξ), the second in-
+tegral in (12) may not be evaluated analytically or only at very
+high computational cost. In the pseudo-spectral approach [6,26–
+28], the nonlinear function F is split into elemental operations,
+which are individually projected onto the polynomial space with
+a Galerkin ansatz. As an example for this procedure, let us consider the ﬁrst term of the second component of G1 in (2), which is
+ρv21 := α. It can be expressed in terms of the conserved quantities u as α = m21/ρ. We split the evaluation of this term into the fraction v1 = m1/ρ and the multiplication α = m1v1. We recall that in SG the input quantities to these operations, i.e. ρ, m1, v1, are rep-
+resented as polynomials as in (8).
+Consequently, multiplications and fractions are computed by
+performing an orthogonal projection, i.e. projecting products of two stochastic polynomials gK and hK yields
+
+gKhK, k = gih j i j, k = gih jCi jk = g Ckh,
+
+i, j
+
+i, j
+
+(15)
+
+where Ci jk = i j, k are the entries of a rank-3 tensor C, which is often called the Galerkin multiplication tensor [6] and will be
+dubbed the multiplication tensor in the following. Computing an
+SG discretized product of two variables thus requires computation
+of a double sum of products. In Appendix A we present an op-
+timized computation of the SG product for a stochastically one-
+dimensional product.
+SG fractions of the form r = g/h can be discretized by re-writing
+them to rh = g. This equation can be projected as in (15) resulting
+in a system of linear equations, which is solved for the moments r
+of r (though at high computational cost), cf. [17,26,27].
+Stochastic integrals arising from the projection of any nonlin-
+ear operation N (gK ) with operands gK, i.e. integrals of the form N (gK ), k , can also be evaluated numerically, as introduced in
+[27] based on the works [29] and [3]. We use a Gauß quadra-
+ture with (Q + 1) ∈ N points and weights (ξβ , ωβ ), β = 0, . . . , Q .
+For a multi-dimensional stochastic domain ⊂ RM we use tensor-
+product quadrature rules of one-dimensional quadrature rules,
+described by the multi-index set β ∈ P := {β = (β1, . . . , βM ) ∈ NM0 βs ≤ Q , s = 1, . . . , M}. Speciﬁcally, for a uniformly dis-
+tributed random variable and Legendre basis functions, we use the
+Gauß-Legendre quadrature rule, for a normal distribution we use
+the Gauß-Hermite quadrature rule, cf. [1].
+Hence, for any nonlinear operation N (gK ) the operands are evaluated at quadrature points ξβ in the stochastic space,
+
+gK(ξβ ) = gκ κ (ξβ ).
+
+(16)
+
+κ ∈K
+
+The nonlinear operation N is then carried out at these quadrature
+points Nβ := N (gK(ξβ )), and the output is projected back onto the
+orthonormal basis using numerical quadrature
+
+Nκ := N (gK ), κ ≈ Nβ κ (ξβ ) ωβ ,
+
+(17)
+
+β ∈P
+
+for all κ ∈ K. This method introduces an additional error due to
+the non-exact integration and thus the Gaussian quadrature should include suﬃciently many points.
+
+3.1.2. The multi-element SG method
+
+In order to improve accuracy, especially in the presence of dis-
+
+continuities, a multi-element Stochastic Galerkin (ME-SG) approach
+
+introduced by Wan and Karniadakis [30,31] is employed. The idea
+
+is to divide the image of each random variable into intervals,
+
+which leads to a decomposition of the stochastic space into dis-
+
+joint stochastic elements. On each stochastic element, an SG sim-
+
+ulation is carried out. In order to derive the ME-SG method, new
+
+auxiliary random variables are introduced, as laid out in the fol-
+
+lowing.
+
+For ease of presentation, we restrict ourselves to the case where
+
+the image of each random variable is the interval [0,1], such that
+the stochastic domain becomes = ×Ms=1[0, 1]. We let 0 = d1 < d2 < . . . < dN +1 = 1 be a decomposition of [0,1]. We further deﬁne
+the intervals Dn := [dn, dn+1 ), for n = 1, . . . , N − 1, and DN :=
+[dN , dN +1]. We introduce an index-set which assigns a scalar index to the multi-index of the sub-intervals of the random variables
+L := {l = (l1, . . . , lM ) ∈ NM0 : ls ≤ N , s = 1 . . . , M}. This allows us
+to deﬁne for each index l ∈ L the multi-element Dl := ×Ms=1Dls as cartesian product of intervals Dls .
+We now consider a new local random variable ξl : ξ−1(Dl ) → Dl on the local probability space (ξ−1(Dl ), F ∩ ξ−1(Dl ), P(·|ξ−1(Dl ))).
+Using Bayes’ rule we are able to compute the local probability den-
+sity function of ξl via
+
+fDl (ξl )
+
+:=
+
+fDl (ξl|ξ−1(Dl ))
+
+=
+
+f (ξl ) P(ξ−1 (Dl
+
+))
+
+,
+
+ξl ∈ Dl,
+
+(18)
+
+3
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+where P(ξ−1(Dl )) > 0 for l ∈ L can be assumed w.l.o.g., due to the
+independence of the corresponding random variables. We use uni-
+
+formly distributed random variables, where the local random vari-
+
+ables are also uniformly distributed, so that the set of local ba-
+
+sis polynomials is known. For other distributions, the basis poly-
+
+nomials can be computed numerically from a Gram-Schmidt or-
+
+thogonalization or the procedure described in [31]. We parametrize
+the uncertain input in (7) using the local random variable ξl and
+consider a local approximation on every ME Dl. Due to the disjoint decomposition of the stochastic domain, the SG method from
+
+Section 3.1 can be applied to every ME independently. Let us note
+
+that this allows for a trivial parallelization strategy in the stochas-
+
+tic domain.
+
+If we let {
+
+l
+κ
+
+(ξl
+
+) } κ
+
+∈K
+
+be
+
+the
+
+orthonormal
+
+polynomials
+
+with
+
+re-
+
+spect to the conditional probability density function (18), we may
+
+consider the local gPC approximation in element Dl,
+
+ul (x, t, ξl ) ≈
+
+ulκ (x, t )
+
+l
+κ
+
+( ξ
+
+l
+
+) ,
+
+(19)
+
+κ ∈K
+
+for all l ∈ L. The global approximation (8) can then be written as
+
+u(x, t, ξ) = ul (x, t, ξ) ≈
+
+ulκ (x, t )
+
+l
+κ
+
+( ξ
+
+) χD l
+
+( ξ
+
+) ,
+
+(20)
+
+l∈L
+
+l∈L κ∈K
+
+where χDl is the indicator function of Dl .
+In a stochastic post-processing step the SG approximations on
+
+each ME are combined into expectation and variance of the quan-
+
+tity of interest for the original set of uncertain variables. The ex-
+
+pected value and variance of u are obtained as weighted sum of
+
+local mean and variance, i.e.
+
+E(u) ≈
+
+ulκ
+
+l
+κ
+
+( ξ
+
+) χl
+
+( ξ
+
+)
+
+f
+
+(ξ) dξ
+
+l∈L κ∈K
+
+=
+
+ulκ
+
+l
+κ
+
+( ξ
+
+)
+
+l∈L κ∈K
+
+D l
+
+= P(ξ−1(Dl ))ul0,
+
+l∈L
+
+l 0
+
+( ξ
+
+) P ( ξ
+
+−1
+
+(Dl
+
+)
+
+)
+
+f D l
+
+(ξl
+
+)
+
+dξl
+
+Var(u) ≈
+
+Var(ul ) + ul0 − E(u) 2 P(ξ−1(Dl )),
+
+l∈L
+
+where the local variance Var(ul ) is given by
+
+Var(ul ) ≈
+
+ulκ 2 fDl (ξl ) dξl − (ul0 )2 =
+
+(ulκ )2.
+
+Dl κ∈K
+
+κ ∈K\(0,...,0)T
+
+Whenever we employ the SG method in combination with the ME ansatz, we call the method ME-SG method.
+
+3.1.3. A hyperbolicity-preserving limiter In [32] it has been proven that for non-scalar and non-
+symmetric hyperbolic systems like the Euler equations, the SGdiscretized system (13) may lose its hyperbolicity i.e. the ﬂux Jacobian of (13) has some complex eigenvalues. To circumvent this problem a hyperbolicity-preserving limiter has been developed in [33] and advanced by the authors of [9] to a limiter for the SG-DGSEM method. The limiting strategy ensures that the spacestochastic cell mean u¯ generates a hyperbolic SG-system after one Euler forward time-step. A point-wise (in spatial and stochastic domain) application of a slope-limiter, which limits the solution towards the admissible cell-mean, which is guaranteed to generate a hyperbolic SG-system, induces a hyperbolic system. We employ this limiter in our software framework and refer for further information concerning the limiter to [9].
+
+3.2. Discontinuous Galerkin spectral element method
+
+For the space-time discretization of the SG system (13), we use a high-order Discontinuous Galerkin Spectral Element method
+
+(DGSEM) in combination with a Runge–Kutta time-stepping. We restrict ourselves to a short summary of the method, further details can be found for example in [34–36].
+We partition the physical domain D into Ne ∈ N disjoint curved hexahedral elements. The basic idea of DG is to discretize each of these elements with the Galerkin method (in the case of DGSEM with a Lagrange polynomial solution basis on each element) and to allow for discontinuities between the elements, which are treated using Riemann solvers.
+For reducing computational complexity, all elements are trans-
+formed from physical space onto the reference element E(η) =
+[−1, 1]3, such that for each element
+
+∂t Ju + ∇η · F (u, ∇η · u, ξ) = 0,
+
+(21)
+
+where J is the Jacobian determinant of the mapping x(η). Multiplication with a test function φ and integration over the reference
+element E yields
+
+∂t Juφ dη + ∇η · F (u, ∇xu, ξ)φ dη = 0.
+
+(22)
+
+E
+
+E
+
+Analogously to SG, this step corresponds to a projection onto the
+
+test function. To avoid confusion, we do not use the same short
+
+hand scalar product notation ·, · as in SG for the DG projection,
+
+despite the parallels between both operations. Integration by parts
+
+ﬁnally leads to the weak form of (1):
+
+∂t Juφ dη + (F · n)∗φ dη − F (u, ∇xu, ξ) · ∇ηφ dη = 0,
+
+E
+
+∂E
+
+E
+
+(23)
+
+where n is the outward pointing unit normal vector of the reference element surface. At element interfaces, discontinuities are allowed, such that the ﬂux F is not uniquely deﬁned. We use Riemann solvers (further detailed in Section 3.2.1) to approximate the convective ﬂux and the arithmetic mean of element traces for the viscous ﬂux. This approximation is indicated by the superscript ∗. Components of the solution vector are approximated on each element by a tensor product of one-dimensional polynomials of order N ∈ N. Lagrange polynomials are employed as both basis and test functions. We use a collocation approach following [34] using the
+(N + 1)3 Gauß-Legendre or Gauß-Lobatto quadrature points for in-
+terpolation and integration.
+In (13), the gradient of the solution ∇xu is needed as input to
+the viscous terms of the ﬂux function. In the context of a DGSEM discretization, we obtain this gradient with a procedure called lifting as in [36]. To this end, we re-write (13) into the extended system of equations
+
+q = ∇xu,
+
+(24)
+
+∂t u + ∇x · (G(u) − H(u, q)) = 0.
+
+(25)
+
+We discretize the components qi = ∂xi u of the ﬁrst equation with
+DGSEM analogously to the discretization shown above, leading to
+
+the weak form
+
+Jqiφ dη − (u · n)∗∗φ dη + u · ∇ηφ dη = 0.
+
+(26)
+
+E
+
+∂E
+
+E
+
+In order to gain the input q for the viscous ﬂux in (23), we solve
+
+in each time step the lifting equations (26). We employ a lifting
+
+scheme called BR1 [36], where the arithmetic mean is used at dis-
+continuities at the element interfaces (a)∗∗ = (a+ + a− )/2.
+
+To advance the solution in time, we use a high-order explicit
+
+Runge-Kutta time integration scheme of Carpenter&Kennedy [21],
+
+which is implemented in a low storage version. The time-stepping
+
+scheme is constrained by a CFL type condition of the form
+
+t ≤ min
+
+λc max
+
+h min
+(2N
+
++
+
+1)
+
+,
+
+h min
+λvmax(2N + 1)
+
+2
+
+.
+
+(27)
+
+4
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+In (27) hmin denotes the smallest characteristic length among all
+spatial cells, λcmax := (|v1| + c) + (|v2| + c) is an estimate for the
+absolute value of the largest eigenvalue of the convective ﬂux Ja-
+
+cobian, c :=
+
+γ
+
+p
+ρ
+
+being
+
+the
+
+speed
+
+of
+
+sound.
+
+Moreover,
+
+λvmax :=
+
+max
+
+4
+3 ρ
+
+,
+
+γ
+p
+
+μ
+Pr
+
+is an estimate for the largest eigenvalue of the
+
+diffusion
+
+matrix
+
+of
+
+the
+
+viscous
+
+ﬂux,
+
+P r
+
+=
+
+c p μ
+k
+
+being
+
+the
+
+Prandtl
+
+number. Following [37], we estimate the largest eigenvalues λcmax
+
+and λvmax by computing the largest eigenvalue of the ﬂux Jaco-
+
+bians evaluated at quadrature points in stochastic space. We de-
+
+scribe this procedure in (30).
+
+If shock waves or other discontinuities are present in the phys-
+
+ical domain, the DGSEM scheme is prone to non-physical oscilla-
+
+tions of the high-order polynomials. Several approaches exist to
+
+address this issue, one of which is a shock capturing method based
+
+on Finite-Volume (FV) sub-cells [38]. Here, an indicator function
+
+such as [39,40] detects cells in the physical domain where discon-
+
+tinuities are present. High-order cells containing shocks are sub-
+
+divided into equidistant sub-cells, where the number of sub-cells
+corresponds to the number of interpolation points, i.e. (N + 1)3. A
+
+second order total variation diminishing reconstruction procedure
+
+improves accuracy while ensuring stability.
+
+We note that the DGSEM method can be derived equivalently
+
+for conservation laws in two space dimensions.
+
+3.2.1. Riemann solvers for the SG discretized system
+
+To approximate the normal convective ﬂux G · n at the elements
+
+interfaces, we solve one-dimensional Riemann problems along the
+
+direction of the normal vector of the corresponding faces. In the
+
+DGSEM method, discontinuities are small in smooth regions, so
+
+in contrast to low-order ﬁnite volume methods, these Riemann
+
+solvers only have a minor impact on numerical dissipation and
+
+numerical error. For the SG discretized system (13), we employ a
+
+computationally inexpensive Lax-Friedrichs Riemann solver or an
+
+HLLE ﬂux evaluated at quadrature points. The Lax-Friedrichs nu-
+
+merical ﬂux reads
+
+G∗(u−, u+ ) = 1
+2
+
+G(u− ) + G(u+ ) − λmax(u+ − u− )
+
+,
+
+(28)
+
+where u− and u+ are the states at the element interface from the
+two adjacent elements. λmax is the largest eigenvalue of the system
+matrices, which we denote by eig.
+
+λmax := max
+
+λ(u−) , λ(u+)
+
+∞
+
+∞
+
+with
+
+λ(u) := eig
+
+∂ G(u) ∂ u
+
+.
+
+(29)
+
+Here, · ∞ denotes the L∞-norm of a vector. We estimate the maximal absolute interface normal signal speed from an evaluation at
+quadrature points ξβ , β ∈ P in the stochastic domain, i.e.
+
+λ(u) ≈ max
+
+∞
+
+β
+
+λ(u(ξβ )) ∞
+
+with
+
+λ(u) := eig
+
+∂ G(u) ∂ u
+
+.
+
+(30)
+
+Note that the evaluation at quadrature points might in some cases lead to an underestimation of the maximal signal speeds. We have not encountered adverse effects due to this, which might be due to the overall highly dissipative nature of the Lax-Friedrichs ﬂux.
+Alternatively, we choose the HLLE numerical ﬂux as in [41], but
+we evaluate the numerical ﬂux at quadrature points {ξβ }β∈P and
+project the numerical ﬂuxes back onto the orthonormal basis using the procedure in (17).
+
+G ∗
+
+(u− (ξ β
+
+) ,
+
+u +
+
+(ξβ
+
+))
+
+:=
+
+b+ (ξ β
+
+)G(u−(ξβ )) b+(ξβ )
+
+− −
+
+b− (ξ β b− (ξ β
+
+)G(u− (ξ β )
+
+))
+
+(31)
+
++
+
+b+ (ξ β b+(ξβ )
+
+)b−(ξβ ) − b−(ξβ
+
+) (u+(ξβ )
+
+−
+
+u−(ξβ )),
+
+with signal speed estimates
+
+b−(ξβ ) := {λmin(u¯ (ξβ )), λmin(u−(ξβ )), 0}, b+(ξβ ) := {λmax(u¯ (ξβ )), λmax(u+(ξβ )), 0},
+
+where λmin(u−(ξβ )), λmax(u+(ξβ ) are the smallest and largest
+
+eigenvalue
+
+of
+
+∂ G(u) ∂ u
+
+and
+
+u¯ (ξβ )
+
+is
+
+the
+
+corresponding
+
+Roe
+
+mean
+
+value, cf[41].
+
+4. Employed software: SG-FLEXI
+
+Based on the open source DGSEM ﬂow solver FLEXI [19] (open source on the FLEXI homepage2), the code SG-FLEXI for the 3D compressible Navier-Stokes equations has been developed, which is also open source and can be retrieved from GitHub.3 FLEXI is an unstructured, arbitrary order DGSEM solver designed for high performance computing in computational ﬂuid dynamics. It is written in Fortran, with a focus on performance and massive scalability. The SG extension of the code can handle an arbitrary number of uncertain variables with uniform or normal distribution. Uncertainty can be introduced via initial and boundary conditions, uncertain source terms and uncertain viscosity.
+Expanding a code towards Stochastic Galerkin requires the following changes:
+• The stochastic operators have to be set up. This includes functions for the stochastic basis polynomials, stochastic qudrature points, the multiplication tensor, and pseudo-spectral substitutes for products, fractions and potentially other nonlinear operations in the ﬂux functions (For example, a routine
+SG_Product is introduced, which takes two vectors with |K|
+entries and returns their SG projected product as a vector of
+length |K|. The same is done for fractions and other non-linear
+operations). • Solution arrays and all other arrays with previously nvar en-
+tries are extended to nvar × |K| entries. All non-linear opera-
+tions in the ﬂux calculation are replaced by their SG projected equivalents. Riemann solvers suitable for SG discretized systems Section 3.2.1 are introduced instead of conventional ones. • Projection routines are introduced to project random initial and boundary conditions as well as random source terms onto the polynomial basis. • Output and post-processing is adapted to include stochastic evaluation. In FLEXI, we use HDF5 for output and an in-house plugin to ParaView®for visualization.
+
+4.1. Performance
+The calculation of double sums (15) with the sparse multiplication tensor C consumes the largest proportion of computational effort in the SG method for the compressible Euler and NavierStokes equations. Its eﬃciency is therefore crucial to the code. The multiplication tensor is sparse, symmetrical in all directions and solution-independent, and its entries can be pre-computed and stored a priori. Analytical formulae for the tensor entries for uniform and normal distributions can be found in [42]
+Both sparsity and symmetry should be exploited to improve computational and memory eﬃciency. In particular, each index set i, j, k of the double sum should only be looped over if Ci jk = 0. Also, each non-zero value occurring in the tensor should only be stored
+
+2 www.ﬂexi-project.org 3 https://github.com/ﬂexi- framework/sg- ﬂexi
+
+5
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+once. In the case of one random variable (M = 1), the entries and their indices can be addressed directly by nested loops. Details are laid out in Appendix A. In the case of several variables, index arrays are used. For the case of one random variable, index arrays were observed to perform worse than nested loops, as also shown in detail below.
+The number of random variables and the stochastic polynomial degree can be prescribed statically at compile time. They are the only variables that the loop controls in the function depend on, which means that all loop index limits are constant and known at compile time. Nonetheless, it was observed that these loops are not unrolled by the investigated compilers. As the employed loops are mostly very short, a considerable share of computational effort is spent for loop control, which is undesirable. Another option has therefore been investigated: A script was incorporated into the compile process, where the operations within the loops are explicitly converted to a list of statements, which then replace the original source code. This can be interpreted as explicit custom loop unrolling. An example pseudo source code generated with this method is shown in Appendix B. Minor further optimizations (no initialization with zero, no multiplication with tensor entries equal to one) are incorporated. In this case, the array for the multiplication tensor C is ﬁlled with the same loop layout as in the source code generation script. Note that a scalar index was introduced for
+sorting of the multi-index κ.
+For the treatment of SG discretized fractions, both methods outlined in Section 3.1.1 are implemented, i.e. both solving a linear equation system (called exact evaluation in the following) and an evaluation at quadrature points. In order to eﬃciently solve the linear equation system, the diagonal pivoting routine DSYSV from the LAPACK library is used. It solves symmetric positive deﬁnite matrices eﬃciently and exactly. Symmetry of the matrix follows directly from the symmetry of the multiplication tensor. Positive deﬁniteness follows from Theorem 2 in [37] if the denominator is positive in the whole stochastic domain. For the uncertain Navier-Stokes
+equations, all fractions have the same denominator ρ(ξ), which is
+ensured to be positive by the hyperbolicity preserving limiter described in Section 3.1.3.
+For eﬃcient parallelization, the strategy of the baseline solver FLEXI [19] is used without considerable changes. The DGSEM method allows for an outstanding parallel performance, since the high order stencils are compact and only values at cell interfaces have to be communicated. The domain is partitioned into parts of equal size with a space ﬁlling curve, where each DG element is handled entirely by one process. At the interfaces of the threadlocal subdomains, master and slave sides are determined. The solution from the neighbouring cell which is needed for the numerical ﬂux approximation is communicated from the slave side to the master side, where the ﬂux is computed and sent back to the slave side. Latency hiding is used in order to improve parallel performance. The stochastic polynomial coeﬃcients are not parallelized, since they are strongly coupled. In ME-SG, several independent SG simulations are carried out, so stochastic multi-elements can be handled by different processes without additional communication. Nonetheless, in the current implementation the runs for each multi-element are all incorporated into one parallel run of SG-FLEXI. This facilitates organized parallel output to one common ﬁle based on the HDF5 library. Parallel performance generally improves with stochastic dimensionality, as the amount of communicated data increases less than the computational effort on each core. However, each process has to handle an entire DG element, which can lead to a high minimum load per core for many stochastic degrees of freedom and high DG polynomial degree.
+We investigate the effects of the performance optimizations and of the parallelization strategy. We ﬁrst consider thread level performance in Fig. 1a and b. To this end, the freestream (stochastically,
+
+spatially and temporally constant state)
+
+⎧
+
+u (t
+
+,
+
+x ,
+
+ξ
+
+)
+
+=
+
+⎪⎨ρv1((xx)) ⎪⎩vp2((xx))
+
+= 1, = 0, = 0, = 1
+
+(32)
+
+is considered. Dummy stochastic variables are introduced, where only the mean is initialized with a non-zero value. The physical polynomial degree is chosen as N = 10 and a grid of 4 × 4 DGelements with periodic boundary conditions is used. The numerical error for this example is determined by machine accuracy. In all computations, the stochastic polynomial degree is given statically at compile time for better comparability. Computations were carried out in a single thread on a Intel i5-6300U CPU. Results were averaged over ﬁve repeated runs. Fig. 1a shows the performance index
+
+wall time
+
+PID =
+
+,
+
+nDOF,phys × nRKStages
+
+(33)
+
+where wall time refers to the wall time for the whole simulation (excluding initialization routines and ﬁle I/O, which do not contribute considerably), nDOF,phys is the number of physical degrees of freedom and nRKStages is the number of stages of the employed Runge-Kutta time integration scheme multiplied with the computed number of time steps. The performance index is plotted versus the number of stochastic degrees of freedom (equal to Nstoch + 1) for computations with different numbers of uncertain variables M. The conventional version using index vectors was used for the routine for computation of stochastic products in all computations in Fig. 1a. The computation time and therefore also the PID increases with increasing nDOF,stoch, and the slope increases as well, as parts of the computation cost independent of nDOF,stoch dominate for low nDOF,stoch.
+Figure 1 b shows the speed-up achieved with the two optimizations for SG product evaluation discussed above, namely the version with nested loops described in Appendix A (only applicable for M = 1) and the version with manual loop unrolling. Speed-up is computed as the ratio of the baseline PID (using index vectors, as shown in the previous subplot) and the respective optimized PID. The optimized nested loop layout yields signiﬁcant improvements except for stochastic polynomial degrees of two to four. For these computations, it is assumed that the stochastic polynomial degree is so high that the compiler does not remove any loops as obsolete, but low enough that loop control takes a substantial share of computational cost. The more signiﬁcant savings are however achieved by the manually scripted source code generation in the compile process. For M = 1 and high stochastic polynomial degrees, overall computation time is reduced by more than a factor of two. The speed-up somewhat decreases with increasing stochastic dimension, which can be probably attributed to the fact that numerical evaluation of fractions requires tensor product quadrature, which is very costly for high stochastic dimensions and thus increasingly dominates computation time.
+Weak scaling is investigated to evaluate the parallelization strategy of the code. The same problem is simulated, but on a three-dimensional domain and with adapted physical polynomial degrees of four and eight. The number of elements per core is kept constant at one or four, and the number of cores is increased proportionally to the number of DG elements. One uncertain variable M = 1 is considered. Computations were carried out on the Cray XC40 (Hazel Hen) at the High-Performance Computing Center Stuttgart (HLRS). The baseline computation is carried out on one node (24 cores, 24 threads), the largest computation is on 512 nodes (12288 cores). The results are shown in Fig. 1c. Weak scaling is excellent, with a parallel eﬃciency of more than 74% in all
+
+6
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+Fig. 1. Performance of SG-FLEXI. (a) performance index plotted over stochastic degrees of freedom using index vectors for SG product evaluation; (b) core-level speed-up for different optimizations; (c) weak scaling (speed-up over number of cores).
+
+cases and no sign of speed-up ﬂattening out at the largest number of cores.
+
+responding experiments can be reproduced using the open source code.
+
+5. Numerical results
+In this section we present various numerical results for our (ME-)SG-DGSEM scheme SG-FLEXI. As a ﬁrst numerical experiment in Section 5.1 we consider the convergence towards a benchmark solution of the Euler equations which is obtained with the method of manufactured solutions. The second numerical experiment in Section 5.2 considers the viscous ﬂow over a NACA 0012 airfoil, where we let the dynamic viscosity and the angle of attack be uncertain. In Section 5.3 we consider a forward facing step problem with uncertain Mach number. This problem poses a challenge to the ME-SG-DGSEM scheme because of the possible loss of hyperbolicity due to strong shocks in the ﬂow ﬁeld. Finally, in Section 5.4 we simulate the inviscid ﬂow around a 3D spacecraft model. We demonstrate that our code is capable of simulating ﬂow in complex three-dimensional domain geometries in conjunction with strong shocks.
+In the following sections we denote the number of spatial cells by Ne, the corresponding mesh-width by h, the DG polynomial degree by N and the degree of the SG polynomial by Nstoch. The cor-
+
+5.1. Convergence
+
+To test the convergence of the SG-DGSEM scheme for the ran-
+
+dom Euler equations, we employ the method of manufactured so-
+
+lutions. To this end we insert a source term into (7), such that the
+
+solution is given by
+
+⎛ ρ(x, t, ξ) ⎞ ⎛ 2 + ξ2 cos(2π (x1 − ξ1t )) ⎞
+
+u(x, t, ξ)
+
+=
+
+⎜⎜⎝mm12
+m 3
+
+( x , ( x , ( x ,
+
+t t t
+
+, , ,
+
+ξ ξ ξ
+
+)))⎟⎟⎠
+
+=
+
+⎜ ⎜ ⎝
+
+2 +
+
+ξ2 cos(2π (x1
+0 0
+
+−
+
+ξ1t ))
+
+⎟⎟⎠.
+
+ρe(x, t, ξ)
+
+(2 + ξ2 cos(2π (x1 − ξ1t ))2
+
+(34)
+
+Here we consider two uniformly distributed random variables
+ξ = (ξ1, ξ2 ). More speciﬁcally we let ξ1 ∼ U (0.1, 0.5) and for uni-
+form spatial mesh reﬁnement, i.e. h-reﬁnement, we consider
+ξ2 ∼ U (0.1, 0.3), whereas for Nstoch-reﬁnement we consider ξ2 ∼ U (0.1, 1.0). Therefore, we use Gauß-Legendre orthonormal poly-
+nomials in the stochastic space. The solution is computed up to
+T = 1 on the spatial domain D = (−1, 1)2, where we consider pe-
+riodic boundary conditions. As numerical ﬂux we choose the Lax-
+
+7
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+Fig. 2. Convergence for exact solution (34) under spatial mesh reﬁnement (Ne-reﬁnement) and stochastic reﬁnement (Nstoch-reﬁnement). Example (5.1).
+
+Friedrichs ﬂux (28). The error is measured in mean and standard
+deviation (std) of density at time T = 1 in the L2(D)-norm which
+we approximate by a tensor product Gauß quadrature rule with 10 points (in one dimension) in every spatial cell. For the stochastic quadrature we use 20 points (in one dimension).
+In Fig. 2a we consider the error vs. h-reﬁnement for two different DG polynomial degrees. We observe that both the error in mean and std converge with the expected order of convergence, which is N + 1. Figure 2b shows the error vs. stochastic polynomial degree Nstoch in a semi-log plot for a DG polynomial degree N = 3 and Ne = 32 × 32 spatial cells. For the regular solution (34), the error clearly exhibits spectral convergence.
+
+5.2. 2D ﬂow around a NACA 0012 airfoil
+
+In this example we consider the viscous ﬂow over a NACA
+
+0012 airfoil, which is described by the compressible Navier-Stokes
+
+equations. We consider two operational uncertainties, namely the
+
+dynamic viscosity of the ﬂuid and the angle of attack of the
+
+airfoil. More speciﬁcally, we let μ ∼ N (0.001, 0.00012 ) and α ∼ N (3◦, (0.5◦ )2 ). The normal distributions with their inﬁnite support
+
+are strictly speaking not suited for these parameters, as they can
+
+lead to negative viscosity and an inﬁnitely rotated airfoil. The prob-
+
+abilities of such events are however very small and numerically
+
+irrelevant, such that these distributions are acceptable approxima-
+
+tions for this demonstrative example. The initial conﬁguration for
+
+this problem reads as follows:
+
+⎧
+
+u (t
+
+=
+
+0 ,
+
+x ,
+
+ξ)
+
+=
+
+⎪⎨ρv1((xx), ⎪⎩vp2((xx),
+
+ξ) ξ)
+
+= 1.0,
+= cos(α), = sin(α),
+= 4.464.
+
+(35)
+
+We set the ideal gas constant R = 2.857, the Prandtl number Pr =
+0.72 and the isentropic coeﬃcient in (3) to γ = 1.4. The solution
+is computed up to T = 5. For SG-DGSEM we consider Nstoch = 10 and a DG polynomial
+degree of N = 3. As numerical ﬂux we use the Lax-Friedrichs numerical ﬂux (28). To validate our result we compute mean and std with the non-intrusive Stochastic Collocation method (cf. [25]) using the deterministic DGSEM code FLEXI. We dub this method SCDGSEM. The DG polynomial degree for SC-DGSEM is also N = 3. For the two-dimensional stochastic domain we use a tensor-product of Gauß-Hermite quadrature points as collocation points, where we use 11 points in each stochastic dimension. The spatial computational grid uses an unstructured mesh with 652 quadrilateral ele-
+
+ments and a third order curved boundary surface. For the boundary condition at inﬂow and outﬂow we employ Dirichlet boundary conditions speciﬁed by (35). Around the airfoil we prescribe an isothermal wall with a no-slip condition, where the temperature T is computed using the ideal gas law (3).
+In Fig. 3 mean and std of momentum in x1-direction are plotted, i.e. m1 at ﬁnal time T = 5 obtained with SG-DGSEM and SCDGSEM. We observe an excellent agreement in mean, cf. Figure 3a and b. The std obtained with SG-DGSEM is slightly smaller than for SC-DGSEM, however the main ﬂow structure of std coincides very good with the result of SC-DGSEM. Due to the random viscosity the highest std can be seen downstream of the airfoil, because in this area the main ﬂow is signiﬁcantly dominated by viscous effects around the airfoil. For SG product evaluations, the baseline method using index vectors was used in this case, as the optimized loop layout Appendix A is not applicable for M > 1 and the high stochastic polynomial degree leads to 9191 non-zero multiplication tensor entries, which is excessive for manual loop unrolling.
+
+5.3. Uncertain forward facing step
+
+In this numerical example we consider a classical forward fac-
+
+ing step problem from Woodward and Colella [43] modeled by
+
+the Euler equations. The computational domain is given by D =
+
+[0, 3] × [0, 1]\[0.6, 3] × [0, 0.2]. We let the Mach number of the
+
+ﬂow be uncertain. The initial data in primitive form read as
+
+⎧
+
+u (t
+
+=
+
+0 ,
+
+x ,
+
+ξ)
+
+=
+
+⎪⎨ρv1((xx)) ⎪⎩vp2((xx, )ξ )
+
+= 1.4,
+= 3,
+= 0,
+= 1 + ξ1.
+
+(36)
+
+where ξ1 ∼ U (−0.2, 0.2). The solution is computed up to T = 3 and we let γ = 1.4.
+For ME-SG-DGSEM we consider N = 8 MEs and let Nstoch = 3. We use ME-SG for this example as discontinuities are present in
+the physical solution of this problem. The DG polynomial degree is
+N = 4 and the spatial mesh consists of Ne = 60 × 100 cells in front of the step and Ne = 240 × 80 cells above the step. As a reference solution we compute mean and variance using the ME-SC method.
+We use a piecewise linear stochastic approximation in combina-
+tion with a ﬁne grid both in the stochastic and in the physical do-
+main. This is to create an accurate, non-oscillating reference solu-
+tion even in the presence of discontinuities. In the stochastic space,
+the linear interpolation corresponds to Nstoch = 1. In the physical space, a piecewise linear solution approximation is achieved by us-
+
+8
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+Fig. 3. Comparison of mean and std for m1 obtained with SG and SC. Example (5.2).
+
+Fig. 4. Comparison of mean and std of density ρ at time T = 3 obtained with ME-SG-DGSEM and ME-SC-FV. Example 5.3.
+
+ing a purely Finite-Volume method with ﬁrst-order reconstruction, which is a submodule of the standard FLEXI code. We dub this method ME-SC-FV in the following. Speciﬁcally, we use N = 20 stochastic MEs. The spatial mesh consists of Ne = 200 × 280 cells in front of the step and Ne = 600 × 200 cells above the step. For both ME-SG and ME-SC-FV we use the HLLE numerical ﬂux (31) at physical element interfaces. At the inﬂow we prescribe Dirichlet boundary condition given by (36) and we prescribe outﬂow boundary conditions at the end of the computational domain. The remaining walls are reﬂective walls, i.e. we employ a slip condition.
+Figure 4 shows mean and std of density at time T = 3. Overall we see a very good agreement both in mean and std for MESG-DGSEM and ME-SC-FV. Due to the high-order of ME-SG-DGSEM many small-scale ﬂow features in std can be observed, although the spatial mesh is much coarser than for ME-SC-FV. From Fig. 4c and d we can deduce that the uncertain Mach number has a strong
+
+inﬂuence on the position and intensity of the shock upstream of the step. It also inﬂuences the ﬂow structure after the step, but not as much as in front of the step.
+Performance of the optimizations discussed in Section 4.1 was also investigated. Compared to the baseline version using index vectors, the optimized loop layout yielded a speed-up of 1.07, which is in line with the value in Fig. 1b for M = 1 and Nstoch = 3. Manual loop unrolling yielded a speed-up of 1.26, which is lower than the speed-up encountered in Fig. 1b. This might be due to other factors such as ﬁnite-volume sub-cells or parallel communication dominating computation time. Strong scaling for this example was investigated on the HPE Apollo system Hawk at the High Performance Computing Center Stuttgart (HLRS) using AMD EPYC 7742 CPUs. The system is different from the one mentioned above, as the original system was not available anymore at the time of this investigation. Only 99 of the available 128 CPUs were used on
+
+9
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+Fig. 5. Spacecraft: Mesh and DG/FV distribution. Example 5.4.
+each node to allow for an even distribution of DG elements across cores, which prevents idle times. Compared to a reference computation on one node, parallel eﬃciency of a computation on 256 nodes (25344 cores) was 94%.
+5.4. 3D ﬂow around a spacecraft
+In order to demonstrate the methods capability to simulate completely three-dimensional problems, the inviscid ﬂow around
+a space capsule with an uncertain Mach number Ma ∼ U (2.8, 3.2)
+is considered. The underlying CAD model geometry is based on a simpliﬁed
+model of the SpaceX Dragon spacecraft. A quarter model with symmetry boundary conditions was used as the geometry of the spacecraft is in good approximation symmetrical along two orthogonal planes. The CAD model was created in SolidWorks®, transformed to an STL surface mesh using ANSA®and a mesh was created from this using NUMECA HEXPRESS®. The mesh, shown in Fig. 5, has 71,819 hexahedral elements and uses non-conforming mortar interfaces for reﬁnement near the spacecraft surface.
+In order to save computational cost, the simulation was split into three stages. Each stage was run until the solution converged to a steady state. In the ﬁrst stage, a deterministic simulation with a ﬁnite volume space discretization (with 2 × 2 × 2 FV cells per DG mesh cell) was run with Ma = 3, which corresponds to the
+farﬁeld condition (ρ, v1, v2, v3, p)T = (1, 0, 1, 0, 0.079367)T . In the
+second stage, the aforementioned uncertainty was gradually intro-
+duced by altering v2 in the inﬂow boundary condition at constant
+
+speed of sound, which corresponds to v2 ∼ U (0.0741, 0.08466). A
+stochastic polynomial degree of Nstoch = 3 was used. ME-SG was not used for this example in order to reduce computational cost. In the third stage, space discretization was changed to the mixed DG/FV scheme described above, and the spatial polynomial degree was increased to 3. Simulations were carried out on 4800 cores at the Cray XC40 system Hazel Hen at the High Performance Computing Center Stuttgart (HLRS). The wall time totalled to approximately three hours for all three stages.
+Figure 6 shows mean and standard deviation of the ﬁeld solution. Mach number is plotted on the spacecraft surface while pressure is depicted in a slice through the ﬂow ﬁeld. The solution is reﬂected along the symmetry planes for visualization. In front of the capsule, a bow shock can be observed. Another set of shocks reaches from the rear of the capsule to the far ﬁeld. Furthermore, shock patterns form around the thruster outlets and along the thruster edges. Standard deviation is highest were shock positions vary with changing inﬂow Mach number. At the end of the computation, around 20% of the elements were converted to FV. The results show that high order SG simulations are feasible for complex three-dimensional geometries, in the presence of strong shocks.
+In this example, the optimized loop layout led to a speed-up of 1.14 as compared to the baseline index vector implementation. Manual loop unrolling provided a speed-up of 1.67, which even exceeds the values presented in Fig. 1b for M = 1 and Nstoch = 3. Strong scaling for this example was also investigated on the Hawk system at HLRS. 71 CPUs were used on each node. Parallel eﬃciency of a computation on 256 nodes (18176 cores) was 101% (again compared to a reference computation on one node), which means that caching effects more than offset the communication times, resulting in a slightly super-linear speed-up.
+6. Conclusion
+We have presented a high-order Stochastic Galerkin code based on a Discontinuous Galerkin Spectral element spatial discretization. It is able solve the two- and three-dimensional compressible Navier-Stokes Equations and Euler equations with an arbitrary number of stochastic dimensions. For the discretization in the stochastic space we use a pseudo-spectral approach and incorporated a multi-element ansatz in combination with a hyperbolicity preserving limiter to deal with the possible loss of hyperbolicity of
+
+Fig. 6. Spacecraft: mean and standard deviation; Mach number on spacecraft surface, pressure in slice through ﬂow ﬁeld. Example 5.4. 10
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+the Euler equations. The Discontinuous Galerkin Spectral Element Method is used for spatial discretization and the semi-discrete scheme is advanced in time with an explicit time-stepping scheme. Our method can handle curved, unstructured hexahedral elements and it uses a lifting procedure for the treatment of parabolic terms and features shock capturing with a ﬁnite volume subcell method. Performance of the most computationally expensive routine was optimized and a post-processing environment was developed.
+Our numerical results show the expected convergence order for reﬁnement, both in the physical and the stochastic space. The described performance optimizations yield an overall speed-up by a factor of up to two as compared to standard approaches, depending on the setup. Investigated validations and numerical examples include the ﬂow around a NACA0012 airfoil with uncertain Reynolds number and angle of attack, supersonic ﬂow over a forward facing step with an uncertain inﬂow Mach number as well as ﬂow around a three-dimensional spacecraft geometry with uncertain inﬂow Mach number.
+Though not discussed in this paper, we want to mention an inherent limitation of the SG method regarding time-dependent problems: The so-called long-term degeneration effect, cf. [14], causes some SG simulations to deteriorate after a certain simulation time. This renders, for example, scale-resolving simulations such as large eddy simulations or direct numerical simulations with the SG method unfeasible.
+In order to simulate turbulent ﬂows, one of the obvious next steps is to incorporate a Reynolds-averaged Navier Stokes (RANS) turbulence model into the method. Eﬃciency can be further increased, for example by introducing adaptivity regarding discretization of the stochastic domain. These steps will advance our code and the underlying method even further on its path towards industrial applicability.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnancial interests or personal relationships that could have appeared to inﬂuence the work reported in this paper.
+Acknowledgements
+The authors would like to thank the Baden-Württemberg Stiftung for funding via the project “SEAL”. The authors would also like to thank the High-Performance Computing Center Stuttgart (HLRS) for the provided computing resources through the project “SEAL”.
+
+Appendix A. Optimized computation of SG products with one random variable
+
+In order to compute the SG discretized product of g and h, a double sum is to be calculated for each of the coeﬃcients of gh, i.e.
+
+(gh)k = gih jCi jk with Ci jk =
+i, j
+
+i j, k .
+
+(A.1)
+
+The naive implementation of this requires three loops as shown in Algorithm 1.
+The tensor C is however sparse. An obvious choice for optimization is to build a one-dimensional array with all non-zero entries of C and an according index array for the indices i, j and k belonging to each entry. This implementation is relatively slow. A different approach is therefore laid out below. The resulting pseudocode is given in Algorithm 3. It is derived as follows:
+A set of for-loops can be derived which directly address only
+the indices (i, j, k) belonging to the non-zero entries of C. These non-zero entries are stored in a one-dimensional array C1. After the use of an entry of C1, a scalar index s for C1 is manually incremented to jump to the next entry of C1(s). In an ini-
+tialization phase, the values for C are ﬁrst stored in the original three-dimensional array and are subsequently transferred to a onedimensional array. To this end, the same for-loops as for the later computation of the product are used, but with operations of type
+C1(s) = C(i,j,k) .
+We use Algorithm 1 as a starting point. Firstly, the symmetry of the tensor can be exploited to save storage space and bandwidth for the tensor entries. This can be achieved by deﬁning i ≥ j ≥ k. The operations belonging to different permutations of an index set can be carried out using the same tensor entry and can thus be grouped together. Four cases concerning the indices can be distinguished:
+
+A) i > j > k; index set (i jk); six permutations B) i = j > k; index set (iik); three permutations C) i > j = k; index set (i j j); three permutations D) i = j = k; index set (iii); one permutation
+
+The cases are now treated separately. Case A) requires three nested for-loops, cases B) and C) require two for-loops and case D) one for-loop. The intermediate semi-optimized pseudo-code is shown in Algorithm 2. Note that in many cases, the upper limit of a for loop index is indeed lower than the lower limit. In these cases, the loop is not accessed at all.
+Additionally, the sparsity of the tensor can be exploited. Orthogonality of the basis polynomials leads to Ci jk = 0 for i > j + k [42]. This yields the following changes to the index limits for cases A) and C):
+
+Algorithm 1 SG product; naive implementation.
+
+11
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+Algorithm 2 SG product; auxiliary, intermediate version (semi-optimized).
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+A) k ≥ i − j C) k ≥ i/2.
+These changed index limits are marked green in Algorithm 3. The index limits for case B) remain unchanged, as i ≤ i + k always.
+For even probability density functions, basis polynomials with even (odd) indices are also purely even (odd). Consequently, an odd sum i + j + k yields an odd polynomial for the product
+
+i j k and thus also Ci jk = 0 [42]. This leads to the following indices
+A) The ﬁrst index of k is i − j. In this case, i + j + k = i + j + (i − j) = 2i, which is even. Setting the step size of k to 2 thus only
+loops over even index sums. B) The sum i + i + k is even iff k is even, which is achieved with a
+step size of two in the inner loop.
+
+12
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+Algorithm 3 SG product; optimized version for one random variable.
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+C) The sum i + j + j is even iff i is even, which is achieved with a step size of two in the outer loop.
+D) The sum i + i + i is even iff i is even, which is achieved with a step size of two in the single loop.
+
+to the single operation
+
+It becomes obvious that we can join the outer loops of cases A)
+and B) as well as C) and D). This leads to the nested loop layout in
+Algorithm 3. The changed index step sizes are marked red.
+In a last optimization step, the operations belonging to two re-
+spective permutations of different indices of g and h can be joined.
+Since gi h j Ci jk + g j hi Ci jk = (gi h j + g j hi ) Ci jk, we pre-compute the
+upper diagonal of a matrix A with Ai j = gi h + g j hi, which reduces the two operations
+
+By this, the number of operations in each innermost iteration is reduced to 3 for case A) and to 2 for cases B) and C). We also use the main diagonal of this matrix for equal indices Aii = gi hi.
+
+13
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+Appendix B. SG product source code generated for a prescribed stochastic dimensionality and polynomial degree
+
+Algorithm 4 SG product; script-generated source code for M = 2 and Nstoch = 2.
+
+References
+[1] Xiu D, Karniadakis GE. The Wiener-Askey polynomial chaos for stochastic differential equations. SIAM J Sci Comput 2002;24(2):619–44.
+[2] Wiener N. The homogeneous chaos. Amer J Math 1938;60(4):897–936. [3] Le Maître OP, Reagan MT, Najm HN, Ghanem RG, Knio OM. A stochastic projec-
+tion method for ﬂuid ﬂow. II. Random process. J Comput Phys 2002;181(1):9– 44. doi:10.1006/jcph.2002.7104. [4] Xiu D. Stochastic collocation methods: a survey. In: Handbook of uncertainty quantiﬁcation. Vol. 1, 2, 3. Springer, Cham; 2017. p. 699–716. [5] Kuhn T, Dürrwächter J, Meyer F, Beck A, Rohde C, Munz C-D. Uncertainty quantiﬁcation for direct aeroacoustic simulations of cavity ﬂows. J Theor Comput Acoust 2019;27(1):1850044,20. doi:10.1142/S2591728518500445. [6] Le Maître OP, Knio OM. Spectral methods for uncertainty quantiﬁcation. Scientiﬁc Computation. Springer, New York; 2010. doi:10.1007/978-90-481-3520-2. ISBN 978-90-481-3519-6. With applications to computational ﬂuid dynamics [7] Pettersson MP, Iaccarino G, Nordström J. Polynomial chaos methods for hyperbolic partial differential equations. Mathematical Engineering. Springer, Cham; 2015. doi:10.1007/978-3-319-10714-1. ISBN 978-3-319-10713-4; 978-3319-10714-1. Numerical techniques for ﬂuid dynamics problems in the presence of uncertainties
+
+[8] Pettersson P, Nordström J, Doostan A. A well-posed and stable stochastic Galerkin formulation of the incompressible Navier-Stokes equations with random data. J Comput Phys 2016;306:92–116. doi:10.1016/j.jcp.2015.11.027.
+[9] Dürrwächter J, Kuhn T, Meyer F, Schlachter L, Schneider F. A hyperbolicitypreserving discontinuous stochastic Galerkin scheme for uncertain hyperbolic systems of equations. J Comput Appl Math 2020;370:112602. doi:10.1016/j. cam.2019.112602 .
+[10] Tryoen J, Le Maître OP, Ndjinga M, Ern A. Intrusive Galerkin methods with upwinding for uncertain nonlinear hyperbolic systems. J Comput Phys 2010;229(18):6485–511. doi:10.1016/j.jcp.2010.05.007.
+[11] Poëtte G, Després B, Lucor D. Uncertainty quantiﬁcation for systems of conservation laws. J Comput Phys 2009;228(7):2443–67.
+[12] Kusch J, McClarren RG, Frank M. Filtered stochastic Galerkin methods for hyperbolic equations. J Comput Phys 2020;403:109073. doi:10.1016/j.jcp.2019. 109073 .
+[13] Wu K, Tang H, Xiu D. A stochastic Galerkin method for ﬁrst-order quasilinear hyperbolic systems with uncertainty. J Comput Phys 2017;345:224–44. doi:10. 1016/j.jcp.2017.05.027 .
+[14] Wan X, Karniadakis GE. Long-term behavior of polynomial chaos in stochastic ﬂow simulations. Comput Methods Appl Mech Engrg 2006;195(41–43):5582– 96. doi:10.1016/j.cma.2005.10.016.
+
+14
+
+JID: CAF J. Dürrwächter, F. Meyer, T. Kuhn et al.
+
+ARTICLE IN PRESS
+
+[m5G;June 15, 2021;7:2] Computers and Fluids xxx (xxxx) xxx
+
+[15] Mathelin L, Hussaini MY, Zang TA. Stochastic approaches to uncertainty quantiﬁcation in CFD simulations. Numer Algorithms 2005;38(1–3):209–36. doi:10. 1007/s11075- 004- 2866- z.
+[16] Kantarakias KD, Chatzimanolakis M, Asouti VG, Giannakoglou KC. On the development of the 3D Euler equations using intrusive PCE for uncertainty quantiﬁcation. In: Proceedings of UNCECOMP - 2nd ECCOMAS thematic conference on uncertainty quantiﬁcation in computational sciences and engineering; 2017.
+[17] Le Maître O, Reagan MT, Debusschere B, Najm HN, Ghanem RG, Knio OM. Natural convection in a closed cavity under stochastic non-boussinesq conditions. SIAM J Sci Comput 2006:375–94. doi:10.1137/S106482750342285.
+[18] Reagan MT, Najm HN, Pébay PP, Knio OM, Ghanem RG. Quantifying uncertainty in chemical systems modeling. Int J Chem Kinet 2005;37(6):368–82. doi:10. 10 02/kin.20 081 .
+[19] Krais N, Beck A, Bolemann T, Frank H, Flad D, Gassner G, Hindenlang F, Hoffmann M, Kuhn T, Sonntag M, Munz C-D. FLEXI: A high order discontinuous Galerkin framework for hyperbolic–parabolic conservation laws. Comput Math Appl 2021;81:186–219. doi:10.1016/j.camwa.2020.05.004.
+[20] Hindenlang F, Gassner GJ, Altmann C, Beck A, Staudenmaier M, Munz C-D. Explicit discontinuous Galerkin methods for unsteady problems. Computers & Fluids 2012;61:86–93.
+[21] Carpenter M, Kennedy C. Fourth-order 2N-storage Runge-Kutta schemes. NASA TM 109112 1994:1–25.
+[22] Beck AD, Bolemann T, Flad D, Frank H, Gassner GJ, Hindenlang F, Munz CD. High-order discontinuous Galerkin spectral element methods for transitional and turbulent ﬂow simulations. Internat J Numer Methods Fluids 2014;76(8):522–48. doi:10.1002/ﬂd.3943.
+[23] Chalmers N, Agbaglah G, Chrust M, Mavriplis C. A parallel hp-adaptive high order discontinuous Galerkin method for the incompressible Navier-Stokes equations. J Comput Phys X 2019;2:100023. doi:10.1016/j.jcpx.2019.100023.
+[24] Ghanem RG, Spanos PD. Stochastic ﬁnite elements: a spectral approach. New York: Springer-Verlag; 1991. doi:101007/978-1-4612-3094-6. ISBN 0-38797456-3
+[25] Xiu D, Hesthaven JS. High-order collocation methods for differential equations with random inputs. SIAM J Sci Comput 2005;27(3):1118–39.
+[26] Debusschere BJ, Najm HN, Matta A, Knio OM, Ghanem RG, Le Maître OP. Protein labeling reactions in electrochemical microchannel ﬂow: numerical simulation and uncertainty propagation. Phys Fluids 2003;15(8):2238–50. doi:10. 1063/1.1582857.
+[27] Debusschere BJ, Najm HN, Pébay PP, Knio OM, Ghanem RG, Le Maître OP. Numerical challenges in the use of polynomial chaos representations for stochastic processes. SIAM J Sci Comput 2006:698719.
+[28] Lacor C, Dinescu C, Hirsch C, Smirnov S. Implementation of intrusive polynomial chaos in CFD codes and application to 3D Navier-Stokes. In: Uncertainty quantiﬁcation in computational ﬂuid dynamics. In: Lect. Notes Comput. Sci. Eng., vol. 92. Springer, Heidelberg; 2013. p. 193–223. doi:10.1007/ 978- 3- 319- 00885- 1_5.
+[29] Ghanem R, Asce M, Red-horse JR, Sarkar A, Asce AM. Modal properties of a space-frame with localized system uncertainties. In: 8th ASCE Specialty conference of probabilistic mechanics and structural reliability, ASCE; 2000.
+
+[30] Wan X, Karniadakis GE. An adaptive multi-element generalized polynomial chaos method for stochastic differential equations. J Comput Phys 2005;209(2):617–42.
+[31] Wan X, Karniadakis GE. Multi-element generalized polynomial chaos for arbitrary probability measures. SIAM J Sci Comput 2006;28(3):901–28.
+[32] Després B, Poëtte G, Lucor D. Robust uncertainty propagation in systems of conservation laws with the entropy closure method. In: Uncertainty quantiﬁcation in computational ﬂuid dynamics. In: Lect. Notes Comput. Sci. Eng., vol. 92. Springer, Heidelberg; 2013. p. 105–49. doi:10.1007/978-3-319-00885-1_3.
+[33] Schlachter L, Schneider F. A hyperbolicity-preserving stochastic Galerkin approximation for uncertain hyperbolic systems of equations. J Comput Phys 2018;375:80–98 .
+[34] Kopriva DA. Implementing spectral methods for partial differential equations. Scientiﬁc Computation. Springer, Berlin; 2009. doi:10.1007/ 978-90-481-2261-5. ISBN 978-90-481-2260-8. Algorithms for scientists and engineers
+[35] Hesthaven JS, Warburton T. Nodal discontinuous Galerkin methods. Texts in Applied Mathematics, vol. 54. Springer, New York; 2008. doi:10.1007/ 978-0-387-72067-8. ISBN 978-0-387-72065-4. Algorithms, analysis, and applications
+[36] Bassi F, Rebay S. A high-order accurate discontinuous ﬁnite element method for the numerical solution of the compressible Navier–Stokes equations. J Comput Phys 1997;131(2):267–79.
+[37] Sonday BE, Berry RD, Najm HN, Debusschere BJ. Eigenvalues of the Jacobian of a Galerkin-projected uncertain ODE system. SIAM J Sci Comput 2011:1212–33. doi:10.1137/100785922.
+[38] Sonntag M, Munz C-D. Eﬃcient parallelization of a shock capturing for discontinuous Galerkin methods using ﬁnite volume sub-cells. J Sci Comput 2017;70(3):1262–89. doi:10.1007/s10915-016-0287-5.
+[39] Persson P-O, Peraire J. Sub-cell shock capturing for discontinuous Galerkin methods. 44th AIAA Aerospace sciences meeting and exhibit; 2006. doi:102514/62006- 112.
+[40] Jameson A, Schmidt W, Turkel E. Numerical solution of the Euler equations by ﬁnite volume methods using Runge Kutta time stepping schemes. In: 14th Fluid and plasma dynamics conference; 1981. https://doi.org/10.2514/6. 1981- 1259.
+[41] Einfeldt B, Munz C-D, Roe PL, Sjögreen B. On Godunov-type methods near low densities. J Comput Phys 1991;92(2):273–95. doi:10.1016/0021-9991(91) 90211- 3.
+[42] Pettersson P, Iaccarino G, Nordström J. A stochastic Galerkin method for the Euler equations with Roe variable transformation. J Comput Phys 2014:481– 500. doi:10.1016/j.jcp.2013.10.011.
+[43] Woodward P, Colella P. The numerical simulation of two-dimensional ﬂuid ﬂow with strong shocks. J Comput Phys 1984;54(1):115–73. doi:10.1016/ 0021- 9991(84)90142- 6.
+
+15
+
